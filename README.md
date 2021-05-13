@@ -1,10 +1,11 @@
 # 概要
-freeeの取引履歴のうち、売上高のみ取り出しCSV(sales.csvへ出力する)
+freeeの取引履歴のうち、売上高のみ取り出しCSV(sales.csv)へ出力する
 
 # 事前インストール
 ## Go(1.16)のインストール
-以下のリンクを参照
+
 https://golang.org/doc/install
+上記のリンクを参照
 
 ## GNU Makeのインストール
 インストールされていれば、以下のコマンドを実行して確認可能
@@ -30,15 +31,18 @@ make build
 
 
 ## Client ID、Client Secretの取得
-以下のリンクに従って行う。
 https://developer.freee.co.jp/tutorials/starting-api
+
+上記のリンクに従って行う。
+
 ただし、コールバックURLには`urn:ietf:wg:oauth:2.0:oob`を入力する。
 
 取得した値を、`.env`の`CLIENT_ID`と`CLIENT_SECRET`へ入力する
 
 ## Tokenの取得
-以下のリンクに従って行う。
 https://developer.freee.co.jp/tutorials/getting-access-token
+
+上記のリンクに従って行う。
 
 まずは認可コードを取得する。その後、以下のPostを実行する。
 ```
@@ -58,13 +62,14 @@ curl -i -X POST \
 
 ## Company Idの取得
 https://developer.freee.co.jp/docs/accounting/reference#/
-上記のリンクからアクセスして取得する。
+上記のリンクからAPIコールを行って取得する。
 
 `/api/1/companies`の鍵マークにアクセストークンを入力して実行する。
 
 取得したら、`.env`の`COMPANY_ID`へ入力する
 
 ```
+# レスポンス例
 {
   "companies": [
     {
@@ -82,10 +87,14 @@ https://developer.freee.co.jp/docs/accounting/reference#/
 ```
 ./bin/gen-sales-csv --access-token={アクセストークン} --refresh-token={リフレッシュトークン}
 ```
-`./out/sales.csv`が生成される。また、トークンが`./token.b`へ保存される
+`./out/sales.csv`が生成される。
 
-## 2回目の実行
+また、トークンが`./token.b`へ保存される
+
+## 2回目以降の実行
 ```
 ./bin/gen-sales-csv
 ```
-`./out/sales.csv`が生成される。また、トークンの有効期限が切れた場合のリフレッシュは自動で行われ、`./token.b`へ保存される
+`./out/sales.csv`が生成される。
+
+また、トークンの有効期限が切れた場合のリフレッシュは自動で行われ、`./token.b`へ保存される
