@@ -12,6 +12,11 @@ type Config struct {
 	ClientSecret string `envconfig:"CLIENT_SECRET"  yaml:"clientSecret"`
 	RedirectURL  string `envconfig:"REDIRECT_URL" yaml:"RedirectURL"`
 	CompanyId    int32  `envconfig:"COMPANY_ID"  yaml:"CompanyId"`
+	Filter       struct {
+		Items    []int32 `yaml:"Items"`
+		Sections []int32 `yaml:"Sections"`
+		Tags     []int32 `yaml:"Tags"`
+	} `yaml:"Filter"`
 }
 
 func LoadConfigForEnv() (*Config, error) {

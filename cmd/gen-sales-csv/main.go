@@ -28,9 +28,9 @@ type CSVOut struct {
 var tokenFilename = "token.b"
 
 func main() {
-	env, err := config.LoadConfigForEnv()
+	env, err := config.LoadConfigForYaml()
 	if err != nil {
-		log.Fatal("cannot load env")
+		log.Fatal(err)
 	}
 
 	ac := flag.String("access-token", "", "Access Token")
@@ -70,6 +70,7 @@ func main() {
 			fmt.Println("new token saved!")
 		}()
 	}
+	fmt.Printf("token: %v\n", token)
 	fmt.Printf("access token: %s\n", token.AccessToken)
 
 	datefmt := "2006-01-02"
@@ -77,7 +78,7 @@ func main() {
 	oauthcfg := &oauth2.Config{
 		ClientID:     env.ClientId,
 		ClientSecret: env.ClientSecret,
-		Scopes:       []string{"SCOPE"},
+		Scopes:       []string{"read", "default_read"},
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  "https://accounts.secure.freee.co.jp/public_api/authorize",
 			TokenURL: "https://accounts.secure.freee.co.jp/public_api/token",
@@ -91,10 +92,10 @@ func main() {
 		Src: oauthcfg.TokenSource(ctx, token),
 		F:   Do,
 	}
-
 	reuseSrc := oauth2.ReuseTokenSource(token, src)
-	cfg.HTTPClient = oauth2.NewClient(ctx, reuseSrc)
+	ctx = context.WithValue(ctx, freeeclient.ContextOAuth2, reuseSrc)
 	client := freeeclient.NewAPIClient(cfg)
+	fmt.Printf("%v\n", ctx)
 
 	accountItemMap := make(map[int32]freeeclient.AccountItemsResponseAccountItems)
 
@@ -131,6 +132,10 @@ func main() {
 
 	pushDetails := func(details interface{}, partner int32, date string) {
 		var amount int64
+		var tags []int32
+		var item *int32
+		var section *int32
+
 		pushItem := func() {
 			now, _ := time.ParseInLocation(datefmt, date, tz)
 			// start := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, tz)
@@ -149,7 +154,10 @@ func main() {
 			for j := range v {
 				detail := v[j]
 				amount = detail.Amount
-				if accountItemMap[detail.AccountItemId].Name == "売上高" {
+				tags = detail.TagIds
+				item = detail.ItemId.Get()
+				section = detail.SectionId.Get()
+				if accountItemMap[detail.AccountItemId].Name == "売上高" && filterDeal(item, section, &tags, &env.Filter.Items, &env.Filter.Sections, &env.Filter.Tags) {
 					pushItem()
 				}
 			}
@@ -198,6 +206,7 @@ func main() {
 
 func Do(t *oauth2.Token) error {
 	fmt.Println("refreshed!")
+	fmt.Printf("struct: %v\n", t)
 	fmt.Printf("new access token: %s\n", t.AccessToken)
 	fmt.Printf("new refresh token: %s\n", t.RefreshToken)
 
@@ -214,4 +223,38 @@ func Do(t *oauth2.Token) error {
 		fmt.Println("new token saved!")
 	}
 	return nil
+}
+
+func contains(s *[]int32, e int32) bool {
+	for _, v := range *s {
+		if e == v {
+			return true
+		}
+	}
+	return false
+}
+
+func filterDeal(dealItemId *int32, dealSectionId *int32, dealTagIds *[]int32, condItemIds *[]int32, condSectionIds *[]int32, condTagIds *[]int32) bool {
+	tagFlag := true
+	if condTagIds != nil && len(*condTagIds) > 0 {
+		tagFlag = false
+		for _, v := range *condTagIds {
+			if contains(dealTagIds, v) {
+				tagFlag = true
+				break
+			}
+		}
+	}
+
+	itemFlag := true
+	if condItemIds != nil && len(*condItemIds) > 0 {
+		itemFlag = dealItemId != nil && contains(condItemIds, *dealItemId)
+	}
+
+	sectionFlag := true
+	if condSectionIds != nil && len(*condSectionIds) > 0 {
+		sectionFlag = dealSectionId != nil && contains(condSectionIds, *dealSectionId)
+	}
+
+	return tagFlag && itemFlag && sectionFlag
 }
