@@ -35,11 +35,19 @@ func main() {
 
 	ac := flag.String("access-token", "", "Access Token")
 	rf := flag.String("refresh-token", "", "Refresh Token")
+	et := flag.String("expiry", "", "Expiry Time (ISO8601)")
 	flag.Parse()
+
+	ett, err := time.Parse(time.RFC3339, *et)
+	if err != nil {
+		fmt.Print(err)
+	}
 
 	token := &oauth2.Token{
 		AccessToken:  *ac,
 		RefreshToken: *rf,
+		TokenType:    "bearer",
+		Expiry:       ett,
 	}
 
 	if token.AccessToken == "" || token.RefreshToken == "" {
