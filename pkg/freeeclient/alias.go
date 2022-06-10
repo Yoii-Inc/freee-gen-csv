@@ -15,4 +15,4 @@ type Transfer = TransferResponseTransfer
 type WalletTxn = WalletTxnResponseWalletTxn
 type User = UserResponseUser
 type Tax = TaxResponseTax
-type PartnerItem = PartnerResponsePartner
+type PartnerItem = PartnersResponsePartners
