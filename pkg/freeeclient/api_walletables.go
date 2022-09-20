@@ -1,50 +1,48 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // WalletablesApiService WalletablesApi service
 type WalletablesApiService service
 
 type ApiCreateWalletableRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *WalletablesApiService
 	walletableCreateParams *WalletableCreateParams
 }
 
+// 口座の作成
 func (r ApiCreateWalletableRequest) WalletableCreateParams(walletableCreateParams WalletableCreateParams) ApiCreateWalletableRequest {
 	r.walletableCreateParams = &walletableCreateParams
 	return r
 }
 
-func (r ApiCreateWalletableRequest) Execute() (WalletableCreateResponse, *_nethttp.Response, error) {
+func (r ApiCreateWalletableRequest) Execute() (*WalletableCreateResponse, *http.Response, error) {
 	return r.ApiService.CreateWalletableExecute(r)
 }
 
 /*
- * CreateWalletable 口座の作成
- * 
+CreateWalletable 口座の作成
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所に口座を作成する</p>
@@ -72,47 +70,44 @@ func (r ApiCreateWalletableRequest) Execute() (WalletableCreateResponse, *_netht
 </li>
 
 <li>
-<p>bank_id : サービスID</p>
+<p>bank_id : 連携サービスID</p>
 </li>
 
 <li>
-<p>group_name : 決算書表示名（小カテゴリー）　例：売掛金, 受取手形, 未収入金（法人のみ）, 買掛金, 支払手形, 未払金, 預り金, 前受金</p>
+<p>is_asset : type:wallet指定時に口座を資産口座とするか負債口座とするか（true: 資産口座 (デフォルト), false: 負債口座）</p>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateWalletableRequest
- */
-func (a *WalletablesApiService) CreateWalletable(ctx _context.Context) ApiCreateWalletableRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateWalletableRequest
+*/
+func (a *WalletablesApiService) CreateWalletable(ctx context.Context) ApiCreateWalletableRequest {
 	return ApiCreateWalletableRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return WalletableCreateResponse
- */
-func (a *WalletablesApiService) CreateWalletableExecute(r ApiCreateWalletableRequest) (WalletableCreateResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return WalletableCreateResponse
+func (a *WalletablesApiService) CreateWalletableExecute(r ApiCreateWalletableRequest) (*WalletableCreateResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  WalletableCreateResponse
+		formFiles            []formFile
+		localVarReturnValue  *WalletableCreateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletablesApiService.CreateWalletable")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/walletables"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
@@ -133,7 +128,7 @@ func (a *WalletablesApiService) CreateWalletableExecute(r ApiCreateWalletableReq
 	}
 	// body params
 	localVarPostBody = r.walletableCreateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -143,15 +138,15 @@ func (a *WalletablesApiService) CreateWalletableExecute(r ApiCreateWalletableReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -199,7 +194,7 @@ func (a *WalletablesApiService) CreateWalletableExecute(r ApiCreateWalletableReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -210,25 +205,27 @@ func (a *WalletablesApiService) CreateWalletableExecute(r ApiCreateWalletableReq
 }
 
 type ApiDestroyWalletableRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *WalletablesApiService
-	id int32
+	id int64
 	type_ string
-	companyId *int32
+	companyId *int64
 }
 
-func (r ApiDestroyWalletableRequest) CompanyId(companyId int32) ApiDestroyWalletableRequest {
+// 事業所ID
+func (r ApiDestroyWalletableRequest) CompanyId(companyId int64) ApiDestroyWalletableRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyWalletableRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyWalletableRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyWalletableExecute(r)
 }
 
 /*
- * DestroyWalletable 口座の削除
- * 
+DestroyWalletable 口座の削除
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の口座を削除する</p>
@@ -239,12 +236,13 @@ func (r ApiDestroyWalletableRequest) Execute() (*_nethttp.Response, error) {
 <li>当該口座に仕訳が残っていないか確認するには、レポートの「仕訳帳」等を参照し、必要に応じて、「取引」や「口座振替」も削除します。</li>
 
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 口座ID
- * @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
- * @return ApiDestroyWalletableRequest
- */
-func (a *WalletablesApiService) DestroyWalletable(ctx _context.Context, id int32, type_ string) ApiDestroyWalletableRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 口座ID
+ @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
+ @return ApiDestroyWalletableRequest
+*/
+func (a *WalletablesApiService) DestroyWalletable(ctx context.Context, id int64, type_ string) ApiDestroyWalletableRequest {
 	return ApiDestroyWalletableRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -253,30 +251,26 @@ func (a *WalletablesApiService) DestroyWalletable(ctx _context.Context, id int32
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *WalletablesApiService) DestroyWalletableExecute(r ApiDestroyWalletableRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *WalletablesApiService) DestroyWalletableExecute(r ApiDestroyWalletableRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletablesApiService.DestroyWalletable")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/walletables/{type}/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type"+"}", _neturl.PathEscape(parameterToString(r.type_, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"type"+"}", url.PathEscape(parameterToString(r.type_, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -311,7 +305,7 @@ func (a *WalletablesApiService) DestroyWalletableExecute(r ApiDestroyWalletableR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -321,15 +315,15 @@ func (a *WalletablesApiService) DestroyWalletableExecute(r ApiDestroyWalletableR
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -389,25 +383,27 @@ func (a *WalletablesApiService) DestroyWalletableExecute(r ApiDestroyWalletableR
 }
 
 type ApiGetWalletableRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *WalletablesApiService
-	id int32
+	id int64
 	type_ string
-	companyId *int32
+	companyId *int64
 }
 
-func (r ApiGetWalletableRequest) CompanyId(companyId int32) ApiGetWalletableRequest {
+// 事業所ID
+func (r ApiGetWalletableRequest) CompanyId(companyId int64) ApiGetWalletableRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetWalletableRequest) Execute() (InlineResponse20016, *_nethttp.Response, error) {
+func (r ApiGetWalletableRequest) Execute() (*GetWalletable200Response, *http.Response, error) {
 	return r.ApiService.GetWalletableExecute(r)
 }
 
 /*
- * GetWalletable 口座情報の取得
- * 
+GetWalletable 口座情報の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の口座情報を取得する</p>
@@ -429,12 +425,13 @@ func (r ApiGetWalletableRequest) Execute() (InlineResponse20016, *_nethttp.Respo
 
 <li>last_balance : 同期残高</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 口座ID
- * @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
- * @return ApiGetWalletableRequest
- */
-func (a *WalletablesApiService) GetWalletable(ctx _context.Context, id int32, type_ string) ApiGetWalletableRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 口座ID
+ @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
+ @return ApiGetWalletableRequest
+*/
+func (a *WalletablesApiService) GetWalletable(ctx context.Context, id int64, type_ string) ApiGetWalletableRequest {
 	return ApiGetWalletableRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -443,32 +440,28 @@ func (a *WalletablesApiService) GetWalletable(ctx _context.Context, id int32, ty
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse20016
- */
-func (a *WalletablesApiService) GetWalletableExecute(r ApiGetWalletableRequest) (InlineResponse20016, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetWalletable200Response
+func (a *WalletablesApiService) GetWalletableExecute(r ApiGetWalletableRequest) (*GetWalletable200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20016
+		formFiles            []formFile
+		localVarReturnValue  *GetWalletable200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletablesApiService.GetWalletable")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/walletables/{type}/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type"+"}", _neturl.PathEscape(parameterToString(r.type_, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"type"+"}", url.PathEscape(parameterToString(r.type_, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -503,7 +496,7 @@ func (a *WalletablesApiService) GetWalletableExecute(r ApiGetWalletableRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -513,15 +506,15 @@ func (a *WalletablesApiService) GetWalletableExecute(r ApiGetWalletableRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -579,7 +572,7 @@ func (a *WalletablesApiService) GetWalletableExecute(r ApiGetWalletableRequest) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -590,33 +583,39 @@ func (a *WalletablesApiService) GetWalletableExecute(r ApiGetWalletableRequest) 
 }
 
 type ApiGetWalletablesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *WalletablesApiService
-	companyId *int32
+	companyId *int64
 	withBalance *bool
 	type_ *string
 }
 
-func (r ApiGetWalletablesRequest) CompanyId(companyId int32) ApiGetWalletablesRequest {
+// 事業所ID
+func (r ApiGetWalletablesRequest) CompanyId(companyId int64) ApiGetWalletablesRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// 残高情報を含める
 func (r ApiGetWalletablesRequest) WithBalance(withBalance bool) ApiGetWalletablesRequest {
 	r.withBalance = &withBalance
 	return r
 }
+
+// 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
 func (r ApiGetWalletablesRequest) Type_(type_ string) ApiGetWalletablesRequest {
 	r.type_ = &type_
 	return r
 }
 
-func (r ApiGetWalletablesRequest) Execute() (InlineResponse20015, *_nethttp.Response, error) {
+func (r ApiGetWalletablesRequest) Execute() (*GetWalletables200Response, *http.Response, error) {
 	return r.ApiService.GetWalletablesExecute(r)
 }
 
 /*
- * GetWalletables 口座一覧の取得
- * 
+GetWalletables 口座一覧の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の口座一覧を取得する</p>
@@ -638,40 +637,37 @@ func (r ApiGetWalletablesRequest) Execute() (InlineResponse20015, *_nethttp.Resp
 
 <li>last_balance : 同期残高</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetWalletablesRequest
- */
-func (a *WalletablesApiService) GetWalletables(ctx _context.Context) ApiGetWalletablesRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetWalletablesRequest
+*/
+func (a *WalletablesApiService) GetWalletables(ctx context.Context) ApiGetWalletablesRequest {
 	return ApiGetWalletablesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse20015
- */
-func (a *WalletablesApiService) GetWalletablesExecute(r ApiGetWalletablesRequest) (InlineResponse20015, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetWalletables200Response
+func (a *WalletablesApiService) GetWalletablesExecute(r ApiGetWalletablesRequest) (*GetWalletables200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20015
+		formFiles            []formFile
+		localVarReturnValue  *GetWalletables200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletablesApiService.GetWalletables")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/walletables"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -706,7 +702,7 @@ func (a *WalletablesApiService) GetWalletablesExecute(r ApiGetWalletablesRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -716,15 +712,15 @@ func (a *WalletablesApiService) GetWalletablesExecute(r ApiGetWalletablesRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -772,7 +768,7 @@ func (a *WalletablesApiService) GetWalletablesExecute(r ApiGetWalletablesRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -783,34 +779,37 @@ func (a *WalletablesApiService) GetWalletablesExecute(r ApiGetWalletablesRequest
 }
 
 type ApiUpdateWalletableRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *WalletablesApiService
-	id int32
+	id int64
 	type_ string
 	walletableUpdateParams *WalletableUpdateParams
 }
 
+// 口座の更新
 func (r ApiUpdateWalletableRequest) WalletableUpdateParams(walletableUpdateParams WalletableUpdateParams) ApiUpdateWalletableRequest {
 	r.walletableUpdateParams = &walletableUpdateParams
 	return r
 }
 
-func (r ApiUpdateWalletableRequest) Execute() (InlineResponse20016, *_nethttp.Response, error) {
+func (r ApiUpdateWalletableRequest) Execute() (*GetWalletable200Response, *http.Response, error) {
 	return r.ApiService.UpdateWalletableExecute(r)
 }
 
 /*
- * UpdateWalletable 口座の更新
- * 
+UpdateWalletable 口座の更新
+
+
 <h2 id="">概要</h2>
 
 <p>口座を更新する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
- * @return ApiUpdateWalletableRequest
- */
-func (a *WalletablesApiService) UpdateWalletable(ctx _context.Context, id int32, type_ string) ApiUpdateWalletableRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
+ @return ApiUpdateWalletableRequest
+*/
+func (a *WalletablesApiService) UpdateWalletable(ctx context.Context, id int64, type_ string) ApiUpdateWalletableRequest {
 	return ApiUpdateWalletableRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -819,32 +818,28 @@ func (a *WalletablesApiService) UpdateWalletable(ctx _context.Context, id int32,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse20016
- */
-func (a *WalletablesApiService) UpdateWalletableExecute(r ApiUpdateWalletableRequest) (InlineResponse20016, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetWalletable200Response
+func (a *WalletablesApiService) UpdateWalletableExecute(r ApiUpdateWalletableRequest) (*GetWalletable200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20016
+		formFiles            []formFile
+		localVarReturnValue  *GetWalletable200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletablesApiService.UpdateWalletable")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/walletables/{type}/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type"+"}", _neturl.PathEscape(parameterToString(r.type_, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"type"+"}", url.PathEscape(parameterToString(r.type_, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -871,7 +866,7 @@ func (a *WalletablesApiService) UpdateWalletableExecute(r ApiUpdateWalletableReq
 	}
 	// body params
 	localVarPostBody = r.walletableUpdateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -881,15 +876,15 @@ func (a *WalletablesApiService) UpdateWalletableExecute(r ApiUpdateWalletableReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -947,7 +942,7 @@ func (a *WalletablesApiService) UpdateWalletableExecute(r ApiUpdateWalletableReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Partners** | [**[]PartnersResponsePartners**](PartnersResponsePartners.md) |  | 
+**Partners** | [**[]PartnersResponsePartnersInner**](PartnersResponsePartnersInner.md) |  | 
 
 ## Methods
 
 ### NewPartnersResponse
 
-`func NewPartnersResponse(partners []PartnersResponsePartners, ) *PartnersResponse`
+`func NewPartnersResponse(partners []PartnersResponsePartnersInner, ) *PartnersResponse`
 
 NewPartnersResponse instantiates a new PartnersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPartners
 
-`func (o *PartnersResponse) GetPartners() []PartnersResponsePartners`
+`func (o *PartnersResponse) GetPartners() []PartnersResponsePartnersInner`
 
 GetPartners returns the Partners field if non-nil, zero value otherwise.
 
 ### GetPartnersOk
 
-`func (o *PartnersResponse) GetPartnersOk() (*[]PartnersResponsePartners, bool)`
+`func (o *PartnersResponse) GetPartnersOk() (*[]PartnersResponsePartnersInner, bool)`
 
 GetPartnersOk returns a tuple with the Partners field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartners
 
-`func (o *PartnersResponse) SetPartners(v []PartnersResponsePartners)`
+`func (o *PartnersResponse) SetPartners(v []PartnersResponsePartnersInner)`
 
 SetPartners sets Partners field to given value.
 

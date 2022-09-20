@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Quotations** | [**[]QuotationIndexResponseQuotations**](QuotationIndexResponseQuotations.md) |  | 
+**Quotations** | [**[]QuotationIndexResponseQuotationsInner**](QuotationIndexResponseQuotationsInner.md) |  | 
 
 ## Methods
 
 ### NewQuotationIndexResponse
 
-`func NewQuotationIndexResponse(quotations []QuotationIndexResponseQuotations, ) *QuotationIndexResponse`
+`func NewQuotationIndexResponse(quotations []QuotationIndexResponseQuotationsInner, ) *QuotationIndexResponse`
 
 NewQuotationIndexResponse instantiates a new QuotationIndexResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetQuotations
 
-`func (o *QuotationIndexResponse) GetQuotations() []QuotationIndexResponseQuotations`
+`func (o *QuotationIndexResponse) GetQuotations() []QuotationIndexResponseQuotationsInner`
 
 GetQuotations returns the Quotations field if non-nil, zero value otherwise.
 
 ### GetQuotationsOk
 
-`func (o *QuotationIndexResponse) GetQuotationsOk() (*[]QuotationIndexResponseQuotations, bool)`
+`func (o *QuotationIndexResponse) GetQuotationsOk() (*[]QuotationIndexResponseQuotationsInner, bool)`
 
 GetQuotationsOk returns a tuple with the Quotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuotations
 
-`func (o *QuotationIndexResponse) SetQuotations(v []QuotationIndexResponseQuotations)`
+`func (o *QuotationIndexResponse) SetQuotations(v []QuotationIndexResponseQuotationsInner)`
 
 SetQuotations sets Quotations field to given value.
 

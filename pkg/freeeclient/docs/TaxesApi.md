@@ -31,11 +31,11 @@ import (
 )
 
 func main() {
-    code := int32(56) // int32 | 税区分コード
+    code := int64(56) // int64 | 税区分コード
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TaxesApi.GetTaxCode(context.Background(), code).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TaxesApi.GetTaxCode(context.Background(), code).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.GetTaxCode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**code** | **int32** | 税区分コード | 
+**code** | **int64** | 税区分コード | 
 
 ### Other Parameters
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## GetTaxCodes
 
-> InlineResponse2009 GetTaxCodes(ctx).Execute()
+> GetTaxCodes200Response GetTaxCodes(ctx).Execute()
 
 税区分コード一覧の取得
 
@@ -103,13 +103,13 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TaxesApi.GetTaxCodes(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TaxesApi.GetTaxCodes(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.GetTaxCodes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetTaxCodes`: InlineResponse2009
+    // response from `GetTaxCodes`: GetTaxCodes200Response
     fmt.Fprintf(os.Stdout, "Response from `TaxesApi.GetTaxCodes`: %v\n", resp)
 }
 ```
@@ -125,7 +125,7 @@ Other parameters are passed through a pointer to a apiGetTaxCodesRequest struct 
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**GetTaxCodes200Response**](GetTaxCodes200Response.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ Other parameters are passed through a pointer to a apiGetTaxCodesRequest struct 
 
 ## GetTaxesCompanies
 
-> InlineResponse20010 GetTaxesCompanies(ctx, companyId).Execute()
+> GetTaxesCompanies200Response GetTaxesCompanies(ctx, companyId).Execute()
 
 税区分コード詳細一覧の取得
 
@@ -160,16 +160,16 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TaxesApi.GetTaxesCompanies(context.Background(), companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TaxesApi.GetTaxesCompanies(context.Background(), companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.GetTaxesCompanies``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetTaxesCompanies`: InlineResponse20010
+    // response from `GetTaxesCompanies`: GetTaxesCompanies200Response
     fmt.Fprintf(os.Stdout, "Response from `TaxesApi.GetTaxesCompanies`: %v\n", resp)
 }
 ```
@@ -180,7 +180,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**companyId** | **int32** | 事業所ID | 
+**companyId** | **int64** | 事業所ID | 
 
 ### Other Parameters
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**GetTaxesCompanies200Response**](GetTaxesCompanies200Response.md)
 
 ### Authorization
 

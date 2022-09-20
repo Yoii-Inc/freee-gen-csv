@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
-**Details** | [**[]DealUpdateParamsDetails**](DealUpdateParamsDetails.md) |  | 
+**CompanyId** | **int64** | 事業所ID | 
+**Details** | [**[]DealUpdateParamsDetailsInner**](DealUpdateParamsDetailsInner.md) |  | 
 **DueDate** | Pointer to **string** | 支払期日(yyyy-mm-dd) | [optional] 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
 **PartnerCode** | Pointer to **string** | 取引先コード | [optional] 
-**PartnerId** | Pointer to **int32** | 取引先ID | [optional] 
-**ReceiptIds** | Pointer to **[]int32** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
+**PartnerId** | Pointer to **int64** | 取引先ID | [optional] 
+**ReceiptIds** | Pointer to **[]int64** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
 **RefNumber** | Pointer to **string** | 管理番号 | [optional] 
 **Type** | **string** | 収支区分 (収入: income, 支出: expense) | 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewDealUpdateParams
 
-`func NewDealUpdateParams(companyId int32, details []DealUpdateParamsDetails, issueDate string, type_ string, ) *DealUpdateParams`
+`func NewDealUpdateParams(companyId int64, details []DealUpdateParamsDetailsInner, issueDate string, type_ string, ) *DealUpdateParams`
 
 NewDealUpdateParams instantiates a new DealUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -35,40 +35,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *DealUpdateParams) GetCompanyId() int32`
+`func (o *DealUpdateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *DealUpdateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *DealUpdateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *DealUpdateParams) SetCompanyId(v int32)`
+`func (o *DealUpdateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
 
 ### GetDetails
 
-`func (o *DealUpdateParams) GetDetails() []DealUpdateParamsDetails`
+`func (o *DealUpdateParams) GetDetails() []DealUpdateParamsDetailsInner`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *DealUpdateParams) GetDetailsOk() (*[]DealUpdateParamsDetails, bool)`
+`func (o *DealUpdateParams) GetDetailsOk() (*[]DealUpdateParamsDetailsInner, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *DealUpdateParams) SetDetails(v []DealUpdateParamsDetails)`
+`func (o *DealUpdateParams) SetDetails(v []DealUpdateParamsDetailsInner)`
 
 SetDetails sets Details field to given value.
 
@@ -145,20 +145,20 @@ HasPartnerCode returns a boolean if a field has been set.
 
 ### GetPartnerId
 
-`func (o *DealUpdateParams) GetPartnerId() int32`
+`func (o *DealUpdateParams) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *DealUpdateParams) GetPartnerIdOk() (*int32, bool)`
+`func (o *DealUpdateParams) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *DealUpdateParams) SetPartnerId(v int32)`
+`func (o *DealUpdateParams) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -170,20 +170,20 @@ HasPartnerId returns a boolean if a field has been set.
 
 ### GetReceiptIds
 
-`func (o *DealUpdateParams) GetReceiptIds() []int32`
+`func (o *DealUpdateParams) GetReceiptIds() []int64`
 
 GetReceiptIds returns the ReceiptIds field if non-nil, zero value otherwise.
 
 ### GetReceiptIdsOk
 
-`func (o *DealUpdateParams) GetReceiptIdsOk() (*[]int32, bool)`
+`func (o *DealUpdateParams) GetReceiptIdsOk() (*[]int64, bool)`
 
 GetReceiptIdsOk returns a tuple with the ReceiptIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReceiptIds
 
-`func (o *DealUpdateParams) SetReceiptIds(v []int32)`
+`func (o *DealUpdateParams) SetReceiptIds(v []int64)`
 
 SetReceiptIds sets ReceiptIds field to given value.
 

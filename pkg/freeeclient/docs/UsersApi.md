@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## GetUsers
 
-> InlineResponse20012 GetUsers(ctx).CompanyId(companyId).Limit(limit).Execute()
+> GetUsers200Response GetUsers(ctx).CompanyId(companyId).Limit(limit).Execute()
 
 事業所に所属するユーザー一覧の取得
 
@@ -32,17 +32,17 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
+    companyId := int64(56) // int64 | 事業所ID
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetUsers(context.Background()).CompanyId(companyId).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.GetUsers(context.Background()).CompanyId(companyId).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetUsers`: InlineResponse20012
+    // response from `GetUsers`: GetUsers200Response
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.GetUsers`: %v\n", resp)
 }
 ```
@@ -58,12 +58,12 @@ Other parameters are passed through a pointer to a apiGetUsersRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
+ **companyId** | **int64** | 事業所ID | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetUsers200Response**](GetUsers200Response.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## GetUsersCapabilities
 
-> InlineResponse20013 GetUsersCapabilities(ctx).CompanyId(companyId).Execute()
+> GetUsersCapabilities200Response GetUsersCapabilities(ctx).CompanyId(companyId).Execute()
 
 ログインユーザーの権限の取得
 
@@ -100,16 +100,16 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetUsersCapabilities(context.Background()).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.GetUsersCapabilities(context.Background()).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUsersCapabilities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetUsersCapabilities`: InlineResponse20013
+    // response from `GetUsersCapabilities`: GetUsersCapabilities200Response
     fmt.Fprintf(os.Stdout, "Response from `UsersApi.GetUsersCapabilities`: %v\n", resp)
 }
 ```
@@ -125,11 +125,11 @@ Other parameters are passed through a pointer to a apiGetUsersCapabilitiesReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**GetUsersCapabilities200Response**](GetUsersCapabilities200Response.md)
 
 ### Authorization
 
@@ -170,8 +170,8 @@ func main() {
     advisor := true // bool | 取得情報に事業がアドバイザー事象所の場合は事業所毎の一意なプロフィールIDを含める (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetUsersMe(context.Background()).Companies(companies).Advisor(advisor).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.GetUsersMe(context.Background()).Companies(companies).Advisor(advisor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUsersMe``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -237,8 +237,8 @@ func main() {
     userParams := *openapiclient.NewUserParams() // UserParams | ユーザー情報の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.UpdateUser(context.Background()).UserParams(userParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.UpdateUser(context.Background()).UserParams(userParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

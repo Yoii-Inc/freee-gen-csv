@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountItem** | [**AccountItemParamsAccountItem**](AccountItemParamsAccountItem.md) |  | 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 
 ## Methods
 
 ### NewAccountItemParams
 
-`func NewAccountItemParams(accountItem AccountItemParamsAccountItem, companyId int32, ) *AccountItemParams`
+`func NewAccountItemParams(accountItem AccountItemParamsAccountItem, companyId int64, ) *AccountItemParams`
 
 NewAccountItemParams instantiates a new AccountItemParams object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetAccountItem sets AccountItem field to given value.
 
 ### GetCompanyId
 
-`func (o *AccountItemParams) GetCompanyId() int32`
+`func (o *AccountItemParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *AccountItemParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *AccountItemParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *AccountItemParams) SetCompanyId(v int32)`
+`func (o *AccountItemParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

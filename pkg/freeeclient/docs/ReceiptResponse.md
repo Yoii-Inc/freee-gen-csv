@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Receipt** | [**ReceiptResponseReceipt**](ReceiptResponseReceipt.md) |  | 
+**Receipt** | [**Receipt**](Receipt.md) |  | 
 
 ## Methods
 
 ### NewReceiptResponse
 
-`func NewReceiptResponse(receipt ReceiptResponseReceipt, ) *ReceiptResponse`
+`func NewReceiptResponse(receipt Receipt, ) *ReceiptResponse`
 
 NewReceiptResponse instantiates a new ReceiptResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetReceipt
 
-`func (o *ReceiptResponse) GetReceipt() ReceiptResponseReceipt`
+`func (o *ReceiptResponse) GetReceipt() Receipt`
 
 GetReceipt returns the Receipt field if non-nil, zero value otherwise.
 
 ### GetReceiptOk
 
-`func (o *ReceiptResponse) GetReceiptOk() (*ReceiptResponseReceipt, bool)`
+`func (o *ReceiptResponse) GetReceiptOk() (*Receipt, bool)`
 
 GetReceiptOk returns a tuple with the Receipt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReceipt
 
-`func (o *ReceiptResponse) SetReceipt(v ReceiptResponseReceipt)`
+`func (o *ReceiptResponse) SetReceipt(v Receipt)`
 
 SetReceipt sets Receipt field to given value.
 

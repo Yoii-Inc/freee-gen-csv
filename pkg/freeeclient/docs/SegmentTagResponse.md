@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SegmentTag** | [**SegmentTagResponseSegmentTag**](SegmentTagResponseSegmentTag.md) |  | 
+**SegmentTag** | [**SegmentTag**](SegmentTag.md) |  | 
 
 ## Methods
 
 ### NewSegmentTagResponse
 
-`func NewSegmentTagResponse(segmentTag SegmentTagResponseSegmentTag, ) *SegmentTagResponse`
+`func NewSegmentTagResponse(segmentTag SegmentTag, ) *SegmentTagResponse`
 
 NewSegmentTagResponse instantiates a new SegmentTagResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSegmentTag
 
-`func (o *SegmentTagResponse) GetSegmentTag() SegmentTagResponseSegmentTag`
+`func (o *SegmentTagResponse) GetSegmentTag() SegmentTag`
 
 GetSegmentTag returns the SegmentTag field if non-nil, zero value otherwise.
 
 ### GetSegmentTagOk
 
-`func (o *SegmentTagResponse) GetSegmentTagOk() (*SegmentTagResponseSegmentTag, bool)`
+`func (o *SegmentTagResponse) GetSegmentTagOk() (*SegmentTag, bool)`
 
 GetSegmentTagOk returns a tuple with the SegmentTag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSegmentTag
 
-`func (o *SegmentTagResponse) SetSegmentTag(v SegmentTagResponseSegmentTag)`
+`func (o *SegmentTagResponse) SetSegmentTag(v SegmentTag)`
 
 SetSegmentTag sets SegmentTag field to given value.
 

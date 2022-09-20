@@ -4,20 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **DownloadType** | **string** | ダウンロード形式 | 
 **DownloadUrl** | Pointer to **string** | ダウンロードURL | [optional] 
 **EndDate** | **string** | 取得終了日 (yyyy-mm-dd) | 
-**Id** | **int32** | 受け付けID | 
+**Id** | **int64** | 受け付けID | 
 **StartDate** | **string** | 取得開始日 (yyyy-mm-dd) | 
-**Status** | **string** | 事業所ID | 
+**Status** | **string** | ダウンロードリクエストのステータス | 
+**VisibleIds** | Pointer to **[]string** |  | [optional] 
 **VisibleTags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewJournalStatusResponseJournals
 
-`func NewJournalStatusResponseJournals(companyId int32, downloadType string, endDate string, id int32, startDate string, status string, ) *JournalStatusResponseJournals`
+`func NewJournalStatusResponseJournals(companyId int64, downloadType string, endDate string, id int64, startDate string, status string, ) *JournalStatusResponseJournals`
 
 NewJournalStatusResponseJournals instantiates a new JournalStatusResponseJournals object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *JournalStatusResponseJournals) GetCompanyId() int32`
+`func (o *JournalStatusResponseJournals) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *JournalStatusResponseJournals) GetCompanyIdOk() (*int32, bool)`
+`func (o *JournalStatusResponseJournals) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *JournalStatusResponseJournals) SetCompanyId(v int32)`
+`func (o *JournalStatusResponseJournals) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -119,20 +120,20 @@ SetEndDate sets EndDate field to given value.
 
 ### GetId
 
-`func (o *JournalStatusResponseJournals) GetId() int32`
+`func (o *JournalStatusResponseJournals) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *JournalStatusResponseJournals) GetIdOk() (*int32, bool)`
+`func (o *JournalStatusResponseJournals) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *JournalStatusResponseJournals) SetId(v int32)`
+`func (o *JournalStatusResponseJournals) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -176,6 +177,31 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+
+### GetVisibleIds
+
+`func (o *JournalStatusResponseJournals) GetVisibleIds() []string`
+
+GetVisibleIds returns the VisibleIds field if non-nil, zero value otherwise.
+
+### GetVisibleIdsOk
+
+`func (o *JournalStatusResponseJournals) GetVisibleIdsOk() (*[]string, bool)`
+
+GetVisibleIdsOk returns a tuple with the VisibleIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVisibleIds
+
+`func (o *JournalStatusResponseJournals) SetVisibleIds(v []string)`
+
+SetVisibleIds sets VisibleIds field to given value.
+
+### HasVisibleIds
+
+`func (o *JournalStatusResponseJournals) HasVisibleIds() bool`
+
+HasVisibleIds returns a boolean if a field has been set.
 
 ### GetVisibleTags
 

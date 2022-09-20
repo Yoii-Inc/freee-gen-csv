@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountCategories** | Pointer to [**[]SelectablesIndexResponseAccountCategories**](SelectablesIndexResponseAccountCategories.md) |  | [optional] 
-**AccountGroups** | Pointer to [**[]SelectablesIndexResponseAccountGroups**](SelectablesIndexResponseAccountGroups.md) | 決算書表示名（小カテゴリー） | [optional] 
+**AccountCategories** | Pointer to [**[]SelectablesIndexResponseAccountCategoriesInner**](SelectablesIndexResponseAccountCategoriesInner.md) |  | [optional] 
+**AccountGroups** | Pointer to [**[]SelectablesIndexResponseAccountGroupsInner**](SelectablesIndexResponseAccountGroupsInner.md) | 決算書表示名（小カテゴリー） | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountCategories
 
-`func (o *SelectablesIndexResponse) GetAccountCategories() []SelectablesIndexResponseAccountCategories`
+`func (o *SelectablesIndexResponse) GetAccountCategories() []SelectablesIndexResponseAccountCategoriesInner`
 
 GetAccountCategories returns the AccountCategories field if non-nil, zero value otherwise.
 
 ### GetAccountCategoriesOk
 
-`func (o *SelectablesIndexResponse) GetAccountCategoriesOk() (*[]SelectablesIndexResponseAccountCategories, bool)`
+`func (o *SelectablesIndexResponse) GetAccountCategoriesOk() (*[]SelectablesIndexResponseAccountCategoriesInner, bool)`
 
 GetAccountCategoriesOk returns a tuple with the AccountCategories field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountCategories
 
-`func (o *SelectablesIndexResponse) SetAccountCategories(v []SelectablesIndexResponseAccountCategories)`
+`func (o *SelectablesIndexResponse) SetAccountCategories(v []SelectablesIndexResponseAccountCategoriesInner)`
 
 SetAccountCategories sets AccountCategories field to given value.
 
@@ -53,20 +53,20 @@ HasAccountCategories returns a boolean if a field has been set.
 
 ### GetAccountGroups
 
-`func (o *SelectablesIndexResponse) GetAccountGroups() []SelectablesIndexResponseAccountGroups`
+`func (o *SelectablesIndexResponse) GetAccountGroups() []SelectablesIndexResponseAccountGroupsInner`
 
 GetAccountGroups returns the AccountGroups field if non-nil, zero value otherwise.
 
 ### GetAccountGroupsOk
 
-`func (o *SelectablesIndexResponse) GetAccountGroupsOk() (*[]SelectablesIndexResponseAccountGroups, bool)`
+`func (o *SelectablesIndexResponse) GetAccountGroupsOk() (*[]SelectablesIndexResponseAccountGroupsInner, bool)`
 
 GetAccountGroupsOk returns a tuple with the AccountGroups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountGroups
 
-`func (o *SelectablesIndexResponse) SetAccountGroups(v []SelectablesIndexResponseAccountGroups)`
+`func (o *SelectablesIndexResponse) SetAccountGroups(v []SelectablesIndexResponseAccountGroupsInner)`
 
 SetAccountGroups sets AccountGroups field to given value.
 

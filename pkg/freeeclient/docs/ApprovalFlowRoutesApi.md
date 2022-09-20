@@ -30,12 +30,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経路申請ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 経路申請ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalFlowRoutesApi.GetApprovalFlowRoute(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalFlowRoutesApi.GetApprovalFlowRoute(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalFlowRoutesApi.GetApprovalFlowRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経路申請ID | 
+**id** | **int64** | 経路申請ID | 
 
 ### Other Parameters
 
@@ -61,7 +61,7 @@ Other parameters are passed through a pointer to a apiGetApprovalFlowRouteReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -102,14 +102,14 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    includedUserId := int32(56) // int32 | 経路に含まれるユーザーのユーザーID (optional)
+    companyId := int64(56) // int64 | 事業所ID
+    includedUserId := int64(56) // int64 | 経路に含まれるユーザーのユーザーID (optional)
     usage := "usage_example" // string | 申請種別（各申請種別が使用できる申請経路に絞り込めます。例えば、ApprovalRequest を指定すると、各種申請が使用できる申請経路に絞り込めます。） * `TxnApproval` - 仕訳承認 * `ExpenseApplication` - 経費精算 * `PaymentRequest` - 支払依頼 * `ApprovalRequest` - 各種申請 * `DocApproval` - 請求書等 (見積書・納品書・請求書・発注書) (optional)
-    requestFormId := int32(56) // int32 | 申請フォームID request_form_id指定時はusage条件をApprovalRequestに指定してください。指定しない場合無効になります。 (optional)
+    requestFormId := int64(56) // int64 | 申請フォームID request_form_id指定時はusage条件をApprovalRequestに指定してください。指定しない場合無効になります。 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalFlowRoutesApi.GetApprovalFlowRoutes(context.Background()).CompanyId(companyId).IncludedUserId(includedUserId).Usage(usage).RequestFormId(requestFormId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalFlowRoutesApi.GetApprovalFlowRoutes(context.Background()).CompanyId(companyId).IncludedUserId(includedUserId).Usage(usage).RequestFormId(requestFormId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalFlowRoutesApi.GetApprovalFlowRoutes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,10 +130,10 @@ Other parameters are passed through a pointer to a apiGetApprovalFlowRoutesReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
- **includedUserId** | **int32** | 経路に含まれるユーザーのユーザーID | 
+ **companyId** | **int64** | 事業所ID | 
+ **includedUserId** | **int64** | 経路に含まれるユーザーのユーザーID | 
  **usage** | **string** | 申請種別（各申請種別が使用できる申請経路に絞り込めます。例えば、ApprovalRequest を指定すると、各種申請が使用できる申請経路に絞り込めます。） * &#x60;TxnApproval&#x60; - 仕訳承認 * &#x60;ExpenseApplication&#x60; - 経費精算 * &#x60;PaymentRequest&#x60; - 支払依頼 * &#x60;ApprovalRequest&#x60; - 各種申請 * &#x60;DocApproval&#x60; - 請求書等 (見積書・納品書・請求書・発注書) | 
- **requestFormId** | **int32** | 申請フォームID request_form_id指定時はusage条件をApprovalRequestに指定してください。指定しない場合無効になります。 | 
+ **requestFormId** | **int64** | 申請フォームID request_form_id指定時はusage条件をApprovalRequestに指定してください。指定しない場合無効になります。 | 
 
 ### Return type
 

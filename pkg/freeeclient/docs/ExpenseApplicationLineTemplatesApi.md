@@ -31,11 +31,11 @@ import (
 )
 
 func main() {
-    expenseApplicationLineTemplateParams := *openapiclient.NewExpenseApplicationLineTemplateParams(int32(1), int32(1), "交通費", int32(1)) // ExpenseApplicationLineTemplateParams | 経費科目の作成
+    expenseApplicationLineTemplateParams := *openapiclient.NewExpenseApplicationLineTemplateParams(int64(1), int64(1), "交通費", int64(1)) // ExpenseApplicationLineTemplateParams | 経費科目の作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationLineTemplatesApi.CreateExpenseApplicationLineTemplate(context.Background()).ExpenseApplicationLineTemplateParams(expenseApplicationLineTemplateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationLineTemplatesApi.CreateExpenseApplicationLineTemplate(context.Background()).ExpenseApplicationLineTemplateParams(expenseApplicationLineTemplateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationLineTemplatesApi.CreateExpenseApplicationLineTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -95,12 +95,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経費科目ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 経費科目ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationLineTemplatesApi.DestroyExpenseApplicationLineTemplate(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationLineTemplatesApi.DestroyExpenseApplicationLineTemplate(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationLineTemplatesApi.DestroyExpenseApplicationLineTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -114,7 +114,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経費科目ID | 
+**id** | **int64** | 経費科目ID | 
 
 ### Other Parameters
 
@@ -124,7 +124,7 @@ Other parameters are passed through a pointer to a apiDestroyExpenseApplicationL
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -163,12 +163,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経費科目ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 経費科目ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationLineTemplatesApi.GetExpenseApplicationLineTemplate(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationLineTemplatesApi.GetExpenseApplicationLineTemplate(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationLineTemplatesApi.GetExpenseApplicationLineTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,7 +184,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経費科目ID | 
+**id** | **int64** | 経費科目ID | 
 
 ### Other Parameters
 
@@ -194,7 +194,7 @@ Other parameters are passed through a pointer to a apiGetExpenseApplicationLineT
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 ## GetExpenseApplicationLineTemplates
 
-> InlineResponse2002 GetExpenseApplicationLineTemplates(ctx).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+> GetExpenseApplicationLineTemplates200Response GetExpenseApplicationLineTemplates(ctx).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
 
 経費科目一覧の取得
 
@@ -235,18 +235,18 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationLineTemplatesApi.GetExpenseApplicationLineTemplates(context.Background()).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationLineTemplatesApi.GetExpenseApplicationLineTemplates(context.Background()).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationLineTemplatesApi.GetExpenseApplicationLineTemplates``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetExpenseApplicationLineTemplates`: InlineResponse2002
+    // response from `GetExpenseApplicationLineTemplates`: GetExpenseApplicationLineTemplates200Response
     fmt.Fprintf(os.Stdout, "Response from `ExpenseApplicationLineTemplatesApi.GetExpenseApplicationLineTemplates`: %v\n", resp)
 }
 ```
@@ -262,13 +262,13 @@ Other parameters are passed through a pointer to a apiGetExpenseApplicationLineT
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100) | 
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**GetExpenseApplicationLineTemplates200Response**](GetExpenseApplicationLineTemplates200Response.md)
 
 ### Authorization
 
@@ -303,12 +303,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経費科目ID
-    expenseApplicationLineTemplateParams := *openapiclient.NewExpenseApplicationLineTemplateParams(int32(1), int32(1), "交通費", int32(1)) // ExpenseApplicationLineTemplateParams | 経費科目の更新
+    id := int64(56) // int64 | 経費科目ID
+    expenseApplicationLineTemplateParams := *openapiclient.NewExpenseApplicationLineTemplateParams(int64(1), int64(1), "交通費", int64(1)) // ExpenseApplicationLineTemplateParams | 経費科目の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationLineTemplatesApi.UpdateExpenseApplicationLineTemplate(context.Background(), id).ExpenseApplicationLineTemplateParams(expenseApplicationLineTemplateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationLineTemplatesApi.UpdateExpenseApplicationLineTemplate(context.Background(), id).ExpenseApplicationLineTemplateParams(expenseApplicationLineTemplateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationLineTemplatesApi.UpdateExpenseApplicationLineTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -324,7 +324,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経費科目ID | 
+**id** | **int64** | 経費科目ID | 
 
 ### Other Parameters
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | Pointer to [**UserResponseUser**](UserResponseUser.md) |  | [optional] 
+**User** | Pointer to [**User**](User.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUser
 
-`func (o *UserResponse) GetUser() UserResponseUser`
+`func (o *UserResponse) GetUser() User`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *UserResponse) GetUserOk() (*UserResponseUser, bool)`
+`func (o *UserResponse) GetUserOk() (*User, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *UserResponse) SetUser(v UserResponseUser)`
+`func (o *UserResponse) SetUser(v User)`
 
 SetUser sets User field to given value.
 

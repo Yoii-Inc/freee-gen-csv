@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    accountItemParams := *openapiclient.NewAccountItemParams(*openapiclient.NewAccountItemParamsAccountItem(int32(1), int32(1), int32(1), "その他預金", "新しい勘定科目", int32(1)), int32(1)) // AccountItemParams | 勘定科目の作成
+    accountItemParams := *openapiclient.NewAccountItemParams(*openapiclient.NewAccountItemParamsAccountItem(int64(1), int64(1), int64(1), "その他預金", "新しい勘定科目", int64(1)), int64(1)) // AccountItemParams | 勘定科目の作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.CreateAccountItem(context.Background()).AccountItemParams(accountItemParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.CreateAccountItem(context.Background()).AccountItemParams(accountItemParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.CreateAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,12 +99,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.DestroyAccountItem(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.DestroyAccountItem(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.DestroyAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroyAccountItemRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,12 +169,12 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    id := int32(56) // int32 | 勘定科目ID
+    companyId := int64(56) // int64 | 事業所ID
+    id := int64(56) // int64 | 勘定科目ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.GetAccountItem(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.GetAccountItem(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.GetAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 勘定科目ID | 
+**id** | **int64** | 勘定科目ID | 
 
 ### Other Parameters
 
@@ -199,7 +199,7 @@ Other parameters are passed through a pointer to a apiGetAccountItemRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 
 ### Return type
@@ -241,12 +241,12 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     baseDate := "baseDate_example" // string | 基準日:指定した場合、勘定科目に紐づく税区分(default_tax_code)が、基準日の税率に基づいて返ります。 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.GetAccountItems(context.Background()).CompanyId(companyId).BaseDate(baseDate).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.GetAccountItems(context.Background()).CompanyId(companyId).BaseDate(baseDate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.GetAccountItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,7 +267,7 @@ Other parameters are passed through a pointer to a apiGetAccountItemsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **baseDate** | **string** | 基準日:指定した場合、勘定科目に紐づく税区分(default_tax_code)が、基準日の税率に基づいて返ります。 | 
 
 ### Return type
@@ -309,12 +309,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    accountItemParams := *openapiclient.NewAccountItemParams(*openapiclient.NewAccountItemParamsAccountItem(int32(1), int32(1), int32(1), "その他預金", "新しい勘定科目", int32(1)), int32(1)) // AccountItemParams | 勘定科目の更新
+    id := int64(56) // int64 | 
+    accountItemParams := *openapiclient.NewAccountItemParams(*openapiclient.NewAccountItemParamsAccountItem(int64(1), int64(1), int64(1), "その他預金", "新しい勘定科目", int64(1)), int64(1)) // AccountItemParams | 勘定科目の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.UpdateAccountItem(context.Background(), id).AccountItemParams(accountItemParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.UpdateAccountItem(context.Background(), id).AccountItemParams(accountItemParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.UpdateAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -330,7 +330,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 

@@ -31,12 +31,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引ID
-    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int32(1), "2019-12-17", int32(1), "2019-12-17") // PaymentParams | 取引（収入／支出）の支払行作成
+    id := int64(56) // int64 | 取引ID
+    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int64(1), "2019-12-17", int64(1), "bank_account") // PaymentParams | 取引（収入／支出）の支払行作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentsApi.CreateDealPayment(context.Background(), id).PaymentParams(paymentParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentsApi.CreateDealPayment(context.Background(), id).PaymentParams(paymentParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentsApi.CreateDealPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引ID | 
+**id** | **int64** | 取引ID | 
 
 ### Other Parameters
 
@@ -103,13 +103,13 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引ID
+    id := int64(56) // int64 | 取引ID
     paymentId := int64(789) // int64 | 決済ID
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentsApi.DestroyDealPayment(context.Background(), id, paymentId).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentsApi.DestroyDealPayment(context.Background(), id, paymentId).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentsApi.DestroyDealPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引ID | 
+**id** | **int64** | 取引ID | 
 **paymentId** | **int64** | 決済ID | 
 
 ### Other Parameters
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -176,13 +176,13 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引ID
+    id := int64(56) // int64 | 取引ID
     paymentId := int64(789) // int64 | 決済ID
-    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int32(1), "2019-12-17", int32(1), "2019-12-17") // PaymentParams | 取引（収入／支出）の支払行更新
+    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int64(1), "2019-12-17", int64(1), "bank_account") // PaymentParams | 取引（収入／支出）の支払行更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentsApi.UpdateDealPayment(context.Background(), id, paymentId).PaymentParams(paymentParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentsApi.UpdateDealPayment(context.Background(), id, paymentId).PaymentParams(paymentParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentsApi.UpdateDealPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +198,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引ID | 
+**id** | **int64** | 取引ID | 
 **paymentId** | **int64** | 決済ID | 
 
 ### Other Parameters

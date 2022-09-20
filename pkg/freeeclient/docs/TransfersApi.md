@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    transferParams := *openapiclient.NewTransferParams(int64(5000), int32(1), "2019-12-17", int32(1), "credit_card", int32(1), "bank_account") // TransferParams | 取引（振替）の作成 (optional)
+    transferParams := *openapiclient.NewTransferParams(int64(5000), int64(1), "2019-12-17", int64(1), "credit_card", int64(1), "bank_account") // TransferParams | 取引（振替）の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.CreateTransfer(context.Background()).TransferParams(transferParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.CreateTransfer(context.Background()).TransferParams(transferParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.CreateTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,12 +99,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引(振替)ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 取引(振替)ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.DestroyTransfer(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.DestroyTransfer(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.DestroyTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引(振替)ID | 
+**id** | **int64** | 取引(振替)ID | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroyTransferRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,12 +169,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引(振替)ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 取引(振替)ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.GetTransfer(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.GetTransfer(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.GetTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引(振替)ID | 
+**id** | **int64** | 取引(振替)ID | 
 
 ### Other Parameters
 
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiGetTransferRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## GetTransfers
 
-> InlineResponse20011 GetTransfers(ctx).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
+> GetTransfers200Response GetTransfers(ctx).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
 
 取引（振替）一覧の取得
 
@@ -241,20 +241,20 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     startDate := "startDate_example" // string | 振替日で絞込：開始日 (yyyy-mm-dd) (optional)
     endDate := "endDate_example" // string | 振替日で絞込：終了日 (yyyy-mm-dd) (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100)  (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100)  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.GetTransfers(context.Background()).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.GetTransfers(context.Background()).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.GetTransfers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetTransfers`: InlineResponse20011
+    // response from `GetTransfers`: GetTransfers200Response
     fmt.Fprintf(os.Stdout, "Response from `TransfersApi.GetTransfers`: %v\n", resp)
 }
 ```
@@ -270,15 +270,15 @@ Other parameters are passed through a pointer to a apiGetTransfersRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **startDate** | **string** | 振替日で絞込：開始日 (yyyy-mm-dd) | 
  **endDate** | **string** | 振替日で絞込：終了日 (yyyy-mm-dd) | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100)  | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100)  | 
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**GetTransfers200Response**](GetTransfers200Response.md)
 
 ### Authorization
 
@@ -315,12 +315,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引(振替)ID
-    transferParams := *openapiclient.NewTransferParams(int64(5000), int32(1), "2019-12-17", int32(1), "credit_card", int32(1), "bank_account") // TransferParams | 取引（振替）の更新
+    id := int64(56) // int64 | 取引(振替)ID
+    transferParams := *openapiclient.NewTransferParams(int64(5000), int64(1), "2019-12-17", int64(1), "credit_card", int64(1), "bank_account") // TransferParams | 取引（振替）の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.UpdateTransfer(context.Background(), id).TransferParams(transferParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.UpdateTransfer(context.Background(), id).TransferParams(transferParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.UpdateTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,7 +336,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引(振替)ID | 
+**id** | **int64** | 取引(振替)ID | 
 
 ### Other Parameters
 

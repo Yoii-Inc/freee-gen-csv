@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -23,11 +23,11 @@ type QuotationResponseQuotation struct {
 	// 事業所担当者名
 	CompanyContactInfo NullableString `json:"company_contact_info,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 事業所名
 	CompanyName string `json:"company_name"`
 	// 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄
-	CompanyPrefectureCode NullableInt32 `json:"company_prefecture_code,omitempty"`
+	CompanyPrefectureCode NullableInt64 `json:"company_prefecture_code,omitempty"`
 	// 都道府県
 	CompanyPrefectureName NullableString `json:"company_prefecture_name,omitempty"`
 	// 郵便番号
@@ -35,7 +35,7 @@ type QuotationResponseQuotation struct {
 	// 概要
 	Description NullableString `json:"description,omitempty"`
 	// 見積書ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 見積日 (yyyy-mm-dd)
 	IssueDate string `json:"issue_date"`
 	// メール送信日時(最新)
@@ -55,11 +55,11 @@ type QuotationResponseQuotation struct {
 	// 見積書に表示する取引先名
 	PartnerDisplayName NullableString `json:"partner_display_name,omitempty"`
 	// 取引先ID
-	PartnerId NullableInt32 `json:"partner_id"`
+	PartnerId NullableInt64 `json:"partner_id"`
 	// 取引先名
 	PartnerName NullableString `json:"partner_name,omitempty"`
 	// 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄
-	PartnerPrefectureCode NullableInt32 `json:"partner_prefecture_code,omitempty"`
+	PartnerPrefectureCode NullableInt64 `json:"partner_prefecture_code,omitempty"`
 	// 都道府県
 	PartnerPrefectureName NullableString `json:"partner_prefecture_name,omitempty"`
 	// 敬称（御中、様、(空白)の3つから選択）
@@ -67,7 +67,7 @@ type QuotationResponseQuotation struct {
 	// 郵便番号
 	PartnerZipcode NullableString `json:"partner_zipcode,omitempty"`
 	// 見積内容
-	QuotationContents *[]QuotationIndexResponseQuotationContents `json:"quotation_contents,omitempty"`
+	QuotationContents []QuotationIndexResponseQuotationsInnerQuotationContentsInner `json:"quotation_contents,omitempty"`
 	// 見積書レイアウト * `default_classic` - レイアウト１/クラシック (デフォルト)  * `standard_classic` - レイアウト２/クラシック  * `envelope_classic` - 封筒１/クラシック  * `default_modern` - レイアウト１/モダン  * `standard_modern` - レイアウト２/モダン  * `envelope_modern` - 封筒/モダン
 	QuotationLayout string `json:"quotation_layout"`
 	// 見積書番号
@@ -75,20 +75,20 @@ type QuotationResponseQuotation struct {
 	// 見積書ステータス  (unsubmitted: 送付待ち, submitted: 送付済み, all: 全て)
 	QuotationStatus string `json:"quotation_status"`
 	// 関連する請求書ID<br> 下記で作成したものが該当します。  <a href=\"https://support.freee.co.jp/hc/ja/articles/203318410#1-2\" target=\"_blank\">見積書・納品書を納品書・請求書に変換する</a><br> <a href=\"https://support.freee.co.jp/hc/ja/articles/209076226\" target=\"_blank\">複数の見積書・納品書から合算請求書を作成する</a><br> 
-	RelatedInvoiceId NullableInt32 `json:"related_invoice_id,omitempty"`
+	RelatedInvoiceId NullableInt64 `json:"related_invoice_id,omitempty"`
 	// 関連する見積書ID(配列)<br> 下記で作成したものが該当します。  <a href=\"https://support.freee.co.jp/hc/ja/articles/203318410#1-2\" target=\"_blank\">見積書・納品書を納品書・請求書に変換する</a><br> <a href=\"https://support.freee.co.jp/hc/ja/articles/209076226\" target=\"_blank\">複数の見積書・納品書から合算請求書を作成する</a><br> 
-	RelatedQuotationIds *[]int32 `json:"related_quotation_ids,omitempty"`
+	RelatedQuotationIds []int64 `json:"related_quotation_ids,omitempty"`
 	// 小計
-	SubTotal *int32 `json:"sub_total,omitempty"`
+	SubTotal *int64 `json:"sub_total,omitempty"`
 	// 見積書の消費税計算方法(inclusive: 内税, exclusive: 外税)
 	TaxEntryMethod string `json:"tax_entry_method"`
 	// タイトル
 	Title NullableString `json:"title,omitempty"`
 	// 合計金額
-	TotalAmount int32 `json:"total_amount"`
-	TotalAmountPerVatRate InvoiceIndexResponseTotalAmountPerVatRate `json:"total_amount_per_vat_rate"`
+	TotalAmount int64 `json:"total_amount"`
+	TotalAmountPerVatRate InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate `json:"total_amount_per_vat_rate"`
 	// 消費税
-	TotalVat *int32 `json:"total_vat,omitempty"`
+	TotalVat *int64 `json:"total_vat,omitempty"`
 	// Web共有取引先確認日時(最新)
 	WebConfirmedAt NullableString `json:"web_confirmed_at,omitempty"`
 	// Web共有ダウンロード日時(最新)
@@ -101,7 +101,7 @@ type QuotationResponseQuotation struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotationResponseQuotation(companyId int32, companyName string, id int32, issueDate string, partnerId NullableInt32, partnerTitle NullableString, quotationLayout string, quotationNumber string, quotationStatus string, taxEntryMethod string, totalAmount int32, totalAmountPerVatRate InvoiceIndexResponseTotalAmountPerVatRate) *QuotationResponseQuotation {
+func NewQuotationResponseQuotation(companyId int64, companyName string, id int64, issueDate string, partnerId NullableInt64, partnerTitle NullableString, quotationLayout string, quotationNumber string, quotationStatus string, taxEntryMethod string, totalAmount int64, totalAmountPerVatRate InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate) *QuotationResponseQuotation {
 	this := QuotationResponseQuotation{}
 	this.CompanyId = companyId
 	this.CompanyName = companyName
@@ -139,7 +139,7 @@ func (o *QuotationResponseQuotation) GetCompanyAddress1() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetCompanyAddress1Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CompanyAddress1.Get(), o.CompanyAddress1.IsSet()
@@ -181,7 +181,7 @@ func (o *QuotationResponseQuotation) GetCompanyAddress2() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetCompanyAddress2Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CompanyAddress2.Get(), o.CompanyAddress2.IsSet()
@@ -223,7 +223,7 @@ func (o *QuotationResponseQuotation) GetCompanyContactInfo() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetCompanyContactInfoOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CompanyContactInfo.Get(), o.CompanyContactInfo.IsSet()
@@ -253,9 +253,9 @@ func (o *QuotationResponseQuotation) UnsetCompanyContactInfo() {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *QuotationResponseQuotation) GetCompanyId() int32 {
+func (o *QuotationResponseQuotation) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -264,15 +264,15 @@ func (o *QuotationResponseQuotation) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetCompanyIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
 }
 
 // SetCompanyId sets field value
-func (o *QuotationResponseQuotation) SetCompanyId(v int32) {
+func (o *QuotationResponseQuotation) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -289,7 +289,7 @@ func (o *QuotationResponseQuotation) GetCompanyName() string {
 // GetCompanyNameOk returns a tuple with the CompanyName field value
 // and a boolean to check if the value has been set.
 func (o *QuotationResponseQuotation) GetCompanyNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyName, true
@@ -301,9 +301,9 @@ func (o *QuotationResponseQuotation) SetCompanyName(v string) {
 }
 
 // GetCompanyPrefectureCode returns the CompanyPrefectureCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotationResponseQuotation) GetCompanyPrefectureCode() int32 {
+func (o *QuotationResponseQuotation) GetCompanyPrefectureCode() int64 {
 	if o == nil || o.CompanyPrefectureCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CompanyPrefectureCode.Get()
@@ -312,8 +312,8 @@ func (o *QuotationResponseQuotation) GetCompanyPrefectureCode() int32 {
 // GetCompanyPrefectureCodeOk returns a tuple with the CompanyPrefectureCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationResponseQuotation) GetCompanyPrefectureCodeOk() (*int32, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetCompanyPrefectureCodeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.CompanyPrefectureCode.Get(), o.CompanyPrefectureCode.IsSet()
@@ -328,8 +328,8 @@ func (o *QuotationResponseQuotation) HasCompanyPrefectureCode() bool {
 	return false
 }
 
-// SetCompanyPrefectureCode gets a reference to the given NullableInt32 and assigns it to the CompanyPrefectureCode field.
-func (o *QuotationResponseQuotation) SetCompanyPrefectureCode(v int32) {
+// SetCompanyPrefectureCode gets a reference to the given NullableInt64 and assigns it to the CompanyPrefectureCode field.
+func (o *QuotationResponseQuotation) SetCompanyPrefectureCode(v int64) {
 	o.CompanyPrefectureCode.Set(&v)
 }
 // SetCompanyPrefectureCodeNil sets the value for CompanyPrefectureCode to be an explicit nil
@@ -355,7 +355,7 @@ func (o *QuotationResponseQuotation) GetCompanyPrefectureName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetCompanyPrefectureNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CompanyPrefectureName.Get(), o.CompanyPrefectureName.IsSet()
@@ -397,7 +397,7 @@ func (o *QuotationResponseQuotation) GetCompanyZipcode() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetCompanyZipcodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CompanyZipcode.Get(), o.CompanyZipcode.IsSet()
@@ -439,7 +439,7 @@ func (o *QuotationResponseQuotation) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -469,9 +469,9 @@ func (o *QuotationResponseQuotation) UnsetDescription() {
 }
 
 // GetId returns the Id field value
-func (o *QuotationResponseQuotation) GetId() int32 {
+func (o *QuotationResponseQuotation) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -480,15 +480,15 @@ func (o *QuotationResponseQuotation) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *QuotationResponseQuotation) SetId(v int32) {
+func (o *QuotationResponseQuotation) SetId(v int64) {
 	o.Id = v
 }
 
@@ -505,7 +505,7 @@ func (o *QuotationResponseQuotation) GetIssueDate() string {
 // GetIssueDateOk returns a tuple with the IssueDate field value
 // and a boolean to check if the value has been set.
 func (o *QuotationResponseQuotation) GetIssueDateOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IssueDate, true
@@ -529,7 +529,7 @@ func (o *QuotationResponseQuotation) GetMailSentAt() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetMailSentAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.MailSentAt.Get(), o.MailSentAt.IsSet()
@@ -571,7 +571,7 @@ func (o *QuotationResponseQuotation) GetMessage() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetMessageOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Message.Get(), o.Message.IsSet()
@@ -613,7 +613,7 @@ func (o *QuotationResponseQuotation) GetNotes() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetNotesOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Notes.Get(), o.Notes.IsSet()
@@ -655,7 +655,7 @@ func (o *QuotationResponseQuotation) GetPartnerAddress1() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerAddress1Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerAddress1.Get(), o.PartnerAddress1.IsSet()
@@ -697,7 +697,7 @@ func (o *QuotationResponseQuotation) GetPartnerAddress2() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerAddress2Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerAddress2.Get(), o.PartnerAddress2.IsSet()
@@ -739,7 +739,7 @@ func (o *QuotationResponseQuotation) GetPartnerCode() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerCodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerCode.Get(), o.PartnerCode.IsSet()
@@ -781,7 +781,7 @@ func (o *QuotationResponseQuotation) GetPartnerContactInfo() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerContactInfoOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerContactInfo.Get(), o.PartnerContactInfo.IsSet()
@@ -823,7 +823,7 @@ func (o *QuotationResponseQuotation) GetPartnerDisplayName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerDisplayNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerDisplayName.Get(), o.PartnerDisplayName.IsSet()
@@ -853,10 +853,10 @@ func (o *QuotationResponseQuotation) UnsetPartnerDisplayName() {
 }
 
 // GetPartnerId returns the PartnerId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *QuotationResponseQuotation) GetPartnerId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *QuotationResponseQuotation) GetPartnerId() int64 {
 	if o == nil || o.PartnerId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -866,15 +866,15 @@ func (o *QuotationResponseQuotation) GetPartnerId() int32 {
 // GetPartnerIdOk returns a tuple with the PartnerId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationResponseQuotation) GetPartnerIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetPartnerIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerId.Get(), o.PartnerId.IsSet()
 }
 
 // SetPartnerId sets field value
-func (o *QuotationResponseQuotation) SetPartnerId(v int32) {
+func (o *QuotationResponseQuotation) SetPartnerId(v int64) {
 	o.PartnerId.Set(&v)
 }
 
@@ -891,7 +891,7 @@ func (o *QuotationResponseQuotation) GetPartnerName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerName.Get(), o.PartnerName.IsSet()
@@ -921,9 +921,9 @@ func (o *QuotationResponseQuotation) UnsetPartnerName() {
 }
 
 // GetPartnerPrefectureCode returns the PartnerPrefectureCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotationResponseQuotation) GetPartnerPrefectureCode() int32 {
+func (o *QuotationResponseQuotation) GetPartnerPrefectureCode() int64 {
 	if o == nil || o.PartnerPrefectureCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerPrefectureCode.Get()
@@ -932,8 +932,8 @@ func (o *QuotationResponseQuotation) GetPartnerPrefectureCode() int32 {
 // GetPartnerPrefectureCodeOk returns a tuple with the PartnerPrefectureCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationResponseQuotation) GetPartnerPrefectureCodeOk() (*int32, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetPartnerPrefectureCodeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerPrefectureCode.Get(), o.PartnerPrefectureCode.IsSet()
@@ -948,8 +948,8 @@ func (o *QuotationResponseQuotation) HasPartnerPrefectureCode() bool {
 	return false
 }
 
-// SetPartnerPrefectureCode gets a reference to the given NullableInt32 and assigns it to the PartnerPrefectureCode field.
-func (o *QuotationResponseQuotation) SetPartnerPrefectureCode(v int32) {
+// SetPartnerPrefectureCode gets a reference to the given NullableInt64 and assigns it to the PartnerPrefectureCode field.
+func (o *QuotationResponseQuotation) SetPartnerPrefectureCode(v int64) {
 	o.PartnerPrefectureCode.Set(&v)
 }
 // SetPartnerPrefectureCodeNil sets the value for PartnerPrefectureCode to be an explicit nil
@@ -975,7 +975,7 @@ func (o *QuotationResponseQuotation) GetPartnerPrefectureName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerPrefectureNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerPrefectureName.Get(), o.PartnerPrefectureName.IsSet()
@@ -1019,7 +1019,7 @@ func (o *QuotationResponseQuotation) GetPartnerTitle() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerTitle.Get(), o.PartnerTitle.IsSet()
@@ -1043,7 +1043,7 @@ func (o *QuotationResponseQuotation) GetPartnerZipcode() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetPartnerZipcodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerZipcode.Get(), o.PartnerZipcode.IsSet()
@@ -1073,17 +1073,17 @@ func (o *QuotationResponseQuotation) UnsetPartnerZipcode() {
 }
 
 // GetQuotationContents returns the QuotationContents field value if set, zero value otherwise.
-func (o *QuotationResponseQuotation) GetQuotationContents() []QuotationIndexResponseQuotationContents {
+func (o *QuotationResponseQuotation) GetQuotationContents() []QuotationIndexResponseQuotationsInnerQuotationContentsInner {
 	if o == nil || o.QuotationContents == nil {
-		var ret []QuotationIndexResponseQuotationContents
+		var ret []QuotationIndexResponseQuotationsInnerQuotationContentsInner
 		return ret
 	}
-	return *o.QuotationContents
+	return o.QuotationContents
 }
 
 // GetQuotationContentsOk returns a tuple with the QuotationContents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetQuotationContentsOk() (*[]QuotationIndexResponseQuotationContents, bool) {
+func (o *QuotationResponseQuotation) GetQuotationContentsOk() ([]QuotationIndexResponseQuotationsInnerQuotationContentsInner, bool) {
 	if o == nil || o.QuotationContents == nil {
 		return nil, false
 	}
@@ -1099,9 +1099,9 @@ func (o *QuotationResponseQuotation) HasQuotationContents() bool {
 	return false
 }
 
-// SetQuotationContents gets a reference to the given []QuotationIndexResponseQuotationContents and assigns it to the QuotationContents field.
-func (o *QuotationResponseQuotation) SetQuotationContents(v []QuotationIndexResponseQuotationContents) {
-	o.QuotationContents = &v
+// SetQuotationContents gets a reference to the given []QuotationIndexResponseQuotationsInnerQuotationContentsInner and assigns it to the QuotationContents field.
+func (o *QuotationResponseQuotation) SetQuotationContents(v []QuotationIndexResponseQuotationsInnerQuotationContentsInner) {
+	o.QuotationContents = v
 }
 
 // GetQuotationLayout returns the QuotationLayout field value
@@ -1117,7 +1117,7 @@ func (o *QuotationResponseQuotation) GetQuotationLayout() string {
 // GetQuotationLayoutOk returns a tuple with the QuotationLayout field value
 // and a boolean to check if the value has been set.
 func (o *QuotationResponseQuotation) GetQuotationLayoutOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.QuotationLayout, true
@@ -1141,7 +1141,7 @@ func (o *QuotationResponseQuotation) GetQuotationNumber() string {
 // GetQuotationNumberOk returns a tuple with the QuotationNumber field value
 // and a boolean to check if the value has been set.
 func (o *QuotationResponseQuotation) GetQuotationNumberOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.QuotationNumber, true
@@ -1165,7 +1165,7 @@ func (o *QuotationResponseQuotation) GetQuotationStatus() string {
 // GetQuotationStatusOk returns a tuple with the QuotationStatus field value
 // and a boolean to check if the value has been set.
 func (o *QuotationResponseQuotation) GetQuotationStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.QuotationStatus, true
@@ -1177,9 +1177,9 @@ func (o *QuotationResponseQuotation) SetQuotationStatus(v string) {
 }
 
 // GetRelatedInvoiceId returns the RelatedInvoiceId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotationResponseQuotation) GetRelatedInvoiceId() int32 {
+func (o *QuotationResponseQuotation) GetRelatedInvoiceId() int64 {
 	if o == nil || o.RelatedInvoiceId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RelatedInvoiceId.Get()
@@ -1188,8 +1188,8 @@ func (o *QuotationResponseQuotation) GetRelatedInvoiceId() int32 {
 // GetRelatedInvoiceIdOk returns a tuple with the RelatedInvoiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationResponseQuotation) GetRelatedInvoiceIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetRelatedInvoiceIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.RelatedInvoiceId.Get(), o.RelatedInvoiceId.IsSet()
@@ -1204,8 +1204,8 @@ func (o *QuotationResponseQuotation) HasRelatedInvoiceId() bool {
 	return false
 }
 
-// SetRelatedInvoiceId gets a reference to the given NullableInt32 and assigns it to the RelatedInvoiceId field.
-func (o *QuotationResponseQuotation) SetRelatedInvoiceId(v int32) {
+// SetRelatedInvoiceId gets a reference to the given NullableInt64 and assigns it to the RelatedInvoiceId field.
+func (o *QuotationResponseQuotation) SetRelatedInvoiceId(v int64) {
 	o.RelatedInvoiceId.Set(&v)
 }
 // SetRelatedInvoiceIdNil sets the value for RelatedInvoiceId to be an explicit nil
@@ -1219,17 +1219,17 @@ func (o *QuotationResponseQuotation) UnsetRelatedInvoiceId() {
 }
 
 // GetRelatedQuotationIds returns the RelatedQuotationIds field value if set, zero value otherwise.
-func (o *QuotationResponseQuotation) GetRelatedQuotationIds() []int32 {
+func (o *QuotationResponseQuotation) GetRelatedQuotationIds() []int64 {
 	if o == nil || o.RelatedQuotationIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
-	return *o.RelatedQuotationIds
+	return o.RelatedQuotationIds
 }
 
 // GetRelatedQuotationIdsOk returns a tuple with the RelatedQuotationIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetRelatedQuotationIdsOk() (*[]int32, bool) {
+func (o *QuotationResponseQuotation) GetRelatedQuotationIdsOk() ([]int64, bool) {
 	if o == nil || o.RelatedQuotationIds == nil {
 		return nil, false
 	}
@@ -1245,15 +1245,15 @@ func (o *QuotationResponseQuotation) HasRelatedQuotationIds() bool {
 	return false
 }
 
-// SetRelatedQuotationIds gets a reference to the given []int32 and assigns it to the RelatedQuotationIds field.
-func (o *QuotationResponseQuotation) SetRelatedQuotationIds(v []int32) {
-	o.RelatedQuotationIds = &v
+// SetRelatedQuotationIds gets a reference to the given []int64 and assigns it to the RelatedQuotationIds field.
+func (o *QuotationResponseQuotation) SetRelatedQuotationIds(v []int64) {
+	o.RelatedQuotationIds = v
 }
 
 // GetSubTotal returns the SubTotal field value if set, zero value otherwise.
-func (o *QuotationResponseQuotation) GetSubTotal() int32 {
+func (o *QuotationResponseQuotation) GetSubTotal() int64 {
 	if o == nil || o.SubTotal == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SubTotal
@@ -1261,7 +1261,7 @@ func (o *QuotationResponseQuotation) GetSubTotal() int32 {
 
 // GetSubTotalOk returns a tuple with the SubTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetSubTotalOk() (*int32, bool) {
+func (o *QuotationResponseQuotation) GetSubTotalOk() (*int64, bool) {
 	if o == nil || o.SubTotal == nil {
 		return nil, false
 	}
@@ -1277,8 +1277,8 @@ func (o *QuotationResponseQuotation) HasSubTotal() bool {
 	return false
 }
 
-// SetSubTotal gets a reference to the given int32 and assigns it to the SubTotal field.
-func (o *QuotationResponseQuotation) SetSubTotal(v int32) {
+// SetSubTotal gets a reference to the given int64 and assigns it to the SubTotal field.
+func (o *QuotationResponseQuotation) SetSubTotal(v int64) {
 	o.SubTotal = &v
 }
 
@@ -1295,7 +1295,7 @@ func (o *QuotationResponseQuotation) GetTaxEntryMethod() string {
 // GetTaxEntryMethodOk returns a tuple with the TaxEntryMethod field value
 // and a boolean to check if the value has been set.
 func (o *QuotationResponseQuotation) GetTaxEntryMethodOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TaxEntryMethod, true
@@ -1319,7 +1319,7 @@ func (o *QuotationResponseQuotation) GetTitle() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
@@ -1349,9 +1349,9 @@ func (o *QuotationResponseQuotation) UnsetTitle() {
 }
 
 // GetTotalAmount returns the TotalAmount field value
-func (o *QuotationResponseQuotation) GetTotalAmount() int32 {
+func (o *QuotationResponseQuotation) GetTotalAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -1360,22 +1360,22 @@ func (o *QuotationResponseQuotation) GetTotalAmount() int32 {
 
 // GetTotalAmountOk returns a tuple with the TotalAmount field value
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetTotalAmountOk() (*int32, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetTotalAmountOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TotalAmount, true
 }
 
 // SetTotalAmount sets field value
-func (o *QuotationResponseQuotation) SetTotalAmount(v int32) {
+func (o *QuotationResponseQuotation) SetTotalAmount(v int64) {
 	o.TotalAmount = v
 }
 
 // GetTotalAmountPerVatRate returns the TotalAmountPerVatRate field value
-func (o *QuotationResponseQuotation) GetTotalAmountPerVatRate() InvoiceIndexResponseTotalAmountPerVatRate {
+func (o *QuotationResponseQuotation) GetTotalAmountPerVatRate() InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate {
 	if o == nil {
-		var ret InvoiceIndexResponseTotalAmountPerVatRate
+		var ret InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate
 		return ret
 	}
 
@@ -1384,22 +1384,22 @@ func (o *QuotationResponseQuotation) GetTotalAmountPerVatRate() InvoiceIndexResp
 
 // GetTotalAmountPerVatRateOk returns a tuple with the TotalAmountPerVatRate field value
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetTotalAmountPerVatRateOk() (*InvoiceIndexResponseTotalAmountPerVatRate, bool) {
-	if o == nil  {
+func (o *QuotationResponseQuotation) GetTotalAmountPerVatRateOk() (*InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TotalAmountPerVatRate, true
 }
 
 // SetTotalAmountPerVatRate sets field value
-func (o *QuotationResponseQuotation) SetTotalAmountPerVatRate(v InvoiceIndexResponseTotalAmountPerVatRate) {
+func (o *QuotationResponseQuotation) SetTotalAmountPerVatRate(v InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate) {
 	o.TotalAmountPerVatRate = v
 }
 
 // GetTotalVat returns the TotalVat field value if set, zero value otherwise.
-func (o *QuotationResponseQuotation) GetTotalVat() int32 {
+func (o *QuotationResponseQuotation) GetTotalVat() int64 {
 	if o == nil || o.TotalVat == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TotalVat
@@ -1407,7 +1407,7 @@ func (o *QuotationResponseQuotation) GetTotalVat() int32 {
 
 // GetTotalVatOk returns a tuple with the TotalVat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationResponseQuotation) GetTotalVatOk() (*int32, bool) {
+func (o *QuotationResponseQuotation) GetTotalVatOk() (*int64, bool) {
 	if o == nil || o.TotalVat == nil {
 		return nil, false
 	}
@@ -1423,8 +1423,8 @@ func (o *QuotationResponseQuotation) HasTotalVat() bool {
 	return false
 }
 
-// SetTotalVat gets a reference to the given int32 and assigns it to the TotalVat field.
-func (o *QuotationResponseQuotation) SetTotalVat(v int32) {
+// SetTotalVat gets a reference to the given int64 and assigns it to the TotalVat field.
+func (o *QuotationResponseQuotation) SetTotalVat(v int64) {
 	o.TotalVat = &v
 }
 
@@ -1441,7 +1441,7 @@ func (o *QuotationResponseQuotation) GetWebConfirmedAt() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetWebConfirmedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.WebConfirmedAt.Get(), o.WebConfirmedAt.IsSet()
@@ -1483,7 +1483,7 @@ func (o *QuotationResponseQuotation) GetWebDownloadedAt() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetWebDownloadedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.WebDownloadedAt.Get(), o.WebDownloadedAt.IsSet()
@@ -1525,7 +1525,7 @@ func (o *QuotationResponseQuotation) GetWebPublishedAt() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QuotationResponseQuotation) GetWebPublishedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.WebPublishedAt.Get(), o.WebPublishedAt.IsSet()

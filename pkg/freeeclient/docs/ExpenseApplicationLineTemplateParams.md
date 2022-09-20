@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountItemId** | **int32** | 勘定科目ID | 
-**CompanyId** | **int32** | 事業所ID | 
+**AccountItemId** | **int64** | 勘定科目ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Description** | Pointer to **string** | 経費科目の説明 (1000文字以内) | [optional] 
-**ItemId** | Pointer to **int32** | 品目ID | [optional] 
+**ItemId** | Pointer to **int64** | 品目ID | [optional] 
 **LineDescription** | Pointer to **string** | 内容の補足 (1000文字以内) | [optional] 
 **Name** | **string** | 経費科目名 (100文字以内) | 
 **RequiredReceipt** | Pointer to **bool** | 添付ファイルの必須/任意 | [optional] 
-**TaxCode** | **int32** | 税区分コード（税区分のdisplay_categoryがtax_5: 5%表示の税区分, tax_r8: 軽減税率8%表示の税区分に該当するtax_codeのみ利用可能です。税区分のdisplay_categoryは /taxes/companies/{:company_id}のAPIから取得可能です。） | 
+**TaxCode** | **int64** | 税区分コード（税区分のdisplay_categoryがtax_5: 5%表示の税区分, tax_r8: 軽減税率8%表示の税区分に該当するtax_codeのみ利用可能です。税区分のdisplay_categoryは /taxes/companies/{:company_id}のAPIから取得可能です。） | 
 
 ## Methods
 
 ### NewExpenseApplicationLineTemplateParams
 
-`func NewExpenseApplicationLineTemplateParams(accountItemId int32, companyId int32, name string, taxCode int32, ) *ExpenseApplicationLineTemplateParams`
+`func NewExpenseApplicationLineTemplateParams(accountItemId int64, companyId int64, name string, taxCode int64, ) *ExpenseApplicationLineTemplateParams`
 
 NewExpenseApplicationLineTemplateParams instantiates a new ExpenseApplicationLineTemplateParams object
 This constructor will assign default values to properties that have it defined,
@@ -34,40 +34,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountItemId
 
-`func (o *ExpenseApplicationLineTemplateParams) GetAccountItemId() int32`
+`func (o *ExpenseApplicationLineTemplateParams) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *ExpenseApplicationLineTemplateParams) GetAccountItemIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationLineTemplateParams) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *ExpenseApplicationLineTemplateParams) SetAccountItemId(v int32)`
+`func (o *ExpenseApplicationLineTemplateParams) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
 
 ### GetCompanyId
 
-`func (o *ExpenseApplicationLineTemplateParams) GetCompanyId() int32`
+`func (o *ExpenseApplicationLineTemplateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *ExpenseApplicationLineTemplateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationLineTemplateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *ExpenseApplicationLineTemplateParams) SetCompanyId(v int32)`
+`func (o *ExpenseApplicationLineTemplateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -99,20 +99,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetItemId
 
-`func (o *ExpenseApplicationLineTemplateParams) GetItemId() int32`
+`func (o *ExpenseApplicationLineTemplateParams) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *ExpenseApplicationLineTemplateParams) GetItemIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationLineTemplateParams) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *ExpenseApplicationLineTemplateParams) SetItemId(v int32)`
+`func (o *ExpenseApplicationLineTemplateParams) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -194,20 +194,20 @@ HasRequiredReceipt returns a boolean if a field has been set.
 
 ### GetTaxCode
 
-`func (o *ExpenseApplicationLineTemplateParams) GetTaxCode() int32`
+`func (o *ExpenseApplicationLineTemplateParams) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *ExpenseApplicationLineTemplateParams) GetTaxCodeOk() (*int32, bool)`
+`func (o *ExpenseApplicationLineTemplateParams) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *ExpenseApplicationLineTemplateParams) SetTaxCode(v int32)`
+`func (o *ExpenseApplicationLineTemplateParams) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 

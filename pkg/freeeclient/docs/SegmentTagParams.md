@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Description** | Pointer to **string** | 備考 (30文字以内) | [optional] 
 **Name** | **string** | セグメントタグ名 (30文字以内) | 
 **Shortcut1** | Pointer to **string** | ショートカット１ (20文字以内) | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewSegmentTagParams
 
-`func NewSegmentTagParams(companyId int32, name string, ) *SegmentTagParams`
+`func NewSegmentTagParams(companyId int64, name string, ) *SegmentTagParams`
 
 NewSegmentTagParams instantiates a new SegmentTagParams object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *SegmentTagParams) GetCompanyId() int32`
+`func (o *SegmentTagParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *SegmentTagParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *SegmentTagParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *SegmentTagParams) SetCompanyId(v int32)`
+`func (o *SegmentTagParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

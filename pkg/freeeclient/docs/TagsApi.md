@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    tagParams := *openapiclient.NewTagParams(int32(1), "メモタグ1") // TagParams | メモタグの作成
+    tagParams := *openapiclient.NewTagParams(int64(1), "メモタグ1") // TagParams | メモタグの作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.CreateTag(context.Background()).TagParams(tagParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.CreateTag(context.Background()).TagParams(tagParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,12 +99,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | タグID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | タグID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.DestroyTag(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.DestroyTag(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.DestroyTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | タグID | 
+**id** | **int64** | タグID | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroyTagRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,12 +169,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | タグID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | タグID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.GetTag(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.GetTag(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.GetTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | タグID | 
+**id** | **int64** | タグID | 
 
 ### Other Parameters
 
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiGetTagRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## GetTags
 
-> InlineResponse2008 GetTags(ctx).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+> GetTags200Response GetTags(ctx).CompanyId(companyId).StartUpdateDate(startUpdateDate).EndUpdateDate(endUpdateDate).Offset(offset).Limit(limit).Execute()
 
 メモタグ一覧の取得
 
@@ -241,18 +241,20 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    offset := int32(56) // int32 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
+    companyId := int64(56) // int64 | 事業所ID
+    startUpdateDate := "startUpdateDate_example" // string | 更新日で絞り込み：開始日(yyyy-mm-dd) (optional)
+    endUpdateDate := "endUpdateDate_example" // string | 更新日で絞り込み：終了日(yyyy-mm-dd) (optional)
+    offset := int64(56) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.GetTags(context.Background()).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.GetTags(context.Background()).CompanyId(companyId).StartUpdateDate(startUpdateDate).EndUpdateDate(endUpdateDate).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.GetTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetTags`: InlineResponse2008
+    // response from `GetTags`: GetTags200Response
     fmt.Fprintf(os.Stdout, "Response from `TagsApi.GetTags`: %v\n", resp)
 }
 ```
@@ -268,13 +270,15 @@ Other parameters are passed through a pointer to a apiGetTagsRequest struct via 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
- **offset** | **int32** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
+ **companyId** | **int64** | 事業所ID | 
+ **startUpdateDate** | **string** | 更新日で絞り込み：開始日(yyyy-mm-dd) | 
+ **endUpdateDate** | **string** | 更新日で絞り込み：終了日(yyyy-mm-dd) | 
+ **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**GetTags200Response**](GetTags200Response.md)
 
 ### Authorization
 
@@ -311,12 +315,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | メモタグID
-    tagParams := *openapiclient.NewTagParams(int32(1), "メモタグ1") // TagParams | メモタグの更新 (optional)
+    id := int64(56) // int64 | メモタグID
+    tagParams := *openapiclient.NewTagParams(int64(1), "メモタグ1") // TagParams | メモタグの更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TagsApi.UpdateTag(context.Background(), id).TagParams(tagParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TagsApi.UpdateTag(context.Background(), id).TagParams(tagParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -332,7 +336,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | メモタグID | 
+**id** | **int64** | メモタグID | 
 
 ### Other Parameters
 

@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-    expenseApplicationCreateParams := *openapiclient.NewExpenseApplicationCreateParams(int32(1), []openapiclient.ExpenseApplicationCreateParamsExpenseApplicationLines{*openapiclient.NewExpenseApplicationCreateParamsExpenseApplicationLines()}, "2019-12-17", "大阪出張") // ExpenseApplicationCreateParams | 経費申請の作成 (optional)
+    expenseApplicationCreateParams := *openapiclient.NewExpenseApplicationCreateParams(int64(1), []openapiclient.ExpenseApplicationCreateParamsExpenseApplicationLinesInner{*openapiclient.NewExpenseApplicationCreateParamsExpenseApplicationLinesInner()}, "大阪出張") // ExpenseApplicationCreateParams | 経費申請の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.CreateExpenseApplication(context.Background()).ExpenseApplicationCreateParams(expenseApplicationCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.CreateExpenseApplication(context.Background()).ExpenseApplicationCreateParams(expenseApplicationCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.CreateExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -100,12 +100,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経費申請ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 経費申請ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.DestroyExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.DestroyExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.DestroyExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経費申請ID | 
+**id** | **int64** | 経費申請ID | 
 
 ### Other Parameters
 
@@ -129,7 +129,7 @@ Other parameters are passed through a pointer to a apiDestroyExpenseApplicationR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -170,12 +170,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経費申請ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 経費申請ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.GetExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.GetExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.GetExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -191,7 +191,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経費申請ID | 
+**id** | **int64** | 経費申請ID | 
 
 ### Other Parameters
 
@@ -201,7 +201,7 @@ Other parameters are passed through a pointer to a apiGetExpenseApplicationReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -242,25 +242,25 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     status := "status_example" // string | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)、 取引ステータス(unsettled:清算待ち, settled:精算済み) (optional)
     payrollAttached := true // bool | true:給与連携あり、false:給与連携なし、未指定時:絞り込みなし (optional)
     startTransactionDate := "2019-12-17" // string | 発生日(経費申請項目の日付)で絞込：開始日(yyyy-mm-dd) (optional)
     endTransactionDate := "2019-12-17" // string | 発生日(経費申請項目の日付)で絞込：終了日(yyyy-mm-dd) (optional)
-    applicationNumber := int32(2) // int32 | 申請No. (optional)
+    applicationNumber := int64(2) // int64 | 申請No. (optional)
     title := "大阪出張" // string | 申請タイトル (optional)
     startIssueDate := "2019-12-17" // string | 申請日で絞込：開始日(yyyy-mm-dd) (optional)
     endIssueDate := "2019-12-17" // string | 申請日で絞込：終了日(yyyy-mm-dd) (optional)
-    applicantId := int32(1) // int32 | 申請者のユーザーID (optional)
-    approverId := int32(1) // int32 | 承認者のユーザーID (optional)
-    minAmount := int32(5000) // int32 | 金額で絞込 (下限金額) (optional)
-    maxAmount := int32(10000) // int32 | 金額で絞込 (上限金額) (optional)
+    applicantId := int64(1) // int64 | 申請者のユーザーID (optional)
+    approverId := int64(1) // int64 | 承認者のユーザーID (optional)
+    minAmount := int64(5000) // int64 | 金額で絞込 (下限金額) (optional)
+    maxAmount := int64(10000) // int64 | 金額で絞込 (上限金額) (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.GetExpenseApplications(context.Background()).CompanyId(companyId).Status(status).PayrollAttached(payrollAttached).StartTransactionDate(startTransactionDate).EndTransactionDate(endTransactionDate).ApplicationNumber(applicationNumber).Title(title).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).ApplicantId(applicantId).ApproverId(approverId).MinAmount(minAmount).MaxAmount(maxAmount).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.GetExpenseApplications(context.Background()).CompanyId(companyId).Status(status).PayrollAttached(payrollAttached).StartTransactionDate(startTransactionDate).EndTransactionDate(endTransactionDate).ApplicationNumber(applicationNumber).Title(title).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).ApplicantId(applicantId).ApproverId(approverId).MinAmount(minAmount).MaxAmount(maxAmount).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.GetExpenseApplications``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,21 +281,21 @@ Other parameters are passed through a pointer to a apiGetExpenseApplicationsRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **status** | **string** | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)、 取引ステータス(unsettled:清算待ち, settled:精算済み) | 
  **payrollAttached** | **bool** | true:給与連携あり、false:給与連携なし、未指定時:絞り込みなし | 
  **startTransactionDate** | **string** | 発生日(経費申請項目の日付)で絞込：開始日(yyyy-mm-dd) | 
  **endTransactionDate** | **string** | 発生日(経費申請項目の日付)で絞込：終了日(yyyy-mm-dd) | 
- **applicationNumber** | **int32** | 申請No. | 
+ **applicationNumber** | **int64** | 申請No. | 
  **title** | **string** | 申請タイトル | 
  **startIssueDate** | **string** | 申請日で絞込：開始日(yyyy-mm-dd) | 
  **endIssueDate** | **string** | 申請日で絞込：終了日(yyyy-mm-dd) | 
- **applicantId** | **int32** | 申請者のユーザーID | 
- **approverId** | **int32** | 承認者のユーザーID | 
- **minAmount** | **int32** | 金額で絞込 (下限金額) | 
- **maxAmount** | **int32** | 金額で絞込 (上限金額) | 
+ **applicantId** | **int64** | 申請者のユーザーID | 
+ **approverId** | **int64** | 承認者のユーザーID | 
+ **minAmount** | **int64** | 金額で絞込 (下限金額) | 
+ **maxAmount** | **int64** | 金額で絞込 (上限金額) | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
 
 ### Return type
 
@@ -336,12 +336,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経費申請ID
-    expenseApplicationUpdateParams := *openapiclient.NewExpenseApplicationUpdateParams(int32(1), []openapiclient.ExpenseApplicationUpdateParamsExpenseApplicationLines{*openapiclient.NewExpenseApplicationUpdateParamsExpenseApplicationLines()}, "2019-12-17", "大阪出張") // ExpenseApplicationUpdateParams | 経費申請の更新 (optional)
+    id := int64(56) // int64 | 経費申請ID
+    expenseApplicationUpdateParams := *openapiclient.NewExpenseApplicationUpdateParams(int64(1), []openapiclient.ExpenseApplicationUpdateParamsExpenseApplicationLinesInner{*openapiclient.NewExpenseApplicationUpdateParamsExpenseApplicationLinesInner()}, "大阪出張") // ExpenseApplicationUpdateParams | 経費申請の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.UpdateExpenseApplication(context.Background(), id).ExpenseApplicationUpdateParams(expenseApplicationUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.UpdateExpenseApplication(context.Background(), id).ExpenseApplicationUpdateParams(expenseApplicationUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.UpdateExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -357,7 +357,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経費申請ID | 
+**id** | **int64** | 経費申請ID | 
 
 ### Other Parameters
 
@@ -408,12 +408,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 経費申請ID
-    expenseApplicationActionCreateParams := *openapiclient.NewExpenseApplicationActionCreateParams("approve", int32(1), int32(1), int32(1)) // ExpenseApplicationActionCreateParams | 経費申請の承認操作
+    id := int64(56) // int64 | 経費申請ID
+    expenseApplicationActionCreateParams := *openapiclient.NewExpenseApplicationActionCreateParams("approve", int64(1), int64(1), int64(1)) // ExpenseApplicationActionCreateParams | 経費申請の承認操作
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.UpdateExpenseApplicationAction(context.Background(), id).ExpenseApplicationActionCreateParams(expenseApplicationActionCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.UpdateExpenseApplicationAction(context.Background(), id).ExpenseApplicationActionCreateParams(expenseApplicationActionCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.UpdateExpenseApplicationAction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -429,7 +429,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 経費申請ID | 
+**id** | **int64** | 経費申請ID | 
 
 ### Other Parameters
 

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateReceipt
 
-> ReceiptResponse CreateReceipt(ctx).CompanyId(companyId).Receipt(receipt).Description(description).IssueDate(issueDate).Execute()
+> ReceiptResponse CreateReceipt(ctx).CompanyId(companyId).Receipt(receipt).Description(description).IssueDate(issueDate).ReceiptMetadatumAmount(receiptMetadatumAmount).ReceiptMetadatumIssueDate(receiptMetadatumIssueDate).ReceiptMetadatumPartnerName(receiptMetadatumPartnerName).Execute()
 
 ファイルボックス 証憑ファイルアップロード
 
@@ -34,14 +34,17 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     receipt := os.NewFile(1234, "some_file") // *os.File | 証憑ファイル
     description := "description_example" // string | メモ (255文字以内) (optional)
     issueDate := "issueDate_example" // string | 取引日 (yyyy-mm-dd) (optional)
+    receiptMetadatumAmount := int64(789) // int64 | 金額 (optional)
+    receiptMetadatumIssueDate := "receiptMetadatumIssueDate_example" // string | 発行日 (yyyy-mm-dd) (optional)
+    receiptMetadatumPartnerName := "receiptMetadatumPartnerName_example" // string | 発行元 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReceiptsApi.CreateReceipt(context.Background()).CompanyId(companyId).Receipt(receipt).Description(description).IssueDate(issueDate).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReceiptsApi.CreateReceipt(context.Background()).CompanyId(companyId).Receipt(receipt).Description(description).IssueDate(issueDate).ReceiptMetadatumAmount(receiptMetadatumAmount).ReceiptMetadatumIssueDate(receiptMetadatumIssueDate).ReceiptMetadatumPartnerName(receiptMetadatumPartnerName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReceiptsApi.CreateReceipt``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,10 +65,13 @@ Other parameters are passed through a pointer to a apiCreateReceiptRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **receipt** | ***os.File** | 証憑ファイル | 
  **description** | **string** | メモ (255文字以内) | 
  **issueDate** | **string** | 取引日 (yyyy-mm-dd) | 
+ **receiptMetadatumAmount** | **int64** | 金額 | 
+ **receiptMetadatumIssueDate** | **string** | 発行日 (yyyy-mm-dd) | 
+ **receiptMetadatumPartnerName** | **string** | 発行元 | 
 
 ### Return type
 
@@ -106,12 +112,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 証憑ファイルID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReceiptsApi.DestroyReceipt(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReceiptsApi.DestroyReceipt(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReceiptsApi.DestroyReceipt``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,7 +131,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 
@@ -135,7 +141,7 @@ Other parameters are passed through a pointer to a apiDestroyReceiptRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -176,12 +182,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 証憑ファイルID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReceiptsApi.DownloadReceipt(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReceiptsApi.DownloadReceipt(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReceiptsApi.DownloadReceipt``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,7 +203,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 
@@ -207,7 +213,7 @@ Other parameters are passed through a pointer to a apiDownloadReceiptRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -220,7 +226,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/pdf, image/_*, text/csv, application/json
+- **Accept**: application/pdf, image/*, text/csv, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -248,12 +254,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 証憑ファイルID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReceiptsApi.GetReceipt(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReceiptsApi.GetReceipt(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReceiptsApi.GetReceipt``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -269,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 
@@ -279,7 +285,7 @@ Other parameters are passed through a pointer to a apiGetReceiptRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -301,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## GetReceipts
 
-> InlineResponse2005 GetReceipts(ctx).CompanyId(companyId).StartDate(startDate).EndDate(endDate).UserName(userName).Number(number).CommentType(commentType).CommentImportant(commentImportant).Category(category).Offset(offset).Limit(limit).Execute()
+> GetReceipts200Response GetReceipts(ctx).CompanyId(companyId).StartDate(startDate).EndDate(endDate).UserName(userName).Number(number).CommentType(commentType).CommentImportant(commentImportant).Category(category).Offset(offset).Limit(limit).Execute()
 
 ファイルボックス 証憑ファイル一覧の取得
 
@@ -320,25 +326,25 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     startDate := "startDate_example" // string | アップロード日 (yyyy-mm-dd)
     endDate := "endDate_example" // string | アップロード日 (yyyy-mm-dd)
     userName := "userName_example" // string | アップロードしたユーザー名、メールアドレス (optional)
-    number := int32(56) // int32 | アップロードファイルNo (optional)
+    number := int64(56) // int64 | アップロードファイルNo (optional)
     commentType := "commentType_example" // string | posted:コメントあり, raised:未解決, resolved:解決済 (optional)
     commentImportant := true // bool | trueの時、重要コメント付きが対象 (optional)
     category := "category_example" // string | all:すべて、without_deal:未登録、with_expense_application_line:経費申請中, with_deal:登録済み、ignored:無視 (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReceiptsApi.GetReceipts(context.Background()).CompanyId(companyId).StartDate(startDate).EndDate(endDate).UserName(userName).Number(number).CommentType(commentType).CommentImportant(commentImportant).Category(category).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReceiptsApi.GetReceipts(context.Background()).CompanyId(companyId).StartDate(startDate).EndDate(endDate).UserName(userName).Number(number).CommentType(commentType).CommentImportant(commentImportant).Category(category).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReceiptsApi.GetReceipts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetReceipts`: InlineResponse2005
+    // response from `GetReceipts`: GetReceipts200Response
     fmt.Fprintf(os.Stdout, "Response from `ReceiptsApi.GetReceipts`: %v\n", resp)
 }
 ```
@@ -354,20 +360,20 @@ Other parameters are passed through a pointer to a apiGetReceiptsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **startDate** | **string** | アップロード日 (yyyy-mm-dd) | 
  **endDate** | **string** | アップロード日 (yyyy-mm-dd) | 
  **userName** | **string** | アップロードしたユーザー名、メールアドレス | 
- **number** | **int32** | アップロードファイルNo | 
+ **number** | **int64** | アップロードファイルNo | 
  **commentType** | **string** | posted:コメントあり, raised:未解決, resolved:解決済 | 
  **commentImportant** | **bool** | trueの時、重要コメント付きが対象 | 
  **category** | **string** | all:すべて、without_deal:未登録、with_expense_application_line:経費申請中, with_deal:登録済み、ignored:無視 | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**GetReceipts200Response**](GetReceipts200Response.md)
 
 ### Authorization
 
@@ -404,12 +410,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    receiptUpdateParams := *openapiclient.NewReceiptUpdateParams(int32(1), "2019-12-17") // ReceiptUpdateParams | 経費申請の更新
+    id := int64(56) // int64 | 証憑ファイルID
+    receiptUpdateParams := *openapiclient.NewReceiptUpdateParams(int64(1), "2019-12-17") // ReceiptUpdateParams | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReceiptsApi.UpdateReceipt(context.Background(), id).ReceiptUpdateParams(receiptUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReceiptsApi.UpdateReceipt(context.Background(), id).ReceiptUpdateParams(receiptUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReceiptsApi.UpdateReceipt``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -425,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 
@@ -435,7 +441,7 @@ Other parameters are passed through a pointer to a apiUpdateReceiptRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **receiptUpdateParams** | [**ReceiptUpdateParams**](ReceiptUpdateParams.md) | 経費申請の更新 | 
+ **receiptUpdateParams** | [**ReceiptUpdateParams**](ReceiptUpdateParams.md) |  | 
 
 ### Return type
 

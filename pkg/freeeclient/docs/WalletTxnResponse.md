@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WalletTxn** | [**WalletTxnResponseWalletTxn**](WalletTxnResponseWalletTxn.md) |  | 
+**WalletTxn** | [**WalletTxn**](WalletTxn.md) |  | 
 
 ## Methods
 
 ### NewWalletTxnResponse
 
-`func NewWalletTxnResponse(walletTxn WalletTxnResponseWalletTxn, ) *WalletTxnResponse`
+`func NewWalletTxnResponse(walletTxn WalletTxn, ) *WalletTxnResponse`
 
 NewWalletTxnResponse instantiates a new WalletTxnResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetWalletTxn
 
-`func (o *WalletTxnResponse) GetWalletTxn() WalletTxnResponseWalletTxn`
+`func (o *WalletTxnResponse) GetWalletTxn() WalletTxn`
 
 GetWalletTxn returns the WalletTxn field if non-nil, zero value otherwise.
 
 ### GetWalletTxnOk
 
-`func (o *WalletTxnResponse) GetWalletTxnOk() (*WalletTxnResponseWalletTxn, bool)`
+`func (o *WalletTxnResponse) GetWalletTxnOk() (*WalletTxn, bool)`
 
 GetWalletTxnOk returns a tuple with the WalletTxn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletTxn
 
-`func (o *WalletTxnResponse) SetWalletTxn(v WalletTxnResponseWalletTxn)`
+`func (o *WalletTxnResponse) SetWalletTxn(v WalletTxn)`
 
 SetWalletTxn sets WalletTxn field to given value.
 

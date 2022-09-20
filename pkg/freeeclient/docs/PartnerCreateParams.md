@@ -6,30 +6,30 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddressAttributes** | Pointer to [**PartnerCreateParamsAddressAttributes**](PartnerCreateParamsAddressAttributes.md) |  | [optional] 
 **Code** | Pointer to **string** | 取引先コード（取引先コードの利用を有効にしている場合は、codeの指定は必須です。） | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **ContactName** | Pointer to **string** | 担当者 氏名 (255文字以内) | [optional] 
-**CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外） | [optional] 
+**CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外）、指定しない場合JPになります。 | [optional] 
 **DefaultTitle** | Pointer to **string** | 敬称（御中、様、(空白)の3つから選択） | [optional] 
 **Email** | Pointer to **string** | 担当者 メールアドレス (255文字以内) | [optional] 
 **InvoicePaymentTermAttributes** | Pointer to [**PartnerCreateParamsInvoicePaymentTermAttributes**](PartnerCreateParamsInvoicePaymentTermAttributes.md) |  | [optional] 
 **LongName** | Pointer to **string** | 正式名称（255文字以内） | [optional] 
 **Name** | **string** | 取引先名 (255文字以内) | 
 **NameKana** | Pointer to **string** | カナ名称（255文字以内） | [optional] 
-**OrgCode** | Pointer to **NullableInt32** | 事業所種別（null: 未設定、1: 法人、2: 個人） | [optional] 
+**OrgCode** | Pointer to **NullableInt64** | 事業所種別（null: 未設定、1: 法人、2: 個人） | [optional] 
 **PartnerBankAccountAttributes** | Pointer to [**PartnerCreateParamsPartnerBankAccountAttributes**](PartnerCreateParamsPartnerBankAccountAttributes.md) |  | [optional] 
 **PartnerDocSettingAttributes** | Pointer to [**PartnerCreateParamsPartnerDocSettingAttributes**](PartnerCreateParamsPartnerDocSettingAttributes.md) |  | [optional] 
-**PayerWalletableId** | Pointer to **NullableInt32** | 振込元口座ID（一括振込ファイル用）:（walletableのtypeが&#39;bank_account&#39;のidのみ指定できます。また、未設定にする場合は、nullを指定してください。） | [optional] 
-**PaymentTermAttributes** | Pointer to [**PartnerCreateParamsInvoicePaymentTermAttributes**](PartnerCreateParamsInvoicePaymentTermAttributes.md) |  | [optional] 
+**PayerWalletableId** | Pointer to **NullableInt64** | 振込元口座ID（一括振込ファイル用）:（walletableのtypeが&#39;bank_account&#39;のidのみ指定できます。また、未設定にする場合は、nullを指定してください。） | [optional] 
+**PaymentTermAttributes** | Pointer to [**PartnerCreateParamsPaymentTermAttributes**](PartnerCreateParamsPaymentTermAttributes.md) |  | [optional] 
 **Phone** | Pointer to **string** | 電話番号 | [optional] 
 **Shortcut1** | Pointer to **string** | ショートカット１ (255文字以内) | [optional] 
 **Shortcut2** | Pointer to **string** | ショートカット２ (255文字以内) | [optional] 
-**TransferFeeHandlingSide** | Pointer to **string** | 振込手数料負担（一括振込ファイル用）: (振込元(当方): payer, 振込先(先方): payee) | [optional] 
+**TransferFeeHandlingSide** | Pointer to **string** | 振込手数料負担（一括振込ファイル用）: (振込元(当方): payer, 振込先(先方): payee)、指定しない場合payerになります。 | [optional] 
 
 ## Methods
 
 ### NewPartnerCreateParams
 
-`func NewPartnerCreateParams(companyId int32, name string, ) *PartnerCreateParams`
+`func NewPartnerCreateParams(companyId int64, name string, ) *PartnerCreateParams`
 
 NewPartnerCreateParams instantiates a new PartnerCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -96,20 +96,20 @@ HasCode returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *PartnerCreateParams) GetCompanyId() int32`
+`func (o *PartnerCreateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *PartnerCreateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *PartnerCreateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *PartnerCreateParams) SetCompanyId(v int32)`
+`func (o *PartnerCreateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -311,20 +311,20 @@ HasNameKana returns a boolean if a field has been set.
 
 ### GetOrgCode
 
-`func (o *PartnerCreateParams) GetOrgCode() int32`
+`func (o *PartnerCreateParams) GetOrgCode() int64`
 
 GetOrgCode returns the OrgCode field if non-nil, zero value otherwise.
 
 ### GetOrgCodeOk
 
-`func (o *PartnerCreateParams) GetOrgCodeOk() (*int32, bool)`
+`func (o *PartnerCreateParams) GetOrgCodeOk() (*int64, bool)`
 
 GetOrgCodeOk returns a tuple with the OrgCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrgCode
 
-`func (o *PartnerCreateParams) SetOrgCode(v int32)`
+`func (o *PartnerCreateParams) SetOrgCode(v int64)`
 
 SetOrgCode sets OrgCode field to given value.
 
@@ -396,20 +396,20 @@ HasPartnerDocSettingAttributes returns a boolean if a field has been set.
 
 ### GetPayerWalletableId
 
-`func (o *PartnerCreateParams) GetPayerWalletableId() int32`
+`func (o *PartnerCreateParams) GetPayerWalletableId() int64`
 
 GetPayerWalletableId returns the PayerWalletableId field if non-nil, zero value otherwise.
 
 ### GetPayerWalletableIdOk
 
-`func (o *PartnerCreateParams) GetPayerWalletableIdOk() (*int32, bool)`
+`func (o *PartnerCreateParams) GetPayerWalletableIdOk() (*int64, bool)`
 
 GetPayerWalletableIdOk returns a tuple with the PayerWalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPayerWalletableId
 
-`func (o *PartnerCreateParams) SetPayerWalletableId(v int32)`
+`func (o *PartnerCreateParams) SetPayerWalletableId(v int64)`
 
 SetPayerWalletableId sets PayerWalletableId field to given value.
 
@@ -431,20 +431,20 @@ HasPayerWalletableId returns a boolean if a field has been set.
 UnsetPayerWalletableId ensures that no value is present for PayerWalletableId, not even an explicit nil
 ### GetPaymentTermAttributes
 
-`func (o *PartnerCreateParams) GetPaymentTermAttributes() PartnerCreateParamsInvoicePaymentTermAttributes`
+`func (o *PartnerCreateParams) GetPaymentTermAttributes() PartnerCreateParamsPaymentTermAttributes`
 
 GetPaymentTermAttributes returns the PaymentTermAttributes field if non-nil, zero value otherwise.
 
 ### GetPaymentTermAttributesOk
 
-`func (o *PartnerCreateParams) GetPaymentTermAttributesOk() (*PartnerCreateParamsInvoicePaymentTermAttributes, bool)`
+`func (o *PartnerCreateParams) GetPaymentTermAttributesOk() (*PartnerCreateParamsPaymentTermAttributes, bool)`
 
 GetPaymentTermAttributesOk returns a tuple with the PaymentTermAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentTermAttributes
 
-`func (o *PartnerCreateParams) SetPaymentTermAttributes(v PartnerCreateParamsInvoicePaymentTermAttributes)`
+`func (o *PartnerCreateParams) SetPaymentTermAttributes(v PartnerCreateParamsPaymentTermAttributes)`
 
 SetPaymentTermAttributes sets PaymentTermAttributes field to given value.
 

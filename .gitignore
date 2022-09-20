@@ -1,5 +1,5 @@
 .env
-config.yml
+./config.yml
 /bin
 /out
 token.b

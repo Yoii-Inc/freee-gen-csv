@@ -1,50 +1,48 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // DealsApiService DealsApi service
 type DealsApiService service
 
 type ApiCreateDealRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DealsApiService
 	dealCreateParams *DealCreateParams
 }
 
+// 取引（収入／支出）の作成
 func (r ApiCreateDealRequest) DealCreateParams(dealCreateParams DealCreateParams) ApiCreateDealRequest {
 	r.dealCreateParams = &dealCreateParams
 	return r
 }
 
-func (r ApiCreateDealRequest) Execute() (DealCreateResponse, *_nethttp.Response, error) {
+func (r ApiCreateDealRequest) Execute() (*DealCreateResponse, *http.Response, error) {
 	return r.ApiService.CreateDealExecute(r)
 }
 
 /*
- * CreateDeal 取引（収入／支出）の作成
- * <h2 id="">概要</h2>
+CreateDeal 取引（収入／支出）の作成
+
+<h2 id="">概要</h2>
 <p>指定した事業所の取引（収入／支出）を作成する</p>
 <h2 id="_2">定義</h2>
 <ul>
@@ -100,40 +98,37 @@ func (r ApiCreateDealRequest) Execute() (DealCreateResponse, *_nethttp.Response,
     </li>
 </ul>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateDealRequest
- */
-func (a *DealsApiService) CreateDeal(ctx _context.Context) ApiCreateDealRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateDealRequest
+*/
+func (a *DealsApiService) CreateDeal(ctx context.Context) ApiCreateDealRequest {
 	return ApiCreateDealRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return DealCreateResponse
- */
-func (a *DealsApiService) CreateDealExecute(r ApiCreateDealRequest) (DealCreateResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return DealCreateResponse
+func (a *DealsApiService) CreateDealExecute(r ApiCreateDealRequest) (*DealCreateResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DealCreateResponse
+		formFiles            []formFile
+		localVarReturnValue  *DealCreateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DealsApiService.CreateDeal")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
@@ -154,7 +149,7 @@ func (a *DealsApiService) CreateDealExecute(r ApiCreateDealRequest) (DealCreateR
 	}
 	// body params
 	localVarPostBody = r.dealCreateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -164,15 +159,15 @@ func (a *DealsApiService) CreateDealExecute(r ApiCreateDealRequest) (DealCreateR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -230,7 +225,7 @@ func (a *DealsApiService) CreateDealExecute(r ApiCreateDealRequest) (DealCreateR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -241,28 +236,30 @@ func (a *DealsApiService) CreateDealExecute(r ApiCreateDealRequest) (DealCreateR
 }
 
 type ApiDestroyDealRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DealsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
-func (r ApiDestroyDealRequest) CompanyId(companyId int32) ApiDestroyDealRequest {
+// 事業所ID
+func (r ApiDestroyDealRequest) CompanyId(companyId int64) ApiDestroyDealRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyDealRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyDealRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyDealExecute(r)
 }
 
 /*
- * DestroyDeal 取引（収入／支出）の削除
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引ID
- * @return ApiDestroyDealRequest
- */
-func (a *DealsApiService) DestroyDeal(ctx _context.Context, id int32) ApiDestroyDealRequest {
+DestroyDeal 取引（収入／支出）の削除
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引ID
+ @return ApiDestroyDealRequest
+*/
+func (a *DealsApiService) DestroyDeal(ctx context.Context, id int64) ApiDestroyDealRequest {
 	return ApiDestroyDealRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -270,29 +267,25 @@ func (a *DealsApiService) DestroyDeal(ctx _context.Context, id int32) ApiDestroy
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *DealsApiService) DestroyDealExecute(r ApiDestroyDealRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *DealsApiService) DestroyDealExecute(r ApiDestroyDealRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DealsApiService.DestroyDeal")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -327,7 +320,7 @@ func (a *DealsApiService) DestroyDealExecute(r ApiDestroyDealRequest) (*_nethttp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -337,15 +330,15 @@ func (a *DealsApiService) DestroyDealExecute(r ApiDestroyDealRequest) (*_nethttp
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -405,29 +398,33 @@ func (a *DealsApiService) DestroyDealExecute(r ApiDestroyDealRequest) (*_nethttp
 }
 
 type ApiGetDealRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DealsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 	accruals *string
 }
 
-func (r ApiGetDealRequest) CompanyId(companyId int32) ApiGetDealRequest {
+// 事業所ID
+func (r ApiGetDealRequest) CompanyId(companyId int64) ApiGetDealRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// 取引の債権債務行の表示（without: 表示しない(デフォルト), with: 表示する）
 func (r ApiGetDealRequest) Accruals(accruals string) ApiGetDealRequest {
 	r.accruals = &accruals
 	return r
 }
 
-func (r ApiGetDealRequest) Execute() (DealResponse, *_nethttp.Response, error) {
+func (r ApiGetDealRequest) Execute() (*DealResponse, *http.Response, error) {
 	return r.ApiService.GetDealExecute(r)
 }
 
 /*
- * GetDeal 取引（収入／支出）の取得
- * <h2 id="">概要</h2>
+GetDeal 取引（収入／支出）の取得
+
+<h2 id="">概要</h2>
 <p>指定した事業所の取引（収入／支出）を取得する</p>
 <h2 id="_2">定義</h2>
 <ul>
@@ -483,11 +480,12 @@ func (r ApiGetDealRequest) Execute() (DealResponse, *_nethttp.Response, error) {
 <ul>
 <li>セグメントタグ情報は法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @return ApiGetDealRequest
- */
-func (a *DealsApiService) GetDeal(ctx _context.Context, id int32) ApiGetDealRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiGetDealRequest
+*/
+func (a *DealsApiService) GetDeal(ctx context.Context, id int64) ApiGetDealRequest {
 	return ApiGetDealRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -495,31 +493,27 @@ func (a *DealsApiService) GetDeal(ctx _context.Context, id int32) ApiGetDealRequ
 	}
 }
 
-/*
- * Execute executes the request
- * @return DealResponse
- */
-func (a *DealsApiService) GetDealExecute(r ApiGetDealRequest) (DealResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return DealResponse
+func (a *DealsApiService) GetDealExecute(r ApiGetDealRequest) (*DealResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DealResponse
+		formFiles            []formFile
+		localVarReturnValue  *DealResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DealsApiService.GetDeal")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -557,7 +551,7 @@ func (a *DealsApiService) GetDealExecute(r ApiGetDealRequest) (DealResponse, *_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -567,15 +561,15 @@ func (a *DealsApiService) GetDealExecute(r ApiGetDealRequest) (DealResponse, *_n
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -633,7 +627,7 @@ func (a *DealsApiService) GetDealExecute(r ApiGetDealRequest) (DealResponse, *_n
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -644,11 +638,11 @@ func (a *DealsApiService) GetDealExecute(r ApiGetDealRequest) (DealResponse, *_n
 }
 
 type ApiGetDealsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DealsApiService
-	companyId *int32
-	partnerId *int32
-	accountItemId *int32
+	companyId *int64
+	partnerId *int64
+	accountItemId *int64
 	partnerCode *string
 	status *string
 	type_ *string
@@ -659,83 +653,115 @@ type ApiGetDealsRequest struct {
 	startRenewDate *string
 	endRenewDate *string
 	offset *int64
-	limit *int32
+	limit *int64
 	registeredFrom *string
 	accruals *string
 }
 
-func (r ApiGetDealsRequest) CompanyId(companyId int32) ApiGetDealsRequest {
+// 事業所ID
+func (r ApiGetDealsRequest) CompanyId(companyId int64) ApiGetDealsRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetDealsRequest) PartnerId(partnerId int32) ApiGetDealsRequest {
+
+// 取引先IDで絞込
+func (r ApiGetDealsRequest) PartnerId(partnerId int64) ApiGetDealsRequest {
 	r.partnerId = &partnerId
 	return r
 }
-func (r ApiGetDealsRequest) AccountItemId(accountItemId int32) ApiGetDealsRequest {
+
+// 勘定科目IDで絞込
+func (r ApiGetDealsRequest) AccountItemId(accountItemId int64) ApiGetDealsRequest {
 	r.accountItemId = &accountItemId
 	return r
 }
+
+// 取引先コードで絞込
 func (r ApiGetDealsRequest) PartnerCode(partnerCode string) ApiGetDealsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
+
+// 決済状況で絞込 (未決済: unsettled, 完了: settled)
 func (r ApiGetDealsRequest) Status(status string) ApiGetDealsRequest {
 	r.status = &status
 	return r
 }
+
+// 収支区分 (収入: income, 支出: expense)
 func (r ApiGetDealsRequest) Type_(type_ string) ApiGetDealsRequest {
 	r.type_ = &type_
 	return r
 }
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetDealsRequest) StartIssueDate(startIssueDate string) ApiGetDealsRequest {
 	r.startIssueDate = &startIssueDate
 	return r
 }
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetDealsRequest) EndIssueDate(endIssueDate string) ApiGetDealsRequest {
 	r.endIssueDate = &endIssueDate
 	return r
 }
+
+// 支払期日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetDealsRequest) StartDueDate(startDueDate string) ApiGetDealsRequest {
 	r.startDueDate = &startDueDate
 	return r
 }
+
+// 支払期日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetDealsRequest) EndDueDate(endDueDate string) ApiGetDealsRequest {
 	r.endDueDate = &endDueDate
 	return r
 }
+
+// +更新日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetDealsRequest) StartRenewDate(startRenewDate string) ApiGetDealsRequest {
 	r.startRenewDate = &startRenewDate
 	return r
 }
+
+// +更新日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetDealsRequest) EndRenewDate(endRenewDate string) ApiGetDealsRequest {
 	r.endRenewDate = &endRenewDate
 	return r
 }
+
+// 取得レコードのオフセット (デフォルト: 0)
 func (r ApiGetDealsRequest) Offset(offset int64) ApiGetDealsRequest {
 	r.offset = &offset
 	return r
 }
-func (r ApiGetDealsRequest) Limit(limit int32) ApiGetDealsRequest {
+
+// 取得レコードの件数 (デフォルト: 20, 最大: 100) 
+func (r ApiGetDealsRequest) Limit(limit int64) ApiGetDealsRequest {
 	r.limit = &limit
 	return r
 }
+
+// 取引登録元アプリで絞込（me: 本APIを叩くアプリ自身から登録した取引のみ）
 func (r ApiGetDealsRequest) RegisteredFrom(registeredFrom string) ApiGetDealsRequest {
 	r.registeredFrom = &registeredFrom
 	return r
 }
+
+// 取引の債権債務行の表示（without: 表示しない(デフォルト), with: 表示する）
 func (r ApiGetDealsRequest) Accruals(accruals string) ApiGetDealsRequest {
 	r.accruals = &accruals
 	return r
 }
 
-func (r ApiGetDealsRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
+func (r ApiGetDealsRequest) Execute() (*GetDeals200Response, *http.Response, error) {
 	return r.ApiService.GetDealsExecute(r)
 }
 
 /*
- * GetDeals 取引（収入／支出）一覧の取得
- * <h2 id="">概要</h2>
+GetDeals 取引（収入／支出）一覧の取得
+
+<h2 id="">概要</h2>
 <p>指定した事業所の取引一覧（収入／支出）を取得する</p>
 <h2 id="_2">定義</h2>
 <ul>
@@ -792,40 +818,37 @@ func (r ApiGetDealsRequest) Execute() (InlineResponse2001, *_nethttp.Response, e
 <li>セグメントタグ情報は法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 <li>partner_codeを利用するには、事業所の設定から取引先コードの利用を有効にする必要があります。またpartner_codeとpartner_idは同時に指定することはできません。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetDealsRequest
- */
-func (a *DealsApiService) GetDeals(ctx _context.Context) ApiGetDealsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetDealsRequest
+*/
+func (a *DealsApiService) GetDeals(ctx context.Context) ApiGetDealsRequest {
 	return ApiGetDealsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse2001
- */
-func (a *DealsApiService) GetDealsExecute(r ApiGetDealsRequest) (InlineResponse2001, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetDeals200Response
+func (a *DealsApiService) GetDealsExecute(r ApiGetDealsRequest) (*GetDeals200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2001
+		formFiles            []formFile
+		localVarReturnValue  *GetDeals200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DealsApiService.GetDeals")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -899,7 +922,7 @@ func (a *DealsApiService) GetDealsExecute(r ApiGetDealsRequest) (InlineResponse2
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -909,15 +932,15 @@ func (a *DealsApiService) GetDealsExecute(r ApiGetDealsRequest) (InlineResponse2
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -975,7 +998,7 @@ func (a *DealsApiService) GetDealsExecute(r ApiGetDealsRequest) (InlineResponse2
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -986,24 +1009,26 @@ func (a *DealsApiService) GetDealsExecute(r ApiGetDealsRequest) (InlineResponse2
 }
 
 type ApiUpdateDealRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *DealsApiService
-	id int32
+	id int64
 	dealUpdateParams *DealUpdateParams
 }
 
+// 取引（収入／支出）の更新
 func (r ApiUpdateDealRequest) DealUpdateParams(dealUpdateParams DealUpdateParams) ApiUpdateDealRequest {
 	r.dealUpdateParams = &dealUpdateParams
 	return r
 }
 
-func (r ApiUpdateDealRequest) Execute() (DealResponse, *_nethttp.Response, error) {
+func (r ApiUpdateDealRequest) Execute() (*DealResponse, *http.Response, error) {
 	return r.ApiService.UpdateDealExecute(r)
 }
 
 /*
- * UpdateDeal 取引（収入／支出）の更新
- * <h2 id="">概要</h2>
+UpdateDeal 取引（収入／支出）の更新
+
+<h2 id="">概要</h2>
 <p>指定した事業所の取引（収入／支出）を更新する</p>
 <h2 id="_2">定義</h2>
 <ul>
@@ -1060,11 +1085,12 @@ func (r ApiUpdateDealRequest) Execute() (DealResponse, *_nethttp.Response, error
         <p>本APIでは取引の明細行(details)は、最大40行までになります。</p>
     </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引ID
- * @return ApiUpdateDealRequest
- */
-func (a *DealsApiService) UpdateDeal(ctx _context.Context, id int32) ApiUpdateDealRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引ID
+ @return ApiUpdateDealRequest
+*/
+func (a *DealsApiService) UpdateDeal(ctx context.Context, id int64) ApiUpdateDealRequest {
 	return ApiUpdateDealRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1072,31 +1098,27 @@ func (a *DealsApiService) UpdateDeal(ctx _context.Context, id int32) ApiUpdateDe
 	}
 }
 
-/*
- * Execute executes the request
- * @return DealResponse
- */
-func (a *DealsApiService) UpdateDealExecute(r ApiUpdateDealRequest) (DealResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return DealResponse
+func (a *DealsApiService) UpdateDealExecute(r ApiUpdateDealRequest) (*DealResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DealResponse
+		formFiles            []formFile
+		localVarReturnValue  *DealResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DealsApiService.UpdateDeal")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -1123,7 +1145,7 @@ func (a *DealsApiService) UpdateDealExecute(r ApiUpdateDealRequest) (DealRespons
 	}
 	// body params
 	localVarPostBody = r.dealUpdateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1133,15 +1155,15 @@ func (a *DealsApiService) UpdateDealExecute(r ApiUpdateDealRequest) (DealRespons
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1199,7 +1221,7 @@ func (a *DealsApiService) UpdateDealExecute(r ApiUpdateDealRequest) (DealRespons
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

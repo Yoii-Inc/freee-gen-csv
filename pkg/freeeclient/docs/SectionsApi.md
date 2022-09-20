@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    sectionParams := *openapiclient.NewSectionParams(int32(1), "開発部門") // SectionParams | 部門の作成 (optional)
+    sectionParams := *openapiclient.NewSectionParams(int64(1), "開発部門") // SectionParams | 部門の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SectionsApi.CreateSection(context.Background()).SectionParams(sectionParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SectionsApi.CreateSection(context.Background()).SectionParams(sectionParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SectionsApi.CreateSection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,12 +99,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SectionsApi.DestroySection(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SectionsApi.DestroySection(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SectionsApi.DestroySection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroySectionRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,12 +169,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 部門ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 部門ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SectionsApi.GetSection(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SectionsApi.GetSection(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SectionsApi.GetSection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 部門ID | 
+**id** | **int64** | 部門ID | 
 
 ### Other Parameters
 
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiGetSectionRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## GetSections
 
-> InlineResponse2006 GetSections(ctx).CompanyId(companyId).Execute()
+> GetSections200Response GetSections(ctx).CompanyId(companyId).Execute()
 
 部門一覧の取得
 
@@ -241,16 +241,16 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SectionsApi.GetSections(context.Background()).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SectionsApi.GetSections(context.Background()).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SectionsApi.GetSections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetSections`: InlineResponse2006
+    // response from `GetSections`: GetSections200Response
     fmt.Fprintf(os.Stdout, "Response from `SectionsApi.GetSections`: %v\n", resp)
 }
 ```
@@ -266,11 +266,11 @@ Other parameters are passed through a pointer to a apiGetSectionsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**GetSections200Response**](GetSections200Response.md)
 
 ### Authorization
 
@@ -307,12 +307,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    sectionParams := *openapiclient.NewSectionParams(int32(1), "開発部門") // SectionParams | 部門の更新 (optional)
+    id := int64(56) // int64 | 
+    sectionParams := *openapiclient.NewSectionParams(int64(1), "開発部門") // SectionParams | 部門の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SectionsApi.UpdateSection(context.Background(), id).SectionParams(sectionParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SectionsApi.UpdateSection(context.Background(), id).SectionParams(sectionParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SectionsApi.UpdateSection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -328,7 +328,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 

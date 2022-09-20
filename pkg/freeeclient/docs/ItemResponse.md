@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Item** | [**ItemResponseItem**](ItemResponseItem.md) |  | 
+**Item** | [**Item**](Item.md) |  | 
 
 ## Methods
 
 ### NewItemResponse
 
-`func NewItemResponse(item ItemResponseItem, ) *ItemResponse`
+`func NewItemResponse(item Item, ) *ItemResponse`
 
 NewItemResponse instantiates a new ItemResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetItem
 
-`func (o *ItemResponse) GetItem() ItemResponseItem`
+`func (o *ItemResponse) GetItem() Item`
 
 GetItem returns the Item field if non-nil, zero value otherwise.
 
 ### GetItemOk
 
-`func (o *ItemResponse) GetItemOk() (*ItemResponseItem, bool)`
+`func (o *ItemResponse) GetItemOk() (*Item, bool)`
 
 GetItemOk returns a tuple with the Item field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItem
 
-`func (o *ItemResponse) SetItem(v ItemResponseItem)`
+`func (o *ItemResponse) SetItem(v Item)`
 
 SetItem sets Item field to given value.
 

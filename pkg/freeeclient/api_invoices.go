@@ -1,50 +1,48 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // InvoicesApiService InvoicesApi service
 type InvoicesApiService service
 
 type ApiCreateInvoiceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvoicesApiService
 	invoiceCreateParams *InvoiceCreateParams
 }
 
+// 請求書の作成
 func (r ApiCreateInvoiceRequest) InvoiceCreateParams(invoiceCreateParams InvoiceCreateParams) ApiCreateInvoiceRequest {
 	r.invoiceCreateParams = &invoiceCreateParams
 	return r
 }
 
-func (r ApiCreateInvoiceRequest) Execute() (InvoiceResponse, *_nethttp.Response, error) {
+func (r ApiCreateInvoiceRequest) Execute() (*InvoiceResponse, *http.Response, error) {
 	return r.ApiService.CreateInvoiceExecute(r)
 }
 
 /*
- * CreateInvoice 請求書の作成
- * 
+CreateInvoice 請求書の作成
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の請求書を作成する</p>
@@ -56,40 +54,37 @@ func (r ApiCreateInvoiceRequest) Execute() (InvoiceResponse, *_nethttp.Response,
 <li> <p>partner_codeを利用するには、事業所の設定から取引先コードの利用を有効にする必要があります。</p> </li>
 <li> <p>本APIでは請求内容(invoice_contents)は、最大100行までになります。</p> </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateInvoiceRequest
- */
-func (a *InvoicesApiService) CreateInvoice(ctx _context.Context) ApiCreateInvoiceRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateInvoiceRequest
+*/
+func (a *InvoicesApiService) CreateInvoice(ctx context.Context) ApiCreateInvoiceRequest {
 	return ApiCreateInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InvoiceResponse
- */
-func (a *InvoicesApiService) CreateInvoiceExecute(r ApiCreateInvoiceRequest) (InvoiceResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return InvoiceResponse
+func (a *InvoicesApiService) CreateInvoiceExecute(r ApiCreateInvoiceRequest) (*InvoiceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InvoiceResponse
+		formFiles            []formFile
+		localVarReturnValue  *InvoiceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.CreateInvoice")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/invoices"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
@@ -110,7 +105,7 @@ func (a *InvoicesApiService) CreateInvoiceExecute(r ApiCreateInvoiceRequest) (In
 	}
 	// body params
 	localVarPostBody = r.invoiceCreateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -120,15 +115,15 @@ func (a *InvoicesApiService) CreateInvoiceExecute(r ApiCreateInvoiceRequest) (In
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -186,7 +181,7 @@ func (a *InvoicesApiService) CreateInvoiceExecute(r ApiCreateInvoiceRequest) (In
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -197,32 +192,35 @@ func (a *InvoicesApiService) CreateInvoiceExecute(r ApiCreateInvoiceRequest) (In
 }
 
 type ApiDestroyInvoiceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvoicesApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
-func (r ApiDestroyInvoiceRequest) CompanyId(companyId int32) ApiDestroyInvoiceRequest {
+// 事業所ID
+func (r ApiDestroyInvoiceRequest) CompanyId(companyId int64) ApiDestroyInvoiceRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyInvoiceRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyInvoiceRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyInvoiceExecute(r)
 }
 
 /*
- * DestroyInvoice 請求書の削除
- * 
+DestroyInvoice 請求書の削除
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の請求書を削除する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @return ApiDestroyInvoiceRequest
- */
-func (a *InvoicesApiService) DestroyInvoice(ctx _context.Context, id int32) ApiDestroyInvoiceRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiDestroyInvoiceRequest
+*/
+func (a *InvoicesApiService) DestroyInvoice(ctx context.Context, id int64) ApiDestroyInvoiceRequest {
 	return ApiDestroyInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,29 +228,25 @@ func (a *InvoicesApiService) DestroyInvoice(ctx _context.Context, id int32) ApiD
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *InvoicesApiService) DestroyInvoiceExecute(r ApiDestroyInvoiceRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *InvoicesApiService) DestroyInvoiceExecute(r ApiDestroyInvoiceRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.DestroyInvoice")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/invoices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -287,7 +281,7 @@ func (a *InvoicesApiService) DestroyInvoiceExecute(r ApiDestroyInvoiceRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -297,15 +291,15 @@ func (a *InvoicesApiService) DestroyInvoiceExecute(r ApiDestroyInvoiceRequest) (
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -365,32 +359,35 @@ func (a *InvoicesApiService) DestroyInvoiceExecute(r ApiDestroyInvoiceRequest) (
 }
 
 type ApiGetInvoiceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvoicesApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
-func (r ApiGetInvoiceRequest) CompanyId(companyId int32) ApiGetInvoiceRequest {
+// 事業所ID
+func (r ApiGetInvoiceRequest) CompanyId(companyId int64) ApiGetInvoiceRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetInvoiceRequest) Execute() (InvoiceResponse, *_nethttp.Response, error) {
+func (r ApiGetInvoiceRequest) Execute() (*InvoiceResponse, *http.Response, error) {
 	return r.ApiService.GetInvoiceExecute(r)
 }
 
 /*
- * GetInvoice 請求書の取得
- * 
+GetInvoice 請求書の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の請求書詳細を取得する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 請求書ID
- * @return ApiGetInvoiceRequest
- */
-func (a *InvoicesApiService) GetInvoice(ctx _context.Context, id int32) ApiGetInvoiceRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 請求書ID
+ @return ApiGetInvoiceRequest
+*/
+func (a *InvoicesApiService) GetInvoice(ctx context.Context, id int64) ApiGetInvoiceRequest {
 	return ApiGetInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -398,31 +395,27 @@ func (a *InvoicesApiService) GetInvoice(ctx _context.Context, id int32) ApiGetIn
 	}
 }
 
-/*
- * Execute executes the request
- * @return InvoiceResponse
- */
-func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (InvoiceResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return InvoiceResponse
+func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (*InvoiceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InvoiceResponse
+		formFiles            []formFile
+		localVarReturnValue  *InvoiceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.GetInvoice")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/invoices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -457,7 +450,7 @@ func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (InvoiceR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -467,15 +460,15 @@ func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (InvoiceR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -533,7 +526,7 @@ func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (InvoiceR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -544,10 +537,10 @@ func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (InvoiceR
 }
 
 type ApiGetInvoicesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvoicesApiService
-	companyId *int32
-	partnerId *int32
+	companyId *int64
+	partnerId *int64
 	partnerCode *string
 	startIssueDate *string
 	endIssueDate *string
@@ -558,107 +551,130 @@ type ApiGetInvoicesRequest struct {
 	invoiceStatus *string
 	paymentStatus *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
-func (r ApiGetInvoicesRequest) CompanyId(companyId int32) ApiGetInvoicesRequest {
+// 事業所ID
+func (r ApiGetInvoicesRequest) CompanyId(companyId int64) ApiGetInvoicesRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetInvoicesRequest) PartnerId(partnerId int32) ApiGetInvoicesRequest {
+
+// 取引先IDで絞込
+func (r ApiGetInvoicesRequest) PartnerId(partnerId int64) ApiGetInvoicesRequest {
 	r.partnerId = &partnerId
 	return r
 }
+
+// 取引先コードで絞込
 func (r ApiGetInvoicesRequest) PartnerCode(partnerCode string) ApiGetInvoicesRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
+
+// 請求日の開始日(yyyy-mm-dd)
 func (r ApiGetInvoicesRequest) StartIssueDate(startIssueDate string) ApiGetInvoicesRequest {
 	r.startIssueDate = &startIssueDate
 	return r
 }
+
+// 請求日の終了日(yyyy-mm-dd)
 func (r ApiGetInvoicesRequest) EndIssueDate(endIssueDate string) ApiGetInvoicesRequest {
 	r.endIssueDate = &endIssueDate
 	return r
 }
+
+// 期日の開始日(yyyy-mm-dd)
 func (r ApiGetInvoicesRequest) StartDueDate(startDueDate string) ApiGetInvoicesRequest {
 	r.startDueDate = &startDueDate
 	return r
 }
+
+// 期日の終了日(yyyy-mm-dd)
 func (r ApiGetInvoicesRequest) EndDueDate(endDueDate string) ApiGetInvoicesRequest {
 	r.endDueDate = &endDueDate
 	return r
 }
+
+// 請求書番号
 func (r ApiGetInvoicesRequest) InvoiceNumber(invoiceNumber string) ApiGetInvoicesRequest {
 	r.invoiceNumber = &invoiceNumber
 	return r
 }
+
+// 概要
 func (r ApiGetInvoicesRequest) Description(description string) ApiGetInvoicesRequest {
 	r.description = &description
 	return r
 }
+
+// 請求書ステータス  (draft: 下書き, applying: 申請中, remanded: 差し戻し, rejected: 却下, approved: 承認済み, unsubmitted: 送付待ち, submitted: 送付済み)
 func (r ApiGetInvoicesRequest) InvoiceStatus(invoiceStatus string) ApiGetInvoicesRequest {
 	r.invoiceStatus = &invoiceStatus
 	return r
 }
+
+// 入金ステータス  (unsettled: 入金待ち, settled: 入金済み)
 func (r ApiGetInvoicesRequest) PaymentStatus(paymentStatus string) ApiGetInvoicesRequest {
 	r.paymentStatus = &paymentStatus
 	return r
 }
+
+// 取得レコードのオフセット (デフォルト: 0)
 func (r ApiGetInvoicesRequest) Offset(offset int64) ApiGetInvoicesRequest {
 	r.offset = &offset
 	return r
 }
-func (r ApiGetInvoicesRequest) Limit(limit int32) ApiGetInvoicesRequest {
+
+// 取得レコードの件数 (デフォルト: 20, 最大: 100) 
+func (r ApiGetInvoicesRequest) Limit(limit int64) ApiGetInvoicesRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetInvoicesRequest) Execute() (InvoiceIndexResponse, *_nethttp.Response, error) {
+func (r ApiGetInvoicesRequest) Execute() (*InvoiceIndexResponse, *http.Response, error) {
 	return r.ApiService.GetInvoicesExecute(r)
 }
 
 /*
- * GetInvoices 請求書一覧の取得
- * 
+GetInvoices 請求書一覧の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の請求書一覧を取得する</p>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetInvoicesRequest
- */
-func (a *InvoicesApiService) GetInvoices(ctx _context.Context) ApiGetInvoicesRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetInvoicesRequest
+*/
+func (a *InvoicesApiService) GetInvoices(ctx context.Context) ApiGetInvoicesRequest {
 	return ApiGetInvoicesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InvoiceIndexResponse
- */
-func (a *InvoicesApiService) GetInvoicesExecute(r ApiGetInvoicesRequest) (InvoiceIndexResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return InvoiceIndexResponse
+func (a *InvoicesApiService) GetInvoicesExecute(r ApiGetInvoicesRequest) (*InvoiceIndexResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InvoiceIndexResponse
+		formFiles            []formFile
+		localVarReturnValue  *InvoiceIndexResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.GetInvoices")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/invoices"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -723,7 +739,7 @@ func (a *InvoicesApiService) GetInvoicesExecute(r ApiGetInvoicesRequest) (Invoic
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -733,15 +749,15 @@ func (a *InvoicesApiService) GetInvoicesExecute(r ApiGetInvoicesRequest) (Invoic
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -799,7 +815,7 @@ func (a *InvoicesApiService) GetInvoicesExecute(r ApiGetInvoicesRequest) (Invoic
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -810,24 +826,26 @@ func (a *InvoicesApiService) GetInvoicesExecute(r ApiGetInvoicesRequest) (Invoic
 }
 
 type ApiUpdateInvoiceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *InvoicesApiService
-	id int32
+	id int64
 	invoiceUpdateParams *InvoiceUpdateParams
 }
 
+// 請求書の更新
 func (r ApiUpdateInvoiceRequest) InvoiceUpdateParams(invoiceUpdateParams InvoiceUpdateParams) ApiUpdateInvoiceRequest {
 	r.invoiceUpdateParams = &invoiceUpdateParams
 	return r
 }
 
-func (r ApiUpdateInvoiceRequest) Execute() (InvoiceResponse, *_nethttp.Response, error) {
+func (r ApiUpdateInvoiceRequest) Execute() (*InvoiceResponse, *http.Response, error) {
 	return r.ApiService.UpdateInvoiceExecute(r)
 }
 
 /*
- * UpdateInvoice 請求書の更新
- * 
+UpdateInvoice 請求書の更新
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の請求書を更新する</p>
@@ -842,11 +860,12 @@ func (r ApiUpdateInvoiceRequest) Execute() (InvoiceResponse, *_nethttp.Response,
 <li> <p>partner_codeを利用するには、事業所の設定から取引先コードの利用を有効にする必要があります。</p> </li>
 <li> <p>本APIでは請求内容(invoice_contents)は、最大100行までになります。</p> </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 請求書ID
- * @return ApiUpdateInvoiceRequest
- */
-func (a *InvoicesApiService) UpdateInvoice(ctx _context.Context, id int32) ApiUpdateInvoiceRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 請求書ID
+ @return ApiUpdateInvoiceRequest
+*/
+func (a *InvoicesApiService) UpdateInvoice(ctx context.Context, id int64) ApiUpdateInvoiceRequest {
 	return ApiUpdateInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -854,31 +873,27 @@ func (a *InvoicesApiService) UpdateInvoice(ctx _context.Context, id int32) ApiUp
 	}
 }
 
-/*
- * Execute executes the request
- * @return InvoiceResponse
- */
-func (a *InvoicesApiService) UpdateInvoiceExecute(r ApiUpdateInvoiceRequest) (InvoiceResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return InvoiceResponse
+func (a *InvoicesApiService) UpdateInvoiceExecute(r ApiUpdateInvoiceRequest) (*InvoiceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InvoiceResponse
+		formFiles            []formFile
+		localVarReturnValue  *InvoiceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.UpdateInvoice")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/invoices/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -905,7 +920,7 @@ func (a *InvoicesApiService) UpdateInvoiceExecute(r ApiUpdateInvoiceRequest) (In
 	}
 	// body params
 	localVarPostBody = r.invoiceUpdateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -915,15 +930,15 @@ func (a *InvoicesApiService) UpdateInvoiceExecute(r ApiUpdateInvoiceRequest) (In
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -981,7 +996,7 @@ func (a *InvoicesApiService) UpdateInvoiceExecute(r ApiUpdateInvoiceRequest) (In
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

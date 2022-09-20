@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -19,23 +19,25 @@ type DealCreateResponseDeal struct {
 	// 金額
 	Amount int64 `json:"amount"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 取引の明細行
-	Details *[]DealCreateResponseDealDetails `json:"details,omitempty"`
-	// 支払金額
-	DueAmount *int32 `json:"due_amount,omitempty"`
+	Details []DealDetailsInner `json:"details,omitempty"`
+	// 支払残額
+	DueAmount *int64 `json:"due_amount,omitempty"`
 	// 支払期日 (yyyy-mm-dd)
 	DueDate *string `json:"due_date,omitempty"`
 	// 取引ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 発生日 (yyyy-mm-dd)
 	IssueDate string `json:"issue_date"`
 	// 取引先コード
 	PartnerCode NullableString `json:"partner_code,omitempty"`
 	// 取引先ID
-	PartnerId int32 `json:"partner_id"`
+	PartnerId int64 `json:"partner_id"`
 	// 取引の支払行
-	Payments *[]DealCreateResponseDealPayments `json:"payments,omitempty"`
+	Payments []DealPaymentsInner `json:"payments,omitempty"`
+	// 証憑ファイル（ファイルボックスのファイル）
+	Receipts []DealCreateResponseDealReceiptsInner `json:"receipts,omitempty"`
 	// 管理番号
 	RefNumber *string `json:"ref_number,omitempty"`
 	// 決済状況 (未決済: unsettled, 完了: settled)
@@ -48,7 +50,7 @@ type DealCreateResponseDeal struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealCreateResponseDeal(amount int64, companyId int32, id int32, issueDate string, partnerId int32, status string) *DealCreateResponseDeal {
+func NewDealCreateResponseDeal(amount int64, companyId int64, id int64, issueDate string, partnerId int64, status string) *DealCreateResponseDeal {
 	this := DealCreateResponseDeal{}
 	this.Amount = amount
 	this.CompanyId = companyId
@@ -80,7 +82,7 @@ func (o *DealCreateResponseDeal) GetAmount() int64 {
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
 func (o *DealCreateResponseDeal) GetAmountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Amount, true
@@ -92,9 +94,9 @@ func (o *DealCreateResponseDeal) SetAmount(v int64) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *DealCreateResponseDeal) GetCompanyId() int32 {
+func (o *DealCreateResponseDeal) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -103,30 +105,30 @@ func (o *DealCreateResponseDeal) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *DealCreateResponseDeal) GetCompanyIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
 }
 
 // SetCompanyId sets field value
-func (o *DealCreateResponseDeal) SetCompanyId(v int32) {
+func (o *DealCreateResponseDeal) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
-func (o *DealCreateResponseDeal) GetDetails() []DealCreateResponseDealDetails {
+func (o *DealCreateResponseDeal) GetDetails() []DealDetailsInner {
 	if o == nil || o.Details == nil {
-		var ret []DealCreateResponseDealDetails
+		var ret []DealDetailsInner
 		return ret
 	}
-	return *o.Details
+	return o.Details
 }
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetDetailsOk() (*[]DealCreateResponseDealDetails, bool) {
+func (o *DealCreateResponseDeal) GetDetailsOk() ([]DealDetailsInner, bool) {
 	if o == nil || o.Details == nil {
 		return nil, false
 	}
@@ -142,15 +144,15 @@ func (o *DealCreateResponseDeal) HasDetails() bool {
 	return false
 }
 
-// SetDetails gets a reference to the given []DealCreateResponseDealDetails and assigns it to the Details field.
-func (o *DealCreateResponseDeal) SetDetails(v []DealCreateResponseDealDetails) {
-	o.Details = &v
+// SetDetails gets a reference to the given []DealDetailsInner and assigns it to the Details field.
+func (o *DealCreateResponseDeal) SetDetails(v []DealDetailsInner) {
+	o.Details = v
 }
 
 // GetDueAmount returns the DueAmount field value if set, zero value otherwise.
-func (o *DealCreateResponseDeal) GetDueAmount() int32 {
+func (o *DealCreateResponseDeal) GetDueAmount() int64 {
 	if o == nil || o.DueAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DueAmount
@@ -158,7 +160,7 @@ func (o *DealCreateResponseDeal) GetDueAmount() int32 {
 
 // GetDueAmountOk returns a tuple with the DueAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetDueAmountOk() (*int32, bool) {
+func (o *DealCreateResponseDeal) GetDueAmountOk() (*int64, bool) {
 	if o == nil || o.DueAmount == nil {
 		return nil, false
 	}
@@ -174,8 +176,8 @@ func (o *DealCreateResponseDeal) HasDueAmount() bool {
 	return false
 }
 
-// SetDueAmount gets a reference to the given int32 and assigns it to the DueAmount field.
-func (o *DealCreateResponseDeal) SetDueAmount(v int32) {
+// SetDueAmount gets a reference to the given int64 and assigns it to the DueAmount field.
+func (o *DealCreateResponseDeal) SetDueAmount(v int64) {
 	o.DueAmount = &v
 }
 
@@ -212,9 +214,9 @@ func (o *DealCreateResponseDeal) SetDueDate(v string) {
 }
 
 // GetId returns the Id field value
-func (o *DealCreateResponseDeal) GetId() int32 {
+func (o *DealCreateResponseDeal) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -223,15 +225,15 @@ func (o *DealCreateResponseDeal) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *DealCreateResponseDeal) GetIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *DealCreateResponseDeal) SetId(v int32) {
+func (o *DealCreateResponseDeal) SetId(v int64) {
 	o.Id = v
 }
 
@@ -248,7 +250,7 @@ func (o *DealCreateResponseDeal) GetIssueDate() string {
 // GetIssueDateOk returns a tuple with the IssueDate field value
 // and a boolean to check if the value has been set.
 func (o *DealCreateResponseDeal) GetIssueDateOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IssueDate, true
@@ -272,7 +274,7 @@ func (o *DealCreateResponseDeal) GetPartnerCode() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DealCreateResponseDeal) GetPartnerCodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerCode.Get(), o.PartnerCode.IsSet()
@@ -302,9 +304,9 @@ func (o *DealCreateResponseDeal) UnsetPartnerCode() {
 }
 
 // GetPartnerId returns the PartnerId field value
-func (o *DealCreateResponseDeal) GetPartnerId() int32 {
+func (o *DealCreateResponseDeal) GetPartnerId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -313,30 +315,30 @@ func (o *DealCreateResponseDeal) GetPartnerId() int32 {
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetPartnerIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *DealCreateResponseDeal) GetPartnerIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.PartnerId, true
 }
 
 // SetPartnerId sets field value
-func (o *DealCreateResponseDeal) SetPartnerId(v int32) {
+func (o *DealCreateResponseDeal) SetPartnerId(v int64) {
 	o.PartnerId = v
 }
 
 // GetPayments returns the Payments field value if set, zero value otherwise.
-func (o *DealCreateResponseDeal) GetPayments() []DealCreateResponseDealPayments {
+func (o *DealCreateResponseDeal) GetPayments() []DealPaymentsInner {
 	if o == nil || o.Payments == nil {
-		var ret []DealCreateResponseDealPayments
+		var ret []DealPaymentsInner
 		return ret
 	}
-	return *o.Payments
+	return o.Payments
 }
 
 // GetPaymentsOk returns a tuple with the Payments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetPaymentsOk() (*[]DealCreateResponseDealPayments, bool) {
+func (o *DealCreateResponseDeal) GetPaymentsOk() ([]DealPaymentsInner, bool) {
 	if o == nil || o.Payments == nil {
 		return nil, false
 	}
@@ -352,9 +354,41 @@ func (o *DealCreateResponseDeal) HasPayments() bool {
 	return false
 }
 
-// SetPayments gets a reference to the given []DealCreateResponseDealPayments and assigns it to the Payments field.
-func (o *DealCreateResponseDeal) SetPayments(v []DealCreateResponseDealPayments) {
-	o.Payments = &v
+// SetPayments gets a reference to the given []DealPaymentsInner and assigns it to the Payments field.
+func (o *DealCreateResponseDeal) SetPayments(v []DealPaymentsInner) {
+	o.Payments = v
+}
+
+// GetReceipts returns the Receipts field value if set, zero value otherwise.
+func (o *DealCreateResponseDeal) GetReceipts() []DealCreateResponseDealReceiptsInner {
+	if o == nil || o.Receipts == nil {
+		var ret []DealCreateResponseDealReceiptsInner
+		return ret
+	}
+	return o.Receipts
+}
+
+// GetReceiptsOk returns a tuple with the Receipts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DealCreateResponseDeal) GetReceiptsOk() ([]DealCreateResponseDealReceiptsInner, bool) {
+	if o == nil || o.Receipts == nil {
+		return nil, false
+	}
+	return o.Receipts, true
+}
+
+// HasReceipts returns a boolean if a field has been set.
+func (o *DealCreateResponseDeal) HasReceipts() bool {
+	if o != nil && o.Receipts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReceipts gets a reference to the given []DealCreateResponseDealReceiptsInner and assigns it to the Receipts field.
+func (o *DealCreateResponseDeal) SetReceipts(v []DealCreateResponseDealReceiptsInner) {
+	o.Receipts = v
 }
 
 // GetRefNumber returns the RefNumber field value if set, zero value otherwise.
@@ -402,7 +436,7 @@ func (o *DealCreateResponseDeal) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *DealCreateResponseDeal) GetStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Status, true
@@ -476,6 +510,9 @@ func (o DealCreateResponseDeal) MarshalJSON() ([]byte, error) {
 	}
 	if o.Payments != nil {
 		toSerialize["payments"] = o.Payments
+	}
+	if o.Receipts != nil {
+		toSerialize["receipts"] = o.Receipts
 	}
 	if o.RefNumber != nil {
 		toSerialize["ref_number"] = o.RefNumber

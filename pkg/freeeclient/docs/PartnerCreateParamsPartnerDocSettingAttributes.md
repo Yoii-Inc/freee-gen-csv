@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SendingMethod** | Pointer to **string** | 請求書送付方法(email:メール、posting:郵送、email_and_posting:メールと郵送) | [optional] 
+**SendingMethod** | Pointer to **NullableString** | 請求書送付方法(email:メール、posting:郵送、email_and_posting:メールと郵送) | [optional] 
 
 ## Methods
 
@@ -50,6 +50,16 @@ SetSendingMethod sets SendingMethod field to given value.
 
 HasSendingMethod returns a boolean if a field has been set.
 
+### SetSendingMethodNil
+
+`func (o *PartnerCreateParamsPartnerDocSettingAttributes) SetSendingMethodNil(b bool)`
+
+ SetSendingMethodNil sets the value for SendingMethod to be an explicit nil
+
+### UnsetSendingMethod
+`func (o *PartnerCreateParamsPartnerDocSettingAttributes) UnsetSendingMethod()`
+
+UnsetSendingMethod ensures that no value is present for SendingMethod, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

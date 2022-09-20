@@ -1,50 +1,48 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // ManualJournalsApiService ManualJournalsApi service
 type ManualJournalsApiService service
 
 type ApiCreateManualJournalRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ManualJournalsApiService
 	manualJournalCreateParams *ManualJournalCreateParams
 }
 
+// 振替伝票の作成
 func (r ApiCreateManualJournalRequest) ManualJournalCreateParams(manualJournalCreateParams ManualJournalCreateParams) ApiCreateManualJournalRequest {
 	r.manualJournalCreateParams = &manualJournalCreateParams
 	return r
 }
 
-func (r ApiCreateManualJournalRequest) Execute() (ManualJournalResponse, *_nethttp.Response, error) {
+func (r ApiCreateManualJournalRequest) Execute() (*ManualJournalResponse, *http.Response, error) {
 	return r.ApiService.CreateManualJournalExecute(r)
 }
 
 /*
- * CreateManualJournal 振替伝票の作成
- * 
+CreateManualJournal 振替伝票の作成
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の振替伝票を作成する</p>
@@ -93,40 +91,37 @@ func (r ApiCreateManualJournalRequest) Execute() (ManualJournalResponse, *_netht
 <li>partner_codeを利用するには、事業所の設定から取引先コードの利用を有効にする必要があります。またpartner_codeとpartner_idは同時に指定することはできません。</li></ul>
 
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateManualJournalRequest
- */
-func (a *ManualJournalsApiService) CreateManualJournal(ctx _context.Context) ApiCreateManualJournalRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateManualJournalRequest
+*/
+func (a *ManualJournalsApiService) CreateManualJournal(ctx context.Context) ApiCreateManualJournalRequest {
 	return ApiCreateManualJournalRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return ManualJournalResponse
- */
-func (a *ManualJournalsApiService) CreateManualJournalExecute(r ApiCreateManualJournalRequest) (ManualJournalResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ManualJournalResponse
+func (a *ManualJournalsApiService) CreateManualJournalExecute(r ApiCreateManualJournalRequest) (*ManualJournalResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ManualJournalResponse
+		formFiles            []formFile
+		localVarReturnValue  *ManualJournalResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ManualJournalsApiService.CreateManualJournal")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/manual_journals"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
@@ -147,7 +142,7 @@ func (a *ManualJournalsApiService) CreateManualJournalExecute(r ApiCreateManualJ
 	}
 	// body params
 	localVarPostBody = r.manualJournalCreateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -157,15 +152,15 @@ func (a *ManualJournalsApiService) CreateManualJournalExecute(r ApiCreateManualJ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -223,7 +218,7 @@ func (a *ManualJournalsApiService) CreateManualJournalExecute(r ApiCreateManualJ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -234,32 +229,35 @@ func (a *ManualJournalsApiService) CreateManualJournalExecute(r ApiCreateManualJ
 }
 
 type ApiDestroyManualJournalRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ManualJournalsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
-func (r ApiDestroyManualJournalRequest) CompanyId(companyId int32) ApiDestroyManualJournalRequest {
+// 事業所ID
+func (r ApiDestroyManualJournalRequest) CompanyId(companyId int64) ApiDestroyManualJournalRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyManualJournalRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyManualJournalRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyManualJournalExecute(r)
 }
 
 /*
- * DestroyManualJournal 振替伝票の削除
- * 
+DestroyManualJournal 振替伝票の削除
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の振替伝票を削除する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @return ApiDestroyManualJournalRequest
- */
-func (a *ManualJournalsApiService) DestroyManualJournal(ctx _context.Context, id int32) ApiDestroyManualJournalRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiDestroyManualJournalRequest
+*/
+func (a *ManualJournalsApiService) DestroyManualJournal(ctx context.Context, id int64) ApiDestroyManualJournalRequest {
 	return ApiDestroyManualJournalRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -267,29 +265,25 @@ func (a *ManualJournalsApiService) DestroyManualJournal(ctx _context.Context, id
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ManualJournalsApiService) DestroyManualJournalExecute(r ApiDestroyManualJournalRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *ManualJournalsApiService) DestroyManualJournalExecute(r ApiDestroyManualJournalRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ManualJournalsApiService.DestroyManualJournal")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/manual_journals/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -324,7 +318,7 @@ func (a *ManualJournalsApiService) DestroyManualJournalExecute(r ApiDestroyManua
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -334,15 +328,15 @@ func (a *ManualJournalsApiService) DestroyManualJournalExecute(r ApiDestroyManua
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -402,24 +396,26 @@ func (a *ManualJournalsApiService) DestroyManualJournalExecute(r ApiDestroyManua
 }
 
 type ApiGetManualJournalRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ManualJournalsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
-func (r ApiGetManualJournalRequest) CompanyId(companyId int32) ApiGetManualJournalRequest {
+// 事業所ID
+func (r ApiGetManualJournalRequest) CompanyId(companyId int64) ApiGetManualJournalRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetManualJournalRequest) Execute() (ManualJournalResponse, *_nethttp.Response, error) {
+func (r ApiGetManualJournalRequest) Execute() (*ManualJournalResponse, *http.Response, error) {
 	return r.ApiService.GetManualJournalExecute(r)
 }
 
 /*
- * GetManualJournal 振替伝票の取得
- * 
+GetManualJournal 振替伝票の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の振替伝票を取得する</p>
@@ -442,11 +438,12 @@ func (r ApiGetManualJournalRequest) Execute() (ManualJournalResponse, *_nethttp.
 <li>事業所の仕訳番号形式が有効な場合のみ、レスポンスで仕訳番号(txn_number)を返します。</li>
 <li>セグメントタグ情報は法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @return ApiGetManualJournalRequest
- */
-func (a *ManualJournalsApiService) GetManualJournal(ctx _context.Context, id int32) ApiGetManualJournalRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiGetManualJournalRequest
+*/
+func (a *ManualJournalsApiService) GetManualJournal(ctx context.Context, id int64) ApiGetManualJournalRequest {
 	return ApiGetManualJournalRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -454,31 +451,27 @@ func (a *ManualJournalsApiService) GetManualJournal(ctx _context.Context, id int
 	}
 }
 
-/*
- * Execute executes the request
- * @return ManualJournalResponse
- */
-func (a *ManualJournalsApiService) GetManualJournalExecute(r ApiGetManualJournalRequest) (ManualJournalResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ManualJournalResponse
+func (a *ManualJournalsApiService) GetManualJournalExecute(r ApiGetManualJournalRequest) (*ManualJournalResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ManualJournalResponse
+		formFiles            []formFile
+		localVarReturnValue  *ManualJournalResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ManualJournalsApiService.GetManualJournal")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/manual_journals/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -513,7 +506,7 @@ func (a *ManualJournalsApiService) GetManualJournalExecute(r ApiGetManualJournal
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -523,15 +516,15 @@ func (a *ManualJournalsApiService) GetManualJournalExecute(r ApiGetManualJournal
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -589,7 +582,7 @@ func (a *ManualJournalsApiService) GetManualJournalExecute(r ApiGetManualJournal
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -600,19 +593,19 @@ func (a *ManualJournalsApiService) GetManualJournalExecute(r ApiGetManualJournal
 }
 
 type ApiGetManualJournalsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ManualJournalsApiService
-	companyId *int32
+	companyId *int64
 	startIssueDate *string
 	endIssueDate *string
 	entrySide *string
-	accountItemId *int32
+	accountItemId *int64
 	minAmount *int64
 	maxAmount *int64
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	segment1TagId *int64
 	segment2TagId *int64
 	segment3TagId *int64
@@ -621,97 +614,137 @@ type ApiGetManualJournalsRequest struct {
 	adjustment *string
 	txnNumber *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
-func (r ApiGetManualJournalsRequest) CompanyId(companyId int32) ApiGetManualJournalsRequest {
+// 事業所ID
+func (r ApiGetManualJournalsRequest) CompanyId(companyId int64) ApiGetManualJournalsRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetManualJournalsRequest) StartIssueDate(startIssueDate string) ApiGetManualJournalsRequest {
 	r.startIssueDate = &startIssueDate
 	return r
 }
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetManualJournalsRequest) EndIssueDate(endIssueDate string) ApiGetManualJournalsRequest {
 	r.endIssueDate = &endIssueDate
 	return r
 }
+
+// 貸借で絞込 (貸方: credit, 借方: debit)
 func (r ApiGetManualJournalsRequest) EntrySide(entrySide string) ApiGetManualJournalsRequest {
 	r.entrySide = &entrySide
 	return r
 }
-func (r ApiGetManualJournalsRequest) AccountItemId(accountItemId int32) ApiGetManualJournalsRequest {
+
+// 勘定科目IDで絞込
+func (r ApiGetManualJournalsRequest) AccountItemId(accountItemId int64) ApiGetManualJournalsRequest {
 	r.accountItemId = &accountItemId
 	return r
 }
+
+// 金額で絞込：下限
 func (r ApiGetManualJournalsRequest) MinAmount(minAmount int64) ApiGetManualJournalsRequest {
 	r.minAmount = &minAmount
 	return r
 }
+
+// 金額で絞込：上限
 func (r ApiGetManualJournalsRequest) MaxAmount(maxAmount int64) ApiGetManualJournalsRequest {
 	r.maxAmount = &maxAmount
 	return r
 }
-func (r ApiGetManualJournalsRequest) PartnerId(partnerId int32) ApiGetManualJournalsRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択の貸借行を絞り込めます）
+func (r ApiGetManualJournalsRequest) PartnerId(partnerId int64) ApiGetManualJournalsRequest {
 	r.partnerId = &partnerId
 	return r
 }
+
+// 取引先コードで絞込
 func (r ApiGetManualJournalsRequest) PartnerCode(partnerCode string) ApiGetManualJournalsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetManualJournalsRequest) ItemId(itemId int32) ApiGetManualJournalsRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択の貸借行を絞り込めます）
+func (r ApiGetManualJournalsRequest) ItemId(itemId int64) ApiGetManualJournalsRequest {
 	r.itemId = &itemId
 	return r
 }
-func (r ApiGetManualJournalsRequest) SectionId(sectionId int32) ApiGetManualJournalsRequest {
+
+// 部門IDで絞込（0を指定すると、部門が未選択の貸借行を絞り込めます）
+func (r ApiGetManualJournalsRequest) SectionId(sectionId int64) ApiGetManualJournalsRequest {
 	r.sectionId = &sectionId
 	return r
 }
+
+// セグメント１IDで絞込（0を指定すると、セグメント１が未選択の貸借行を絞り込めます）
 func (r ApiGetManualJournalsRequest) Segment1TagId(segment1TagId int64) ApiGetManualJournalsRequest {
 	r.segment1TagId = &segment1TagId
 	return r
 }
+
+// セグメント２IDで絞込（0を指定すると、セグメント２が未選択の貸借行を絞り込めます）
 func (r ApiGetManualJournalsRequest) Segment2TagId(segment2TagId int64) ApiGetManualJournalsRequest {
 	r.segment2TagId = &segment2TagId
 	return r
 }
+
+// セグメント３IDで絞込（0を指定すると、セグメント３が未選択の貸借行を絞り込めます）
 func (r ApiGetManualJournalsRequest) Segment3TagId(segment3TagId int64) ApiGetManualJournalsRequest {
 	r.segment3TagId = &segment3TagId
 	return r
 }
+
+// コメント状態で絞込（自分宛のコメント: posted_with_mention, 自分宛のコメント-未解決: raised_with_mention, 自分宛のコメント-解決済: resolved_with_mention, コメントあり: posted, 未解決: raised, 解決済: resolved, コメントなし: none）
 func (r ApiGetManualJournalsRequest) CommentStatus(commentStatus string) ApiGetManualJournalsRequest {
 	r.commentStatus = &commentStatus
 	return r
 }
+
+// 重要コメント付きの振替伝票を絞込
 func (r ApiGetManualJournalsRequest) CommentImportant(commentImportant bool) ApiGetManualJournalsRequest {
 	r.commentImportant = &commentImportant
 	return r
 }
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）
 func (r ApiGetManualJournalsRequest) Adjustment(adjustment string) ApiGetManualJournalsRequest {
 	r.adjustment = &adjustment
 	return r
 }
+
+// 仕訳番号で絞込（事業所の仕訳番号形式が有効な場合のみ）
 func (r ApiGetManualJournalsRequest) TxnNumber(txnNumber string) ApiGetManualJournalsRequest {
 	r.txnNumber = &txnNumber
 	return r
 }
+
+// 取得レコードのオフセット (デフォルト: 0)
 func (r ApiGetManualJournalsRequest) Offset(offset int64) ApiGetManualJournalsRequest {
 	r.offset = &offset
 	return r
 }
-func (r ApiGetManualJournalsRequest) Limit(limit int32) ApiGetManualJournalsRequest {
+
+// 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) 
+func (r ApiGetManualJournalsRequest) Limit(limit int64) ApiGetManualJournalsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetManualJournalsRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
+func (r ApiGetManualJournalsRequest) Execute() (*GetManualJournals200Response, *http.Response, error) {
 	return r.ApiService.GetManualJournalsExecute(r)
 }
 
 /*
- * GetManualJournals 振替伝票一覧の取得
- * 
+GetManualJournals 振替伝票一覧の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の振替伝票一覧を取得する</p>
@@ -757,40 +790,37 @@ func (r ApiGetManualJournalsRequest) Execute() (InlineResponse2004, *_nethttp.Re
 <li>事業所の仕訳番号形式が有効な場合のみ、レスポンスで仕訳番号(txn_number)を返します。</li>
 <li>セグメントタグ情報は法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 <li>partner_codeを利用するには、事業所の設定から取引先コードの利用を有効にする必要があります。またpartner_codeとpartner_idは同時に指定することはできません。</li></ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetManualJournalsRequest
- */
-func (a *ManualJournalsApiService) GetManualJournals(ctx _context.Context) ApiGetManualJournalsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetManualJournalsRequest
+*/
+func (a *ManualJournalsApiService) GetManualJournals(ctx context.Context) ApiGetManualJournalsRequest {
 	return ApiGetManualJournalsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse2004
- */
-func (a *ManualJournalsApiService) GetManualJournalsExecute(r ApiGetManualJournalsRequest) (InlineResponse2004, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetManualJournals200Response
+func (a *ManualJournalsApiService) GetManualJournalsExecute(r ApiGetManualJournalsRequest) (*GetManualJournals200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2004
+		formFiles            []formFile
+		localVarReturnValue  *GetManualJournals200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ManualJournalsApiService.GetManualJournals")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/manual_journals"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -876,7 +906,7 @@ func (a *ManualJournalsApiService) GetManualJournalsExecute(r ApiGetManualJourna
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -886,15 +916,15 @@ func (a *ManualJournalsApiService) GetManualJournalsExecute(r ApiGetManualJourna
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -942,7 +972,7 @@ func (a *ManualJournalsApiService) GetManualJournalsExecute(r ApiGetManualJourna
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -953,24 +983,26 @@ func (a *ManualJournalsApiService) GetManualJournalsExecute(r ApiGetManualJourna
 }
 
 type ApiUpdateManualJournalRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ManualJournalsApiService
-	id int32
+	id int64
 	manualJournalUpdateParams *ManualJournalUpdateParams
 }
 
+// 振替伝票の更新
 func (r ApiUpdateManualJournalRequest) ManualJournalUpdateParams(manualJournalUpdateParams ManualJournalUpdateParams) ApiUpdateManualJournalRequest {
 	r.manualJournalUpdateParams = &manualJournalUpdateParams
 	return r
 }
 
-func (r ApiUpdateManualJournalRequest) Execute() (ManualJournalResponse, *_nethttp.Response, error) {
+func (r ApiUpdateManualJournalRequest) Execute() (*ManualJournalResponse, *http.Response, error) {
 	return r.ApiService.UpdateManualJournalExecute(r)
 }
 
 /*
- * UpdateManualJournal 振替伝票の更新
- * 
+UpdateManualJournal 振替伝票の更新
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の振替伝票を更新する</p>
@@ -1026,11 +1058,12 @@ func (r ApiUpdateManualJournalRequest) Execute() (ManualJournalResponse, *_netht
 <li>partner_codeを利用するには、事業所の設定から取引先コードの利用を有効にする必要があります。またpartner_codeとpartner_idは同時に指定することはできません。</li></ul>
 
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
- * @return ApiUpdateManualJournalRequest
- */
-func (a *ManualJournalsApiService) UpdateManualJournal(ctx _context.Context, id int32) ApiUpdateManualJournalRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiUpdateManualJournalRequest
+*/
+func (a *ManualJournalsApiService) UpdateManualJournal(ctx context.Context, id int64) ApiUpdateManualJournalRequest {
 	return ApiUpdateManualJournalRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1038,31 +1071,27 @@ func (a *ManualJournalsApiService) UpdateManualJournal(ctx _context.Context, id 
 	}
 }
 
-/*
- * Execute executes the request
- * @return ManualJournalResponse
- */
-func (a *ManualJournalsApiService) UpdateManualJournalExecute(r ApiUpdateManualJournalRequest) (ManualJournalResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ManualJournalResponse
+func (a *ManualJournalsApiService) UpdateManualJournalExecute(r ApiUpdateManualJournalRequest) (*ManualJournalResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ManualJournalResponse
+		formFiles            []formFile
+		localVarReturnValue  *ManualJournalResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ManualJournalsApiService.UpdateManualJournal")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/manual_journals/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -1089,7 +1118,7 @@ func (a *ManualJournalsApiService) UpdateManualJournalExecute(r ApiUpdateManualJ
 	}
 	// body params
 	localVarPostBody = r.manualJournalUpdateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1099,15 +1128,15 @@ func (a *ManualJournalsApiService) UpdateManualJournalExecute(r ApiUpdateManualJ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1141,6 +1170,16 @@ func (a *ManualJournalsApiService) UpdateManualJournalExecute(r ApiUpdateManualJ
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v BadRequestNotFoundError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1155,7 +1194,7 @@ func (a *ManualJournalsApiService) UpdateManualJournalExecute(r ApiUpdateManualJ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

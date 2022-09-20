@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpenseApplications** | [**[]ExpenseApplicationsIndexResponseExpenseApplications**](ExpenseApplicationsIndexResponseExpenseApplications.md) |  | 
+**ExpenseApplications** | [**[]ExpenseApplicationsIndexResponseExpenseApplicationsInner**](ExpenseApplicationsIndexResponseExpenseApplicationsInner.md) |  | 
 
 ## Methods
 
 ### NewExpenseApplicationsIndexResponse
 
-`func NewExpenseApplicationsIndexResponse(expenseApplications []ExpenseApplicationsIndexResponseExpenseApplications, ) *ExpenseApplicationsIndexResponse`
+`func NewExpenseApplicationsIndexResponse(expenseApplications []ExpenseApplicationsIndexResponseExpenseApplicationsInner, ) *ExpenseApplicationsIndexResponse`
 
 NewExpenseApplicationsIndexResponse instantiates a new ExpenseApplicationsIndexResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetExpenseApplications
 
-`func (o *ExpenseApplicationsIndexResponse) GetExpenseApplications() []ExpenseApplicationsIndexResponseExpenseApplications`
+`func (o *ExpenseApplicationsIndexResponse) GetExpenseApplications() []ExpenseApplicationsIndexResponseExpenseApplicationsInner`
 
 GetExpenseApplications returns the ExpenseApplications field if non-nil, zero value otherwise.
 
 ### GetExpenseApplicationsOk
 
-`func (o *ExpenseApplicationsIndexResponse) GetExpenseApplicationsOk() (*[]ExpenseApplicationsIndexResponseExpenseApplications, bool)`
+`func (o *ExpenseApplicationsIndexResponse) GetExpenseApplicationsOk() (*[]ExpenseApplicationsIndexResponseExpenseApplicationsInner, bool)`
 
 GetExpenseApplicationsOk returns a tuple with the ExpenseApplications field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpenseApplications
 
-`func (o *ExpenseApplicationsIndexResponse) SetExpenseApplications(v []ExpenseApplicationsIndexResponseExpenseApplications)`
+`func (o *ExpenseApplicationsIndexResponse) SetExpenseApplications(v []ExpenseApplicationsIndexResponseExpenseApplicationsInner)`
 
 SetExpenseApplications sets ExpenseApplications field to given value.
 

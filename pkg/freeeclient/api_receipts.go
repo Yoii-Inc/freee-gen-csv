@@ -1,66 +1,91 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 	"os"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // ReceiptsApiService ReceiptsApi service
 type ReceiptsApiService service
 
 type ApiCreateReceiptRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ReceiptsApiService
-	companyId *int32
+	companyId *int64
 	receipt **os.File
 	description *string
 	issueDate *string
+	receiptMetadatumAmount *int64
+	receiptMetadatumIssueDate *string
+	receiptMetadatumPartnerName *string
 }
 
-func (r ApiCreateReceiptRequest) CompanyId(companyId int32) ApiCreateReceiptRequest {
+// 事業所ID
+func (r ApiCreateReceiptRequest) CompanyId(companyId int64) ApiCreateReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// 証憑ファイル
 func (r ApiCreateReceiptRequest) Receipt(receipt *os.File) ApiCreateReceiptRequest {
 	r.receipt = &receipt
 	return r
 }
+
+// メモ (255文字以内)
 func (r ApiCreateReceiptRequest) Description(description string) ApiCreateReceiptRequest {
 	r.description = &description
 	return r
 }
+
+// 取引日 (yyyy-mm-dd)
 func (r ApiCreateReceiptRequest) IssueDate(issueDate string) ApiCreateReceiptRequest {
 	r.issueDate = &issueDate
 	return r
 }
 
-func (r ApiCreateReceiptRequest) Execute() (ReceiptResponse, *_nethttp.Response, error) {
+// 金額
+func (r ApiCreateReceiptRequest) ReceiptMetadatumAmount(receiptMetadatumAmount int64) ApiCreateReceiptRequest {
+	r.receiptMetadatumAmount = &receiptMetadatumAmount
+	return r
+}
+
+// 発行日 (yyyy-mm-dd)
+func (r ApiCreateReceiptRequest) ReceiptMetadatumIssueDate(receiptMetadatumIssueDate string) ApiCreateReceiptRequest {
+	r.receiptMetadatumIssueDate = &receiptMetadatumIssueDate
+	return r
+}
+
+// 発行元
+func (r ApiCreateReceiptRequest) ReceiptMetadatumPartnerName(receiptMetadatumPartnerName string) ApiCreateReceiptRequest {
+	r.receiptMetadatumPartnerName = &receiptMetadatumPartnerName
+	return r
+}
+
+func (r ApiCreateReceiptRequest) Execute() (*ReceiptResponse, *http.Response, error) {
 	return r.ApiService.CreateReceiptExecute(r)
 }
 
 /*
- * CreateReceipt ファイルボックス 証憑ファイルアップロード
- * 
+CreateReceipt ファイルボックス 証憑ファイルアップロード
+
+
 <h2 id="">概要</h2>
 
 <p>ファイルボックスに証憑ファイルをアップロードする</p>
@@ -68,40 +93,37 @@ func (r ApiCreateReceiptRequest) Execute() (ReceiptResponse, *_nethttp.Response,
 <ul>
   <li>リクエストヘッダーの Content-Type は、multipart/form-dataにのみ対応しています。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateReceiptRequest
- */
-func (a *ReceiptsApiService) CreateReceipt(ctx _context.Context) ApiCreateReceiptRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateReceiptRequest
+*/
+func (a *ReceiptsApiService) CreateReceipt(ctx context.Context) ApiCreateReceiptRequest {
 	return ApiCreateReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return ReceiptResponse
- */
-func (a *ReceiptsApiService) CreateReceiptExecute(r ApiCreateReceiptRequest) (ReceiptResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ReceiptResponse
+func (a *ReceiptsApiService) CreateReceiptExecute(r ApiCreateReceiptRequest) (*ReceiptResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ReceiptResponse
+		formFiles            []formFile
+		localVarReturnValue  *ReceiptResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReceiptsApiService.CreateReceipt")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/receipts"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -139,15 +161,30 @@ func (a *ReceiptsApiService) CreateReceiptExecute(r ApiCreateReceiptRequest) (Re
 	if r.issueDate != nil {
 		localVarFormParams.Add("issue_date", parameterToString(*r.issueDate, ""))
 	}
-	localVarFormFileName = "receipt"
-	localVarFile := *r.receipt
-	if localVarFile != nil {
-		fbs, _ := _ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	var receiptLocalVarFormFileName string
+	var receiptLocalVarFileName     string
+	var receiptLocalVarFileBytes    []byte
+
+	receiptLocalVarFormFileName = "receipt"
+
+	receiptLocalVarFile := *r.receipt
+	if receiptLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(receiptLocalVarFile)
+		receiptLocalVarFileBytes = fbs
+		receiptLocalVarFileName = receiptLocalVarFile.Name()
+		receiptLocalVarFile.Close()
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	formFiles = append(formFiles, formFile{fileBytes: receiptLocalVarFileBytes, fileName: receiptLocalVarFileName, formFileName: receiptLocalVarFormFileName})
+	if r.receiptMetadatumAmount != nil {
+		localVarFormParams.Add("receipt_metadatum_amount", parameterToString(*r.receiptMetadatumAmount, ""))
+	}
+	if r.receiptMetadatumIssueDate != nil {
+		localVarFormParams.Add("receipt_metadatum_issue_date", parameterToString(*r.receiptMetadatumIssueDate, ""))
+	}
+	if r.receiptMetadatumPartnerName != nil {
+		localVarFormParams.Add("receipt_metadatum_partner_name", parameterToString(*r.receiptMetadatumPartnerName, ""))
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -157,15 +194,15 @@ func (a *ReceiptsApiService) CreateReceiptExecute(r ApiCreateReceiptRequest) (Re
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -213,7 +250,7 @@ func (a *ReceiptsApiService) CreateReceiptExecute(r ApiCreateReceiptRequest) (Re
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -224,32 +261,35 @@ func (a *ReceiptsApiService) CreateReceiptExecute(r ApiCreateReceiptRequest) (Re
 }
 
 type ApiDestroyReceiptRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
-func (r ApiDestroyReceiptRequest) CompanyId(companyId int32) ApiDestroyReceiptRequest {
+// 事業所ID
+func (r ApiDestroyReceiptRequest) CompanyId(companyId int64) ApiDestroyReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyReceiptRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyReceiptRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyReceiptExecute(r)
 }
 
 /*
- * DestroyReceipt ファイルボックス 証憑ファイルを削除する
- * 
+DestroyReceipt ファイルボックス 証憑ファイルを削除する
+
+
 <h2 id="">概要</h2>
 
 <p>ファイルボックスの証憑ファイルを削除する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 証憑ファイルID
- * @return ApiDestroyReceiptRequest
- */
-func (a *ReceiptsApiService) DestroyReceipt(ctx _context.Context, id int32) ApiDestroyReceiptRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 証憑ファイルID
+ @return ApiDestroyReceiptRequest
+*/
+func (a *ReceiptsApiService) DestroyReceipt(ctx context.Context, id int64) ApiDestroyReceiptRequest {
 	return ApiDestroyReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -257,29 +297,25 @@ func (a *ReceiptsApiService) DestroyReceipt(ctx _context.Context, id int32) ApiD
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ReceiptsApiService) DestroyReceiptExecute(r ApiDestroyReceiptRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *ReceiptsApiService) DestroyReceiptExecute(r ApiDestroyReceiptRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReceiptsApiService.DestroyReceipt")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/receipts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -314,7 +350,7 @@ func (a *ReceiptsApiService) DestroyReceiptExecute(r ApiDestroyReceiptRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -324,15 +360,15 @@ func (a *ReceiptsApiService) DestroyReceiptExecute(r ApiDestroyReceiptRequest) (
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -392,32 +428,35 @@ func (a *ReceiptsApiService) DestroyReceiptExecute(r ApiDestroyReceiptRequest) (
 }
 
 type ApiDownloadReceiptRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
-func (r ApiDownloadReceiptRequest) CompanyId(companyId int32) ApiDownloadReceiptRequest {
+// 事業所ID
+func (r ApiDownloadReceiptRequest) CompanyId(companyId int64) ApiDownloadReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDownloadReceiptRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r ApiDownloadReceiptRequest) Execute() (**os.File, *http.Response, error) {
 	return r.ApiService.DownloadReceiptExecute(r)
 }
 
 /*
- * DownloadReceipt ファイルボックス 証憑ファイルのダウンロード
- * 
+DownloadReceipt ファイルボックス 証憑ファイルのダウンロード
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所のファイルボックス 証憑ファイルのダウンロードをする</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 証憑ファイルID
- * @return ApiDownloadReceiptRequest
- */
-func (a *ReceiptsApiService) DownloadReceipt(ctx _context.Context, id int32) ApiDownloadReceiptRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 証憑ファイルID
+ @return ApiDownloadReceiptRequest
+*/
+func (a *ReceiptsApiService) DownloadReceipt(ctx context.Context, id int64) ApiDownloadReceiptRequest {
 	return ApiDownloadReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -425,31 +464,27 @@ func (a *ReceiptsApiService) DownloadReceipt(ctx _context.Context, id int32) Api
 	}
 }
 
-/*
- * Execute executes the request
- * @return *os.File
- */
-func (a *ReceiptsApiService) DownloadReceiptExecute(r ApiDownloadReceiptRequest) (*os.File, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return *os.File
+func (a *ReceiptsApiService) DownloadReceiptExecute(r ApiDownloadReceiptRequest) (**os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		formFiles            []formFile
+		localVarReturnValue  **os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReceiptsApiService.DownloadReceipt")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/receipts/{id}/download"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -477,14 +512,14 @@ func (a *ReceiptsApiService) DownloadReceiptExecute(r ApiDownloadReceiptRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/pdf", "image/_*", "text/csv", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/pdf", "image/*", "text/csv", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -494,15 +529,15 @@ func (a *ReceiptsApiService) DownloadReceiptExecute(r ApiDownloadReceiptRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -560,7 +595,7 @@ func (a *ReceiptsApiService) DownloadReceiptExecute(r ApiDownloadReceiptRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -571,32 +606,35 @@ func (a *ReceiptsApiService) DownloadReceiptExecute(r ApiDownloadReceiptRequest)
 }
 
 type ApiGetReceiptRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
-func (r ApiGetReceiptRequest) CompanyId(companyId int32) ApiGetReceiptRequest {
+// 事業所ID
+func (r ApiGetReceiptRequest) CompanyId(companyId int64) ApiGetReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetReceiptRequest) Execute() (ReceiptResponse, *_nethttp.Response, error) {
+func (r ApiGetReceiptRequest) Execute() (*ReceiptResponse, *http.Response, error) {
 	return r.ApiService.GetReceiptExecute(r)
 }
 
 /*
- * GetReceipt ファイルボックス 証憑ファイルの取得
- * 
+GetReceipt ファイルボックス 証憑ファイルの取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所のファイルボックス 証憑ファイルを取得する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 証憑ファイルID
- * @return ApiGetReceiptRequest
- */
-func (a *ReceiptsApiService) GetReceipt(ctx _context.Context, id int32) ApiGetReceiptRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 証憑ファイルID
+ @return ApiGetReceiptRequest
+*/
+func (a *ReceiptsApiService) GetReceipt(ctx context.Context, id int64) ApiGetReceiptRequest {
 	return ApiGetReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -604,31 +642,27 @@ func (a *ReceiptsApiService) GetReceipt(ctx _context.Context, id int32) ApiGetRe
 	}
 }
 
-/*
- * Execute executes the request
- * @return ReceiptResponse
- */
-func (a *ReceiptsApiService) GetReceiptExecute(r ApiGetReceiptRequest) (ReceiptResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ReceiptResponse
+func (a *ReceiptsApiService) GetReceiptExecute(r ApiGetReceiptRequest) (*ReceiptResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ReceiptResponse
+		formFiles            []formFile
+		localVarReturnValue  *ReceiptResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReceiptsApiService.GetReceipt")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/receipts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -663,7 +697,7 @@ func (a *ReceiptsApiService) GetReceiptExecute(r ApiGetReceiptRequest) (ReceiptR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -673,15 +707,15 @@ func (a *ReceiptsApiService) GetReceiptExecute(r ApiGetReceiptRequest) (ReceiptR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -739,7 +773,7 @@ func (a *ReceiptsApiService) GetReceiptExecute(r ApiGetReceiptRequest) (ReceiptR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -750,105 +784,122 @@ func (a *ReceiptsApiService) GetReceiptExecute(r ApiGetReceiptRequest) (ReceiptR
 }
 
 type ApiGetReceiptsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ReceiptsApiService
-	companyId *int32
+	companyId *int64
 	startDate *string
 	endDate *string
 	userName *string
-	number *int32
+	number *int64
 	commentType *string
 	commentImportant *bool
 	category *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
-func (r ApiGetReceiptsRequest) CompanyId(companyId int32) ApiGetReceiptsRequest {
+// 事業所ID
+func (r ApiGetReceiptsRequest) CompanyId(companyId int64) ApiGetReceiptsRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// アップロード日 (yyyy-mm-dd)
 func (r ApiGetReceiptsRequest) StartDate(startDate string) ApiGetReceiptsRequest {
 	r.startDate = &startDate
 	return r
 }
+
+// アップロード日 (yyyy-mm-dd)
 func (r ApiGetReceiptsRequest) EndDate(endDate string) ApiGetReceiptsRequest {
 	r.endDate = &endDate
 	return r
 }
+
+// アップロードしたユーザー名、メールアドレス
 func (r ApiGetReceiptsRequest) UserName(userName string) ApiGetReceiptsRequest {
 	r.userName = &userName
 	return r
 }
-func (r ApiGetReceiptsRequest) Number(number int32) ApiGetReceiptsRequest {
+
+// アップロードファイルNo
+func (r ApiGetReceiptsRequest) Number(number int64) ApiGetReceiptsRequest {
 	r.number = &number
 	return r
 }
+
+// posted:コメントあり, raised:未解決, resolved:解決済
 func (r ApiGetReceiptsRequest) CommentType(commentType string) ApiGetReceiptsRequest {
 	r.commentType = &commentType
 	return r
 }
+
+// trueの時、重要コメント付きが対象
 func (r ApiGetReceiptsRequest) CommentImportant(commentImportant bool) ApiGetReceiptsRequest {
 	r.commentImportant = &commentImportant
 	return r
 }
+
+// all:すべて、without_deal:未登録、with_expense_application_line:経費申請中, with_deal:登録済み、ignored:無視
 func (r ApiGetReceiptsRequest) Category(category string) ApiGetReceiptsRequest {
 	r.category = &category
 	return r
 }
+
+// 取得レコードのオフセット (デフォルト: 0)
 func (r ApiGetReceiptsRequest) Offset(offset int64) ApiGetReceiptsRequest {
 	r.offset = &offset
 	return r
 }
-func (r ApiGetReceiptsRequest) Limit(limit int32) ApiGetReceiptsRequest {
+
+// 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000)
+func (r ApiGetReceiptsRequest) Limit(limit int64) ApiGetReceiptsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetReceiptsRequest) Execute() (InlineResponse2005, *_nethttp.Response, error) {
+func (r ApiGetReceiptsRequest) Execute() (*GetReceipts200Response, *http.Response, error) {
 	return r.ApiService.GetReceiptsExecute(r)
 }
 
 /*
- * GetReceipts ファイルボックス 証憑ファイル一覧の取得
- * 
+GetReceipts ファイルボックス 証憑ファイル一覧の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所のファイルボックス 証憑ファイル一覧を取得する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetReceiptsRequest
- */
-func (a *ReceiptsApiService) GetReceipts(ctx _context.Context) ApiGetReceiptsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetReceiptsRequest
+*/
+func (a *ReceiptsApiService) GetReceipts(ctx context.Context) ApiGetReceiptsRequest {
 	return ApiGetReceiptsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse2005
- */
-func (a *ReceiptsApiService) GetReceiptsExecute(r ApiGetReceiptsRequest) (InlineResponse2005, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetReceipts200Response
+func (a *ReceiptsApiService) GetReceiptsExecute(r ApiGetReceiptsRequest) (*GetReceipts200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2005
+		formFiles            []formFile
+		localVarReturnValue  *GetReceipts200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReceiptsApiService.GetReceipts")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/receipts"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -906,7 +957,7 @@ func (a *ReceiptsApiService) GetReceiptsExecute(r ApiGetReceiptsRequest) (Inline
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -916,15 +967,15 @@ func (a *ReceiptsApiService) GetReceiptsExecute(r ApiGetReceiptsRequest) (Inline
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -972,7 +1023,7 @@ func (a *ReceiptsApiService) GetReceiptsExecute(r ApiGetReceiptsRequest) (Inline
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -983,9 +1034,9 @@ func (a *ReceiptsApiService) GetReceiptsExecute(r ApiGetReceiptsRequest) (Inline
 }
 
 type ApiUpdateReceiptRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
+	id int64
 	receiptUpdateParams *ReceiptUpdateParams
 }
 
@@ -994,13 +1045,14 @@ func (r ApiUpdateReceiptRequest) ReceiptUpdateParams(receiptUpdateParams Receipt
 	return r
 }
 
-func (r ApiUpdateReceiptRequest) Execute() (ReceiptResponse, *_nethttp.Response, error) {
+func (r ApiUpdateReceiptRequest) Execute() (*ReceiptResponse, *http.Response, error) {
 	return r.ApiService.UpdateReceiptExecute(r)
 }
 
 /*
- * UpdateReceipt ファイルボックス 証憑ファイル情報更新
- * 
+UpdateReceipt ファイルボックス 証憑ファイル情報更新
+
+
 <h2 id="">概要</h2>
 
 <p>ファイルボックスの証憑ファイル情報を更新する</p>
@@ -1008,11 +1060,12 @@ func (r ApiUpdateReceiptRequest) Execute() (ReceiptResponse, *_nethttp.Response,
 <ul>
   <li>本APIでは、証憑ファイルの再アップロードはできません。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 証憑ファイルID
- * @return ApiUpdateReceiptRequest
- */
-func (a *ReceiptsApiService) UpdateReceipt(ctx _context.Context, id int32) ApiUpdateReceiptRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 証憑ファイルID
+ @return ApiUpdateReceiptRequest
+*/
+func (a *ReceiptsApiService) UpdateReceipt(ctx context.Context, id int64) ApiUpdateReceiptRequest {
 	return ApiUpdateReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1020,31 +1073,27 @@ func (a *ReceiptsApiService) UpdateReceipt(ctx _context.Context, id int32) ApiUp
 	}
 }
 
-/*
- * Execute executes the request
- * @return ReceiptResponse
- */
-func (a *ReceiptsApiService) UpdateReceiptExecute(r ApiUpdateReceiptRequest) (ReceiptResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ReceiptResponse
+func (a *ReceiptsApiService) UpdateReceiptExecute(r ApiUpdateReceiptRequest) (*ReceiptResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ReceiptResponse
+		formFiles            []formFile
+		localVarReturnValue  *ReceiptResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReceiptsApiService.UpdateReceipt")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/receipts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -1074,7 +1123,7 @@ func (a *ReceiptsApiService) UpdateReceiptExecute(r ApiUpdateReceiptRequest) (Re
 	}
 	// body params
 	localVarPostBody = r.receiptUpdateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1084,15 +1133,15 @@ func (a *ReceiptsApiService) UpdateReceiptExecute(r ApiUpdateReceiptRequest) (Re
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1150,7 +1199,7 @@ func (a *ReceiptsApiService) UpdateReceiptExecute(r ApiUpdateReceiptRequest) (Re
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

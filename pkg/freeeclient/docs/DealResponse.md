@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Deal** | [**DealResponseDeal**](DealResponseDeal.md) |  | 
+**Deal** | [**Deal**](Deal.md) |  | 
 
 ## Methods
 
 ### NewDealResponse
 
-`func NewDealResponse(deal DealResponseDeal, ) *DealResponse`
+`func NewDealResponse(deal Deal, ) *DealResponse`
 
 NewDealResponse instantiates a new DealResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDeal
 
-`func (o *DealResponse) GetDeal() DealResponseDeal`
+`func (o *DealResponse) GetDeal() Deal`
 
 GetDeal returns the Deal field if non-nil, zero value otherwise.
 
 ### GetDealOk
 
-`func (o *DealResponse) GetDealOk() (*DealResponseDeal, bool)`
+`func (o *DealResponse) GetDealOk() (*Deal, bool)`
 
 GetDealOk returns a tuple with the Deal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeal
 
-`func (o *DealResponse) SetDeal(v DealResponseDeal)`
+`func (o *DealResponse) SetDeal(v Deal)`
 
 SetDeal sets Deal field to given value.
 

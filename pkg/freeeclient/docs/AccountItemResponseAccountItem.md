@@ -5,31 +5,31 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountCategory** | **string** | 勘定科目カテゴリー | 
-**AccountCategoryId** | **int32** | 勘定科目のカテゴリーID | 
-**AccumulatedDepAccountItemId** | Pointer to **NullableInt32** | 減価償却累計額勘定科目ID（法人のみ利用可能） | [optional] 
+**AccountCategoryId** | **int64** | 勘定科目のカテゴリーID | 
+**AccumulatedDepAccountItemId** | Pointer to **NullableInt64** | 減価償却累計額勘定科目ID（法人のみ利用可能） | [optional] 
 **AccumulatedDepAccountItemName** | Pointer to **string** | 減価償却累計額勘定科目（法人のみ利用可能） | [optional] 
 **Available** | **bool** | 勘定科目の使用設定（true: 使用する、false: 使用しない） | 
-**CompanyId** | **int32** | 事業所ID | 
-**CorrespondingExpenseId** | Pointer to **NullableInt32** | 支出取引相手勘定科目ID | [optional] 
+**CompanyId** | **int64** | 事業所ID | 
+**CorrespondingExpenseId** | Pointer to **NullableInt64** | 支出取引相手勘定科目ID | [optional] 
 **CorrespondingExpenseName** | Pointer to **NullableString** | 支出取引相手勘定科目名 | [optional] 
-**CorrespondingIncomeId** | Pointer to **NullableInt32** | 収入取引相手勘定科目ID | [optional] 
+**CorrespondingIncomeId** | Pointer to **NullableInt64** | 収入取引相手勘定科目ID | [optional] 
 **CorrespondingIncomeName** | Pointer to **NullableString** | 収入取引相手勘定科目名 | [optional] 
 **GroupName** | Pointer to **NullableString** | 決算書表示名（小カテゴリー） | [optional] 
-**Id** | **int32** | 勘定科目ID | 
-**Items** | Pointer to [**[]AccountItemResponseAccountItemItems**](AccountItemResponseAccountItemItems.md) |  | [optional] 
+**Id** | **int64** | 勘定科目ID | 
+**Items** | Pointer to [**[]AccountItemResponseAccountItemItemsInner**](AccountItemResponseAccountItemItemsInner.md) |  | [optional] 
 **Name** | **string** | 勘定科目名 (30文字以内) | 
-**Partners** | Pointer to [**[]AccountItemResponseAccountItemPartners**](AccountItemResponseAccountItemPartners.md) |  | [optional] 
-**Searchable** | **int32** | 検索可能:2, 検索不可：3 | 
+**Partners** | Pointer to [**[]AccountItemResponseAccountItemPartnersInner**](AccountItemResponseAccountItemPartnersInner.md) |  | [optional] 
+**Searchable** | **int64** | 検索可能:2, 検索不可：3 | 
 **Shortcut** | Pointer to **string** | ショートカット1 (20文字以内) | [optional] 
 **ShortcutNum** | Pointer to **string** | ショートカット2(勘定科目コード) (20文字以内) | [optional] 
-**TaxCode** | **int32** | 税区分コード | 
-**WalletableId** | **NullableInt32** | 口座ID | 
+**TaxCode** | **int64** | 税区分コード | 
+**WalletableId** | **NullableInt64** | 口座ID | 
 
 ## Methods
 
 ### NewAccountItemResponseAccountItem
 
-`func NewAccountItemResponseAccountItem(accountCategory string, accountCategoryId int32, available bool, companyId int32, id int32, name string, searchable int32, taxCode int32, walletableId NullableInt32, ) *AccountItemResponseAccountItem`
+`func NewAccountItemResponseAccountItem(accountCategory string, accountCategoryId int64, available bool, companyId int64, id int64, name string, searchable int64, taxCode int64, walletableId NullableInt64, ) *AccountItemResponseAccountItem`
 
 NewAccountItemResponseAccountItem instantiates a new AccountItemResponseAccountItem object
 This constructor will assign default values to properties that have it defined,
@@ -66,40 +66,40 @@ SetAccountCategory sets AccountCategory field to given value.
 
 ### GetAccountCategoryId
 
-`func (o *AccountItemResponseAccountItem) GetAccountCategoryId() int32`
+`func (o *AccountItemResponseAccountItem) GetAccountCategoryId() int64`
 
 GetAccountCategoryId returns the AccountCategoryId field if non-nil, zero value otherwise.
 
 ### GetAccountCategoryIdOk
 
-`func (o *AccountItemResponseAccountItem) GetAccountCategoryIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetAccountCategoryIdOk() (*int64, bool)`
 
 GetAccountCategoryIdOk returns a tuple with the AccountCategoryId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountCategoryId
 
-`func (o *AccountItemResponseAccountItem) SetAccountCategoryId(v int32)`
+`func (o *AccountItemResponseAccountItem) SetAccountCategoryId(v int64)`
 
 SetAccountCategoryId sets AccountCategoryId field to given value.
 
 
 ### GetAccumulatedDepAccountItemId
 
-`func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemId() int32`
+`func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemId() int64`
 
 GetAccumulatedDepAccountItemId returns the AccumulatedDepAccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccumulatedDepAccountItemIdOk
 
-`func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemIdOk() (*int64, bool)`
 
 GetAccumulatedDepAccountItemIdOk returns a tuple with the AccumulatedDepAccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccumulatedDepAccountItemId
 
-`func (o *AccountItemResponseAccountItem) SetAccumulatedDepAccountItemId(v int32)`
+`func (o *AccountItemResponseAccountItem) SetAccumulatedDepAccountItemId(v int64)`
 
 SetAccumulatedDepAccountItemId sets AccumulatedDepAccountItemId field to given value.
 
@@ -166,40 +166,40 @@ SetAvailable sets Available field to given value.
 
 ### GetCompanyId
 
-`func (o *AccountItemResponseAccountItem) GetCompanyId() int32`
+`func (o *AccountItemResponseAccountItem) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *AccountItemResponseAccountItem) GetCompanyIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *AccountItemResponseAccountItem) SetCompanyId(v int32)`
+`func (o *AccountItemResponseAccountItem) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
 
 ### GetCorrespondingExpenseId
 
-`func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseId() int32`
+`func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseId() int64`
 
 GetCorrespondingExpenseId returns the CorrespondingExpenseId field if non-nil, zero value otherwise.
 
 ### GetCorrespondingExpenseIdOk
 
-`func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseIdOk() (*int64, bool)`
 
 GetCorrespondingExpenseIdOk returns a tuple with the CorrespondingExpenseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCorrespondingExpenseId
 
-`func (o *AccountItemResponseAccountItem) SetCorrespondingExpenseId(v int32)`
+`func (o *AccountItemResponseAccountItem) SetCorrespondingExpenseId(v int64)`
 
 SetCorrespondingExpenseId sets CorrespondingExpenseId field to given value.
 
@@ -256,20 +256,20 @@ HasCorrespondingExpenseName returns a boolean if a field has been set.
 UnsetCorrespondingExpenseName ensures that no value is present for CorrespondingExpenseName, not even an explicit nil
 ### GetCorrespondingIncomeId
 
-`func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeId() int32`
+`func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeId() int64`
 
 GetCorrespondingIncomeId returns the CorrespondingIncomeId field if non-nil, zero value otherwise.
 
 ### GetCorrespondingIncomeIdOk
 
-`func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeIdOk() (*int64, bool)`
 
 GetCorrespondingIncomeIdOk returns a tuple with the CorrespondingIncomeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCorrespondingIncomeId
 
-`func (o *AccountItemResponseAccountItem) SetCorrespondingIncomeId(v int32)`
+`func (o *AccountItemResponseAccountItem) SetCorrespondingIncomeId(v int64)`
 
 SetCorrespondingIncomeId sets CorrespondingIncomeId field to given value.
 
@@ -361,40 +361,40 @@ HasGroupName returns a boolean if a field has been set.
 UnsetGroupName ensures that no value is present for GroupName, not even an explicit nil
 ### GetId
 
-`func (o *AccountItemResponseAccountItem) GetId() int32`
+`func (o *AccountItemResponseAccountItem) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *AccountItemResponseAccountItem) GetIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *AccountItemResponseAccountItem) SetId(v int32)`
+`func (o *AccountItemResponseAccountItem) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetItems
 
-`func (o *AccountItemResponseAccountItem) GetItems() []AccountItemResponseAccountItemItems`
+`func (o *AccountItemResponseAccountItem) GetItems() []AccountItemResponseAccountItemItemsInner`
 
 GetItems returns the Items field if non-nil, zero value otherwise.
 
 ### GetItemsOk
 
-`func (o *AccountItemResponseAccountItem) GetItemsOk() (*[]AccountItemResponseAccountItemItems, bool)`
+`func (o *AccountItemResponseAccountItem) GetItemsOk() (*[]AccountItemResponseAccountItemItemsInner, bool)`
 
 GetItemsOk returns a tuple with the Items field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItems
 
-`func (o *AccountItemResponseAccountItem) SetItems(v []AccountItemResponseAccountItemItems)`
+`func (o *AccountItemResponseAccountItem) SetItems(v []AccountItemResponseAccountItemItemsInner)`
 
 SetItems sets Items field to given value.
 
@@ -426,20 +426,20 @@ SetName sets Name field to given value.
 
 ### GetPartners
 
-`func (o *AccountItemResponseAccountItem) GetPartners() []AccountItemResponseAccountItemPartners`
+`func (o *AccountItemResponseAccountItem) GetPartners() []AccountItemResponseAccountItemPartnersInner`
 
 GetPartners returns the Partners field if non-nil, zero value otherwise.
 
 ### GetPartnersOk
 
-`func (o *AccountItemResponseAccountItem) GetPartnersOk() (*[]AccountItemResponseAccountItemPartners, bool)`
+`func (o *AccountItemResponseAccountItem) GetPartnersOk() (*[]AccountItemResponseAccountItemPartnersInner, bool)`
 
 GetPartnersOk returns a tuple with the Partners field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartners
 
-`func (o *AccountItemResponseAccountItem) SetPartners(v []AccountItemResponseAccountItemPartners)`
+`func (o *AccountItemResponseAccountItem) SetPartners(v []AccountItemResponseAccountItemPartnersInner)`
 
 SetPartners sets Partners field to given value.
 
@@ -451,20 +451,20 @@ HasPartners returns a boolean if a field has been set.
 
 ### GetSearchable
 
-`func (o *AccountItemResponseAccountItem) GetSearchable() int32`
+`func (o *AccountItemResponseAccountItem) GetSearchable() int64`
 
 GetSearchable returns the Searchable field if non-nil, zero value otherwise.
 
 ### GetSearchableOk
 
-`func (o *AccountItemResponseAccountItem) GetSearchableOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetSearchableOk() (*int64, bool)`
 
 GetSearchableOk returns a tuple with the Searchable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSearchable
 
-`func (o *AccountItemResponseAccountItem) SetSearchable(v int32)`
+`func (o *AccountItemResponseAccountItem) SetSearchable(v int64)`
 
 SetSearchable sets Searchable field to given value.
 
@@ -521,40 +521,40 @@ HasShortcutNum returns a boolean if a field has been set.
 
 ### GetTaxCode
 
-`func (o *AccountItemResponseAccountItem) GetTaxCode() int32`
+`func (o *AccountItemResponseAccountItem) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *AccountItemResponseAccountItem) GetTaxCodeOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *AccountItemResponseAccountItem) SetTaxCode(v int32)`
+`func (o *AccountItemResponseAccountItem) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 
 
 ### GetWalletableId
 
-`func (o *AccountItemResponseAccountItem) GetWalletableId() int32`
+`func (o *AccountItemResponseAccountItem) GetWalletableId() int64`
 
 GetWalletableId returns the WalletableId field if non-nil, zero value otherwise.
 
 ### GetWalletableIdOk
 
-`func (o *AccountItemResponseAccountItem) GetWalletableIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItem) GetWalletableIdOk() (*int64, bool)`
 
 GetWalletableIdOk returns a tuple with the WalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletableId
 
-`func (o *AccountItemResponseAccountItem) SetWalletableId(v int32)`
+`func (o *AccountItemResponseAccountItem) SetWalletableId(v int64)`
 
 SetWalletableId sets WalletableId field to given value.
 

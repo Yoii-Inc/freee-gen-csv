@@ -1,51 +1,49 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // SegmentTagsApiService SegmentTagsApi service
 type SegmentTagsApiService service
 
 type ApiCreateSegmentTagRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentTagsApiService
-	segmentId int32
+	segmentId int64
 	segmentTagParams *SegmentTagParams
 }
 
+// セグメントタグの作成
 func (r ApiCreateSegmentTagRequest) SegmentTagParams(segmentTagParams SegmentTagParams) ApiCreateSegmentTagRequest {
 	r.segmentTagParams = &segmentTagParams
 	return r
 }
 
-func (r ApiCreateSegmentTagRequest) Execute() (SegmentTagResponse, *_nethttp.Response, error) {
+func (r ApiCreateSegmentTagRequest) Execute() (*SegmentTagResponse, *http.Response, error) {
 	return r.ApiService.CreateSegmentTagExecute(r)
 }
 
 /*
- * CreateSegmentTag セグメントの作成
- * 
+CreateSegmentTag セグメントの作成
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所のセグメントタグを作成する</p>
@@ -57,11 +55,12 @@ func (r ApiCreateSegmentTagRequest) Execute() (SegmentTagResponse, *_nethttp.Res
 <li>本APIは法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
- * @return ApiCreateSegmentTagRequest
- */
-func (a *SegmentTagsApiService) CreateSegmentTag(ctx _context.Context, segmentId int32) ApiCreateSegmentTagRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+ @return ApiCreateSegmentTagRequest
+*/
+func (a *SegmentTagsApiService) CreateSegmentTag(ctx context.Context, segmentId int64) ApiCreateSegmentTagRequest {
 	return ApiCreateSegmentTagRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -69,31 +68,27 @@ func (a *SegmentTagsApiService) CreateSegmentTag(ctx _context.Context, segmentId
 	}
 }
 
-/*
- * Execute executes the request
- * @return SegmentTagResponse
- */
-func (a *SegmentTagsApiService) CreateSegmentTagExecute(r ApiCreateSegmentTagRequest) (SegmentTagResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return SegmentTagResponse
+func (a *SegmentTagsApiService) CreateSegmentTagExecute(r ApiCreateSegmentTagRequest) (*SegmentTagResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SegmentTagResponse
+		formFiles            []formFile
+		localVarReturnValue  *SegmentTagResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentTagsApiService.CreateSegmentTag")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/segments/{segment_id}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", _neturl.PathEscape(parameterToString(r.segmentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", url.PathEscape(parameterToString(r.segmentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.segmentId < 1 {
 		return localVarReturnValue, nil, reportError("segmentId must be greater than 1")
 	}
@@ -123,7 +118,7 @@ func (a *SegmentTagsApiService) CreateSegmentTagExecute(r ApiCreateSegmentTagReq
 	}
 	// body params
 	localVarPostBody = r.segmentTagParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -133,15 +128,15 @@ func (a *SegmentTagsApiService) CreateSegmentTagExecute(r ApiCreateSegmentTagReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -189,7 +184,7 @@ func (a *SegmentTagsApiService) CreateSegmentTagExecute(r ApiCreateSegmentTagReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -200,25 +195,27 @@ func (a *SegmentTagsApiService) CreateSegmentTagExecute(r ApiCreateSegmentTagReq
 }
 
 type ApiDestroySegmentsTagRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentTagsApiService
-	segmentId int32
-	id int32
-	companyId *int32
+	segmentId int64
+	id int64
+	companyId *int64
 }
 
-func (r ApiDestroySegmentsTagRequest) CompanyId(companyId int32) ApiDestroySegmentsTagRequest {
+// 事業所ID
+func (r ApiDestroySegmentsTagRequest) CompanyId(companyId int64) ApiDestroySegmentsTagRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroySegmentsTagRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroySegmentsTagRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroySegmentsTagExecute(r)
 }
 
 /*
- * DestroySegmentsTag セグメントタグの削除
- * 
+DestroySegmentsTag セグメントタグの削除
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所のセグメントタグを削除する</p>
@@ -230,12 +227,13 @@ func (r ApiDestroySegmentsTagRequest) Execute() (*_nethttp.Response, error) {
 <li>本APIは法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
- * @param id セグメントタグID
- * @return ApiDestroySegmentsTagRequest
- */
-func (a *SegmentTagsApiService) DestroySegmentsTag(ctx _context.Context, segmentId int32, id int32) ApiDestroySegmentsTagRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+ @param id セグメントタグID
+ @return ApiDestroySegmentsTagRequest
+*/
+func (a *SegmentTagsApiService) DestroySegmentsTag(ctx context.Context, segmentId int64, id int64) ApiDestroySegmentsTagRequest {
 	return ApiDestroySegmentsTagRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -244,30 +242,26 @@ func (a *SegmentTagsApiService) DestroySegmentsTag(ctx _context.Context, segment
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *SegmentTagsApiService) DestroySegmentsTagExecute(r ApiDestroySegmentsTagRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *SegmentTagsApiService) DestroySegmentsTagExecute(r ApiDestroySegmentsTagRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentTagsApiService.DestroySegmentsTag")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/segments/{segment_id}/tags/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", _neturl.PathEscape(parameterToString(r.segmentId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", url.PathEscape(parameterToString(r.segmentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.segmentId < 1 {
 		return nil, reportError("segmentId must be greater than 1")
 	}
@@ -308,7 +302,7 @@ func (a *SegmentTagsApiService) DestroySegmentsTagExecute(r ApiDestroySegmentsTa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -318,15 +312,15 @@ func (a *SegmentTagsApiService) DestroySegmentsTagExecute(r ApiDestroySegmentsTa
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -376,34 +370,40 @@ func (a *SegmentTagsApiService) DestroySegmentsTagExecute(r ApiDestroySegmentsTa
 }
 
 type ApiGetSegmentTagsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentTagsApiService
-	companyId *int32
-	segmentId int32
+	companyId *int64
+	segmentId int64
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
-func (r ApiGetSegmentTagsRequest) CompanyId(companyId int32) ApiGetSegmentTagsRequest {
+// 事業所ID
+func (r ApiGetSegmentTagsRequest) CompanyId(companyId int64) ApiGetSegmentTagsRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// 取得レコードのオフセット (デフォルト: 0)
 func (r ApiGetSegmentTagsRequest) Offset(offset int64) ApiGetSegmentTagsRequest {
 	r.offset = &offset
 	return r
 }
-func (r ApiGetSegmentTagsRequest) Limit(limit int32) ApiGetSegmentTagsRequest {
+
+// 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) 
+func (r ApiGetSegmentTagsRequest) Limit(limit int64) ApiGetSegmentTagsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetSegmentTagsRequest) Execute() (InlineResponse2007, *_nethttp.Response, error) {
+func (r ApiGetSegmentTagsRequest) Execute() (*GetSegmentTags200Response, *http.Response, error) {
 	return r.ApiService.GetSegmentTagsExecute(r)
 }
 
 /*
- * GetSegmentTags セグメントタグ一覧の取得
- * 
+GetSegmentTags セグメントタグ一覧の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所のセグメントタグ一覧を取得する</p>
@@ -415,11 +415,12 @@ func (r ApiGetSegmentTagsRequest) Execute() (InlineResponse2007, *_nethttp.Respo
 <li>本APIは法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
- * @return ApiGetSegmentTagsRequest
- */
-func (a *SegmentTagsApiService) GetSegmentTags(ctx _context.Context, segmentId int32) ApiGetSegmentTagsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+ @return ApiGetSegmentTagsRequest
+*/
+func (a *SegmentTagsApiService) GetSegmentTags(ctx context.Context, segmentId int64) ApiGetSegmentTagsRequest {
 	return ApiGetSegmentTagsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -427,31 +428,27 @@ func (a *SegmentTagsApiService) GetSegmentTags(ctx _context.Context, segmentId i
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse2007
- */
-func (a *SegmentTagsApiService) GetSegmentTagsExecute(r ApiGetSegmentTagsRequest) (InlineResponse2007, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetSegmentTags200Response
+func (a *SegmentTagsApiService) GetSegmentTagsExecute(r ApiGetSegmentTagsRequest) (*GetSegmentTags200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2007
+		formFiles            []formFile
+		localVarReturnValue  *GetSegmentTags200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentTagsApiService.GetSegmentTags")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/segments/{segment_id}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", _neturl.PathEscape(parameterToString(r.segmentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", url.PathEscape(parameterToString(r.segmentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -492,7 +489,7 @@ func (a *SegmentTagsApiService) GetSegmentTagsExecute(r ApiGetSegmentTagsRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -502,15 +499,15 @@ func (a *SegmentTagsApiService) GetSegmentTagsExecute(r ApiGetSegmentTagsRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -558,7 +555,7 @@ func (a *SegmentTagsApiService) GetSegmentTagsExecute(r ApiGetSegmentTagsRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -569,25 +566,27 @@ func (a *SegmentTagsApiService) GetSegmentTagsExecute(r ApiGetSegmentTagsRequest
 }
 
 type ApiUpdateSegmentTagRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentTagsApiService
-	segmentId int32
-	id int32
+	segmentId int64
+	id int64
 	segmentTagParams *SegmentTagParams
 }
 
+// セグメントタグの作成
 func (r ApiUpdateSegmentTagRequest) SegmentTagParams(segmentTagParams SegmentTagParams) ApiUpdateSegmentTagRequest {
 	r.segmentTagParams = &segmentTagParams
 	return r
 }
 
-func (r ApiUpdateSegmentTagRequest) Execute() (SegmentTagResponse, *_nethttp.Response, error) {
+func (r ApiUpdateSegmentTagRequest) Execute() (*SegmentTagResponse, *http.Response, error) {
 	return r.ApiService.UpdateSegmentTagExecute(r)
 }
 
 /*
- * UpdateSegmentTag セグメントタグの更新
- * 
+UpdateSegmentTag セグメントタグの更新
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所のセグメントタグを更新する</p>
@@ -599,12 +598,13 @@ func (r ApiUpdateSegmentTagRequest) Execute() (SegmentTagResponse, *_nethttp.Res
 <li>本APIは法人向けのプロフェッショナルプラン以上で利用可能です。利用可能なセグメントの数は、法人向けのプロフェッショナルプランの場合は1つ、エンタープライズプランの場合は3つです。</li>
 
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
- * @param id セグメントタグID
- * @return ApiUpdateSegmentTagRequest
- */
-func (a *SegmentTagsApiService) UpdateSegmentTag(ctx _context.Context, segmentId int32, id int32) ApiUpdateSegmentTagRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+ @param id セグメントタグID
+ @return ApiUpdateSegmentTagRequest
+*/
+func (a *SegmentTagsApiService) UpdateSegmentTag(ctx context.Context, segmentId int64, id int64) ApiUpdateSegmentTagRequest {
 	return ApiUpdateSegmentTagRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -613,32 +613,28 @@ func (a *SegmentTagsApiService) UpdateSegmentTag(ctx _context.Context, segmentId
 	}
 }
 
-/*
- * Execute executes the request
- * @return SegmentTagResponse
- */
-func (a *SegmentTagsApiService) UpdateSegmentTagExecute(r ApiUpdateSegmentTagRequest) (SegmentTagResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return SegmentTagResponse
+func (a *SegmentTagsApiService) UpdateSegmentTagExecute(r ApiUpdateSegmentTagRequest) (*SegmentTagResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SegmentTagResponse
+		formFiles            []formFile
+		localVarReturnValue  *SegmentTagResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentTagsApiService.UpdateSegmentTag")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/segments/{segment_id}/tags/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", _neturl.PathEscape(parameterToString(r.segmentId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"segment_id"+"}", url.PathEscape(parameterToString(r.segmentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.segmentId < 1 {
 		return localVarReturnValue, nil, reportError("segmentId must be greater than 1")
 	}
@@ -674,7 +670,7 @@ func (a *SegmentTagsApiService) UpdateSegmentTagExecute(r ApiUpdateSegmentTagReq
 	}
 	// body params
 	localVarPostBody = r.segmentTagParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -684,15 +680,15 @@ func (a *SegmentTagsApiService) UpdateSegmentTagExecute(r ApiUpdateSegmentTagReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -740,7 +736,7 @@ func (a *SegmentTagsApiService) UpdateSegmentTagExecute(r ApiUpdateSegmentTagReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

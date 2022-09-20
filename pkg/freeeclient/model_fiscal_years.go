@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -17,23 +17,23 @@ import (
 // FiscalYears struct for FiscalYears
 type FiscalYears struct {
 	// 月次償却（0: しない、1: する）
-	DepreciationRecordMethod int32 `json:"depreciation_record_method"`
+	DepreciationRecordMethod int64 `json:"depreciation_record_method"`
 	// 期末日
 	EndDate *string `json:"end_date,omitempty"`
 	// 固定資産の控除法（true: 間接控除法、false: 直接控除法）
 	IndirectWriteOffMethod bool `json:"indirect_write_off_method"`
 	// 不動産所得使用区分（0: 一般、3: 一般/不動産） ※個人事業主のみ設定可能
-	ReturnCode int32 `json:"return_code"`
+	ReturnCode int64 `json:"return_code"`
 	// 簡易課税用事業区分（0: 第一種：卸売業、1: 第二種：小売業、2: 第三種：農林水産業、工業、建設業、製造業など、3: 第四種：飲食店業など、4: 第五種：金融・保険業、運輸通信業、サービス業など、5: 第六種：不動産業など
-	SalesTaxBusinessCode int32 `json:"sales_tax_business_code"`
+	SalesTaxBusinessCode int64 `json:"sales_tax_business_code"`
 	// 期首日
 	StartDate *string `json:"start_date,omitempty"`
 	// 消費税経理処理方法（0: 税込経理、1: 旧税抜経理、2: 税抜経理）
-	TaxAccountMethod int32 `json:"tax_account_method"`
+	TaxAccountMethod int64 `json:"tax_account_method"`
 	// 消費税端数処理方法（0: 切り捨て、1: 切り上げ、2: 四捨五入）
-	TaxFraction int32 `json:"tax_fraction"`
+	TaxFraction int64 `json:"tax_fraction"`
 	// 課税区分（0: 免税、1: 簡易課税、2: 本則課税（個別対応方式）、3: 本則課税（一括比例配分方式）、4: 本則課税（全額控除））
-	TaxMethod int32 `json:"tax_method"`
+	TaxMethod int64 `json:"tax_method"`
 	// 製造業向け機能（true: 使用する、false: 使用しない）
 	UseIndustryTemplate bool `json:"use_industry_template"`
 }
@@ -42,7 +42,7 @@ type FiscalYears struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFiscalYears(depreciationRecordMethod int32, indirectWriteOffMethod bool, returnCode int32, salesTaxBusinessCode int32, taxAccountMethod int32, taxFraction int32, taxMethod int32, useIndustryTemplate bool) *FiscalYears {
+func NewFiscalYears(depreciationRecordMethod int64, indirectWriteOffMethod bool, returnCode int64, salesTaxBusinessCode int64, taxAccountMethod int64, taxFraction int64, taxMethod int64, useIndustryTemplate bool) *FiscalYears {
 	this := FiscalYears{}
 	this.DepreciationRecordMethod = depreciationRecordMethod
 	this.IndirectWriteOffMethod = indirectWriteOffMethod
@@ -64,9 +64,9 @@ func NewFiscalYearsWithDefaults() *FiscalYears {
 }
 
 // GetDepreciationRecordMethod returns the DepreciationRecordMethod field value
-func (o *FiscalYears) GetDepreciationRecordMethod() int32 {
+func (o *FiscalYears) GetDepreciationRecordMethod() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -75,15 +75,15 @@ func (o *FiscalYears) GetDepreciationRecordMethod() int32 {
 
 // GetDepreciationRecordMethodOk returns a tuple with the DepreciationRecordMethod field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetDepreciationRecordMethodOk() (*int32, bool) {
-	if o == nil  {
+func (o *FiscalYears) GetDepreciationRecordMethodOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.DepreciationRecordMethod, true
 }
 
 // SetDepreciationRecordMethod sets field value
-func (o *FiscalYears) SetDepreciationRecordMethod(v int32) {
+func (o *FiscalYears) SetDepreciationRecordMethod(v int64) {
 	o.DepreciationRecordMethod = v
 }
 
@@ -132,7 +132,7 @@ func (o *FiscalYears) GetIndirectWriteOffMethod() bool {
 // GetIndirectWriteOffMethodOk returns a tuple with the IndirectWriteOffMethod field value
 // and a boolean to check if the value has been set.
 func (o *FiscalYears) GetIndirectWriteOffMethodOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IndirectWriteOffMethod, true
@@ -144,9 +144,9 @@ func (o *FiscalYears) SetIndirectWriteOffMethod(v bool) {
 }
 
 // GetReturnCode returns the ReturnCode field value
-func (o *FiscalYears) GetReturnCode() int32 {
+func (o *FiscalYears) GetReturnCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -155,22 +155,22 @@ func (o *FiscalYears) GetReturnCode() int32 {
 
 // GetReturnCodeOk returns a tuple with the ReturnCode field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetReturnCodeOk() (*int32, bool) {
-	if o == nil  {
+func (o *FiscalYears) GetReturnCodeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ReturnCode, true
 }
 
 // SetReturnCode sets field value
-func (o *FiscalYears) SetReturnCode(v int32) {
+func (o *FiscalYears) SetReturnCode(v int64) {
 	o.ReturnCode = v
 }
 
 // GetSalesTaxBusinessCode returns the SalesTaxBusinessCode field value
-func (o *FiscalYears) GetSalesTaxBusinessCode() int32 {
+func (o *FiscalYears) GetSalesTaxBusinessCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -179,15 +179,15 @@ func (o *FiscalYears) GetSalesTaxBusinessCode() int32 {
 
 // GetSalesTaxBusinessCodeOk returns a tuple with the SalesTaxBusinessCode field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetSalesTaxBusinessCodeOk() (*int32, bool) {
-	if o == nil  {
+func (o *FiscalYears) GetSalesTaxBusinessCodeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.SalesTaxBusinessCode, true
 }
 
 // SetSalesTaxBusinessCode sets field value
-func (o *FiscalYears) SetSalesTaxBusinessCode(v int32) {
+func (o *FiscalYears) SetSalesTaxBusinessCode(v int64) {
 	o.SalesTaxBusinessCode = v
 }
 
@@ -224,9 +224,9 @@ func (o *FiscalYears) SetStartDate(v string) {
 }
 
 // GetTaxAccountMethod returns the TaxAccountMethod field value
-func (o *FiscalYears) GetTaxAccountMethod() int32 {
+func (o *FiscalYears) GetTaxAccountMethod() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -235,22 +235,22 @@ func (o *FiscalYears) GetTaxAccountMethod() int32 {
 
 // GetTaxAccountMethodOk returns a tuple with the TaxAccountMethod field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetTaxAccountMethodOk() (*int32, bool) {
-	if o == nil  {
+func (o *FiscalYears) GetTaxAccountMethodOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TaxAccountMethod, true
 }
 
 // SetTaxAccountMethod sets field value
-func (o *FiscalYears) SetTaxAccountMethod(v int32) {
+func (o *FiscalYears) SetTaxAccountMethod(v int64) {
 	o.TaxAccountMethod = v
 }
 
 // GetTaxFraction returns the TaxFraction field value
-func (o *FiscalYears) GetTaxFraction() int32 {
+func (o *FiscalYears) GetTaxFraction() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -259,22 +259,22 @@ func (o *FiscalYears) GetTaxFraction() int32 {
 
 // GetTaxFractionOk returns a tuple with the TaxFraction field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetTaxFractionOk() (*int32, bool) {
-	if o == nil  {
+func (o *FiscalYears) GetTaxFractionOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TaxFraction, true
 }
 
 // SetTaxFraction sets field value
-func (o *FiscalYears) SetTaxFraction(v int32) {
+func (o *FiscalYears) SetTaxFraction(v int64) {
 	o.TaxFraction = v
 }
 
 // GetTaxMethod returns the TaxMethod field value
-func (o *FiscalYears) GetTaxMethod() int32 {
+func (o *FiscalYears) GetTaxMethod() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -283,15 +283,15 @@ func (o *FiscalYears) GetTaxMethod() int32 {
 
 // GetTaxMethodOk returns a tuple with the TaxMethod field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetTaxMethodOk() (*int32, bool) {
-	if o == nil  {
+func (o *FiscalYears) GetTaxMethodOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TaxMethod, true
 }
 
 // SetTaxMethod sets field value
-func (o *FiscalYears) SetTaxMethod(v int32) {
+func (o *FiscalYears) SetTaxMethod(v int64) {
 	o.TaxMethod = v
 }
 
@@ -308,7 +308,7 @@ func (o *FiscalYears) GetUseIndustryTemplate() bool {
 // GetUseIndustryTemplateOk returns a tuple with the UseIndustryTemplate field value
 // and a boolean to check if the value has been set.
 func (o *FiscalYears) GetUseIndustryTemplateOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.UseIndustryTemplate, true

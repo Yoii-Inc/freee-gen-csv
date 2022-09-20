@@ -1,3 +1,8 @@
+# openapi-generaterを用いたgo sdkの生成
+```
+openapi-generator generate -g go -i pkg/freeeclient/api/openapi.yaml -o pkg/freeeclient --type-mappings=integer=int64
+```
+
 # 概要
 freeeの取引履歴のうち、売上高のみ取り出しCSV(sales.csv)へ出力する
 

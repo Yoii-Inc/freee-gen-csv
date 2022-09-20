@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | [**[]ServiceUnavailableErrorErrors**](ServiceUnavailableErrorErrors.md) |  | 
-**StatusCode** | **int32** |  | 
+**Errors** | [**[]ServiceUnavailableErrorErrorsInner**](ServiceUnavailableErrorErrorsInner.md) |  | 
+**StatusCode** | **int64** |  | 
 
 ## Methods
 
 ### NewServiceUnavailableError
 
-`func NewServiceUnavailableError(errors []ServiceUnavailableErrorErrors, statusCode int32, ) *ServiceUnavailableError`
+`func NewServiceUnavailableError(errors []ServiceUnavailableErrorErrorsInner, statusCode int64, ) *ServiceUnavailableError`
 
 NewServiceUnavailableError instantiates a new ServiceUnavailableError object
 This constructor will assign default values to properties that have it defined,
@@ -28,40 +28,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *ServiceUnavailableError) GetErrors() []ServiceUnavailableErrorErrors`
+`func (o *ServiceUnavailableError) GetErrors() []ServiceUnavailableErrorErrorsInner`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *ServiceUnavailableError) GetErrorsOk() (*[]ServiceUnavailableErrorErrors, bool)`
+`func (o *ServiceUnavailableError) GetErrorsOk() (*[]ServiceUnavailableErrorErrorsInner, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *ServiceUnavailableError) SetErrors(v []ServiceUnavailableErrorErrors)`
+`func (o *ServiceUnavailableError) SetErrors(v []ServiceUnavailableErrorErrorsInner)`
 
 SetErrors sets Errors field to given value.
 
 
 ### GetStatusCode
 
-`func (o *ServiceUnavailableError) GetStatusCode() int32`
+`func (o *ServiceUnavailableError) GetStatusCode() int64`
 
 GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
 
 ### GetStatusCodeOk
 
-`func (o *ServiceUnavailableError) GetStatusCodeOk() (*int32, bool)`
+`func (o *ServiceUnavailableError) GetStatusCodeOk() (*int64, bool)`
 
 GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusCode
 
-`func (o *ServiceUnavailableError) SetStatusCode(v int32)`
+`func (o *ServiceUnavailableError) SetStatusCode(v int64)`
 
 SetStatusCode sets StatusCode field to given value.
 

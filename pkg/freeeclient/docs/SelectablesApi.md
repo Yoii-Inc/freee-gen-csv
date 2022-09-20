@@ -29,12 +29,12 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     includes := "includes_example" // string | 取得する項目(項目: account_item) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SelectablesApi.GetFormsSelectables(context.Background()).CompanyId(companyId).Includes(includes).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SelectablesApi.GetFormsSelectables(context.Background()).CompanyId(companyId).Includes(includes).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SelectablesApi.GetFormsSelectables``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiGetFormsSelectablesRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **includes** | **string** | 取得する項目(項目: account_item) | 
 
 ### Return type

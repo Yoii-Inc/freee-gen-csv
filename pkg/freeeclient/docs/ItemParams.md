@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Name** | **string** | 品目名 (30文字以内) | 
 **Shortcut1** | Pointer to **string** | ショートカット１ (20文字以内) | [optional] 
 **Shortcut2** | Pointer to **string** | ショートカット２ (20文字以内) | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewItemParams
 
-`func NewItemParams(companyId int32, name string, ) *ItemParams`
+`func NewItemParams(companyId int64, name string, ) *ItemParams`
 
 NewItemParams instantiates a new ItemParams object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *ItemParams) GetCompanyId() int32`
+`func (o *ItemParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *ItemParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *ItemParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *ItemParams) SetCompanyId(v int32)`
+`func (o *ItemParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

@@ -5,19 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int64** | 金額 | 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Date** | **string** | 振替日 (yyyy-mm-dd) | 
 **Description** | Pointer to **string** | 備考 | [optional] 
-**FromWalletableId** | **int32** | 振替元口座ID | 
+**FromWalletableId** | **int64** | 振替元口座ID | 
 **FromWalletableType** | **string** | 振替元口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
-**ToWalletableId** | **int32** | 振替先口座ID | 
+**ToWalletableId** | **int64** | 振替先口座ID | 
 **ToWalletableType** | **string** | 振替先口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
 
 ## Methods
 
 ### NewTransferParams
 
-`func NewTransferParams(amount int64, companyId int32, date string, fromWalletableId int32, fromWalletableType string, toWalletableId int32, toWalletableType string, ) *TransferParams`
+`func NewTransferParams(amount int64, companyId int64, date string, fromWalletableId int64, fromWalletableType string, toWalletableId int64, toWalletableType string, ) *TransferParams`
 
 NewTransferParams instantiates a new TransferParams object
 This constructor will assign default values to properties that have it defined,
@@ -54,20 +54,20 @@ SetAmount sets Amount field to given value.
 
 ### GetCompanyId
 
-`func (o *TransferParams) GetCompanyId() int32`
+`func (o *TransferParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *TransferParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *TransferParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *TransferParams) SetCompanyId(v int32)`
+`func (o *TransferParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -119,20 +119,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetFromWalletableId
 
-`func (o *TransferParams) GetFromWalletableId() int32`
+`func (o *TransferParams) GetFromWalletableId() int64`
 
 GetFromWalletableId returns the FromWalletableId field if non-nil, zero value otherwise.
 
 ### GetFromWalletableIdOk
 
-`func (o *TransferParams) GetFromWalletableIdOk() (*int32, bool)`
+`func (o *TransferParams) GetFromWalletableIdOk() (*int64, bool)`
 
 GetFromWalletableIdOk returns a tuple with the FromWalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFromWalletableId
 
-`func (o *TransferParams) SetFromWalletableId(v int32)`
+`func (o *TransferParams) SetFromWalletableId(v int64)`
 
 SetFromWalletableId sets FromWalletableId field to given value.
 
@@ -159,20 +159,20 @@ SetFromWalletableType sets FromWalletableType field to given value.
 
 ### GetToWalletableId
 
-`func (o *TransferParams) GetToWalletableId() int32`
+`func (o *TransferParams) GetToWalletableId() int64`
 
 GetToWalletableId returns the ToWalletableId field if non-nil, zero value otherwise.
 
 ### GetToWalletableIdOk
 
-`func (o *TransferParams) GetToWalletableIdOk() (*int32, bool)`
+`func (o *TransferParams) GetToWalletableIdOk() (*int64, bool)`
 
 GetToWalletableIdOk returns a tuple with the ToWalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetToWalletableId
 
-`func (o *TransferParams) SetToWalletableId(v int32)`
+`func (o *TransferParams) SetToWalletableId(v int64)`
 
 SetToWalletableId sets ToWalletableId field to given value.
 

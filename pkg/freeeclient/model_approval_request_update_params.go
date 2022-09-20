@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -16,26 +16,25 @@ import (
 
 // ApprovalRequestUpdateParams struct for ApprovalRequestUpdateParams
 type ApprovalRequestUpdateParams struct {
-	// 申請日 (yyyy-mm-dd)
-	ApplicationDate string `json:"application_date"`
+	// 申請日 (yyyy-mm-dd)<br> 指定しない場合は当日の日付が登録されます。 
+	ApplicationDate *string `json:"application_date,omitempty"`
 	// 申請経路ID
-	ApprovalFlowRouteId int32 `json:"approval_flow_route_id"`
+	ApprovalFlowRouteId int64 `json:"approval_flow_route_id"`
 	// 承認者のユーザーID
-	ApproverId *int32 `json:"approver_id,omitempty"`
+	ApproverId *int64 `json:"approver_id,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
-	// falseの時、in_progress:申請中で更新する。それ以外の時はdraft:下書きで更新する
+	CompanyId int64 `json:"company_id"`
+	// 各種申請のステータス<br> falseを指定した時は申請中（in_progress）で各種申請を更新します。<br> trueを指定した時は下書き（draft）で各種申請を更新します。 
 	Draft bool `json:"draft"`
-	RequestItems []ApprovalRequestCreateParamsRequestItems `json:"request_items"`
+	RequestItems []ApprovalRequestCreateParamsRequestItemsInner `json:"request_items"`
 }
 
 // NewApprovalRequestUpdateParams instantiates a new ApprovalRequestUpdateParams object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestUpdateParams(applicationDate string, approvalFlowRouteId int32, companyId int32, draft bool, requestItems []ApprovalRequestCreateParamsRequestItems) *ApprovalRequestUpdateParams {
+func NewApprovalRequestUpdateParams(approvalFlowRouteId int64, companyId int64, draft bool, requestItems []ApprovalRequestCreateParamsRequestItemsInner) *ApprovalRequestUpdateParams {
 	this := ApprovalRequestUpdateParams{}
-	this.ApplicationDate = applicationDate
 	this.ApprovalFlowRouteId = approvalFlowRouteId
 	this.CompanyId = companyId
 	this.Draft = draft
@@ -51,34 +50,42 @@ func NewApprovalRequestUpdateParamsWithDefaults() *ApprovalRequestUpdateParams {
 	return &this
 }
 
-// GetApplicationDate returns the ApplicationDate field value
+// GetApplicationDate returns the ApplicationDate field value if set, zero value otherwise.
 func (o *ApprovalRequestUpdateParams) GetApplicationDate() string {
-	if o == nil {
+	if o == nil || o.ApplicationDate == nil {
 		var ret string
 		return ret
 	}
-
-	return o.ApplicationDate
+	return *o.ApplicationDate
 }
 
-// GetApplicationDateOk returns a tuple with the ApplicationDate field value
+// GetApplicationDateOk returns a tuple with the ApplicationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestUpdateParams) GetApplicationDateOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.ApplicationDate == nil {
 		return nil, false
 	}
-	return &o.ApplicationDate, true
+	return o.ApplicationDate, true
 }
 
-// SetApplicationDate sets field value
+// HasApplicationDate returns a boolean if a field has been set.
+func (o *ApprovalRequestUpdateParams) HasApplicationDate() bool {
+	if o != nil && o.ApplicationDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationDate gets a reference to the given string and assigns it to the ApplicationDate field.
 func (o *ApprovalRequestUpdateParams) SetApplicationDate(v string) {
-	o.ApplicationDate = v
+	o.ApplicationDate = &v
 }
 
 // GetApprovalFlowRouteId returns the ApprovalFlowRouteId field value
-func (o *ApprovalRequestUpdateParams) GetApprovalFlowRouteId() int32 {
+func (o *ApprovalRequestUpdateParams) GetApprovalFlowRouteId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -87,22 +94,22 @@ func (o *ApprovalRequestUpdateParams) GetApprovalFlowRouteId() int32 {
 
 // GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestUpdateParams) GetApprovalFlowRouteIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *ApprovalRequestUpdateParams) GetApprovalFlowRouteIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApprovalFlowRouteId, true
 }
 
 // SetApprovalFlowRouteId sets field value
-func (o *ApprovalRequestUpdateParams) SetApprovalFlowRouteId(v int32) {
+func (o *ApprovalRequestUpdateParams) SetApprovalFlowRouteId(v int64) {
 	o.ApprovalFlowRouteId = v
 }
 
 // GetApproverId returns the ApproverId field value if set, zero value otherwise.
-func (o *ApprovalRequestUpdateParams) GetApproverId() int32 {
+func (o *ApprovalRequestUpdateParams) GetApproverId() int64 {
 	if o == nil || o.ApproverId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApproverId
@@ -110,7 +117,7 @@ func (o *ApprovalRequestUpdateParams) GetApproverId() int32 {
 
 // GetApproverIdOk returns a tuple with the ApproverId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestUpdateParams) GetApproverIdOk() (*int32, bool) {
+func (o *ApprovalRequestUpdateParams) GetApproverIdOk() (*int64, bool) {
 	if o == nil || o.ApproverId == nil {
 		return nil, false
 	}
@@ -126,15 +133,15 @@ func (o *ApprovalRequestUpdateParams) HasApproverId() bool {
 	return false
 }
 
-// SetApproverId gets a reference to the given int32 and assigns it to the ApproverId field.
-func (o *ApprovalRequestUpdateParams) SetApproverId(v int32) {
+// SetApproverId gets a reference to the given int64 and assigns it to the ApproverId field.
+func (o *ApprovalRequestUpdateParams) SetApproverId(v int64) {
 	o.ApproverId = &v
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ApprovalRequestUpdateParams) GetCompanyId() int32 {
+func (o *ApprovalRequestUpdateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -143,15 +150,15 @@ func (o *ApprovalRequestUpdateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestUpdateParams) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *ApprovalRequestUpdateParams) GetCompanyIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
 }
 
 // SetCompanyId sets field value
-func (o *ApprovalRequestUpdateParams) SetCompanyId(v int32) {
+func (o *ApprovalRequestUpdateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -168,7 +175,7 @@ func (o *ApprovalRequestUpdateParams) GetDraft() bool {
 // GetDraftOk returns a tuple with the Draft field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestUpdateParams) GetDraftOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Draft, true
@@ -180,9 +187,9 @@ func (o *ApprovalRequestUpdateParams) SetDraft(v bool) {
 }
 
 // GetRequestItems returns the RequestItems field value
-func (o *ApprovalRequestUpdateParams) GetRequestItems() []ApprovalRequestCreateParamsRequestItems {
+func (o *ApprovalRequestUpdateParams) GetRequestItems() []ApprovalRequestCreateParamsRequestItemsInner {
 	if o == nil {
-		var ret []ApprovalRequestCreateParamsRequestItems
+		var ret []ApprovalRequestCreateParamsRequestItemsInner
 		return ret
 	}
 
@@ -191,21 +198,21 @@ func (o *ApprovalRequestUpdateParams) GetRequestItems() []ApprovalRequestCreateP
 
 // GetRequestItemsOk returns a tuple with the RequestItems field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestUpdateParams) GetRequestItemsOk() (*[]ApprovalRequestCreateParamsRequestItems, bool) {
-	if o == nil  {
+func (o *ApprovalRequestUpdateParams) GetRequestItemsOk() ([]ApprovalRequestCreateParamsRequestItemsInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.RequestItems, true
+	return o.RequestItems, true
 }
 
 // SetRequestItems sets field value
-func (o *ApprovalRequestUpdateParams) SetRequestItems(v []ApprovalRequestCreateParamsRequestItems) {
+func (o *ApprovalRequestUpdateParams) SetRequestItems(v []ApprovalRequestCreateParamsRequestItemsInner) {
 	o.RequestItems = v
 }
 
 func (o ApprovalRequestUpdateParams) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.ApplicationDate != nil {
 		toSerialize["application_date"] = o.ApplicationDate
 	}
 	if true {

@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -16,55 +16,63 @@ import (
 
 // CompanyResponseCompany struct for CompanyResponseCompany
 type CompanyResponseCompany struct {
+	Tags []CompanyResponseCompanyTagsInner `json:"tags,omitempty"`
+	AccountItems []CompanyResponseCompanyAccountItemsInner `json:"account_items,omitempty"`
 	// 金額端数処理方法（0: 切り捨て、1: 切り上げ、2: 四捨五入）
-	AmountFraction int32 `json:"amount_fraction"`
+	AmountFraction int64 `json:"amount_fraction"`
 	// 担当者名 (50文字以内)
 	ContactName NullableString `json:"contact_name"`
 	// 法人番号 (半角数字13桁、法人のみ)
 	CorporateNumber string `json:"corporate_number"`
 	// 決済口座のデフォルト
-	DefaultWalletAccountId *int32 `json:"default_wallet_account_id,omitempty"`
+	DefaultWalletAccountId *int64 `json:"default_wallet_account_id,omitempty"`
 	// 事業所名
 	DisplayName string `json:"display_name"`
 	// FAX
 	Fax NullableString `json:"fax"`
 	FiscalYears []FiscalYears `json:"fiscal_years"`
 	// 従業員数（0: 経営者のみ、1: 2~5人、2: 6~10人、3: 11~20人、4: 21~30人、5: 31~40人、6: 41~100人、7: 100人以上
-	HeadCount NullableInt32 `json:"head_count"`
+	HeadCount NullableInt64 `json:"head_count"`
 	// 事業所ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 種別（agriculture_forestry_fisheries_ore: 農林水産業/鉱業、construction: 建設、manufacturing_processing: 製造/加工、it: IT、transportation_logistics: 運輸/物流、retail_wholesale: 小売/卸売、finance_insurance: 金融/保険、real_estate_rental: 不動産/レンタル、profession: 士業/学術/専門技術サービス、design_production: デザイン/制作、food: 飲食、leisure_entertainment: レジャー/娯楽、lifestyle: 生活関連サービス、education: 教育/学習支援、medical_welfare: 医療/福祉、other_services: その他サービス、other: その他）
 	IndustryClass string `json:"industry_class"`
 	// 業種（agriculture: 農業, forestry: 林業, fishing_industry: 漁業、水産養殖業, mining: 鉱業、採石業、砂利採取業, civil_contractors: 土木工事業, pavement: 舗装工事業, carpenter: とび、大工、左官等の建設工事業, renovation: リフォーム工事業, electrical_plumbing: 電気、管工事等の設備工事業, grocery: 食料品の製造加工業, machinery_manufacturing: 機械器具の製造加工業, printing: 印刷業, other_manufacturing: その他の製造加工業, software_development: 受託：ソフトウェア、アプリ開発業, system_development: 受託：システム開発業, survey_analysis: 受託：調査、分析等の情報処理業, server_management: 受託：サーバー運営管理, website_production: 受託：ウェブサイト制作, online_service_management: オンラインサービス運営業, online_advertising_agency: オンライン広告代理店業, online_advertising_planning_production: オンライン広告企画・制作業, online_media_management: オンラインメディア運営業, portal_site_management: ポータルサイト運営業, other_it_services: その他、IT サービス業, transport_delivery: 輸送業、配送業, delivery: バイク便等の配達業, other_transportation_logistics: その他の運輸業、物流業, other_wholesale: 卸売業：その他, clothing_wholesale_fiber: 卸売業：衣類卸売／繊維, food_wholesale: 卸売業：飲食料品, entrusted_development_wholesale: 卸売業：機械器具, online_shop: 小売業：無店舗　オンラインショップ, fashion_grocery_store: 小売業：店舗あり　ファッション、雑貨, food_store: 小売業：店舗あり　生鮮食品、飲食料品, entrusted_store: 小売業：店舗あり　機械、器具, other_store: 小売業：店舗あり　その他, financial_instruments_exchange: 金融業：金融商品取引, commodity_futures_investment_advisor: 金融業：商品先物取引、商品投資顧問, other_financial: 金融業：その他, brokerage_insurance: 保険業：仲介、代理, other_insurance: 保険業：その他, real_estate_developer: 不動産業：ディベロッパー, real_estate_brokerage: 不動産業：売買、仲介, rent_coin_parking_management: 不動産業：賃貸、コインパーキング、管理, rental_office_co_working_space: 不動産業：レンタルオフィス、コワーキングスペース, rental_lease: レンタル業、リース業, cpa_tax_accountant: 士業：公認会計士事務所、税理士事務所, law_office: 士業：法律事務所, judicial_and_administrative_scrivener: 士業：司法書士事務所／行政書士事務所, labor_consultant: 士業：社会保険労務士事務所, other_profession: 士業：その他, business_consultant: 経営コンサルタント, academic_research_development: 学術・開発研究機関, advertising_agency: 広告代理店, advertising_planning_production: 広告企画／制作, design_development: ソフトウェア、アプリ開発業（受託）, apparel_industry_design: 服飾デザイン業、工業デザイン業, website_design: ウェブサイト制作（受託）, advertising_planning_design: 広告企画／制作業, other_design: その他、デザイン／制作, restaurants_coffee_shops: レストラン、喫茶店等の飲食店業, sale_of_lunch: 弁当の販売業, bread_confectionery_manufacture_sale: パン、菓子等の製造販売業, delivery_catering_mobile_catering: デリバリー業、ケータリング業、移動販売業, hotel_inn: 宿泊業：ホテル、旅館, homestay: 宿泊業：民泊, travel_agency: 旅行代理店業, leisure_sports_facility_management: レジャー、スポーツ等の施設運営業, show_event_management: ショー、イベント等の興行、イベント運営業, barber: ビューティ、ヘルスケア業：床屋、理容室, beauty_salon: ビューティ、ヘルスケア業：美容室, spa_sand_bath_sauna: ビューティ、ヘルスケア業：スパ、砂風呂、サウナ等, este_ail_salon: ビューティ、ヘルスケア業：その他、エステサロン、ネイルサロン等, bridal_planning_introduce_wedding: 冠婚葬祭業：ブライダルプランニング、結婚式場紹介等, memorial_ceremony_funeral: 冠婚葬祭業：メモリアルセレモニー、葬儀等, moving: 引っ越し業, courier_industry: 宅配業, house_maid_cleaning_agency: 家事代行サービス業：無店舗　ハウスメイド、掃除代行等, re_tailoring_clothes: 家事代行サービス業：店舗あり　衣類修理、衣類仕立て直し等, training_institute_management: 研修所等の施設運営業, tutoring_school: 学習塾、進学塾等の教育・学習支援業, music_calligraphy_abacus_classroom: 音楽教室、書道教室、そろばん教室等のの教育・学習支援業, english_school: 英会話スクール等の語学学習支援業, tennis_yoga_judo_school: テニススクール、ヨガ教室、柔道場等のスポーツ指導、支援業, culture_school: その他、カルチャースクール等の教育・学習支援業, seminar_planning_management: セミナー等の企画、運営業, hospital_clinic: 医療業：病院、一般診療所、クリニック等, dental_clinic: 医療業：歯科診療所, other_medical_services: 医療業：その他、医療サービス等, nursery: 福祉業：保育所等、児童向け施設型サービス, nursing_home: 福祉業：老人ホーム等、老人向け施設型サービス, rehabilitation_support_services: 福祉業：療育支援サービス等、障害者等向け施設型サービス, other_welfare: 福祉業：その他、施設型福祉サービス, visit_welfare_service: 福祉業：訪問型福祉サービス, recruitment_temporary_staffing: 人材紹介業、人材派遣業, life_related_recruitment_temporary_staffing: 生活関連サービスの人材紹介業、人材派遣業, car_maintenance_car_repair: 自動車整備業、自動車修理業, machinery_equipment_maintenance_repair: 機械機器類の整備業、修理業, cleaning_maintenance_building_management: 清掃業、メンテナンス業、建物管理業, security: 警備業, other_services: その他のサービス業, npo: NPO, general_incorporated_association: 一般社団法人, general_incorporated_foundation: 一般財団法人, other_association: その他組織)
 	IndustryCode string `json:"industry_code"`
 	// 請求書レイアウト * `default_classic` - レイアウト１/クラシック (デフォルト)  * `standard_classic` - レイアウト２/クラシック  * `envelope_classic` - 封筒１/クラシック  * `carried_forward_standard_classic` - レイアウト３（繰越金額欄あり）/クラシック  * `carried_forward_envelope_classic` - 封筒２（繰越金額欄あり）/クラシック  * `default_modern` - レイアウト１/モダン  * `standard_modern` - レイアウト２/モダン  * `envelope_modern` - 封筒/モダン
 	InvoiceLayout string `json:"invoice_layout"`
+	Items []CompanyResponseCompanyItemsInner `json:"items,omitempty"`
 	// マイナスの表示方法（0: -、 1: △）
-	MinusFormat int32 `json:"minus_format"`
+	MinusFormat int64 `json:"minus_format"`
 	// 事業所の正式名称 (100文字以内)
 	Name NullableString `json:"name"`
 	// 正式名称フリガナ (100文字以内)
 	NameKana NullableString `json:"name_kana"`
+	Partners []CompanyResponseCompanyPartnersInner `json:"partners,omitempty"`
 	// 電話番号１
-	Phone1 string `json:"phone1"`
+	Phone1 NullableString `json:"phone1"`
 	// 電話番号２
 	Phone2 NullableString `json:"phone2"`
 	// 都道府県コード（-1: 設定しない、0: 北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄
-	PrefectureCode NullableInt32 `json:"prefecture_code"`
+	PrefectureCode NullableInt64 `json:"prefecture_code"`
 	// プライベート資金/役員資金（false: 使用しない、true: 使用する）
 	PrivateSettlement bool `json:"private_settlement"`
 	// ユーザーの権限
 	Role string `json:"role"`
+	Sections []CompanyResponseCompanySectionsInner `json:"sections,omitempty"`
 	// 市区町村・番地
 	StreetName1 string `json:"street_name1"`
 	// 建物名・部屋番号など
 	StreetName2 string `json:"street_name2"`
 	// 源泉徴収税計算（0: 消費税を含める、1: 消費税を含めない）
-	TaxAtSourceCalcType int32 `json:"tax_at_source_calc_type"`
+	TaxAtSourceCalcType int64 `json:"tax_at_source_calc_type"`
+	TaxCodes []CompanyResponseCompanyTaxCodesInner `json:"tax_codes,omitempty"`
+	Taxes []CompanyResponseCompanyTaxesInner `json:"taxes,omitempty"`
 	// 仕訳番号形式（not_used: 使用しない、digits: 数字（例：5091824）、alnum: 英数字（例：59J0P））
 	TxnNumberFormat string `json:"txn_number_format"`
 	// 取引先コードの利用設定（true: 有効、 false: 無効）
 	UsePartnerCode bool `json:"use_partner_code"`
+	Walletables []CompanyResponseCompanyWalletablesInner `json:"walletables,omitempty"`
 	// 仕訳承認フロー（enable: 有効、 disable: 無効）
 	WorkflowSetting string `json:"workflow_setting"`
 	// 郵便番号
@@ -75,7 +83,7 @@ type CompanyResponseCompany struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompanyResponseCompany(amountFraction int32, contactName NullableString, corporateNumber string, displayName string, fax NullableString, fiscalYears []FiscalYears, headCount NullableInt32, id int32, industryClass string, industryCode string, invoiceLayout string, minusFormat int32, name NullableString, nameKana NullableString, phone1 string, phone2 NullableString, prefectureCode NullableInt32, privateSettlement bool, role string, streetName1 string, streetName2 string, taxAtSourceCalcType int32, txnNumberFormat string, usePartnerCode bool, workflowSetting string, zipcode string) *CompanyResponseCompany {
+func NewCompanyResponseCompany(amountFraction int64, contactName NullableString, corporateNumber string, displayName string, fax NullableString, fiscalYears []FiscalYears, headCount NullableInt64, id int64, industryClass string, industryCode string, invoiceLayout string, minusFormat int64, name NullableString, nameKana NullableString, phone1 NullableString, phone2 NullableString, prefectureCode NullableInt64, privateSettlement bool, role string, streetName1 string, streetName2 string, taxAtSourceCalcType int64, txnNumberFormat string, usePartnerCode bool, workflowSetting string, zipcode string) *CompanyResponseCompany {
 	this := CompanyResponseCompany{}
 	this.AmountFraction = amountFraction
 	this.ContactName = contactName
@@ -114,10 +122,74 @@ func NewCompanyResponseCompanyWithDefaults() *CompanyResponseCompany {
 	return &this
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetTags() []CompanyResponseCompanyTagsInner {
+	if o == nil || o.Tags == nil {
+		var ret []CompanyResponseCompanyTagsInner
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetTagsOk() ([]CompanyResponseCompanyTagsInner, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasTags() bool {
+	if o != nil && o.Tags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []CompanyResponseCompanyTagsInner and assigns it to the Tags field.
+func (o *CompanyResponseCompany) SetTags(v []CompanyResponseCompanyTagsInner) {
+	o.Tags = v
+}
+
+// GetAccountItems returns the AccountItems field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetAccountItems() []CompanyResponseCompanyAccountItemsInner {
+	if o == nil || o.AccountItems == nil {
+		var ret []CompanyResponseCompanyAccountItemsInner
+		return ret
+	}
+	return o.AccountItems
+}
+
+// GetAccountItemsOk returns a tuple with the AccountItems field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetAccountItemsOk() ([]CompanyResponseCompanyAccountItemsInner, bool) {
+	if o == nil || o.AccountItems == nil {
+		return nil, false
+	}
+	return o.AccountItems, true
+}
+
+// HasAccountItems returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasAccountItems() bool {
+	if o != nil && o.AccountItems != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountItems gets a reference to the given []CompanyResponseCompanyAccountItemsInner and assigns it to the AccountItems field.
+func (o *CompanyResponseCompany) SetAccountItems(v []CompanyResponseCompanyAccountItemsInner) {
+	o.AccountItems = v
+}
+
 // GetAmountFraction returns the AmountFraction field value
-func (o *CompanyResponseCompany) GetAmountFraction() int32 {
+func (o *CompanyResponseCompany) GetAmountFraction() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -126,15 +198,15 @@ func (o *CompanyResponseCompany) GetAmountFraction() int32 {
 
 // GetAmountFractionOk returns a tuple with the AmountFraction field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompany) GetAmountFractionOk() (*int32, bool) {
-	if o == nil  {
+func (o *CompanyResponseCompany) GetAmountFractionOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.AmountFraction, true
 }
 
 // SetAmountFraction sets field value
-func (o *CompanyResponseCompany) SetAmountFraction(v int32) {
+func (o *CompanyResponseCompany) SetAmountFraction(v int64) {
 	o.AmountFraction = v
 }
 
@@ -153,7 +225,7 @@ func (o *CompanyResponseCompany) GetContactName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponseCompany) GetContactNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.ContactName.Get(), o.ContactName.IsSet()
@@ -177,7 +249,7 @@ func (o *CompanyResponseCompany) GetCorporateNumber() string {
 // GetCorporateNumberOk returns a tuple with the CorporateNumber field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetCorporateNumberOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CorporateNumber, true
@@ -189,9 +261,9 @@ func (o *CompanyResponseCompany) SetCorporateNumber(v string) {
 }
 
 // GetDefaultWalletAccountId returns the DefaultWalletAccountId field value if set, zero value otherwise.
-func (o *CompanyResponseCompany) GetDefaultWalletAccountId() int32 {
+func (o *CompanyResponseCompany) GetDefaultWalletAccountId() int64 {
 	if o == nil || o.DefaultWalletAccountId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultWalletAccountId
@@ -199,7 +271,7 @@ func (o *CompanyResponseCompany) GetDefaultWalletAccountId() int32 {
 
 // GetDefaultWalletAccountIdOk returns a tuple with the DefaultWalletAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompany) GetDefaultWalletAccountIdOk() (*int32, bool) {
+func (o *CompanyResponseCompany) GetDefaultWalletAccountIdOk() (*int64, bool) {
 	if o == nil || o.DefaultWalletAccountId == nil {
 		return nil, false
 	}
@@ -215,8 +287,8 @@ func (o *CompanyResponseCompany) HasDefaultWalletAccountId() bool {
 	return false
 }
 
-// SetDefaultWalletAccountId gets a reference to the given int32 and assigns it to the DefaultWalletAccountId field.
-func (o *CompanyResponseCompany) SetDefaultWalletAccountId(v int32) {
+// SetDefaultWalletAccountId gets a reference to the given int64 and assigns it to the DefaultWalletAccountId field.
+func (o *CompanyResponseCompany) SetDefaultWalletAccountId(v int64) {
 	o.DefaultWalletAccountId = &v
 }
 
@@ -233,7 +305,7 @@ func (o *CompanyResponseCompany) GetDisplayName() string {
 // GetDisplayNameOk returns a tuple with the DisplayName field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetDisplayNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.DisplayName, true
@@ -259,7 +331,7 @@ func (o *CompanyResponseCompany) GetFax() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponseCompany) GetFaxOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Fax.Get(), o.Fax.IsSet()
@@ -282,11 +354,11 @@ func (o *CompanyResponseCompany) GetFiscalYears() []FiscalYears {
 
 // GetFiscalYearsOk returns a tuple with the FiscalYears field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompany) GetFiscalYearsOk() (*[]FiscalYears, bool) {
-	if o == nil  {
+func (o *CompanyResponseCompany) GetFiscalYearsOk() ([]FiscalYears, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.FiscalYears, true
+	return o.FiscalYears, true
 }
 
 // SetFiscalYears sets field value
@@ -295,10 +367,10 @@ func (o *CompanyResponseCompany) SetFiscalYears(v []FiscalYears) {
 }
 
 // GetHeadCount returns the HeadCount field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *CompanyResponseCompany) GetHeadCount() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *CompanyResponseCompany) GetHeadCount() int64 {
 	if o == nil || o.HeadCount.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -308,22 +380,22 @@ func (o *CompanyResponseCompany) GetHeadCount() int32 {
 // GetHeadCountOk returns a tuple with the HeadCount field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CompanyResponseCompany) GetHeadCountOk() (*int32, bool) {
-	if o == nil  {
+func (o *CompanyResponseCompany) GetHeadCountOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.HeadCount.Get(), o.HeadCount.IsSet()
 }
 
 // SetHeadCount sets field value
-func (o *CompanyResponseCompany) SetHeadCount(v int32) {
+func (o *CompanyResponseCompany) SetHeadCount(v int64) {
 	o.HeadCount.Set(&v)
 }
 
 // GetId returns the Id field value
-func (o *CompanyResponseCompany) GetId() int32 {
+func (o *CompanyResponseCompany) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -332,15 +404,15 @@ func (o *CompanyResponseCompany) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompany) GetIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *CompanyResponseCompany) GetIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *CompanyResponseCompany) SetId(v int32) {
+func (o *CompanyResponseCompany) SetId(v int64) {
 	o.Id = v
 }
 
@@ -357,7 +429,7 @@ func (o *CompanyResponseCompany) GetIndustryClass() string {
 // GetIndustryClassOk returns a tuple with the IndustryClass field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetIndustryClassOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IndustryClass, true
@@ -381,7 +453,7 @@ func (o *CompanyResponseCompany) GetIndustryCode() string {
 // GetIndustryCodeOk returns a tuple with the IndustryCode field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetIndustryCodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IndustryCode, true
@@ -405,7 +477,7 @@ func (o *CompanyResponseCompany) GetInvoiceLayout() string {
 // GetInvoiceLayoutOk returns a tuple with the InvoiceLayout field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetInvoiceLayoutOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.InvoiceLayout, true
@@ -416,10 +488,42 @@ func (o *CompanyResponseCompany) SetInvoiceLayout(v string) {
 	o.InvoiceLayout = v
 }
 
+// GetItems returns the Items field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetItems() []CompanyResponseCompanyItemsInner {
+	if o == nil || o.Items == nil {
+		var ret []CompanyResponseCompanyItemsInner
+		return ret
+	}
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetItemsOk() ([]CompanyResponseCompanyItemsInner, bool) {
+	if o == nil || o.Items == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// HasItems returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasItems() bool {
+	if o != nil && o.Items != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetItems gets a reference to the given []CompanyResponseCompanyItemsInner and assigns it to the Items field.
+func (o *CompanyResponseCompany) SetItems(v []CompanyResponseCompanyItemsInner) {
+	o.Items = v
+}
+
 // GetMinusFormat returns the MinusFormat field value
-func (o *CompanyResponseCompany) GetMinusFormat() int32 {
+func (o *CompanyResponseCompany) GetMinusFormat() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -428,15 +532,15 @@ func (o *CompanyResponseCompany) GetMinusFormat() int32 {
 
 // GetMinusFormatOk returns a tuple with the MinusFormat field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompany) GetMinusFormatOk() (*int32, bool) {
-	if o == nil  {
+func (o *CompanyResponseCompany) GetMinusFormatOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.MinusFormat, true
 }
 
 // SetMinusFormat sets field value
-func (o *CompanyResponseCompany) SetMinusFormat(v int32) {
+func (o *CompanyResponseCompany) SetMinusFormat(v int64) {
 	o.MinusFormat = v
 }
 
@@ -455,7 +559,7 @@ func (o *CompanyResponseCompany) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponseCompany) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -481,7 +585,7 @@ func (o *CompanyResponseCompany) GetNameKana() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponseCompany) GetNameKanaOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.NameKana.Get(), o.NameKana.IsSet()
@@ -492,28 +596,62 @@ func (o *CompanyResponseCompany) SetNameKana(v string) {
 	o.NameKana.Set(&v)
 }
 
+// GetPartners returns the Partners field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetPartners() []CompanyResponseCompanyPartnersInner {
+	if o == nil || o.Partners == nil {
+		var ret []CompanyResponseCompanyPartnersInner
+		return ret
+	}
+	return o.Partners
+}
+
+// GetPartnersOk returns a tuple with the Partners field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetPartnersOk() ([]CompanyResponseCompanyPartnersInner, bool) {
+	if o == nil || o.Partners == nil {
+		return nil, false
+	}
+	return o.Partners, true
+}
+
+// HasPartners returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasPartners() bool {
+	if o != nil && o.Partners != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPartners gets a reference to the given []CompanyResponseCompanyPartnersInner and assigns it to the Partners field.
+func (o *CompanyResponseCompany) SetPartners(v []CompanyResponseCompanyPartnersInner) {
+	o.Partners = v
+}
+
 // GetPhone1 returns the Phone1 field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CompanyResponseCompany) GetPhone1() string {
-	if o == nil {
+	if o == nil || o.Phone1.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Phone1
+	return *o.Phone1.Get()
 }
 
 // GetPhone1Ok returns a tuple with the Phone1 field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponseCompany) GetPhone1Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Phone1, true
+	return o.Phone1.Get(), o.Phone1.IsSet()
 }
 
 // SetPhone1 sets field value
 func (o *CompanyResponseCompany) SetPhone1(v string) {
-	o.Phone1 = v
+	o.Phone1.Set(&v)
 }
 
 // GetPhone2 returns the Phone2 field value
@@ -531,7 +669,7 @@ func (o *CompanyResponseCompany) GetPhone2() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponseCompany) GetPhone2Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Phone2.Get(), o.Phone2.IsSet()
@@ -543,10 +681,10 @@ func (o *CompanyResponseCompany) SetPhone2(v string) {
 }
 
 // GetPrefectureCode returns the PrefectureCode field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *CompanyResponseCompany) GetPrefectureCode() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *CompanyResponseCompany) GetPrefectureCode() int64 {
 	if o == nil || o.PrefectureCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -556,15 +694,15 @@ func (o *CompanyResponseCompany) GetPrefectureCode() int32 {
 // GetPrefectureCodeOk returns a tuple with the PrefectureCode field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CompanyResponseCompany) GetPrefectureCodeOk() (*int32, bool) {
-	if o == nil  {
+func (o *CompanyResponseCompany) GetPrefectureCodeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.PrefectureCode.Get(), o.PrefectureCode.IsSet()
 }
 
 // SetPrefectureCode sets field value
-func (o *CompanyResponseCompany) SetPrefectureCode(v int32) {
+func (o *CompanyResponseCompany) SetPrefectureCode(v int64) {
 	o.PrefectureCode.Set(&v)
 }
 
@@ -581,7 +719,7 @@ func (o *CompanyResponseCompany) GetPrivateSettlement() bool {
 // GetPrivateSettlementOk returns a tuple with the PrivateSettlement field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetPrivateSettlementOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.PrivateSettlement, true
@@ -605,7 +743,7 @@ func (o *CompanyResponseCompany) GetRole() string {
 // GetRoleOk returns a tuple with the Role field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetRoleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Role, true
@@ -614,6 +752,38 @@ func (o *CompanyResponseCompany) GetRoleOk() (*string, bool) {
 // SetRole sets field value
 func (o *CompanyResponseCompany) SetRole(v string) {
 	o.Role = v
+}
+
+// GetSections returns the Sections field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetSections() []CompanyResponseCompanySectionsInner {
+	if o == nil || o.Sections == nil {
+		var ret []CompanyResponseCompanySectionsInner
+		return ret
+	}
+	return o.Sections
+}
+
+// GetSectionsOk returns a tuple with the Sections field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetSectionsOk() ([]CompanyResponseCompanySectionsInner, bool) {
+	if o == nil || o.Sections == nil {
+		return nil, false
+	}
+	return o.Sections, true
+}
+
+// HasSections returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasSections() bool {
+	if o != nil && o.Sections != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSections gets a reference to the given []CompanyResponseCompanySectionsInner and assigns it to the Sections field.
+func (o *CompanyResponseCompany) SetSections(v []CompanyResponseCompanySectionsInner) {
+	o.Sections = v
 }
 
 // GetStreetName1 returns the StreetName1 field value
@@ -629,7 +799,7 @@ func (o *CompanyResponseCompany) GetStreetName1() string {
 // GetStreetName1Ok returns a tuple with the StreetName1 field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetStreetName1Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.StreetName1, true
@@ -653,7 +823,7 @@ func (o *CompanyResponseCompany) GetStreetName2() string {
 // GetStreetName2Ok returns a tuple with the StreetName2 field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetStreetName2Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.StreetName2, true
@@ -665,9 +835,9 @@ func (o *CompanyResponseCompany) SetStreetName2(v string) {
 }
 
 // GetTaxAtSourceCalcType returns the TaxAtSourceCalcType field value
-func (o *CompanyResponseCompany) GetTaxAtSourceCalcType() int32 {
+func (o *CompanyResponseCompany) GetTaxAtSourceCalcType() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -676,16 +846,80 @@ func (o *CompanyResponseCompany) GetTaxAtSourceCalcType() int32 {
 
 // GetTaxAtSourceCalcTypeOk returns a tuple with the TaxAtSourceCalcType field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompany) GetTaxAtSourceCalcTypeOk() (*int32, bool) {
-	if o == nil  {
+func (o *CompanyResponseCompany) GetTaxAtSourceCalcTypeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TaxAtSourceCalcType, true
 }
 
 // SetTaxAtSourceCalcType sets field value
-func (o *CompanyResponseCompany) SetTaxAtSourceCalcType(v int32) {
+func (o *CompanyResponseCompany) SetTaxAtSourceCalcType(v int64) {
 	o.TaxAtSourceCalcType = v
+}
+
+// GetTaxCodes returns the TaxCodes field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetTaxCodes() []CompanyResponseCompanyTaxCodesInner {
+	if o == nil || o.TaxCodes == nil {
+		var ret []CompanyResponseCompanyTaxCodesInner
+		return ret
+	}
+	return o.TaxCodes
+}
+
+// GetTaxCodesOk returns a tuple with the TaxCodes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetTaxCodesOk() ([]CompanyResponseCompanyTaxCodesInner, bool) {
+	if o == nil || o.TaxCodes == nil {
+		return nil, false
+	}
+	return o.TaxCodes, true
+}
+
+// HasTaxCodes returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasTaxCodes() bool {
+	if o != nil && o.TaxCodes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxCodes gets a reference to the given []CompanyResponseCompanyTaxCodesInner and assigns it to the TaxCodes field.
+func (o *CompanyResponseCompany) SetTaxCodes(v []CompanyResponseCompanyTaxCodesInner) {
+	o.TaxCodes = v
+}
+
+// GetTaxes returns the Taxes field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetTaxes() []CompanyResponseCompanyTaxesInner {
+	if o == nil || o.Taxes == nil {
+		var ret []CompanyResponseCompanyTaxesInner
+		return ret
+	}
+	return o.Taxes
+}
+
+// GetTaxesOk returns a tuple with the Taxes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetTaxesOk() ([]CompanyResponseCompanyTaxesInner, bool) {
+	if o == nil || o.Taxes == nil {
+		return nil, false
+	}
+	return o.Taxes, true
+}
+
+// HasTaxes returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasTaxes() bool {
+	if o != nil && o.Taxes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxes gets a reference to the given []CompanyResponseCompanyTaxesInner and assigns it to the Taxes field.
+func (o *CompanyResponseCompany) SetTaxes(v []CompanyResponseCompanyTaxesInner) {
+	o.Taxes = v
 }
 
 // GetTxnNumberFormat returns the TxnNumberFormat field value
@@ -701,7 +935,7 @@ func (o *CompanyResponseCompany) GetTxnNumberFormat() string {
 // GetTxnNumberFormatOk returns a tuple with the TxnNumberFormat field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetTxnNumberFormatOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TxnNumberFormat, true
@@ -725,7 +959,7 @@ func (o *CompanyResponseCompany) GetUsePartnerCode() bool {
 // GetUsePartnerCodeOk returns a tuple with the UsePartnerCode field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetUsePartnerCodeOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.UsePartnerCode, true
@@ -734,6 +968,38 @@ func (o *CompanyResponseCompany) GetUsePartnerCodeOk() (*bool, bool) {
 // SetUsePartnerCode sets field value
 func (o *CompanyResponseCompany) SetUsePartnerCode(v bool) {
 	o.UsePartnerCode = v
+}
+
+// GetWalletables returns the Walletables field value if set, zero value otherwise.
+func (o *CompanyResponseCompany) GetWalletables() []CompanyResponseCompanyWalletablesInner {
+	if o == nil || o.Walletables == nil {
+		var ret []CompanyResponseCompanyWalletablesInner
+		return ret
+	}
+	return o.Walletables
+}
+
+// GetWalletablesOk returns a tuple with the Walletables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyResponseCompany) GetWalletablesOk() ([]CompanyResponseCompanyWalletablesInner, bool) {
+	if o == nil || o.Walletables == nil {
+		return nil, false
+	}
+	return o.Walletables, true
+}
+
+// HasWalletables returns a boolean if a field has been set.
+func (o *CompanyResponseCompany) HasWalletables() bool {
+	if o != nil && o.Walletables != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWalletables gets a reference to the given []CompanyResponseCompanyWalletablesInner and assigns it to the Walletables field.
+func (o *CompanyResponseCompany) SetWalletables(v []CompanyResponseCompanyWalletablesInner) {
+	o.Walletables = v
 }
 
 // GetWorkflowSetting returns the WorkflowSetting field value
@@ -749,7 +1015,7 @@ func (o *CompanyResponseCompany) GetWorkflowSetting() string {
 // GetWorkflowSettingOk returns a tuple with the WorkflowSetting field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetWorkflowSettingOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.WorkflowSetting, true
@@ -773,7 +1039,7 @@ func (o *CompanyResponseCompany) GetZipcode() string {
 // GetZipcodeOk returns a tuple with the Zipcode field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponseCompany) GetZipcodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Zipcode, true
@@ -786,6 +1052,12 @@ func (o *CompanyResponseCompany) SetZipcode(v string) {
 
 func (o CompanyResponseCompany) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.AccountItems != nil {
+		toSerialize["account_items"] = o.AccountItems
+	}
 	if true {
 		toSerialize["amount_fraction"] = o.AmountFraction
 	}
@@ -822,6 +1094,9 @@ func (o CompanyResponseCompany) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["invoice_layout"] = o.InvoiceLayout
 	}
+	if o.Items != nil {
+		toSerialize["items"] = o.Items
+	}
 	if true {
 		toSerialize["minus_format"] = o.MinusFormat
 	}
@@ -831,8 +1106,11 @@ func (o CompanyResponseCompany) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name_kana"] = o.NameKana.Get()
 	}
+	if o.Partners != nil {
+		toSerialize["partners"] = o.Partners
+	}
 	if true {
-		toSerialize["phone1"] = o.Phone1
+		toSerialize["phone1"] = o.Phone1.Get()
 	}
 	if true {
 		toSerialize["phone2"] = o.Phone2.Get()
@@ -846,6 +1124,9 @@ func (o CompanyResponseCompany) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["role"] = o.Role
 	}
+	if o.Sections != nil {
+		toSerialize["sections"] = o.Sections
+	}
 	if true {
 		toSerialize["street_name1"] = o.StreetName1
 	}
@@ -855,11 +1136,20 @@ func (o CompanyResponseCompany) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["tax_at_source_calc_type"] = o.TaxAtSourceCalcType
 	}
+	if o.TaxCodes != nil {
+		toSerialize["tax_codes"] = o.TaxCodes
+	}
+	if o.Taxes != nil {
+		toSerialize["taxes"] = o.Taxes
+	}
 	if true {
 		toSerialize["txn_number_format"] = o.TxnNumberFormat
 	}
 	if true {
 		toSerialize["use_partner_code"] = o.UsePartnerCode
+	}
+	if o.Walletables != nil {
+		toSerialize["walletables"] = o.Walletables
 	}
 	if true {
 		toSerialize["workflow_setting"] = o.WorkflowSetting

@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-    partnerCreateParams := *openapiclient.NewPartnerCreateParams(int32(1), "新しい取引先") // PartnerCreateParams | 取引先の作成
+    partnerCreateParams := *openapiclient.NewPartnerCreateParams(int64(1), "新しい取引先") // PartnerCreateParams | 取引先の作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PartnersApi.CreatePartner(context.Background()).PartnerCreateParams(partnerCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PartnersApi.CreatePartner(context.Background()).PartnerCreateParams(partnerCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PartnersApi.CreatePartner``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -100,12 +100,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引先ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 取引先ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PartnersApi.DestroyPartner(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PartnersApi.DestroyPartner(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PartnersApi.DestroyPartner``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引先ID | 
+**id** | **int64** | 取引先ID | 
 
 ### Other Parameters
 
@@ -129,7 +129,7 @@ Other parameters are passed through a pointer to a apiDestroyPartnerRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -170,12 +170,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引先ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 取引先ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PartnersApi.GetPartner(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PartnersApi.GetPartner(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PartnersApi.GetPartner``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -191,7 +191,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引先ID | 
+**id** | **int64** | 取引先ID | 
 
 ### Other Parameters
 
@@ -201,7 +201,7 @@ Other parameters are passed through a pointer to a apiGetPartnerRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ## GetPartners
 
-> PartnersResponse GetPartners(ctx).CompanyId(companyId).Offset(offset).Limit(limit).Keyword(keyword).Execute()
+> PartnersResponse GetPartners(ctx).CompanyId(companyId).StartUpdateDate(startUpdateDate).EndUpdateDate(endUpdateDate).Offset(offset).Limit(limit).Keyword(keyword).Execute()
 
 取引先一覧の取得
 
@@ -242,14 +242,16 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
+    startUpdateDate := "startUpdateDate_example" // string | 更新日で絞り込み：開始日(yyyy-mm-dd) (optional)
+    endUpdateDate := "endUpdateDate_example" // string | 更新日で絞り込み：終了日(yyyy-mm-dd) (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
     keyword := "keyword_example" // string | 検索キーワード：取引先名・正式名称・カナ名称に対するあいまい検索で一致、またはショートカットキー1・2のいずれかに完全一致 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PartnersApi.GetPartners(context.Background()).CompanyId(companyId).Offset(offset).Limit(limit).Keyword(keyword).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PartnersApi.GetPartners(context.Background()).CompanyId(companyId).StartUpdateDate(startUpdateDate).EndUpdateDate(endUpdateDate).Offset(offset).Limit(limit).Keyword(keyword).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PartnersApi.GetPartners``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -270,9 +272,11 @@ Other parameters are passed through a pointer to a apiGetPartnersRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
+ **startUpdateDate** | **string** | 更新日で絞り込み：開始日(yyyy-mm-dd) | 
+ **endUpdateDate** | **string** | 更新日で絞り込み：終了日(yyyy-mm-dd) | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
  **keyword** | **string** | 検索キーワード：取引先名・正式名称・カナ名称に対するあいまい検索で一致、またはショートカットキー1・2のいずれかに完全一致 | 
 
 ### Return type
@@ -314,12 +318,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引先ID
-    partnerUpdateParams := *openapiclient.NewPartnerUpdateParams(int32(1), "新しい取引先") // PartnerUpdateParams | 取引先の更新
+    id := int64(56) // int64 | 取引先ID
+    partnerUpdateParams := *openapiclient.NewPartnerUpdateParams(int64(1), "新しい取引先") // PartnerUpdateParams | 取引先の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PartnersApi.UpdatePartner(context.Background(), id).PartnerUpdateParams(partnerUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PartnersApi.UpdatePartner(context.Background(), id).PartnerUpdateParams(partnerUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PartnersApi.UpdatePartner``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -335,7 +339,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引先ID | 
+**id** | **int64** | 取引先ID | 
 
 ### Other Parameters
 
@@ -387,11 +391,11 @@ import (
 
 func main() {
     code := "code_example" // string | 取引先コード
-    partnerUpdateParams := *openapiclient.NewPartnerUpdateParams(int32(1), "新しい取引先") // PartnerUpdateParams | 取引先の更新
+    partnerUpdateParams := *openapiclient.NewPartnerUpdateParams(int64(1), "新しい取引先") // PartnerUpdateParams | 取引先の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PartnersApi.UpdatePartnerByCode(context.Background(), code).PartnerUpdateParams(partnerUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PartnersApi.UpdatePartnerByCode(context.Background(), code).PartnerUpdateParams(partnerUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PartnersApi.UpdatePartnerByCode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -4,27 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApprovalFlowRouteId** | Pointer to **int32** | 申請経路ID&lt;br&gt; &lt;ul&gt;     &lt;li&gt;経費申請のステータスを申請中として作成する場合は、必ず指定してください。&lt;/li&gt;     &lt;li&gt;指定する申請経路IDは、申請経路APIを利用して取得してください。&lt;/li&gt;     &lt;li&gt;         未指定の場合は、基本経路を設定している事業所では基本経路が、基本経路を設定していない事業所では利用可能な申請経路の中から最初の申請経路が自動的に使用されます。         &lt;ul&gt;            &lt;li&gt;意図しない申請経路を持った経費申請の作成を防ぐために、使用する申請経路IDを指定することを推奨します。&lt;/li&gt;         &lt;/ul&gt;     &lt;/li&gt;     &lt;li&gt;         ベーシックプランの事業所では以下のデフォルトで用意された申請経路のみ指定できます         &lt;ul&gt;         &lt;li&gt;指定なし&lt;/li&gt;         &lt;li&gt;承認者を指定&lt;/li&gt;         &lt;/ul&gt;     &lt;/li&gt; &lt;/ul&gt;  | [optional] 
-**ApproverId** | Pointer to **int32** | 承認者のユーザーID&lt;br&gt; 「承認者を指定」の経路を申請経路として使用する場合に指定してください。&lt;br&gt; 指定する承認者のユーザーIDは、申請経路APIを利用して取得してください。  | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**ApprovalFlowRouteId** | Pointer to **int64** | 申請経路ID&lt;br&gt; &lt;ul&gt;     &lt;li&gt;経費申請のステータスを申請中として作成する場合は、必ず指定してください。&lt;/li&gt;     &lt;li&gt;指定する申請経路IDは、申請経路APIを利用して取得してください。&lt;/li&gt;     &lt;li&gt;         未指定の場合は、基本経路を設定している事業所では基本経路が、基本経路を設定していない事業所では利用可能な申請経路の中から最初の申請経路が自動的に使用されます。         &lt;ul&gt;            &lt;li&gt;意図しない申請経路を持った経費申請の作成を防ぐために、使用する申請経路IDを指定することを推奨します。&lt;/li&gt;         &lt;/ul&gt;     &lt;/li&gt;     &lt;li&gt;         ベーシックプランの事業所では以下のデフォルトで用意された申請経路のみ指定できます         &lt;ul&gt;         &lt;li&gt;指定なし&lt;/li&gt;         &lt;li&gt;承認者を指定&lt;/li&gt;         &lt;/ul&gt;     &lt;/li&gt; &lt;/ul&gt;  | [optional] 
+**ApproverId** | Pointer to **int64** | 承認者のユーザーID&lt;br&gt; 「承認者を指定」の経路を申請経路として使用する場合に指定してください。&lt;br&gt; 指定する承認者のユーザーIDは、申請経路APIを利用して取得してください。  | [optional] 
+**CompanyId** | **int64** | 事業所ID | 
 **Description** | Pointer to **string** | 備考 (10000文字以内) | [optional] 
 **Draft** | Pointer to **bool** | 経費申請のステータス&lt;br&gt; falseを指定した時は申請中（in_progress）で経費申請を作成します。&lt;br&gt; trueを指定した時は下書き（draft）で経費申請を作成します。&lt;br&gt; 未指定の時は下書きとみなして経費申請を作成します。  | [optional] 
-**EditableOnWeb** | Pointer to **bool** | 会計freeeのWeb画面で申請内容を編集可能にするかどうか&lt;br&gt; falseの場合は、Web画面での項目行の追加／削除・金額の編集が出来なくなりますが、APIでの編集は可能です。&lt;br&gt; デフォルトはfalseです。  | [optional] 
-**ExpenseApplicationLines** | [**[]ExpenseApplicationCreateParamsExpenseApplicationLines**](ExpenseApplicationCreateParamsExpenseApplicationLines.md) |  | 
-**IssueDate** | **string** | 申請日 (yyyy-mm-dd) | 
-**ParentId** | Pointer to **int32** | 親申請ID(法人向けプロフェッショナル, 法人向け エンタープライズプラン)&lt;br&gt; &lt;ul&gt;   &lt;li&gt;承認済みの既存各種申請IDのみ指定可能です。&lt;/li&gt;   &lt;li&gt;各種申請一覧APIを利用して取得してください。&lt;/li&gt; &lt;/ul&gt;  | [optional] 
-**SectionId** | Pointer to **int32** | 部門ID | [optional] 
+**ExpenseApplicationLines** | [**[]ExpenseApplicationCreateParamsExpenseApplicationLinesInner**](ExpenseApplicationCreateParamsExpenseApplicationLinesInner.md) |  | 
+**IssueDate** | Pointer to **string** | 申請日 (yyyy-mm-dd)&lt;br&gt; 指定しない場合は当日の日付が登録されます。  | [optional] 
+**ParentId** | Pointer to **int64** | 親申請ID(法人向けプロフェッショナル, 法人向け エンタープライズプラン)&lt;br&gt; &lt;ul&gt;   &lt;li&gt;承認済みの既存各種申請IDのみ指定可能です。&lt;/li&gt;   &lt;li&gt;各種申請一覧APIを利用して取得してください。&lt;/li&gt; &lt;/ul&gt;  | [optional] 
+**SectionId** | Pointer to **int64** | 部門ID | [optional] 
 **Segment1TagId** | Pointer to **int64** | セグメント１ID(法人向けプロフェッショナル, 法人向けエンタープライズプラン)&lt;br&gt; セグメントタグ一覧APIを利用して取得してください。&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/360020679611\&quot; target&#x3D;\&quot;_blank\&quot;&gt;セグメント（分析用タグ）の設定&lt;/a&gt;&lt;br&gt;  | [optional] 
 **Segment2TagId** | Pointer to **int64** | セグメント２ID(法人向け エンタープライズプラン)&lt;br&gt; セグメントタグ一覧APIを利用して取得してください。&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/360020679611\&quot; target&#x3D;\&quot;_blank\&quot;&gt;セグメント（分析用タグ）の設定&lt;/a&gt;&lt;br&gt;  | [optional] 
 **Segment3TagId** | Pointer to **int64** | セグメント３ID(法人向け エンタープライズプラン)&lt;br&gt; セグメントタグ一覧APIを利用して取得してください。&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/360020679611\&quot; target&#x3D;\&quot;_blank\&quot;&gt;セグメント（分析用タグ）の設定&lt;/a&gt;&lt;br&gt;  | [optional] 
-**TagIds** | Pointer to **[]int32** | メモタグID | [optional] 
+**TagIds** | Pointer to **[]int64** | メモタグID | [optional] 
 **Title** | **string** | 申請タイトル (250文字以内) | 
 
 ## Methods
 
 ### NewExpenseApplicationCreateParams
 
-`func NewExpenseApplicationCreateParams(companyId int32, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLines, issueDate string, title string, ) *ExpenseApplicationCreateParams`
+`func NewExpenseApplicationCreateParams(companyId int64, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLinesInner, title string, ) *ExpenseApplicationCreateParams`
 
 NewExpenseApplicationCreateParams instantiates a new ExpenseApplicationCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -41,20 +40,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetApprovalFlowRouteId
 
-`func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteId() int32`
+`func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteId() int64`
 
 GetApprovalFlowRouteId returns the ApprovalFlowRouteId field if non-nil, zero value otherwise.
 
 ### GetApprovalFlowRouteIdOk
 
-`func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteIdOk() (*int64, bool)`
 
 GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovalFlowRouteId
 
-`func (o *ExpenseApplicationCreateParams) SetApprovalFlowRouteId(v int32)`
+`func (o *ExpenseApplicationCreateParams) SetApprovalFlowRouteId(v int64)`
 
 SetApprovalFlowRouteId sets ApprovalFlowRouteId field to given value.
 
@@ -66,20 +65,20 @@ HasApprovalFlowRouteId returns a boolean if a field has been set.
 
 ### GetApproverId
 
-`func (o *ExpenseApplicationCreateParams) GetApproverId() int32`
+`func (o *ExpenseApplicationCreateParams) GetApproverId() int64`
 
 GetApproverId returns the ApproverId field if non-nil, zero value otherwise.
 
 ### GetApproverIdOk
 
-`func (o *ExpenseApplicationCreateParams) GetApproverIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParams) GetApproverIdOk() (*int64, bool)`
 
 GetApproverIdOk returns a tuple with the ApproverId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApproverId
 
-`func (o *ExpenseApplicationCreateParams) SetApproverId(v int32)`
+`func (o *ExpenseApplicationCreateParams) SetApproverId(v int64)`
 
 SetApproverId sets ApproverId field to given value.
 
@@ -91,20 +90,20 @@ HasApproverId returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *ExpenseApplicationCreateParams) GetCompanyId() int32`
+`func (o *ExpenseApplicationCreateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *ExpenseApplicationCreateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *ExpenseApplicationCreateParams) SetCompanyId(v int32)`
+`func (o *ExpenseApplicationCreateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -159,47 +158,22 @@ SetDraft sets Draft field to given value.
 
 HasDraft returns a boolean if a field has been set.
 
-### GetEditableOnWeb
-
-`func (o *ExpenseApplicationCreateParams) GetEditableOnWeb() bool`
-
-GetEditableOnWeb returns the EditableOnWeb field if non-nil, zero value otherwise.
-
-### GetEditableOnWebOk
-
-`func (o *ExpenseApplicationCreateParams) GetEditableOnWebOk() (*bool, bool)`
-
-GetEditableOnWebOk returns a tuple with the EditableOnWeb field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditableOnWeb
-
-`func (o *ExpenseApplicationCreateParams) SetEditableOnWeb(v bool)`
-
-SetEditableOnWeb sets EditableOnWeb field to given value.
-
-### HasEditableOnWeb
-
-`func (o *ExpenseApplicationCreateParams) HasEditableOnWeb() bool`
-
-HasEditableOnWeb returns a boolean if a field has been set.
-
 ### GetExpenseApplicationLines
 
-`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLines() []ExpenseApplicationCreateParamsExpenseApplicationLines`
+`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLines() []ExpenseApplicationCreateParamsExpenseApplicationLinesInner`
 
 GetExpenseApplicationLines returns the ExpenseApplicationLines field if non-nil, zero value otherwise.
 
 ### GetExpenseApplicationLinesOk
 
-`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationCreateParamsExpenseApplicationLines, bool)`
+`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationCreateParamsExpenseApplicationLinesInner, bool)`
 
 GetExpenseApplicationLinesOk returns a tuple with the ExpenseApplicationLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpenseApplicationLines
 
-`func (o *ExpenseApplicationCreateParams) SetExpenseApplicationLines(v []ExpenseApplicationCreateParamsExpenseApplicationLines)`
+`func (o *ExpenseApplicationCreateParams) SetExpenseApplicationLines(v []ExpenseApplicationCreateParamsExpenseApplicationLinesInner)`
 
 SetExpenseApplicationLines sets ExpenseApplicationLines field to given value.
 
@@ -223,23 +197,28 @@ and a boolean to check if the value has been set.
 
 SetIssueDate sets IssueDate field to given value.
 
+### HasIssueDate
+
+`func (o *ExpenseApplicationCreateParams) HasIssueDate() bool`
+
+HasIssueDate returns a boolean if a field has been set.
 
 ### GetParentId
 
-`func (o *ExpenseApplicationCreateParams) GetParentId() int32`
+`func (o *ExpenseApplicationCreateParams) GetParentId() int64`
 
 GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 ### GetParentIdOk
 
-`func (o *ExpenseApplicationCreateParams) GetParentIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParams) GetParentIdOk() (*int64, bool)`
 
 GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentId
 
-`func (o *ExpenseApplicationCreateParams) SetParentId(v int32)`
+`func (o *ExpenseApplicationCreateParams) SetParentId(v int64)`
 
 SetParentId sets ParentId field to given value.
 
@@ -251,20 +230,20 @@ HasParentId returns a boolean if a field has been set.
 
 ### GetSectionId
 
-`func (o *ExpenseApplicationCreateParams) GetSectionId() int32`
+`func (o *ExpenseApplicationCreateParams) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *ExpenseApplicationCreateParams) GetSectionIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParams) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *ExpenseApplicationCreateParams) SetSectionId(v int32)`
+`func (o *ExpenseApplicationCreateParams) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -351,20 +330,20 @@ HasSegment3TagId returns a boolean if a field has been set.
 
 ### GetTagIds
 
-`func (o *ExpenseApplicationCreateParams) GetTagIds() []int32`
+`func (o *ExpenseApplicationCreateParams) GetTagIds() []int64`
 
 GetTagIds returns the TagIds field if non-nil, zero value otherwise.
 
 ### GetTagIdsOk
 
-`func (o *ExpenseApplicationCreateParams) GetTagIdsOk() (*[]int32, bool)`
+`func (o *ExpenseApplicationCreateParams) GetTagIdsOk() (*[]int64, bool)`
 
 GetTagIdsOk returns a tuple with the TagIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagIds
 
-`func (o *ExpenseApplicationCreateParams) SetTagIds(v []int32)`
+`func (o *ExpenseApplicationCreateParams) SetTagIds(v []int64)`
 
 SetTagIds sets TagIds field to given value.
 

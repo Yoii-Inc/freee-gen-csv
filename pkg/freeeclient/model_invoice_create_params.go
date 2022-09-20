@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -25,11 +25,11 @@ type InvoiceCreateParams struct {
 	// 事業所担当者名 (デフォルトは請求書テンプレート情報が補完されます)
 	CompanyContactInfo *string `json:"company_contact_info,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 事業所名 (デフォルトは事業所設定情報が補完されます)
 	CompanyName *string `json:"company_name,omitempty"`
 	// 都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトは事業所設定情報が補完されます)
-	CompanyPrefectureCode *int32 `json:"company_prefecture_code,omitempty"`
+	CompanyPrefectureCode *int64 `json:"company_prefecture_code,omitempty"`
 	// 郵便番号 (デフォルトは事業所設定情報が補完されます)
 	CompanyZipcode *string `json:"company_zipcode,omitempty"`
 	// 概要
@@ -37,7 +37,7 @@ type InvoiceCreateParams struct {
 	// 期日 (yyyy-mm-dd)
 	DueDate *string `json:"due_date,omitempty"`
 	// 請求内容
-	InvoiceContents *[]InvoiceCreateParamsInvoiceContents `json:"invoice_contents,omitempty"`
+	InvoiceContents []InvoiceCreateParamsInvoiceContentsInner `json:"invoice_contents,omitempty"`
 	// 請求書レイアウト * `default_classic` - レイアウト１/クラシック (デフォルト)  * `standard_classic` - レイアウト２/クラシック  * `envelope_classic` - 封筒１/クラシック  * `carried_forward_standard_classic` - レイアウト３（繰越金額欄あり）/クラシック  * `carried_forward_envelope_classic` - 封筒２（繰越金額欄あり）/クラシック  * `default_modern` - レイアウト１/モダン  * `standard_modern` - レイアウト２/モダン  * `envelope_modern` - 封筒/モダン
 	InvoiceLayout *string `json:"invoice_layout,omitempty"`
 	// 請求書番号 (デフォルト: 自動採番されます)
@@ -61,9 +61,9 @@ type InvoiceCreateParams struct {
 	// 請求書に表示する取引先名
 	PartnerDisplayName string `json:"partner_display_name"`
 	// 取引先ID
-	PartnerId NullableInt32 `json:"partner_id,omitempty"`
+	PartnerId NullableInt64 `json:"partner_id,omitempty"`
 	// 取引先都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトはpartner_idもしくはpartner_codeで指定された取引先設定情報が補完されます)
-	PartnerPrefectureCode NullableInt32 `json:"partner_prefecture_code,omitempty"`
+	PartnerPrefectureCode NullableInt64 `json:"partner_prefecture_code,omitempty"`
 	// 敬称（御中、様、(空白)の3つから選択）
 	PartnerTitle NullableString `json:"partner_title"`
 	// 取引先郵便番号 (デフォルトはpartner_idもしくはpartner_codeで指定された取引先設定情報が補完されます)
@@ -84,7 +84,7 @@ type InvoiceCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoiceCreateParams(companyId int32, partnerDisplayName string, partnerTitle NullableString) *InvoiceCreateParams {
+func NewInvoiceCreateParams(companyId int64, partnerDisplayName string, partnerTitle NullableString) *InvoiceCreateParams {
 	this := InvoiceCreateParams{}
 	this.CompanyId = companyId
 	this.PartnerDisplayName = partnerDisplayName
@@ -229,9 +229,9 @@ func (o *InvoiceCreateParams) SetCompanyContactInfo(v string) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *InvoiceCreateParams) GetCompanyId() int32 {
+func (o *InvoiceCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -240,15 +240,15 @@ func (o *InvoiceCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *InvoiceCreateParams) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *InvoiceCreateParams) GetCompanyIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
 }
 
 // SetCompanyId sets field value
-func (o *InvoiceCreateParams) SetCompanyId(v int32) {
+func (o *InvoiceCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -285,9 +285,9 @@ func (o *InvoiceCreateParams) SetCompanyName(v string) {
 }
 
 // GetCompanyPrefectureCode returns the CompanyPrefectureCode field value if set, zero value otherwise.
-func (o *InvoiceCreateParams) GetCompanyPrefectureCode() int32 {
+func (o *InvoiceCreateParams) GetCompanyPrefectureCode() int64 {
 	if o == nil || o.CompanyPrefectureCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CompanyPrefectureCode
@@ -295,7 +295,7 @@ func (o *InvoiceCreateParams) GetCompanyPrefectureCode() int32 {
 
 // GetCompanyPrefectureCodeOk returns a tuple with the CompanyPrefectureCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceCreateParams) GetCompanyPrefectureCodeOk() (*int32, bool) {
+func (o *InvoiceCreateParams) GetCompanyPrefectureCodeOk() (*int64, bool) {
 	if o == nil || o.CompanyPrefectureCode == nil {
 		return nil, false
 	}
@@ -311,8 +311,8 @@ func (o *InvoiceCreateParams) HasCompanyPrefectureCode() bool {
 	return false
 }
 
-// SetCompanyPrefectureCode gets a reference to the given int32 and assigns it to the CompanyPrefectureCode field.
-func (o *InvoiceCreateParams) SetCompanyPrefectureCode(v int32) {
+// SetCompanyPrefectureCode gets a reference to the given int64 and assigns it to the CompanyPrefectureCode field.
+func (o *InvoiceCreateParams) SetCompanyPrefectureCode(v int64) {
 	o.CompanyPrefectureCode = &v
 }
 
@@ -413,17 +413,17 @@ func (o *InvoiceCreateParams) SetDueDate(v string) {
 }
 
 // GetInvoiceContents returns the InvoiceContents field value if set, zero value otherwise.
-func (o *InvoiceCreateParams) GetInvoiceContents() []InvoiceCreateParamsInvoiceContents {
+func (o *InvoiceCreateParams) GetInvoiceContents() []InvoiceCreateParamsInvoiceContentsInner {
 	if o == nil || o.InvoiceContents == nil {
-		var ret []InvoiceCreateParamsInvoiceContents
+		var ret []InvoiceCreateParamsInvoiceContentsInner
 		return ret
 	}
-	return *o.InvoiceContents
+	return o.InvoiceContents
 }
 
 // GetInvoiceContentsOk returns a tuple with the InvoiceContents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceCreateParams) GetInvoiceContentsOk() (*[]InvoiceCreateParamsInvoiceContents, bool) {
+func (o *InvoiceCreateParams) GetInvoiceContentsOk() ([]InvoiceCreateParamsInvoiceContentsInner, bool) {
 	if o == nil || o.InvoiceContents == nil {
 		return nil, false
 	}
@@ -439,9 +439,9 @@ func (o *InvoiceCreateParams) HasInvoiceContents() bool {
 	return false
 }
 
-// SetInvoiceContents gets a reference to the given []InvoiceCreateParamsInvoiceContents and assigns it to the InvoiceContents field.
-func (o *InvoiceCreateParams) SetInvoiceContents(v []InvoiceCreateParamsInvoiceContents) {
-	o.InvoiceContents = &v
+// SetInvoiceContents gets a reference to the given []InvoiceCreateParamsInvoiceContentsInner and assigns it to the InvoiceContents field.
+func (o *InvoiceCreateParams) SetInvoiceContents(v []InvoiceCreateParamsInvoiceContentsInner) {
+	o.InvoiceContents = v
 }
 
 // GetInvoiceLayout returns the InvoiceLayout field value if set, zero value otherwise.
@@ -649,7 +649,7 @@ func (o *InvoiceCreateParams) GetPartnerAddress1() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InvoiceCreateParams) GetPartnerAddress1Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerAddress1.Get(), o.PartnerAddress1.IsSet()
@@ -691,7 +691,7 @@ func (o *InvoiceCreateParams) GetPartnerAddress2() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InvoiceCreateParams) GetPartnerAddress2Ok() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerAddress2.Get(), o.PartnerAddress2.IsSet()
@@ -733,7 +733,7 @@ func (o *InvoiceCreateParams) GetPartnerCode() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InvoiceCreateParams) GetPartnerCodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerCode.Get(), o.PartnerCode.IsSet()
@@ -775,7 +775,7 @@ func (o *InvoiceCreateParams) GetPartnerContactInfo() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InvoiceCreateParams) GetPartnerContactInfoOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerContactInfo.Get(), o.PartnerContactInfo.IsSet()
@@ -817,7 +817,7 @@ func (o *InvoiceCreateParams) GetPartnerDisplayName() string {
 // GetPartnerDisplayNameOk returns a tuple with the PartnerDisplayName field value
 // and a boolean to check if the value has been set.
 func (o *InvoiceCreateParams) GetPartnerDisplayNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.PartnerDisplayName, true
@@ -829,9 +829,9 @@ func (o *InvoiceCreateParams) SetPartnerDisplayName(v string) {
 }
 
 // GetPartnerId returns the PartnerId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InvoiceCreateParams) GetPartnerId() int32 {
+func (o *InvoiceCreateParams) GetPartnerId() int64 {
 	if o == nil || o.PartnerId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerId.Get()
@@ -840,8 +840,8 @@ func (o *InvoiceCreateParams) GetPartnerId() int32 {
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceCreateParams) GetPartnerIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *InvoiceCreateParams) GetPartnerIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerId.Get(), o.PartnerId.IsSet()
@@ -856,8 +856,8 @@ func (o *InvoiceCreateParams) HasPartnerId() bool {
 	return false
 }
 
-// SetPartnerId gets a reference to the given NullableInt32 and assigns it to the PartnerId field.
-func (o *InvoiceCreateParams) SetPartnerId(v int32) {
+// SetPartnerId gets a reference to the given NullableInt64 and assigns it to the PartnerId field.
+func (o *InvoiceCreateParams) SetPartnerId(v int64) {
 	o.PartnerId.Set(&v)
 }
 // SetPartnerIdNil sets the value for PartnerId to be an explicit nil
@@ -871,9 +871,9 @@ func (o *InvoiceCreateParams) UnsetPartnerId() {
 }
 
 // GetPartnerPrefectureCode returns the PartnerPrefectureCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InvoiceCreateParams) GetPartnerPrefectureCode() int32 {
+func (o *InvoiceCreateParams) GetPartnerPrefectureCode() int64 {
 	if o == nil || o.PartnerPrefectureCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerPrefectureCode.Get()
@@ -882,8 +882,8 @@ func (o *InvoiceCreateParams) GetPartnerPrefectureCode() int32 {
 // GetPartnerPrefectureCodeOk returns a tuple with the PartnerPrefectureCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceCreateParams) GetPartnerPrefectureCodeOk() (*int32, bool) {
-	if o == nil  {
+func (o *InvoiceCreateParams) GetPartnerPrefectureCodeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerPrefectureCode.Get(), o.PartnerPrefectureCode.IsSet()
@@ -898,8 +898,8 @@ func (o *InvoiceCreateParams) HasPartnerPrefectureCode() bool {
 	return false
 }
 
-// SetPartnerPrefectureCode gets a reference to the given NullableInt32 and assigns it to the PartnerPrefectureCode field.
-func (o *InvoiceCreateParams) SetPartnerPrefectureCode(v int32) {
+// SetPartnerPrefectureCode gets a reference to the given NullableInt64 and assigns it to the PartnerPrefectureCode field.
+func (o *InvoiceCreateParams) SetPartnerPrefectureCode(v int64) {
 	o.PartnerPrefectureCode.Set(&v)
 }
 // SetPartnerPrefectureCodeNil sets the value for PartnerPrefectureCode to be an explicit nil
@@ -927,7 +927,7 @@ func (o *InvoiceCreateParams) GetPartnerTitle() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InvoiceCreateParams) GetPartnerTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerTitle.Get(), o.PartnerTitle.IsSet()
@@ -951,7 +951,7 @@ func (o *InvoiceCreateParams) GetPartnerZipcode() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InvoiceCreateParams) GetPartnerZipcodeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.PartnerZipcode.Get(), o.PartnerZipcode.IsSet()

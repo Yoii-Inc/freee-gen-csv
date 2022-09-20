@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Transfer** | [**TransferResponseTransfer**](TransferResponseTransfer.md) |  | 
+**Transfer** | [**Transfer**](Transfer.md) |  | 
 
 ## Methods
 
 ### NewTransferResponse
 
-`func NewTransferResponse(transfer TransferResponseTransfer, ) *TransferResponse`
+`func NewTransferResponse(transfer Transfer, ) *TransferResponse`
 
 NewTransferResponse instantiates a new TransferResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTransfer
 
-`func (o *TransferResponse) GetTransfer() TransferResponseTransfer`
+`func (o *TransferResponse) GetTransfer() Transfer`
 
 GetTransfer returns the Transfer field if non-nil, zero value otherwise.
 
 ### GetTransferOk
 
-`func (o *TransferResponse) GetTransferOk() (*TransferResponseTransfer, bool)`
+`func (o *TransferResponse) GetTransferOk() (*Transfer, bool)`
 
 GetTransferOk returns a tuple with the Transfer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransfer
 
-`func (o *TransferResponse) SetTransfer(v TransferResponseTransfer)`
+`func (o *TransferResponse) SetTransfer(v Transfer)`
 
 SetTransfer sets Transfer field to given value.
 

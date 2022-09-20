@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Name** | **string** | 口座名 (255文字以内) | 
 
 ## Methods
 
 ### NewWalletableUpdateParams
 
-`func NewWalletableUpdateParams(companyId int32, name string, ) *WalletableUpdateParams`
+`func NewWalletableUpdateParams(companyId int64, name string, ) *WalletableUpdateParams`
 
 NewWalletableUpdateParams instantiates a new WalletableUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *WalletableUpdateParams) GetCompanyId() int32`
+`func (o *WalletableUpdateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *WalletableUpdateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *WalletableUpdateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *WalletableUpdateParams) SetCompanyId(v int32)`
+`func (o *WalletableUpdateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

@@ -7,44 +7,44 @@ Name | Type | Description | Notes
 **AccountName** | **string** | 受取人名（カナ） | 
 **AccountNumber** | **string** | 口座番号 | 
 **AccountType** | **string** | 口座種別(ordinary:普通、checking:当座、earmarked:納税準備預金、savings:貯蓄、other:その他) | 
-**ApplicantId** | **int32** | 申請者のユーザーID | 
+**ApplicantId** | **int64** | 申請者のユーザーID | 
 **ApplicationDate** | **string** | 申請日 (yyyy-mm-dd) | 
 **ApplicationNumber** | **string** | 申請No. | 
-**ApprovalFlowLogs** | [**[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs**](ApprovalRequestResponseApprovalRequestApprovalFlowLogs.md) | 支払依頼の承認履歴（配列） | 
-**ApprovalFlowRouteId** | **int32** | 申請経路ID | 
-**Approvers** | [**[]ApprovalRequestResponseApprovalRequestApprovers**](ApprovalRequestResponseApprovalRequestApprovers.md) | 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、    approversはレスポンスに含まれるようになります。    その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。 | 
+**ApprovalFlowLogs** | [**[]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner**](ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner.md) | 支払依頼の承認履歴（配列） | 
+**ApprovalFlowRouteId** | **int64** | 申請経路ID | 
+**Approvers** | [**[]ApprovalRequestResponseApprovalRequestApproversInner**](ApprovalRequestResponseApprovalRequestApproversInner.md) | 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、   approversはレスポンスに含まれるようになります。   その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。 | 
 **BankCode** | **string** | 銀行コード | 
 **BankName** | **string** | 銀行名 | 
 **BankNameKana** | **string** | 銀行名（カナ） | 
 **BranchCode** | **string** | 支店番号 | 
 **BranchKana** | **string** | 支店名（カナ） | 
 **BranchName** | **string** | 支店名 | 
-**Comments** | [**[]ApprovalRequestResponseApprovalRequestComments**](ApprovalRequestResponseApprovalRequestComments.md) | 支払依頼のコメント一覧（配列） | 
-**CompanyId** | **int32** | 事業所ID | 
-**CurrentRound** | **int32** | 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。 | 
-**CurrentStepId** | **NullableInt32** | 現在承認ステップID | 
-**DealId** | **NullableInt32** | 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます) | 
+**Comments** | [**[]ApprovalRequestResponseApprovalRequestCommentsInner**](ApprovalRequestResponseApprovalRequestCommentsInner.md) | 支払依頼のコメント一覧（配列） | 
+**CompanyId** | **int64** | 事業所ID | 
+**CurrentRound** | **int64** | 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。 | 
+**CurrentStepId** | **NullableInt64** | 現在承認ステップID | 
+**DealId** | **NullableInt64** | 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます) | 
 **DealStatus** | **NullableString** | 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:支払済み, unsettled:支払待ち) | 
 **Description** | **string** | 備考 | 
 **DocumentCode** | **string** | 請求書番号 | 
-**Id** | **int32** | 支払依頼ID | 
+**Id** | **int64** | 支払依頼ID | 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
 **PartnerCode** | Pointer to **NullableString** | 取引先コード | [optional] 
-**PartnerId** | **NullableInt32** | 取引先ID | 
+**PartnerId** | **NullableInt64** | 取引先ID | 
 **PartnerName** | **NullableString** | 取引先名 | 
 **PaymentDate** | **NullableString** | 支払期限 (yyyy-mm-dd) | 
 **PaymentMethod** | **string** | 支払方法(none: 指定なし, domestic_bank_transfer: 国内振込, abroad_bank_transfer: 国外振込, account_transfer: 口座振替, credit_card: クレジットカード) | 
-**PaymentRequestLines** | [**[]PaymentRequestResponsePaymentRequestPaymentRequestLines**](PaymentRequestResponsePaymentRequestPaymentRequestLines.md) | 支払依頼の項目行一覧（配列） | 
-**ReceiptIds** | **[]int32** | 証憑ファイルID（ファイルボックスのファイルID） | 
+**PaymentRequestLines** | [**[]PaymentRequestResponsePaymentRequestPaymentRequestLinesInner**](PaymentRequestResponsePaymentRequestPaymentRequestLinesInner.md) | 支払依頼の項目行一覧（配列） | 
+**ReceiptIds** | **[]int64** | 証憑ファイルID（ファイルボックスのファイルID） | 
 **Status** | **string** | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) | 
 **Title** | **string** | 申請タイトル | 
-**TotalAmount** | **int32** | 合計金額 | 
+**TotalAmount** | **int64** | 合計金額 | 
 
 ## Methods
 
 ### NewPaymentRequestResponsePaymentRequest
 
-`func NewPaymentRequestResponsePaymentRequest(accountName string, accountNumber string, accountType string, applicantId int32, applicationDate string, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogs, approvalFlowRouteId int32, approvers []ApprovalRequestResponseApprovalRequestApprovers, bankCode string, bankName string, bankNameKana string, branchCode string, branchKana string, branchName string, comments []ApprovalRequestResponseApprovalRequestComments, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, description string, documentCode string, id int32, issueDate string, partnerId NullableInt32, partnerName NullableString, paymentDate NullableString, paymentMethod string, paymentRequestLines []PaymentRequestResponsePaymentRequestPaymentRequestLines, receiptIds []int32, status string, title string, totalAmount int32, ) *PaymentRequestResponsePaymentRequest`
+`func NewPaymentRequestResponsePaymentRequest(accountName string, accountNumber string, accountType string, applicantId int64, applicationDate string, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, approvalFlowRouteId int64, approvers []ApprovalRequestResponseApprovalRequestApproversInner, bankCode string, bankName string, bankNameKana string, branchCode string, branchKana string, branchName string, comments []ApprovalRequestResponseApprovalRequestCommentsInner, companyId int64, currentRound int64, currentStepId NullableInt64, dealId NullableInt64, dealStatus NullableString, description string, documentCode string, id int64, issueDate string, partnerId NullableInt64, partnerName NullableString, paymentDate NullableString, paymentMethod string, paymentRequestLines []PaymentRequestResponsePaymentRequestPaymentRequestLinesInner, receiptIds []int64, status string, title string, totalAmount int64, ) *PaymentRequestResponsePaymentRequest`
 
 NewPaymentRequestResponsePaymentRequest instantiates a new PaymentRequestResponsePaymentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -121,20 +121,20 @@ SetAccountType sets AccountType field to given value.
 
 ### GetApplicantId
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApplicantId() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetApplicantId() int64`
 
 GetApplicantId returns the ApplicantId field if non-nil, zero value otherwise.
 
 ### GetApplicantIdOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApplicantIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetApplicantIdOk() (*int64, bool)`
 
 GetApplicantIdOk returns a tuple with the ApplicantId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApplicantId
 
-`func (o *PaymentRequestResponsePaymentRequest) SetApplicantId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetApplicantId(v int64)`
 
 SetApplicantId sets ApplicantId field to given value.
 
@@ -181,60 +181,60 @@ SetApplicationNumber sets ApplicationNumber field to given value.
 
 ### GetApprovalFlowLogs
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogs`
+`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner`
 
 GetApprovalFlowLogs returns the ApprovalFlowLogs field if non-nil, zero value otherwise.
 
 ### GetApprovalFlowLogsOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, bool)`
 
 GetApprovalFlowLogsOk returns a tuple with the ApprovalFlowLogs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovalFlowLogs
 
-`func (o *PaymentRequestResponsePaymentRequest) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogs)`
+`func (o *PaymentRequestResponsePaymentRequest) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner)`
 
 SetApprovalFlowLogs sets ApprovalFlowLogs field to given value.
 
 
 ### GetApprovalFlowRouteId
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowRouteId() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowRouteId() int64`
 
 GetApprovalFlowRouteId returns the ApprovalFlowRouteId field if non-nil, zero value otherwise.
 
 ### GetApprovalFlowRouteIdOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowRouteIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetApprovalFlowRouteIdOk() (*int64, bool)`
 
 GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovalFlowRouteId
 
-`func (o *PaymentRequestResponsePaymentRequest) SetApprovalFlowRouteId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetApprovalFlowRouteId(v int64)`
 
 SetApprovalFlowRouteId sets ApprovalFlowRouteId field to given value.
 
 
 ### GetApprovers
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApprovers() []ApprovalRequestResponseApprovalRequestApprovers`
+`func (o *PaymentRequestResponsePaymentRequest) GetApprovers() []ApprovalRequestResponseApprovalRequestApproversInner`
 
 GetApprovers returns the Approvers field if non-nil, zero value otherwise.
 
 ### GetApproversOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApprovers, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApproversInner, bool)`
 
 GetApproversOk returns a tuple with the Approvers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovers
 
-`func (o *PaymentRequestResponsePaymentRequest) SetApprovers(v []ApprovalRequestResponseApprovalRequestApprovers)`
+`func (o *PaymentRequestResponsePaymentRequest) SetApprovers(v []ApprovalRequestResponseApprovalRequestApproversInner)`
 
 SetApprovers sets Approvers field to given value.
 
@@ -361,80 +361,80 @@ SetBranchName sets BranchName field to given value.
 
 ### GetComments
 
-`func (o *PaymentRequestResponsePaymentRequest) GetComments() []ApprovalRequestResponseApprovalRequestComments`
+`func (o *PaymentRequestResponsePaymentRequest) GetComments() []ApprovalRequestResponseApprovalRequestCommentsInner`
 
 GetComments returns the Comments field if non-nil, zero value otherwise.
 
 ### GetCommentsOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestComments, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestCommentsInner, bool)`
 
 GetCommentsOk returns a tuple with the Comments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComments
 
-`func (o *PaymentRequestResponsePaymentRequest) SetComments(v []ApprovalRequestResponseApprovalRequestComments)`
+`func (o *PaymentRequestResponsePaymentRequest) SetComments(v []ApprovalRequestResponseApprovalRequestCommentsInner)`
 
 SetComments sets Comments field to given value.
 
 
 ### GetCompanyId
 
-`func (o *PaymentRequestResponsePaymentRequest) GetCompanyId() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetCompanyIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *PaymentRequestResponsePaymentRequest) SetCompanyId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
 
 ### GetCurrentRound
 
-`func (o *PaymentRequestResponsePaymentRequest) GetCurrentRound() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetCurrentRound() int64`
 
 GetCurrentRound returns the CurrentRound field if non-nil, zero value otherwise.
 
 ### GetCurrentRoundOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetCurrentRoundOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetCurrentRoundOk() (*int64, bool)`
 
 GetCurrentRoundOk returns a tuple with the CurrentRound field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentRound
 
-`func (o *PaymentRequestResponsePaymentRequest) SetCurrentRound(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetCurrentRound(v int64)`
 
 SetCurrentRound sets CurrentRound field to given value.
 
 
 ### GetCurrentStepId
 
-`func (o *PaymentRequestResponsePaymentRequest) GetCurrentStepId() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetCurrentStepId() int64`
 
 GetCurrentStepId returns the CurrentStepId field if non-nil, zero value otherwise.
 
 ### GetCurrentStepIdOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetCurrentStepIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetCurrentStepIdOk() (*int64, bool)`
 
 GetCurrentStepIdOk returns a tuple with the CurrentStepId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentStepId
 
-`func (o *PaymentRequestResponsePaymentRequest) SetCurrentStepId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetCurrentStepId(v int64)`
 
 SetCurrentStepId sets CurrentStepId field to given value.
 
@@ -451,20 +451,20 @@ SetCurrentStepId sets CurrentStepId field to given value.
 UnsetCurrentStepId ensures that no value is present for CurrentStepId, not even an explicit nil
 ### GetDealId
 
-`func (o *PaymentRequestResponsePaymentRequest) GetDealId() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetDealId() int64`
 
 GetDealId returns the DealId field if non-nil, zero value otherwise.
 
 ### GetDealIdOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetDealIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetDealIdOk() (*int64, bool)`
 
 GetDealIdOk returns a tuple with the DealId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDealId
 
-`func (o *PaymentRequestResponsePaymentRequest) SetDealId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetDealId(v int64)`
 
 SetDealId sets DealId field to given value.
 
@@ -551,20 +551,20 @@ SetDocumentCode sets DocumentCode field to given value.
 
 ### GetId
 
-`func (o *PaymentRequestResponsePaymentRequest) GetId() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *PaymentRequestResponsePaymentRequest) SetId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -626,20 +626,20 @@ HasPartnerCode returns a boolean if a field has been set.
 UnsetPartnerCode ensures that no value is present for PartnerCode, not even an explicit nil
 ### GetPartnerId
 
-`func (o *PaymentRequestResponsePaymentRequest) GetPartnerId() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetPartnerIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *PaymentRequestResponsePaymentRequest) SetPartnerId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -736,40 +736,40 @@ SetPaymentMethod sets PaymentMethod field to given value.
 
 ### GetPaymentRequestLines
 
-`func (o *PaymentRequestResponsePaymentRequest) GetPaymentRequestLines() []PaymentRequestResponsePaymentRequestPaymentRequestLines`
+`func (o *PaymentRequestResponsePaymentRequest) GetPaymentRequestLines() []PaymentRequestResponsePaymentRequestPaymentRequestLinesInner`
 
 GetPaymentRequestLines returns the PaymentRequestLines field if non-nil, zero value otherwise.
 
 ### GetPaymentRequestLinesOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetPaymentRequestLinesOk() (*[]PaymentRequestResponsePaymentRequestPaymentRequestLines, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetPaymentRequestLinesOk() (*[]PaymentRequestResponsePaymentRequestPaymentRequestLinesInner, bool)`
 
 GetPaymentRequestLinesOk returns a tuple with the PaymentRequestLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentRequestLines
 
-`func (o *PaymentRequestResponsePaymentRequest) SetPaymentRequestLines(v []PaymentRequestResponsePaymentRequestPaymentRequestLines)`
+`func (o *PaymentRequestResponsePaymentRequest) SetPaymentRequestLines(v []PaymentRequestResponsePaymentRequestPaymentRequestLinesInner)`
 
 SetPaymentRequestLines sets PaymentRequestLines field to given value.
 
 
 ### GetReceiptIds
 
-`func (o *PaymentRequestResponsePaymentRequest) GetReceiptIds() []int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetReceiptIds() []int64`
 
 GetReceiptIds returns the ReceiptIds field if non-nil, zero value otherwise.
 
 ### GetReceiptIdsOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetReceiptIdsOk() (*[]int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetReceiptIdsOk() (*[]int64, bool)`
 
 GetReceiptIdsOk returns a tuple with the ReceiptIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReceiptIds
 
-`func (o *PaymentRequestResponsePaymentRequest) SetReceiptIds(v []int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetReceiptIds(v []int64)`
 
 SetReceiptIds sets ReceiptIds field to given value.
 
@@ -816,20 +816,20 @@ SetTitle sets Title field to given value.
 
 ### GetTotalAmount
 
-`func (o *PaymentRequestResponsePaymentRequest) GetTotalAmount() int32`
+`func (o *PaymentRequestResponsePaymentRequest) GetTotalAmount() int64`
 
 GetTotalAmount returns the TotalAmount field if non-nil, zero value otherwise.
 
 ### GetTotalAmountOk
 
-`func (o *PaymentRequestResponsePaymentRequest) GetTotalAmountOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequest) GetTotalAmountOk() (*int64, bool)`
 
 GetTotalAmountOk returns a tuple with the TotalAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalAmount
 
-`func (o *PaymentRequestResponsePaymentRequest) SetTotalAmount(v int32)`
+`func (o *PaymentRequestResponsePaymentRequest) SetTotalAmount(v int64)`
 
 SetTotalAmount sets TotalAmount field to given value.
 

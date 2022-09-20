@@ -6,24 +6,26 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountItemDisplayType** | Pointer to **string** | 勘定科目の表示（勘定科目: account_item, 決算書表示:group）(条件に指定した時のみ含まれる） | [optional] 
 **Adjustment** | Pointer to **string** | 決算整理仕訳のみ: only, 決算整理仕訳以外: without(条件に指定した時のみ含まれる） | [optional] 
-**Balances** | [**[]TrialBsTwoYearsResponseTrialBsTwoYearsBalances**](TrialBsTwoYearsResponseTrialBsTwoYearsBalances.md) |  | 
-**BreakdownDisplayType** | Pointer to **string** | 内訳の表示（取引先: partner, 品目: item, 勘定科目: account_item）(条件に指定した時のみ含まれる） | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**ApprovalFlowStatus** | Pointer to **string** | 未承認を除く: without_in_progress (デフォルト), 全てのステータス: all(条件に指定した時のみ含まれる） | [optional] 
+**Balances** | [**[]TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner**](TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner.md) |  | 
+**BreakdownDisplayType** | Pointer to **string** | 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag）(条件に指定した時のみ含まれる） | [optional] 
+**CompanyId** | **int64** | 事業所ID | 
 **CreatedAt** | Pointer to **string** | 作成日時 | [optional] 
 **EndDate** | Pointer to **string** | 発生日で絞込：終了日(yyyy-mm-dd)(条件に指定した時のみ含まれる） | [optional] 
-**EndMonth** | Pointer to **int32** | 発生月で絞込：終了会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
-**FiscalYear** | Pointer to **int32** | 会計年度(条件に指定した時、または条件に月、日条件がない時のみ含まれる） | [optional] 
-**ItemId** | Pointer to **int32** | 品目ID(条件に指定した時のみ含まれる） | [optional] 
+**EndMonth** | Pointer to **int64** | 発生月で絞込：終了会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
+**FiscalYear** | Pointer to **int64** | 会計年度(条件に指定した時、または条件に月、日条件がない時のみ含まれる） | [optional] 
+**ItemId** | Pointer to **int64** | 品目ID(条件に指定した時のみ含まれる） | [optional] 
 **PartnerCode** | Pointer to **string** | 取引先コード(条件に指定した時のみ含まれる） | [optional] 
-**PartnerId** | Pointer to **int32** | 取引先ID(条件に指定した時のみ含まれる） | [optional] 
+**PartnerId** | Pointer to **int64** | 取引先ID(条件に指定した時のみ含まれる） | [optional] 
+**SectionId** | Pointer to **int64** | 部門ID(条件に指定した時のみ含まれる） | [optional] 
 **StartDate** | Pointer to **string** | 発生日で絞込：開始日(yyyy-mm-dd)(条件に指定した時のみ含まれる） | [optional] 
-**StartMonth** | Pointer to **int32** | 発生月で絞込：開始会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
+**StartMonth** | Pointer to **int64** | 発生月で絞込：開始会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
 
 ## Methods
 
 ### NewTrialBsTwoYearsResponseTrialBsTwoYears
 
-`func NewTrialBsTwoYearsResponseTrialBsTwoYears(balances []TrialBsTwoYearsResponseTrialBsTwoYearsBalances, companyId int32, ) *TrialBsTwoYearsResponseTrialBsTwoYears`
+`func NewTrialBsTwoYearsResponseTrialBsTwoYears(balances []TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner, companyId int64, ) *TrialBsTwoYearsResponseTrialBsTwoYears`
 
 NewTrialBsTwoYearsResponseTrialBsTwoYears instantiates a new TrialBsTwoYearsResponseTrialBsTwoYears object
 This constructor will assign default values to properties that have it defined,
@@ -88,22 +90,47 @@ SetAdjustment sets Adjustment field to given value.
 
 HasAdjustment returns a boolean if a field has been set.
 
+### GetApprovalFlowStatus
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetApprovalFlowStatus() string`
+
+GetApprovalFlowStatus returns the ApprovalFlowStatus field if non-nil, zero value otherwise.
+
+### GetApprovalFlowStatusOk
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetApprovalFlowStatusOk() (*string, bool)`
+
+GetApprovalFlowStatusOk returns a tuple with the ApprovalFlowStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApprovalFlowStatus
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetApprovalFlowStatus(v string)`
+
+SetApprovalFlowStatus sets ApprovalFlowStatus field to given value.
+
+### HasApprovalFlowStatus
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) HasApprovalFlowStatus() bool`
+
+HasApprovalFlowStatus returns a boolean if a field has been set.
+
 ### GetBalances
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetBalances() []TrialBsTwoYearsResponseTrialBsTwoYearsBalances`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetBalances() []TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner`
 
 GetBalances returns the Balances field if non-nil, zero value otherwise.
 
 ### GetBalancesOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetBalancesOk() (*[]TrialBsTwoYearsResponseTrialBsTwoYearsBalances, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetBalancesOk() (*[]TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner, bool)`
 
 GetBalancesOk returns a tuple with the Balances field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBalances
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetBalances(v []TrialBsTwoYearsResponseTrialBsTwoYearsBalances)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetBalances(v []TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner)`
 
 SetBalances sets Balances field to given value.
 
@@ -135,20 +162,20 @@ HasBreakdownDisplayType returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetCompanyId() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetCompanyIdOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetCompanyId(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -205,20 +232,20 @@ HasEndDate returns a boolean if a field has been set.
 
 ### GetEndMonth
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetEndMonth() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetEndMonth() int64`
 
 GetEndMonth returns the EndMonth field if non-nil, zero value otherwise.
 
 ### GetEndMonthOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetEndMonthOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetEndMonthOk() (*int64, bool)`
 
 GetEndMonthOk returns a tuple with the EndMonth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndMonth
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetEndMonth(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetEndMonth(v int64)`
 
 SetEndMonth sets EndMonth field to given value.
 
@@ -230,20 +257,20 @@ HasEndMonth returns a boolean if a field has been set.
 
 ### GetFiscalYear
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetFiscalYear() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetFiscalYear() int64`
 
 GetFiscalYear returns the FiscalYear field if non-nil, zero value otherwise.
 
 ### GetFiscalYearOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetFiscalYearOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetFiscalYearOk() (*int64, bool)`
 
 GetFiscalYearOk returns a tuple with the FiscalYear field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiscalYear
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetFiscalYear(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetFiscalYear(v int64)`
 
 SetFiscalYear sets FiscalYear field to given value.
 
@@ -255,20 +282,20 @@ HasFiscalYear returns a boolean if a field has been set.
 
 ### GetItemId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetItemId() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetItemIdOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetItemId(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -305,20 +332,20 @@ HasPartnerCode returns a boolean if a field has been set.
 
 ### GetPartnerId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetPartnerId() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetPartnerIdOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetPartnerId(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -327,6 +354,31 @@ SetPartnerId sets PartnerId field to given value.
 `func (o *TrialBsTwoYearsResponseTrialBsTwoYears) HasPartnerId() bool`
 
 HasPartnerId returns a boolean if a field has been set.
+
+### GetSectionId
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetSectionId() int64`
+
+GetSectionId returns the SectionId field if non-nil, zero value otherwise.
+
+### GetSectionIdOk
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetSectionIdOk() (*int64, bool)`
+
+GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSectionId
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetSectionId(v int64)`
+
+SetSectionId sets SectionId field to given value.
+
+### HasSectionId
+
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) HasSectionId() bool`
+
+HasSectionId returns a boolean if a field has been set.
 
 ### GetStartDate
 
@@ -355,20 +407,20 @@ HasStartDate returns a boolean if a field has been set.
 
 ### GetStartMonth
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetStartMonth() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetStartMonth() int64`
 
 GetStartMonth returns the StartMonth field if non-nil, zero value otherwise.
 
 ### GetStartMonthOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetStartMonthOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) GetStartMonthOk() (*int64, bool)`
 
 GetStartMonthOk returns a tuple with the StartMonth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartMonth
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetStartMonth(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYears) SetStartMonth(v int64)`
 
 SetStartMonth sets StartMonth field to given value.
 

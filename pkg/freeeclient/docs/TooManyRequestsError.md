@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Meta** | [**TooManyRequestsErrorMeta**](TooManyRequestsErrorMeta.md) |  | 
-**StatusCode** | **int32** |  | 
+**StatusCode** | **int64** |  | 
 
 ## Methods
 
 ### NewTooManyRequestsError
 
-`func NewTooManyRequestsError(meta TooManyRequestsErrorMeta, statusCode int32, ) *TooManyRequestsError`
+`func NewTooManyRequestsError(meta TooManyRequestsErrorMeta, statusCode int64, ) *TooManyRequestsError`
 
 NewTooManyRequestsError instantiates a new TooManyRequestsError object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetMeta sets Meta field to given value.
 
 ### GetStatusCode
 
-`func (o *TooManyRequestsError) GetStatusCode() int32`
+`func (o *TooManyRequestsError) GetStatusCode() int64`
 
 GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
 
 ### GetStatusCodeOk
 
-`func (o *TooManyRequestsError) GetStatusCodeOk() (*int32, bool)`
+`func (o *TooManyRequestsError) GetStatusCodeOk() (*int64, bool)`
 
 GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusCode
 
-`func (o *TooManyRequestsError) SetStatusCode(v int32)`
+`func (o *TooManyRequestsError) SetStatusCode(v int64)`
 
 SetStatusCode sets StatusCode field to given value.
 

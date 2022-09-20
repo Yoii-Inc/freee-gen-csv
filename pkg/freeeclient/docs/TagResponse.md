@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tag** | [**TagResponseTag**](TagResponseTag.md) |  | 
+**Tag** | [**Tag**](Tag.md) |  | 
 
 ## Methods
 
 ### NewTagResponse
 
-`func NewTagResponse(tag TagResponseTag, ) *TagResponse`
+`func NewTagResponse(tag Tag, ) *TagResponse`
 
 NewTagResponse instantiates a new TagResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTag
 
-`func (o *TagResponse) GetTag() TagResponseTag`
+`func (o *TagResponse) GetTag() Tag`
 
 GetTag returns the Tag field if non-nil, zero value otherwise.
 
 ### GetTagOk
 
-`func (o *TagResponse) GetTagOk() (*TagResponseTag, bool)`
+`func (o *TagResponse) GetTagOk() (*Tag, bool)`
 
 GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTag
 
-`func (o *TagResponse) SetTag(v TagResponseTag)`
+`func (o *TagResponse) SetTag(v Tag)`
 
 SetTag sets Tag field to given value.
 

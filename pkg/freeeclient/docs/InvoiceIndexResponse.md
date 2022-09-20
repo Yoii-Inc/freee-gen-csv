@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Invoices** | [**[]InvoiceIndexResponseInvoices**](InvoiceIndexResponseInvoices.md) |  | 
+**Invoices** | [**[]InvoiceIndexResponseInvoicesInner**](InvoiceIndexResponseInvoicesInner.md) |  | 
 
 ## Methods
 
 ### NewInvoiceIndexResponse
 
-`func NewInvoiceIndexResponse(invoices []InvoiceIndexResponseInvoices, ) *InvoiceIndexResponse`
+`func NewInvoiceIndexResponse(invoices []InvoiceIndexResponseInvoicesInner, ) *InvoiceIndexResponse`
 
 NewInvoiceIndexResponse instantiates a new InvoiceIndexResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInvoices
 
-`func (o *InvoiceIndexResponse) GetInvoices() []InvoiceIndexResponseInvoices`
+`func (o *InvoiceIndexResponse) GetInvoices() []InvoiceIndexResponseInvoicesInner`
 
 GetInvoices returns the Invoices field if non-nil, zero value otherwise.
 
 ### GetInvoicesOk
 
-`func (o *InvoiceIndexResponse) GetInvoicesOk() (*[]InvoiceIndexResponseInvoices, bool)`
+`func (o *InvoiceIndexResponse) GetInvoicesOk() (*[]InvoiceIndexResponseInvoicesInner, bool)`
 
 GetInvoicesOk returns a tuple with the Invoices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvoices
 
-`func (o *InvoiceIndexResponse) SetInvoices(v []InvoiceIndexResponseInvoices)`
+`func (o *InvoiceIndexResponse) SetInvoices(v []InvoiceIndexResponseInvoicesInner)`
 
 SetInvoices sets Invoices field to given value.
 

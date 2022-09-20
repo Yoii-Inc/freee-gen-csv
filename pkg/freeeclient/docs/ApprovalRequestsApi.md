@@ -36,11 +36,11 @@ import (
 )
 
 func main() {
-    approvalRequestCreateParams := *openapiclient.NewApprovalRequestCreateParams("2019-12-17", int32(1), int32(1), true, int32(1), []openapiclient.ApprovalRequestCreateParamsRequestItems{*openapiclient.NewApprovalRequestCreateParamsRequestItems()}) // ApprovalRequestCreateParams | 各種申請の作成 (optional)
+    approvalRequestCreateParams := *openapiclient.NewApprovalRequestCreateParams(int64(1), int64(1), true, int64(1), []openapiclient.ApprovalRequestCreateParamsRequestItemsInner{*openapiclient.NewApprovalRequestCreateParamsRequestItemsInner()}) // ApprovalRequestCreateParams | 各種申請の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.CreateApprovalRequest(context.Background()).ApprovalRequestCreateParams(approvalRequestCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.CreateApprovalRequest(context.Background()).ApprovalRequestCreateParams(approvalRequestCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.CreateApprovalRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -102,12 +102,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 各種申請ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.DestroyApprovalRequest(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.DestroyApprovalRequest(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.DestroyApprovalRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiDestroyApprovalRequestRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -172,12 +172,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 各種申請ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.GetApprovalRequest(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.GetApprovalRequest(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.GetApprovalRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -193,7 +193,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 
@@ -203,7 +203,7 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -244,12 +244,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 申請フォームID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 申請フォームID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.GetApprovalRequestForm(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.GetApprovalRequestForm(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.GetApprovalRequestForm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 申請フォームID | 
+**id** | **int64** | 申請フォームID | 
 
 ### Other Parameters
 
@@ -275,7 +275,7 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestFormRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -316,11 +316,11 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.GetApprovalRequestForms(context.Background()).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.GetApprovalRequestForms(context.Background()).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.GetApprovalRequestForms``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -341,7 +341,7 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestFormsReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ## GetApprovalRequests
 
-> ApprovalRequestsIndexResponse GetApprovalRequests(ctx).CompanyId(companyId).Status(status).ApplicationNumber(applicationNumber).Title(title).FormId(formId).StartApplicationDate(startApplicationDate).EndApplicationDate(endApplicationDate).ApplicantId(applicantId).ApproverId(approverId).Offset(offset).Limit(limit).Execute()
+> ApprovalRequestsIndexResponse GetApprovalRequests(ctx).CompanyId(companyId).Status(status).ApplicationNumber(applicationNumber).Title(title).FormId(formId).StartApplicationDate(startApplicationDate).EndApplicationDate(endApplicationDate).ApplicantId(applicantId).MinAmount(minAmount).MaxAmount(maxAmount).ApproverId(approverId).Offset(offset).Limit(limit).Execute()
 
 各種申請の一覧
 
@@ -382,21 +382,23 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    status := "draft" // string | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) (optional)
-    applicationNumber := int32(2) // int32 | 申請No. (optional)
+    companyId := int64(56) // int64 | 事業所ID
+    status := "draft" // string | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) 承認者指定時には無効です。 (optional)
+    applicationNumber := int64(2) // int64 | 申請No. (optional)
     title := "大阪出張" // string | 申請タイトル (optional)
-    formId := int32(56) // int32 | 申請フォームID (optional)
+    formId := int64(56) // int64 | 申請フォームID (optional)
     startApplicationDate := "startApplicationDate_example" // string | 申請日で絞込：開始日(yyyy-mm-dd) (optional)
     endApplicationDate := "endApplicationDate_example" // string | 申請日で絞込：終了日(yyyy-mm-dd) (optional)
-    applicantId := int32(56) // int32 | 申請者のユーザーID (optional)
-    approverId := int32(1) // int32 | 承認者のユーザーID (optional)
-    offset := int32(56) // int32 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
+    applicantId := int64(56) // int64 | 申請者のユーザーID (optional)
+    minAmount := int64(789) // int64 | 金額で絞込：以上 (optional)
+    maxAmount := int64(789) // int64 | 金額で絞込：以下 (optional)
+    approverId := int64(1) // int64 | 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。 (optional)
+    offset := int64(56) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.GetApprovalRequests(context.Background()).CompanyId(companyId).Status(status).ApplicationNumber(applicationNumber).Title(title).FormId(formId).StartApplicationDate(startApplicationDate).EndApplicationDate(endApplicationDate).ApplicantId(applicantId).ApproverId(approverId).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.GetApprovalRequests(context.Background()).CompanyId(companyId).Status(status).ApplicationNumber(applicationNumber).Title(title).FormId(formId).StartApplicationDate(startApplicationDate).EndApplicationDate(endApplicationDate).ApplicantId(applicantId).MinAmount(minAmount).MaxAmount(maxAmount).ApproverId(approverId).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.GetApprovalRequests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -417,17 +419,19 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestsRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
- **status** | **string** | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) | 
- **applicationNumber** | **int32** | 申請No. | 
+ **companyId** | **int64** | 事業所ID | 
+ **status** | **string** | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) 承認者指定時には無効です。 | 
+ **applicationNumber** | **int64** | 申請No. | 
  **title** | **string** | 申請タイトル | 
- **formId** | **int32** | 申請フォームID | 
+ **formId** | **int64** | 申請フォームID | 
  **startApplicationDate** | **string** | 申請日で絞込：開始日(yyyy-mm-dd) | 
  **endApplicationDate** | **string** | 申請日で絞込：終了日(yyyy-mm-dd) | 
- **applicantId** | **int32** | 申請者のユーザーID | 
- **approverId** | **int32** | 承認者のユーザーID | 
- **offset** | **int32** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
+ **applicantId** | **int64** | 申請者のユーザーID | 
+ **minAmount** | **int64** | 金額で絞込：以上 | 
+ **maxAmount** | **int64** | 金額で絞込：以下 | 
+ **approverId** | **int64** | 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。 | 
+ **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
 
 ### Return type
 
@@ -468,12 +472,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    approvalRequestUpdateParams := *openapiclient.NewApprovalRequestUpdateParams("2019-12-17", int32(1), int32(1), true, []openapiclient.ApprovalRequestCreateParamsRequestItems{*openapiclient.NewApprovalRequestCreateParamsRequestItems()}) // ApprovalRequestUpdateParams | 各種申請の更新
+    id := int64(56) // int64 | 各種申請ID
+    approvalRequestUpdateParams := *openapiclient.NewApprovalRequestUpdateParams(int64(1), int64(1), true, []openapiclient.ApprovalRequestCreateParamsRequestItemsInner{*openapiclient.NewApprovalRequestCreateParamsRequestItemsInner()}) // ApprovalRequestUpdateParams | 各種申請の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.UpdateApprovalRequest(context.Background(), id).ApprovalRequestUpdateParams(approvalRequestUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.UpdateApprovalRequest(context.Background(), id).ApprovalRequestUpdateParams(approvalRequestUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.UpdateApprovalRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -489,7 +493,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 
@@ -540,12 +544,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    approvalRequestActionCreateParams := *openapiclient.NewApprovalRequestActionCreateParams("approve", int32(1), int32(1), int32(1)) // ApprovalRequestActionCreateParams | 各種申請の承認操作
+    id := int64(56) // int64 | 各種申請ID
+    approvalRequestActionCreateParams := *openapiclient.NewApprovalRequestActionCreateParams("approve", int64(1), int64(1), int64(1)) // ApprovalRequestActionCreateParams | 各種申請の承認操作
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalRequestsApi.UpdateApprovalRequestAction(context.Background(), id).ApprovalRequestActionCreateParams(approvalRequestActionCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalRequestsApi.UpdateApprovalRequestAction(context.Background(), id).ApprovalRequestActionCreateParams(approvalRequestActionCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalRequestsApi.UpdateApprovalRequestAction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -561,7 +565,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 

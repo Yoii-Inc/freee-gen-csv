@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    walletableCreateParams := *openapiclient.NewWalletableCreateParams(int32(1), "ＸＸ銀行", "bank_account") // WalletableCreateParams | 口座の作成 (optional)
+    walletableCreateParams := *openapiclient.NewWalletableCreateParams(int64(1), "ＸＸ銀行", "bank_account") // WalletableCreateParams | 口座の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.CreateWalletable(context.Background()).WalletableCreateParams(walletableCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.CreateWalletable(context.Background()).WalletableCreateParams(walletableCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.CreateWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,13 +99,13 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 口座ID
+    id := int64(56) // int64 | 口座ID
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.DestroyWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.DestroyWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.DestroyWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 口座ID | 
+**id** | **int64** | 口座ID | 
 **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
 ### Other Parameters
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## GetWalletable
 
-> InlineResponse20016 GetWalletable(ctx, id, type_).CompanyId(companyId).Execute()
+> GetWalletable200Response GetWalletable(ctx, id, type_).CompanyId(companyId).Execute()
 
 口座情報の取得
 
@@ -172,18 +172,18 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 口座ID
+    id := int64(56) // int64 | 口座ID
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.GetWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.GetWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.GetWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWalletable`: InlineResponse20016
+    // response from `GetWalletable`: GetWalletable200Response
     fmt.Fprintf(os.Stdout, "Response from `WalletablesApi.GetWalletable`: %v\n", resp)
 }
 ```
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 口座ID | 
+**id** | **int64** | 口座ID | 
 **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
 ### Other Parameters
@@ -206,11 +206,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**GetWalletable200Response**](GetWalletable200Response.md)
 
 ### Authorization
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ## GetWalletables
 
-> InlineResponse20015 GetWalletables(ctx).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
+> GetWalletables200Response GetWalletables(ctx).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
 
 口座一覧の取得
 
@@ -247,18 +247,18 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     withBalance := true // bool | 残高情報を含める (optional)
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.GetWalletables(context.Background()).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.GetWalletables(context.Background()).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.GetWalletables``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWalletables`: InlineResponse20015
+    // response from `GetWalletables`: GetWalletables200Response
     fmt.Fprintf(os.Stdout, "Response from `WalletablesApi.GetWalletables`: %v\n", resp)
 }
 ```
@@ -274,13 +274,13 @@ Other parameters are passed through a pointer to a apiGetWalletablesRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **withBalance** | **bool** | 残高情報を含める | 
  **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**GetWalletables200Response**](GetWalletables200Response.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWalletable
 
-> InlineResponse20016 UpdateWalletable(ctx, id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
+> GetWalletable200Response UpdateWalletable(ctx, id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
 
 口座の更新
 
@@ -317,18 +317,18 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
+    id := int64(56) // int64 | 
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
-    walletableUpdateParams := *openapiclient.NewWalletableUpdateParams(int32(1), "ＸＸ銀行") // WalletableUpdateParams | 口座の作成 (optional)
+    walletableUpdateParams := *openapiclient.NewWalletableUpdateParams(int64(1), "ＸＸ銀行") // WalletableUpdateParams | 口座の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.UpdateWalletable(context.Background(), id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.UpdateWalletable(context.Background(), id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.UpdateWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateWalletable`: InlineResponse20016
+    // response from `UpdateWalletable`: GetWalletable200Response
     fmt.Fprintf(os.Stdout, "Response from `WalletablesApi.UpdateWalletable`: %v\n", resp)
 }
 ```
@@ -339,7 +339,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
 ### Other Parameters
@@ -351,11 +351,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **walletableUpdateParams** | [**WalletableUpdateParams**](WalletableUpdateParams.md) | 口座の作成 | 
+ **walletableUpdateParams** | [**WalletableUpdateParams**](WalletableUpdateParams.md) | 口座の更新 | 
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**GetWalletable200Response**](GetWalletable200Response.md)
 
 ### Authorization
 

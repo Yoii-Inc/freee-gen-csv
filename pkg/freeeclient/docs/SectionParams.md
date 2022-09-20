@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **LongName** | Pointer to **string** | 正式名称 (255文字以内) | [optional] 
 **Name** | **string** | 部門名 (30文字以内) | 
-**ParentId** | Pointer to **int32** | 親部門ID (個人:プレミアムプラン、法人:ベーシックプラン以上) | [optional] 
+**ParentId** | Pointer to **int64** | 親部門ID (個人:プレミアムプラン、法人:ベーシックプラン以上) | [optional] 
 **Shortcut1** | Pointer to **string** | ショートカット１ (20文字以内) | [optional] 
 **Shortcut2** | Pointer to **string** | ショートカット２ (20文字以内) | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewSectionParams
 
-`func NewSectionParams(companyId int32, name string, ) *SectionParams`
+`func NewSectionParams(companyId int64, name string, ) *SectionParams`
 
 NewSectionParams instantiates a new SectionParams object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *SectionParams) GetCompanyId() int32`
+`func (o *SectionParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *SectionParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *SectionParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *SectionParams) SetCompanyId(v int32)`
+`func (o *SectionParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -97,20 +97,20 @@ SetName sets Name field to given value.
 
 ### GetParentId
 
-`func (o *SectionParams) GetParentId() int32`
+`func (o *SectionParams) GetParentId() int64`
 
 GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 ### GetParentIdOk
 
-`func (o *SectionParams) GetParentIdOk() (*int32, bool)`
+`func (o *SectionParams) GetParentIdOk() (*int64, bool)`
 
 GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentId
 
-`func (o *SectionParams) SetParentId(v int32)`
+`func (o *SectionParams) SetParentId(v int64)`
 
 SetParentId sets ParentId field to given value.
 

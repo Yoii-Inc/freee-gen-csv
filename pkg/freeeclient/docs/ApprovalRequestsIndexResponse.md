@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApprovalRequests** | [**[]ApprovalRequestsIndexResponseApprovalRequests**](ApprovalRequestsIndexResponseApprovalRequests.md) |  | 
+**ApprovalRequests** | [**[]ApprovalRequestsIndexResponseApprovalRequestsInner**](ApprovalRequestsIndexResponseApprovalRequestsInner.md) |  | 
 
 ## Methods
 
 ### NewApprovalRequestsIndexResponse
 
-`func NewApprovalRequestsIndexResponse(approvalRequests []ApprovalRequestsIndexResponseApprovalRequests, ) *ApprovalRequestsIndexResponse`
+`func NewApprovalRequestsIndexResponse(approvalRequests []ApprovalRequestsIndexResponseApprovalRequestsInner, ) *ApprovalRequestsIndexResponse`
 
 NewApprovalRequestsIndexResponse instantiates a new ApprovalRequestsIndexResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetApprovalRequests
 
-`func (o *ApprovalRequestsIndexResponse) GetApprovalRequests() []ApprovalRequestsIndexResponseApprovalRequests`
+`func (o *ApprovalRequestsIndexResponse) GetApprovalRequests() []ApprovalRequestsIndexResponseApprovalRequestsInner`
 
 GetApprovalRequests returns the ApprovalRequests field if non-nil, zero value otherwise.
 
 ### GetApprovalRequestsOk
 
-`func (o *ApprovalRequestsIndexResponse) GetApprovalRequestsOk() (*[]ApprovalRequestsIndexResponseApprovalRequests, bool)`
+`func (o *ApprovalRequestsIndexResponse) GetApprovalRequestsOk() (*[]ApprovalRequestsIndexResponseApprovalRequestsInner, bool)`
 
 GetApprovalRequestsOk returns a tuple with the ApprovalRequests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovalRequests
 
-`func (o *ApprovalRequestsIndexResponse) SetApprovalRequests(v []ApprovalRequestsIndexResponseApprovalRequests)`
+`func (o *ApprovalRequestsIndexResponse) SetApprovalRequests(v []ApprovalRequestsIndexResponseApprovalRequestsInner)`
 
 SetApprovalRequests sets ApprovalRequests field to given value.
 

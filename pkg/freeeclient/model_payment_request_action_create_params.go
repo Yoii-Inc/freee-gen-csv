@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -19,20 +19,20 @@ type PaymentRequestActionCreateParams struct {
 	// 操作(approve: 承認する、force_approve: 代理承認する、cancel: 申請を取り消す、reject: 却下する、feedback: 申請者へ差し戻す、force_feedback: 承認済み・却下済みを取り消す)
 	ApprovalAction string `json:"approval_action"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 次ステップの承認者のユーザーID
-	NextApproverId NullableInt32 `json:"next_approver_id,omitempty"`
+	NextApproverId NullableInt64 `json:"next_approver_id,omitempty"`
 	// 対象round。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。支払依頼の取得APIレスポンス.current_roundを送信してください。
-	TargetRound int32 `json:"target_round"`
+	TargetRound int64 `json:"target_round"`
 	// 対象承認ステップID 支払依頼の取得APIレスポンス.current_step_idを送信してください。
-	TargetStepId int32 `json:"target_step_id"`
+	TargetStepId int64 `json:"target_step_id"`
 }
 
 // NewPaymentRequestActionCreateParams instantiates a new PaymentRequestActionCreateParams object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaymentRequestActionCreateParams(approvalAction string, companyId int32, targetRound int32, targetStepId int32) *PaymentRequestActionCreateParams {
+func NewPaymentRequestActionCreateParams(approvalAction string, companyId int64, targetRound int64, targetStepId int64) *PaymentRequestActionCreateParams {
 	this := PaymentRequestActionCreateParams{}
 	this.ApprovalAction = approvalAction
 	this.CompanyId = companyId
@@ -62,7 +62,7 @@ func (o *PaymentRequestActionCreateParams) GetApprovalAction() string {
 // GetApprovalActionOk returns a tuple with the ApprovalAction field value
 // and a boolean to check if the value has been set.
 func (o *PaymentRequestActionCreateParams) GetApprovalActionOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApprovalAction, true
@@ -74,9 +74,9 @@ func (o *PaymentRequestActionCreateParams) SetApprovalAction(v string) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *PaymentRequestActionCreateParams) GetCompanyId() int32 {
+func (o *PaymentRequestActionCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -85,22 +85,22 @@ func (o *PaymentRequestActionCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestActionCreateParams) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *PaymentRequestActionCreateParams) GetCompanyIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
 }
 
 // SetCompanyId sets field value
-func (o *PaymentRequestActionCreateParams) SetCompanyId(v int32) {
+func (o *PaymentRequestActionCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetNextApproverId returns the NextApproverId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PaymentRequestActionCreateParams) GetNextApproverId() int32 {
+func (o *PaymentRequestActionCreateParams) GetNextApproverId() int64 {
 	if o == nil || o.NextApproverId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NextApproverId.Get()
@@ -109,8 +109,8 @@ func (o *PaymentRequestActionCreateParams) GetNextApproverId() int32 {
 // GetNextApproverIdOk returns a tuple with the NextApproverId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PaymentRequestActionCreateParams) GetNextApproverIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *PaymentRequestActionCreateParams) GetNextApproverIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.NextApproverId.Get(), o.NextApproverId.IsSet()
@@ -125,8 +125,8 @@ func (o *PaymentRequestActionCreateParams) HasNextApproverId() bool {
 	return false
 }
 
-// SetNextApproverId gets a reference to the given NullableInt32 and assigns it to the NextApproverId field.
-func (o *PaymentRequestActionCreateParams) SetNextApproverId(v int32) {
+// SetNextApproverId gets a reference to the given NullableInt64 and assigns it to the NextApproverId field.
+func (o *PaymentRequestActionCreateParams) SetNextApproverId(v int64) {
 	o.NextApproverId.Set(&v)
 }
 // SetNextApproverIdNil sets the value for NextApproverId to be an explicit nil
@@ -140,9 +140,9 @@ func (o *PaymentRequestActionCreateParams) UnsetNextApproverId() {
 }
 
 // GetTargetRound returns the TargetRound field value
-func (o *PaymentRequestActionCreateParams) GetTargetRound() int32 {
+func (o *PaymentRequestActionCreateParams) GetTargetRound() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -151,22 +151,22 @@ func (o *PaymentRequestActionCreateParams) GetTargetRound() int32 {
 
 // GetTargetRoundOk returns a tuple with the TargetRound field value
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestActionCreateParams) GetTargetRoundOk() (*int32, bool) {
-	if o == nil  {
+func (o *PaymentRequestActionCreateParams) GetTargetRoundOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TargetRound, true
 }
 
 // SetTargetRound sets field value
-func (o *PaymentRequestActionCreateParams) SetTargetRound(v int32) {
+func (o *PaymentRequestActionCreateParams) SetTargetRound(v int64) {
 	o.TargetRound = v
 }
 
 // GetTargetStepId returns the TargetStepId field value
-func (o *PaymentRequestActionCreateParams) GetTargetStepId() int32 {
+func (o *PaymentRequestActionCreateParams) GetTargetStepId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -175,15 +175,15 @@ func (o *PaymentRequestActionCreateParams) GetTargetStepId() int32 {
 
 // GetTargetStepIdOk returns a tuple with the TargetStepId field value
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestActionCreateParams) GetTargetStepIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *PaymentRequestActionCreateParams) GetTargetStepIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TargetStepId, true
 }
 
 // SetTargetStepId sets field value
-func (o *PaymentRequestActionCreateParams) SetTargetStepId(v int32) {
+func (o *PaymentRequestActionCreateParams) SetTargetStepId(v int64) {
 	o.TargetStepId = v
 }
 

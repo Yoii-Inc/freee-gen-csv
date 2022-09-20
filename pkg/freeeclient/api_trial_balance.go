@@ -1,104 +1,138 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // TrialBalanceApiService TrialBalanceApi service
 type TrialBalanceApiService service
 
 type ApiGetTrialBsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
+	approvalFlowStatus *string
 }
 
-func (r ApiGetTrialBsRequest) CompanyId(companyId int32) ApiGetTrialBsRequest {
+// 事業所ID
+func (r ApiGetTrialBsRequest) CompanyId(companyId int64) ApiGetTrialBsRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetTrialBsRequest) FiscalYear(fiscalYear int32) ApiGetTrialBsRequest {
+
+// 会計年度
+func (r ApiGetTrialBsRequest) FiscalYear(fiscalYear int64) ApiGetTrialBsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
-func (r ApiGetTrialBsRequest) StartMonth(startMonth int32) ApiGetTrialBsRequest {
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialBsRequest) StartMonth(startMonth int64) ApiGetTrialBsRequest {
 	r.startMonth = &startMonth
 	return r
 }
-func (r ApiGetTrialBsRequest) EndMonth(endMonth int32) ApiGetTrialBsRequest {
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialBsRequest) EndMonth(endMonth int64) ApiGetTrialBsRequest {
 	r.endMonth = &endMonth
 	return r
 }
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetTrialBsRequest) StartDate(startDate string) ApiGetTrialBsRequest {
 	r.startDate = &startDate
 	return r
 }
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetTrialBsRequest) EndDate(endDate string) ApiGetTrialBsRequest {
 	r.endDate = &endDate
 	return r
 }
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
 func (r ApiGetTrialBsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialBsRequest {
 	r.accountItemDisplayType = &accountItemDisplayType
 	return r
 }
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
 func (r ApiGetTrialBsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialBsRequest {
 	r.breakdownDisplayType = &breakdownDisplayType
 	return r
 }
-func (r ApiGetTrialBsRequest) PartnerId(partnerId int32) ApiGetTrialBsRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialBsRequest) PartnerId(partnerId int64) ApiGetTrialBsRequest {
 	r.partnerId = &partnerId
 	return r
 }
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
 func (r ApiGetTrialBsRequest) PartnerCode(partnerCode string) ApiGetTrialBsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetTrialBsRequest) ItemId(itemId int32) ApiGetTrialBsRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialBsRequest) ItemId(itemId int64) ApiGetTrialBsRequest {
 	r.itemId = &itemId
 	return r
 }
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialBsRequest) SectionId(sectionId int64) ApiGetTrialBsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
 func (r ApiGetTrialBsRequest) Adjustment(adjustment string) ApiGetTrialBsRequest {
 	r.adjustment = &adjustment
 	return r
 }
 
-func (r ApiGetTrialBsRequest) Execute() (TrialBsResponse, *_nethttp.Response, error) {
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialBsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialBsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialBsRequest) Execute() (*TrialBsResponse, *http.Response, error) {
 	return r.ApiService.GetTrialBsExecute(r)
 }
 
 /*
- * GetTrialBs 貸借対照表の取得
- * 
+GetTrialBs 貸借対照表の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の貸借対照表を取得する</p>
@@ -141,9 +175,22 @@ func (r ApiGetTrialBsRequest) Execute() (TrialBsResponse, *_nethttp.Response, er
 <h2 id="_3">注意点</h2>
 <ul>
 <li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
-<li>絞り込み条件の日付と、月または年度は同時に指定することはできません。</li>
 <li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
-<li>取引先、品目、部門はそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="_4">レスポンスの例</h2>
 
@@ -185,40 +232,37 @@ func (r ApiGetTrialBsRequest) Execute() (TrialBsResponse, *_nethttp.Response, er
     }
 }</code></pre>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTrialBsRequest
- */
-func (a *TrialBalanceApiService) GetTrialBs(ctx _context.Context) ApiGetTrialBsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialBsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialBs(ctx context.Context) ApiGetTrialBsRequest {
 	return ApiGetTrialBsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TrialBsResponse
- */
-func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (TrialBsResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TrialBsResponse
+func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (*TrialBsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TrialBsResponse
+		formFiles            []formFile
+		localVarReturnValue  *TrialBsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialBs")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/reports/trial_bs"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -260,8 +304,14 @@ func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (Tria
 	if r.itemId != nil {
 		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
 	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
 	if r.adjustment != nil {
 		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -280,7 +330,7 @@ func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (Tria
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -290,15 +340,15 @@ func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (Tria
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -356,7 +406,7 @@ func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (Tria
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -367,78 +417,116 @@ func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (Tria
 }
 
 type ApiGetTrialBsThreeYearsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
+	approvalFlowStatus *string
 }
 
-func (r ApiGetTrialBsThreeYearsRequest) CompanyId(companyId int32) ApiGetTrialBsThreeYearsRequest {
+// 事業所ID
+func (r ApiGetTrialBsThreeYearsRequest) CompanyId(companyId int64) ApiGetTrialBsThreeYearsRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetTrialBsThreeYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialBsThreeYearsRequest {
+
+// 会計年度
+func (r ApiGetTrialBsThreeYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialBsThreeYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
-func (r ApiGetTrialBsThreeYearsRequest) StartMonth(startMonth int32) ApiGetTrialBsThreeYearsRequest {
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialBsThreeYearsRequest) StartMonth(startMonth int64) ApiGetTrialBsThreeYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
-func (r ApiGetTrialBsThreeYearsRequest) EndMonth(endMonth int32) ApiGetTrialBsThreeYearsRequest {
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialBsThreeYearsRequest) EndMonth(endMonth int64) ApiGetTrialBsThreeYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetTrialBsThreeYearsRequest) StartDate(startDate string) ApiGetTrialBsThreeYearsRequest {
 	r.startDate = &startDate
 	return r
 }
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetTrialBsThreeYearsRequest) EndDate(endDate string) ApiGetTrialBsThreeYearsRequest {
 	r.endDate = &endDate
 	return r
 }
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
 func (r ApiGetTrialBsThreeYearsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialBsThreeYearsRequest {
 	r.accountItemDisplayType = &accountItemDisplayType
 	return r
 }
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
 func (r ApiGetTrialBsThreeYearsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialBsThreeYearsRequest {
 	r.breakdownDisplayType = &breakdownDisplayType
 	return r
 }
-func (r ApiGetTrialBsThreeYearsRequest) PartnerId(partnerId int32) ApiGetTrialBsThreeYearsRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialBsThreeYearsRequest) PartnerId(partnerId int64) ApiGetTrialBsThreeYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
 func (r ApiGetTrialBsThreeYearsRequest) PartnerCode(partnerCode string) ApiGetTrialBsThreeYearsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetTrialBsThreeYearsRequest) ItemId(itemId int32) ApiGetTrialBsThreeYearsRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialBsThreeYearsRequest) ItemId(itemId int64) ApiGetTrialBsThreeYearsRequest {
 	r.itemId = &itemId
 	return r
 }
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialBsThreeYearsRequest) SectionId(sectionId int64) ApiGetTrialBsThreeYearsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
 func (r ApiGetTrialBsThreeYearsRequest) Adjustment(adjustment string) ApiGetTrialBsThreeYearsRequest {
 	r.adjustment = &adjustment
 	return r
 }
 
-func (r ApiGetTrialBsThreeYearsRequest) Execute() (TrialBsThreeYearsResponse, *_nethttp.Response, error) {
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialBsThreeYearsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialBsThreeYearsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialBsThreeYearsRequest) Execute() (*TrialBsThreeYearsResponse, *http.Response, error) {
 	return r.ApiService.GetTrialBsThreeYearsExecute(r)
 }
 
 /*
- * GetTrialBsThreeYears 貸借対照表(３期間比較)の取得
- * 
+GetTrialBsThreeYears 貸借対照表(３期間比較)の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の貸借対照表(３期間比較)を取得する</p>
@@ -477,9 +565,22 @@ func (r ApiGetTrialBsThreeYearsRequest) Execute() (TrialBsThreeYearsResponse, *_
 <h2 id="_3">注意点</h2>
 <ul>
 <li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
-<li>絞り込み条件の日付と、月または年度は同時に指定することはできません。</li>
 <li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
-<li>取引先、品目、部門はそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="_4">レスポンスの例</h2>
 
@@ -508,40 +609,37 @@ func (r ApiGetTrialBsThreeYearsRequest) Execute() (TrialBsThreeYearsResponse, *_
     }
 }</code></pre>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTrialBsThreeYearsRequest
- */
-func (a *TrialBalanceApiService) GetTrialBsThreeYears(ctx _context.Context) ApiGetTrialBsThreeYearsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialBsThreeYearsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialBsThreeYears(ctx context.Context) ApiGetTrialBsThreeYearsRequest {
 	return ApiGetTrialBsThreeYearsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TrialBsThreeYearsResponse
- */
-func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThreeYearsRequest) (TrialBsThreeYearsResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TrialBsThreeYearsResponse
+func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThreeYearsRequest) (*TrialBsThreeYearsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TrialBsThreeYearsResponse
+		formFiles            []formFile
+		localVarReturnValue  *TrialBsThreeYearsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialBsThreeYears")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/reports/trial_bs_three_years"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -583,8 +681,14 @@ func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThre
 	if r.itemId != nil {
 		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
 	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
 	if r.adjustment != nil {
 		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -603,7 +707,7 @@ func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThre
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -613,15 +717,15 @@ func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -679,7 +783,7 @@ func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThre
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -690,78 +794,116 @@ func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThre
 }
 
 type ApiGetTrialBsTwoYearsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
+	approvalFlowStatus *string
 }
 
-func (r ApiGetTrialBsTwoYearsRequest) CompanyId(companyId int32) ApiGetTrialBsTwoYearsRequest {
+// 事業所ID
+func (r ApiGetTrialBsTwoYearsRequest) CompanyId(companyId int64) ApiGetTrialBsTwoYearsRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetTrialBsTwoYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialBsTwoYearsRequest {
+
+// 会計年度
+func (r ApiGetTrialBsTwoYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialBsTwoYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
-func (r ApiGetTrialBsTwoYearsRequest) StartMonth(startMonth int32) ApiGetTrialBsTwoYearsRequest {
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialBsTwoYearsRequest) StartMonth(startMonth int64) ApiGetTrialBsTwoYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
-func (r ApiGetTrialBsTwoYearsRequest) EndMonth(endMonth int32) ApiGetTrialBsTwoYearsRequest {
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialBsTwoYearsRequest) EndMonth(endMonth int64) ApiGetTrialBsTwoYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetTrialBsTwoYearsRequest) StartDate(startDate string) ApiGetTrialBsTwoYearsRequest {
 	r.startDate = &startDate
 	return r
 }
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetTrialBsTwoYearsRequest) EndDate(endDate string) ApiGetTrialBsTwoYearsRequest {
 	r.endDate = &endDate
 	return r
 }
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
 func (r ApiGetTrialBsTwoYearsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialBsTwoYearsRequest {
 	r.accountItemDisplayType = &accountItemDisplayType
 	return r
 }
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
 func (r ApiGetTrialBsTwoYearsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialBsTwoYearsRequest {
 	r.breakdownDisplayType = &breakdownDisplayType
 	return r
 }
-func (r ApiGetTrialBsTwoYearsRequest) PartnerId(partnerId int32) ApiGetTrialBsTwoYearsRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialBsTwoYearsRequest) PartnerId(partnerId int64) ApiGetTrialBsTwoYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
 func (r ApiGetTrialBsTwoYearsRequest) PartnerCode(partnerCode string) ApiGetTrialBsTwoYearsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetTrialBsTwoYearsRequest) ItemId(itemId int32) ApiGetTrialBsTwoYearsRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialBsTwoYearsRequest) ItemId(itemId int64) ApiGetTrialBsTwoYearsRequest {
 	r.itemId = &itemId
 	return r
 }
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialBsTwoYearsRequest) SectionId(sectionId int64) ApiGetTrialBsTwoYearsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
 func (r ApiGetTrialBsTwoYearsRequest) Adjustment(adjustment string) ApiGetTrialBsTwoYearsRequest {
 	r.adjustment = &adjustment
 	return r
 }
 
-func (r ApiGetTrialBsTwoYearsRequest) Execute() (TrialBsTwoYearsResponse, *_nethttp.Response, error) {
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialBsTwoYearsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialBsTwoYearsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialBsTwoYearsRequest) Execute() (*TrialBsTwoYearsResponse, *http.Response, error) {
 	return r.ApiService.GetTrialBsTwoYearsExecute(r)
 }
 
 /*
- * GetTrialBsTwoYears 貸借対照表(前年比較)の取得
- * 
+GetTrialBsTwoYears 貸借対照表(前年比較)の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の貸借対照表(前年比較)を取得する</p>
@@ -791,12 +933,28 @@ func (r ApiGetTrialBsTwoYearsRequest) Execute() (TrialBsTwoYearsResponse, *_neth
 <li>
 <p>closing_balance : 期末残高 </p>
 </li>
+<li>
+<p>year_on_year : 前年比</p>
+</li>
 <h2 id="_3">注意点</h2>
 <ul>
 <li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
-<li>絞り込み条件の日付と、月または年度は同時に指定することはできません。</li>
 <li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
-<li>取引先、品目、部門はそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
 </ul>
 
 <h2 id="_4">レスポンスの例</h2>
@@ -819,47 +977,43 @@ func (r ApiGetTrialBsTwoYearsRequest) Execute() (TrialBsTwoYearsResponse, *_neth
         &quot;last_year_closing_balance&quot; : 25000,
         &quot;closing_balance&quot; : 100000,
         &quot;year_on_year&quot; : 0.85
-
       },
       ...
       ]
     }
 }</code></pre>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTrialBsTwoYearsRequest
- */
-func (a *TrialBalanceApiService) GetTrialBsTwoYears(ctx _context.Context) ApiGetTrialBsTwoYearsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialBsTwoYearsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialBsTwoYears(ctx context.Context) ApiGetTrialBsTwoYearsRequest {
 	return ApiGetTrialBsTwoYearsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TrialBsTwoYearsResponse
- */
-func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYearsRequest) (TrialBsTwoYearsResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TrialBsTwoYearsResponse
+func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYearsRequest) (*TrialBsTwoYearsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TrialBsTwoYearsResponse
+		formFiles            []formFile
+		localVarReturnValue  *TrialBsTwoYearsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialBsTwoYears")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/reports/trial_bs_two_years"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -901,8 +1055,14 @@ func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYea
 	if r.itemId != nil {
 		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
 	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
 	if r.adjustment != nil {
 		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -921,7 +1081,7 @@ func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYea
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -931,15 +1091,15 @@ func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYea
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -997,7 +1157,7 @@ func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYea
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1007,116 +1167,142 @@ func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetTrialPlRequest struct {
-	ctx _context.Context
+type ApiGetTrialCrRequest struct {
+	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
+	approvalFlowStatus *string
 }
 
-func (r ApiGetTrialPlRequest) CompanyId(companyId int32) ApiGetTrialPlRequest {
+// 事業所ID
+func (r ApiGetTrialCrRequest) CompanyId(companyId int64) ApiGetTrialCrRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetTrialPlRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlRequest {
+
+// 会計年度
+func (r ApiGetTrialCrRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
-func (r ApiGetTrialPlRequest) StartMonth(startMonth int32) ApiGetTrialPlRequest {
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialCrRequest) StartMonth(startMonth int64) ApiGetTrialCrRequest {
 	r.startMonth = &startMonth
 	return r
 }
-func (r ApiGetTrialPlRequest) EndMonth(endMonth int32) ApiGetTrialPlRequest {
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialCrRequest) EndMonth(endMonth int64) ApiGetTrialCrRequest {
 	r.endMonth = &endMonth
 	return r
 }
-func (r ApiGetTrialPlRequest) StartDate(startDate string) ApiGetTrialPlRequest {
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialCrRequest) StartDate(startDate string) ApiGetTrialCrRequest {
 	r.startDate = &startDate
 	return r
 }
-func (r ApiGetTrialPlRequest) EndDate(endDate string) ApiGetTrialPlRequest {
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialCrRequest) EndDate(endDate string) ApiGetTrialCrRequest {
 	r.endDate = &endDate
 	return r
 }
-func (r ApiGetTrialPlRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlRequest {
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialCrRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialCrRequest {
 	r.accountItemDisplayType = &accountItemDisplayType
 	return r
 }
-func (r ApiGetTrialPlRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlRequest {
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialCrRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialCrRequest {
 	r.breakdownDisplayType = &breakdownDisplayType
 	return r
 }
-func (r ApiGetTrialPlRequest) PartnerId(partnerId int32) ApiGetTrialPlRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialCrRequest) PartnerId(partnerId int64) ApiGetTrialCrRequest {
 	r.partnerId = &partnerId
 	return r
 }
-func (r ApiGetTrialPlRequest) PartnerCode(partnerCode string) ApiGetTrialPlRequest {
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialCrRequest) PartnerCode(partnerCode string) ApiGetTrialCrRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetTrialPlRequest) ItemId(itemId int32) ApiGetTrialPlRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialCrRequest) ItemId(itemId int64) ApiGetTrialCrRequest {
 	r.itemId = &itemId
 	return r
 }
-func (r ApiGetTrialPlRequest) SectionId(sectionId int32) ApiGetTrialPlRequest {
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialCrRequest) SectionId(sectionId int64) ApiGetTrialCrRequest {
 	r.sectionId = &sectionId
 	return r
 }
-func (r ApiGetTrialPlRequest) Adjustment(adjustment string) ApiGetTrialPlRequest {
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialCrRequest) Adjustment(adjustment string) ApiGetTrialCrRequest {
 	r.adjustment = &adjustment
 	return r
 }
-func (r ApiGetTrialPlRequest) CostAllocation(costAllocation string) ApiGetTrialPlRequest {
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialCrRequest) CostAllocation(costAllocation string) ApiGetTrialCrRequest {
 	r.costAllocation = &costAllocation
 	return r
 }
 
-func (r ApiGetTrialPlRequest) Execute() (TrialPlResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetTrialPlExecute(r)
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト), 全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialCrRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialCrRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialCrRequest) Execute() (*TrialCrResponse, *http.Response, error) {
+	return r.ApiService.GetTrialCrExecute(r)
 }
 
 /*
- * GetTrialPl 損益計算書の取得
- * 
+GetTrialCr 製造原価報告書の取得
+
 <h2 id="">概要</h2>
-
-<p>指定した事業所の損益計算書を取得する</p>
-
+<p>指定した事業所の製造原価報告書を取得する</p>
 <h2 id="_2">定義</h2>
-
 <ul>
-
 <li>
 <p>created_at : 作成日時</p>
 </li>
-
 <li>
 <p>account_item_name : 勘定科目名</p>
 </li>
-
 <li>
 <p>hierarchy_level: 階層レベル</p>
 </li>
-
 <li>
 <p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
 </li>
 <li>
 <p>opening_balance : 期首残高 </p>
 </li>
-
 <li>
 <p>debit_amount : 借方金額 </p>
 </li>
@@ -1131,20 +1317,32 @@ func (r ApiGetTrialPlRequest) Execute() (TrialPlResponse, *_nethttp.Response, er
 </li>
 <h2 id="_3">注意点</h2>
 <ul>
+<li>法人向けのプランで利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
 <li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
-<li>絞り込み条件の日付と、月または年度は同時に指定することはできません。</li>
 <li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
 <li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
-<li>取引先、品目、部門はそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="_4">レスポンスの例</h2>
-
 <blockquote>
-<p>GET https://api.freee.co.jp/api/1/reports/trial_pl?company_id=1&amp;fiscal_year=2019&amp;breakdown_display_type=partner</p>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_cr?company_id=1&amp;fiscal_year=2019&amp;breakdown_display_type=partner</p>
 </blockquote>
-
 <pre><code>{
-  &quot;trial_pl&quot; :
+  &quot;trial_cr&quot; :
     {
       &quot;company_id&quot; : 1,
       &quot;fiscal_year&quot; : 2019,
@@ -1152,9 +1350,9 @@ func (r ApiGetTrialPlRequest) Execute() (TrialPlResponse, *_nethttp.Response, er
       &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
       &quot;balances&quot; : [{
         &quot;account_item_id&quot; : 1500,
-        &quot;account_item_name&quot; : &quot;売上高&quot;,
+        &quot;account_item_name&quot; : &quot;[製]期首材料棚卸高&quot;,
         &quot;hierarchy_level&quot; : 2,
-        &quot;account_category_name&quot; : &quot;営業収益&quot;,
+        &quot;account_category_name&quot; : &quot;期首原材料棚卸&quot;,
         &quot;opening_balance&quot; : 100000,
         &quot;debit_amount&quot; : 50000,
         &quot;credit_amount&quot; : 20000,
@@ -1177,40 +1375,37 @@ func (r ApiGetTrialPlRequest) Execute() (TrialPlResponse, *_nethttp.Response, er
     }
 }</code></pre>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTrialPlRequest
- */
-func (a *TrialBalanceApiService) GetTrialPl(ctx _context.Context) ApiGetTrialPlRequest {
-	return ApiGetTrialPlRequest{
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialCrRequest
+*/
+func (a *TrialBalanceApiService) GetTrialCr(ctx context.Context) ApiGetTrialCrRequest {
+	return ApiGetTrialCrRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TrialPlResponse
- */
-func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (TrialPlResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TrialCrResponse
+func (a *TrialBalanceApiService) GetTrialCrExecute(r ApiGetTrialCrRequest) (*TrialCrResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TrialPlResponse
+		formFiles            []formFile
+		localVarReturnValue  *TrialCrResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPl")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialCr")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/1/reports/trial_pl"
+	localVarPath := localBasePath + "/api/1/reports/trial_cr"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -1261,6 +1456,9 @@ func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (Tria
 	if r.costAllocation != nil {
 		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
 	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1278,7 +1476,7 @@ func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (Tria
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1288,15 +1486,15 @@ func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (Tria
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1354,7 +1552,7 @@ func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (Tria
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1364,92 +1562,127 @@ func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (Tria
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetTrialPlSectionsRequest struct {
-	ctx _context.Context
+type ApiGetTrialCrSectionsRequest struct {
+	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	sectionIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
+	itemId *int64
 	adjustment *string
 	costAllocation *string
+	approvalFlowStatus *string
 }
 
-func (r ApiGetTrialPlSectionsRequest) CompanyId(companyId int32) ApiGetTrialPlSectionsRequest {
+// 事業所ID
+func (r ApiGetTrialCrSectionsRequest) CompanyId(companyId int64) ApiGetTrialCrSectionsRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) SectionIds(sectionIds string) ApiGetTrialPlSectionsRequest {
+
+// 出力する部門の指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択の部門で比較できます）
+func (r ApiGetTrialCrSectionsRequest) SectionIds(sectionIds string) ApiGetTrialCrSectionsRequest {
 	r.sectionIds = &sectionIds
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlSectionsRequest {
+
+// 会計年度
+func (r ApiGetTrialCrSectionsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSectionsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) StartMonth(startMonth int32) ApiGetTrialPlSectionsRequest {
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialCrSectionsRequest) StartMonth(startMonth int64) ApiGetTrialCrSectionsRequest {
 	r.startMonth = &startMonth
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) EndMonth(endMonth int32) ApiGetTrialPlSectionsRequest {
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialCrSectionsRequest) EndMonth(endMonth int64) ApiGetTrialCrSectionsRequest {
 	r.endMonth = &endMonth
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) StartDate(startDate string) ApiGetTrialPlSectionsRequest {
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialCrSectionsRequest) StartDate(startDate string) ApiGetTrialCrSectionsRequest {
 	r.startDate = &startDate
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) EndDate(endDate string) ApiGetTrialPlSectionsRequest {
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialCrSectionsRequest) EndDate(endDate string) ApiGetTrialCrSectionsRequest {
 	r.endDate = &endDate
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlSectionsRequest {
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialCrSectionsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialCrSectionsRequest {
 	r.accountItemDisplayType = &accountItemDisplayType
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlSectionsRequest {
+
+// 内訳の表示（取引先: partner, 品目: item, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialCrSectionsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialCrSectionsRequest {
 	r.breakdownDisplayType = &breakdownDisplayType
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) PartnerId(partnerId int32) ApiGetTrialPlSectionsRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialCrSectionsRequest) PartnerId(partnerId int64) ApiGetTrialCrSectionsRequest {
 	r.partnerId = &partnerId
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) PartnerCode(partnerCode string) ApiGetTrialPlSectionsRequest {
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialCrSectionsRequest) PartnerCode(partnerCode string) ApiGetTrialCrSectionsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) ItemId(itemId int32) ApiGetTrialPlSectionsRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialCrSectionsRequest) ItemId(itemId int64) ApiGetTrialCrSectionsRequest {
 	r.itemId = &itemId
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) Adjustment(adjustment string) ApiGetTrialPlSectionsRequest {
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialCrSectionsRequest) Adjustment(adjustment string) ApiGetTrialCrSectionsRequest {
 	r.adjustment = &adjustment
 	return r
 }
-func (r ApiGetTrialPlSectionsRequest) CostAllocation(costAllocation string) ApiGetTrialPlSectionsRequest {
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialCrSectionsRequest) CostAllocation(costAllocation string) ApiGetTrialCrSectionsRequest {
 	r.costAllocation = &costAllocation
 	return r
 }
 
-func (r ApiGetTrialPlSectionsRequest) Execute() (TrialPlSectionsResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetTrialPlSectionsExecute(r)
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialCrSectionsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialCrSectionsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialCrSectionsRequest) Execute() (*TrialCrSectionsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialCrSectionsExecute(r)
 }
 
 /*
- * GetTrialPlSections 損益計算書(部門比較)の取得
- * 
+GetTrialCrSections 製造原価報告書(部門比較)の取得
+
+
 <h2 id="">概要</h2>
 
-<p>指定した事業所の損益計算書(部門比較)を取得する</p>
+<p>指定した事業所の製造原価報告書(部門比較)を取得する</p>
 
 <h2 id="_2">定義</h2>
 
@@ -1475,21 +1708,34 @@ func (r ApiGetTrialPlSectionsRequest) Execute() (TrialPlSectionsResponse, *_neth
 </li>
 <h2 id="_3">注意点</h2>
 <ul>
-<li>個人向けのプレミアムプラン、法人向けのベーシックプラン以上で利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>法人向けのベーシックプラン以上で利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
 <li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
-<li>絞り込み条件の日付と、月または年度は同時に指定することはできません。</li>
 <li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
 <li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
-<li>取引先、品目、部門はそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="_4">レスポンスの例</h2>
 
 <blockquote>
-<p>GET https://api.freee.co.jp/api/1/reports/trial_pl_sections?company_id=1&amp;section_ids=1,2,3&amp;fiscal_year=2019</p></p>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_cr_sections?company_id=1&amp;section_ids=1,2,3&amp;fiscal_year=2019</p></p>
 </blockquote>
 
 <pre><code>{
-  &quot;trial_pl_sections&quot; :
+  &quot;trial_cr_sections&quot; :
     {
       &quot;company_id&quot; : 1,
       &quot;section_ids&quot; : &quot;1,2,3&quot;,
@@ -1497,9 +1743,9 @@ func (r ApiGetTrialPlSectionsRequest) Execute() (TrialPlSectionsResponse, *_neth
       &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
       &quot;balances&quot; : [{
         &quot;account_item_id&quot; : 1500,
-        &quot;account_item_name&quot; : &quot;売上高&quot;,
+        &quot;account_item_name&quot; : &quot;[製]期首材料棚卸高&quot;,
         &quot;hierarchy_level&quot; : 2,
-        &quot;account_category_name&quot; : &quot;営業収益&quot;,
+        &quot;account_category_name&quot; : &quot;期首原材料棚卸&quot;,
         &quot;closing_balance&quot; : 1000000,
         &quot;sections&quot; : [{
           &quot;id&quot;: 1
@@ -1524,40 +1770,37 @@ func (r ApiGetTrialPlSectionsRequest) Execute() (TrialPlSectionsResponse, *_neth
     }
 }</code></pre>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTrialPlSectionsRequest
- */
-func (a *TrialBalanceApiService) GetTrialPlSections(ctx _context.Context) ApiGetTrialPlSectionsRequest {
-	return ApiGetTrialPlSectionsRequest{
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialCrSectionsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialCrSections(ctx context.Context) ApiGetTrialCrSectionsRequest {
+	return ApiGetTrialCrSectionsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TrialPlSectionsResponse
- */
-func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectionsRequest) (TrialPlSectionsResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TrialCrSectionsResponse
+func (a *TrialBalanceApiService) GetTrialCrSectionsExecute(r ApiGetTrialCrSectionsRequest) (*TrialCrSectionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TrialPlSectionsResponse
+		formFiles            []formFile
+		localVarReturnValue  *TrialCrSectionsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPlSections")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialCrSections")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/1/reports/trial_pl_sections"
+	localVarPath := localBasePath + "/api/1/reports/trial_cr_sections"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -1609,6 +1852,9 @@ func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectio
 	if r.costAllocation != nil {
 		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
 	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1626,7 +1872,7 @@ func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectio
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1636,15 +1882,15 @@ func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectio
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1702,7 +1948,4013 @@ func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectio
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialCrSegment1TagsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	segment1TagIds *string
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialCrSegment1TagsRequest) CompanyId(companyId int64) ApiGetTrialCrSegment1TagsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 出力するセグメント1タグの指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択のセグメントで比較できます）
+func (r ApiGetTrialCrSegment1TagsRequest) Segment1TagIds(segment1TagIds string) ApiGetTrialCrSegment1TagsRequest {
+	r.segment1TagIds = &segment1TagIds
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialCrSegment1TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSegment1TagsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialCrSegment1TagsRequest) StartMonth(startMonth int64) ApiGetTrialCrSegment1TagsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialCrSegment1TagsRequest) EndMonth(endMonth int64) ApiGetTrialCrSegment1TagsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialCrSegment1TagsRequest) StartDate(startDate string) ApiGetTrialCrSegment1TagsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialCrSegment1TagsRequest) EndDate(endDate string) ApiGetTrialCrSegment1TagsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialCrSegment1TagsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialCrSegment1TagsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialCrSegment1TagsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialCrSegment1TagsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment1TagsRequest) PartnerId(partnerId int64) ApiGetTrialCrSegment1TagsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialCrSegment1TagsRequest) PartnerCode(partnerCode string) ApiGetTrialCrSegment1TagsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment1TagsRequest) ItemId(itemId int64) ApiGetTrialCrSegment1TagsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment1TagsRequest) SectionId(sectionId int64) ApiGetTrialCrSegment1TagsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialCrSegment1TagsRequest) Adjustment(adjustment string) ApiGetTrialCrSegment1TagsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialCrSegment1TagsRequest) CostAllocation(costAllocation string) ApiGetTrialCrSegment1TagsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialCrSegment1TagsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialCrSegment1TagsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialCrSegment1TagsRequest) Execute() (*TrialCrSegment1TagsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialCrSegment1TagsExecute(r)
+}
+
+/*
+GetTrialCrSegment1Tags 製造原価報告書(セグメント1比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の製造原価報告書(セグメント1比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのプロフェッショナルプラン以上で利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_cr_segment_1_tags?company_id=1&amp;segment_1_tag_ids=1,2,3&amp;fiscal_year=2019</p></p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_cr_segment_1_tags&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;segment_1_tag_ids&quot; : &quot;1,2,3&quot;,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;[製]期首材料棚卸高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;期首原材料棚卸&quot;,
+        &quot;closing_balance&quot; : 1000000,
+        &quot;segment_1_tags&quot; : [{
+          &quot;id&quot;: 1
+          &quot;name&quot;: &quot;プロジェクトA&quot;,
+          &quot;closing_balance&quot; : 100000
+        },
+        {
+          &quot;id&quot;: 2
+          &quot;name&quot;: &quot;プロジェクトB&quot;,
+          &quot;closing_balance&quot; : 200000
+        },
+        {
+          &quot;id&quot;: 3
+          &quot;name&quot;: &quot;プロジェクトC&quot;,
+          &quot;closing_balance&quot; : 300000
+        },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialCrSegment1TagsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialCrSegment1Tags(ctx context.Context) ApiGetTrialCrSegment1TagsRequest {
+	return ApiGetTrialCrSegment1TagsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialCrSegment1TagsResponse
+func (a *TrialBalanceApiService) GetTrialCrSegment1TagsExecute(r ApiGetTrialCrSegment1TagsRequest) (*TrialCrSegment1TagsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialCrSegment1TagsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialCrSegment1Tags")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_cr_segment_1_tags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+	if r.segment1TagIds == nil {
+		return localVarReturnValue, nil, reportError("segment1TagIds is required and must be specified")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	localVarQueryParams.Add("segment_1_tag_ids", parameterToString(*r.segment1TagIds, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialCrSegment2TagsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	segment2TagIds *string
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialCrSegment2TagsRequest) CompanyId(companyId int64) ApiGetTrialCrSegment2TagsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 出力するセグメント2タグの指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択のセグメントで比較できます）
+func (r ApiGetTrialCrSegment2TagsRequest) Segment2TagIds(segment2TagIds string) ApiGetTrialCrSegment2TagsRequest {
+	r.segment2TagIds = &segment2TagIds
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialCrSegment2TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSegment2TagsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialCrSegment2TagsRequest) StartMonth(startMonth int64) ApiGetTrialCrSegment2TagsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialCrSegment2TagsRequest) EndMonth(endMonth int64) ApiGetTrialCrSegment2TagsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialCrSegment2TagsRequest) StartDate(startDate string) ApiGetTrialCrSegment2TagsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialCrSegment2TagsRequest) EndDate(endDate string) ApiGetTrialCrSegment2TagsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialCrSegment2TagsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialCrSegment2TagsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialCrSegment2TagsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialCrSegment2TagsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment2TagsRequest) PartnerId(partnerId int64) ApiGetTrialCrSegment2TagsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialCrSegment2TagsRequest) PartnerCode(partnerCode string) ApiGetTrialCrSegment2TagsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment2TagsRequest) ItemId(itemId int64) ApiGetTrialCrSegment2TagsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment2TagsRequest) SectionId(sectionId int64) ApiGetTrialCrSegment2TagsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialCrSegment2TagsRequest) Adjustment(adjustment string) ApiGetTrialCrSegment2TagsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialCrSegment2TagsRequest) CostAllocation(costAllocation string) ApiGetTrialCrSegment2TagsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialCrSegment2TagsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialCrSegment2TagsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialCrSegment2TagsRequest) Execute() (*TrialCrSegment2TagsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialCrSegment2TagsExecute(r)
+}
+
+/*
+GetTrialCrSegment2Tags 製造原価報告書(セグメント2比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の製造原価報告書(セグメント2比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのエンタープライズプランで利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_cr_segment_2_tags?company_id=1&amp;segment_2_tag_ids=1,2,3&amp;fiscal_year=2019</p></p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_cr_segment_2_tags&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;segment_2_tag_ids&quot; : &quot;1,2,3&quot;,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;[製]期首材料棚卸高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;期首原材料棚卸&quot;,
+        &quot;closing_balance&quot; : 1000000,
+        &quot;segment_2_tags&quot; : [{
+          &quot;id&quot;: 1
+          &quot;name&quot;: &quot;プロジェクトA&quot;,
+          &quot;closing_balance&quot; : 100000
+        },
+        {
+          &quot;id&quot;: 2
+          &quot;name&quot;: &quot;プロジェクトB&quot;,
+          &quot;closing_balance&quot; : 200000
+        },
+        {
+          &quot;id&quot;: 3
+          &quot;name&quot;: &quot;プロジェクトC&quot;,
+          &quot;closing_balance&quot; : 300000
+        },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialCrSegment2TagsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialCrSegment2Tags(ctx context.Context) ApiGetTrialCrSegment2TagsRequest {
+	return ApiGetTrialCrSegment2TagsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialCrSegment2TagsResponse
+func (a *TrialBalanceApiService) GetTrialCrSegment2TagsExecute(r ApiGetTrialCrSegment2TagsRequest) (*TrialCrSegment2TagsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialCrSegment2TagsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialCrSegment2Tags")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_cr_segment_2_tags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+	if r.segment2TagIds == nil {
+		return localVarReturnValue, nil, reportError("segment2TagIds is required and must be specified")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	localVarQueryParams.Add("segment_2_tag_ids", parameterToString(*r.segment2TagIds, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialCrSegment3TagsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	segment3TagIds *string
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialCrSegment3TagsRequest) CompanyId(companyId int64) ApiGetTrialCrSegment3TagsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 出力するセグメント3タグの指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択のセグメントで比較できます）
+func (r ApiGetTrialCrSegment3TagsRequest) Segment3TagIds(segment3TagIds string) ApiGetTrialCrSegment3TagsRequest {
+	r.segment3TagIds = &segment3TagIds
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialCrSegment3TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSegment3TagsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialCrSegment3TagsRequest) StartMonth(startMonth int64) ApiGetTrialCrSegment3TagsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialCrSegment3TagsRequest) EndMonth(endMonth int64) ApiGetTrialCrSegment3TagsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialCrSegment3TagsRequest) StartDate(startDate string) ApiGetTrialCrSegment3TagsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialCrSegment3TagsRequest) EndDate(endDate string) ApiGetTrialCrSegment3TagsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialCrSegment3TagsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialCrSegment3TagsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialCrSegment3TagsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialCrSegment3TagsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment3TagsRequest) PartnerId(partnerId int64) ApiGetTrialCrSegment3TagsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialCrSegment3TagsRequest) PartnerCode(partnerCode string) ApiGetTrialCrSegment3TagsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment3TagsRequest) ItemId(itemId int64) ApiGetTrialCrSegment3TagsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialCrSegment3TagsRequest) SectionId(sectionId int64) ApiGetTrialCrSegment3TagsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialCrSegment3TagsRequest) Adjustment(adjustment string) ApiGetTrialCrSegment3TagsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialCrSegment3TagsRequest) CostAllocation(costAllocation string) ApiGetTrialCrSegment3TagsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialCrSegment3TagsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialCrSegment3TagsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialCrSegment3TagsRequest) Execute() (*TrialCrSegment3TagsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialCrSegment3TagsExecute(r)
+}
+
+/*
+GetTrialCrSegment3Tags 製造原価報告書(セグメント3比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の製造原価報告書(セグメント3比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのエンタープライズプランで利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_cr_segment_3_tags?company_id=1&amp;segment_3_tag_ids=1,2,3&amp;fiscal_year=2019</p></p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_cr_segment_3_tags&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;segment_3_tag_ids&quot; : &quot;1,2,3&quot;,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;[製]期首材料棚卸高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;期首原材料棚卸&quot;,
+        &quot;closing_balance&quot; : 1000000,
+        &quot;segment_3_tags&quot; : [{
+          &quot;id&quot;: 1
+          &quot;name&quot;: &quot;プロジェクトA&quot;,
+          &quot;closing_balance&quot; : 100000
+        },
+        {
+          &quot;id&quot;: 2
+          &quot;name&quot;: &quot;プロジェクトB&quot;,
+          &quot;closing_balance&quot; : 200000
+        },
+        {
+          &quot;id&quot;: 3
+          &quot;name&quot;: &quot;プロジェクトC&quot;,
+          &quot;closing_balance&quot; : 300000
+        },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialCrSegment3TagsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialCrSegment3Tags(ctx context.Context) ApiGetTrialCrSegment3TagsRequest {
+	return ApiGetTrialCrSegment3TagsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialCrSegment3TagsResponse
+func (a *TrialBalanceApiService) GetTrialCrSegment3TagsExecute(r ApiGetTrialCrSegment3TagsRequest) (*TrialCrSegment3TagsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialCrSegment3TagsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialCrSegment3Tags")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_cr_segment_3_tags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+	if r.segment3TagIds == nil {
+		return localVarReturnValue, nil, reportError("segment3TagIds is required and must be specified")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	localVarQueryParams.Add("segment_3_tag_ids", parameterToString(*r.segment3TagIds, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialCrThreeYearsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialCrThreeYearsRequest) CompanyId(companyId int64) ApiGetTrialCrThreeYearsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialCrThreeYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrThreeYearsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialCrThreeYearsRequest) StartMonth(startMonth int64) ApiGetTrialCrThreeYearsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialCrThreeYearsRequest) EndMonth(endMonth int64) ApiGetTrialCrThreeYearsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialCrThreeYearsRequest) StartDate(startDate string) ApiGetTrialCrThreeYearsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialCrThreeYearsRequest) EndDate(endDate string) ApiGetTrialCrThreeYearsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialCrThreeYearsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialCrThreeYearsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialCrThreeYearsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialCrThreeYearsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialCrThreeYearsRequest) PartnerId(partnerId int64) ApiGetTrialCrThreeYearsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialCrThreeYearsRequest) PartnerCode(partnerCode string) ApiGetTrialCrThreeYearsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialCrThreeYearsRequest) ItemId(itemId int64) ApiGetTrialCrThreeYearsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialCrThreeYearsRequest) SectionId(sectionId int64) ApiGetTrialCrThreeYearsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialCrThreeYearsRequest) Adjustment(adjustment string) ApiGetTrialCrThreeYearsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialCrThreeYearsRequest) CostAllocation(costAllocation string) ApiGetTrialCrThreeYearsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト), 全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialCrThreeYearsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialCrThreeYearsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialCrThreeYearsRequest) Execute() (*TrialCrThreeYearsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialCrThreeYearsExecute(r)
+}
+
+/*
+GetTrialCrThreeYears 製造原価報告書(３期間比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の製造原価報告書(３期間比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>two_years_before_closing_balance:  前々年度期末残高 </p>
+</li>
+<li>
+<p>last_year_closing_balance:  前年度期末残高 </p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<li>
+<p>year_on_year : 前年比</p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのプランで利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_cr_three_years?company_id=1&fiscal_year=2019</p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_cr_three_years&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;[製]期首材料棚卸高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;期首原材料棚卸&quot;,
+        &quot;two_year_before_closing_balance&quot; : 50000,
+        &quot;last_year_closing_balance&quot; : 25000,
+        &quot;closing_balance&quot; : 100000,
+        &quot;year_on_year&quot; : 0.85
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialCrThreeYearsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialCrThreeYears(ctx context.Context) ApiGetTrialCrThreeYearsRequest {
+	return ApiGetTrialCrThreeYearsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialCrThreeYearsResponse
+func (a *TrialBalanceApiService) GetTrialCrThreeYearsExecute(r ApiGetTrialCrThreeYearsRequest) (*TrialCrThreeYearsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialCrThreeYearsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialCrThreeYears")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_cr_three_years"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialCrTwoYearsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialCrTwoYearsRequest) CompanyId(companyId int64) ApiGetTrialCrTwoYearsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialCrTwoYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrTwoYearsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialCrTwoYearsRequest) StartMonth(startMonth int64) ApiGetTrialCrTwoYearsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialCrTwoYearsRequest) EndMonth(endMonth int64) ApiGetTrialCrTwoYearsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialCrTwoYearsRequest) StartDate(startDate string) ApiGetTrialCrTwoYearsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialCrTwoYearsRequest) EndDate(endDate string) ApiGetTrialCrTwoYearsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialCrTwoYearsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialCrTwoYearsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialCrTwoYearsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialCrTwoYearsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialCrTwoYearsRequest) PartnerId(partnerId int64) ApiGetTrialCrTwoYearsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialCrTwoYearsRequest) PartnerCode(partnerCode string) ApiGetTrialCrTwoYearsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialCrTwoYearsRequest) ItemId(itemId int64) ApiGetTrialCrTwoYearsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialCrTwoYearsRequest) SectionId(sectionId int64) ApiGetTrialCrTwoYearsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialCrTwoYearsRequest) Adjustment(adjustment string) ApiGetTrialCrTwoYearsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialCrTwoYearsRequest) CostAllocation(costAllocation string) ApiGetTrialCrTwoYearsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト), 全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialCrTwoYearsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialCrTwoYearsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialCrTwoYearsRequest) Execute() (*TrialCrTwoYearsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialCrTwoYearsExecute(r)
+}
+
+/*
+GetTrialCrTwoYears 製造原価報告書(前年比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の製造原価報告書(前年比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>last_year_closing_balance:  前年度期末残高 </p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<li>
+<p>year_on_year : 前年比</p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのプランで利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_cr_two_years?company_id=1&amp;fiscal_year=2019</p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_cr_two_years&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;[製]期首材料棚卸高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;期首原材料棚卸&quot;,
+        &quot;last_year_closing_balance&quot; : 25000,
+        &quot;closing_balance&quot; : 100000,
+        &quot;year_on_year&quot; : 0.85
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialCrTwoYearsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialCrTwoYears(ctx context.Context) ApiGetTrialCrTwoYearsRequest {
+	return ApiGetTrialCrTwoYearsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialCrTwoYearsResponse
+func (a *TrialBalanceApiService) GetTrialCrTwoYearsExecute(r ApiGetTrialCrTwoYearsRequest) (*TrialCrTwoYearsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialCrTwoYearsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialCrTwoYears")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_cr_two_years"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialPlRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialPlRequest) CompanyId(companyId int64) ApiGetTrialPlRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialPlRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialPlRequest) StartMonth(startMonth int64) ApiGetTrialPlRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialPlRequest) EndMonth(endMonth int64) ApiGetTrialPlRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialPlRequest) StartDate(startDate string) ApiGetTrialPlRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialPlRequest) EndDate(endDate string) ApiGetTrialPlRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialPlRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialPlRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialPlRequest) PartnerId(partnerId int64) ApiGetTrialPlRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialPlRequest) PartnerCode(partnerCode string) ApiGetTrialPlRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialPlRequest) ItemId(itemId int64) ApiGetTrialPlRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialPlRequest) SectionId(sectionId int64) ApiGetTrialPlRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialPlRequest) Adjustment(adjustment string) ApiGetTrialPlRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialPlRequest) CostAllocation(costAllocation string) ApiGetTrialPlRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialPlRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialPlRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialPlRequest) Execute() (*TrialPlResponse, *http.Response, error) {
+	return r.ApiService.GetTrialPlExecute(r)
+}
+
+/*
+GetTrialPl 損益計算書の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の損益計算書を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>opening_balance : 期首残高 </p>
+</li>
+
+<li>
+<p>debit_amount : 借方金額 </p>
+</li>
+<li>
+<p>credit_amount:  貸方金額 </p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<li>
+<p>composition_ratio : 構成比</p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_pl?company_id=1&amp;fiscal_year=2019&amp;breakdown_display_type=partner</p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_pl&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;breakdown_display_type&quot; : &quot;partner&quot;,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;売上高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;営業収益&quot;,
+        &quot;opening_balance&quot; : 100000,
+        &quot;debit_amount&quot; : 50000,
+        &quot;credit_amount&quot; : 20000,
+        &quot;closing_balance&quot; : 130000,
+        &quot;composition_ratio&quot; : 0.25
+        &quot;partners&quot; : [{
+          &quot;id&quot; : 123,
+          &quot;name&quot; : &quot;freee&quot;,
+          &quot;opening_balance&quot; : 100000,
+          &quot;debit_amount&quot; : 50000,
+          &quot;credit_amount&quot; : 20000,
+          &quot;closing_balance&quot; : 130000,
+          &quot;composition_ratio&quot; : 0.25
+          },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialPlRequest
+*/
+func (a *TrialBalanceApiService) GetTrialPl(ctx context.Context) ApiGetTrialPlRequest {
+	return ApiGetTrialPlRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialPlResponse
+func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (*TrialPlResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialPlResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPl")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_pl"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialPlSectionsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	sectionIds *string
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialPlSectionsRequest) CompanyId(companyId int64) ApiGetTrialPlSectionsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 出力する部門の指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択の部門で比較できます。）
+func (r ApiGetTrialPlSectionsRequest) SectionIds(sectionIds string) ApiGetTrialPlSectionsRequest {
+	r.sectionIds = &sectionIds
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialPlSectionsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSectionsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialPlSectionsRequest) StartMonth(startMonth int64) ApiGetTrialPlSectionsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialPlSectionsRequest) EndMonth(endMonth int64) ApiGetTrialPlSectionsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialPlSectionsRequest) StartDate(startDate string) ApiGetTrialPlSectionsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialPlSectionsRequest) EndDate(endDate string) ApiGetTrialPlSectionsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialPlSectionsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlSectionsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialPlSectionsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlSectionsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialPlSectionsRequest) PartnerId(partnerId int64) ApiGetTrialPlSectionsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialPlSectionsRequest) PartnerCode(partnerCode string) ApiGetTrialPlSectionsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialPlSectionsRequest) ItemId(itemId int64) ApiGetTrialPlSectionsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialPlSectionsRequest) Adjustment(adjustment string) ApiGetTrialPlSectionsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialPlSectionsRequest) CostAllocation(costAllocation string) ApiGetTrialPlSectionsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialPlSectionsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialPlSectionsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialPlSectionsRequest) Execute() (*TrialPlSectionsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialPlSectionsExecute(r)
+}
+
+/*
+GetTrialPlSections 損益計算書(部門比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の損益計算書(部門比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>個人向けのプレミアムプラン、法人向けのベーシックプラン以上で利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_pl_sections?company_id=1&amp;section_ids=1,2,3&amp;fiscal_year=2019</p></p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_pl_sections&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;section_ids&quot; : &quot;1,2,3&quot;,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;売上高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;営業収益&quot;,
+        &quot;closing_balance&quot; : 1000000,
+        &quot;sections&quot; : [{
+          &quot;id&quot;: 1
+          &quot;name&quot;: &quot;営業部&quot;,
+          &quot;closing_balance&quot; : 100000
+        },
+        {
+          &quot;id&quot;: 2
+          &quot;name&quot;: &quot;広報部&quot;,
+          &quot;closing_balance&quot; : 200000
+        },
+        {
+          &quot;id&quot;: 3
+          &quot;name&quot;: &quot;人事部&quot;,
+          &quot;closing_balance&quot; : 300000
+        },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialPlSectionsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialPlSections(ctx context.Context) ApiGetTrialPlSectionsRequest {
+	return ApiGetTrialPlSectionsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialPlSectionsResponse
+func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectionsRequest) (*TrialPlSectionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialPlSectionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPlSections")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_pl_sections"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+	if r.sectionIds == nil {
+		return localVarReturnValue, nil, reportError("sectionIds is required and must be specified")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	localVarQueryParams.Add("section_ids", parameterToString(*r.sectionIds, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialPlSegment1TagsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	segment1TagIds *string
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialPlSegment1TagsRequest) CompanyId(companyId int64) ApiGetTrialPlSegment1TagsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 出力するセグメント1タグの指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択のセグメントで比較できます）
+func (r ApiGetTrialPlSegment1TagsRequest) Segment1TagIds(segment1TagIds string) ApiGetTrialPlSegment1TagsRequest {
+	r.segment1TagIds = &segment1TagIds
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialPlSegment1TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSegment1TagsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialPlSegment1TagsRequest) StartMonth(startMonth int64) ApiGetTrialPlSegment1TagsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialPlSegment1TagsRequest) EndMonth(endMonth int64) ApiGetTrialPlSegment1TagsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialPlSegment1TagsRequest) StartDate(startDate string) ApiGetTrialPlSegment1TagsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialPlSegment1TagsRequest) EndDate(endDate string) ApiGetTrialPlSegment1TagsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialPlSegment1TagsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlSegment1TagsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialPlSegment1TagsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlSegment1TagsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment1TagsRequest) PartnerId(partnerId int64) ApiGetTrialPlSegment1TagsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialPlSegment1TagsRequest) PartnerCode(partnerCode string) ApiGetTrialPlSegment1TagsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment1TagsRequest) ItemId(itemId int64) ApiGetTrialPlSegment1TagsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment1TagsRequest) SectionId(sectionId int64) ApiGetTrialPlSegment1TagsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialPlSegment1TagsRequest) Adjustment(adjustment string) ApiGetTrialPlSegment1TagsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialPlSegment1TagsRequest) CostAllocation(costAllocation string) ApiGetTrialPlSegment1TagsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialPlSegment1TagsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialPlSegment1TagsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialPlSegment1TagsRequest) Execute() (*TrialPlSegment1TagsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialPlSegment1TagsExecute(r)
+}
+
+/*
+GetTrialPlSegment1Tags 損益計算書(セグメント1比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の損益計算書(セグメント1比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのプロフェッショナルプラン以上で利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_pl_segment_1_tags?company_id=1&amp;segment_1_tag_ids=1,2,3&amp;fiscal_year=2019</p></p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_pl_segment_1_tags&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;segment_1_tag_ids&quot; : &quot;1,2,3&quot;,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;売上高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;営業収益&quot;,
+        &quot;closing_balance&quot; : 1000000,
+        &quot;segment_1_tags&quot; : [{
+          &quot;id&quot;: 1
+          &quot;name&quot;: &quot;プロジェクトA&quot;,
+          &quot;closing_balance&quot; : 100000
+        },
+        {
+          &quot;id&quot;: 2
+          &quot;name&quot;: &quot;プロジェクトB&quot;,
+          &quot;closing_balance&quot; : 200000
+        },
+        {
+          &quot;id&quot;: 3
+          &quot;name&quot;: &quot;プロジェクトC&quot;,
+          &quot;closing_balance&quot; : 300000
+        },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialPlSegment1TagsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialPlSegment1Tags(ctx context.Context) ApiGetTrialPlSegment1TagsRequest {
+	return ApiGetTrialPlSegment1TagsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialPlSegment1TagsResponse
+func (a *TrialBalanceApiService) GetTrialPlSegment1TagsExecute(r ApiGetTrialPlSegment1TagsRequest) (*TrialPlSegment1TagsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialPlSegment1TagsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPlSegment1Tags")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_pl_segment_1_tags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+	if r.segment1TagIds == nil {
+		return localVarReturnValue, nil, reportError("segment1TagIds is required and must be specified")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	localVarQueryParams.Add("segment_1_tag_ids", parameterToString(*r.segment1TagIds, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialPlSegment2TagsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	segment2TagIds *string
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialPlSegment2TagsRequest) CompanyId(companyId int64) ApiGetTrialPlSegment2TagsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 出力するセグメント2タグの指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択のセグメントで比較できます）
+func (r ApiGetTrialPlSegment2TagsRequest) Segment2TagIds(segment2TagIds string) ApiGetTrialPlSegment2TagsRequest {
+	r.segment2TagIds = &segment2TagIds
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialPlSegment2TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSegment2TagsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialPlSegment2TagsRequest) StartMonth(startMonth int64) ApiGetTrialPlSegment2TagsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialPlSegment2TagsRequest) EndMonth(endMonth int64) ApiGetTrialPlSegment2TagsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialPlSegment2TagsRequest) StartDate(startDate string) ApiGetTrialPlSegment2TagsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialPlSegment2TagsRequest) EndDate(endDate string) ApiGetTrialPlSegment2TagsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialPlSegment2TagsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlSegment2TagsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialPlSegment2TagsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlSegment2TagsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment2TagsRequest) PartnerId(partnerId int64) ApiGetTrialPlSegment2TagsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialPlSegment2TagsRequest) PartnerCode(partnerCode string) ApiGetTrialPlSegment2TagsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment2TagsRequest) ItemId(itemId int64) ApiGetTrialPlSegment2TagsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment2TagsRequest) SectionId(sectionId int64) ApiGetTrialPlSegment2TagsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialPlSegment2TagsRequest) Adjustment(adjustment string) ApiGetTrialPlSegment2TagsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialPlSegment2TagsRequest) CostAllocation(costAllocation string) ApiGetTrialPlSegment2TagsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialPlSegment2TagsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialPlSegment2TagsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialPlSegment2TagsRequest) Execute() (*TrialPlSegment2TagsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialPlSegment2TagsExecute(r)
+}
+
+/*
+GetTrialPlSegment2Tags 損益計算書(セグメント2比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の損益計算書(セグメント2比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのエンタープライズプランで利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_pl_segment_2_tags?company_id=1&amp;segment_2_tag_ids=1,2,3&amp;fiscal_year=2019</p></p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_pl_segment_2_tags&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;segment_2_tag_ids&quot; : &quot;1,2,3&quot;,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;売上高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;営業収益&quot;,
+        &quot;closing_balance&quot; : 1000000,
+        &quot;segment_2_tags&quot; : [{
+          &quot;id&quot;: 1
+          &quot;name&quot;: &quot;プロジェクトA&quot;,
+          &quot;closing_balance&quot; : 100000
+        },
+        {
+          &quot;id&quot;: 2
+          &quot;name&quot;: &quot;プロジェクトB&quot;,
+          &quot;closing_balance&quot; : 200000
+        },
+        {
+          &quot;id&quot;: 3
+          &quot;name&quot;: &quot;プロジェクトC&quot;,
+          &quot;closing_balance&quot; : 300000
+        },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialPlSegment2TagsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialPlSegment2Tags(ctx context.Context) ApiGetTrialPlSegment2TagsRequest {
+	return ApiGetTrialPlSegment2TagsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialPlSegment2TagsResponse
+func (a *TrialBalanceApiService) GetTrialPlSegment2TagsExecute(r ApiGetTrialPlSegment2TagsRequest) (*TrialPlSegment2TagsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialPlSegment2TagsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPlSegment2Tags")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_pl_segment_2_tags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+	if r.segment2TagIds == nil {
+		return localVarReturnValue, nil, reportError("segment2TagIds is required and must be specified")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	localVarQueryParams.Add("segment_2_tag_ids", parameterToString(*r.segment2TagIds, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTrialPlSegment3TagsRequest struct {
+	ctx context.Context
+	ApiService *TrialBalanceApiService
+	companyId *int64
+	segment3TagIds *string
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
+	startDate *string
+	endDate *string
+	accountItemDisplayType *string
+	breakdownDisplayType *string
+	partnerId *int64
+	partnerCode *string
+	itemId *int64
+	sectionId *int64
+	adjustment *string
+	costAllocation *string
+	approvalFlowStatus *string
+}
+
+// 事業所ID
+func (r ApiGetTrialPlSegment3TagsRequest) CompanyId(companyId int64) ApiGetTrialPlSegment3TagsRequest {
+	r.companyId = &companyId
+	return r
+}
+
+// 出力するセグメント3タグの指定（半角数字のidを半角カンマ区切りスペースなしで指定してください。0を指定すると、未選択のセグメントで比較できます）
+func (r ApiGetTrialPlSegment3TagsRequest) Segment3TagIds(segment3TagIds string) ApiGetTrialPlSegment3TagsRequest {
+	r.segment3TagIds = &segment3TagIds
+	return r
+}
+
+// 会計年度
+func (r ApiGetTrialPlSegment3TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSegment3TagsRequest {
+	r.fiscalYear = &fiscalYear
+	return r
+}
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialPlSegment3TagsRequest) StartMonth(startMonth int64) ApiGetTrialPlSegment3TagsRequest {
+	r.startMonth = &startMonth
+	return r
+}
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialPlSegment3TagsRequest) EndMonth(endMonth int64) ApiGetTrialPlSegment3TagsRequest {
+	r.endMonth = &endMonth
+	return r
+}
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
+func (r ApiGetTrialPlSegment3TagsRequest) StartDate(startDate string) ApiGetTrialPlSegment3TagsRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
+func (r ApiGetTrialPlSegment3TagsRequest) EndDate(endDate string) ApiGetTrialPlSegment3TagsRequest {
+	r.endDate = &endDate
+	return r
+}
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
+func (r ApiGetTrialPlSegment3TagsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlSegment3TagsRequest {
+	r.accountItemDisplayType = &accountItemDisplayType
+	return r
+}
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
+func (r ApiGetTrialPlSegment3TagsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlSegment3TagsRequest {
+	r.breakdownDisplayType = &breakdownDisplayType
+	return r
+}
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment3TagsRequest) PartnerId(partnerId int64) ApiGetTrialPlSegment3TagsRequest {
+	r.partnerId = &partnerId
+	return r
+}
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
+func (r ApiGetTrialPlSegment3TagsRequest) PartnerCode(partnerCode string) ApiGetTrialPlSegment3TagsRequest {
+	r.partnerCode = &partnerCode
+	return r
+}
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment3TagsRequest) ItemId(itemId int64) ApiGetTrialPlSegment3TagsRequest {
+	r.itemId = &itemId
+	return r
+}
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialPlSegment3TagsRequest) SectionId(sectionId int64) ApiGetTrialPlSegment3TagsRequest {
+	r.sectionId = &sectionId
+	return r
+}
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
+func (r ApiGetTrialPlSegment3TagsRequest) Adjustment(adjustment string) ApiGetTrialPlSegment3TagsRequest {
+	r.adjustment = &adjustment
+	return r
+}
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
+func (r ApiGetTrialPlSegment3TagsRequest) CostAllocation(costAllocation string) ApiGetTrialPlSegment3TagsRequest {
+	r.costAllocation = &costAllocation
+	return r
+}
+
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialPlSegment3TagsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialPlSegment3TagsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialPlSegment3TagsRequest) Execute() (*TrialPlSegment3TagsResponse, *http.Response, error) {
+	return r.ApiService.GetTrialPlSegment3TagsExecute(r)
+}
+
+/*
+GetTrialPlSegment3Tags 損益計算書(セグメント3比較)の取得
+
+
+<h2 id="">概要</h2>
+
+<p>指定した事業所の損益計算書(セグメント3比較)を取得する</p>
+
+<h2 id="_2">定義</h2>
+
+<ul>
+
+<li>
+<p>created_at : 作成日時</p>
+</li>
+
+<li>
+<p>account_item_name : 勘定科目名</p>
+</li>
+
+<li>
+<p>hierarchy_level: 階層レベル</p>
+</li>
+
+<li>
+<p>parent_account_category_name: 上位勘定科目カテゴリー名</p>
+</li>
+<li>
+<p>closing_balance : 期末残高 </p>
+</li>
+<h2 id="_3">注意点</h2>
+<ul>
+<li>法人向けのエンタープライズプランで利用可能なAPIです。対象外のプランでは401エラーを返却します。</li>
+<li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
+<li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
+</ul>
+<h2 id="_4">レスポンスの例</h2>
+
+<blockquote>
+<p>GET https://api.freee.co.jp/api/1/reports/trial_pl_segment_3_tags?company_id=1&amp;segment_3_tag_ids=1,2,3&amp;fiscal_year=2019</p></p>
+</blockquote>
+
+<pre><code>{
+  &quot;trial_pl_segment_3_tags&quot; :
+    {
+      &quot;company_id&quot; : 1,
+      &quot;segment_3_tag_ids&quot; : &quot;1,2,3&quot;,
+      &quot;fiscal_year&quot; : 2019,
+      &quot;created_at&quot; : &quot;2019-12-17 12:00:50&quot
+      &quot;balances&quot; : [{
+        &quot;account_item_id&quot; : 1500,
+        &quot;account_item_name&quot; : &quot;売上高&quot;,
+        &quot;hierarchy_level&quot; : 2,
+        &quot;account_category_name&quot; : &quot;営業収益&quot;,
+        &quot;closing_balance&quot; : 1000000,
+        &quot;segment_3_tags&quot; : [{
+          &quot;id&quot;: 1
+          &quot;name&quot;: &quot;プロジェクトA&quot;,
+          &quot;closing_balance&quot; : 100000
+        },
+        {
+          &quot;id&quot;: 2
+          &quot;name&quot;: &quot;プロジェクトB&quot;,
+          &quot;closing_balance&quot; : 200000
+        },
+        {
+          &quot;id&quot;: 3
+          &quot;name&quot;: &quot;プロジェクトC&quot;,
+          &quot;closing_balance&quot; : 300000
+        },
+        ...
+        ]
+      },
+      ...
+      ]
+    }
+}</code></pre>
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialPlSegment3TagsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialPlSegment3Tags(ctx context.Context) ApiGetTrialPlSegment3TagsRequest {
+	return ApiGetTrialPlSegment3TagsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TrialPlSegment3TagsResponse
+func (a *TrialBalanceApiService) GetTrialPlSegment3TagsExecute(r ApiGetTrialPlSegment3TagsRequest) (*TrialPlSegment3TagsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TrialPlSegment3TagsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPlSegment3Tags")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/1/reports/trial_pl_segment_3_tags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyId == nil {
+		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
+	}
+	if *r.companyId < 1 {
+		return localVarReturnValue, nil, reportError("companyId must be greater than 1")
+	}
+	if *r.companyId > 2147483647 {
+		return localVarReturnValue, nil, reportError("companyId must be less than 2147483647")
+	}
+	if r.segment3TagIds == nil {
+		return localVarReturnValue, nil, reportError("segment3TagIds is required and must be specified")
+	}
+
+	localVarQueryParams.Add("company_id", parameterToString(*r.companyId, ""))
+	localVarQueryParams.Add("segment_3_tag_ids", parameterToString(*r.segment3TagIds, ""))
+	if r.fiscalYear != nil {
+		localVarQueryParams.Add("fiscal_year", parameterToString(*r.fiscalYear, ""))
+	}
+	if r.startMonth != nil {
+		localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
+	}
+	if r.accountItemDisplayType != nil {
+		localVarQueryParams.Add("account_item_display_type", parameterToString(*r.accountItemDisplayType, ""))
+	}
+	if r.breakdownDisplayType != nil {
+		localVarQueryParams.Add("breakdown_display_type", parameterToString(*r.breakdownDisplayType, ""))
+	}
+	if r.partnerId != nil {
+		localVarQueryParams.Add("partner_id", parameterToString(*r.partnerId, ""))
+	}
+	if r.partnerCode != nil {
+		localVarQueryParams.Add("partner_code", parameterToString(*r.partnerCode, ""))
+	}
+	if r.itemId != nil {
+		localVarQueryParams.Add("item_id", parameterToString(*r.itemId, ""))
+	}
+	if r.sectionId != nil {
+		localVarQueryParams.Add("section_id", parameterToString(*r.sectionId, ""))
+	}
+	if r.adjustment != nil {
+		localVarQueryParams.Add("adjustment", parameterToString(*r.adjustment, ""))
+	}
+	if r.costAllocation != nil {
+		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
+	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequestError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ForbiddenError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v TooManyRequestsError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1713,88 +5965,123 @@ func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectio
 }
 
 type ApiGetTrialPlThreeYearsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
+	approvalFlowStatus *string
 }
 
-func (r ApiGetTrialPlThreeYearsRequest) CompanyId(companyId int32) ApiGetTrialPlThreeYearsRequest {
+// 事業所ID
+func (r ApiGetTrialPlThreeYearsRequest) CompanyId(companyId int64) ApiGetTrialPlThreeYearsRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetTrialPlThreeYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlThreeYearsRequest {
+
+// 会計年度
+func (r ApiGetTrialPlThreeYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlThreeYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
-func (r ApiGetTrialPlThreeYearsRequest) StartMonth(startMonth int32) ApiGetTrialPlThreeYearsRequest {
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialPlThreeYearsRequest) StartMonth(startMonth int64) ApiGetTrialPlThreeYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
-func (r ApiGetTrialPlThreeYearsRequest) EndMonth(endMonth int32) ApiGetTrialPlThreeYearsRequest {
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialPlThreeYearsRequest) EndMonth(endMonth int64) ApiGetTrialPlThreeYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetTrialPlThreeYearsRequest) StartDate(startDate string) ApiGetTrialPlThreeYearsRequest {
 	r.startDate = &startDate
 	return r
 }
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetTrialPlThreeYearsRequest) EndDate(endDate string) ApiGetTrialPlThreeYearsRequest {
 	r.endDate = &endDate
 	return r
 }
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
 func (r ApiGetTrialPlThreeYearsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlThreeYearsRequest {
 	r.accountItemDisplayType = &accountItemDisplayType
 	return r
 }
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
 func (r ApiGetTrialPlThreeYearsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlThreeYearsRequest {
 	r.breakdownDisplayType = &breakdownDisplayType
 	return r
 }
-func (r ApiGetTrialPlThreeYearsRequest) PartnerId(partnerId int32) ApiGetTrialPlThreeYearsRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialPlThreeYearsRequest) PartnerId(partnerId int64) ApiGetTrialPlThreeYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
 func (r ApiGetTrialPlThreeYearsRequest) PartnerCode(partnerCode string) ApiGetTrialPlThreeYearsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetTrialPlThreeYearsRequest) ItemId(itemId int32) ApiGetTrialPlThreeYearsRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialPlThreeYearsRequest) ItemId(itemId int64) ApiGetTrialPlThreeYearsRequest {
 	r.itemId = &itemId
 	return r
 }
-func (r ApiGetTrialPlThreeYearsRequest) SectionId(sectionId int32) ApiGetTrialPlThreeYearsRequest {
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialPlThreeYearsRequest) SectionId(sectionId int64) ApiGetTrialPlThreeYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
 func (r ApiGetTrialPlThreeYearsRequest) Adjustment(adjustment string) ApiGetTrialPlThreeYearsRequest {
 	r.adjustment = &adjustment
 	return r
 }
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
 func (r ApiGetTrialPlThreeYearsRequest) CostAllocation(costAllocation string) ApiGetTrialPlThreeYearsRequest {
 	r.costAllocation = &costAllocation
 	return r
 }
 
-func (r ApiGetTrialPlThreeYearsRequest) Execute() (TrialPlThreeYearsResponse, *_nethttp.Response, error) {
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialPlThreeYearsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialPlThreeYearsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialPlThreeYearsRequest) Execute() (*TrialPlThreeYearsResponse, *http.Response, error) {
 	return r.ApiService.GetTrialPlThreeYearsExecute(r)
 }
 
 /*
- * GetTrialPlThreeYears 損益計算書(３期間比較)の取得
- * 
+GetTrialPlThreeYears 損益計算書(３期間比較)の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の損益計算書(３期間比較)を取得する</p>
@@ -1833,10 +6120,23 @@ func (r ApiGetTrialPlThreeYearsRequest) Execute() (TrialPlThreeYearsResponse, *_
 <h2 id="_3">注意点</h2>
 <ul>
 <li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
-<li>絞り込み条件の日付と、月または年度は同時に指定することはできません。</li>
 <li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
 <li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
-<li>取引先、品目、部門はそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="_4">レスポンスの例</h2>
 
@@ -1865,40 +6165,37 @@ func (r ApiGetTrialPlThreeYearsRequest) Execute() (TrialPlThreeYearsResponse, *_
     }
 }</code></pre>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTrialPlThreeYearsRequest
- */
-func (a *TrialBalanceApiService) GetTrialPlThreeYears(ctx _context.Context) ApiGetTrialPlThreeYearsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialPlThreeYearsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialPlThreeYears(ctx context.Context) ApiGetTrialPlThreeYearsRequest {
 	return ApiGetTrialPlThreeYearsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TrialPlThreeYearsResponse
- */
-func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThreeYearsRequest) (TrialPlThreeYearsResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TrialPlThreeYearsResponse
+func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThreeYearsRequest) (*TrialPlThreeYearsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TrialPlThreeYearsResponse
+		formFiles            []formFile
+		localVarReturnValue  *TrialPlThreeYearsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPlThreeYears")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/reports/trial_pl_three_years"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -1949,6 +6246,9 @@ func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThre
 	if r.costAllocation != nil {
 		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
 	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1966,7 +6266,7 @@ func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThre
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1976,15 +6276,15 @@ func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2042,7 +6342,7 @@ func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThre
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -2053,88 +6353,123 @@ func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThre
 }
 
 type ApiGetTrialPlTwoYearsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
+	approvalFlowStatus *string
 }
 
-func (r ApiGetTrialPlTwoYearsRequest) CompanyId(companyId int32) ApiGetTrialPlTwoYearsRequest {
+// 事業所ID
+func (r ApiGetTrialPlTwoYearsRequest) CompanyId(companyId int64) ApiGetTrialPlTwoYearsRequest {
 	r.companyId = &companyId
 	return r
 }
-func (r ApiGetTrialPlTwoYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlTwoYearsRequest {
+
+// 会計年度
+func (r ApiGetTrialPlTwoYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlTwoYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
-func (r ApiGetTrialPlTwoYearsRequest) StartMonth(startMonth int32) ApiGetTrialPlTwoYearsRequest {
+
+// 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
+func (r ApiGetTrialPlTwoYearsRequest) StartMonth(startMonth int64) ApiGetTrialPlTwoYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
-func (r ApiGetTrialPlTwoYearsRequest) EndMonth(endMonth int32) ApiGetTrialPlTwoYearsRequest {
+
+// 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
+func (r ApiGetTrialPlTwoYearsRequest) EndMonth(endMonth int64) ApiGetTrialPlTwoYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
+
+// 発生日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetTrialPlTwoYearsRequest) StartDate(startDate string) ApiGetTrialPlTwoYearsRequest {
 	r.startDate = &startDate
 	return r
 }
+
+// 発生日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetTrialPlTwoYearsRequest) EndDate(endDate string) ApiGetTrialPlTwoYearsRequest {
 	r.endDate = &endDate
 	return r
 }
+
+// 勘定科目の表示（勘定科目: account_item, 決算書表示:group）。指定されない場合、勘定科目: account_itemが指定されます。
 func (r ApiGetTrialPlTwoYearsRequest) AccountItemDisplayType(accountItemDisplayType string) ApiGetTrialPlTwoYearsRequest {
 	r.accountItemDisplayType = &accountItemDisplayType
 	return r
 }
+
+// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag） ※勘定科目はaccount_item_display_typeが「group」の時のみ指定できます
 func (r ApiGetTrialPlTwoYearsRequest) BreakdownDisplayType(breakdownDisplayType string) ApiGetTrialPlTwoYearsRequest {
 	r.breakdownDisplayType = &breakdownDisplayType
 	return r
 }
-func (r ApiGetTrialPlTwoYearsRequest) PartnerId(partnerId int32) ApiGetTrialPlTwoYearsRequest {
+
+// 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
+func (r ApiGetTrialPlTwoYearsRequest) PartnerId(partnerId int64) ApiGetTrialPlTwoYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
+
+// 取引先コードで絞込（事業所設定で取引先コードの利用を有効にしている場合のみ利用可能です）
 func (r ApiGetTrialPlTwoYearsRequest) PartnerCode(partnerCode string) ApiGetTrialPlTwoYearsRequest {
 	r.partnerCode = &partnerCode
 	return r
 }
-func (r ApiGetTrialPlTwoYearsRequest) ItemId(itemId int32) ApiGetTrialPlTwoYearsRequest {
+
+// 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
+func (r ApiGetTrialPlTwoYearsRequest) ItemId(itemId int64) ApiGetTrialPlTwoYearsRequest {
 	r.itemId = &itemId
 	return r
 }
-func (r ApiGetTrialPlTwoYearsRequest) SectionId(sectionId int32) ApiGetTrialPlTwoYearsRequest {
+
+// 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
+func (r ApiGetTrialPlTwoYearsRequest) SectionId(sectionId int64) ApiGetTrialPlTwoYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }
+
+// 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without）。指定されない場合、決算整理仕訳以外: withoutが指定されます。
 func (r ApiGetTrialPlTwoYearsRequest) Adjustment(adjustment string) ApiGetTrialPlTwoYearsRequest {
 	r.adjustment = &adjustment
 	return r
 }
+
+// 配賦仕訳で絞込（配賦仕訳のみ：only,配賦仕訳以外：without）。指定されない場合、配賦仕訳を含む金額が返却されます。
 func (r ApiGetTrialPlTwoYearsRequest) CostAllocation(costAllocation string) ApiGetTrialPlTwoYearsRequest {
 	r.costAllocation = &costAllocation
 	return r
 }
 
-func (r ApiGetTrialPlTwoYearsRequest) Execute() (TrialPlTwoYearsResponse, *_nethttp.Response, error) {
+// 承認ステータスで絞込 (未承認を除く: without_in_progress (デフォルト)、全てのステータス: all)&lt;br&gt; 個人: プレミアムプラン、法人: プロフェッショナルプラン以上で指定可能です。&lt;br&gt; 事業所の設定から仕訳承認フローの利用を有効にした場合に指定可能です。 
+func (r ApiGetTrialPlTwoYearsRequest) ApprovalFlowStatus(approvalFlowStatus string) ApiGetTrialPlTwoYearsRequest {
+	r.approvalFlowStatus = &approvalFlowStatus
+	return r
+}
+
+func (r ApiGetTrialPlTwoYearsRequest) Execute() (*TrialPlTwoYearsResponse, *http.Response, error) {
 	return r.ApiService.GetTrialPlTwoYearsExecute(r)
 }
 
 /*
- * GetTrialPlTwoYears 損益計算書(前年比較)の取得
- * 
+GetTrialPlTwoYears 損益計算書(前年比較)の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の損益計算書(前年比較)を取得する</p>
@@ -2170,10 +6505,23 @@ func (r ApiGetTrialPlTwoYearsRequest) Execute() (TrialPlTwoYearsResponse, *_neth
 <h2 id="_3">注意点</h2>
 <ul>
 <li>会計年度が指定されない場合、現在の会計年度がデフォルトとなります。</li>
-<li>絞り込み条件の日付と、月または年度は同時に指定することはできません。</li>
 <li>up_to_dateがfalseの場合、残高の集計が完了していません。最新の集計結果を確認したい場合は、時間を空けて再度取得する必要があります。</li>
 <li>配賦仕訳の絞り込み（cost_allocation）は法人向けのベーシックプラン以上で利用可能です。</li>
-<li>取引先、品目、部門はそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>取引先、品目、部門、セグメントはそれぞれの合計値が1000を超えるとレスポンスを得ることができません。</li>
+<li>partner_codeとpartner_idは同時に指定することはできません。</li>
+<li>start_date / end_date を指定した場合、以下を同時に指定することはできません。</li>
+  <ul>
+  <li>fiscal_year</li>
+  <li>start_month</li>
+  <li>end_month</li>
+  </ul>
+<li>0を指定すると未選択で絞り込めます</li>
+  <ul>
+  <li>partner_idに0を指定して絞り込んだ場合</li>
+    <ul>
+    <li>取引先が設定されていない取引、振替伝票の金額がレスポンスに返却されます</li>
+    </ul>
+  </ul>
 </ul>
 
 <h2 id="_4">レスポンスの例</h2>
@@ -2196,47 +6544,43 @@ func (r ApiGetTrialPlTwoYearsRequest) Execute() (TrialPlTwoYearsResponse, *_neth
         &quot;last_year_closing_balance&quot; : 25000,
         &quot;closing_balance&quot; : 100000,
         &quot;year_on_year&quot; : 0.85
-
       },
       ...
       ]
     }
 }</code></pre>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTrialPlTwoYearsRequest
- */
-func (a *TrialBalanceApiService) GetTrialPlTwoYears(ctx _context.Context) ApiGetTrialPlTwoYearsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTrialPlTwoYearsRequest
+*/
+func (a *TrialBalanceApiService) GetTrialPlTwoYears(ctx context.Context) ApiGetTrialPlTwoYearsRequest {
 	return ApiGetTrialPlTwoYearsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TrialPlTwoYearsResponse
- */
-func (a *TrialBalanceApiService) GetTrialPlTwoYearsExecute(r ApiGetTrialPlTwoYearsRequest) (TrialPlTwoYearsResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TrialPlTwoYearsResponse
+func (a *TrialBalanceApiService) GetTrialPlTwoYearsExecute(r ApiGetTrialPlTwoYearsRequest) (*TrialPlTwoYearsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TrialPlTwoYearsResponse
+		formFiles            []formFile
+		localVarReturnValue  *TrialPlTwoYearsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrialBalanceApiService.GetTrialPlTwoYears")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/reports/trial_pl_two_years"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -2287,6 +6631,9 @@ func (a *TrialBalanceApiService) GetTrialPlTwoYearsExecute(r ApiGetTrialPlTwoYea
 	if r.costAllocation != nil {
 		localVarQueryParams.Add("cost_allocation", parameterToString(*r.costAllocation, ""))
 	}
+	if r.approvalFlowStatus != nil {
+		localVarQueryParams.Add("approval_flow_status", parameterToString(*r.approvalFlowStatus, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2304,7 +6651,7 @@ func (a *TrialBalanceApiService) GetTrialPlTwoYearsExecute(r ApiGetTrialPlTwoYea
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2314,15 +6661,15 @@ func (a *TrialBalanceApiService) GetTrialPlTwoYearsExecute(r ApiGetTrialPlTwoYea
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2380,7 +6727,7 @@ func (a *TrialBalanceApiService) GetTrialPlTwoYearsExecute(r ApiGetTrialPlTwoYea
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

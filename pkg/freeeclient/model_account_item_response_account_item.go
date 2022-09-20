@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -19,48 +19,48 @@ type AccountItemResponseAccountItem struct {
 	// 勘定科目カテゴリー
 	AccountCategory string `json:"account_category"`
 	// 勘定科目のカテゴリーID
-	AccountCategoryId int32 `json:"account_category_id"`
+	AccountCategoryId int64 `json:"account_category_id"`
 	// 減価償却累計額勘定科目ID（法人のみ利用可能）
-	AccumulatedDepAccountItemId NullableInt32 `json:"accumulated_dep_account_item_id,omitempty"`
+	AccumulatedDepAccountItemId NullableInt64 `json:"accumulated_dep_account_item_id,omitempty"`
 	// 減価償却累計額勘定科目（法人のみ利用可能）
 	AccumulatedDepAccountItemName *string `json:"accumulated_dep_account_item_name,omitempty"`
 	// 勘定科目の使用設定（true: 使用する、false: 使用しない）
 	Available bool `json:"available"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 支出取引相手勘定科目ID
-	CorrespondingExpenseId NullableInt32 `json:"corresponding_expense_id,omitempty"`
+	CorrespondingExpenseId NullableInt64 `json:"corresponding_expense_id,omitempty"`
 	// 支出取引相手勘定科目名
 	CorrespondingExpenseName NullableString `json:"corresponding_expense_name,omitempty"`
 	// 収入取引相手勘定科目ID
-	CorrespondingIncomeId NullableInt32 `json:"corresponding_income_id,omitempty"`
+	CorrespondingIncomeId NullableInt64 `json:"corresponding_income_id,omitempty"`
 	// 収入取引相手勘定科目名
 	CorrespondingIncomeName NullableString `json:"corresponding_income_name,omitempty"`
 	// 決算書表示名（小カテゴリー）
 	GroupName NullableString `json:"group_name,omitempty"`
 	// 勘定科目ID
-	Id int32 `json:"id"`
-	Items *[]AccountItemResponseAccountItemItems `json:"items,omitempty"`
+	Id int64 `json:"id"`
+	Items []AccountItemResponseAccountItemItemsInner `json:"items,omitempty"`
 	// 勘定科目名 (30文字以内)
 	Name string `json:"name"`
-	Partners *[]AccountItemResponseAccountItemPartners `json:"partners,omitempty"`
+	Partners []AccountItemResponseAccountItemPartnersInner `json:"partners,omitempty"`
 	// 検索可能:2, 検索不可：3
-	Searchable int32 `json:"searchable"`
+	Searchable int64 `json:"searchable"`
 	// ショートカット1 (20文字以内)
 	Shortcut *string `json:"shortcut,omitempty"`
 	// ショートカット2(勘定科目コード) (20文字以内)
 	ShortcutNum *string `json:"shortcut_num,omitempty"`
 	// 税区分コード
-	TaxCode int32 `json:"tax_code"`
+	TaxCode int64 `json:"tax_code"`
 	// 口座ID
-	WalletableId NullableInt32 `json:"walletable_id"`
+	WalletableId NullableInt64 `json:"walletable_id"`
 }
 
 // NewAccountItemResponseAccountItem instantiates a new AccountItemResponseAccountItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountItemResponseAccountItem(accountCategory string, accountCategoryId int32, available bool, companyId int32, id int32, name string, searchable int32, taxCode int32, walletableId NullableInt32) *AccountItemResponseAccountItem {
+func NewAccountItemResponseAccountItem(accountCategory string, accountCategoryId int64, available bool, companyId int64, id int64, name string, searchable int64, taxCode int64, walletableId NullableInt64) *AccountItemResponseAccountItem {
 	this := AccountItemResponseAccountItem{}
 	this.AccountCategory = accountCategory
 	this.AccountCategoryId = accountCategoryId
@@ -95,7 +95,7 @@ func (o *AccountItemResponseAccountItem) GetAccountCategory() string {
 // GetAccountCategoryOk returns a tuple with the AccountCategory field value
 // and a boolean to check if the value has been set.
 func (o *AccountItemResponseAccountItem) GetAccountCategoryOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.AccountCategory, true
@@ -107,9 +107,9 @@ func (o *AccountItemResponseAccountItem) SetAccountCategory(v string) {
 }
 
 // GetAccountCategoryId returns the AccountCategoryId field value
-func (o *AccountItemResponseAccountItem) GetAccountCategoryId() int32 {
+func (o *AccountItemResponseAccountItem) GetAccountCategoryId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -118,22 +118,22 @@ func (o *AccountItemResponseAccountItem) GetAccountCategoryId() int32 {
 
 // GetAccountCategoryIdOk returns a tuple with the AccountCategoryId field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItem) GetAccountCategoryIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetAccountCategoryIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.AccountCategoryId, true
 }
 
 // SetAccountCategoryId sets field value
-func (o *AccountItemResponseAccountItem) SetAccountCategoryId(v int32) {
+func (o *AccountItemResponseAccountItem) SetAccountCategoryId(v int64) {
 	o.AccountCategoryId = v
 }
 
 // GetAccumulatedDepAccountItemId returns the AccumulatedDepAccountItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemId() int32 {
+func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemId() int64 {
 	if o == nil || o.AccumulatedDepAccountItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccumulatedDepAccountItemId.Get()
@@ -142,8 +142,8 @@ func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemId() int32 
 // GetAccumulatedDepAccountItemIdOk returns a tuple with the AccumulatedDepAccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetAccumulatedDepAccountItemIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.AccumulatedDepAccountItemId.Get(), o.AccumulatedDepAccountItemId.IsSet()
@@ -158,8 +158,8 @@ func (o *AccountItemResponseAccountItem) HasAccumulatedDepAccountItemId() bool {
 	return false
 }
 
-// SetAccumulatedDepAccountItemId gets a reference to the given NullableInt32 and assigns it to the AccumulatedDepAccountItemId field.
-func (o *AccountItemResponseAccountItem) SetAccumulatedDepAccountItemId(v int32) {
+// SetAccumulatedDepAccountItemId gets a reference to the given NullableInt64 and assigns it to the AccumulatedDepAccountItemId field.
+func (o *AccountItemResponseAccountItem) SetAccumulatedDepAccountItemId(v int64) {
 	o.AccumulatedDepAccountItemId.Set(&v)
 }
 // SetAccumulatedDepAccountItemIdNil sets the value for AccumulatedDepAccountItemId to be an explicit nil
@@ -217,7 +217,7 @@ func (o *AccountItemResponseAccountItem) GetAvailable() bool {
 // GetAvailableOk returns a tuple with the Available field value
 // and a boolean to check if the value has been set.
 func (o *AccountItemResponseAccountItem) GetAvailableOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Available, true
@@ -229,9 +229,9 @@ func (o *AccountItemResponseAccountItem) SetAvailable(v bool) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *AccountItemResponseAccountItem) GetCompanyId() int32 {
+func (o *AccountItemResponseAccountItem) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -240,22 +240,22 @@ func (o *AccountItemResponseAccountItem) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItem) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetCompanyIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
 }
 
 // SetCompanyId sets field value
-func (o *AccountItemResponseAccountItem) SetCompanyId(v int32) {
+func (o *AccountItemResponseAccountItem) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetCorrespondingExpenseId returns the CorrespondingExpenseId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseId() int32 {
+func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseId() int64 {
 	if o == nil || o.CorrespondingExpenseId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CorrespondingExpenseId.Get()
@@ -264,8 +264,8 @@ func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseId() int32 {
 // GetCorrespondingExpenseIdOk returns a tuple with the CorrespondingExpenseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.CorrespondingExpenseId.Get(), o.CorrespondingExpenseId.IsSet()
@@ -280,8 +280,8 @@ func (o *AccountItemResponseAccountItem) HasCorrespondingExpenseId() bool {
 	return false
 }
 
-// SetCorrespondingExpenseId gets a reference to the given NullableInt32 and assigns it to the CorrespondingExpenseId field.
-func (o *AccountItemResponseAccountItem) SetCorrespondingExpenseId(v int32) {
+// SetCorrespondingExpenseId gets a reference to the given NullableInt64 and assigns it to the CorrespondingExpenseId field.
+func (o *AccountItemResponseAccountItem) SetCorrespondingExpenseId(v int64) {
 	o.CorrespondingExpenseId.Set(&v)
 }
 // SetCorrespondingExpenseIdNil sets the value for CorrespondingExpenseId to be an explicit nil
@@ -307,7 +307,7 @@ func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountItemResponseAccountItem) GetCorrespondingExpenseNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CorrespondingExpenseName.Get(), o.CorrespondingExpenseName.IsSet()
@@ -337,9 +337,9 @@ func (o *AccountItemResponseAccountItem) UnsetCorrespondingExpenseName() {
 }
 
 // GetCorrespondingIncomeId returns the CorrespondingIncomeId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeId() int32 {
+func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeId() int64 {
 	if o == nil || o.CorrespondingIncomeId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CorrespondingIncomeId.Get()
@@ -348,8 +348,8 @@ func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeId() int32 {
 // GetCorrespondingIncomeIdOk returns a tuple with the CorrespondingIncomeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.CorrespondingIncomeId.Get(), o.CorrespondingIncomeId.IsSet()
@@ -364,8 +364,8 @@ func (o *AccountItemResponseAccountItem) HasCorrespondingIncomeId() bool {
 	return false
 }
 
-// SetCorrespondingIncomeId gets a reference to the given NullableInt32 and assigns it to the CorrespondingIncomeId field.
-func (o *AccountItemResponseAccountItem) SetCorrespondingIncomeId(v int32) {
+// SetCorrespondingIncomeId gets a reference to the given NullableInt64 and assigns it to the CorrespondingIncomeId field.
+func (o *AccountItemResponseAccountItem) SetCorrespondingIncomeId(v int64) {
 	o.CorrespondingIncomeId.Set(&v)
 }
 // SetCorrespondingIncomeIdNil sets the value for CorrespondingIncomeId to be an explicit nil
@@ -391,7 +391,7 @@ func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountItemResponseAccountItem) GetCorrespondingIncomeNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CorrespondingIncomeName.Get(), o.CorrespondingIncomeName.IsSet()
@@ -433,7 +433,7 @@ func (o *AccountItemResponseAccountItem) GetGroupName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountItemResponseAccountItem) GetGroupNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.GroupName.Get(), o.GroupName.IsSet()
@@ -463,9 +463,9 @@ func (o *AccountItemResponseAccountItem) UnsetGroupName() {
 }
 
 // GetId returns the Id field value
-func (o *AccountItemResponseAccountItem) GetId() int32 {
+func (o *AccountItemResponseAccountItem) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -474,30 +474,30 @@ func (o *AccountItemResponseAccountItem) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItem) GetIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *AccountItemResponseAccountItem) SetId(v int32) {
+func (o *AccountItemResponseAccountItem) SetId(v int64) {
 	o.Id = v
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *AccountItemResponseAccountItem) GetItems() []AccountItemResponseAccountItemItems {
+func (o *AccountItemResponseAccountItem) GetItems() []AccountItemResponseAccountItemItemsInner {
 	if o == nil || o.Items == nil {
-		var ret []AccountItemResponseAccountItemItems
+		var ret []AccountItemResponseAccountItemItemsInner
 		return ret
 	}
-	return *o.Items
+	return o.Items
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItem) GetItemsOk() (*[]AccountItemResponseAccountItemItems, bool) {
+func (o *AccountItemResponseAccountItem) GetItemsOk() ([]AccountItemResponseAccountItemItemsInner, bool) {
 	if o == nil || o.Items == nil {
 		return nil, false
 	}
@@ -513,9 +513,9 @@ func (o *AccountItemResponseAccountItem) HasItems() bool {
 	return false
 }
 
-// SetItems gets a reference to the given []AccountItemResponseAccountItemItems and assigns it to the Items field.
-func (o *AccountItemResponseAccountItem) SetItems(v []AccountItemResponseAccountItemItems) {
-	o.Items = &v
+// SetItems gets a reference to the given []AccountItemResponseAccountItemItemsInner and assigns it to the Items field.
+func (o *AccountItemResponseAccountItem) SetItems(v []AccountItemResponseAccountItemItemsInner) {
+	o.Items = v
 }
 
 // GetName returns the Name field value
@@ -531,7 +531,7 @@ func (o *AccountItemResponseAccountItem) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *AccountItemResponseAccountItem) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Name, true
@@ -543,17 +543,17 @@ func (o *AccountItemResponseAccountItem) SetName(v string) {
 }
 
 // GetPartners returns the Partners field value if set, zero value otherwise.
-func (o *AccountItemResponseAccountItem) GetPartners() []AccountItemResponseAccountItemPartners {
+func (o *AccountItemResponseAccountItem) GetPartners() []AccountItemResponseAccountItemPartnersInner {
 	if o == nil || o.Partners == nil {
-		var ret []AccountItemResponseAccountItemPartners
+		var ret []AccountItemResponseAccountItemPartnersInner
 		return ret
 	}
-	return *o.Partners
+	return o.Partners
 }
 
 // GetPartnersOk returns a tuple with the Partners field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItem) GetPartnersOk() (*[]AccountItemResponseAccountItemPartners, bool) {
+func (o *AccountItemResponseAccountItem) GetPartnersOk() ([]AccountItemResponseAccountItemPartnersInner, bool) {
 	if o == nil || o.Partners == nil {
 		return nil, false
 	}
@@ -569,15 +569,15 @@ func (o *AccountItemResponseAccountItem) HasPartners() bool {
 	return false
 }
 
-// SetPartners gets a reference to the given []AccountItemResponseAccountItemPartners and assigns it to the Partners field.
-func (o *AccountItemResponseAccountItem) SetPartners(v []AccountItemResponseAccountItemPartners) {
-	o.Partners = &v
+// SetPartners gets a reference to the given []AccountItemResponseAccountItemPartnersInner and assigns it to the Partners field.
+func (o *AccountItemResponseAccountItem) SetPartners(v []AccountItemResponseAccountItemPartnersInner) {
+	o.Partners = v
 }
 
 // GetSearchable returns the Searchable field value
-func (o *AccountItemResponseAccountItem) GetSearchable() int32 {
+func (o *AccountItemResponseAccountItem) GetSearchable() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -586,15 +586,15 @@ func (o *AccountItemResponseAccountItem) GetSearchable() int32 {
 
 // GetSearchableOk returns a tuple with the Searchable field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItem) GetSearchableOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetSearchableOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Searchable, true
 }
 
 // SetSearchable sets field value
-func (o *AccountItemResponseAccountItem) SetSearchable(v int32) {
+func (o *AccountItemResponseAccountItem) SetSearchable(v int64) {
 	o.Searchable = v
 }
 
@@ -663,9 +663,9 @@ func (o *AccountItemResponseAccountItem) SetShortcutNum(v string) {
 }
 
 // GetTaxCode returns the TaxCode field value
-func (o *AccountItemResponseAccountItem) GetTaxCode() int32 {
+func (o *AccountItemResponseAccountItem) GetTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -674,23 +674,23 @@ func (o *AccountItemResponseAccountItem) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItem) GetTaxCodeOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetTaxCodeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TaxCode, true
 }
 
 // SetTaxCode sets field value
-func (o *AccountItemResponseAccountItem) SetTaxCode(v int32) {
+func (o *AccountItemResponseAccountItem) SetTaxCode(v int64) {
 	o.TaxCode = v
 }
 
 // GetWalletableId returns the WalletableId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *AccountItemResponseAccountItem) GetWalletableId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *AccountItemResponseAccountItem) GetWalletableId() int64 {
 	if o == nil || o.WalletableId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -700,15 +700,15 @@ func (o *AccountItemResponseAccountItem) GetWalletableId() int32 {
 // GetWalletableIdOk returns a tuple with the WalletableId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountItemResponseAccountItem) GetWalletableIdOk() (*int32, bool) {
-	if o == nil  {
+func (o *AccountItemResponseAccountItem) GetWalletableIdOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.WalletableId.Get(), o.WalletableId.IsSet()
 }
 
 // SetWalletableId sets field value
-func (o *AccountItemResponseAccountItem) SetWalletableId(v int32) {
+func (o *AccountItemResponseAccountItem) SetWalletableId(v int64) {
 	o.WalletableId.Set(&v)
 }
 

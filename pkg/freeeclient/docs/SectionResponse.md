@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Section** | [**SectionResponseSection**](SectionResponseSection.md) |  | 
+**Section** | [**Section**](Section.md) |  | 
 
 ## Methods
 
 ### NewSectionResponse
 
-`func NewSectionResponse(section SectionResponseSection, ) *SectionResponse`
+`func NewSectionResponse(section Section, ) *SectionResponse`
 
 NewSectionResponse instantiates a new SectionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSection
 
-`func (o *SectionResponse) GetSection() SectionResponseSection`
+`func (o *SectionResponse) GetSection() Section`
 
 GetSection returns the Section field if non-nil, zero value otherwise.
 
 ### GetSectionOk
 
-`func (o *SectionResponse) GetSectionOk() (*SectionResponseSection, bool)`
+`func (o *SectionResponse) GetSectionOk() (*Section, bool)`
 
 GetSectionOk returns a tuple with the Section field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSection
 
-`func (o *SectionResponse) SetSection(v SectionResponseSection)`
+`func (o *SectionResponse) SetSection(v Section)`
 
 SetSection sets Section field to given value.
 
