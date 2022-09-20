@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **PartnerPrefectureName** | Pointer to **NullableString** | 都道府県 | [optional] 
 **PartnerTitle** | **NullableString** | 敬称（御中、様、(空白)の3つから選択） | 
 **PartnerZipcode** | Pointer to **NullableString** | 郵便番号 | [optional] 
-**QuotationContents** | Pointer to [**[]QuotationIndexResponseQuotationContents**](QuotationIndexResponseQuotationContents.md) | 見積内容 | [optional] 
+**QuotationContents** | Pointer to [**[]QuotationIndexResponseQuotationsInnerQuotationContentsInner**](QuotationIndexResponseQuotationsInnerQuotationContentsInner.md) | 見積内容 | [optional] 
 **QuotationLayout** | **string** | 見積書レイアウト * &#x60;default_classic&#x60; - レイアウト１/クラシック (デフォルト)  * &#x60;standard_classic&#x60; - レイアウト２/クラシック  * &#x60;envelope_classic&#x60; - 封筒１/クラシック  * &#x60;default_modern&#x60; - レイアウト１/モダン  * &#x60;standard_modern&#x60; - レイアウト２/モダン  * &#x60;envelope_modern&#x60; - 封筒/モダン | 
 **QuotationNumber** | **string** | 見積書番号 | 
 **QuotationStatus** | **string** | 見積書ステータス  (unsubmitted: 送付待ち, submitted: 送付済み, all: 全て) | 
@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 **TaxEntryMethod** | **string** | 見積書の消費税計算方法(inclusive: 内税, exclusive: 外税) | 
 **Title** | Pointer to **NullableString** | タイトル | [optional] 
 **TotalAmount** | **int32** | 合計金額 | 
-**TotalAmountPerVatRate** | [**InvoiceIndexResponseTotalAmountPerVatRate**](InvoiceIndexResponseTotalAmountPerVatRate.md) |  | 
+**TotalAmountPerVatRate** | [**InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate**](InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate.md) |  | 
 **TotalVat** | Pointer to **int32** | 消費税 | [optional] 
 **WebConfirmedAt** | Pointer to **NullableString** | Web共有取引先確認日時(最新) | [optional] 
 **WebDownloadedAt** | Pointer to **NullableString** | Web共有ダウンロード日時(最新) | [optional] 
@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 
 ### NewQuotationResponseQuotation
 
-`func NewQuotationResponseQuotation(companyId int32, companyName string, id int32, issueDate string, partnerId NullableInt32, partnerTitle NullableString, quotationLayout string, quotationNumber string, quotationStatus string, taxEntryMethod string, totalAmount int32, totalAmountPerVatRate InvoiceIndexResponseTotalAmountPerVatRate, ) *QuotationResponseQuotation`
+`func NewQuotationResponseQuotation(companyId int32, companyName string, id int32, issueDate string, partnerId NullableInt32, partnerTitle NullableString, quotationLayout string, quotationNumber string, quotationStatus string, taxEntryMethod string, totalAmount int32, totalAmountPerVatRate InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate, ) *QuotationResponseQuotation`
 
 NewQuotationResponseQuotation instantiates a new QuotationResponseQuotation object
 This constructor will assign default values to properties that have it defined,
@@ -871,20 +871,20 @@ HasPartnerZipcode returns a boolean if a field has been set.
 UnsetPartnerZipcode ensures that no value is present for PartnerZipcode, not even an explicit nil
 ### GetQuotationContents
 
-`func (o *QuotationResponseQuotation) GetQuotationContents() []QuotationIndexResponseQuotationContents`
+`func (o *QuotationResponseQuotation) GetQuotationContents() []QuotationIndexResponseQuotationsInnerQuotationContentsInner`
 
 GetQuotationContents returns the QuotationContents field if non-nil, zero value otherwise.
 
 ### GetQuotationContentsOk
 
-`func (o *QuotationResponseQuotation) GetQuotationContentsOk() (*[]QuotationIndexResponseQuotationContents, bool)`
+`func (o *QuotationResponseQuotation) GetQuotationContentsOk() (*[]QuotationIndexResponseQuotationsInnerQuotationContentsInner, bool)`
 
 GetQuotationContentsOk returns a tuple with the QuotationContents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuotationContents
 
-`func (o *QuotationResponseQuotation) SetQuotationContents(v []QuotationIndexResponseQuotationContents)`
+`func (o *QuotationResponseQuotation) SetQuotationContents(v []QuotationIndexResponseQuotationsInnerQuotationContentsInner)`
 
 SetQuotationContents sets QuotationContents field to given value.
 
@@ -1116,20 +1116,20 @@ SetTotalAmount sets TotalAmount field to given value.
 
 ### GetTotalAmountPerVatRate
 
-`func (o *QuotationResponseQuotation) GetTotalAmountPerVatRate() InvoiceIndexResponseTotalAmountPerVatRate`
+`func (o *QuotationResponseQuotation) GetTotalAmountPerVatRate() InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate`
 
 GetTotalAmountPerVatRate returns the TotalAmountPerVatRate field if non-nil, zero value otherwise.
 
 ### GetTotalAmountPerVatRateOk
 
-`func (o *QuotationResponseQuotation) GetTotalAmountPerVatRateOk() (*InvoiceIndexResponseTotalAmountPerVatRate, bool)`
+`func (o *QuotationResponseQuotation) GetTotalAmountPerVatRateOk() (*InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate, bool)`
 
 GetTotalAmountPerVatRateOk returns a tuple with the TotalAmountPerVatRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalAmountPerVatRate
 
-`func (o *QuotationResponseQuotation) SetTotalAmountPerVatRate(v InvoiceIndexResponseTotalAmountPerVatRate)`
+`func (o *QuotationResponseQuotation) SetTotalAmountPerVatRate(v InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate)`
 
 SetTotalAmountPerVatRate sets TotalAmountPerVatRate field to given value.
 

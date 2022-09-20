@@ -11,6 +11,9 @@ Name | Type | Description | Notes
 **Messages** | Pointer to **[]string** |  | [optional] 
 **StartDate** | Pointer to **string** | 取得開始日 (yyyy-mm-dd) | [optional] 
 **StatusUrl** | Pointer to **string** | ステータス確認用URL | [optional] 
+**UpToDate** | Pointer to **bool** | 集計結果が最新かどうか | [optional] 
+**UpToDateReasons** | Pointer to [**[]JournalsResponseJournalsUpToDateReasonsInner**](JournalsResponseJournalsUpToDateReasonsInner.md) | 集計が最新でない場合の要因情報 | [optional] 
+**VisibleIds** | Pointer to **[]string** |  | [optional] 
 **VisibleTags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -196,6 +199,81 @@ SetStatusUrl sets StatusUrl field to given value.
 `func (o *JournalsResponseJournals) HasStatusUrl() bool`
 
 HasStatusUrl returns a boolean if a field has been set.
+
+### GetUpToDate
+
+`func (o *JournalsResponseJournals) GetUpToDate() bool`
+
+GetUpToDate returns the UpToDate field if non-nil, zero value otherwise.
+
+### GetUpToDateOk
+
+`func (o *JournalsResponseJournals) GetUpToDateOk() (*bool, bool)`
+
+GetUpToDateOk returns a tuple with the UpToDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpToDate
+
+`func (o *JournalsResponseJournals) SetUpToDate(v bool)`
+
+SetUpToDate sets UpToDate field to given value.
+
+### HasUpToDate
+
+`func (o *JournalsResponseJournals) HasUpToDate() bool`
+
+HasUpToDate returns a boolean if a field has been set.
+
+### GetUpToDateReasons
+
+`func (o *JournalsResponseJournals) GetUpToDateReasons() []JournalsResponseJournalsUpToDateReasonsInner`
+
+GetUpToDateReasons returns the UpToDateReasons field if non-nil, zero value otherwise.
+
+### GetUpToDateReasonsOk
+
+`func (o *JournalsResponseJournals) GetUpToDateReasonsOk() (*[]JournalsResponseJournalsUpToDateReasonsInner, bool)`
+
+GetUpToDateReasonsOk returns a tuple with the UpToDateReasons field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpToDateReasons
+
+`func (o *JournalsResponseJournals) SetUpToDateReasons(v []JournalsResponseJournalsUpToDateReasonsInner)`
+
+SetUpToDateReasons sets UpToDateReasons field to given value.
+
+### HasUpToDateReasons
+
+`func (o *JournalsResponseJournals) HasUpToDateReasons() bool`
+
+HasUpToDateReasons returns a boolean if a field has been set.
+
+### GetVisibleIds
+
+`func (o *JournalsResponseJournals) GetVisibleIds() []string`
+
+GetVisibleIds returns the VisibleIds field if non-nil, zero value otherwise.
+
+### GetVisibleIdsOk
+
+`func (o *JournalsResponseJournals) GetVisibleIdsOk() (*[]string, bool)`
+
+GetVisibleIdsOk returns a tuple with the VisibleIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVisibleIds
+
+`func (o *JournalsResponseJournals) SetVisibleIds(v []string)`
+
+SetVisibleIds sets VisibleIds field to given value.
+
+### HasVisibleIds
+
+`func (o *JournalsResponseJournals) HasVisibleIds() bool`
+
+HasVisibleIds returns a boolean if a field has been set.
 
 ### GetVisibleTags
 

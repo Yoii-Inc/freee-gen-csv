@@ -7,19 +7,20 @@ Name | Type | Description | Notes
 **ApplicantId** | **int32** | 申請者のユーザーID | 
 **ApplicationDate** | **string** | 申請日 (yyyy-mm-dd) | 
 **ApplicationNumber** | **string** | 申請No. | 
-**ApprovalFlowLogs** | [**[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs**](ApprovalRequestResponseApprovalRequestApprovalFlowLogs.md) | 各種申請の承認履歴（配列） | 
+**ApprovalFlowLogs** | [**[]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner**](ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner.md) | 各種申請の承認履歴（配列） | 
 **ApprovalFlowRouteId** | **int32** | 申請経路ID | 
 **ApprovalRequestForm** | [**ApprovalRequestResponseApprovalRequestApprovalRequestForm**](ApprovalRequestResponseApprovalRequestApprovalRequestForm.md) |  | 
-**Approvers** | [**[]ApprovalRequestResponseApprovalRequestApprovers**](ApprovalRequestResponseApprovalRequestApprovers.md) | 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、    approversはレスポンスに含まれるようになります。    その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。 | 
-**Comments** | [**[]ApprovalRequestResponseApprovalRequestComments**](ApprovalRequestResponseApprovalRequestComments.md) | 各種申請のコメント一覧（配列） | 
+**Approvers** | [**[]ApprovalRequestResponseApprovalRequestApproversInner**](ApprovalRequestResponseApprovalRequestApproversInner.md) | 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、   approversはレスポンスに含まれるようになります。   その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。 | 
+**Comments** | [**[]ApprovalRequestResponseApprovalRequestCommentsInner**](ApprovalRequestResponseApprovalRequestCommentsInner.md) | 各種申請のコメント一覧（配列） | 
 **CompanyId** | **int32** | 事業所ID | 
 **CurrentRound** | **int32** | 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。 | 
 **CurrentStepId** | **NullableInt32** | 現在承認ステップID | 
 **DealId** | **NullableInt32** | 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます) | 
-**DealStatus** | **NullableString** | 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:精算済み, unsettled:清算待ち) | 
+**DealStatus** | **NullableString** | 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:決済済み, unsettled:未決済) | 
 **FormId** | **int32** | 申請フォームID | 
 **Id** | **int32** | 各種申請ID | 
-**RequestItems** | [**[]ApprovalRequestResponseApprovalRequestRequestItems**](ApprovalRequestResponseApprovalRequestRequestItems.md) | 各種申請の項目一覧（配列） | 
+**ManualJournalId** | **NullableInt32** | 振替伝票のID (申請ステータス:statusがapprovedで、関連する振替伝票が存在する時のみmanual_journal_idが表示されます)  &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/115003827683-#5\&quot; target&#x3D;\&quot;_blank\&quot;&gt;承認された各種申請から支払依頼等を作成する&lt;/a&gt;  | 
+**RequestItems** | [**[]ApprovalRequestResponseApprovalRequestRequestItemsInner**](ApprovalRequestResponseApprovalRequestRequestItemsInner.md) | 各種申請の項目一覧（配列） | 
 **Status** | **string** | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) | 
 **Title** | **string** | 申請タイトル | 
 
@@ -27,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewApprovalRequestResponseApprovalRequest
 
-`func NewApprovalRequestResponseApprovalRequest(applicantId int32, applicationDate string, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogs, approvalFlowRouteId int32, approvalRequestForm ApprovalRequestResponseApprovalRequestApprovalRequestForm, approvers []ApprovalRequestResponseApprovalRequestApprovers, comments []ApprovalRequestResponseApprovalRequestComments, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, formId int32, id int32, requestItems []ApprovalRequestResponseApprovalRequestRequestItems, status string, title string, ) *ApprovalRequestResponseApprovalRequest`
+`func NewApprovalRequestResponseApprovalRequest(applicantId int32, applicationDate string, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, approvalFlowRouteId int32, approvalRequestForm ApprovalRequestResponseApprovalRequestApprovalRequestForm, approvers []ApprovalRequestResponseApprovalRequestApproversInner, comments []ApprovalRequestResponseApprovalRequestCommentsInner, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, formId int32, id int32, manualJournalId NullableInt32, requestItems []ApprovalRequestResponseApprovalRequestRequestItemsInner, status string, title string, ) *ApprovalRequestResponseApprovalRequest`
 
 NewApprovalRequestResponseApprovalRequest instantiates a new ApprovalRequestResponseApprovalRequest object
 This constructor will assign default values to properties that have it defined,
@@ -104,20 +105,20 @@ SetApplicationNumber sets ApplicationNumber field to given value.
 
 ### GetApprovalFlowLogs
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogs`
+`func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner`
 
 GetApprovalFlowLogs returns the ApprovalFlowLogs field if non-nil, zero value otherwise.
 
 ### GetApprovalFlowLogsOk
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs, bool)`
+`func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, bool)`
 
 GetApprovalFlowLogsOk returns a tuple with the ApprovalFlowLogs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovalFlowLogs
 
-`func (o *ApprovalRequestResponseApprovalRequest) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogs)`
+`func (o *ApprovalRequestResponseApprovalRequest) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner)`
 
 SetApprovalFlowLogs sets ApprovalFlowLogs field to given value.
 
@@ -164,40 +165,40 @@ SetApprovalRequestForm sets ApprovalRequestForm field to given value.
 
 ### GetApprovers
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetApprovers() []ApprovalRequestResponseApprovalRequestApprovers`
+`func (o *ApprovalRequestResponseApprovalRequest) GetApprovers() []ApprovalRequestResponseApprovalRequestApproversInner`
 
 GetApprovers returns the Approvers field if non-nil, zero value otherwise.
 
 ### GetApproversOk
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApprovers, bool)`
+`func (o *ApprovalRequestResponseApprovalRequest) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApproversInner, bool)`
 
 GetApproversOk returns a tuple with the Approvers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovers
 
-`func (o *ApprovalRequestResponseApprovalRequest) SetApprovers(v []ApprovalRequestResponseApprovalRequestApprovers)`
+`func (o *ApprovalRequestResponseApprovalRequest) SetApprovers(v []ApprovalRequestResponseApprovalRequestApproversInner)`
 
 SetApprovers sets Approvers field to given value.
 
 
 ### GetComments
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetComments() []ApprovalRequestResponseApprovalRequestComments`
+`func (o *ApprovalRequestResponseApprovalRequest) GetComments() []ApprovalRequestResponseApprovalRequestCommentsInner`
 
 GetComments returns the Comments field if non-nil, zero value otherwise.
 
 ### GetCommentsOk
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestComments, bool)`
+`func (o *ApprovalRequestResponseApprovalRequest) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestCommentsInner, bool)`
 
 GetCommentsOk returns a tuple with the Comments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComments
 
-`func (o *ApprovalRequestResponseApprovalRequest) SetComments(v []ApprovalRequestResponseApprovalRequestComments)`
+`func (o *ApprovalRequestResponseApprovalRequest) SetComments(v []ApprovalRequestResponseApprovalRequestCommentsInner)`
 
 SetComments sets Comments field to given value.
 
@@ -372,22 +373,52 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetManualJournalId
+
+`func (o *ApprovalRequestResponseApprovalRequest) GetManualJournalId() int32`
+
+GetManualJournalId returns the ManualJournalId field if non-nil, zero value otherwise.
+
+### GetManualJournalIdOk
+
+`func (o *ApprovalRequestResponseApprovalRequest) GetManualJournalIdOk() (*int32, bool)`
+
+GetManualJournalIdOk returns a tuple with the ManualJournalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManualJournalId
+
+`func (o *ApprovalRequestResponseApprovalRequest) SetManualJournalId(v int32)`
+
+SetManualJournalId sets ManualJournalId field to given value.
+
+
+### SetManualJournalIdNil
+
+`func (o *ApprovalRequestResponseApprovalRequest) SetManualJournalIdNil(b bool)`
+
+ SetManualJournalIdNil sets the value for ManualJournalId to be an explicit nil
+
+### UnsetManualJournalId
+`func (o *ApprovalRequestResponseApprovalRequest) UnsetManualJournalId()`
+
+UnsetManualJournalId ensures that no value is present for ManualJournalId, not even an explicit nil
 ### GetRequestItems
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetRequestItems() []ApprovalRequestResponseApprovalRequestRequestItems`
+`func (o *ApprovalRequestResponseApprovalRequest) GetRequestItems() []ApprovalRequestResponseApprovalRequestRequestItemsInner`
 
 GetRequestItems returns the RequestItems field if non-nil, zero value otherwise.
 
 ### GetRequestItemsOk
 
-`func (o *ApprovalRequestResponseApprovalRequest) GetRequestItemsOk() (*[]ApprovalRequestResponseApprovalRequestRequestItems, bool)`
+`func (o *ApprovalRequestResponseApprovalRequest) GetRequestItemsOk() (*[]ApprovalRequestResponseApprovalRequestRequestItemsInner, bool)`
 
 GetRequestItemsOk returns a tuple with the RequestItems field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestItems
 
-`func (o *ApprovalRequestResponseApprovalRequest) SetRequestItems(v []ApprovalRequestResponseApprovalRequestRequestItems)`
+`func (o *ApprovalRequestResponseApprovalRequest) SetRequestItems(v []ApprovalRequestResponseApprovalRequestRequestItemsInner)`
 
 SetRequestItems sets RequestItems field to given value.
 

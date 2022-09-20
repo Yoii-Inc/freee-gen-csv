@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-    expenseApplicationCreateParams := *openapiclient.NewExpenseApplicationCreateParams(int32(1), []openapiclient.ExpenseApplicationCreateParamsExpenseApplicationLines{*openapiclient.NewExpenseApplicationCreateParamsExpenseApplicationLines()}, "2019-12-17", "大阪出張") // ExpenseApplicationCreateParams | 経費申請の作成 (optional)
+    expenseApplicationCreateParams := *openapiclient.NewExpenseApplicationCreateParams(int32(1), []openapiclient.ExpenseApplicationCreateParamsExpenseApplicationLinesInner{*openapiclient.NewExpenseApplicationCreateParamsExpenseApplicationLinesInner()}, "大阪出張") // ExpenseApplicationCreateParams | 経費申請の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.CreateExpenseApplication(context.Background()).ExpenseApplicationCreateParams(expenseApplicationCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.CreateExpenseApplication(context.Background()).ExpenseApplicationCreateParams(expenseApplicationCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.CreateExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.DestroyExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.DestroyExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.DestroyExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -174,8 +174,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.GetExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.GetExpenseApplication(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.GetExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -259,8 +259,8 @@ func main() {
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.GetExpenseApplications(context.Background()).CompanyId(companyId).Status(status).PayrollAttached(payrollAttached).StartTransactionDate(startTransactionDate).EndTransactionDate(endTransactionDate).ApplicationNumber(applicationNumber).Title(title).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).ApplicantId(applicantId).ApproverId(approverId).MinAmount(minAmount).MaxAmount(maxAmount).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.GetExpenseApplications(context.Background()).CompanyId(companyId).Status(status).PayrollAttached(payrollAttached).StartTransactionDate(startTransactionDate).EndTransactionDate(endTransactionDate).ApplicationNumber(applicationNumber).Title(title).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).ApplicantId(applicantId).ApproverId(approverId).MinAmount(minAmount).MaxAmount(maxAmount).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.GetExpenseApplications``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -337,11 +337,11 @@ import (
 
 func main() {
     id := int32(56) // int32 | 経費申請ID
-    expenseApplicationUpdateParams := *openapiclient.NewExpenseApplicationUpdateParams(int32(1), []openapiclient.ExpenseApplicationUpdateParamsExpenseApplicationLines{*openapiclient.NewExpenseApplicationUpdateParamsExpenseApplicationLines()}, "2019-12-17", "大阪出張") // ExpenseApplicationUpdateParams | 経費申請の更新 (optional)
+    expenseApplicationUpdateParams := *openapiclient.NewExpenseApplicationUpdateParams(int32(1), []openapiclient.ExpenseApplicationUpdateParamsExpenseApplicationLinesInner{*openapiclient.NewExpenseApplicationUpdateParamsExpenseApplicationLinesInner()}, "大阪出張") // ExpenseApplicationUpdateParams | 経費申請の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.UpdateExpenseApplication(context.Background(), id).ExpenseApplicationUpdateParams(expenseApplicationUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.UpdateExpenseApplication(context.Background(), id).ExpenseApplicationUpdateParams(expenseApplicationUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.UpdateExpenseApplication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -412,8 +412,8 @@ func main() {
     expenseApplicationActionCreateParams := *openapiclient.NewExpenseApplicationActionCreateParams("approve", int32(1), int32(1), int32(1)) // ExpenseApplicationActionCreateParams | 経費申請の承認操作
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExpenseApplicationsApi.UpdateExpenseApplicationAction(context.Background(), id).ExpenseApplicationActionCreateParams(expenseApplicationActionCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExpenseApplicationsApi.UpdateExpenseApplicationAction(context.Background(), id).ExpenseApplicationActionCreateParams(expenseApplicationActionCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExpenseApplicationsApi.UpdateExpenseApplicationAction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

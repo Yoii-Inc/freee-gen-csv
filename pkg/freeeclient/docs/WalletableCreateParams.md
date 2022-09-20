@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BankId** | Pointer to **int32** | サービスID | [optional] 
+**BankId** | Pointer to **int32** | 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須） | [optional] 
 **CompanyId** | **int32** | 事業所ID | 
-**GroupName** | Pointer to **string** | 決算書表示名（小カテゴリー）　例：売掛金, 受取手形, 未収入金（法人のみ）, 買掛金, 支払手形, 未払金, 預り金, 前受金 | [optional] 
+**IsAsset** | Pointer to **bool** | 口座を資産口座とするか負債口座とするか（true: 資産口座 (デフォルト), false: 負債口座）&lt;br&gt; bank_idを指定しない場合にのみ使われます。&lt;br&gt; bank_idを指定する場合には資産口座か負債口座かはbank_idに指定したサービスに応じて決定され、is_assetに指定した値は無視されます。  | [optional] 
 **Name** | **string** | 口座名 (255文字以内) | 
 **Type** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
@@ -74,30 +74,30 @@ and a boolean to check if the value has been set.
 SetCompanyId sets CompanyId field to given value.
 
 
-### GetGroupName
+### GetIsAsset
 
-`func (o *WalletableCreateParams) GetGroupName() string`
+`func (o *WalletableCreateParams) GetIsAsset() bool`
 
-GetGroupName returns the GroupName field if non-nil, zero value otherwise.
+GetIsAsset returns the IsAsset field if non-nil, zero value otherwise.
 
-### GetGroupNameOk
+### GetIsAssetOk
 
-`func (o *WalletableCreateParams) GetGroupNameOk() (*string, bool)`
+`func (o *WalletableCreateParams) GetIsAssetOk() (*bool, bool)`
 
-GetGroupNameOk returns a tuple with the GroupName field if it's non-nil, zero value otherwise
+GetIsAssetOk returns a tuple with the IsAsset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGroupName
+### SetIsAsset
 
-`func (o *WalletableCreateParams) SetGroupName(v string)`
+`func (o *WalletableCreateParams) SetIsAsset(v bool)`
 
-SetGroupName sets GroupName field to given value.
+SetIsAsset sets IsAsset field to given value.
 
-### HasGroupName
+### HasIsAsset
 
-`func (o *WalletableCreateParams) HasGroupName() bool`
+`func (o *WalletableCreateParams) HasIsAsset() bool`
 
-HasGroupName returns a boolean if a field has been set.
+HasIsAsset returns a boolean if a field has been set.
 
 ### GetName
 

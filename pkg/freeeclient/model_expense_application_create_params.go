@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -26,11 +26,9 @@ type ExpenseApplicationCreateParams struct {
 	Description *string `json:"description,omitempty"`
 	// 経費申請のステータス<br> falseを指定した時は申請中（in_progress）で経費申請を作成します。<br> trueを指定した時は下書き（draft）で経費申請を作成します。<br> 未指定の時は下書きとみなして経費申請を作成します。 
 	Draft *bool `json:"draft,omitempty"`
-	// 会計freeeのWeb画面で申請内容を編集可能にするかどうか<br> falseの場合は、Web画面での項目行の追加／削除・金額の編集が出来なくなりますが、APIでの編集は可能です。<br> デフォルトはfalseです。 
-	EditableOnWeb *bool `json:"editable_on_web,omitempty"`
-	ExpenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLines `json:"expense_application_lines"`
-	// 申請日 (yyyy-mm-dd)
-	IssueDate string `json:"issue_date"`
+	ExpenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLinesInner `json:"expense_application_lines"`
+	// 申請日 (yyyy-mm-dd)<br> 指定しない場合は当日の日付が登録されます。 
+	IssueDate *string `json:"issue_date,omitempty"`
 	// 親申請ID(法人向けプロフェッショナル, 法人向け エンタープライズプラン)<br> <ul>   <li>承認済みの既存各種申請IDのみ指定可能です。</li>   <li>各種申請一覧APIを利用して取得してください。</li> </ul> 
 	ParentId *int32 `json:"parent_id,omitempty"`
 	// 部門ID
@@ -42,7 +40,7 @@ type ExpenseApplicationCreateParams struct {
 	// セグメント３ID(法人向け エンタープライズプラン)<br> セグメントタグ一覧APIを利用して取得してください。<br> <a href=\"https://support.freee.co.jp/hc/ja/articles/360020679611\" target=\"_blank\">セグメント（分析用タグ）の設定</a><br> 
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
 	// メモタグID
-	TagIds *[]int32 `json:"tag_ids,omitempty"`
+	TagIds []int32 `json:"tag_ids,omitempty"`
 	// 申請タイトル (250文字以内)
 	Title string `json:"title"`
 }
@@ -51,11 +49,10 @@ type ExpenseApplicationCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExpenseApplicationCreateParams(companyId int32, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLines, issueDate string, title string) *ExpenseApplicationCreateParams {
+func NewExpenseApplicationCreateParams(companyId int32, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLinesInner, title string) *ExpenseApplicationCreateParams {
 	this := ExpenseApplicationCreateParams{}
 	this.CompanyId = companyId
 	this.ExpenseApplicationLines = expenseApplicationLines
-	this.IssueDate = issueDate
 	this.Title = title
 	return &this
 }
@@ -145,7 +142,7 @@ func (o *ExpenseApplicationCreateParams) GetCompanyId() int32 {
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationCreateParams) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
@@ -220,42 +217,10 @@ func (o *ExpenseApplicationCreateParams) SetDraft(v bool) {
 	o.Draft = &v
 }
 
-// GetEditableOnWeb returns the EditableOnWeb field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParams) GetEditableOnWeb() bool {
-	if o == nil || o.EditableOnWeb == nil {
-		var ret bool
-		return ret
-	}
-	return *o.EditableOnWeb
-}
-
-// GetEditableOnWebOk returns a tuple with the EditableOnWeb field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetEditableOnWebOk() (*bool, bool) {
-	if o == nil || o.EditableOnWeb == nil {
-		return nil, false
-	}
-	return o.EditableOnWeb, true
-}
-
-// HasEditableOnWeb returns a boolean if a field has been set.
-func (o *ExpenseApplicationCreateParams) HasEditableOnWeb() bool {
-	if o != nil && o.EditableOnWeb != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEditableOnWeb gets a reference to the given bool and assigns it to the EditableOnWeb field.
-func (o *ExpenseApplicationCreateParams) SetEditableOnWeb(v bool) {
-	o.EditableOnWeb = &v
-}
-
 // GetExpenseApplicationLines returns the ExpenseApplicationLines field value
-func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLines() []ExpenseApplicationCreateParamsExpenseApplicationLines {
+func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLines() []ExpenseApplicationCreateParamsExpenseApplicationLinesInner {
 	if o == nil {
-		var ret []ExpenseApplicationCreateParamsExpenseApplicationLines
+		var ret []ExpenseApplicationCreateParamsExpenseApplicationLinesInner
 		return ret
 	}
 
@@ -264,40 +229,48 @@ func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLines() []ExpenseA
 
 // GetExpenseApplicationLinesOk returns a tuple with the ExpenseApplicationLines field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationCreateParamsExpenseApplicationLines, bool) {
-	if o == nil  {
+func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLinesOk() ([]ExpenseApplicationCreateParamsExpenseApplicationLinesInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.ExpenseApplicationLines, true
+	return o.ExpenseApplicationLines, true
 }
 
 // SetExpenseApplicationLines sets field value
-func (o *ExpenseApplicationCreateParams) SetExpenseApplicationLines(v []ExpenseApplicationCreateParamsExpenseApplicationLines) {
+func (o *ExpenseApplicationCreateParams) SetExpenseApplicationLines(v []ExpenseApplicationCreateParamsExpenseApplicationLinesInner) {
 	o.ExpenseApplicationLines = v
 }
 
-// GetIssueDate returns the IssueDate field value
+// GetIssueDate returns the IssueDate field value if set, zero value otherwise.
 func (o *ExpenseApplicationCreateParams) GetIssueDate() string {
-	if o == nil {
+	if o == nil || o.IssueDate == nil {
 		var ret string
 		return ret
 	}
-
-	return o.IssueDate
+	return *o.IssueDate
 }
 
-// GetIssueDateOk returns a tuple with the IssueDate field value
+// GetIssueDateOk returns a tuple with the IssueDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationCreateParams) GetIssueDateOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.IssueDate == nil {
 		return nil, false
 	}
-	return &o.IssueDate, true
+	return o.IssueDate, true
 }
 
-// SetIssueDate sets field value
+// HasIssueDate returns a boolean if a field has been set.
+func (o *ExpenseApplicationCreateParams) HasIssueDate() bool {
+	if o != nil && o.IssueDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIssueDate gets a reference to the given string and assigns it to the IssueDate field.
 func (o *ExpenseApplicationCreateParams) SetIssueDate(v string) {
-	o.IssueDate = v
+	o.IssueDate = &v
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
@@ -466,12 +439,12 @@ func (o *ExpenseApplicationCreateParams) GetTagIds() []int32 {
 		var ret []int32
 		return ret
 	}
-	return *o.TagIds
+	return o.TagIds
 }
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetTagIdsOk() (*[]int32, bool) {
+func (o *ExpenseApplicationCreateParams) GetTagIdsOk() ([]int32, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -489,7 +462,7 @@ func (o *ExpenseApplicationCreateParams) HasTagIds() bool {
 
 // SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
 func (o *ExpenseApplicationCreateParams) SetTagIds(v []int32) {
-	o.TagIds = &v
+	o.TagIds = v
 }
 
 // GetTitle returns the Title field value
@@ -505,7 +478,7 @@ func (o *ExpenseApplicationCreateParams) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationCreateParams) GetTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Title, true
@@ -533,13 +506,10 @@ func (o ExpenseApplicationCreateParams) MarshalJSON() ([]byte, error) {
 	if o.Draft != nil {
 		toSerialize["draft"] = o.Draft
 	}
-	if o.EditableOnWeb != nil {
-		toSerialize["editable_on_web"] = o.EditableOnWeb
-	}
 	if true {
 		toSerialize["expense_application_lines"] = o.ExpenseApplicationLines
 	}
-	if true {
+	if o.IssueDate != nil {
 		toSerialize["issue_date"] = o.IssueDate
 	}
 	if o.ParentId != nil {

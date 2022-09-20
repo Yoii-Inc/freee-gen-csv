@@ -36,8 +36,8 @@ func main() {
     itemParams := *openapiclient.NewItemParams(int32(1), "新しい品目") // ItemParams | 品目の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ItemsApi.CreateItem(context.Background()).ItemParams(itemParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ItemsApi.CreateItem(context.Background()).ItemParams(itemParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ItemsApi.CreateItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ItemsApi.DestroyItem(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ItemsApi.DestroyItem(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ItemsApi.DestroyItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,8 +173,8 @@ func main() {
     id := int32(56) // int32 | 品目ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ItemsApi.GetItem(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ItemsApi.GetItem(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ItemsApi.GetItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## GetItems
 
-> InlineResponse2003 GetItems(ctx).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+> GetItems200Response GetItems(ctx).CompanyId(companyId).StartUpdateDate(startUpdateDate).EndUpdateDate(endUpdateDate).Offset(offset).Limit(limit).Execute()
 
 品目一覧の取得
 
@@ -242,17 +242,19 @@ import (
 
 func main() {
     companyId := int32(56) // int32 | 事業所ID
+    startUpdateDate := "startUpdateDate_example" // string | 更新日で絞り込み：開始日(yyyy-mm-dd) (optional)
+    endUpdateDate := "endUpdateDate_example" // string | 更新日で絞り込み：終了日(yyyy-mm-dd) (optional)
     offset := int32(56) // int32 | 取得レコードのオフセット (デフォルト: 0) (optional)
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ItemsApi.GetItems(context.Background()).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ItemsApi.GetItems(context.Background()).CompanyId(companyId).StartUpdateDate(startUpdateDate).EndUpdateDate(endUpdateDate).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ItemsApi.GetItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetItems`: InlineResponse2003
+    // response from `GetItems`: GetItems200Response
     fmt.Fprintf(os.Stdout, "Response from `ItemsApi.GetItems`: %v\n", resp)
 }
 ```
@@ -269,12 +271,14 @@ Other parameters are passed through a pointer to a apiGetItemsRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **companyId** | **int32** | 事業所ID | 
+ **startUpdateDate** | **string** | 更新日で絞り込み：開始日(yyyy-mm-dd) | 
+ **endUpdateDate** | **string** | 更新日で絞り込み：終了日(yyyy-mm-dd) | 
  **offset** | **int32** | 取得レコードのオフセット (デフォルト: 0) | 
  **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**GetItems200Response**](GetItems200Response.md)
 
 ### Authorization
 
@@ -315,8 +319,8 @@ func main() {
     itemParams := *openapiclient.NewItemParams(int32(1), "新しい品目") // ItemParams | 品目の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ItemsApi.UpdateItem(context.Background(), id).ItemParams(itemParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ItemsApi.UpdateItem(context.Background(), id).ItemParams(itemParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ItemsApi.UpdateItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

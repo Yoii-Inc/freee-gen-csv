@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Code** | Pointer to **string** | 取引先コード（取引先コードの利用を有効にしている場合は、codeの指定は必須です。） | [optional] 
 **CompanyId** | **int32** | 事業所ID | 
 **ContactName** | Pointer to **string** | 担当者 氏名 (255文字以内) | [optional] 
-**CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外） | [optional] 
+**CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外）、指定しない場合JPになります。 | [optional] 
 **DefaultTitle** | Pointer to **string** | 敬称（御中、様、(空白)の3つから選択） | [optional] 
 **Email** | Pointer to **string** | 担当者 メールアドレス (255文字以内) | [optional] 
 **InvoicePaymentTermAttributes** | Pointer to [**PartnerCreateParamsInvoicePaymentTermAttributes**](PartnerCreateParamsInvoicePaymentTermAttributes.md) |  | [optional] 
@@ -19,11 +19,11 @@ Name | Type | Description | Notes
 **PartnerBankAccountAttributes** | Pointer to [**PartnerCreateParamsPartnerBankAccountAttributes**](PartnerCreateParamsPartnerBankAccountAttributes.md) |  | [optional] 
 **PartnerDocSettingAttributes** | Pointer to [**PartnerCreateParamsPartnerDocSettingAttributes**](PartnerCreateParamsPartnerDocSettingAttributes.md) |  | [optional] 
 **PayerWalletableId** | Pointer to **NullableInt32** | 振込元口座ID（一括振込ファイル用）:（walletableのtypeが&#39;bank_account&#39;のidのみ指定できます。また、未設定にする場合は、nullを指定してください。） | [optional] 
-**PaymentTermAttributes** | Pointer to [**PartnerCreateParamsInvoicePaymentTermAttributes**](PartnerCreateParamsInvoicePaymentTermAttributes.md) |  | [optional] 
+**PaymentTermAttributes** | Pointer to [**PartnerCreateParamsPaymentTermAttributes**](PartnerCreateParamsPaymentTermAttributes.md) |  | [optional] 
 **Phone** | Pointer to **string** | 電話番号 | [optional] 
 **Shortcut1** | Pointer to **string** | ショートカット１ (255文字以内) | [optional] 
 **Shortcut2** | Pointer to **string** | ショートカット２ (255文字以内) | [optional] 
-**TransferFeeHandlingSide** | Pointer to **string** | 振込手数料負担（一括振込ファイル用）: (振込元(当方): payer, 振込先(先方): payee) | [optional] 
+**TransferFeeHandlingSide** | Pointer to **string** | 振込手数料負担（一括振込ファイル用）: (振込元(当方): payer, 振込先(先方): payee)、指定しない場合payerになります。 | [optional] 
 
 ## Methods
 
@@ -431,20 +431,20 @@ HasPayerWalletableId returns a boolean if a field has been set.
 UnsetPayerWalletableId ensures that no value is present for PayerWalletableId, not even an explicit nil
 ### GetPaymentTermAttributes
 
-`func (o *PartnerCreateParams) GetPaymentTermAttributes() PartnerCreateParamsInvoicePaymentTermAttributes`
+`func (o *PartnerCreateParams) GetPaymentTermAttributes() PartnerCreateParamsPaymentTermAttributes`
 
 GetPaymentTermAttributes returns the PaymentTermAttributes field if non-nil, zero value otherwise.
 
 ### GetPaymentTermAttributesOk
 
-`func (o *PartnerCreateParams) GetPaymentTermAttributesOk() (*PartnerCreateParamsInvoicePaymentTermAttributes, bool)`
+`func (o *PartnerCreateParams) GetPaymentTermAttributesOk() (*PartnerCreateParamsPaymentTermAttributes, bool)`
 
 GetPaymentTermAttributesOk returns a tuple with the PaymentTermAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentTermAttributes
 
-`func (o *PartnerCreateParams) SetPaymentTermAttributes(v PartnerCreateParamsInvoicePaymentTermAttributes)`
+`func (o *PartnerCreateParams) SetPaymentTermAttributes(v PartnerCreateParamsPaymentTermAttributes)`
 
 SetPaymentTermAttributes sets PaymentTermAttributes field to given value.
 

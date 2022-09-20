@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Id** | **int32** | 申請経路ID | 
 **Name** | Pointer to **string** | 申請経路名 | [optional] 
 **RequestFormIds** | **[]int32** | 申請経路で利用できる申請フォームID配列 | 
-**Steps** | Pointer to [**[]ApprovalFlowRouteResponseApprovalFlowRouteSteps**](ApprovalFlowRouteResponseApprovalFlowRouteSteps.md) | 承認ステップ（配列） | [optional] 
+**Steps** | Pointer to [**[]ApprovalFlowRouteResponseApprovalFlowRouteStepsInner**](ApprovalFlowRouteResponseApprovalFlowRouteStepsInner.md) | 承認ステップ（配列） | [optional] 
 **Usages** | Pointer to **[]string** | 申請種別（申請経路を使用できる申請種別を示します。例えば、ApprovalRequest の場合は、各種申請で使用できる申請経路です。） * &#x60;TxnApproval&#x60; - 仕訳承認 * &#x60;ExpenseApplication&#x60; - 経費精算 * &#x60;PaymentRequest&#x60; - 支払依頼 * &#x60;ApprovalRequest&#x60; - 各種申請 * &#x60;DocApproval&#x60; - 請求書等 (見積書・納品書・請求書・発注書) | [optional] 
 **UserId** | Pointer to **NullableInt32** | 更新したユーザーのユーザーID | [optional] 
 
@@ -175,20 +175,20 @@ SetRequestFormIds sets RequestFormIds field to given value.
 
 ### GetSteps
 
-`func (o *ApprovalFlowRouteResponseApprovalFlowRoute) GetSteps() []ApprovalFlowRouteResponseApprovalFlowRouteSteps`
+`func (o *ApprovalFlowRouteResponseApprovalFlowRoute) GetSteps() []ApprovalFlowRouteResponseApprovalFlowRouteStepsInner`
 
 GetSteps returns the Steps field if non-nil, zero value otherwise.
 
 ### GetStepsOk
 
-`func (o *ApprovalFlowRouteResponseApprovalFlowRoute) GetStepsOk() (*[]ApprovalFlowRouteResponseApprovalFlowRouteSteps, bool)`
+`func (o *ApprovalFlowRouteResponseApprovalFlowRoute) GetStepsOk() (*[]ApprovalFlowRouteResponseApprovalFlowRouteStepsInner, bool)`
 
 GetStepsOk returns a tuple with the Steps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSteps
 
-`func (o *ApprovalFlowRouteResponseApprovalFlowRoute) SetSteps(v []ApprovalFlowRouteResponseApprovalFlowRouteSteps)`
+`func (o *ApprovalFlowRouteResponseApprovalFlowRoute) SetSteps(v []ApprovalFlowRouteResponseApprovalFlowRouteStepsInner)`
 
 SetSteps sets Steps field to given value.
 

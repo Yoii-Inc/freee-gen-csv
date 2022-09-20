@@ -34,8 +34,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalFlowRoutesApi.GetApprovalFlowRoute(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalFlowRoutesApi.GetApprovalFlowRoute(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalFlowRoutesApi.GetApprovalFlowRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -108,8 +108,8 @@ func main() {
     requestFormId := int32(56) // int32 | 申請フォームID request_form_id指定時はusage条件をApprovalRequestに指定してください。指定しない場合無効になります。 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApprovalFlowRoutesApi.GetApprovalFlowRoutes(context.Background()).CompanyId(companyId).IncludedUserId(includedUserId).Usage(usage).RequestFormId(requestFormId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApprovalFlowRoutesApi.GetApprovalFlowRoutes(context.Background()).CompanyId(companyId).IncludedUserId(includedUserId).Usage(usage).RequestFormId(requestFormId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApprovalFlowRoutesApi.GetApprovalFlowRoutes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

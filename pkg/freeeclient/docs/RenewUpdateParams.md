@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CompanyId** | **int32** | 事業所ID | 
-**Details** | [**[]RenewUpdateParamsDetails**](RenewUpdateParamsDetails.md) | +更新の明細行 | 
+**Details** | [**[]RenewUpdateParamsDetailsInner**](RenewUpdateParamsDetailsInner.md) | +更新の明細行 | 
 **UpdateDate** | **string** | 更新日 (yyyy-mm-dd) | 
 
 ## Methods
 
 ### NewRenewUpdateParams
 
-`func NewRenewUpdateParams(companyId int32, details []RenewUpdateParamsDetails, updateDate string, ) *RenewUpdateParams`
+`func NewRenewUpdateParams(companyId int32, details []RenewUpdateParamsDetailsInner, updateDate string, ) *RenewUpdateParams`
 
 NewRenewUpdateParams instantiates a new RenewUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetCompanyId sets CompanyId field to given value.
 
 ### GetDetails
 
-`func (o *RenewUpdateParams) GetDetails() []RenewUpdateParamsDetails`
+`func (o *RenewUpdateParams) GetDetails() []RenewUpdateParamsDetailsInner`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *RenewUpdateParams) GetDetailsOk() (*[]RenewUpdateParamsDetails, bool)`
+`func (o *RenewUpdateParams) GetDetailsOk() (*[]RenewUpdateParamsDetailsInner, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *RenewUpdateParams) SetDetails(v []RenewUpdateParamsDetails)`
+`func (o *RenewUpdateParams) SetDetails(v []RenewUpdateParamsDetailsInner)`
 
 SetDetails sets Details field to given value.
 

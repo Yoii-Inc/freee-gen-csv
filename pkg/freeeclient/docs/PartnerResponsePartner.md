@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressAttributesPrefectureCode** | Pointer to **NullableInt32** | 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄 | [optional] 
-**AddressAttributesStreetName1** | Pointer to **NullableString** | 市区町村・番地 | [optional] 
-**AddressAttributesStreetName2** | Pointer to **NullableString** | 建物名・部屋番号など | [optional] 
-**AddressAttributesZipcode** | Pointer to **NullableString** | 郵便番号 | [optional] 
+**AddressAttributes** | Pointer to [**PartnerResponsePartnerAddressAttributes**](PartnerResponsePartnerAddressAttributes.md) |  | [optional] 
+**Available** | **bool** | 取引先の使用設定（true: 使用する、false: 使用しない） &lt;br&gt; &lt;ul&gt;   &lt;li&gt;     本APIでpartnerを作成した場合はtrueになります。   &lt;/li&gt;   &lt;li&gt;     falseにする場合はWeb画面から変更できます。   &lt;/li&gt;   &lt;li&gt;     trueの場合、Web画面での取引登録時などに入力候補として表示されます。   &lt;/li&gt;   &lt;li&gt;     falseの場合、取引先自体は削除せず、Web画面での取引登録時などに入力候補として表示されません。ただし取引（収入／支出）の作成APIなどでfalseの取引先をパラメータに指定すれば、取引などにfalseの取引先を設定できます。   &lt;/li&gt; &lt;/ul&gt; | 
 **Code** | **NullableString** | 取引先コード | 
 **CompanyId** | **int32** | 事業所ID | 
 **ContactName** | Pointer to **NullableString** | 担当者 氏名 | [optional] 
@@ -15,38 +13,26 @@ Name | Type | Description | Notes
 **DefaultTitle** | Pointer to **NullableString** | 敬称（御中、様、(空白)の3つから選択） | [optional] 
 **Email** | Pointer to **NullableString** | 担当者 メールアドレス | [optional] 
 **Id** | **int32** | 取引先ID | 
-**InvoicePaymentTermAttributesAdditionalMonths** | Pointer to **NullableInt32** | 支払月 | [optional] 
-**InvoicePaymentTermAttributesCutoffDay** | Pointer to **NullableInt32** | 締め日（29, 30, 31日の末日を指定する場合は、32。） | [optional] 
-**InvoicePaymentTermAttributesFixedDay** | Pointer to **NullableInt32** | 支払日（29, 30, 31日の末日を指定する場合は、32。） | [optional] 
+**InvoicePaymentTermAttributes** | Pointer to [**PartnerResponsePartnerInvoicePaymentTermAttributes**](PartnerResponsePartnerInvoicePaymentTermAttributes.md) |  | [optional] 
 **LongName** | Pointer to **NullableString** | 正式名称（255文字以内） | [optional] 
 **Name** | **string** | 取引先名 | 
 **NameKana** | Pointer to **NullableString** | カナ名称（255文字以内） | [optional] 
 **OrgCode** | Pointer to **NullableInt32** | 事業所種別（null: 未設定、1: 法人、2: 個人） | [optional] 
-**PartnerBankAccountAttributesAccountName** | Pointer to **NullableString** | 受取人名（カナ） | [optional] 
-**PartnerBankAccountAttributesAccountNumber** | Pointer to **NullableString** | 口座番号 | [optional] 
-**PartnerBankAccountAttributesAccountType** | Pointer to **NullableString** | 口座種別(ordinary:普通、checking:当座、earmarked:納税準備預金、savings:貯蓄、other:その他) | [optional] 
-**PartnerBankAccountAttributesBankCode** | Pointer to **NullableString** | 銀行コード | [optional] 
-**PartnerBankAccountAttributesBankName** | Pointer to **NullableString** | 銀行名 | [optional] 
-**PartnerBankAccountAttributesBankNameKana** | Pointer to **NullableString** | 銀行名（カナ） | [optional] 
-**PartnerBankAccountAttributesBranchCode** | Pointer to **NullableString** | 支店番号 | [optional] 
-**PartnerBankAccountAttributesBranchKana** | Pointer to **NullableString** | 支店名（カナ） | [optional] 
-**PartnerBankAccountAttributesBranchName** | Pointer to **NullableString** | 支店名 | [optional] 
-**PartnerBankAccountAttributesLongAccountName** | Pointer to **NullableString** | 受取人名 | [optional] 
-**PartnerDocSettingAttributesSendingMethod** | Pointer to **NullableString** | 請求書送付方法(email:メール、posting:郵送、email_and_posting:メールと郵送) | [optional] 
+**PartnerBankAccountAttributes** | Pointer to [**PartnerResponsePartnerPartnerBankAccountAttributes**](PartnerResponsePartnerPartnerBankAccountAttributes.md) |  | [optional] 
+**PartnerDocSettingAttributes** | Pointer to [**PartnerCreateParamsPartnerDocSettingAttributes**](PartnerCreateParamsPartnerDocSettingAttributes.md) |  | [optional] 
 **PayerWalletableId** | Pointer to **NullableInt32** | 振込元口座ID（一括振込ファイル用）:（未設定の場合は、nullです。） | [optional] 
-**PaymentTermAttributesAdditionalMonths** | Pointer to **NullableInt32** | 支払月 | [optional] 
-**PaymentTermAttributesCutoffDay** | Pointer to **NullableInt32** | 締め日（29, 30, 31日の末日を指定する場合は、32。） | [optional] 
-**PaymentTermAttributesFixedDay** | Pointer to **NullableInt32** | 支払日（29, 30, 31日の末日を指定する場合は、32。） | [optional] 
+**PaymentTermAttributes** | Pointer to [**PartnerResponsePartnerPaymentTermAttributes**](PartnerResponsePartnerPaymentTermAttributes.md) |  | [optional] 
 **Phone** | Pointer to **NullableString** | 電話番号 | [optional] 
-**Shortcut1** | Pointer to **NullableString** | ショートカット1 (20文字以内) | [optional] 
-**Shortcut2** | Pointer to **NullableString** | ショートカット2 (20文字以内) | [optional] 
+**Shortcut1** | Pointer to **NullableString** | ショートカット1 (255文字以内) | [optional] 
+**Shortcut2** | Pointer to **NullableString** | ショートカット2 (255文字以内) | [optional] 
 **TransferFeeHandlingSide** | Pointer to **string** | 振込手数料負担（一括振込ファイル用）: (振込元(当方): payer, 振込先(先方): payee) | [optional] 
+**UpdateDate** | **string** | 更新日 (yyyy-mm-dd) | 
 
 ## Methods
 
 ### NewPartnerResponsePartner
 
-`func NewPartnerResponsePartner(code NullableString, companyId int32, id int32, name string, ) *PartnerResponsePartner`
+`func NewPartnerResponsePartner(available bool, code NullableString, companyId int32, id int32, name string, updateDate string, ) *PartnerResponsePartner`
 
 NewPartnerResponsePartner instantiates a new PartnerResponsePartner object
 This constructor will assign default values to properties that have it defined,
@@ -61,146 +47,51 @@ NewPartnerResponsePartnerWithDefaults instantiates a new PartnerResponsePartner 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAddressAttributesPrefectureCode
+### GetAddressAttributes
 
-`func (o *PartnerResponsePartner) GetAddressAttributesPrefectureCode() int32`
+`func (o *PartnerResponsePartner) GetAddressAttributes() PartnerResponsePartnerAddressAttributes`
 
-GetAddressAttributesPrefectureCode returns the AddressAttributesPrefectureCode field if non-nil, zero value otherwise.
+GetAddressAttributes returns the AddressAttributes field if non-nil, zero value otherwise.
 
-### GetAddressAttributesPrefectureCodeOk
+### GetAddressAttributesOk
 
-`func (o *PartnerResponsePartner) GetAddressAttributesPrefectureCodeOk() (*int32, bool)`
+`func (o *PartnerResponsePartner) GetAddressAttributesOk() (*PartnerResponsePartnerAddressAttributes, bool)`
 
-GetAddressAttributesPrefectureCodeOk returns a tuple with the AddressAttributesPrefectureCode field if it's non-nil, zero value otherwise
+GetAddressAttributesOk returns a tuple with the AddressAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAddressAttributesPrefectureCode
+### SetAddressAttributes
 
-`func (o *PartnerResponsePartner) SetAddressAttributesPrefectureCode(v int32)`
+`func (o *PartnerResponsePartner) SetAddressAttributes(v PartnerResponsePartnerAddressAttributes)`
 
-SetAddressAttributesPrefectureCode sets AddressAttributesPrefectureCode field to given value.
+SetAddressAttributes sets AddressAttributes field to given value.
 
-### HasAddressAttributesPrefectureCode
+### HasAddressAttributes
 
-`func (o *PartnerResponsePartner) HasAddressAttributesPrefectureCode() bool`
+`func (o *PartnerResponsePartner) HasAddressAttributes() bool`
 
-HasAddressAttributesPrefectureCode returns a boolean if a field has been set.
+HasAddressAttributes returns a boolean if a field has been set.
 
-### SetAddressAttributesPrefectureCodeNil
+### GetAvailable
 
-`func (o *PartnerResponsePartner) SetAddressAttributesPrefectureCodeNil(b bool)`
+`func (o *PartnerResponsePartner) GetAvailable() bool`
 
- SetAddressAttributesPrefectureCodeNil sets the value for AddressAttributesPrefectureCode to be an explicit nil
+GetAvailable returns the Available field if non-nil, zero value otherwise.
 
-### UnsetAddressAttributesPrefectureCode
-`func (o *PartnerResponsePartner) UnsetAddressAttributesPrefectureCode()`
+### GetAvailableOk
 
-UnsetAddressAttributesPrefectureCode ensures that no value is present for AddressAttributesPrefectureCode, not even an explicit nil
-### GetAddressAttributesStreetName1
+`func (o *PartnerResponsePartner) GetAvailableOk() (*bool, bool)`
 
-`func (o *PartnerResponsePartner) GetAddressAttributesStreetName1() string`
-
-GetAddressAttributesStreetName1 returns the AddressAttributesStreetName1 field if non-nil, zero value otherwise.
-
-### GetAddressAttributesStreetName1Ok
-
-`func (o *PartnerResponsePartner) GetAddressAttributesStreetName1Ok() (*string, bool)`
-
-GetAddressAttributesStreetName1Ok returns a tuple with the AddressAttributesStreetName1 field if it's non-nil, zero value otherwise
+GetAvailableOk returns a tuple with the Available field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAddressAttributesStreetName1
+### SetAvailable
 
-`func (o *PartnerResponsePartner) SetAddressAttributesStreetName1(v string)`
+`func (o *PartnerResponsePartner) SetAvailable(v bool)`
 
-SetAddressAttributesStreetName1 sets AddressAttributesStreetName1 field to given value.
+SetAvailable sets Available field to given value.
 
-### HasAddressAttributesStreetName1
 
-`func (o *PartnerResponsePartner) HasAddressAttributesStreetName1() bool`
-
-HasAddressAttributesStreetName1 returns a boolean if a field has been set.
-
-### SetAddressAttributesStreetName1Nil
-
-`func (o *PartnerResponsePartner) SetAddressAttributesStreetName1Nil(b bool)`
-
- SetAddressAttributesStreetName1Nil sets the value for AddressAttributesStreetName1 to be an explicit nil
-
-### UnsetAddressAttributesStreetName1
-`func (o *PartnerResponsePartner) UnsetAddressAttributesStreetName1()`
-
-UnsetAddressAttributesStreetName1 ensures that no value is present for AddressAttributesStreetName1, not even an explicit nil
-### GetAddressAttributesStreetName2
-
-`func (o *PartnerResponsePartner) GetAddressAttributesStreetName2() string`
-
-GetAddressAttributesStreetName2 returns the AddressAttributesStreetName2 field if non-nil, zero value otherwise.
-
-### GetAddressAttributesStreetName2Ok
-
-`func (o *PartnerResponsePartner) GetAddressAttributesStreetName2Ok() (*string, bool)`
-
-GetAddressAttributesStreetName2Ok returns a tuple with the AddressAttributesStreetName2 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAddressAttributesStreetName2
-
-`func (o *PartnerResponsePartner) SetAddressAttributesStreetName2(v string)`
-
-SetAddressAttributesStreetName2 sets AddressAttributesStreetName2 field to given value.
-
-### HasAddressAttributesStreetName2
-
-`func (o *PartnerResponsePartner) HasAddressAttributesStreetName2() bool`
-
-HasAddressAttributesStreetName2 returns a boolean if a field has been set.
-
-### SetAddressAttributesStreetName2Nil
-
-`func (o *PartnerResponsePartner) SetAddressAttributesStreetName2Nil(b bool)`
-
- SetAddressAttributesStreetName2Nil sets the value for AddressAttributesStreetName2 to be an explicit nil
-
-### UnsetAddressAttributesStreetName2
-`func (o *PartnerResponsePartner) UnsetAddressAttributesStreetName2()`
-
-UnsetAddressAttributesStreetName2 ensures that no value is present for AddressAttributesStreetName2, not even an explicit nil
-### GetAddressAttributesZipcode
-
-`func (o *PartnerResponsePartner) GetAddressAttributesZipcode() string`
-
-GetAddressAttributesZipcode returns the AddressAttributesZipcode field if non-nil, zero value otherwise.
-
-### GetAddressAttributesZipcodeOk
-
-`func (o *PartnerResponsePartner) GetAddressAttributesZipcodeOk() (*string, bool)`
-
-GetAddressAttributesZipcodeOk returns a tuple with the AddressAttributesZipcode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAddressAttributesZipcode
-
-`func (o *PartnerResponsePartner) SetAddressAttributesZipcode(v string)`
-
-SetAddressAttributesZipcode sets AddressAttributesZipcode field to given value.
-
-### HasAddressAttributesZipcode
-
-`func (o *PartnerResponsePartner) HasAddressAttributesZipcode() bool`
-
-HasAddressAttributesZipcode returns a boolean if a field has been set.
-
-### SetAddressAttributesZipcodeNil
-
-`func (o *PartnerResponsePartner) SetAddressAttributesZipcodeNil(b bool)`
-
- SetAddressAttributesZipcodeNil sets the value for AddressAttributesZipcode to be an explicit nil
-
-### UnsetAddressAttributesZipcode
-`func (o *PartnerResponsePartner) UnsetAddressAttributesZipcode()`
-
-UnsetAddressAttributesZipcode ensures that no value is present for AddressAttributesZipcode, not even an explicit nil
 ### GetCode
 
 `func (o *PartnerResponsePartner) GetCode() string`
@@ -401,111 +292,31 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetInvoicePaymentTermAttributesAdditionalMonths
+### GetInvoicePaymentTermAttributes
 
-`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributesAdditionalMonths() int32`
+`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributes() PartnerResponsePartnerInvoicePaymentTermAttributes`
 
-GetInvoicePaymentTermAttributesAdditionalMonths returns the InvoicePaymentTermAttributesAdditionalMonths field if non-nil, zero value otherwise.
+GetInvoicePaymentTermAttributes returns the InvoicePaymentTermAttributes field if non-nil, zero value otherwise.
 
-### GetInvoicePaymentTermAttributesAdditionalMonthsOk
+### GetInvoicePaymentTermAttributesOk
 
-`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributesAdditionalMonthsOk() (*int32, bool)`
+`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributesOk() (*PartnerResponsePartnerInvoicePaymentTermAttributes, bool)`
 
-GetInvoicePaymentTermAttributesAdditionalMonthsOk returns a tuple with the InvoicePaymentTermAttributesAdditionalMonths field if it's non-nil, zero value otherwise
+GetInvoicePaymentTermAttributesOk returns a tuple with the InvoicePaymentTermAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInvoicePaymentTermAttributesAdditionalMonths
+### SetInvoicePaymentTermAttributes
 
-`func (o *PartnerResponsePartner) SetInvoicePaymentTermAttributesAdditionalMonths(v int32)`
+`func (o *PartnerResponsePartner) SetInvoicePaymentTermAttributes(v PartnerResponsePartnerInvoicePaymentTermAttributes)`
 
-SetInvoicePaymentTermAttributesAdditionalMonths sets InvoicePaymentTermAttributesAdditionalMonths field to given value.
+SetInvoicePaymentTermAttributes sets InvoicePaymentTermAttributes field to given value.
 
-### HasInvoicePaymentTermAttributesAdditionalMonths
+### HasInvoicePaymentTermAttributes
 
-`func (o *PartnerResponsePartner) HasInvoicePaymentTermAttributesAdditionalMonths() bool`
+`func (o *PartnerResponsePartner) HasInvoicePaymentTermAttributes() bool`
 
-HasInvoicePaymentTermAttributesAdditionalMonths returns a boolean if a field has been set.
+HasInvoicePaymentTermAttributes returns a boolean if a field has been set.
 
-### SetInvoicePaymentTermAttributesAdditionalMonthsNil
-
-`func (o *PartnerResponsePartner) SetInvoicePaymentTermAttributesAdditionalMonthsNil(b bool)`
-
- SetInvoicePaymentTermAttributesAdditionalMonthsNil sets the value for InvoicePaymentTermAttributesAdditionalMonths to be an explicit nil
-
-### UnsetInvoicePaymentTermAttributesAdditionalMonths
-`func (o *PartnerResponsePartner) UnsetInvoicePaymentTermAttributesAdditionalMonths()`
-
-UnsetInvoicePaymentTermAttributesAdditionalMonths ensures that no value is present for InvoicePaymentTermAttributesAdditionalMonths, not even an explicit nil
-### GetInvoicePaymentTermAttributesCutoffDay
-
-`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributesCutoffDay() int32`
-
-GetInvoicePaymentTermAttributesCutoffDay returns the InvoicePaymentTermAttributesCutoffDay field if non-nil, zero value otherwise.
-
-### GetInvoicePaymentTermAttributesCutoffDayOk
-
-`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributesCutoffDayOk() (*int32, bool)`
-
-GetInvoicePaymentTermAttributesCutoffDayOk returns a tuple with the InvoicePaymentTermAttributesCutoffDay field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInvoicePaymentTermAttributesCutoffDay
-
-`func (o *PartnerResponsePartner) SetInvoicePaymentTermAttributesCutoffDay(v int32)`
-
-SetInvoicePaymentTermAttributesCutoffDay sets InvoicePaymentTermAttributesCutoffDay field to given value.
-
-### HasInvoicePaymentTermAttributesCutoffDay
-
-`func (o *PartnerResponsePartner) HasInvoicePaymentTermAttributesCutoffDay() bool`
-
-HasInvoicePaymentTermAttributesCutoffDay returns a boolean if a field has been set.
-
-### SetInvoicePaymentTermAttributesCutoffDayNil
-
-`func (o *PartnerResponsePartner) SetInvoicePaymentTermAttributesCutoffDayNil(b bool)`
-
- SetInvoicePaymentTermAttributesCutoffDayNil sets the value for InvoicePaymentTermAttributesCutoffDay to be an explicit nil
-
-### UnsetInvoicePaymentTermAttributesCutoffDay
-`func (o *PartnerResponsePartner) UnsetInvoicePaymentTermAttributesCutoffDay()`
-
-UnsetInvoicePaymentTermAttributesCutoffDay ensures that no value is present for InvoicePaymentTermAttributesCutoffDay, not even an explicit nil
-### GetInvoicePaymentTermAttributesFixedDay
-
-`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributesFixedDay() int32`
-
-GetInvoicePaymentTermAttributesFixedDay returns the InvoicePaymentTermAttributesFixedDay field if non-nil, zero value otherwise.
-
-### GetInvoicePaymentTermAttributesFixedDayOk
-
-`func (o *PartnerResponsePartner) GetInvoicePaymentTermAttributesFixedDayOk() (*int32, bool)`
-
-GetInvoicePaymentTermAttributesFixedDayOk returns a tuple with the InvoicePaymentTermAttributesFixedDay field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInvoicePaymentTermAttributesFixedDay
-
-`func (o *PartnerResponsePartner) SetInvoicePaymentTermAttributesFixedDay(v int32)`
-
-SetInvoicePaymentTermAttributesFixedDay sets InvoicePaymentTermAttributesFixedDay field to given value.
-
-### HasInvoicePaymentTermAttributesFixedDay
-
-`func (o *PartnerResponsePartner) HasInvoicePaymentTermAttributesFixedDay() bool`
-
-HasInvoicePaymentTermAttributesFixedDay returns a boolean if a field has been set.
-
-### SetInvoicePaymentTermAttributesFixedDayNil
-
-`func (o *PartnerResponsePartner) SetInvoicePaymentTermAttributesFixedDayNil(b bool)`
-
- SetInvoicePaymentTermAttributesFixedDayNil sets the value for InvoicePaymentTermAttributesFixedDay to be an explicit nil
-
-### UnsetInvoicePaymentTermAttributesFixedDay
-`func (o *PartnerResponsePartner) UnsetInvoicePaymentTermAttributesFixedDay()`
-
-UnsetInvoicePaymentTermAttributesFixedDay ensures that no value is present for InvoicePaymentTermAttributesFixedDay, not even an explicit nil
 ### GetLongName
 
 `func (o *PartnerResponsePartner) GetLongName() string`
@@ -631,391 +442,56 @@ HasOrgCode returns a boolean if a field has been set.
 `func (o *PartnerResponsePartner) UnsetOrgCode()`
 
 UnsetOrgCode ensures that no value is present for OrgCode, not even an explicit nil
-### GetPartnerBankAccountAttributesAccountName
+### GetPartnerBankAccountAttributes
 
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesAccountName() string`
+`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributes() PartnerResponsePartnerPartnerBankAccountAttributes`
 
-GetPartnerBankAccountAttributesAccountName returns the PartnerBankAccountAttributesAccountName field if non-nil, zero value otherwise.
+GetPartnerBankAccountAttributes returns the PartnerBankAccountAttributes field if non-nil, zero value otherwise.
 
-### GetPartnerBankAccountAttributesAccountNameOk
+### GetPartnerBankAccountAttributesOk
 
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesAccountNameOk() (*string, bool)`
+`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesOk() (*PartnerResponsePartnerPartnerBankAccountAttributes, bool)`
 
-GetPartnerBankAccountAttributesAccountNameOk returns a tuple with the PartnerBankAccountAttributesAccountName field if it's non-nil, zero value otherwise
+GetPartnerBankAccountAttributesOk returns a tuple with the PartnerBankAccountAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPartnerBankAccountAttributesAccountName
+### SetPartnerBankAccountAttributes
 
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesAccountName(v string)`
+`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributes(v PartnerResponsePartnerPartnerBankAccountAttributes)`
 
-SetPartnerBankAccountAttributesAccountName sets PartnerBankAccountAttributesAccountName field to given value.
+SetPartnerBankAccountAttributes sets PartnerBankAccountAttributes field to given value.
 
-### HasPartnerBankAccountAttributesAccountName
+### HasPartnerBankAccountAttributes
 
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesAccountName() bool`
+`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributes() bool`
 
-HasPartnerBankAccountAttributesAccountName returns a boolean if a field has been set.
+HasPartnerBankAccountAttributes returns a boolean if a field has been set.
 
-### SetPartnerBankAccountAttributesAccountNameNil
+### GetPartnerDocSettingAttributes
 
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesAccountNameNil(b bool)`
+`func (o *PartnerResponsePartner) GetPartnerDocSettingAttributes() PartnerCreateParamsPartnerDocSettingAttributes`
 
- SetPartnerBankAccountAttributesAccountNameNil sets the value for PartnerBankAccountAttributesAccountName to be an explicit nil
+GetPartnerDocSettingAttributes returns the PartnerDocSettingAttributes field if non-nil, zero value otherwise.
 
-### UnsetPartnerBankAccountAttributesAccountName
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesAccountName()`
+### GetPartnerDocSettingAttributesOk
 
-UnsetPartnerBankAccountAttributesAccountName ensures that no value is present for PartnerBankAccountAttributesAccountName, not even an explicit nil
-### GetPartnerBankAccountAttributesAccountNumber
+`func (o *PartnerResponsePartner) GetPartnerDocSettingAttributesOk() (*PartnerCreateParamsPartnerDocSettingAttributes, bool)`
 
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesAccountNumber() string`
-
-GetPartnerBankAccountAttributesAccountNumber returns the PartnerBankAccountAttributesAccountNumber field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesAccountNumberOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesAccountNumberOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesAccountNumberOk returns a tuple with the PartnerBankAccountAttributesAccountNumber field if it's non-nil, zero value otherwise
+GetPartnerDocSettingAttributesOk returns a tuple with the PartnerDocSettingAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPartnerBankAccountAttributesAccountNumber
+### SetPartnerDocSettingAttributes
 
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesAccountNumber(v string)`
+`func (o *PartnerResponsePartner) SetPartnerDocSettingAttributes(v PartnerCreateParamsPartnerDocSettingAttributes)`
 
-SetPartnerBankAccountAttributesAccountNumber sets PartnerBankAccountAttributesAccountNumber field to given value.
+SetPartnerDocSettingAttributes sets PartnerDocSettingAttributes field to given value.
 
-### HasPartnerBankAccountAttributesAccountNumber
+### HasPartnerDocSettingAttributes
 
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesAccountNumber() bool`
+`func (o *PartnerResponsePartner) HasPartnerDocSettingAttributes() bool`
 
-HasPartnerBankAccountAttributesAccountNumber returns a boolean if a field has been set.
+HasPartnerDocSettingAttributes returns a boolean if a field has been set.
 
-### SetPartnerBankAccountAttributesAccountNumberNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesAccountNumberNil(b bool)`
-
- SetPartnerBankAccountAttributesAccountNumberNil sets the value for PartnerBankAccountAttributesAccountNumber to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesAccountNumber
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesAccountNumber()`
-
-UnsetPartnerBankAccountAttributesAccountNumber ensures that no value is present for PartnerBankAccountAttributesAccountNumber, not even an explicit nil
-### GetPartnerBankAccountAttributesAccountType
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesAccountType() string`
-
-GetPartnerBankAccountAttributesAccountType returns the PartnerBankAccountAttributesAccountType field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesAccountTypeOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesAccountTypeOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesAccountTypeOk returns a tuple with the PartnerBankAccountAttributesAccountType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesAccountType
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesAccountType(v string)`
-
-SetPartnerBankAccountAttributesAccountType sets PartnerBankAccountAttributesAccountType field to given value.
-
-### HasPartnerBankAccountAttributesAccountType
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesAccountType() bool`
-
-HasPartnerBankAccountAttributesAccountType returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesAccountTypeNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesAccountTypeNil(b bool)`
-
- SetPartnerBankAccountAttributesAccountTypeNil sets the value for PartnerBankAccountAttributesAccountType to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesAccountType
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesAccountType()`
-
-UnsetPartnerBankAccountAttributesAccountType ensures that no value is present for PartnerBankAccountAttributesAccountType, not even an explicit nil
-### GetPartnerBankAccountAttributesBankCode
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBankCode() string`
-
-GetPartnerBankAccountAttributesBankCode returns the PartnerBankAccountAttributesBankCode field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesBankCodeOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBankCodeOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesBankCodeOk returns a tuple with the PartnerBankAccountAttributesBankCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesBankCode
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBankCode(v string)`
-
-SetPartnerBankAccountAttributesBankCode sets PartnerBankAccountAttributesBankCode field to given value.
-
-### HasPartnerBankAccountAttributesBankCode
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesBankCode() bool`
-
-HasPartnerBankAccountAttributesBankCode returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesBankCodeNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBankCodeNil(b bool)`
-
- SetPartnerBankAccountAttributesBankCodeNil sets the value for PartnerBankAccountAttributesBankCode to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesBankCode
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesBankCode()`
-
-UnsetPartnerBankAccountAttributesBankCode ensures that no value is present for PartnerBankAccountAttributesBankCode, not even an explicit nil
-### GetPartnerBankAccountAttributesBankName
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBankName() string`
-
-GetPartnerBankAccountAttributesBankName returns the PartnerBankAccountAttributesBankName field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesBankNameOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBankNameOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesBankNameOk returns a tuple with the PartnerBankAccountAttributesBankName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesBankName
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBankName(v string)`
-
-SetPartnerBankAccountAttributesBankName sets PartnerBankAccountAttributesBankName field to given value.
-
-### HasPartnerBankAccountAttributesBankName
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesBankName() bool`
-
-HasPartnerBankAccountAttributesBankName returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesBankNameNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBankNameNil(b bool)`
-
- SetPartnerBankAccountAttributesBankNameNil sets the value for PartnerBankAccountAttributesBankName to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesBankName
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesBankName()`
-
-UnsetPartnerBankAccountAttributesBankName ensures that no value is present for PartnerBankAccountAttributesBankName, not even an explicit nil
-### GetPartnerBankAccountAttributesBankNameKana
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBankNameKana() string`
-
-GetPartnerBankAccountAttributesBankNameKana returns the PartnerBankAccountAttributesBankNameKana field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesBankNameKanaOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBankNameKanaOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesBankNameKanaOk returns a tuple with the PartnerBankAccountAttributesBankNameKana field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesBankNameKana
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBankNameKana(v string)`
-
-SetPartnerBankAccountAttributesBankNameKana sets PartnerBankAccountAttributesBankNameKana field to given value.
-
-### HasPartnerBankAccountAttributesBankNameKana
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesBankNameKana() bool`
-
-HasPartnerBankAccountAttributesBankNameKana returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesBankNameKanaNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBankNameKanaNil(b bool)`
-
- SetPartnerBankAccountAttributesBankNameKanaNil sets the value for PartnerBankAccountAttributesBankNameKana to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesBankNameKana
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesBankNameKana()`
-
-UnsetPartnerBankAccountAttributesBankNameKana ensures that no value is present for PartnerBankAccountAttributesBankNameKana, not even an explicit nil
-### GetPartnerBankAccountAttributesBranchCode
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBranchCode() string`
-
-GetPartnerBankAccountAttributesBranchCode returns the PartnerBankAccountAttributesBranchCode field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesBranchCodeOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBranchCodeOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesBranchCodeOk returns a tuple with the PartnerBankAccountAttributesBranchCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesBranchCode
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBranchCode(v string)`
-
-SetPartnerBankAccountAttributesBranchCode sets PartnerBankAccountAttributesBranchCode field to given value.
-
-### HasPartnerBankAccountAttributesBranchCode
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesBranchCode() bool`
-
-HasPartnerBankAccountAttributesBranchCode returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesBranchCodeNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBranchCodeNil(b bool)`
-
- SetPartnerBankAccountAttributesBranchCodeNil sets the value for PartnerBankAccountAttributesBranchCode to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesBranchCode
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesBranchCode()`
-
-UnsetPartnerBankAccountAttributesBranchCode ensures that no value is present for PartnerBankAccountAttributesBranchCode, not even an explicit nil
-### GetPartnerBankAccountAttributesBranchKana
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBranchKana() string`
-
-GetPartnerBankAccountAttributesBranchKana returns the PartnerBankAccountAttributesBranchKana field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesBranchKanaOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBranchKanaOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesBranchKanaOk returns a tuple with the PartnerBankAccountAttributesBranchKana field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesBranchKana
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBranchKana(v string)`
-
-SetPartnerBankAccountAttributesBranchKana sets PartnerBankAccountAttributesBranchKana field to given value.
-
-### HasPartnerBankAccountAttributesBranchKana
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesBranchKana() bool`
-
-HasPartnerBankAccountAttributesBranchKana returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesBranchKanaNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBranchKanaNil(b bool)`
-
- SetPartnerBankAccountAttributesBranchKanaNil sets the value for PartnerBankAccountAttributesBranchKana to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesBranchKana
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesBranchKana()`
-
-UnsetPartnerBankAccountAttributesBranchKana ensures that no value is present for PartnerBankAccountAttributesBranchKana, not even an explicit nil
-### GetPartnerBankAccountAttributesBranchName
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBranchName() string`
-
-GetPartnerBankAccountAttributesBranchName returns the PartnerBankAccountAttributesBranchName field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesBranchNameOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesBranchNameOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesBranchNameOk returns a tuple with the PartnerBankAccountAttributesBranchName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesBranchName
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBranchName(v string)`
-
-SetPartnerBankAccountAttributesBranchName sets PartnerBankAccountAttributesBranchName field to given value.
-
-### HasPartnerBankAccountAttributesBranchName
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesBranchName() bool`
-
-HasPartnerBankAccountAttributesBranchName returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesBranchNameNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesBranchNameNil(b bool)`
-
- SetPartnerBankAccountAttributesBranchNameNil sets the value for PartnerBankAccountAttributesBranchName to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesBranchName
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesBranchName()`
-
-UnsetPartnerBankAccountAttributesBranchName ensures that no value is present for PartnerBankAccountAttributesBranchName, not even an explicit nil
-### GetPartnerBankAccountAttributesLongAccountName
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesLongAccountName() string`
-
-GetPartnerBankAccountAttributesLongAccountName returns the PartnerBankAccountAttributesLongAccountName field if non-nil, zero value otherwise.
-
-### GetPartnerBankAccountAttributesLongAccountNameOk
-
-`func (o *PartnerResponsePartner) GetPartnerBankAccountAttributesLongAccountNameOk() (*string, bool)`
-
-GetPartnerBankAccountAttributesLongAccountNameOk returns a tuple with the PartnerBankAccountAttributesLongAccountName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerBankAccountAttributesLongAccountName
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesLongAccountName(v string)`
-
-SetPartnerBankAccountAttributesLongAccountName sets PartnerBankAccountAttributesLongAccountName field to given value.
-
-### HasPartnerBankAccountAttributesLongAccountName
-
-`func (o *PartnerResponsePartner) HasPartnerBankAccountAttributesLongAccountName() bool`
-
-HasPartnerBankAccountAttributesLongAccountName returns a boolean if a field has been set.
-
-### SetPartnerBankAccountAttributesLongAccountNameNil
-
-`func (o *PartnerResponsePartner) SetPartnerBankAccountAttributesLongAccountNameNil(b bool)`
-
- SetPartnerBankAccountAttributesLongAccountNameNil sets the value for PartnerBankAccountAttributesLongAccountName to be an explicit nil
-
-### UnsetPartnerBankAccountAttributesLongAccountName
-`func (o *PartnerResponsePartner) UnsetPartnerBankAccountAttributesLongAccountName()`
-
-UnsetPartnerBankAccountAttributesLongAccountName ensures that no value is present for PartnerBankAccountAttributesLongAccountName, not even an explicit nil
-### GetPartnerDocSettingAttributesSendingMethod
-
-`func (o *PartnerResponsePartner) GetPartnerDocSettingAttributesSendingMethod() string`
-
-GetPartnerDocSettingAttributesSendingMethod returns the PartnerDocSettingAttributesSendingMethod field if non-nil, zero value otherwise.
-
-### GetPartnerDocSettingAttributesSendingMethodOk
-
-`func (o *PartnerResponsePartner) GetPartnerDocSettingAttributesSendingMethodOk() (*string, bool)`
-
-GetPartnerDocSettingAttributesSendingMethodOk returns a tuple with the PartnerDocSettingAttributesSendingMethod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPartnerDocSettingAttributesSendingMethod
-
-`func (o *PartnerResponsePartner) SetPartnerDocSettingAttributesSendingMethod(v string)`
-
-SetPartnerDocSettingAttributesSendingMethod sets PartnerDocSettingAttributesSendingMethod field to given value.
-
-### HasPartnerDocSettingAttributesSendingMethod
-
-`func (o *PartnerResponsePartner) HasPartnerDocSettingAttributesSendingMethod() bool`
-
-HasPartnerDocSettingAttributesSendingMethod returns a boolean if a field has been set.
-
-### SetPartnerDocSettingAttributesSendingMethodNil
-
-`func (o *PartnerResponsePartner) SetPartnerDocSettingAttributesSendingMethodNil(b bool)`
-
- SetPartnerDocSettingAttributesSendingMethodNil sets the value for PartnerDocSettingAttributesSendingMethod to be an explicit nil
-
-### UnsetPartnerDocSettingAttributesSendingMethod
-`func (o *PartnerResponsePartner) UnsetPartnerDocSettingAttributesSendingMethod()`
-
-UnsetPartnerDocSettingAttributesSendingMethod ensures that no value is present for PartnerDocSettingAttributesSendingMethod, not even an explicit nil
 ### GetPayerWalletableId
 
 `func (o *PartnerResponsePartner) GetPayerWalletableId() int32`
@@ -1051,111 +527,31 @@ HasPayerWalletableId returns a boolean if a field has been set.
 `func (o *PartnerResponsePartner) UnsetPayerWalletableId()`
 
 UnsetPayerWalletableId ensures that no value is present for PayerWalletableId, not even an explicit nil
-### GetPaymentTermAttributesAdditionalMonths
+### GetPaymentTermAttributes
 
-`func (o *PartnerResponsePartner) GetPaymentTermAttributesAdditionalMonths() int32`
+`func (o *PartnerResponsePartner) GetPaymentTermAttributes() PartnerResponsePartnerPaymentTermAttributes`
 
-GetPaymentTermAttributesAdditionalMonths returns the PaymentTermAttributesAdditionalMonths field if non-nil, zero value otherwise.
+GetPaymentTermAttributes returns the PaymentTermAttributes field if non-nil, zero value otherwise.
 
-### GetPaymentTermAttributesAdditionalMonthsOk
+### GetPaymentTermAttributesOk
 
-`func (o *PartnerResponsePartner) GetPaymentTermAttributesAdditionalMonthsOk() (*int32, bool)`
+`func (o *PartnerResponsePartner) GetPaymentTermAttributesOk() (*PartnerResponsePartnerPaymentTermAttributes, bool)`
 
-GetPaymentTermAttributesAdditionalMonthsOk returns a tuple with the PaymentTermAttributesAdditionalMonths field if it's non-nil, zero value otherwise
+GetPaymentTermAttributesOk returns a tuple with the PaymentTermAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPaymentTermAttributesAdditionalMonths
+### SetPaymentTermAttributes
 
-`func (o *PartnerResponsePartner) SetPaymentTermAttributesAdditionalMonths(v int32)`
+`func (o *PartnerResponsePartner) SetPaymentTermAttributes(v PartnerResponsePartnerPaymentTermAttributes)`
 
-SetPaymentTermAttributesAdditionalMonths sets PaymentTermAttributesAdditionalMonths field to given value.
+SetPaymentTermAttributes sets PaymentTermAttributes field to given value.
 
-### HasPaymentTermAttributesAdditionalMonths
+### HasPaymentTermAttributes
 
-`func (o *PartnerResponsePartner) HasPaymentTermAttributesAdditionalMonths() bool`
+`func (o *PartnerResponsePartner) HasPaymentTermAttributes() bool`
 
-HasPaymentTermAttributesAdditionalMonths returns a boolean if a field has been set.
+HasPaymentTermAttributes returns a boolean if a field has been set.
 
-### SetPaymentTermAttributesAdditionalMonthsNil
-
-`func (o *PartnerResponsePartner) SetPaymentTermAttributesAdditionalMonthsNil(b bool)`
-
- SetPaymentTermAttributesAdditionalMonthsNil sets the value for PaymentTermAttributesAdditionalMonths to be an explicit nil
-
-### UnsetPaymentTermAttributesAdditionalMonths
-`func (o *PartnerResponsePartner) UnsetPaymentTermAttributesAdditionalMonths()`
-
-UnsetPaymentTermAttributesAdditionalMonths ensures that no value is present for PaymentTermAttributesAdditionalMonths, not even an explicit nil
-### GetPaymentTermAttributesCutoffDay
-
-`func (o *PartnerResponsePartner) GetPaymentTermAttributesCutoffDay() int32`
-
-GetPaymentTermAttributesCutoffDay returns the PaymentTermAttributesCutoffDay field if non-nil, zero value otherwise.
-
-### GetPaymentTermAttributesCutoffDayOk
-
-`func (o *PartnerResponsePartner) GetPaymentTermAttributesCutoffDayOk() (*int32, bool)`
-
-GetPaymentTermAttributesCutoffDayOk returns a tuple with the PaymentTermAttributesCutoffDay field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPaymentTermAttributesCutoffDay
-
-`func (o *PartnerResponsePartner) SetPaymentTermAttributesCutoffDay(v int32)`
-
-SetPaymentTermAttributesCutoffDay sets PaymentTermAttributesCutoffDay field to given value.
-
-### HasPaymentTermAttributesCutoffDay
-
-`func (o *PartnerResponsePartner) HasPaymentTermAttributesCutoffDay() bool`
-
-HasPaymentTermAttributesCutoffDay returns a boolean if a field has been set.
-
-### SetPaymentTermAttributesCutoffDayNil
-
-`func (o *PartnerResponsePartner) SetPaymentTermAttributesCutoffDayNil(b bool)`
-
- SetPaymentTermAttributesCutoffDayNil sets the value for PaymentTermAttributesCutoffDay to be an explicit nil
-
-### UnsetPaymentTermAttributesCutoffDay
-`func (o *PartnerResponsePartner) UnsetPaymentTermAttributesCutoffDay()`
-
-UnsetPaymentTermAttributesCutoffDay ensures that no value is present for PaymentTermAttributesCutoffDay, not even an explicit nil
-### GetPaymentTermAttributesFixedDay
-
-`func (o *PartnerResponsePartner) GetPaymentTermAttributesFixedDay() int32`
-
-GetPaymentTermAttributesFixedDay returns the PaymentTermAttributesFixedDay field if non-nil, zero value otherwise.
-
-### GetPaymentTermAttributesFixedDayOk
-
-`func (o *PartnerResponsePartner) GetPaymentTermAttributesFixedDayOk() (*int32, bool)`
-
-GetPaymentTermAttributesFixedDayOk returns a tuple with the PaymentTermAttributesFixedDay field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPaymentTermAttributesFixedDay
-
-`func (o *PartnerResponsePartner) SetPaymentTermAttributesFixedDay(v int32)`
-
-SetPaymentTermAttributesFixedDay sets PaymentTermAttributesFixedDay field to given value.
-
-### HasPaymentTermAttributesFixedDay
-
-`func (o *PartnerResponsePartner) HasPaymentTermAttributesFixedDay() bool`
-
-HasPaymentTermAttributesFixedDay returns a boolean if a field has been set.
-
-### SetPaymentTermAttributesFixedDayNil
-
-`func (o *PartnerResponsePartner) SetPaymentTermAttributesFixedDayNil(b bool)`
-
- SetPaymentTermAttributesFixedDayNil sets the value for PaymentTermAttributesFixedDay to be an explicit nil
-
-### UnsetPaymentTermAttributesFixedDay
-`func (o *PartnerResponsePartner) UnsetPaymentTermAttributesFixedDay()`
-
-UnsetPaymentTermAttributesFixedDay ensures that no value is present for PaymentTermAttributesFixedDay, not even an explicit nil
 ### GetPhone
 
 `func (o *PartnerResponsePartner) GetPhone() string`
@@ -1285,6 +681,26 @@ SetTransferFeeHandlingSide sets TransferFeeHandlingSide field to given value.
 `func (o *PartnerResponsePartner) HasTransferFeeHandlingSide() bool`
 
 HasTransferFeeHandlingSide returns a boolean if a field has been set.
+
+### GetUpdateDate
+
+`func (o *PartnerResponsePartner) GetUpdateDate() string`
+
+GetUpdateDate returns the UpdateDate field if non-nil, zero value otherwise.
+
+### GetUpdateDateOk
+
+`func (o *PartnerResponsePartner) GetUpdateDateOk() (*string, bool)`
+
+GetUpdateDateOk returns a tuple with the UpdateDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateDate
+
+`func (o *PartnerResponsePartner) SetUpdateDate(v string)`
+
+SetUpdateDate sets UpdateDate field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

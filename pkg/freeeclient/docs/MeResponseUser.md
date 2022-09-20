@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Companies** | Pointer to [**[]MeResponseUserCompanies**](MeResponseUserCompanies.md) |  | [optional] 
+**Companies** | Pointer to [**[]MeResponseUserCompaniesInner**](MeResponseUserCompaniesInner.md) |  | [optional] 
 **DisplayName** | Pointer to **NullableString** | 表示ユーザー名 | [optional] 
 **Email** | **string** | メールアドレス | 
 **FirstName** | Pointer to **NullableString** | 名 | [optional] 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanies
 
-`func (o *MeResponseUser) GetCompanies() []MeResponseUserCompanies`
+`func (o *MeResponseUser) GetCompanies() []MeResponseUserCompaniesInner`
 
 GetCompanies returns the Companies field if non-nil, zero value otherwise.
 
 ### GetCompaniesOk
 
-`func (o *MeResponseUser) GetCompaniesOk() (*[]MeResponseUserCompanies, bool)`
+`func (o *MeResponseUser) GetCompaniesOk() (*[]MeResponseUserCompaniesInner, bool)`
 
 GetCompaniesOk returns a tuple with the Companies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanies
 
-`func (o *MeResponseUser) SetCompanies(v []MeResponseUserCompanies)`
+`func (o *MeResponseUser) SetCompanies(v []MeResponseUserCompaniesInner)`
 
 SetCompanies sets Companies field to given value.
 

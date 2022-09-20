@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bank** | [**BankResponseBank**](BankResponseBank.md) |  | 
+**Bank** | [**Bank**](Bank.md) |  | 
 
 ## Methods
 
 ### NewBankResponse
 
-`func NewBankResponse(bank BankResponseBank, ) *BankResponse`
+`func NewBankResponse(bank Bank, ) *BankResponse`
 
 NewBankResponse instantiates a new BankResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBank
 
-`func (o *BankResponse) GetBank() BankResponseBank`
+`func (o *BankResponse) GetBank() Bank`
 
 GetBank returns the Bank field if non-nil, zero value otherwise.
 
 ### GetBankOk
 
-`func (o *BankResponse) GetBankOk() (*BankResponseBank, bool)`
+`func (o *BankResponse) GetBankOk() (*Bank, bool)`
 
 GetBankOk returns a tuple with the Bank field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBank
 
-`func (o *BankResponse) SetBank(v BankResponseBank)`
+`func (o *BankResponse) SetBank(v Bank)`
 
 SetBank sets Bank field to given value.
 

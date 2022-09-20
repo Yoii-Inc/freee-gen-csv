@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CompanyId** | **int32** | 事業所ID | 
 **Description** | Pointer to **string** | メモ (255文字以内) | [optional] 
 **IssueDate** | **string** | 取引日 (yyyy-mm-dd) | 
+**ReceiptMetadatum** | Pointer to [**DealReceiptsInnerReceiptMetadatum**](DealReceiptsInnerReceiptMetadatum.md) |  | [optional] 
 
 ## Methods
 
@@ -91,6 +92,31 @@ and a boolean to check if the value has been set.
 
 SetIssueDate sets IssueDate field to given value.
 
+
+### GetReceiptMetadatum
+
+`func (o *ReceiptUpdateParams) GetReceiptMetadatum() DealReceiptsInnerReceiptMetadatum`
+
+GetReceiptMetadatum returns the ReceiptMetadatum field if non-nil, zero value otherwise.
+
+### GetReceiptMetadatumOk
+
+`func (o *ReceiptUpdateParams) GetReceiptMetadatumOk() (*DealReceiptsInnerReceiptMetadatum, bool)`
+
+GetReceiptMetadatumOk returns a tuple with the ReceiptMetadatum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReceiptMetadatum
+
+`func (o *ReceiptUpdateParams) SetReceiptMetadatum(v DealReceiptsInnerReceiptMetadatum)`
+
+SetReceiptMetadatum sets ReceiptMetadatum field to given value.
+
+### HasReceiptMetadatum
+
+`func (o *ReceiptUpdateParams) HasReceiptMetadatum() bool`
+
+HasReceiptMetadatum returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

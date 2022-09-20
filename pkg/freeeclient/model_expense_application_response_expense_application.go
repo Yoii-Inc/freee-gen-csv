@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -21,13 +21,13 @@ type ExpenseApplicationResponseExpenseApplication struct {
 	// 申請No.
 	ApplicationNumber string `json:"application_number"`
 	// 経費申請の承認履歴（配列）
-	ApprovalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogs `json:"approval_flow_logs"`
+	ApprovalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner `json:"approval_flow_logs"`
 	// 申請経路ID
 	ApprovalFlowRouteId int32 `json:"approval_flow_route_id"`
-	// 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、    approversはレスポンスに含まれるようになります。    その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。
-	Approvers []ApprovalRequestResponseApprovalRequestApprovers `json:"approvers"`
+	// 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、   approversはレスポンスに含まれるようになります。   その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。
+	Approvers []ApprovalRequestResponseApprovalRequestApproversInner `json:"approvers"`
 	// 経費申請のコメント一覧（配列）
-	Comments []ApprovalRequestResponseApprovalRequestComments `json:"comments"`
+	Comments []ApprovalRequestResponseApprovalRequestCommentsInner `json:"comments"`
 	// 事業所ID
 	CompanyId int32 `json:"company_id"`
 	// 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。
@@ -40,10 +40,8 @@ type ExpenseApplicationResponseExpenseApplication struct {
 	DealStatus NullableString `json:"deal_status"`
 	// 備考
 	Description NullableString `json:"description,omitempty"`
-	// 会計freeeのWeb画面から申請内容を編集可能：falseの場合、Web上からの項目行の追加／削除・金額の編集が出来なくなります。APIでの編集は可能です。
-	EditableOnWeb bool `json:"editable_on_web"`
 	// 経費申請の項目行一覧（配列）
-	ExpenseApplicationLines []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines `json:"expense_application_lines"`
+	ExpenseApplicationLines []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner `json:"expense_application_lines"`
 	// 経費申請ID
 	Id int32 `json:"id"`
 	// 申請日 (yyyy-mm-dd)
@@ -59,7 +57,7 @@ type ExpenseApplicationResponseExpenseApplication struct {
 	// 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)
 	Status string `json:"status"`
 	// メモタグID
-	TagIds *[]int32 `json:"tag_ids,omitempty"`
+	TagIds []int32 `json:"tag_ids,omitempty"`
 	// 申請タイトル
 	Title string `json:"title"`
 	// 合計金額
@@ -70,7 +68,7 @@ type ExpenseApplicationResponseExpenseApplication struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExpenseApplicationResponseExpenseApplication(applicantId int32, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogs, approvalFlowRouteId int32, approvers []ApprovalRequestResponseApprovalRequestApprovers, comments []ApprovalRequestResponseApprovalRequestComments, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, editableOnWeb bool, expenseApplicationLines []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines, id int32, issueDate string, status string, title string) *ExpenseApplicationResponseExpenseApplication {
+func NewExpenseApplicationResponseExpenseApplication(applicantId int32, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, approvalFlowRouteId int32, approvers []ApprovalRequestResponseApprovalRequestApproversInner, comments []ApprovalRequestResponseApprovalRequestCommentsInner, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, expenseApplicationLines []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner, id int32, issueDate string, status string, title string) *ExpenseApplicationResponseExpenseApplication {
 	this := ExpenseApplicationResponseExpenseApplication{}
 	this.ApplicantId = applicantId
 	this.ApplicationNumber = applicationNumber
@@ -83,7 +81,6 @@ func NewExpenseApplicationResponseExpenseApplication(applicantId int32, applicat
 	this.CurrentStepId = currentStepId
 	this.DealId = dealId
 	this.DealStatus = dealStatus
-	this.EditableOnWeb = editableOnWeb
 	this.ExpenseApplicationLines = expenseApplicationLines
 	this.Id = id
 	this.IssueDate = issueDate
@@ -113,7 +110,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetApplicantId() int32 {
 // GetApplicantIdOk returns a tuple with the ApplicantId field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetApplicantIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApplicantId, true
@@ -137,7 +134,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetApplicationNumber() st
 // GetApplicationNumberOk returns a tuple with the ApplicationNumber field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetApplicationNumberOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApplicationNumber, true
@@ -149,9 +146,9 @@ func (o *ExpenseApplicationResponseExpenseApplication) SetApplicationNumber(v st
 }
 
 // GetApprovalFlowLogs returns the ApprovalFlowLogs field value
-func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogs {
+func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner {
 	if o == nil {
-		var ret []ApprovalRequestResponseApprovalRequestApprovalFlowLogs
+		var ret []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner
 		return ret
 	}
 
@@ -160,15 +157,15 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogs() []A
 
 // GetApprovalFlowLogsOk returns a tuple with the ApprovalFlowLogs field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs, bool) {
-	if o == nil  {
+func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogsOk() ([]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.ApprovalFlowLogs, true
+	return o.ApprovalFlowLogs, true
 }
 
 // SetApprovalFlowLogs sets field value
-func (o *ExpenseApplicationResponseExpenseApplication) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogs) {
+func (o *ExpenseApplicationResponseExpenseApplication) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) {
 	o.ApprovalFlowLogs = v
 }
 
@@ -185,7 +182,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowRouteId() 
 // GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowRouteIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApprovalFlowRouteId, true
@@ -197,9 +194,9 @@ func (o *ExpenseApplicationResponseExpenseApplication) SetApprovalFlowRouteId(v 
 }
 
 // GetApprovers returns the Approvers field value
-func (o *ExpenseApplicationResponseExpenseApplication) GetApprovers() []ApprovalRequestResponseApprovalRequestApprovers {
+func (o *ExpenseApplicationResponseExpenseApplication) GetApprovers() []ApprovalRequestResponseApprovalRequestApproversInner {
 	if o == nil {
-		var ret []ApprovalRequestResponseApprovalRequestApprovers
+		var ret []ApprovalRequestResponseApprovalRequestApproversInner
 		return ret
 	}
 
@@ -208,22 +205,22 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetApprovers() []Approval
 
 // GetApproversOk returns a tuple with the Approvers field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationResponseExpenseApplication) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApprovers, bool) {
-	if o == nil  {
+func (o *ExpenseApplicationResponseExpenseApplication) GetApproversOk() ([]ApprovalRequestResponseApprovalRequestApproversInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Approvers, true
+	return o.Approvers, true
 }
 
 // SetApprovers sets field value
-func (o *ExpenseApplicationResponseExpenseApplication) SetApprovers(v []ApprovalRequestResponseApprovalRequestApprovers) {
+func (o *ExpenseApplicationResponseExpenseApplication) SetApprovers(v []ApprovalRequestResponseApprovalRequestApproversInner) {
 	o.Approvers = v
 }
 
 // GetComments returns the Comments field value
-func (o *ExpenseApplicationResponseExpenseApplication) GetComments() []ApprovalRequestResponseApprovalRequestComments {
+func (o *ExpenseApplicationResponseExpenseApplication) GetComments() []ApprovalRequestResponseApprovalRequestCommentsInner {
 	if o == nil {
-		var ret []ApprovalRequestResponseApprovalRequestComments
+		var ret []ApprovalRequestResponseApprovalRequestCommentsInner
 		return ret
 	}
 
@@ -232,15 +229,15 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetComments() []ApprovalR
 
 // GetCommentsOk returns a tuple with the Comments field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationResponseExpenseApplication) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestComments, bool) {
-	if o == nil  {
+func (o *ExpenseApplicationResponseExpenseApplication) GetCommentsOk() ([]ApprovalRequestResponseApprovalRequestCommentsInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Comments, true
+	return o.Comments, true
 }
 
 // SetComments sets field value
-func (o *ExpenseApplicationResponseExpenseApplication) SetComments(v []ApprovalRequestResponseApprovalRequestComments) {
+func (o *ExpenseApplicationResponseExpenseApplication) SetComments(v []ApprovalRequestResponseApprovalRequestCommentsInner) {
 	o.Comments = v
 }
 
@@ -257,7 +254,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetCompanyId() int32 {
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
@@ -281,7 +278,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetCurrentRound() int32 {
 // GetCurrentRoundOk returns a tuple with the CurrentRound field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetCurrentRoundOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CurrentRound, true
@@ -307,7 +304,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetCurrentStepId() int32 
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetCurrentStepIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CurrentStepId.Get(), o.CurrentStepId.IsSet()
@@ -333,7 +330,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetDealId() int32 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetDealIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.DealId.Get(), o.DealId.IsSet()
@@ -359,7 +356,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetDealStatus() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetDealStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.DealStatus.Get(), o.DealStatus.IsSet()
@@ -383,7 +380,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -412,34 +409,10 @@ func (o *ExpenseApplicationResponseExpenseApplication) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetEditableOnWeb returns the EditableOnWeb field value
-func (o *ExpenseApplicationResponseExpenseApplication) GetEditableOnWeb() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.EditableOnWeb
-}
-
-// GetEditableOnWebOk returns a tuple with the EditableOnWeb field value
-// and a boolean to check if the value has been set.
-func (o *ExpenseApplicationResponseExpenseApplication) GetEditableOnWebOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EditableOnWeb, true
-}
-
-// SetEditableOnWeb sets field value
-func (o *ExpenseApplicationResponseExpenseApplication) SetEditableOnWeb(v bool) {
-	o.EditableOnWeb = v
-}
-
 // GetExpenseApplicationLines returns the ExpenseApplicationLines field value
-func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLines() []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines {
+func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLines() []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner {
 	if o == nil {
-		var ret []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines
+		var ret []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner
 		return ret
 	}
 
@@ -448,15 +421,15 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLine
 
 // GetExpenseApplicationLinesOk returns a tuple with the ExpenseApplicationLines field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines, bool) {
-	if o == nil  {
+func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLinesOk() ([]ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.ExpenseApplicationLines, true
+	return o.ExpenseApplicationLines, true
 }
 
 // SetExpenseApplicationLines sets field value
-func (o *ExpenseApplicationResponseExpenseApplication) SetExpenseApplicationLines(v []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines) {
+func (o *ExpenseApplicationResponseExpenseApplication) SetExpenseApplicationLines(v []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) {
 	o.ExpenseApplicationLines = v
 }
 
@@ -473,7 +446,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -497,7 +470,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetIssueDate() string {
 // GetIssueDateOk returns a tuple with the IssueDate field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetIssueDateOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IssueDate, true
@@ -521,7 +494,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetSectionId() int32 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetSectionIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.SectionId.Get(), o.SectionId.IsSet()
@@ -563,7 +536,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetSegment1TagId() int64 
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetSegment1TagIdOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Segment1TagId.Get(), o.Segment1TagId.IsSet()
@@ -605,7 +578,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetSegment2TagId() int64 
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetSegment2TagIdOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Segment2TagId.Get(), o.Segment2TagId.IsSet()
@@ -647,7 +620,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetSegment3TagId() int64 
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExpenseApplicationResponseExpenseApplication) GetSegment3TagIdOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Segment3TagId.Get(), o.Segment3TagId.IsSet()
@@ -689,7 +662,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Status, true
@@ -706,12 +679,12 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetTagIds() []int32 {
 		var ret []int32
 		return ret
 	}
-	return *o.TagIds
+	return o.TagIds
 }
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationResponseExpenseApplication) GetTagIdsOk() (*[]int32, bool) {
+func (o *ExpenseApplicationResponseExpenseApplication) GetTagIdsOk() ([]int32, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -729,7 +702,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) HasTagIds() bool {
 
 // SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
 func (o *ExpenseApplicationResponseExpenseApplication) SetTagIds(v []int32) {
-	o.TagIds = &v
+	o.TagIds = v
 }
 
 // GetTitle returns the Title field value
@@ -745,7 +718,7 @@ func (o *ExpenseApplicationResponseExpenseApplication) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *ExpenseApplicationResponseExpenseApplication) GetTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Title, true
@@ -825,9 +798,6 @@ func (o ExpenseApplicationResponseExpenseApplication) MarshalJSON() ([]byte, err
 	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
-	}
-	if true {
-		toSerialize["editable_on_web"] = o.EditableOnWeb
 	}
 	if true {
 		toSerialize["expense_application_lines"] = o.ExpenseApplicationLines

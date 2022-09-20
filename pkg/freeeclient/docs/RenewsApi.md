@@ -32,11 +32,11 @@ import (
 
 func main() {
     id := int32(56) // int32 | 取引ID
-    renewCreateParams := *openapiclient.NewRenewCreateParams(int32(1), []openapiclient.RenewCreateParamsDetails{*openapiclient.NewRenewCreateParamsDetails(int32(1), int64(1080), int32(1))}, int64(1), "2019-12-17") // RenewCreateParams | 取引（収入／支出）に対する+更新の情報
+    renewCreateParams := *openapiclient.NewRenewCreateParams(int32(1), []openapiclient.RenewCreateParamsDetailsInner{*openapiclient.NewRenewCreateParamsDetailsInner(int32(1), int64(1080), int32(1))}, int64(1), "2019-12-17") // RenewCreateParams | 取引（収入／支出）に対する+更新の情報
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RenewsApi.CreateDealRenew(context.Background(), id).RenewCreateParams(renewCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RenewsApi.CreateDealRenew(context.Background(), id).RenewCreateParams(renewCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RenewsApi.CreateDealRenew``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -108,8 +108,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RenewsApi.DeleteDealRenew(context.Background(), id, renewId).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RenewsApi.DeleteDealRenew(context.Background(), id, renewId).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RenewsApi.DeleteDealRenew``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -180,11 +180,11 @@ import (
 func main() {
     id := int32(56) // int32 | 取引ID
     renewId := int32(56) // int32 | +更新ID
-    renewUpdateParams := *openapiclient.NewRenewUpdateParams(int32(1), []openapiclient.RenewUpdateParamsDetails{*openapiclient.NewRenewUpdateParamsDetails(int32(1), int64(1080), int32(1))}, "2019-12-17") // RenewUpdateParams | +更新の更新情報
+    renewUpdateParams := *openapiclient.NewRenewUpdateParams(int32(1), []openapiclient.RenewUpdateParamsDetailsInner{*openapiclient.NewRenewUpdateParamsDetailsInner(int32(1), int64(1080), int32(1))}, "2019-12-17") // RenewUpdateParams | +更新の更新情報
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RenewsApi.UpdateDealRenew(context.Background(), id, renewId).RenewUpdateParams(renewUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RenewsApi.UpdateDealRenew(context.Background(), id, renewId).RenewUpdateParams(renewUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RenewsApi.UpdateDealRenew``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

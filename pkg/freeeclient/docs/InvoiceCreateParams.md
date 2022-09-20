@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **CompanyZipcode** | Pointer to **string** | 郵便番号 (デフォルトは事業所設定情報が補完されます) | [optional] 
 **Description** | Pointer to **string** | 概要 | [optional] 
 **DueDate** | Pointer to **string** | 期日 (yyyy-mm-dd) | [optional] 
-**InvoiceContents** | Pointer to [**[]InvoiceCreateParamsInvoiceContents**](InvoiceCreateParamsInvoiceContents.md) | 請求内容 | [optional] 
+**InvoiceContents** | Pointer to [**[]InvoiceCreateParamsInvoiceContentsInner**](InvoiceCreateParamsInvoiceContentsInner.md) | 請求内容 | [optional] 
 **InvoiceLayout** | Pointer to **string** | 請求書レイアウト * &#x60;default_classic&#x60; - レイアウト１/クラシック (デフォルト)  * &#x60;standard_classic&#x60; - レイアウト２/クラシック  * &#x60;envelope_classic&#x60; - 封筒１/クラシック  * &#x60;carried_forward_standard_classic&#x60; - レイアウト３（繰越金額欄あり）/クラシック  * &#x60;carried_forward_envelope_classic&#x60; - 封筒２（繰越金額欄あり）/クラシック  * &#x60;default_modern&#x60; - レイアウト１/モダン  * &#x60;standard_modern&#x60; - レイアウト２/モダン  * &#x60;envelope_modern&#x60; - 封筒/モダン | [optional] 
 **InvoiceNumber** | Pointer to **string** | 請求書番号 (デフォルト: 自動採番されます) | [optional] 
 **InvoiceStatus** | Pointer to **string** | 請求書ステータス&lt;br&gt; &lt;ul&gt;   &lt;li&gt;draft: 下書き (デフォルト)&lt;/li&gt;   &lt;li&gt;(廃止予定) issue: 発行 (送付待ち (unsubmitted) と同じです。)&lt;/li&gt;   &lt;li&gt;unsubmitted: 送付待ち&lt;/li&gt;   &lt;li&gt;submitted: 送付済み&lt;/li&gt; &lt;/ul&gt; issue, unsubmitted, submitted は請求書承認ワークフローを利用している場合は指定できません。  | [optional] 
@@ -302,20 +302,20 @@ HasDueDate returns a boolean if a field has been set.
 
 ### GetInvoiceContents
 
-`func (o *InvoiceCreateParams) GetInvoiceContents() []InvoiceCreateParamsInvoiceContents`
+`func (o *InvoiceCreateParams) GetInvoiceContents() []InvoiceCreateParamsInvoiceContentsInner`
 
 GetInvoiceContents returns the InvoiceContents field if non-nil, zero value otherwise.
 
 ### GetInvoiceContentsOk
 
-`func (o *InvoiceCreateParams) GetInvoiceContentsOk() (*[]InvoiceCreateParamsInvoiceContents, bool)`
+`func (o *InvoiceCreateParams) GetInvoiceContentsOk() (*[]InvoiceCreateParamsInvoiceContentsInner, bool)`
 
 GetInvoiceContentsOk returns a tuple with the InvoiceContents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvoiceContents
 
-`func (o *InvoiceCreateParams) SetInvoiceContents(v []InvoiceCreateParamsInvoiceContents)`
+`func (o *InvoiceCreateParams) SetInvoiceContents(v []InvoiceCreateParamsInvoiceContentsInner)`
 
 SetInvoiceContents sets InvoiceContents field to given value.
 

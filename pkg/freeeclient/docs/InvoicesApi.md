@@ -36,8 +36,8 @@ func main() {
     invoiceCreateParams := *openapiclient.NewInvoiceCreateParams(int32(1), "株式会社freeeパートナー", "御中") // InvoiceCreateParams | 請求書の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoicesApi.CreateInvoice(context.Background()).InvoiceCreateParams(invoiceCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvoicesApi.CreateInvoice(context.Background()).InvoiceCreateParams(invoiceCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.CreateInvoice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoicesApi.DestroyInvoice(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvoicesApi.DestroyInvoice(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.DestroyInvoice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,8 +173,8 @@ func main() {
     id := int32(56) // int32 | 請求書ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoicesApi.GetInvoice(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvoicesApi.GetInvoice(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.GetInvoice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -256,8 +256,8 @@ func main() {
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最大: 100)  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoicesApi.GetInvoices(context.Background()).CompanyId(companyId).PartnerId(partnerId).PartnerCode(partnerCode).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).StartDueDate(startDueDate).EndDueDate(endDueDate).InvoiceNumber(invoiceNumber).Description(description).InvoiceStatus(invoiceStatus).PaymentStatus(paymentStatus).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvoicesApi.GetInvoices(context.Background()).CompanyId(companyId).PartnerId(partnerId).PartnerCode(partnerCode).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).StartDueDate(startDueDate).EndDueDate(endDueDate).InvoiceNumber(invoiceNumber).Description(description).InvoiceStatus(invoiceStatus).PaymentStatus(paymentStatus).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.GetInvoices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -335,8 +335,8 @@ func main() {
     invoiceUpdateParams := *openapiclient.NewInvoiceUpdateParams(int32(1), "株式会社freeeパートナー", "御中") // InvoiceUpdateParams | 請求書の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoicesApi.UpdateInvoice(context.Background(), id).InvoiceUpdateParams(invoiceUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InvoicesApi.UpdateInvoice(context.Background(), id).InvoiceUpdateParams(invoiceUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.UpdateInvoice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

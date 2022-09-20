@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    manualJournalCreateParams := *openapiclient.NewManualJournalCreateParams(int32(1), []openapiclient.ManualJournalCreateParamsDetails{*openapiclient.NewManualJournalCreateParamsDetails(int32(1), int64(10800), "debit", int32(1))}, "2019-12-17") // ManualJournalCreateParams | 振替伝票の作成 (optional)
+    manualJournalCreateParams := *openapiclient.NewManualJournalCreateParams(int32(1), []openapiclient.ManualJournalCreateParamsDetailsInner{*openapiclient.NewManualJournalCreateParamsDetailsInner(int32(1), int64(10800), "debit", int32(1))}, "2019-12-17") // ManualJournalCreateParams | 振替伝票の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ManualJournalsApi.CreateManualJournal(context.Background()).ManualJournalCreateParams(manualJournalCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ManualJournalsApi.CreateManualJournal(context.Background()).ManualJournalCreateParams(manualJournalCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ManualJournalsApi.CreateManualJournal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ManualJournalsApi.DestroyManualJournal(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ManualJournalsApi.DestroyManualJournal(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ManualJournalsApi.DestroyManualJournal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,8 +173,8 @@ func main() {
     id := int32(56) // int32 | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ManualJournalsApi.GetManualJournal(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ManualJournalsApi.GetManualJournal(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ManualJournalsApi.GetManualJournal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## GetManualJournals
 
-> InlineResponse2004 GetManualJournals(ctx).CompanyId(companyId).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).EntrySide(entrySide).AccountItemId(accountItemId).MinAmount(minAmount).MaxAmount(maxAmount).PartnerId(partnerId).PartnerCode(partnerCode).ItemId(itemId).SectionId(sectionId).Segment1TagId(segment1TagId).Segment2TagId(segment2TagId).Segment3TagId(segment3TagId).CommentStatus(commentStatus).CommentImportant(commentImportant).Adjustment(adjustment).TxnNumber(txnNumber).Offset(offset).Limit(limit).Execute()
+> GetManualJournals200Response GetManualJournals(ctx).CompanyId(companyId).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).EntrySide(entrySide).AccountItemId(accountItemId).MinAmount(minAmount).MaxAmount(maxAmount).PartnerId(partnerId).PartnerCode(partnerCode).ItemId(itemId).SectionId(sectionId).Segment1TagId(segment1TagId).Segment2TagId(segment2TagId).Segment3TagId(segment3TagId).CommentStatus(commentStatus).CommentImportant(commentImportant).Adjustment(adjustment).TxnNumber(txnNumber).Offset(offset).Limit(limit).Execute()
 
 振替伝票一覧の取得
 
@@ -263,13 +263,13 @@ func main() {
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ManualJournalsApi.GetManualJournals(context.Background()).CompanyId(companyId).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).EntrySide(entrySide).AccountItemId(accountItemId).MinAmount(minAmount).MaxAmount(maxAmount).PartnerId(partnerId).PartnerCode(partnerCode).ItemId(itemId).SectionId(sectionId).Segment1TagId(segment1TagId).Segment2TagId(segment2TagId).Segment3TagId(segment3TagId).CommentStatus(commentStatus).CommentImportant(commentImportant).Adjustment(adjustment).TxnNumber(txnNumber).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ManualJournalsApi.GetManualJournals(context.Background()).CompanyId(companyId).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).EntrySide(entrySide).AccountItemId(accountItemId).MinAmount(minAmount).MaxAmount(maxAmount).PartnerId(partnerId).PartnerCode(partnerCode).ItemId(itemId).SectionId(sectionId).Segment1TagId(segment1TagId).Segment2TagId(segment2TagId).Segment3TagId(segment3TagId).CommentStatus(commentStatus).CommentImportant(commentImportant).Adjustment(adjustment).TxnNumber(txnNumber).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ManualJournalsApi.GetManualJournals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetManualJournals`: InlineResponse2004
+    // response from `GetManualJournals`: GetManualJournals200Response
     fmt.Fprintf(os.Stdout, "Response from `ManualJournalsApi.GetManualJournals`: %v\n", resp)
 }
 ```
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**GetManualJournals200Response**](GetManualJournals200Response.md)
 
 ### Authorization
 
@@ -346,11 +346,11 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    manualJournalUpdateParams := *openapiclient.NewManualJournalUpdateParams(int32(1), []openapiclient.ManualJournalUpdateParamsDetails{*openapiclient.NewManualJournalUpdateParamsDetails(int32(1), int64(10800), "debit", int32(1))}, "2019-12-17") // ManualJournalUpdateParams | 振替伝票の更新 (optional)
+    manualJournalUpdateParams := *openapiclient.NewManualJournalUpdateParams(int32(1), []openapiclient.ManualJournalUpdateParamsDetailsInner{*openapiclient.NewManualJournalUpdateParamsDetailsInner(int32(1), int64(10800), "debit", int32(1))}, "2019-12-17") // ManualJournalUpdateParams | 振替伝票の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ManualJournalsApi.UpdateManualJournal(context.Background(), id).ManualJournalUpdateParams(manualJournalUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ManualJournalsApi.UpdateManualJournal(context.Background(), id).ManualJournalUpdateParams(manualJournalUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ManualJournalsApi.UpdateManualJournal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

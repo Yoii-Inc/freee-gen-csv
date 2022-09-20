@@ -33,8 +33,8 @@ func main() {
     id := int32(56) // int32 | 連携サービスID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.BanksApi.GetBank(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BanksApi.GetBank(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.GetBank``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## GetBanks
 
-> InlineResponse200 GetBanks(ctx).Offset(offset).Limit(limit).Type_(type_).Execute()
+> GetBanks200Response GetBanks(ctx).Offset(offset).Limit(limit).Type_(type_).Execute()
 
 連携サービス一覧の取得
 
@@ -105,13 +105,13 @@ func main() {
     type_ := "type__example" // string | サービス種別 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.BanksApi.GetBanks(context.Background()).Offset(offset).Limit(limit).Type_(type_).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BanksApi.GetBanks(context.Background()).Offset(offset).Limit(limit).Type_(type_).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.GetBanks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetBanks`: InlineResponse200
+    // response from `GetBanks`: GetBanks200Response
     fmt.Fprintf(os.Stdout, "Response from `BanksApi.GetBanks`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**GetBanks200Response**](GetBanks200Response.md)
 
 ### Authorization
 

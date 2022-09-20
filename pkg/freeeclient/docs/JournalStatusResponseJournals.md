@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **EndDate** | **string** | 取得終了日 (yyyy-mm-dd) | 
 **Id** | **int32** | 受け付けID | 
 **StartDate** | **string** | 取得開始日 (yyyy-mm-dd) | 
-**Status** | **string** | 事業所ID | 
+**Status** | **string** | ダウンロードリクエストのステータス | 
+**VisibleIds** | Pointer to **[]string** |  | [optional] 
 **VisibleTags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -176,6 +177,31 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+
+### GetVisibleIds
+
+`func (o *JournalStatusResponseJournals) GetVisibleIds() []string`
+
+GetVisibleIds returns the VisibleIds field if non-nil, zero value otherwise.
+
+### GetVisibleIdsOk
+
+`func (o *JournalStatusResponseJournals) GetVisibleIdsOk() (*[]string, bool)`
+
+GetVisibleIdsOk returns a tuple with the VisibleIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVisibleIds
+
+`func (o *JournalStatusResponseJournals) SetVisibleIds(v []string)`
+
+SetVisibleIds sets VisibleIds field to given value.
+
+### HasVisibleIds
+
+`func (o *JournalStatusResponseJournals) HasVisibleIds() bool`
+
+HasVisibleIds returns a boolean if a field has been set.
 
 ### GetVisibleTags
 

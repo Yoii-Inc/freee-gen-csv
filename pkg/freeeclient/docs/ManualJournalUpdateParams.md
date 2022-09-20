@@ -6,14 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Adjustment** | Pointer to **bool** | 決算整理仕訳フラグ（falseまたは未指定の場合: 日常仕訳） | [optional] 
 **CompanyId** | **int32** | 事業所ID | 
-**Details** | [**[]ManualJournalUpdateParamsDetails**](ManualJournalUpdateParamsDetails.md) |  | 
+**Details** | [**[]ManualJournalUpdateParamsDetailsInner**](ManualJournalUpdateParamsDetailsInner.md) |  | 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
+**ReceiptIds** | Pointer to **[]int32** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
 
 ## Methods
 
 ### NewManualJournalUpdateParams
 
-`func NewManualJournalUpdateParams(companyId int32, details []ManualJournalUpdateParamsDetails, issueDate string, ) *ManualJournalUpdateParams`
+`func NewManualJournalUpdateParams(companyId int32, details []ManualJournalUpdateParamsDetailsInner, issueDate string, ) *ManualJournalUpdateParams`
 
 NewManualJournalUpdateParams instantiates a new ManualJournalUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -75,20 +76,20 @@ SetCompanyId sets CompanyId field to given value.
 
 ### GetDetails
 
-`func (o *ManualJournalUpdateParams) GetDetails() []ManualJournalUpdateParamsDetails`
+`func (o *ManualJournalUpdateParams) GetDetails() []ManualJournalUpdateParamsDetailsInner`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *ManualJournalUpdateParams) GetDetailsOk() (*[]ManualJournalUpdateParamsDetails, bool)`
+`func (o *ManualJournalUpdateParams) GetDetailsOk() (*[]ManualJournalUpdateParamsDetailsInner, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *ManualJournalUpdateParams) SetDetails(v []ManualJournalUpdateParamsDetails)`
+`func (o *ManualJournalUpdateParams) SetDetails(v []ManualJournalUpdateParamsDetailsInner)`
 
 SetDetails sets Details field to given value.
 
@@ -112,6 +113,31 @@ and a boolean to check if the value has been set.
 
 SetIssueDate sets IssueDate field to given value.
 
+
+### GetReceiptIds
+
+`func (o *ManualJournalUpdateParams) GetReceiptIds() []int32`
+
+GetReceiptIds returns the ReceiptIds field if non-nil, zero value otherwise.
+
+### GetReceiptIdsOk
+
+`func (o *ManualJournalUpdateParams) GetReceiptIdsOk() (*[]int32, bool)`
+
+GetReceiptIdsOk returns a tuple with the ReceiptIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReceiptIds
+
+`func (o *ManualJournalUpdateParams) SetReceiptIds(v []int32)`
+
+SetReceiptIds sets ReceiptIds field to given value.
+
+### HasReceiptIds
+
+`func (o *ManualJournalUpdateParams) HasReceiptIds() bool`
+
+HasReceiptIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

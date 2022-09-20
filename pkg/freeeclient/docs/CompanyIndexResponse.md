@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Companies** | [**[]CompanyIndexResponseCompanies**](CompanyIndexResponseCompanies.md) |  | 
+**Companies** | [**[]CompanyIndexResponseCompaniesInner**](CompanyIndexResponseCompaniesInner.md) |  | 
 
 ## Methods
 
 ### NewCompanyIndexResponse
 
-`func NewCompanyIndexResponse(companies []CompanyIndexResponseCompanies, ) *CompanyIndexResponse`
+`func NewCompanyIndexResponse(companies []CompanyIndexResponseCompaniesInner, ) *CompanyIndexResponse`
 
 NewCompanyIndexResponse instantiates a new CompanyIndexResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanies
 
-`func (o *CompanyIndexResponse) GetCompanies() []CompanyIndexResponseCompanies`
+`func (o *CompanyIndexResponse) GetCompanies() []CompanyIndexResponseCompaniesInner`
 
 GetCompanies returns the Companies field if non-nil, zero value otherwise.
 
 ### GetCompaniesOk
 
-`func (o *CompanyIndexResponse) GetCompaniesOk() (*[]CompanyIndexResponseCompanies, bool)`
+`func (o *CompanyIndexResponse) GetCompaniesOk() (*[]CompanyIndexResponseCompaniesInner, bool)`
 
 GetCompaniesOk returns a tuple with the Companies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanies
 
-`func (o *CompanyIndexResponse) SetCompanies(v []CompanyIndexResponseCompanies)`
+`func (o *CompanyIndexResponse) SetCompanies(v []CompanyIndexResponseCompaniesInner)`
 
 SetCompanies sets Companies field to given value.
 

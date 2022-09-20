@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CompanyId** | **int32** | 事業所ID | 
-**Details** | [**[]DealUpdateParamsDetails**](DealUpdateParamsDetails.md) |  | 
+**Details** | [**[]DealUpdateParamsDetailsInner**](DealUpdateParamsDetailsInner.md) |  | 
 **DueDate** | Pointer to **string** | 支払期日(yyyy-mm-dd) | [optional] 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
 **PartnerCode** | Pointer to **string** | 取引先コード | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewDealUpdateParams
 
-`func NewDealUpdateParams(companyId int32, details []DealUpdateParamsDetails, issueDate string, type_ string, ) *DealUpdateParams`
+`func NewDealUpdateParams(companyId int32, details []DealUpdateParamsDetailsInner, issueDate string, type_ string, ) *DealUpdateParams`
 
 NewDealUpdateParams instantiates a new DealUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -55,20 +55,20 @@ SetCompanyId sets CompanyId field to given value.
 
 ### GetDetails
 
-`func (o *DealUpdateParams) GetDetails() []DealUpdateParamsDetails`
+`func (o *DealUpdateParams) GetDetails() []DealUpdateParamsDetailsInner`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *DealUpdateParams) GetDetailsOk() (*[]DealUpdateParamsDetails, bool)`
+`func (o *DealUpdateParams) GetDetailsOk() (*[]DealUpdateParamsDetailsInner, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *DealUpdateParams) SetDetails(v []DealUpdateParamsDetails)`
+`func (o *DealUpdateParams) SetDetails(v []DealUpdateParamsDetailsInner)`
 
 SetDetails sets Details field to given value.
 

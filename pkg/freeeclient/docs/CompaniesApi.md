@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetCompanies**](CompaniesApi.md#GetCompanies) | **Get** /api/1/companies | 事業所一覧の取得
 [**GetCompany**](CompaniesApi.md#GetCompany) | **Get** /api/1/companies/{id} | 事業所の詳細情報の取得
-[**UpdateCompany**](CompaniesApi.md#UpdateCompany) | **Put** /api/1/companies/{id} | 事業所情報の更新
 
 
 
@@ -33,8 +32,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CompaniesApi.GetCompanies(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CompaniesApi.GetCompanies(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CompaniesApi.GetCompanies``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +102,8 @@ func main() {
     walletables := true // bool | 取得情報に口座一覧を含める (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CompaniesApi.GetCompany(context.Background(), id).Details(details).AccountItems(accountItems).Taxes(taxes).Items(items).Partners(partners).Sections(sections).Tags(tags).Walletables(walletables).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CompaniesApi.GetCompany(context.Background(), id).Details(details).AccountItems(accountItems).Taxes(taxes).Items(items).Partners(partners).Sections(sections).Tags(tags).Walletables(walletables).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CompaniesApi.GetCompany``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -150,78 +149,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UpdateCompany
-
-> CompanyUpdateResponse UpdateCompany(ctx, id).CompanyParams(companyParams).Execute()
-
-事業所情報の更新
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := int32(56) // int32 | 事業所ID
-    companyParams := *openapiclient.NewCompanyParams() // CompanyParams |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CompaniesApi.UpdateCompany(context.Background(), id).CompanyParams(companyParams).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesApi.UpdateCompany``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateCompany`: CompanyUpdateResponse
-    fmt.Fprintf(os.Stdout, "Response from `CompaniesApi.UpdateCompany`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 事業所ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateCompanyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **companyParams** | [**CompanyParams**](CompanyParams.md) |  | 
-
-### Return type
-
-[**CompanyUpdateResponse**](CompanyUpdateResponse.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

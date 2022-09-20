@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **CorrespondingExpenseId** | **int32** | 支出取引相手勘定科目ID | 
 **CorrespondingIncomeId** | **int32** | 収入取引相手勘定科目ID | 
 **GroupName** | **string** | 決算書表示名（小カテゴリー） Selectablesフォーム用選択項目情報エンドポイント(account_groups.name)で取得可能です | 
-**Items** | Pointer to [**[]AccountItemParamsAccountItemItems**](AccountItemParamsAccountItemItems.md) | 品目 | [optional] 
+**Items** | Pointer to [**[]AccountItemParamsAccountItemItemsInner**](AccountItemParamsAccountItemItemsInner.md) | 品目 | [optional] 
 **Name** | **string** | 勘定科目名 (30文字以内) | 
-**Partners** | Pointer to [**[]AccountItemParamsAccountItemItems**](AccountItemParamsAccountItemItems.md) | 取引先 | [optional] 
+**Partners** | Pointer to [**[]AccountItemParamsAccountItemItemsInner**](AccountItemParamsAccountItemItemsInner.md) | 取引先 | [optional] 
 **Searchable** | Pointer to **int32** | 検索可能:2, 検索不可：3(登録時未指定の場合は2で登録されます。更新時未指定の場合はsearchableは変更されません。) | [optional] 
 **Shortcut** | Pointer to **string** | ショートカット1 (20文字以内) | [optional] 
 **ShortcutNum** | Pointer to **string** | ショートカット2(勘定科目コード)(20文字以内) | [optional] 
@@ -143,20 +143,20 @@ SetGroupName sets GroupName field to given value.
 
 ### GetItems
 
-`func (o *AccountItemParamsAccountItem) GetItems() []AccountItemParamsAccountItemItems`
+`func (o *AccountItemParamsAccountItem) GetItems() []AccountItemParamsAccountItemItemsInner`
 
 GetItems returns the Items field if non-nil, zero value otherwise.
 
 ### GetItemsOk
 
-`func (o *AccountItemParamsAccountItem) GetItemsOk() (*[]AccountItemParamsAccountItemItems, bool)`
+`func (o *AccountItemParamsAccountItem) GetItemsOk() (*[]AccountItemParamsAccountItemItemsInner, bool)`
 
 GetItemsOk returns a tuple with the Items field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItems
 
-`func (o *AccountItemParamsAccountItem) SetItems(v []AccountItemParamsAccountItemItems)`
+`func (o *AccountItemParamsAccountItem) SetItems(v []AccountItemParamsAccountItemItemsInner)`
 
 SetItems sets Items field to given value.
 
@@ -188,20 +188,20 @@ SetName sets Name field to given value.
 
 ### GetPartners
 
-`func (o *AccountItemParamsAccountItem) GetPartners() []AccountItemParamsAccountItemItems`
+`func (o *AccountItemParamsAccountItem) GetPartners() []AccountItemParamsAccountItemItemsInner`
 
 GetPartners returns the Partners field if non-nil, zero value otherwise.
 
 ### GetPartnersOk
 
-`func (o *AccountItemParamsAccountItem) GetPartnersOk() (*[]AccountItemParamsAccountItemItems, bool)`
+`func (o *AccountItemParamsAccountItem) GetPartnersOk() (*[]AccountItemParamsAccountItemItemsInner, bool)`
 
 GetPartnersOk returns a tuple with the Partners field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartners
 
-`func (o *AccountItemParamsAccountItem) SetPartners(v []AccountItemParamsAccountItemItems)`
+`func (o *AccountItemParamsAccountItem) SetPartners(v []AccountItemParamsAccountItemItemsInner)`
 
 SetPartners sets Partners field to given value.
 

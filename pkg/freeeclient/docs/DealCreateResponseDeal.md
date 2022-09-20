@@ -6,14 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int64** | 金額 | 
 **CompanyId** | **int32** | 事業所ID | 
-**Details** | Pointer to [**[]DealCreateResponseDealDetails**](DealCreateResponseDealDetails.md) | 取引の明細行 | [optional] 
-**DueAmount** | Pointer to **int32** | 支払金額 | [optional] 
+**Details** | Pointer to [**[]DealDetailsInner**](DealDetailsInner.md) | 取引の明細行 | [optional] 
+**DueAmount** | Pointer to **int32** | 支払残額 | [optional] 
 **DueDate** | Pointer to **string** | 支払期日 (yyyy-mm-dd) | [optional] 
 **Id** | **int32** | 取引ID | 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
 **PartnerCode** | Pointer to **NullableString** | 取引先コード | [optional] 
 **PartnerId** | **int32** | 取引先ID | 
-**Payments** | Pointer to [**[]DealCreateResponseDealPayments**](DealCreateResponseDealPayments.md) | 取引の支払行 | [optional] 
+**Payments** | Pointer to [**[]DealPaymentsInner**](DealPaymentsInner.md) | 取引の支払行 | [optional] 
+**Receipts** | Pointer to [**[]DealCreateResponseDealReceiptsInner**](DealCreateResponseDealReceiptsInner.md) | 証憑ファイル（ファイルボックスのファイル） | [optional] 
 **RefNumber** | Pointer to **string** | 管理番号 | [optional] 
 **Status** | **string** | 決済状況 (未決済: unsettled, 完了: settled) | 
 **Type** | Pointer to **string** | 収支区分 (収入: income, 支出: expense) | [optional] 
@@ -79,20 +80,20 @@ SetCompanyId sets CompanyId field to given value.
 
 ### GetDetails
 
-`func (o *DealCreateResponseDeal) GetDetails() []DealCreateResponseDealDetails`
+`func (o *DealCreateResponseDeal) GetDetails() []DealDetailsInner`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *DealCreateResponseDeal) GetDetailsOk() (*[]DealCreateResponseDealDetails, bool)`
+`func (o *DealCreateResponseDeal) GetDetailsOk() (*[]DealDetailsInner, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *DealCreateResponseDeal) SetDetails(v []DealCreateResponseDealDetails)`
+`func (o *DealCreateResponseDeal) SetDetails(v []DealDetailsInner)`
 
 SetDetails sets Details field to given value.
 
@@ -249,20 +250,20 @@ SetPartnerId sets PartnerId field to given value.
 
 ### GetPayments
 
-`func (o *DealCreateResponseDeal) GetPayments() []DealCreateResponseDealPayments`
+`func (o *DealCreateResponseDeal) GetPayments() []DealPaymentsInner`
 
 GetPayments returns the Payments field if non-nil, zero value otherwise.
 
 ### GetPaymentsOk
 
-`func (o *DealCreateResponseDeal) GetPaymentsOk() (*[]DealCreateResponseDealPayments, bool)`
+`func (o *DealCreateResponseDeal) GetPaymentsOk() (*[]DealPaymentsInner, bool)`
 
 GetPaymentsOk returns a tuple with the Payments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPayments
 
-`func (o *DealCreateResponseDeal) SetPayments(v []DealCreateResponseDealPayments)`
+`func (o *DealCreateResponseDeal) SetPayments(v []DealPaymentsInner)`
 
 SetPayments sets Payments field to given value.
 
@@ -271,6 +272,31 @@ SetPayments sets Payments field to given value.
 `func (o *DealCreateResponseDeal) HasPayments() bool`
 
 HasPayments returns a boolean if a field has been set.
+
+### GetReceipts
+
+`func (o *DealCreateResponseDeal) GetReceipts() []DealCreateResponseDealReceiptsInner`
+
+GetReceipts returns the Receipts field if non-nil, zero value otherwise.
+
+### GetReceiptsOk
+
+`func (o *DealCreateResponseDeal) GetReceiptsOk() (*[]DealCreateResponseDealReceiptsInner, bool)`
+
+GetReceiptsOk returns a tuple with the Receipts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReceipts
+
+`func (o *DealCreateResponseDeal) SetReceipts(v []DealCreateResponseDealReceiptsInner)`
+
+SetReceipts sets Receipts field to given value.
+
+### HasReceipts
+
+`func (o *DealCreateResponseDeal) HasReceipts() bool`
+
+HasReceipts returns a boolean if a field has been set.
 
 ### GetRefNumber
 

@@ -1,50 +1,48 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // TransfersApiService TransfersApi service
 type TransfersApiService service
 
 type ApiCreateTransferRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransfersApiService
 	transferParams *TransferParams
 }
 
+// 取引（振替）の作成
 func (r ApiCreateTransferRequest) TransferParams(transferParams TransferParams) ApiCreateTransferRequest {
 	r.transferParams = &transferParams
 	return r
 }
 
-func (r ApiCreateTransferRequest) Execute() (TransferResponse, *_nethttp.Response, error) {
+func (r ApiCreateTransferRequest) Execute() (*TransferResponse, *http.Response, error) {
 	return r.ApiService.CreateTransferExecute(r)
 }
 
 /*
- * CreateTransfer 取引（振替）の作成
- * 
+CreateTransfer 取引（振替）の作成
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の取引（振替）を作成する</p>
@@ -68,40 +66,37 @@ func (r ApiCreateTransferRequest) Execute() (TransferResponse, *_nethttp.Respons
 </ul>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateTransferRequest
- */
-func (a *TransfersApiService) CreateTransfer(ctx _context.Context) ApiCreateTransferRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateTransferRequest
+*/
+func (a *TransfersApiService) CreateTransfer(ctx context.Context) ApiCreateTransferRequest {
 	return ApiCreateTransferRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return TransferResponse
- */
-func (a *TransfersApiService) CreateTransferExecute(r ApiCreateTransferRequest) (TransferResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TransferResponse
+func (a *TransfersApiService) CreateTransferExecute(r ApiCreateTransferRequest) (*TransferResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TransferResponse
+		formFiles            []formFile
+		localVarReturnValue  *TransferResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.CreateTransfer")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/transfers"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
@@ -122,7 +117,7 @@ func (a *TransfersApiService) CreateTransferExecute(r ApiCreateTransferRequest) 
 	}
 	// body params
 	localVarPostBody = r.transferParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -132,15 +127,15 @@ func (a *TransfersApiService) CreateTransferExecute(r ApiCreateTransferRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -188,7 +183,7 @@ func (a *TransfersApiService) CreateTransferExecute(r ApiCreateTransferRequest) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -199,32 +194,35 @@ func (a *TransfersApiService) CreateTransferExecute(r ApiCreateTransferRequest) 
 }
 
 type ApiDestroyTransferRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransfersApiService
 	id int32
 	companyId *int32
 }
 
+// 事業所ID
 func (r ApiDestroyTransferRequest) CompanyId(companyId int32) ApiDestroyTransferRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyTransferRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyTransferRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyTransferExecute(r)
 }
 
 /*
- * DestroyTransfer 取引（振替）の削除する
- * 
+DestroyTransfer 取引（振替）の削除する
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の取引（振替）を削除する</p>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引(振替)ID
- * @return ApiDestroyTransferRequest
- */
-func (a *TransfersApiService) DestroyTransfer(ctx _context.Context, id int32) ApiDestroyTransferRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引(振替)ID
+ @return ApiDestroyTransferRequest
+*/
+func (a *TransfersApiService) DestroyTransfer(ctx context.Context, id int32) ApiDestroyTransferRequest {
 	return ApiDestroyTransferRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -232,29 +230,25 @@ func (a *TransfersApiService) DestroyTransfer(ctx _context.Context, id int32) Ap
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *TransfersApiService) DestroyTransferExecute(r ApiDestroyTransferRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *TransfersApiService) DestroyTransferExecute(r ApiDestroyTransferRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.DestroyTransfer")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -289,7 +283,7 @@ func (a *TransfersApiService) DestroyTransferExecute(r ApiDestroyTransferRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -299,15 +293,15 @@ func (a *TransfersApiService) DestroyTransferExecute(r ApiDestroyTransferRequest
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -367,24 +361,26 @@ func (a *TransfersApiService) DestroyTransferExecute(r ApiDestroyTransferRequest
 }
 
 type ApiGetTransferRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransfersApiService
 	id int32
 	companyId *int32
 }
 
+// 事業所ID
 func (r ApiGetTransferRequest) CompanyId(companyId int32) ApiGetTransferRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetTransferRequest) Execute() (TransferResponse, *_nethttp.Response, error) {
+func (r ApiGetTransferRequest) Execute() (*TransferResponse, *http.Response, error) {
 	return r.ApiService.GetTransferExecute(r)
 }
 
 /*
- * GetTransfer 取引（振替）の取得
- * 
+GetTransfer 取引（振替）の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の取引（振替）を取得する</p>
@@ -408,11 +404,12 @@ func (r ApiGetTransferRequest) Execute() (TransferResponse, *_nethttp.Response, 
 </ul>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引(振替)ID
- * @return ApiGetTransferRequest
- */
-func (a *TransfersApiService) GetTransfer(ctx _context.Context, id int32) ApiGetTransferRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引(振替)ID
+ @return ApiGetTransferRequest
+*/
+func (a *TransfersApiService) GetTransfer(ctx context.Context, id int32) ApiGetTransferRequest {
 	return ApiGetTransferRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -420,31 +417,27 @@ func (a *TransfersApiService) GetTransfer(ctx _context.Context, id int32) ApiGet
 	}
 }
 
-/*
- * Execute executes the request
- * @return TransferResponse
- */
-func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (TransferResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TransferResponse
+func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (*TransferResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TransferResponse
+		formFiles            []formFile
+		localVarReturnValue  *TransferResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.GetTransfer")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -479,7 +472,7 @@ func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (Trans
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -489,15 +482,15 @@ func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (Trans
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -555,7 +548,7 @@ func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (Trans
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -566,7 +559,7 @@ func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (Trans
 }
 
 type ApiGetTransfersRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransfersApiService
 	companyId *int32
 	startDate *string
@@ -575,34 +568,44 @@ type ApiGetTransfersRequest struct {
 	limit *int32
 }
 
+// 事業所ID
 func (r ApiGetTransfersRequest) CompanyId(companyId int32) ApiGetTransfersRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// 振替日で絞込：開始日 (yyyy-mm-dd)
 func (r ApiGetTransfersRequest) StartDate(startDate string) ApiGetTransfersRequest {
 	r.startDate = &startDate
 	return r
 }
+
+// 振替日で絞込：終了日 (yyyy-mm-dd)
 func (r ApiGetTransfersRequest) EndDate(endDate string) ApiGetTransfersRequest {
 	r.endDate = &endDate
 	return r
 }
+
+// 取得レコードのオフセット (デフォルト: 0)
 func (r ApiGetTransfersRequest) Offset(offset int64) ApiGetTransfersRequest {
 	r.offset = &offset
 	return r
 }
+
+// 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100) 
 func (r ApiGetTransfersRequest) Limit(limit int32) ApiGetTransfersRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetTransfersRequest) Execute() (InlineResponse20011, *_nethttp.Response, error) {
+func (r ApiGetTransfersRequest) Execute() (*GetTransfers200Response, *http.Response, error) {
 	return r.ApiService.GetTransfersExecute(r)
 }
 
 /*
- * GetTransfers 取引（振替）一覧の取得
- * 
+GetTransfers 取引（振替）一覧の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の取引（振替）一覧を取得する</p>
@@ -626,40 +629,37 @@ func (r ApiGetTransfersRequest) Execute() (InlineResponse20011, *_nethttp.Respon
 </ul>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetTransfersRequest
- */
-func (a *TransfersApiService) GetTransfers(ctx _context.Context) ApiGetTransfersRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTransfersRequest
+*/
+func (a *TransfersApiService) GetTransfers(ctx context.Context) ApiGetTransfersRequest {
 	return ApiGetTransfersRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return InlineResponse20011
- */
-func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (InlineResponse20011, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return GetTransfers200Response
+func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (*GetTransfers200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20011
+		formFiles            []formFile
+		localVarReturnValue  *GetTransfers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.GetTransfers")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/transfers"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -700,7 +700,7 @@ func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (Inl
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -710,15 +710,15 @@ func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (Inl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -766,7 +766,7 @@ func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (Inl
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -777,24 +777,26 @@ func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (Inl
 }
 
 type ApiUpdateTransferRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *TransfersApiService
 	id int32
 	transferParams *TransferParams
 }
 
+// 取引（振替）の更新
 func (r ApiUpdateTransferRequest) TransferParams(transferParams TransferParams) ApiUpdateTransferRequest {
 	r.transferParams = &transferParams
 	return r
 }
 
-func (r ApiUpdateTransferRequest) Execute() (TransferResponse, *_nethttp.Response, error) {
+func (r ApiUpdateTransferRequest) Execute() (*TransferResponse, *http.Response, error) {
 	return r.ApiService.UpdateTransferExecute(r)
 }
 
 /*
- * UpdateTransfer 取引（振替）の更新
- * 
+UpdateTransfer 取引（振替）の更新
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の取引（振替）を更新する</p>
@@ -818,11 +820,12 @@ func (r ApiUpdateTransferRequest) Execute() (TransferResponse, *_nethttp.Respons
 </ul>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引(振替)ID
- * @return ApiUpdateTransferRequest
- */
-func (a *TransfersApiService) UpdateTransfer(ctx _context.Context, id int32) ApiUpdateTransferRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引(振替)ID
+ @return ApiUpdateTransferRequest
+*/
+func (a *TransfersApiService) UpdateTransfer(ctx context.Context, id int32) ApiUpdateTransferRequest {
 	return ApiUpdateTransferRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -830,31 +833,27 @@ func (a *TransfersApiService) UpdateTransfer(ctx _context.Context, id int32) Api
 	}
 }
 
-/*
- * Execute executes the request
- * @return TransferResponse
- */
-func (a *TransfersApiService) UpdateTransferExecute(r ApiUpdateTransferRequest) (TransferResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return TransferResponse
+func (a *TransfersApiService) UpdateTransferExecute(r ApiUpdateTransferRequest) (*TransferResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  TransferResponse
+		formFiles            []formFile
+		localVarReturnValue  *TransferResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.UpdateTransfer")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/transfers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -884,7 +883,7 @@ func (a *TransfersApiService) UpdateTransferExecute(r ApiUpdateTransferRequest) 
 	}
 	// body params
 	localVarPostBody = r.transferParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -894,15 +893,15 @@ func (a *TransfersApiService) UpdateTransferExecute(r ApiUpdateTransferRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -960,7 +959,7 @@ func (a *TransfersApiService) UpdateTransferExecute(r ApiUpdateTransferRequest) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

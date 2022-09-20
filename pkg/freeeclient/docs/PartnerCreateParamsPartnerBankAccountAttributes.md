@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountName** | Pointer to **string** | 受取人名（カナ） | [optional] 
 **AccountNumber** | Pointer to **string** | 口座番号 | [optional] 
-**AccountType** | Pointer to **string** | 口座種別(ordinary:普通、checking：当座、earmarked：納税準備預金、savings：貯蓄、other:その他) | [optional] 
+**AccountType** | Pointer to **string** | 口座種別(ordinary:普通、checking：当座、earmarked：納税準備預金、savings：貯蓄、other:その他)、指定しない場合ordinaryになります。 | [optional] 
 **BankCode** | Pointer to **string** | 銀行コード | [optional] 
 **BankName** | Pointer to **string** | 銀行名 | [optional] 
 **BankNameKana** | Pointer to **string** | 銀行名（カナ） | [optional] 

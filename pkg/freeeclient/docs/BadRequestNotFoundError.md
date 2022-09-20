@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to [**[]BadRequestNotFoundErrorErrors**](BadRequestNotFoundErrorErrors.md) |  | [optional] 
+**Errors** | Pointer to [**[]BadRequestNotFoundErrorErrorsInner**](BadRequestNotFoundErrorErrorsInner.md) |  | [optional] 
 **StatusCode** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *BadRequestNotFoundError) GetErrors() []BadRequestNotFoundErrorErrors`
+`func (o *BadRequestNotFoundError) GetErrors() []BadRequestNotFoundErrorErrorsInner`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *BadRequestNotFoundError) GetErrorsOk() (*[]BadRequestNotFoundErrorErrors, bool)`
+`func (o *BadRequestNotFoundError) GetErrorsOk() (*[]BadRequestNotFoundErrorErrorsInner, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *BadRequestNotFoundError) SetErrors(v []BadRequestNotFoundErrorErrors)`
+`func (o *BadRequestNotFoundError) SetErrors(v []BadRequestNotFoundErrorErrorsInner)`
 
 SetErrors sets Errors field to given value.
 

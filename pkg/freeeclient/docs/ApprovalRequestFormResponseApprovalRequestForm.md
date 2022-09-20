@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **FormOrder** | **NullableInt32** | 表示順（申請者が選択する申請フォームの表示順を設定できます。小さい数ほど上位に表示されます。（0を除く整数のみ。マイナス不可）未入力の場合、表示順が後ろになります。同じ数字が入力された場合、登録順で表示されます。） | 
 **Id** | **int32** | 申請フォームID | 
 **Name** | **string** | 申請フォームの名前 | 
-**Parts** | Pointer to [**[]ApprovalRequestFormResponseApprovalRequestFormParts**](ApprovalRequestFormResponseApprovalRequestFormParts.md) | 申請フォームの項目 | [optional] 
+**Parts** | Pointer to [**[]ApprovalRequestFormResponseApprovalRequestFormPartsInner**](ApprovalRequestFormResponseApprovalRequestFormPartsInner.md) | 申請フォームの項目 | [optional] 
 **RouteSettingCount** | **int32** | 適用された経路数 | 
 **Status** | **string** | ステータス(draft: 申請で使用しない、active: 申請で使用する、deleted: 削除済み) | 
 
@@ -165,20 +165,20 @@ SetName sets Name field to given value.
 
 ### GetParts
 
-`func (o *ApprovalRequestFormResponseApprovalRequestForm) GetParts() []ApprovalRequestFormResponseApprovalRequestFormParts`
+`func (o *ApprovalRequestFormResponseApprovalRequestForm) GetParts() []ApprovalRequestFormResponseApprovalRequestFormPartsInner`
 
 GetParts returns the Parts field if non-nil, zero value otherwise.
 
 ### GetPartsOk
 
-`func (o *ApprovalRequestFormResponseApprovalRequestForm) GetPartsOk() (*[]ApprovalRequestFormResponseApprovalRequestFormParts, bool)`
+`func (o *ApprovalRequestFormResponseApprovalRequestForm) GetPartsOk() (*[]ApprovalRequestFormResponseApprovalRequestFormPartsInner, bool)`
 
 GetPartsOk returns a tuple with the Parts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParts
 
-`func (o *ApprovalRequestFormResponseApprovalRequestForm) SetParts(v []ApprovalRequestFormResponseApprovalRequestFormParts)`
+`func (o *ApprovalRequestFormResponseApprovalRequestForm) SetParts(v []ApprovalRequestFormResponseApprovalRequestFormPartsInner)`
 
 SetParts sets Parts field to given value.
 

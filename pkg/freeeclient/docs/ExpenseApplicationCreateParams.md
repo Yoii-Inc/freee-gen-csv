@@ -9,9 +9,8 @@ Name | Type | Description | Notes
 **CompanyId** | **int32** | 事業所ID | 
 **Description** | Pointer to **string** | 備考 (10000文字以内) | [optional] 
 **Draft** | Pointer to **bool** | 経費申請のステータス&lt;br&gt; falseを指定した時は申請中（in_progress）で経費申請を作成します。&lt;br&gt; trueを指定した時は下書き（draft）で経費申請を作成します。&lt;br&gt; 未指定の時は下書きとみなして経費申請を作成します。  | [optional] 
-**EditableOnWeb** | Pointer to **bool** | 会計freeeのWeb画面で申請内容を編集可能にするかどうか&lt;br&gt; falseの場合は、Web画面での項目行の追加／削除・金額の編集が出来なくなりますが、APIでの編集は可能です。&lt;br&gt; デフォルトはfalseです。  | [optional] 
-**ExpenseApplicationLines** | [**[]ExpenseApplicationCreateParamsExpenseApplicationLines**](ExpenseApplicationCreateParamsExpenseApplicationLines.md) |  | 
-**IssueDate** | **string** | 申請日 (yyyy-mm-dd) | 
+**ExpenseApplicationLines** | [**[]ExpenseApplicationCreateParamsExpenseApplicationLinesInner**](ExpenseApplicationCreateParamsExpenseApplicationLinesInner.md) |  | 
+**IssueDate** | Pointer to **string** | 申請日 (yyyy-mm-dd)&lt;br&gt; 指定しない場合は当日の日付が登録されます。  | [optional] 
 **ParentId** | Pointer to **int32** | 親申請ID(法人向けプロフェッショナル, 法人向け エンタープライズプラン)&lt;br&gt; &lt;ul&gt;   &lt;li&gt;承認済みの既存各種申請IDのみ指定可能です。&lt;/li&gt;   &lt;li&gt;各種申請一覧APIを利用して取得してください。&lt;/li&gt; &lt;/ul&gt;  | [optional] 
 **SectionId** | Pointer to **int32** | 部門ID | [optional] 
 **Segment1TagId** | Pointer to **int64** | セグメント１ID(法人向けプロフェッショナル, 法人向けエンタープライズプラン)&lt;br&gt; セグメントタグ一覧APIを利用して取得してください。&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/360020679611\&quot; target&#x3D;\&quot;_blank\&quot;&gt;セグメント（分析用タグ）の設定&lt;/a&gt;&lt;br&gt;  | [optional] 
@@ -24,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewExpenseApplicationCreateParams
 
-`func NewExpenseApplicationCreateParams(companyId int32, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLines, issueDate string, title string, ) *ExpenseApplicationCreateParams`
+`func NewExpenseApplicationCreateParams(companyId int32, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLinesInner, title string, ) *ExpenseApplicationCreateParams`
 
 NewExpenseApplicationCreateParams instantiates a new ExpenseApplicationCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -159,47 +158,22 @@ SetDraft sets Draft field to given value.
 
 HasDraft returns a boolean if a field has been set.
 
-### GetEditableOnWeb
-
-`func (o *ExpenseApplicationCreateParams) GetEditableOnWeb() bool`
-
-GetEditableOnWeb returns the EditableOnWeb field if non-nil, zero value otherwise.
-
-### GetEditableOnWebOk
-
-`func (o *ExpenseApplicationCreateParams) GetEditableOnWebOk() (*bool, bool)`
-
-GetEditableOnWebOk returns a tuple with the EditableOnWeb field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditableOnWeb
-
-`func (o *ExpenseApplicationCreateParams) SetEditableOnWeb(v bool)`
-
-SetEditableOnWeb sets EditableOnWeb field to given value.
-
-### HasEditableOnWeb
-
-`func (o *ExpenseApplicationCreateParams) HasEditableOnWeb() bool`
-
-HasEditableOnWeb returns a boolean if a field has been set.
-
 ### GetExpenseApplicationLines
 
-`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLines() []ExpenseApplicationCreateParamsExpenseApplicationLines`
+`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLines() []ExpenseApplicationCreateParamsExpenseApplicationLinesInner`
 
 GetExpenseApplicationLines returns the ExpenseApplicationLines field if non-nil, zero value otherwise.
 
 ### GetExpenseApplicationLinesOk
 
-`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationCreateParamsExpenseApplicationLines, bool)`
+`func (o *ExpenseApplicationCreateParams) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationCreateParamsExpenseApplicationLinesInner, bool)`
 
 GetExpenseApplicationLinesOk returns a tuple with the ExpenseApplicationLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpenseApplicationLines
 
-`func (o *ExpenseApplicationCreateParams) SetExpenseApplicationLines(v []ExpenseApplicationCreateParamsExpenseApplicationLines)`
+`func (o *ExpenseApplicationCreateParams) SetExpenseApplicationLines(v []ExpenseApplicationCreateParamsExpenseApplicationLinesInner)`
 
 SetExpenseApplicationLines sets ExpenseApplicationLines field to given value.
 
@@ -223,6 +197,11 @@ and a boolean to check if the value has been set.
 
 SetIssueDate sets IssueDate field to given value.
 
+### HasIssueDate
+
+`func (o *ExpenseApplicationCreateParams) HasIssueDate() bool`
+
+HasIssueDate returns a boolean if a field has been set.
 
 ### GetParentId
 

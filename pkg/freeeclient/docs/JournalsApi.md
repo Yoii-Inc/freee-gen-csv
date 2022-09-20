@@ -35,8 +35,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.JournalsApi.DownloadJournal(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.JournalsApi.DownloadJournal(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `JournalsApi.DownloadJournal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -107,8 +107,8 @@ func main() {
     id := int32(56) // int32 | 受け付けID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.JournalsApi.GetJournalStatus(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.JournalsApi.GetJournalStatus(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `JournalsApi.GetJournalStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## GetJournals
 
-> JournalsResponse GetJournals(ctx).DownloadType(downloadType).CompanyId(companyId).VisibleTags(visibleTags).StartDate(startDate).EndDate(endDate).Execute()
+> JournalsResponse GetJournals(ctx).DownloadType(downloadType).CompanyId(companyId).VisibleTags(visibleTags).VisibleIds(visibleIds).StartDate(startDate).EndDate(endDate).Execute()
 
 ダウンロード要求
 
@@ -178,12 +178,13 @@ func main() {
     downloadType := "downloadType_example" // string | ダウンロード形式
     companyId := int32(56) // int32 | 事業所ID
     visibleTags := []string{"VisibleTags_example"} // []string | 補助科目やコメントとして出力する項目 (optional)
+    visibleIds := []string{"VisibleIds_example"} // []string | 追加出力するID項目 (optional)
     startDate := "startDate_example" // string | 取得開始日 (yyyy-mm-dd) (optional)
     endDate := "endDate_example" // string | 取得終了日 (yyyy-mm-dd) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.JournalsApi.GetJournals(context.Background()).DownloadType(downloadType).CompanyId(companyId).VisibleTags(visibleTags).StartDate(startDate).EndDate(endDate).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.JournalsApi.GetJournals(context.Background()).DownloadType(downloadType).CompanyId(companyId).VisibleTags(visibleTags).VisibleIds(visibleIds).StartDate(startDate).EndDate(endDate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `JournalsApi.GetJournals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -207,6 +208,7 @@ Name | Type | Description  | Notes
  **downloadType** | **string** | ダウンロード形式 | 
  **companyId** | **int32** | 事業所ID | 
  **visibleTags** | **[]string** | 補助科目やコメントとして出力する項目 | 
+ **visibleIds** | **[]string** | 追加出力するID項目 | 
  **startDate** | **string** | 取得開始日 (yyyy-mm-dd) | 
  **endDate** | **string** | 取得終了日 (yyyy-mm-dd) | 
 

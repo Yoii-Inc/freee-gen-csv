@@ -36,8 +36,8 @@ func main() {
     accountItemParams := *openapiclient.NewAccountItemParams(*openapiclient.NewAccountItemParamsAccountItem(int32(1), int32(1), int32(1), "その他預金", "新しい勘定科目", int32(1)), int32(1)) // AccountItemParams | 勘定科目の作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.CreateAccountItem(context.Background()).AccountItemParams(accountItemParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.CreateAccountItem(context.Background()).AccountItemParams(accountItemParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.CreateAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.DestroyAccountItem(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.DestroyAccountItem(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.DestroyAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,8 +173,8 @@ func main() {
     id := int32(56) // int32 | 勘定科目ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.GetAccountItem(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.GetAccountItem(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.GetAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -245,8 +245,8 @@ func main() {
     baseDate := "baseDate_example" // string | 基準日:指定した場合、勘定科目に紐づく税区分(default_tax_code)が、基準日の税率に基づいて返ります。 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.GetAccountItems(context.Background()).CompanyId(companyId).BaseDate(baseDate).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.GetAccountItems(context.Background()).CompanyId(companyId).BaseDate(baseDate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.GetAccountItems``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -313,8 +313,8 @@ func main() {
     accountItemParams := *openapiclient.NewAccountItemParams(*openapiclient.NewAccountItemParamsAccountItem(int32(1), int32(1), int32(1), "その他預金", "新しい勘定科目", int32(1)), int32(1)) // AccountItemParams | 勘定科目の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AccountItemsApi.UpdateAccountItem(context.Background(), id).AccountItemParams(accountItemParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountItemsApi.UpdateAccountItem(context.Background(), id).AccountItemParams(accountItemParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AccountItemsApi.UpdateAccountItem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

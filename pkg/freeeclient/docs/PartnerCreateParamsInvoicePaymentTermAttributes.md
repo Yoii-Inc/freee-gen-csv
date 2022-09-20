@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdditionalMonths** | Pointer to **int32** | 支払月 | [optional] 
+**AdditionalMonths** | Pointer to **int32** | 入金月 | [optional] 
 **CutoffDay** | Pointer to **int32** | 締め日（29, 30, 31日の末日を指定する場合は、32を指定してください。） | [optional] 
-**FixedDay** | Pointer to **int32** | 支払日（29, 30, 31日の末日を指定する場合は、32を指定してください。） | [optional] 
+**FixedDay** | Pointer to **int32** | 入金日（29, 30, 31日の末日を指定する場合は、32を指定してください。） | [optional] 
 
 ## Methods
 

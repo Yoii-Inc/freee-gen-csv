@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TrialBsThreeYears** | [**TrialBsThreeYearsResponseTrialBsThreeYears**](TrialBsThreeYearsResponseTrialBsThreeYears.md) |  | 
 **UpToDate** | **bool** | 集計結果が最新かどうか | 
+**UpToDateReasons** | Pointer to [**[]JournalsResponseJournalsUpToDateReasonsInner**](JournalsResponseJournalsUpToDateReasonsInner.md) | 集計が最新でない場合の要因情報 | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetUpToDate sets UpToDate field to given value.
 
+
+### GetUpToDateReasons
+
+`func (o *TrialBsThreeYearsResponse) GetUpToDateReasons() []JournalsResponseJournalsUpToDateReasonsInner`
+
+GetUpToDateReasons returns the UpToDateReasons field if non-nil, zero value otherwise.
+
+### GetUpToDateReasonsOk
+
+`func (o *TrialBsThreeYearsResponse) GetUpToDateReasonsOk() (*[]JournalsResponseJournalsUpToDateReasonsInner, bool)`
+
+GetUpToDateReasonsOk returns a tuple with the UpToDateReasons field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpToDateReasons
+
+`func (o *TrialBsThreeYearsResponse) SetUpToDateReasons(v []JournalsResponseJournalsUpToDateReasonsInner)`
+
+SetUpToDateReasons sets UpToDateReasons field to given value.
+
+### HasUpToDateReasons
+
+`func (o *TrialBsThreeYearsResponse) HasUpToDateReasons() bool`
+
+HasUpToDateReasons returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BankId** | **int32** | サービスID | 
+**BankId** | **int32** | 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須） | 
 **Id** | **int32** | 口座ID | 
 **Name** | **string** | 口座名, 最大255文字 | 
 **Type** | **string** | 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 

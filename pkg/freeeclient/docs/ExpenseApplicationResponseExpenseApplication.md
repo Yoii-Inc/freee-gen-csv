@@ -6,18 +6,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApplicantId** | **int32** | 申請者のユーザーID | 
 **ApplicationNumber** | **string** | 申請No. | 
-**ApprovalFlowLogs** | [**[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs**](ApprovalRequestResponseApprovalRequestApprovalFlowLogs.md) | 経費申請の承認履歴（配列） | 
+**ApprovalFlowLogs** | [**[]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner**](ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner.md) | 経費申請の承認履歴（配列） | 
 **ApprovalFlowRouteId** | **int32** | 申請経路ID | 
-**Approvers** | [**[]ApprovalRequestResponseApprovalRequestApprovers**](ApprovalRequestResponseApprovalRequestApprovers.md) | 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、    approversはレスポンスに含まれるようになります。    その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。 | 
-**Comments** | [**[]ApprovalRequestResponseApprovalRequestComments**](ApprovalRequestResponseApprovalRequestComments.md) | 経費申請のコメント一覧（配列） | 
+**Approvers** | [**[]ApprovalRequestResponseApprovalRequestApproversInner**](ApprovalRequestResponseApprovalRequestApproversInner.md) | 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、   approversはレスポンスに含まれるようになります。   その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。 | 
+**Comments** | [**[]ApprovalRequestResponseApprovalRequestCommentsInner**](ApprovalRequestResponseApprovalRequestCommentsInner.md) | 経費申請のコメント一覧（配列） | 
 **CompanyId** | **int32** | 事業所ID | 
 **CurrentRound** | **int32** | 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。 | 
 **CurrentStepId** | **NullableInt32** | 現在承認ステップID | 
 **DealId** | **NullableInt32** | 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます) | 
 **DealStatus** | **NullableString** | 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:精算済み, unsettled:清算待ち) | 
 **Description** | Pointer to **NullableString** | 備考 | [optional] 
-**EditableOnWeb** | **bool** | 会計freeeのWeb画面から申請内容を編集可能：falseの場合、Web上からの項目行の追加／削除・金額の編集が出来なくなります。APIでの編集は可能です。 | 
-**ExpenseApplicationLines** | [**[]ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines**](ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines.md) | 経費申請の項目行一覧（配列） | 
+**ExpenseApplicationLines** | [**[]ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner**](ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner.md) | 経費申請の項目行一覧（配列） | 
 **Id** | **int32** | 経費申請ID | 
 **IssueDate** | **string** | 申請日 (yyyy-mm-dd) | 
 **SectionId** | Pointer to **NullableInt32** | 部門ID | [optional] 
@@ -33,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewExpenseApplicationResponseExpenseApplication
 
-`func NewExpenseApplicationResponseExpenseApplication(applicantId int32, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogs, approvalFlowRouteId int32, approvers []ApprovalRequestResponseApprovalRequestApprovers, comments []ApprovalRequestResponseApprovalRequestComments, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, editableOnWeb bool, expenseApplicationLines []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines, id int32, issueDate string, status string, title string, ) *ExpenseApplicationResponseExpenseApplication`
+`func NewExpenseApplicationResponseExpenseApplication(applicantId int32, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, approvalFlowRouteId int32, approvers []ApprovalRequestResponseApprovalRequestApproversInner, comments []ApprovalRequestResponseApprovalRequestCommentsInner, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, expenseApplicationLines []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner, id int32, issueDate string, status string, title string, ) *ExpenseApplicationResponseExpenseApplication`
 
 NewExpenseApplicationResponseExpenseApplication instantiates a new ExpenseApplicationResponseExpenseApplication object
 This constructor will assign default values to properties that have it defined,
@@ -90,20 +89,20 @@ SetApplicationNumber sets ApplicationNumber field to given value.
 
 ### GetApprovalFlowLogs
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogs`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner`
 
 GetApprovalFlowLogs returns the ApprovalFlowLogs field if non-nil, zero value otherwise.
 
 ### GetApprovalFlowLogsOk
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs, bool)`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, bool)`
 
 GetApprovalFlowLogsOk returns a tuple with the ApprovalFlowLogs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovalFlowLogs
 
-`func (o *ExpenseApplicationResponseExpenseApplication) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogs)`
+`func (o *ExpenseApplicationResponseExpenseApplication) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner)`
 
 SetApprovalFlowLogs sets ApprovalFlowLogs field to given value.
 
@@ -130,40 +129,40 @@ SetApprovalFlowRouteId sets ApprovalFlowRouteId field to given value.
 
 ### GetApprovers
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetApprovers() []ApprovalRequestResponseApprovalRequestApprovers`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetApprovers() []ApprovalRequestResponseApprovalRequestApproversInner`
 
 GetApprovers returns the Approvers field if non-nil, zero value otherwise.
 
 ### GetApproversOk
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApprovers, bool)`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApproversInner, bool)`
 
 GetApproversOk returns a tuple with the Approvers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovers
 
-`func (o *ExpenseApplicationResponseExpenseApplication) SetApprovers(v []ApprovalRequestResponseApprovalRequestApprovers)`
+`func (o *ExpenseApplicationResponseExpenseApplication) SetApprovers(v []ApprovalRequestResponseApprovalRequestApproversInner)`
 
 SetApprovers sets Approvers field to given value.
 
 
 ### GetComments
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetComments() []ApprovalRequestResponseApprovalRequestComments`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetComments() []ApprovalRequestResponseApprovalRequestCommentsInner`
 
 GetComments returns the Comments field if non-nil, zero value otherwise.
 
 ### GetCommentsOk
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestComments, bool)`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestCommentsInner, bool)`
 
 GetCommentsOk returns a tuple with the Comments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComments
 
-`func (o *ExpenseApplicationResponseExpenseApplication) SetComments(v []ApprovalRequestResponseApprovalRequestComments)`
+`func (o *ExpenseApplicationResponseExpenseApplication) SetComments(v []ApprovalRequestResponseApprovalRequestCommentsInner)`
 
 SetComments sets Comments field to given value.
 
@@ -333,42 +332,22 @@ HasDescription returns a boolean if a field has been set.
 `func (o *ExpenseApplicationResponseExpenseApplication) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetEditableOnWeb
-
-`func (o *ExpenseApplicationResponseExpenseApplication) GetEditableOnWeb() bool`
-
-GetEditableOnWeb returns the EditableOnWeb field if non-nil, zero value otherwise.
-
-### GetEditableOnWebOk
-
-`func (o *ExpenseApplicationResponseExpenseApplication) GetEditableOnWebOk() (*bool, bool)`
-
-GetEditableOnWebOk returns a tuple with the EditableOnWeb field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditableOnWeb
-
-`func (o *ExpenseApplicationResponseExpenseApplication) SetEditableOnWeb(v bool)`
-
-SetEditableOnWeb sets EditableOnWeb field to given value.
-
-
 ### GetExpenseApplicationLines
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLines() []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLines() []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner`
 
 GetExpenseApplicationLines returns the ExpenseApplicationLines field if non-nil, zero value otherwise.
 
 ### GetExpenseApplicationLinesOk
 
-`func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines, bool)`
+`func (o *ExpenseApplicationResponseExpenseApplication) GetExpenseApplicationLinesOk() (*[]ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner, bool)`
 
 GetExpenseApplicationLinesOk returns a tuple with the ExpenseApplicationLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpenseApplicationLines
 
-`func (o *ExpenseApplicationResponseExpenseApplication) SetExpenseApplicationLines(v []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLines)`
+`func (o *ExpenseApplicationResponseExpenseApplication) SetExpenseApplicationLines(v []ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner)`
 
 SetExpenseApplicationLines sets ExpenseApplicationLines field to given value.
 

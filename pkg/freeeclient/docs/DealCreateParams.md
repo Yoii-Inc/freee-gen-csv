@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CompanyId** | **int32** | 事業所ID | 
-**Details** | [**[]DealCreateParamsDetails**](DealCreateParamsDetails.md) |  | 
+**Details** | [**[]DealCreateParamsDetailsInner**](DealCreateParamsDetailsInner.md) |  | 
 **DueDate** | Pointer to **string** | 支払期日(yyyy-mm-dd) | [optional] 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
 **PartnerCode** | Pointer to **string** | 取引先コード | [optional] 
 **PartnerId** | Pointer to **int32** | 取引先ID | [optional] 
-**Payments** | Pointer to [**[]DealCreateParamsPayments**](DealCreateParamsPayments.md) | 支払行一覧（配列）：未指定の場合、未決済の取引を作成します。 | [optional] 
+**Payments** | Pointer to [**[]DealCreateParamsPaymentsInner**](DealCreateParamsPaymentsInner.md) | 支払行一覧（配列）：未指定の場合、未決済の取引を作成します。 | [optional] 
 **ReceiptIds** | Pointer to **[]int32** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
 **RefNumber** | Pointer to **string** | 管理番号 | [optional] 
 **Type** | **string** | 収支区分 (収入: income, 支出: expense) | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewDealCreateParams
 
-`func NewDealCreateParams(companyId int32, details []DealCreateParamsDetails, issueDate string, type_ string, ) *DealCreateParams`
+`func NewDealCreateParams(companyId int32, details []DealCreateParamsDetailsInner, issueDate string, type_ string, ) *DealCreateParams`
 
 NewDealCreateParams instantiates a new DealCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -56,20 +56,20 @@ SetCompanyId sets CompanyId field to given value.
 
 ### GetDetails
 
-`func (o *DealCreateParams) GetDetails() []DealCreateParamsDetails`
+`func (o *DealCreateParams) GetDetails() []DealCreateParamsDetailsInner`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *DealCreateParams) GetDetailsOk() (*[]DealCreateParamsDetails, bool)`
+`func (o *DealCreateParams) GetDetailsOk() (*[]DealCreateParamsDetailsInner, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *DealCreateParams) SetDetails(v []DealCreateParamsDetails)`
+`func (o *DealCreateParams) SetDetails(v []DealCreateParamsDetailsInner)`
 
 SetDetails sets Details field to given value.
 
@@ -171,20 +171,20 @@ HasPartnerId returns a boolean if a field has been set.
 
 ### GetPayments
 
-`func (o *DealCreateParams) GetPayments() []DealCreateParamsPayments`
+`func (o *DealCreateParams) GetPayments() []DealCreateParamsPaymentsInner`
 
 GetPayments returns the Payments field if non-nil, zero value otherwise.
 
 ### GetPaymentsOk
 
-`func (o *DealCreateParams) GetPaymentsOk() (*[]DealCreateParamsPayments, bool)`
+`func (o *DealCreateParams) GetPaymentsOk() (*[]DealCreateParamsPaymentsInner, bool)`
 
 GetPaymentsOk returns a tuple with the Payments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPayments
 
-`func (o *DealCreateParams) SetPayments(v []DealCreateParamsPayments)`
+`func (o *DealCreateParams) SetPayments(v []DealCreateParamsPaymentsInner)`
 
 SetPayments sets Payments field to given value.
 

@@ -36,8 +36,8 @@ func main() {
     transferParams := *openapiclient.NewTransferParams(int64(5000), int32(1), "2019-12-17", int32(1), "credit_card", int32(1), "bank_account") // TransferParams | 取引（振替）の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.CreateTransfer(context.Background()).TransferParams(transferParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.CreateTransfer(context.Background()).TransferParams(transferParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.CreateTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.DestroyTransfer(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.DestroyTransfer(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.DestroyTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,8 +173,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.GetTransfer(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.GetTransfer(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.GetTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## GetTransfers
 
-> InlineResponse20011 GetTransfers(ctx).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
+> GetTransfers200Response GetTransfers(ctx).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
 
 取引（振替）一覧の取得
 
@@ -248,13 +248,13 @@ func main() {
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100)  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.GetTransfers(context.Background()).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.GetTransfers(context.Background()).CompanyId(companyId).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.GetTransfers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetTransfers`: InlineResponse20011
+    // response from `GetTransfers`: GetTransfers200Response
     fmt.Fprintf(os.Stdout, "Response from `TransfersApi.GetTransfers`: %v\n", resp)
 }
 ```
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**GetTransfers200Response**](GetTransfers200Response.md)
 
 ### Authorization
 
@@ -319,8 +319,8 @@ func main() {
     transferParams := *openapiclient.NewTransferParams(int64(5000), int32(1), "2019-12-17", int32(1), "credit_card", int32(1), "bank_account") // TransferParams | 取引（振替）の更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransfersApi.UpdateTransfer(context.Background(), id).TransferParams(transferParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TransfersApi.UpdateTransfer(context.Background(), id).TransferParams(transferParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.UpdateTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

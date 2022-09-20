@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **CorrespondingIncomeName** | Pointer to **NullableString** | 収入取引相手勘定科目名 | [optional] 
 **GroupName** | Pointer to **NullableString** | 決算書表示名（小カテゴリー） | [optional] 
 **Id** | **int32** | 勘定科目ID | 
-**Items** | Pointer to [**[]AccountItemResponseAccountItemItems**](AccountItemResponseAccountItemItems.md) |  | [optional] 
+**Items** | Pointer to [**[]AccountItemResponseAccountItemItemsInner**](AccountItemResponseAccountItemItemsInner.md) |  | [optional] 
 **Name** | **string** | 勘定科目名 (30文字以内) | 
-**Partners** | Pointer to [**[]AccountItemResponseAccountItemPartners**](AccountItemResponseAccountItemPartners.md) |  | [optional] 
+**Partners** | Pointer to [**[]AccountItemResponseAccountItemPartnersInner**](AccountItemResponseAccountItemPartnersInner.md) |  | [optional] 
 **Searchable** | **int32** | 検索可能:2, 検索不可：3 | 
 **Shortcut** | Pointer to **string** | ショートカット1 (20文字以内) | [optional] 
 **ShortcutNum** | Pointer to **string** | ショートカット2(勘定科目コード) (20文字以内) | [optional] 
@@ -381,20 +381,20 @@ SetId sets Id field to given value.
 
 ### GetItems
 
-`func (o *AccountItemResponseAccountItem) GetItems() []AccountItemResponseAccountItemItems`
+`func (o *AccountItemResponseAccountItem) GetItems() []AccountItemResponseAccountItemItemsInner`
 
 GetItems returns the Items field if non-nil, zero value otherwise.
 
 ### GetItemsOk
 
-`func (o *AccountItemResponseAccountItem) GetItemsOk() (*[]AccountItemResponseAccountItemItems, bool)`
+`func (o *AccountItemResponseAccountItem) GetItemsOk() (*[]AccountItemResponseAccountItemItemsInner, bool)`
 
 GetItemsOk returns a tuple with the Items field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItems
 
-`func (o *AccountItemResponseAccountItem) SetItems(v []AccountItemResponseAccountItemItems)`
+`func (o *AccountItemResponseAccountItem) SetItems(v []AccountItemResponseAccountItemItemsInner)`
 
 SetItems sets Items field to given value.
 
@@ -426,20 +426,20 @@ SetName sets Name field to given value.
 
 ### GetPartners
 
-`func (o *AccountItemResponseAccountItem) GetPartners() []AccountItemResponseAccountItemPartners`
+`func (o *AccountItemResponseAccountItem) GetPartners() []AccountItemResponseAccountItemPartnersInner`
 
 GetPartners returns the Partners field if non-nil, zero value otherwise.
 
 ### GetPartnersOk
 
-`func (o *AccountItemResponseAccountItem) GetPartnersOk() (*[]AccountItemResponseAccountItemPartners, bool)`
+`func (o *AccountItemResponseAccountItem) GetPartnersOk() (*[]AccountItemResponseAccountItemPartnersInner, bool)`
 
 GetPartnersOk returns a tuple with the Partners field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartners
 
-`func (o *AccountItemResponseAccountItem) SetPartners(v []AccountItemResponseAccountItemPartners)`
+`func (o *AccountItemResponseAccountItem) SetPartners(v []AccountItemResponseAccountItemPartnersInner)`
 
 SetPartners sets Partners field to given value.
 

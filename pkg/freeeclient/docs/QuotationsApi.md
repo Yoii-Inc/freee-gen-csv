@@ -36,8 +36,8 @@ func main() {
     quotationCreateParams := *openapiclient.NewQuotationCreateParams(int32(1), "freeeパートナー株式会社", "御中") // QuotationCreateParams | 見積書の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.QuotationsApi.CreateQuotation(context.Background()).QuotationCreateParams(quotationCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.QuotationsApi.CreateQuotation(context.Background()).QuotationCreateParams(quotationCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `QuotationsApi.CreateQuotation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,8 +103,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.QuotationsApi.DestroyQuotation(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.QuotationsApi.DestroyQuotation(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `QuotationsApi.DestroyQuotation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,8 +173,8 @@ func main() {
     id := int32(56) // int32 | 見積書ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.QuotationsApi.GetQuotation(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.QuotationsApi.GetQuotation(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `QuotationsApi.GetQuotation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -253,8 +253,8 @@ func main() {
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最大: 100)  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.QuotationsApi.GetQuotations(context.Background()).CompanyId(companyId).PartnerId(partnerId).PartnerCode(partnerCode).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).QuotationNumber(quotationNumber).Description(description).QuotationStatus(quotationStatus).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.QuotationsApi.GetQuotations(context.Background()).CompanyId(companyId).PartnerId(partnerId).PartnerCode(partnerCode).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).QuotationNumber(quotationNumber).Description(description).QuotationStatus(quotationStatus).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `QuotationsApi.GetQuotations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -329,8 +329,8 @@ func main() {
     quotationUpdateParams := *openapiclient.NewQuotationUpdateParams(int32(1), "freeeパートナー株式会社", "御中") // QuotationUpdateParams | 見積書の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.QuotationsApi.UpdateQuotation(context.Background(), id).QuotationUpdateParams(quotationUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.QuotationsApi.UpdateQuotation(context.Background(), id).QuotationUpdateParams(quotationUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `QuotationsApi.UpdateQuotation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

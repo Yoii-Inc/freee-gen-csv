@@ -1,55 +1,53 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // ApprovalRequestsApiService ApprovalRequestsApi service
 type ApprovalRequestsApiService service
 
 type ApiCreateApprovalRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	approvalRequestCreateParams *ApprovalRequestCreateParams
 }
 
+// 各種申請の作成
 func (r ApiCreateApprovalRequestRequest) ApprovalRequestCreateParams(approvalRequestCreateParams ApprovalRequestCreateParams) ApiCreateApprovalRequestRequest {
 	r.approvalRequestCreateParams = &approvalRequestCreateParams
 	return r
 }
 
-func (r ApiCreateApprovalRequestRequest) Execute() (ApprovalRequestResponse, *_nethttp.Response, error) {
+func (r ApiCreateApprovalRequestRequest) Execute() (*ApprovalRequestResponse, *http.Response, error) {
 	return r.ApiService.CreateApprovalRequestExecute(r)
 }
 
 /*
- * CreateApprovalRequest 各種申請の作成
- * 
+CreateApprovalRequest 各種申請の作成
+
+
 <h2 id="_1">概要</h2>
 
 <p>指定した事業所の各種申請を作成する</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
@@ -104,43 +102,43 @@ func (r ApiCreateApprovalRequestRequest) Execute() (ApprovalRequestResponse, *_n
       <li>部門および役職指定</li>
     </ul>
   </li>
+  <li>
+    申請フォームの項目に契約書（freeeサイン連携）が利用されている各種申請については、API経由で参照は可能ですが、作成と更新ができません。
+  </li>
   <li>Web画面やAPIを通じて申請フォームが変更されると、本APIで使用する項目ID（request_itemsで指定するid）も変更されます。本API利用前に各種申請の取得APIを利用し、最新の申請フォームを取得することを推奨します。</li>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateApprovalRequestRequest
- */
-func (a *ApprovalRequestsApiService) CreateApprovalRequest(ctx _context.Context) ApiCreateApprovalRequestRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateApprovalRequestRequest
+*/
+func (a *ApprovalRequestsApiService) CreateApprovalRequest(ctx context.Context) ApiCreateApprovalRequestRequest {
 	return ApiCreateApprovalRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return ApprovalRequestResponse
- */
-func (a *ApprovalRequestsApiService) CreateApprovalRequestExecute(r ApiCreateApprovalRequestRequest) (ApprovalRequestResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ApprovalRequestResponse
+func (a *ApprovalRequestsApiService) CreateApprovalRequestExecute(r ApiCreateApprovalRequestRequest) (*ApprovalRequestResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApprovalRequestResponse
+		formFiles            []formFile
+		localVarReturnValue  *ApprovalRequestResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.CreateApprovalRequest")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
@@ -161,7 +159,7 @@ func (a *ApprovalRequestsApiService) CreateApprovalRequestExecute(r ApiCreateApp
 	}
 	// body params
 	localVarPostBody = r.approvalRequestCreateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -171,15 +169,15 @@ func (a *ApprovalRequestsApiService) CreateApprovalRequestExecute(r ApiCreateApp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -237,7 +235,7 @@ func (a *ApprovalRequestsApiService) CreateApprovalRequestExecute(r ApiCreateApp
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -248,29 +246,31 @@ func (a *ApprovalRequestsApiService) CreateApprovalRequestExecute(r ApiCreateApp
 }
 
 type ApiDestroyApprovalRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	id int32
 	companyId *int32
 }
 
+// 事業所ID
 func (r ApiDestroyApprovalRequestRequest) CompanyId(companyId int32) ApiDestroyApprovalRequestRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyApprovalRequestRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyApprovalRequestRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyApprovalRequestExecute(r)
 }
 
 /*
- * DestroyApprovalRequest 各種申請の削除
- * 
+DestroyApprovalRequest 各種申請の削除
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の各種申請を削除する</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
@@ -299,11 +299,12 @@ func (r ApiDestroyApprovalRequestRequest) Execute() (*_nethttp.Response, error) 
   </li>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 各種申請ID
- * @return ApiDestroyApprovalRequestRequest
- */
-func (a *ApprovalRequestsApiService) DestroyApprovalRequest(ctx _context.Context, id int32) ApiDestroyApprovalRequestRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 各種申請ID
+ @return ApiDestroyApprovalRequestRequest
+*/
+func (a *ApprovalRequestsApiService) DestroyApprovalRequest(ctx context.Context, id int32) ApiDestroyApprovalRequestRequest {
 	return ApiDestroyApprovalRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -311,29 +312,25 @@ func (a *ApprovalRequestsApiService) DestroyApprovalRequest(ctx _context.Context
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ApprovalRequestsApiService) DestroyApprovalRequestExecute(r ApiDestroyApprovalRequestRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *ApprovalRequestsApiService) DestroyApprovalRequestExecute(r ApiDestroyApprovalRequestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.DestroyApprovalRequest")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -368,7 +365,7 @@ func (a *ApprovalRequestsApiService) DestroyApprovalRequestExecute(r ApiDestroyA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -378,15 +375,15 @@ func (a *ApprovalRequestsApiService) DestroyApprovalRequestExecute(r ApiDestroyA
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -446,29 +443,31 @@ func (a *ApprovalRequestsApiService) DestroyApprovalRequestExecute(r ApiDestroyA
 }
 
 type ApiGetApprovalRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	id int32
 	companyId *int32
 }
 
+// 事業所ID
 func (r ApiGetApprovalRequestRequest) CompanyId(companyId int32) ApiGetApprovalRequestRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetApprovalRequestRequest) Execute() (ApprovalRequestResponse, *_nethttp.Response, error) {
+func (r ApiGetApprovalRequestRequest) Execute() (*ApprovalRequestResponse, *http.Response, error) {
 	return r.ApiService.GetApprovalRequestExecute(r)
 }
 
 /*
- * GetApprovalRequest 各種申請の取得
- * 
+GetApprovalRequest 各種申請の取得
+
+
 <h2 id="">概要</h2>
 
 <p>指定した事業所の各種申請を取得する</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
@@ -480,13 +479,17 @@ func (r ApiGetApprovalRequestRequest) Execute() (ApprovalRequestResponse, *_neth
       <li>部門および役職指定</li>
     </ul>
   </li>
+  <li>
+    申請フォームの項目に契約書（freeeサイン連携）が利用されている各種申請については、API経由で参照は可能ですが、作成と更新ができません。
+  </li>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 各種申請ID
- * @return ApiGetApprovalRequestRequest
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequest(ctx _context.Context, id int32) ApiGetApprovalRequestRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 各種申請ID
+ @return ApiGetApprovalRequestRequest
+*/
+func (a *ApprovalRequestsApiService) GetApprovalRequest(ctx context.Context, id int32) ApiGetApprovalRequestRequest {
 	return ApiGetApprovalRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -494,31 +497,27 @@ func (a *ApprovalRequestsApiService) GetApprovalRequest(ctx _context.Context, id
 	}
 }
 
-/*
- * Execute executes the request
- * @return ApprovalRequestResponse
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequestExecute(r ApiGetApprovalRequestRequest) (ApprovalRequestResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ApprovalRequestResponse
+func (a *ApprovalRequestsApiService) GetApprovalRequestExecute(r ApiGetApprovalRequestRequest) (*ApprovalRequestResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApprovalRequestResponse
+		formFiles            []formFile
+		localVarReturnValue  *ApprovalRequestResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.GetApprovalRequest")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -553,7 +552,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestExecute(r ApiGetApprovalR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -563,15 +562,15 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestExecute(r ApiGetApprovalR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -629,7 +628,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestExecute(r ApiGetApprovalR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -640,39 +639,42 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestExecute(r ApiGetApprovalR
 }
 
 type ApiGetApprovalRequestFormRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	id int32
 	companyId *int32
 }
 
+// 事業所ID
 func (r ApiGetApprovalRequestFormRequest) CompanyId(companyId int32) ApiGetApprovalRequestFormRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetApprovalRequestFormRequest) Execute() (ApprovalRequestFormResponse, *_nethttp.Response, error) {
+func (r ApiGetApprovalRequestFormRequest) Execute() (*ApprovalRequestFormResponse, *http.Response, error) {
 	return r.ApiService.GetApprovalRequestFormExecute(r)
 }
 
 /*
- * GetApprovalRequestForm 各種申請の申請フォームの取得
- * 
+GetApprovalRequestForm 各種申請の申請フォームの取得
+
+
 <h2 id="_1">概要</h2>
 
 <p>指定した事業所の各種申請の申請フォームを取得する</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 申請フォームID
- * @return ApiGetApprovalRequestFormRequest
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequestForm(ctx _context.Context, id int32) ApiGetApprovalRequestFormRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 申請フォームID
+ @return ApiGetApprovalRequestFormRequest
+*/
+func (a *ApprovalRequestsApiService) GetApprovalRequestForm(ctx context.Context, id int32) ApiGetApprovalRequestFormRequest {
 	return ApiGetApprovalRequestFormRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -680,31 +682,27 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestForm(ctx _context.Context
 	}
 }
 
-/*
- * Execute executes the request
- * @return ApprovalRequestFormResponse
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequestFormExecute(r ApiGetApprovalRequestFormRequest) (ApprovalRequestFormResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ApprovalRequestFormResponse
+func (a *ApprovalRequestsApiService) GetApprovalRequestFormExecute(r ApiGetApprovalRequestFormRequest) (*ApprovalRequestFormResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApprovalRequestFormResponse
+		formFiles            []formFile
+		localVarReturnValue  *ApprovalRequestFormResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.GetApprovalRequestForm")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests/forms/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -739,7 +737,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormExecute(r ApiGetAppro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -749,15 +747,15 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormExecute(r ApiGetAppro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -815,7 +813,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormExecute(r ApiGetAppro
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -826,67 +824,66 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormExecute(r ApiGetAppro
 }
 
 type ApiGetApprovalRequestFormsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	companyId *int32
 }
 
+// 事業所ID
 func (r ApiGetApprovalRequestFormsRequest) CompanyId(companyId int32) ApiGetApprovalRequestFormsRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiGetApprovalRequestFormsRequest) Execute() (ApprovalRequestFormIndexResponse, *_nethttp.Response, error) {
+func (r ApiGetApprovalRequestFormsRequest) Execute() (*ApprovalRequestFormIndexResponse, *http.Response, error) {
 	return r.ApiService.GetApprovalRequestFormsExecute(r)
 }
 
 /*
- * GetApprovalRequestForms 各種申請の申請フォーム一覧の取得
- * 
+GetApprovalRequestForms 各種申請の申請フォーム一覧の取得
+
+
 <h2 id="_1">概要</h2>
 
 <p>指定した事業所の各種申請の申請フォーム一覧を取得する</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetApprovalRequestFormsRequest
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequestForms(ctx _context.Context) ApiGetApprovalRequestFormsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetApprovalRequestFormsRequest
+*/
+func (a *ApprovalRequestsApiService) GetApprovalRequestForms(ctx context.Context) ApiGetApprovalRequestFormsRequest {
 	return ApiGetApprovalRequestFormsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return ApprovalRequestFormIndexResponse
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequestFormsExecute(r ApiGetApprovalRequestFormsRequest) (ApprovalRequestFormIndexResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ApprovalRequestFormIndexResponse
+func (a *ApprovalRequestsApiService) GetApprovalRequestFormsExecute(r ApiGetApprovalRequestFormsRequest) (*ApprovalRequestFormIndexResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApprovalRequestFormIndexResponse
+		formFiles            []formFile
+		localVarReturnValue  *ApprovalRequestFormIndexResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.GetApprovalRequestForms")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests/forms"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -915,7 +912,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormsExecute(r ApiGetAppr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -925,15 +922,15 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormsExecute(r ApiGetAppr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -991,7 +988,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormsExecute(r ApiGetAppr
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1002,7 +999,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormsExecute(r ApiGetAppr
 }
 
 type ApiGetApprovalRequestsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	companyId *int32
 	status *string
@@ -1012,68 +1009,104 @@ type ApiGetApprovalRequestsRequest struct {
 	startApplicationDate *string
 	endApplicationDate *string
 	applicantId *int32
+	minAmount *int64
+	maxAmount *int64
 	approverId *int32
 	offset *int32
 	limit *int32
 }
 
+// 事業所ID
 func (r ApiGetApprovalRequestsRequest) CompanyId(companyId int32) ApiGetApprovalRequestsRequest {
 	r.companyId = &companyId
 	return r
 }
+
+// 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) 承認者指定時には無効です。
 func (r ApiGetApprovalRequestsRequest) Status(status string) ApiGetApprovalRequestsRequest {
 	r.status = &status
 	return r
 }
+
+// 申請No.
 func (r ApiGetApprovalRequestsRequest) ApplicationNumber(applicationNumber int32) ApiGetApprovalRequestsRequest {
 	r.applicationNumber = &applicationNumber
 	return r
 }
+
+// 申請タイトル
 func (r ApiGetApprovalRequestsRequest) Title(title string) ApiGetApprovalRequestsRequest {
 	r.title = &title
 	return r
 }
+
+// 申請フォームID
 func (r ApiGetApprovalRequestsRequest) FormId(formId int32) ApiGetApprovalRequestsRequest {
 	r.formId = &formId
 	return r
 }
+
+// 申請日で絞込：開始日(yyyy-mm-dd)
 func (r ApiGetApprovalRequestsRequest) StartApplicationDate(startApplicationDate string) ApiGetApprovalRequestsRequest {
 	r.startApplicationDate = &startApplicationDate
 	return r
 }
+
+// 申請日で絞込：終了日(yyyy-mm-dd)
 func (r ApiGetApprovalRequestsRequest) EndApplicationDate(endApplicationDate string) ApiGetApprovalRequestsRequest {
 	r.endApplicationDate = &endApplicationDate
 	return r
 }
+
+// 申請者のユーザーID
 func (r ApiGetApprovalRequestsRequest) ApplicantId(applicantId int32) ApiGetApprovalRequestsRequest {
 	r.applicantId = &applicantId
 	return r
 }
+
+// 金額で絞込：以上
+func (r ApiGetApprovalRequestsRequest) MinAmount(minAmount int64) ApiGetApprovalRequestsRequest {
+	r.minAmount = &minAmount
+	return r
+}
+
+// 金額で絞込：以下
+func (r ApiGetApprovalRequestsRequest) MaxAmount(maxAmount int64) ApiGetApprovalRequestsRequest {
+	r.maxAmount = &maxAmount
+	return r
+}
+
+// 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。
 func (r ApiGetApprovalRequestsRequest) ApproverId(approverId int32) ApiGetApprovalRequestsRequest {
 	r.approverId = &approverId
 	return r
 }
+
+// 取得レコードのオフセット (デフォルト: 0)
 func (r ApiGetApprovalRequestsRequest) Offset(offset int32) ApiGetApprovalRequestsRequest {
 	r.offset = &offset
 	return r
 }
+
+// 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500)
 func (r ApiGetApprovalRequestsRequest) Limit(limit int32) ApiGetApprovalRequestsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetApprovalRequestsRequest) Execute() (ApprovalRequestsIndexResponse, *_nethttp.Response, error) {
+func (r ApiGetApprovalRequestsRequest) Execute() (*ApprovalRequestsIndexResponse, *http.Response, error) {
 	return r.ApiService.GetApprovalRequestsExecute(r)
 }
 
 /*
- * GetApprovalRequests 各種申請の一覧
- * 
+GetApprovalRequests 各種申請の一覧
+
+
 <h2 id="_1">概要</h2>
 
 <p>指定した事業所の各種申請一覧を取得する</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
@@ -1086,42 +1119,42 @@ func (r ApiGetApprovalRequestsRequest) Execute() (ApprovalRequestsIndexResponse,
       <li>部門および役職指定</li>
     </ul>
   </li>
+  <li>
+    申請フォームの項目に契約書（freeeサイン連携）が利用されている各種申請については、API経由で参照は可能ですが、作成と更新ができません。
+  </li>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetApprovalRequestsRequest
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequests(ctx _context.Context) ApiGetApprovalRequestsRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetApprovalRequestsRequest
+*/
+func (a *ApprovalRequestsApiService) GetApprovalRequests(ctx context.Context) ApiGetApprovalRequestsRequest {
 	return ApiGetApprovalRequestsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return ApprovalRequestsIndexResponse
- */
-func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApprovalRequestsRequest) (ApprovalRequestsIndexResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ApprovalRequestsIndexResponse
+func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApprovalRequestsRequest) (*ApprovalRequestsIndexResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApprovalRequestsIndexResponse
+		formFiles            []formFile
+		localVarReturnValue  *ApprovalRequestsIndexResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.GetApprovalRequests")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.companyId == nil {
 		return localVarReturnValue, nil, reportError("companyId is required and must be specified")
 	}
@@ -1154,6 +1187,12 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApproval
 	if r.applicantId != nil {
 		localVarQueryParams.Add("applicant_id", parameterToString(*r.applicantId, ""))
 	}
+	if r.minAmount != nil {
+		localVarQueryParams.Add("min_amount", parameterToString(*r.minAmount, ""))
+	}
+	if r.maxAmount != nil {
+		localVarQueryParams.Add("max_amount", parameterToString(*r.maxAmount, ""))
+	}
 	if r.approverId != nil {
 		localVarQueryParams.Add("approver_id", parameterToString(*r.approverId, ""))
 	}
@@ -1180,7 +1219,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApproval
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1190,15 +1229,15 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApproval
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1256,7 +1295,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApproval
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1267,29 +1306,31 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApproval
 }
 
 type ApiUpdateApprovalRequestRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	id int32
 	approvalRequestUpdateParams *ApprovalRequestUpdateParams
 }
 
+// 各種申請の更新
 func (r ApiUpdateApprovalRequestRequest) ApprovalRequestUpdateParams(approvalRequestUpdateParams ApprovalRequestUpdateParams) ApiUpdateApprovalRequestRequest {
 	r.approvalRequestUpdateParams = &approvalRequestUpdateParams
 	return r
 }
 
-func (r ApiUpdateApprovalRequestRequest) Execute() (ApprovalRequestResponse, *_nethttp.Response, error) {
+func (r ApiUpdateApprovalRequestRequest) Execute() (*ApprovalRequestResponse, *http.Response, error) {
 	return r.ApiService.UpdateApprovalRequestExecute(r)
 }
 
 /*
- * UpdateApprovalRequest 各種申請の更新
- * 
+UpdateApprovalRequest 各種申請の更新
+
+
 <h2 id="_1">概要</h2>
 
 <p>指定した事業所の各種申請を更新する</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
@@ -1345,14 +1386,18 @@ func (r ApiUpdateApprovalRequestRequest) Execute() (ApprovalRequestResponse, *_n
       <li>部門および役職指定</li>
     </ul>
   </li>
+  <li>
+    申請フォームの項目に契約書（freeeサイン連携）が利用されている各種申請については、API経由で参照は可能ですが、作成と更新ができません。
+  </li>
   <li>Web画面やAPIを通じて申請フォームが変更されると、本APIで使用する項目ID（request_itemsで指定するid）も変更されます。本APIで使用する項目IDは申請作成時点の項目IDです。本API利用前に各種申請の取得APIを利用し、申請作成時点の項目IDを取得することを推奨します。</li>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 各種申請ID
- * @return ApiUpdateApprovalRequestRequest
- */
-func (a *ApprovalRequestsApiService) UpdateApprovalRequest(ctx _context.Context, id int32) ApiUpdateApprovalRequestRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 各種申請ID
+ @return ApiUpdateApprovalRequestRequest
+*/
+func (a *ApprovalRequestsApiService) UpdateApprovalRequest(ctx context.Context, id int32) ApiUpdateApprovalRequestRequest {
 	return ApiUpdateApprovalRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1360,31 +1405,27 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequest(ctx _context.Context,
 	}
 }
 
-/*
- * Execute executes the request
- * @return ApprovalRequestResponse
- */
-func (a *ApprovalRequestsApiService) UpdateApprovalRequestExecute(r ApiUpdateApprovalRequestRequest) (ApprovalRequestResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ApprovalRequestResponse
+func (a *ApprovalRequestsApiService) UpdateApprovalRequestExecute(r ApiUpdateApprovalRequestRequest) (*ApprovalRequestResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApprovalRequestResponse
+		formFiles            []formFile
+		localVarReturnValue  *ApprovalRequestResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.UpdateApprovalRequest")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -1414,7 +1455,7 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestExecute(r ApiUpdateApp
 	}
 	// body params
 	localVarPostBody = r.approvalRequestUpdateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1424,15 +1465,15 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestExecute(r ApiUpdateApp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1490,7 +1531,7 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestExecute(r ApiUpdateApp
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1501,29 +1542,31 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestExecute(r ApiUpdateApp
 }
 
 type ApiUpdateApprovalRequestActionRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *ApprovalRequestsApiService
 	id int32
 	approvalRequestActionCreateParams *ApprovalRequestActionCreateParams
 }
 
+// 各種申請の承認操作
 func (r ApiUpdateApprovalRequestActionRequest) ApprovalRequestActionCreateParams(approvalRequestActionCreateParams ApprovalRequestActionCreateParams) ApiUpdateApprovalRequestActionRequest {
 	r.approvalRequestActionCreateParams = &approvalRequestActionCreateParams
 	return r
 }
 
-func (r ApiUpdateApprovalRequestActionRequest) Execute() (ApprovalRequestResponse, *_nethttp.Response, error) {
+func (r ApiUpdateApprovalRequestActionRequest) Execute() (*ApprovalRequestResponse, *http.Response, error) {
 	return r.ApiService.UpdateApprovalRequestActionExecute(r)
 }
 
 /*
- * UpdateApprovalRequestAction 各種申請の承認操作
- * 
+UpdateApprovalRequestAction 各種申請の承認操作
+
+
 <h2 id="_1">概要</h2>
 
 <p>指定した事業所の各種申請の承認操作を行う</p>
 
-<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">会計freeeの各種申請APIの使い方</a>をご参照ください</p>
+<p>各種申請APIの使い方については、<a href="https://developer.freee.co.jp/tips/accounting-approval-requests" target="_blank">freee会計の各種申請APIの使い方</a>をご参照ください</p>
 
 <h2 id="_2">注意点</h2>
 <ul>
@@ -1559,13 +1602,17 @@ func (r ApiUpdateApprovalRequestActionRequest) Execute() (ApprovalRequestRespons
       <li>部門および役職指定</li>
     </ul>
   </li>
+  <li>
+    申請フォームの項目に契約書（freeeサイン連携）が利用されている各種申請については、API経由で参照は可能ですが、作成と更新ができません。
+  </li>
   <li>本APIはプロフェッショナルプラン、エンタープライズプランをご利用の事業所のみ利用可能です。</li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 各種申請ID
- * @return ApiUpdateApprovalRequestActionRequest
- */
-func (a *ApprovalRequestsApiService) UpdateApprovalRequestAction(ctx _context.Context, id int32) ApiUpdateApprovalRequestActionRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 各種申請ID
+ @return ApiUpdateApprovalRequestActionRequest
+*/
+func (a *ApprovalRequestsApiService) UpdateApprovalRequestAction(ctx context.Context, id int32) ApiUpdateApprovalRequestActionRequest {
 	return ApiUpdateApprovalRequestActionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1573,31 +1620,27 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestAction(ctx _context.Co
 	}
 }
 
-/*
- * Execute executes the request
- * @return ApprovalRequestResponse
- */
-func (a *ApprovalRequestsApiService) UpdateApprovalRequestActionExecute(r ApiUpdateApprovalRequestActionRequest) (ApprovalRequestResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return ApprovalRequestResponse
+func (a *ApprovalRequestsApiService) UpdateApprovalRequestActionExecute(r ApiUpdateApprovalRequestActionRequest) (*ApprovalRequestResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApprovalRequestResponse
+		formFiles            []formFile
+		localVarReturnValue  *ApprovalRequestResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApprovalRequestsApiService.UpdateApprovalRequestAction")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/approval_requests/{id}/actions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -1627,7 +1670,7 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestActionExecute(r ApiUpd
 	}
 	// body params
 	localVarPostBody = r.approvalRequestActionCreateParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1637,15 +1680,15 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestActionExecute(r ApiUpd
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1703,7 +1746,7 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestActionExecute(r ApiUpd
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

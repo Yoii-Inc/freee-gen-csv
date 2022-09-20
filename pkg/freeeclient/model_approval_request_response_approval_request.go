@@ -1,14 +1,14 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"encoding/json"
@@ -23,14 +23,14 @@ type ApprovalRequestResponseApprovalRequest struct {
 	// 申請No.
 	ApplicationNumber string `json:"application_number"`
 	// 各種申請の承認履歴（配列）
-	ApprovalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogs `json:"approval_flow_logs"`
+	ApprovalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner `json:"approval_flow_logs"`
 	// 申請経路ID
 	ApprovalFlowRouteId int32 `json:"approval_flow_route_id"`
 	ApprovalRequestForm ApprovalRequestResponseApprovalRequestApprovalRequestForm `json:"approval_request_form"`
-	// 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、    approversはレスポンスに含まれるようになります。    その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。
-	Approvers []ApprovalRequestResponseApprovalRequestApprovers `json:"approvers"`
+	// 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、   approversはレスポンスに含まれるようになります。   その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。
+	Approvers []ApprovalRequestResponseApprovalRequestApproversInner `json:"approvers"`
 	// 各種申請のコメント一覧（配列）
-	Comments []ApprovalRequestResponseApprovalRequestComments `json:"comments"`
+	Comments []ApprovalRequestResponseApprovalRequestCommentsInner `json:"comments"`
 	// 事業所ID
 	CompanyId int32 `json:"company_id"`
 	// 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。
@@ -39,14 +39,16 @@ type ApprovalRequestResponseApprovalRequest struct {
 	CurrentStepId NullableInt32 `json:"current_step_id"`
 	// 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます)
 	DealId NullableInt32 `json:"deal_id"`
-	// 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:精算済み, unsettled:清算待ち)
+	// 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:決済済み, unsettled:未決済)
 	DealStatus NullableString `json:"deal_status"`
 	// 申請フォームID
 	FormId int32 `json:"form_id"`
 	// 各種申請ID
 	Id int32 `json:"id"`
+	// 振替伝票のID (申請ステータス:statusがapprovedで、関連する振替伝票が存在する時のみmanual_journal_idが表示されます)  <a href=\"https://support.freee.co.jp/hc/ja/articles/115003827683-#5\" target=\"_blank\">承認された各種申請から支払依頼等を作成する</a> 
+	ManualJournalId NullableInt32 `json:"manual_journal_id"`
 	// 各種申請の項目一覧（配列）
-	RequestItems []ApprovalRequestResponseApprovalRequestRequestItems `json:"request_items"`
+	RequestItems []ApprovalRequestResponseApprovalRequestRequestItemsInner `json:"request_items"`
 	// 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)
 	Status string `json:"status"`
 	// 申請タイトル
@@ -57,7 +59,7 @@ type ApprovalRequestResponseApprovalRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestResponseApprovalRequest(applicantId int32, applicationDate string, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogs, approvalFlowRouteId int32, approvalRequestForm ApprovalRequestResponseApprovalRequestApprovalRequestForm, approvers []ApprovalRequestResponseApprovalRequestApprovers, comments []ApprovalRequestResponseApprovalRequestComments, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, formId int32, id int32, requestItems []ApprovalRequestResponseApprovalRequestRequestItems, status string, title string) *ApprovalRequestResponseApprovalRequest {
+func NewApprovalRequestResponseApprovalRequest(applicantId int32, applicationDate string, applicationNumber string, approvalFlowLogs []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, approvalFlowRouteId int32, approvalRequestForm ApprovalRequestResponseApprovalRequestApprovalRequestForm, approvers []ApprovalRequestResponseApprovalRequestApproversInner, comments []ApprovalRequestResponseApprovalRequestCommentsInner, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, formId int32, id int32, manualJournalId NullableInt32, requestItems []ApprovalRequestResponseApprovalRequestRequestItemsInner, status string, title string) *ApprovalRequestResponseApprovalRequest {
 	this := ApprovalRequestResponseApprovalRequest{}
 	this.ApplicantId = applicantId
 	this.ApplicationDate = applicationDate
@@ -74,6 +76,7 @@ func NewApprovalRequestResponseApprovalRequest(applicantId int32, applicationDat
 	this.DealStatus = dealStatus
 	this.FormId = formId
 	this.Id = id
+	this.ManualJournalId = manualJournalId
 	this.RequestItems = requestItems
 	this.Status = status
 	this.Title = title
@@ -101,7 +104,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetApplicantId() int32 {
 // GetApplicantIdOk returns a tuple with the ApplicantId field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetApplicantIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApplicantId, true
@@ -125,7 +128,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetApplicationDate() string {
 // GetApplicationDateOk returns a tuple with the ApplicationDate field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetApplicationDateOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApplicationDate, true
@@ -149,7 +152,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetApplicationNumber() string {
 // GetApplicationNumberOk returns a tuple with the ApplicationNumber field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetApplicationNumberOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApplicationNumber, true
@@ -161,9 +164,9 @@ func (o *ApprovalRequestResponseApprovalRequest) SetApplicationNumber(v string) 
 }
 
 // GetApprovalFlowLogs returns the ApprovalFlowLogs field value
-func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogs {
+func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogs() []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner {
 	if o == nil {
-		var ret []ApprovalRequestResponseApprovalRequestApprovalFlowLogs
+		var ret []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner
 		return ret
 	}
 
@@ -172,15 +175,15 @@ func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogs() []Approva
 
 // GetApprovalFlowLogsOk returns a tuple with the ApprovalFlowLogs field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogsOk() (*[]ApprovalRequestResponseApprovalRequestApprovalFlowLogs, bool) {
-	if o == nil  {
+func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowLogsOk() ([]ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.ApprovalFlowLogs, true
+	return o.ApprovalFlowLogs, true
 }
 
 // SetApprovalFlowLogs sets field value
-func (o *ApprovalRequestResponseApprovalRequest) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogs) {
+func (o *ApprovalRequestResponseApprovalRequest) SetApprovalFlowLogs(v []ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) {
 	o.ApprovalFlowLogs = v
 }
 
@@ -197,7 +200,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowRouteId() int32 
 // GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetApprovalFlowRouteIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApprovalFlowRouteId, true
@@ -221,7 +224,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetApprovalRequestForm() Approv
 // GetApprovalRequestFormOk returns a tuple with the ApprovalRequestForm field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetApprovalRequestFormOk() (*ApprovalRequestResponseApprovalRequestApprovalRequestForm, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ApprovalRequestForm, true
@@ -233,9 +236,9 @@ func (o *ApprovalRequestResponseApprovalRequest) SetApprovalRequestForm(v Approv
 }
 
 // GetApprovers returns the Approvers field value
-func (o *ApprovalRequestResponseApprovalRequest) GetApprovers() []ApprovalRequestResponseApprovalRequestApprovers {
+func (o *ApprovalRequestResponseApprovalRequest) GetApprovers() []ApprovalRequestResponseApprovalRequestApproversInner {
 	if o == nil {
-		var ret []ApprovalRequestResponseApprovalRequestApprovers
+		var ret []ApprovalRequestResponseApprovalRequestApproversInner
 		return ret
 	}
 
@@ -244,22 +247,22 @@ func (o *ApprovalRequestResponseApprovalRequest) GetApprovers() []ApprovalReques
 
 // GetApproversOk returns a tuple with the Approvers field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequest) GetApproversOk() (*[]ApprovalRequestResponseApprovalRequestApprovers, bool) {
-	if o == nil  {
+func (o *ApprovalRequestResponseApprovalRequest) GetApproversOk() ([]ApprovalRequestResponseApprovalRequestApproversInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Approvers, true
+	return o.Approvers, true
 }
 
 // SetApprovers sets field value
-func (o *ApprovalRequestResponseApprovalRequest) SetApprovers(v []ApprovalRequestResponseApprovalRequestApprovers) {
+func (o *ApprovalRequestResponseApprovalRequest) SetApprovers(v []ApprovalRequestResponseApprovalRequestApproversInner) {
 	o.Approvers = v
 }
 
 // GetComments returns the Comments field value
-func (o *ApprovalRequestResponseApprovalRequest) GetComments() []ApprovalRequestResponseApprovalRequestComments {
+func (o *ApprovalRequestResponseApprovalRequest) GetComments() []ApprovalRequestResponseApprovalRequestCommentsInner {
 	if o == nil {
-		var ret []ApprovalRequestResponseApprovalRequestComments
+		var ret []ApprovalRequestResponseApprovalRequestCommentsInner
 		return ret
 	}
 
@@ -268,15 +271,15 @@ func (o *ApprovalRequestResponseApprovalRequest) GetComments() []ApprovalRequest
 
 // GetCommentsOk returns a tuple with the Comments field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequest) GetCommentsOk() (*[]ApprovalRequestResponseApprovalRequestComments, bool) {
-	if o == nil  {
+func (o *ApprovalRequestResponseApprovalRequest) GetCommentsOk() ([]ApprovalRequestResponseApprovalRequestCommentsInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Comments, true
+	return o.Comments, true
 }
 
 // SetComments sets field value
-func (o *ApprovalRequestResponseApprovalRequest) SetComments(v []ApprovalRequestResponseApprovalRequestComments) {
+func (o *ApprovalRequestResponseApprovalRequest) SetComments(v []ApprovalRequestResponseApprovalRequestCommentsInner) {
 	o.Comments = v
 }
 
@@ -293,7 +296,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetCompanyId() int32 {
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetCompanyIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CompanyId, true
@@ -317,7 +320,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetCurrentRound() int32 {
 // GetCurrentRoundOk returns a tuple with the CurrentRound field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetCurrentRoundOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CurrentRound, true
@@ -343,7 +346,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetCurrentStepId() int32 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApprovalRequestResponseApprovalRequest) GetCurrentStepIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CurrentStepId.Get(), o.CurrentStepId.IsSet()
@@ -369,7 +372,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetDealId() int32 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApprovalRequestResponseApprovalRequest) GetDealIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.DealId.Get(), o.DealId.IsSet()
@@ -395,7 +398,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetDealStatus() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApprovalRequestResponseApprovalRequest) GetDealStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.DealStatus.Get(), o.DealStatus.IsSet()
@@ -419,7 +422,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetFormId() int32 {
 // GetFormIdOk returns a tuple with the FormId field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetFormIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.FormId, true
@@ -443,7 +446,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -454,10 +457,36 @@ func (o *ApprovalRequestResponseApprovalRequest) SetId(v int32) {
 	o.Id = v
 }
 
-// GetRequestItems returns the RequestItems field value
-func (o *ApprovalRequestResponseApprovalRequest) GetRequestItems() []ApprovalRequestResponseApprovalRequestRequestItems {
+// GetManualJournalId returns the ManualJournalId field value
+// If the value is explicit nil, the zero value for int32 will be returned
+func (o *ApprovalRequestResponseApprovalRequest) GetManualJournalId() int32 {
+	if o == nil || o.ManualJournalId.Get() == nil {
+		var ret int32
+		return ret
+	}
+
+	return *o.ManualJournalId.Get()
+}
+
+// GetManualJournalIdOk returns a tuple with the ManualJournalId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApprovalRequestResponseApprovalRequest) GetManualJournalIdOk() (*int32, bool) {
 	if o == nil {
-		var ret []ApprovalRequestResponseApprovalRequestRequestItems
+		return nil, false
+	}
+	return o.ManualJournalId.Get(), o.ManualJournalId.IsSet()
+}
+
+// SetManualJournalId sets field value
+func (o *ApprovalRequestResponseApprovalRequest) SetManualJournalId(v int32) {
+	o.ManualJournalId.Set(&v)
+}
+
+// GetRequestItems returns the RequestItems field value
+func (o *ApprovalRequestResponseApprovalRequest) GetRequestItems() []ApprovalRequestResponseApprovalRequestRequestItemsInner {
+	if o == nil {
+		var ret []ApprovalRequestResponseApprovalRequestRequestItemsInner
 		return ret
 	}
 
@@ -466,15 +495,15 @@ func (o *ApprovalRequestResponseApprovalRequest) GetRequestItems() []ApprovalReq
 
 // GetRequestItemsOk returns a tuple with the RequestItems field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequest) GetRequestItemsOk() (*[]ApprovalRequestResponseApprovalRequestRequestItems, bool) {
-	if o == nil  {
+func (o *ApprovalRequestResponseApprovalRequest) GetRequestItemsOk() ([]ApprovalRequestResponseApprovalRequestRequestItemsInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.RequestItems, true
+	return o.RequestItems, true
 }
 
 // SetRequestItems sets field value
-func (o *ApprovalRequestResponseApprovalRequest) SetRequestItems(v []ApprovalRequestResponseApprovalRequestRequestItems) {
+func (o *ApprovalRequestResponseApprovalRequest) SetRequestItems(v []ApprovalRequestResponseApprovalRequestRequestItemsInner) {
 	o.RequestItems = v
 }
 
@@ -491,7 +520,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Status, true
@@ -515,7 +544,7 @@ func (o *ApprovalRequestResponseApprovalRequest) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *ApprovalRequestResponseApprovalRequest) GetTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Title, true
@@ -572,6 +601,9 @@ func (o ApprovalRequestResponseApprovalRequest) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["manual_journal_id"] = o.ManualJournalId.Get()
 	}
 	if true {
 		toSerialize["request_items"] = o.RequestItems

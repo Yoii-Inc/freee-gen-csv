@@ -36,8 +36,8 @@ func main() {
     segmentTagParams := *openapiclient.NewSegmentTagParams(int32(1), "プロジェクトA") // SegmentTagParams | セグメントタグの作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentTagsApi.CreateSegmentTag(context.Background(), segmentId).SegmentTagParams(segmentTagParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentTagsApi.CreateSegmentTag(context.Background(), segmentId).SegmentTagParams(segmentTagParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentTagsApi.CreateSegmentTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -109,8 +109,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentTagsApi.DestroySegmentsTag(context.Background(), segmentId, id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentTagsApi.DestroySegmentsTag(context.Background(), segmentId, id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentTagsApi.DestroySegmentsTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## GetSegmentTags
 
-> InlineResponse2007 GetSegmentTags(ctx, segmentId).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+> GetSegmentTags200Response GetSegmentTags(ctx, segmentId).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
 
 セグメントタグ一覧の取得
 
@@ -183,13 +183,13 @@ func main() {
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentTagsApi.GetSegmentTags(context.Background(), segmentId).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentTagsApi.GetSegmentTags(context.Background(), segmentId).CompanyId(companyId).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentTagsApi.GetSegmentTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetSegmentTags`: InlineResponse2007
+    // response from `GetSegmentTags`: GetSegmentTags200Response
     fmt.Fprintf(os.Stdout, "Response from `SegmentTagsApi.GetSegmentTags`: %v\n", resp)
 }
 ```
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**GetSegmentTags200Response**](GetSegmentTags200Response.md)
 
 ### Authorization
 
@@ -258,8 +258,8 @@ func main() {
     segmentTagParams := *openapiclient.NewSegmentTagParams(int32(1), "プロジェクトA") // SegmentTagParams | セグメントタグの作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentTagsApi.UpdateSegmentTag(context.Background(), segmentId, id).SegmentTagParams(segmentTagParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentTagsApi.UpdateSegmentTag(context.Background(), segmentId, id).SegmentTagParams(segmentTagParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentTagsApi.UpdateSegmentTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

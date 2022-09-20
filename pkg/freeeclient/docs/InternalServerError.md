@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to [**[]InternalServerErrorErrors**](InternalServerErrorErrors.md) |  | [optional] 
+**Errors** | Pointer to [**[]InternalServerErrorErrorsInner**](InternalServerErrorErrorsInner.md) |  | [optional] 
 **StatusCode** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *InternalServerError) GetErrors() []InternalServerErrorErrors`
+`func (o *InternalServerError) GetErrors() []InternalServerErrorErrorsInner`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *InternalServerError) GetErrorsOk() (*[]InternalServerErrorErrors, bool)`
+`func (o *InternalServerError) GetErrorsOk() (*[]InternalServerErrorErrorsInner, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *InternalServerError) SetErrors(v []InternalServerErrorErrors)`
+`func (o *InternalServerError) SetErrors(v []InternalServerErrorErrorsInner)`
 
 SetErrors sets Errors field to given value.
 

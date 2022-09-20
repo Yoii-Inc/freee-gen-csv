@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **AddressAttributes** | Pointer to [**PartnerCreateParamsAddressAttributes**](PartnerCreateParamsAddressAttributes.md) |  | [optional] 
 **CompanyId** | **int32** | 事業所ID | 
 **ContactName** | Pointer to **string** | 担当者 氏名 (255文字以内) | [optional] 
-**CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外） | [optional] 
+**CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外）、指定しない場合JPになります。 | [optional] 
 **DefaultTitle** | Pointer to **string** | 敬称（御中、様、(空白)の3つから選択） | [optional] 
 **Email** | Pointer to **string** | 担当者 メールアドレス (255文字以内) | [optional] 
-**InvoicePaymentTermAttributes** | Pointer to [**PartnerCreateParamsInvoicePaymentTermAttributes**](PartnerCreateParamsInvoicePaymentTermAttributes.md) |  | [optional] 
+**InvoicePaymentTermAttributes** | Pointer to [**NullablePartnerUpdateParamsInvoicePaymentTermAttributes**](PartnerUpdateParamsInvoicePaymentTermAttributes.md) |  | [optional] 
 **LongName** | Pointer to **string** | 正式名称（255文字以内） | [optional] 
 **Name** | **string** | 取引先名 (255文字以内) | 
 **NameKana** | Pointer to **string** | カナ名称（255文字以内） | [optional] 
@@ -18,11 +18,11 @@ Name | Type | Description | Notes
 **PartnerBankAccountAttributes** | Pointer to [**PartnerCreateParamsPartnerBankAccountAttributes**](PartnerCreateParamsPartnerBankAccountAttributes.md) |  | [optional] 
 **PartnerDocSettingAttributes** | Pointer to [**PartnerCreateParamsPartnerDocSettingAttributes**](PartnerCreateParamsPartnerDocSettingAttributes.md) |  | [optional] 
 **PayerWalletableId** | Pointer to **NullableInt32** | 振込元口座ID（一括振込ファイル用）:（walletableのtypeが&#39;bank_account&#39;のidのみ指定できます。また、未設定にする場合は、nullを指定してください。） | [optional] 
-**PaymentTermAttributes** | Pointer to [**PartnerCreateParamsInvoicePaymentTermAttributes**](PartnerCreateParamsInvoicePaymentTermAttributes.md) |  | [optional] 
+**PaymentTermAttributes** | Pointer to [**NullablePartnerUpdateParamsPaymentTermAttributes**](PartnerUpdateParamsPaymentTermAttributes.md) |  | [optional] 
 **Phone** | Pointer to **string** | 電話番号 | [optional] 
 **Shortcut1** | Pointer to **string** | ショートカット１ (255文字以内) | [optional] 
 **Shortcut2** | Pointer to **string** | ショートカット２ (255文字以内) | [optional] 
-**TransferFeeHandlingSide** | Pointer to **string** | 振込手数料負担（一括振込ファイル用）: (振込元(当方): payer, 振込先(先方): payee) | [optional] 
+**TransferFeeHandlingSide** | Pointer to **string** | 振込手数料負担（一括振込ファイル用）: (振込元(当方): payer, 振込先(先方): payee)、指定しない場合payerになります。 | [optional] 
 
 ## Methods
 
@@ -190,20 +190,20 @@ HasEmail returns a boolean if a field has been set.
 
 ### GetInvoicePaymentTermAttributes
 
-`func (o *PartnerUpdateParams) GetInvoicePaymentTermAttributes() PartnerCreateParamsInvoicePaymentTermAttributes`
+`func (o *PartnerUpdateParams) GetInvoicePaymentTermAttributes() PartnerUpdateParamsInvoicePaymentTermAttributes`
 
 GetInvoicePaymentTermAttributes returns the InvoicePaymentTermAttributes field if non-nil, zero value otherwise.
 
 ### GetInvoicePaymentTermAttributesOk
 
-`func (o *PartnerUpdateParams) GetInvoicePaymentTermAttributesOk() (*PartnerCreateParamsInvoicePaymentTermAttributes, bool)`
+`func (o *PartnerUpdateParams) GetInvoicePaymentTermAttributesOk() (*PartnerUpdateParamsInvoicePaymentTermAttributes, bool)`
 
 GetInvoicePaymentTermAttributesOk returns a tuple with the InvoicePaymentTermAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvoicePaymentTermAttributes
 
-`func (o *PartnerUpdateParams) SetInvoicePaymentTermAttributes(v PartnerCreateParamsInvoicePaymentTermAttributes)`
+`func (o *PartnerUpdateParams) SetInvoicePaymentTermAttributes(v PartnerUpdateParamsInvoicePaymentTermAttributes)`
 
 SetInvoicePaymentTermAttributes sets InvoicePaymentTermAttributes field to given value.
 
@@ -213,6 +213,16 @@ SetInvoicePaymentTermAttributes sets InvoicePaymentTermAttributes field to given
 
 HasInvoicePaymentTermAttributes returns a boolean if a field has been set.
 
+### SetInvoicePaymentTermAttributesNil
+
+`func (o *PartnerUpdateParams) SetInvoicePaymentTermAttributesNil(b bool)`
+
+ SetInvoicePaymentTermAttributesNil sets the value for InvoicePaymentTermAttributes to be an explicit nil
+
+### UnsetInvoicePaymentTermAttributes
+`func (o *PartnerUpdateParams) UnsetInvoicePaymentTermAttributes()`
+
+UnsetInvoicePaymentTermAttributes ensures that no value is present for InvoicePaymentTermAttributes, not even an explicit nil
 ### GetLongName
 
 `func (o *PartnerUpdateParams) GetLongName() string`
@@ -405,20 +415,20 @@ HasPayerWalletableId returns a boolean if a field has been set.
 UnsetPayerWalletableId ensures that no value is present for PayerWalletableId, not even an explicit nil
 ### GetPaymentTermAttributes
 
-`func (o *PartnerUpdateParams) GetPaymentTermAttributes() PartnerCreateParamsInvoicePaymentTermAttributes`
+`func (o *PartnerUpdateParams) GetPaymentTermAttributes() PartnerUpdateParamsPaymentTermAttributes`
 
 GetPaymentTermAttributes returns the PaymentTermAttributes field if non-nil, zero value otherwise.
 
 ### GetPaymentTermAttributesOk
 
-`func (o *PartnerUpdateParams) GetPaymentTermAttributesOk() (*PartnerCreateParamsInvoicePaymentTermAttributes, bool)`
+`func (o *PartnerUpdateParams) GetPaymentTermAttributesOk() (*PartnerUpdateParamsPaymentTermAttributes, bool)`
 
 GetPaymentTermAttributesOk returns a tuple with the PaymentTermAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentTermAttributes
 
-`func (o *PartnerUpdateParams) SetPaymentTermAttributes(v PartnerCreateParamsInvoicePaymentTermAttributes)`
+`func (o *PartnerUpdateParams) SetPaymentTermAttributes(v PartnerUpdateParamsPaymentTermAttributes)`
 
 SetPaymentTermAttributes sets PaymentTermAttributes field to given value.
 
@@ -428,6 +438,16 @@ SetPaymentTermAttributes sets PaymentTermAttributes field to given value.
 
 HasPaymentTermAttributes returns a boolean if a field has been set.
 
+### SetPaymentTermAttributesNil
+
+`func (o *PartnerUpdateParams) SetPaymentTermAttributesNil(b bool)`
+
+ SetPaymentTermAttributesNil sets the value for PaymentTermAttributes to be an explicit nil
+
+### UnsetPaymentTermAttributes
+`func (o *PartnerUpdateParams) UnsetPaymentTermAttributes()`
+
+UnsetPaymentTermAttributes ensures that no value is present for PaymentTermAttributes, not even an explicit nil
 ### GetPhone
 
 `func (o *PartnerUpdateParams) GetPhone() string`

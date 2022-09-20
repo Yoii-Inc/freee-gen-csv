@@ -35,8 +35,8 @@ func main() {
     walletTxnParams := *openapiclient.NewWalletTxnParams(int64(5000), int32(1), "2019-12-17", "income", int32(1), "bank_account") // WalletTxnParams | 明細の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletTxnsApi.CreateWalletTxn(context.Background()).WalletTxnParams(walletTxnParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletTxnsApi.CreateWalletTxn(context.Background()).WalletTxnParams(walletTxnParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletTxnsApi.CreateWalletTxn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -102,8 +102,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletTxnsApi.DestroyWalletTxn(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletTxnsApi.DestroyWalletTxn(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletTxnsApi.DestroyWalletTxn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -172,8 +172,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletTxnsApi.GetWalletTxn(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletTxnsApi.GetWalletTxn(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletTxnsApi.GetWalletTxn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## GetWalletTxns
 
-> InlineResponse20014 GetWalletTxns(ctx).CompanyId(companyId).WalletableType(walletableType).WalletableId(walletableId).StartDate(startDate).EndDate(endDate).EntrySide(entrySide).Offset(offset).Limit(limit).Execute()
+> GetWalletTxns200Response GetWalletTxns(ctx).CompanyId(companyId).WalletableType(walletableType).WalletableId(walletableId).StartDate(startDate).EndDate(endDate).EntrySide(entrySide).Offset(offset).Limit(limit).Execute()
 
 明細一覧の取得
 
@@ -250,13 +250,13 @@ func main() {
     limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100)  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletTxnsApi.GetWalletTxns(context.Background()).CompanyId(companyId).WalletableType(walletableType).WalletableId(walletableId).StartDate(startDate).EndDate(endDate).EntrySide(entrySide).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletTxnsApi.GetWalletTxns(context.Background()).CompanyId(companyId).WalletableType(walletableType).WalletableId(walletableId).StartDate(startDate).EndDate(endDate).EntrySide(entrySide).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletTxnsApi.GetWalletTxns``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWalletTxns`: InlineResponse20014
+    // response from `GetWalletTxns`: GetWalletTxns200Response
     fmt.Fprintf(os.Stdout, "Response from `WalletTxnsApi.GetWalletTxns`: %v\n", resp)
 }
 ```
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**GetWalletTxns200Response**](GetWalletTxns200Response.md)
 
 ### Authorization
 

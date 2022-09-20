@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Parts** | [**[]ApprovalRequestFormResponseApprovalRequestFormParts**](ApprovalRequestFormResponseApprovalRequestFormParts.md) | 申請フォームの項目 | 
+**Parts** | [**[]ApprovalRequestFormResponseApprovalRequestFormPartsInner**](ApprovalRequestFormResponseApprovalRequestFormPartsInner.md) | 申請フォームの項目 | 
 
 ## Methods
 
 ### NewApprovalRequestResponseApprovalRequestApprovalRequestForm
 
-`func NewApprovalRequestResponseApprovalRequestApprovalRequestForm(parts []ApprovalRequestFormResponseApprovalRequestFormParts, ) *ApprovalRequestResponseApprovalRequestApprovalRequestForm`
+`func NewApprovalRequestResponseApprovalRequestApprovalRequestForm(parts []ApprovalRequestFormResponseApprovalRequestFormPartsInner, ) *ApprovalRequestResponseApprovalRequestApprovalRequestForm`
 
 NewApprovalRequestResponseApprovalRequestApprovalRequestForm instantiates a new ApprovalRequestResponseApprovalRequestApprovalRequestForm object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetParts
 
-`func (o *ApprovalRequestResponseApprovalRequestApprovalRequestForm) GetParts() []ApprovalRequestFormResponseApprovalRequestFormParts`
+`func (o *ApprovalRequestResponseApprovalRequestApprovalRequestForm) GetParts() []ApprovalRequestFormResponseApprovalRequestFormPartsInner`
 
 GetParts returns the Parts field if non-nil, zero value otherwise.
 
 ### GetPartsOk
 
-`func (o *ApprovalRequestResponseApprovalRequestApprovalRequestForm) GetPartsOk() (*[]ApprovalRequestFormResponseApprovalRequestFormParts, bool)`
+`func (o *ApprovalRequestResponseApprovalRequestApprovalRequestForm) GetPartsOk() (*[]ApprovalRequestFormResponseApprovalRequestFormPartsInner, bool)`
 
 GetPartsOk returns a tuple with the Parts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParts
 
-`func (o *ApprovalRequestResponseApprovalRequestApprovalRequestForm) SetParts(v []ApprovalRequestFormResponseApprovalRequestFormParts)`
+`func (o *ApprovalRequestResponseApprovalRequestApprovalRequestForm) SetParts(v []ApprovalRequestFormResponseApprovalRequestFormPartsInner)`
 
 SetParts sets Parts field to given value.
 

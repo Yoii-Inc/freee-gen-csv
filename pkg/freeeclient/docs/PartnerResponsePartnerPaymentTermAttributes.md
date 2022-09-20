@@ -1,0 +1,138 @@
+# PartnerResponsePartnerPaymentTermAttributes
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**AdditionalMonths** | Pointer to **NullableInt32** | 支払月 | [optional] 
+**CutoffDay** | Pointer to **NullableInt32** | 締め日（29, 30, 31日の末日を指定する場合は、32。） | [optional] 
+**FixedDay** | Pointer to **NullableInt32** | 支払日（29, 30, 31日の末日を指定する場合は、32。） | [optional] 
+
+## Methods
+
+### NewPartnerResponsePartnerPaymentTermAttributes
+
+`func NewPartnerResponsePartnerPaymentTermAttributes() *PartnerResponsePartnerPaymentTermAttributes`
+
+NewPartnerResponsePartnerPaymentTermAttributes instantiates a new PartnerResponsePartnerPaymentTermAttributes object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewPartnerResponsePartnerPaymentTermAttributesWithDefaults
+
+`func NewPartnerResponsePartnerPaymentTermAttributesWithDefaults() *PartnerResponsePartnerPaymentTermAttributes`
+
+NewPartnerResponsePartnerPaymentTermAttributesWithDefaults instantiates a new PartnerResponsePartnerPaymentTermAttributes object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetAdditionalMonths
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) GetAdditionalMonths() int32`
+
+GetAdditionalMonths returns the AdditionalMonths field if non-nil, zero value otherwise.
+
+### GetAdditionalMonthsOk
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) GetAdditionalMonthsOk() (*int32, bool)`
+
+GetAdditionalMonthsOk returns a tuple with the AdditionalMonths field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalMonths
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) SetAdditionalMonths(v int32)`
+
+SetAdditionalMonths sets AdditionalMonths field to given value.
+
+### HasAdditionalMonths
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) HasAdditionalMonths() bool`
+
+HasAdditionalMonths returns a boolean if a field has been set.
+
+### SetAdditionalMonthsNil
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) SetAdditionalMonthsNil(b bool)`
+
+ SetAdditionalMonthsNil sets the value for AdditionalMonths to be an explicit nil
+
+### UnsetAdditionalMonths
+`func (o *PartnerResponsePartnerPaymentTermAttributes) UnsetAdditionalMonths()`
+
+UnsetAdditionalMonths ensures that no value is present for AdditionalMonths, not even an explicit nil
+### GetCutoffDay
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) GetCutoffDay() int32`
+
+GetCutoffDay returns the CutoffDay field if non-nil, zero value otherwise.
+
+### GetCutoffDayOk
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) GetCutoffDayOk() (*int32, bool)`
+
+GetCutoffDayOk returns a tuple with the CutoffDay field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCutoffDay
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) SetCutoffDay(v int32)`
+
+SetCutoffDay sets CutoffDay field to given value.
+
+### HasCutoffDay
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) HasCutoffDay() bool`
+
+HasCutoffDay returns a boolean if a field has been set.
+
+### SetCutoffDayNil
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) SetCutoffDayNil(b bool)`
+
+ SetCutoffDayNil sets the value for CutoffDay to be an explicit nil
+
+### UnsetCutoffDay
+`func (o *PartnerResponsePartnerPaymentTermAttributes) UnsetCutoffDay()`
+
+UnsetCutoffDay ensures that no value is present for CutoffDay, not even an explicit nil
+### GetFixedDay
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) GetFixedDay() int32`
+
+GetFixedDay returns the FixedDay field if non-nil, zero value otherwise.
+
+### GetFixedDayOk
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) GetFixedDayOk() (*int32, bool)`
+
+GetFixedDayOk returns a tuple with the FixedDay field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFixedDay
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) SetFixedDay(v int32)`
+
+SetFixedDay sets FixedDay field to given value.
+
+### HasFixedDay
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) HasFixedDay() bool`
+
+HasFixedDay returns a boolean if a field has been set.
+
+### SetFixedDayNil
+
+`func (o *PartnerResponsePartnerPaymentTermAttributes) SetFixedDayNil(b bool)`
+
+ SetFixedDayNil sets the value for FixedDay to be an explicit nil
+
+### UnsetFixedDay
+`func (o *PartnerResponsePartnerPaymentTermAttributes) UnsetFixedDay()`
+
+UnsetFixedDay ensures that no value is present for FixedDay, not even an explicit nil
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

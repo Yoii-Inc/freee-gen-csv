@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **NullableString** | 概要 | [optional] 
 **DueDate** | Pointer to **NullableString** | 期日 (yyyy-mm-dd) | [optional] 
 **Id** | **int32** | 請求書ID | 
-**InvoiceContents** | Pointer to [**[]InvoiceIndexResponseInvoiceContents**](InvoiceIndexResponseInvoiceContents.md) | 請求内容 | [optional] 
+**InvoiceContents** | Pointer to [**[]InvoiceIndexResponseInvoicesInnerInvoiceContentsInner**](InvoiceIndexResponseInvoicesInnerInvoiceContentsInner.md) | 請求内容 | [optional] 
 **InvoiceLayout** | **string** | 請求書レイアウト * &#x60;default_classic&#x60; - レイアウト１/クラシック (デフォルト)  * &#x60;standard_classic&#x60; - レイアウト２/クラシック  * &#x60;envelope_classic&#x60; - 封筒１/クラシック  * &#x60;carried_forward_standard_classic&#x60; - レイアウト３（繰越金額欄あり）/クラシック  * &#x60;carried_forward_envelope_classic&#x60; - 封筒２（繰越金額欄あり）/クラシック  * &#x60;default_modern&#x60; - レイアウト１/モダン  * &#x60;standard_modern&#x60; - レイアウト２/モダン  * &#x60;envelope_modern&#x60; - 封筒/モダン | 
 **InvoiceNumber** | **string** | 請求書番号 | 
 **InvoiceStatus** | **string** | 請求書ステータス  (draft: 下書き, applying: 申請中, remanded: 差し戻し, rejected: 却下, approved: 承認済み, submitted: 送付済み, unsubmitted: 請求書の承認フローが無効の場合のみ、unsubmitted（送付待ち）の値をとります) | 
@@ -46,7 +46,7 @@ Name | Type | Description | Notes
 **TaxEntryMethod** | **string** | 請求書の消費税計算方法(inclusive: 内税, exclusive: 外税) | 
 **Title** | Pointer to **NullableString** | タイトル | [optional] 
 **TotalAmount** | **int32** | 合計金額 | 
-**TotalAmountPerVatRate** | [**InvoiceIndexResponseTotalAmountPerVatRate**](InvoiceIndexResponseTotalAmountPerVatRate.md) |  | 
+**TotalAmountPerVatRate** | [**InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate**](InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate.md) |  | 
 **TotalVat** | Pointer to **int32** | 合計金額 | [optional] 
 **WebConfirmedAt** | Pointer to **NullableString** | Web共有取引先確認日時(最新) | [optional] 
 **WebDownloadedAt** | Pointer to **NullableString** | Web共有ダウンロード日時(最新) | [optional] 
@@ -56,7 +56,7 @@ Name | Type | Description | Notes
 
 ### NewInvoiceResponseInvoice
 
-`func NewInvoiceResponseInvoice(companyId int32, companyName string, id int32, invoiceLayout string, invoiceNumber string, invoiceStatus string, issueDate string, partnerId NullableInt32, paymentType string, postingStatus string, taxEntryMethod string, totalAmount int32, totalAmountPerVatRate InvoiceIndexResponseTotalAmountPerVatRate, ) *InvoiceResponseInvoice`
+`func NewInvoiceResponseInvoice(companyId int32, companyName string, id int32, invoiceLayout string, invoiceNumber string, invoiceStatus string, issueDate string, partnerId NullableInt32, paymentType string, postingStatus string, taxEntryMethod string, totalAmount int32, totalAmountPerVatRate InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate, ) *InvoiceResponseInvoice`
 
 NewInvoiceResponseInvoice instantiates a new InvoiceResponseInvoice object
 This constructor will assign default values to properties that have it defined,
@@ -483,20 +483,20 @@ SetId sets Id field to given value.
 
 ### GetInvoiceContents
 
-`func (o *InvoiceResponseInvoice) GetInvoiceContents() []InvoiceIndexResponseInvoiceContents`
+`func (o *InvoiceResponseInvoice) GetInvoiceContents() []InvoiceIndexResponseInvoicesInnerInvoiceContentsInner`
 
 GetInvoiceContents returns the InvoiceContents field if non-nil, zero value otherwise.
 
 ### GetInvoiceContentsOk
 
-`func (o *InvoiceResponseInvoice) GetInvoiceContentsOk() (*[]InvoiceIndexResponseInvoiceContents, bool)`
+`func (o *InvoiceResponseInvoice) GetInvoiceContentsOk() (*[]InvoiceIndexResponseInvoicesInnerInvoiceContentsInner, bool)`
 
 GetInvoiceContentsOk returns a tuple with the InvoiceContents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvoiceContents
 
-`func (o *InvoiceResponseInvoice) SetInvoiceContents(v []InvoiceIndexResponseInvoiceContents)`
+`func (o *InvoiceResponseInvoice) SetInvoiceContents(v []InvoiceIndexResponseInvoicesInnerInvoiceContentsInner)`
 
 SetInvoiceContents sets InvoiceContents field to given value.
 
@@ -1333,20 +1333,20 @@ SetTotalAmount sets TotalAmount field to given value.
 
 ### GetTotalAmountPerVatRate
 
-`func (o *InvoiceResponseInvoice) GetTotalAmountPerVatRate() InvoiceIndexResponseTotalAmountPerVatRate`
+`func (o *InvoiceResponseInvoice) GetTotalAmountPerVatRate() InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate`
 
 GetTotalAmountPerVatRate returns the TotalAmountPerVatRate field if non-nil, zero value otherwise.
 
 ### GetTotalAmountPerVatRateOk
 
-`func (o *InvoiceResponseInvoice) GetTotalAmountPerVatRateOk() (*InvoiceIndexResponseTotalAmountPerVatRate, bool)`
+`func (o *InvoiceResponseInvoice) GetTotalAmountPerVatRateOk() (*InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate, bool)`
 
 GetTotalAmountPerVatRateOk returns a tuple with the TotalAmountPerVatRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalAmountPerVatRate
 
-`func (o *InvoiceResponseInvoice) SetTotalAmountPerVatRate(v InvoiceIndexResponseTotalAmountPerVatRate)`
+`func (o *InvoiceResponseInvoice) SetTotalAmountPerVatRate(v InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate)`
 
 SetTotalAmountPerVatRate sets TotalAmountPerVatRate field to given value.
 

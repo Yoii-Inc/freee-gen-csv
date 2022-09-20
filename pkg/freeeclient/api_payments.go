@@ -1,51 +1,49 @@
 /*
- * freee API
- *
- *  <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>会計freeeプラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
- *
- * API version: v1.0
- */
+freee API
+
+ <h1 id=\"freee_api\">freee API</h1> <hr /> <h2 id=\"start_guide\">スタートガイド</h2>  <p>freee API開発がはじめての方は<a href=\"https://developer.freee.co.jp/getting-started\">freee API スタートガイド</a>を参照してください。</p>  <hr /> <h2 id=\"specification\">仕様</h2>  <h3 id=\"api_endpoint\">APIエンドポイント</h3>  <p>https://api.freee.co.jp/ (httpsのみ)</p>  <h3 id=\"about_authorize\">認証について</h3> <p>OAuth2.0を利用します。詳細は<a href=\"https://developer.freee.co.jp/docs\" target=\"_blank\">ドキュメントの認証</a>パートを参照してください。</p>  <h3 id=\"data_format\">データフォーマット</h3>  <p>リクエスト、レスポンスともにJSON形式をサポートしていますが、詳細は、API毎の説明欄（application/jsonなど）を確認してください。</p>  <h3 id=\"compatibility\">後方互換性ありの変更</h3>  <p>freeeでは、APIを改善していくために以下のような変更は後方互換性ありとして通知なく変更を入れることがあります。アプリケーション実装者は以下を踏まえて開発を行ってください。</p>  <ul> <li>新しいAPIリソース・エンドポイントの追加</li> <li>既存のAPIに対して必須ではない新しいリクエストパラメータの追加</li> <li>既存のAPIレスポンスに対する新しいプロパティの追加</li> <li>既存のAPIレスポンスに対するプロパティの順番の入れ変え</li> <li>keyとなっているidやcodeの長さの変更（長くする）</li> </ul>  <h3 id=\"common_response_header\">共通レスポンスヘッダー</h3>  <p>すべてのAPIのレスポンスには以下のHTTPヘッダーが含まれます。</p>  <ul> <li> <p>X-Freee-Request-ID</p> <ul> <li>各リクエスト毎に発行されるID</li> </ul> </li> </ul>  <h3 id=\"common_error_response\">共通エラーレスポンス</h3>  <ul> <li> <p>ステータスコードはレスポンス内のJSONに含まれる他、HTTPヘッダにも含まれる</p> </li> <li> <p>一部のエラーレスポンスにはエラーコードが含まれます。<br>詳細は、<a href=\"https://developer.freee.co.jp/tips/faq/40x-checkpoint\">HTTPステータスコード400台エラー時のチェックポイント</a>を参照してください</p> </li> <p>type</p>  <ul> <li>status : HTTPステータスコードの説明</li>  <li>validation : エラーの詳細の説明（開発者向け）</li> </ul> </li> </ul>  <p>レスポンスの例</p>  <pre><code>  {     &quot;status_code&quot; : 400,     &quot;errors&quot; : [       {         &quot;type&quot; : &quot;status&quot;,         &quot;messages&quot; : [&quot;不正なリクエストです。&quot;]       },       {         &quot;type&quot; : &quot;validation&quot;,         &quot;messages&quot; : [&quot;Date は不正な日付フォーマットです。入力例：2019-12-17&quot;]       }     ]   }</code></pre>  </br>  <h3 id=\"api_rate_limit\">API使用制限</h3>    <p>freeeは一定期間に過度のアクセスを検知した場合、APIアクセスをコントロールする場合があります。</p>   <p>その際のhttp status codeは403となります。制限がかかってから10分程度が過ぎると再度使用することができるようになります。</p>  <h4 id=\"reports_api_endpoint\">/reportsと/receipts/{id}/downloadエンドポイント</h4>  <p>freeeはエンドポイント毎に一定頻度以上のアクセスを検知した場合、APIアクセスをコントロールする場合があります。その際のhttp status codeは429（too many requests）となります。</p>  <ul>   <li>/reports:1秒に10回まで</li>   <li>/receipts/{id}/download:1秒に3回まで</li> </ul>  <p>レスポンスボディのmetaプロパティに以下を含めます。</p>  <ul>   <li>設定されている上限値</li>   <li>上限に達するまでの使用可能回数</li>   <li>（上限値に達した場合）使用回数がリセットされる時刻</li> </ul>  <h3 id=\"plan_api_rate_limit\">プラン別のAPI Rate Limit</h3>   <table border=\"1\">     <tbody>       <tr>         <th style=\"padding: 10px\"><strong>freee会計プラン名</strong></th>         <th style=\"padding: 10px\"><strong>事業所とアプリケーション毎に1日でのAPIコール数</strong></th>       </tr>       <tr>         <td style=\"padding: 10px\">エンタープライズ</td>         <td style=\"padding: 10px\">10,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">プロフェッショナル</td>         <td style=\"padding: 10px\">5,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ベーシック</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">ミニマム</td>         <td style=\"padding: 10px\">3,000</td>       </tr>       <tr>         <td style=\"padding: 10px\">上記以外</td>         <td style=\"padding: 10px\">3,000</td>       </tr>     </tbody>   </table>  <h3 id=\"webhook\">Webhookについて</h3>  <p>詳細は<a href=\"https://developer.freee.co.jp/docs/accounting/webhook\" target=\"_blank\">会計Webhook概要</a>を参照してください。</p>  <hr /> <h2 id=\"contact\">連絡先</h2>  <p>ご不明点、ご要望等は <a href=\"https://support.freee.co.jp/hc/ja/requests/new\">freee サポートデスクへのお問い合わせフォーム</a> からご連絡ください。</p> <hr />&copy; Since 2013 freee K.K.
+
+API version: v1.0
+*/
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
 
-package freeeclient
+package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 // PaymentsApiService PaymentsApi service
 type PaymentsApiService service
 
 type ApiCreateDealPaymentRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PaymentsApiService
 	id int32
 	paymentParams *PaymentParams
 }
 
+// 取引（収入／支出）の支払行作成
 func (r ApiCreateDealPaymentRequest) PaymentParams(paymentParams PaymentParams) ApiCreateDealPaymentRequest {
 	r.paymentParams = &paymentParams
 	return r
 }
 
-func (r ApiCreateDealPaymentRequest) Execute() (DealResponse, *_nethttp.Response, error) {
+func (r ApiCreateDealPaymentRequest) Execute() (*DealResponse, *http.Response, error) {
 	return r.ApiService.CreateDealPaymentExecute(r)
 }
 
 /*
- * CreateDealPayment 取引（収入／支出）の支払行作成
- * <h2 id="">概要</h2>
+CreateDealPayment 取引（収入／支出）の支払行作成
+
+<h2 id="">概要</h2>
 <p>指定した事業所の取引（収入／支出）の支払行を作成する</p>
 <h2 id="_2">定義</h2>
 <ul>
@@ -81,11 +79,12 @@ func (r ApiCreateDealPaymentRequest) Execute() (DealResponse, *_nethttp.Response
 </ul>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引ID
- * @return ApiCreateDealPaymentRequest
- */
-func (a *PaymentsApiService) CreateDealPayment(ctx _context.Context, id int32) ApiCreateDealPaymentRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引ID
+ @return ApiCreateDealPaymentRequest
+*/
+func (a *PaymentsApiService) CreateDealPayment(ctx context.Context, id int32) ApiCreateDealPaymentRequest {
 	return ApiCreateDealPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -93,31 +92,27 @@ func (a *PaymentsApiService) CreateDealPayment(ctx _context.Context, id int32) A
 	}
 }
 
-/*
- * Execute executes the request
- * @return DealResponse
- */
-func (a *PaymentsApiService) CreateDealPaymentExecute(r ApiCreateDealPaymentRequest) (DealResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return DealResponse
+func (a *PaymentsApiService) CreateDealPaymentExecute(r ApiCreateDealPaymentRequest) (*DealResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DealResponse
+		formFiles            []formFile
+		localVarReturnValue  *DealResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsApiService.CreateDealPayment")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals/{id}/payments"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -147,7 +142,7 @@ func (a *PaymentsApiService) CreateDealPaymentExecute(r ApiCreateDealPaymentRequ
 	}
 	// body params
 	localVarPostBody = r.paymentParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -157,15 +152,15 @@ func (a *PaymentsApiService) CreateDealPaymentExecute(r ApiCreateDealPaymentRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -223,7 +218,7 @@ func (a *PaymentsApiService) CreateDealPaymentExecute(r ApiCreateDealPaymentRequ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -234,25 +229,27 @@ func (a *PaymentsApiService) CreateDealPaymentExecute(r ApiCreateDealPaymentRequ
 }
 
 type ApiDestroyDealPaymentRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PaymentsApiService
 	id int32
 	paymentId int64
 	companyId *int32
 }
 
+// 事業所ID
 func (r ApiDestroyDealPaymentRequest) CompanyId(companyId int32) ApiDestroyDealPaymentRequest {
 	r.companyId = &companyId
 	return r
 }
 
-func (r ApiDestroyDealPaymentRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDestroyDealPaymentRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DestroyDealPaymentExecute(r)
 }
 
 /*
- * DestroyDealPayment 取引（収入／支出）の支払行削除
- * <h2 id="">概要</h2>
+DestroyDealPayment 取引（収入／支出）の支払行削除
+
+<h2 id="">概要</h2>
 <p>指定した事業所の取引（収入／支出）の支払行を削除する</p>
 <h2 id="_2">定義</h2>
 <ul>
@@ -279,12 +276,13 @@ func (r ApiDestroyDealPaymentRequest) Execute() (*_nethttp.Response, error) {
 <p>details : 取引の明細行</p>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引ID
- * @param paymentId 決済ID
- * @return ApiDestroyDealPaymentRequest
- */
-func (a *PaymentsApiService) DestroyDealPayment(ctx _context.Context, id int32, paymentId int64) ApiDestroyDealPaymentRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引ID
+ @param paymentId 決済ID
+ @return ApiDestroyDealPaymentRequest
+*/
+func (a *PaymentsApiService) DestroyDealPayment(ctx context.Context, id int32, paymentId int64) ApiDestroyDealPaymentRequest {
 	return ApiDestroyDealPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -293,30 +291,26 @@ func (a *PaymentsApiService) DestroyDealPayment(ctx _context.Context, id int32, 
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *PaymentsApiService) DestroyDealPaymentExecute(r ApiDestroyDealPaymentRequest) (*_nethttp.Response, error) {
+// Execute executes the request
+func (a *PaymentsApiService) DestroyDealPaymentExecute(r ApiDestroyDealPaymentRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsApiService.DestroyDealPayment")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals/{id}/payments/{payment_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"payment_id"+"}", _neturl.PathEscape(parameterToString(r.paymentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"payment_id"+"}", url.PathEscape(parameterToString(r.paymentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return nil, reportError("id must be greater than 1")
 	}
@@ -326,8 +320,8 @@ func (a *PaymentsApiService) DestroyDealPaymentExecute(r ApiDestroyDealPaymentRe
 	if r.paymentId < 1 {
 		return nil, reportError("paymentId must be greater than 1")
 	}
-	if r.paymentId > -9223372036854775616 {
-		return nil, reportError("paymentId must be less than -9223372036854775616")
+	if r.paymentId > 9223372036854775807 {
+		return nil, reportError("paymentId must be less than 9223372036854775807")
 	}
 	if r.companyId == nil {
 		return nil, reportError("companyId is required and must be specified")
@@ -357,7 +351,7 @@ func (a *PaymentsApiService) DestroyDealPaymentExecute(r ApiDestroyDealPaymentRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -367,15 +361,15 @@ func (a *PaymentsApiService) DestroyDealPaymentExecute(r ApiDestroyDealPaymentRe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -435,25 +429,27 @@ func (a *PaymentsApiService) DestroyDealPaymentExecute(r ApiDestroyDealPaymentRe
 }
 
 type ApiUpdateDealPaymentRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *PaymentsApiService
 	id int32
 	paymentId int64
 	paymentParams *PaymentParams
 }
 
+// 取引（収入／支出）の支払行更新
 func (r ApiUpdateDealPaymentRequest) PaymentParams(paymentParams PaymentParams) ApiUpdateDealPaymentRequest {
 	r.paymentParams = &paymentParams
 	return r
 }
 
-func (r ApiUpdateDealPaymentRequest) Execute() (DealResponse, *_nethttp.Response, error) {
+func (r ApiUpdateDealPaymentRequest) Execute() (*DealResponse, *http.Response, error) {
 	return r.ApiService.UpdateDealPaymentExecute(r)
 }
 
 /*
- * UpdateDealPayment 取引（収入／支出）の支払行更新
- * <h2 id="">概要</h2>
+UpdateDealPayment 取引（収入／支出）の支払行更新
+
+<h2 id="">概要</h2>
 <p>指定した事業所の取引（収入／支出）の支払行を更新する</p>
 <h2 id="_2">定義</h2>
 <ul>
@@ -495,12 +491,13 @@ func (r ApiUpdateDealPaymentRequest) Execute() (DealResponse, *_nethttp.Response
 </ul>
 </li>
 </ul>
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id 取引ID
- * @param paymentId 決済ID
- * @return ApiUpdateDealPaymentRequest
- */
-func (a *PaymentsApiService) UpdateDealPayment(ctx _context.Context, id int32, paymentId int64) ApiUpdateDealPaymentRequest {
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id 取引ID
+ @param paymentId 決済ID
+ @return ApiUpdateDealPaymentRequest
+*/
+func (a *PaymentsApiService) UpdateDealPayment(ctx context.Context, id int32, paymentId int64) ApiUpdateDealPaymentRequest {
 	return ApiUpdateDealPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -509,32 +506,28 @@ func (a *PaymentsApiService) UpdateDealPayment(ctx _context.Context, id int32, p
 	}
 }
 
-/*
- * Execute executes the request
- * @return DealResponse
- */
-func (a *PaymentsApiService) UpdateDealPaymentExecute(r ApiUpdateDealPaymentRequest) (DealResponse, *_nethttp.Response, error) {
+// Execute executes the request
+//  @return DealResponse
+func (a *PaymentsApiService) UpdateDealPaymentExecute(r ApiUpdateDealPaymentRequest) (*DealResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DealResponse
+		formFiles            []formFile
+		localVarReturnValue  *DealResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsApiService.UpdateDealPayment")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/1/deals/{id}/payments/{payment_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"payment_id"+"}", _neturl.PathEscape(parameterToString(r.paymentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"payment_id"+"}", url.PathEscape(parameterToString(r.paymentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.id < 1 {
 		return localVarReturnValue, nil, reportError("id must be greater than 1")
 	}
@@ -544,8 +537,8 @@ func (a *PaymentsApiService) UpdateDealPaymentExecute(r ApiUpdateDealPaymentRequ
 	if r.paymentId < 1 {
 		return localVarReturnValue, nil, reportError("paymentId must be greater than 1")
 	}
-	if r.paymentId > -9223372036854775616 {
-		return localVarReturnValue, nil, reportError("paymentId must be less than -9223372036854775616")
+	if r.paymentId > 9223372036854775807 {
+		return localVarReturnValue, nil, reportError("paymentId must be less than 9223372036854775807")
 	}
 	if r.paymentParams == nil {
 		return localVarReturnValue, nil, reportError("paymentParams is required and must be specified")
@@ -570,7 +563,7 @@ func (a *PaymentsApiService) UpdateDealPaymentExecute(r ApiUpdateDealPaymentRequ
 	}
 	// body params
 	localVarPostBody = r.paymentParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -580,15 +573,15 @@ func (a *PaymentsApiService) UpdateDealPaymentExecute(r ApiUpdateDealPaymentRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -646,7 +639,7 @@ func (a *PaymentsApiService) UpdateDealPaymentExecute(r ApiUpdateDealPaymentRequ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

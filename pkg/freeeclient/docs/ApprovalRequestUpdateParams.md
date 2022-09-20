@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationDate** | **string** | 申請日 (yyyy-mm-dd) | 
+**ApplicationDate** | Pointer to **string** | 申請日 (yyyy-mm-dd)&lt;br&gt; 指定しない場合は当日の日付が登録されます。  | [optional] 
 **ApprovalFlowRouteId** | **int32** | 申請経路ID | 
 **ApproverId** | Pointer to **int32** | 承認者のユーザーID | [optional] 
 **CompanyId** | **int32** | 事業所ID | 
-**Draft** | **bool** | falseの時、in_progress:申請中で更新する。それ以外の時はdraft:下書きで更新する | 
-**RequestItems** | [**[]ApprovalRequestCreateParamsRequestItems**](ApprovalRequestCreateParamsRequestItems.md) |  | 
+**Draft** | **bool** | 各種申請のステータス&lt;br&gt; falseを指定した時は申請中（in_progress）で各種申請を更新します。&lt;br&gt; trueを指定した時は下書き（draft）で各種申請を更新します。  | 
+**RequestItems** | [**[]ApprovalRequestCreateParamsRequestItemsInner**](ApprovalRequestCreateParamsRequestItemsInner.md) |  | 
 
 ## Methods
 
 ### NewApprovalRequestUpdateParams
 
-`func NewApprovalRequestUpdateParams(applicationDate string, approvalFlowRouteId int32, companyId int32, draft bool, requestItems []ApprovalRequestCreateParamsRequestItems, ) *ApprovalRequestUpdateParams`
+`func NewApprovalRequestUpdateParams(approvalFlowRouteId int32, companyId int32, draft bool, requestItems []ApprovalRequestCreateParamsRequestItemsInner, ) *ApprovalRequestUpdateParams`
 
 NewApprovalRequestUpdateParams instantiates a new ApprovalRequestUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetApplicationDate sets ApplicationDate field to given value.
 
+### HasApplicationDate
+
+`func (o *ApprovalRequestUpdateParams) HasApplicationDate() bool`
+
+HasApplicationDate returns a boolean if a field has been set.
 
 ### GetApprovalFlowRouteId
 
@@ -137,20 +142,20 @@ SetDraft sets Draft field to given value.
 
 ### GetRequestItems
 
-`func (o *ApprovalRequestUpdateParams) GetRequestItems() []ApprovalRequestCreateParamsRequestItems`
+`func (o *ApprovalRequestUpdateParams) GetRequestItems() []ApprovalRequestCreateParamsRequestItemsInner`
 
 GetRequestItems returns the RequestItems field if non-nil, zero value otherwise.
 
 ### GetRequestItemsOk
 
-`func (o *ApprovalRequestUpdateParams) GetRequestItemsOk() (*[]ApprovalRequestCreateParamsRequestItems, bool)`
+`func (o *ApprovalRequestUpdateParams) GetRequestItemsOk() (*[]ApprovalRequestCreateParamsRequestItemsInner, bool)`
 
 GetRequestItemsOk returns a tuple with the RequestItems field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestItems
 
-`func (o *ApprovalRequestUpdateParams) SetRequestItems(v []ApprovalRequestCreateParamsRequestItems)`
+`func (o *ApprovalRequestUpdateParams) SetRequestItems(v []ApprovalRequestCreateParamsRequestItemsInner)`
 
 SetRequestItems sets RequestItems field to given value.
 

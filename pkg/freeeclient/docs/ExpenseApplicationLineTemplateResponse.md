@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpenseApplicationLineTemplate** | [**ExpenseApplicationLineTemplateResponseExpenseApplicationLineTemplate**](ExpenseApplicationLineTemplateResponseExpenseApplicationLineTemplate.md) |  | 
+**ExpenseApplicationLineTemplate** | [**ExpenseApplicationLineTemplate**](ExpenseApplicationLineTemplate.md) |  | 
 
 ## Methods
 
 ### NewExpenseApplicationLineTemplateResponse
 
-`func NewExpenseApplicationLineTemplateResponse(expenseApplicationLineTemplate ExpenseApplicationLineTemplateResponseExpenseApplicationLineTemplate, ) *ExpenseApplicationLineTemplateResponse`
+`func NewExpenseApplicationLineTemplateResponse(expenseApplicationLineTemplate ExpenseApplicationLineTemplate, ) *ExpenseApplicationLineTemplateResponse`
 
 NewExpenseApplicationLineTemplateResponse instantiates a new ExpenseApplicationLineTemplateResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetExpenseApplicationLineTemplate
 
-`func (o *ExpenseApplicationLineTemplateResponse) GetExpenseApplicationLineTemplate() ExpenseApplicationLineTemplateResponseExpenseApplicationLineTemplate`
+`func (o *ExpenseApplicationLineTemplateResponse) GetExpenseApplicationLineTemplate() ExpenseApplicationLineTemplate`
 
 GetExpenseApplicationLineTemplate returns the ExpenseApplicationLineTemplate field if non-nil, zero value otherwise.
 
 ### GetExpenseApplicationLineTemplateOk
 
-`func (o *ExpenseApplicationLineTemplateResponse) GetExpenseApplicationLineTemplateOk() (*ExpenseApplicationLineTemplateResponseExpenseApplicationLineTemplate, bool)`
+`func (o *ExpenseApplicationLineTemplateResponse) GetExpenseApplicationLineTemplateOk() (*ExpenseApplicationLineTemplate, bool)`
 
 GetExpenseApplicationLineTemplateOk returns a tuple with the ExpenseApplicationLineTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpenseApplicationLineTemplate
 
-`func (o *ExpenseApplicationLineTemplateResponse) SetExpenseApplicationLineTemplate(v ExpenseApplicationLineTemplateResponseExpenseApplicationLineTemplate)`
+`func (o *ExpenseApplicationLineTemplateResponse) SetExpenseApplicationLineTemplate(v ExpenseApplicationLineTemplate)`
 
 SetExpenseApplicationLineTemplate sets ExpenseApplicationLineTemplate field to given value.
 

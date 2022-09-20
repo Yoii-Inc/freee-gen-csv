@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CompanyId** | **int32** | 事業所ID | 
-**Details** | [**[]RenewCreateParamsDetails**](RenewCreateParamsDetails.md) | +更新の明細行 | 
+**Details** | [**[]RenewCreateParamsDetailsInner**](RenewCreateParamsDetailsInner.md) | +更新の明細行 | 
 **RenewTargetId** | **int64** | +更新対象行ID (details(取引の明細行), accruals(債権債務行), renewsのdetails(+更新の明細行)のIDを指定)  | 
 **UpdateDate** | **string** | 更新日 (yyyy-mm-dd) | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewRenewCreateParams
 
-`func NewRenewCreateParams(companyId int32, details []RenewCreateParamsDetails, renewTargetId int64, updateDate string, ) *RenewCreateParams`
+`func NewRenewCreateParams(companyId int32, details []RenewCreateParamsDetailsInner, renewTargetId int64, updateDate string, ) *RenewCreateParams`
 
 NewRenewCreateParams instantiates a new RenewCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetCompanyId sets CompanyId field to given value.
 
 ### GetDetails
 
-`func (o *RenewCreateParams) GetDetails() []RenewCreateParamsDetails`
+`func (o *RenewCreateParams) GetDetails() []RenewCreateParamsDetailsInner`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *RenewCreateParams) GetDetailsOk() (*[]RenewCreateParamsDetails, bool)`
+`func (o *RenewCreateParams) GetDetailsOk() (*[]RenewCreateParamsDetailsInner, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *RenewCreateParams) SetDetails(v []RenewCreateParamsDetails)`
+`func (o *RenewCreateParams) SetDetails(v []RenewCreateParamsDetailsInner)`
 
 SetDetails sets Details field to given value.
 

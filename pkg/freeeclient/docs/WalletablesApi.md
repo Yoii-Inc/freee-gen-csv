@@ -36,8 +36,8 @@ func main() {
     walletableCreateParams := *openapiclient.NewWalletableCreateParams(int32(1), "ＸＸ銀行", "bank_account") // WalletableCreateParams | 口座の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.CreateWalletable(context.Background()).WalletableCreateParams(walletableCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.CreateWalletable(context.Background()).WalletableCreateParams(walletableCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.CreateWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.DestroyWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.DestroyWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.DestroyWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## GetWalletable
 
-> InlineResponse20016 GetWalletable(ctx, id, type_).CompanyId(companyId).Execute()
+> GetWalletable200Response GetWalletable(ctx, id, type_).CompanyId(companyId).Execute()
 
 口座情報の取得
 
@@ -177,13 +177,13 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.GetWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.GetWalletable(context.Background(), id, type_).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.GetWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWalletable`: InlineResponse20016
+    // response from `GetWalletable`: GetWalletable200Response
     fmt.Fprintf(os.Stdout, "Response from `WalletablesApi.GetWalletable`: %v\n", resp)
 }
 ```
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**GetWalletable200Response**](GetWalletable200Response.md)
 
 ### Authorization
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ## GetWalletables
 
-> InlineResponse20015 GetWalletables(ctx).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
+> GetWalletables200Response GetWalletables(ctx).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
 
 口座一覧の取得
 
@@ -252,13 +252,13 @@ func main() {
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.GetWalletables(context.Background()).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.GetWalletables(context.Background()).CompanyId(companyId).WithBalance(withBalance).Type_(type_).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.GetWalletables``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWalletables`: InlineResponse20015
+    // response from `GetWalletables`: GetWalletables200Response
     fmt.Fprintf(os.Stdout, "Response from `WalletablesApi.GetWalletables`: %v\n", resp)
 }
 ```
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**GetWalletables200Response**](GetWalletables200Response.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWalletable
 
-> InlineResponse20016 UpdateWalletable(ctx, id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
+> GetWalletable200Response UpdateWalletable(ctx, id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
 
 口座の更新
 
@@ -319,16 +319,16 @@ import (
 func main() {
     id := int32(56) // int32 | 
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
-    walletableUpdateParams := *openapiclient.NewWalletableUpdateParams(int32(1), "ＸＸ銀行") // WalletableUpdateParams | 口座の作成 (optional)
+    walletableUpdateParams := *openapiclient.NewWalletableUpdateParams(int32(1), "ＸＸ銀行") // WalletableUpdateParams | 口座の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletablesApi.UpdateWalletable(context.Background(), id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WalletablesApi.UpdateWalletable(context.Background(), id, type_).WalletableUpdateParams(walletableUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletablesApi.UpdateWalletable``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateWalletable`: InlineResponse20016
+    // response from `UpdateWalletable`: GetWalletable200Response
     fmt.Fprintf(os.Stdout, "Response from `WalletablesApi.UpdateWalletable`: %v\n", resp)
 }
 ```
@@ -351,11 +351,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **walletableUpdateParams** | [**WalletableUpdateParams**](WalletableUpdateParams.md) | 口座の作成 | 
+ **walletableUpdateParams** | [**WalletableUpdateParams**](WalletableUpdateParams.md) | 口座の更新 | 
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**GetWalletable200Response**](GetWalletable200Response.md)
 
 ### Authorization
 

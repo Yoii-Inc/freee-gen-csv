@@ -32,11 +32,11 @@ import (
 
 func main() {
     id := int32(56) // int32 | 取引ID
-    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int32(1), "2019-12-17", int32(1), "2019-12-17") // PaymentParams | 取引（収入／支出）の支払行作成
+    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int32(1), "2019-12-17", int32(1), "bank_account") // PaymentParams | 取引（収入／支出）の支払行作成
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentsApi.CreateDealPayment(context.Background(), id).PaymentParams(paymentParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentsApi.CreateDealPayment(context.Background(), id).PaymentParams(paymentParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentsApi.CreateDealPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -108,8 +108,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentsApi.DestroyDealPayment(context.Background(), id, paymentId).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentsApi.DestroyDealPayment(context.Background(), id, paymentId).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentsApi.DestroyDealPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -178,11 +178,11 @@ import (
 func main() {
     id := int32(56) // int32 | 取引ID
     paymentId := int64(789) // int64 | 決済ID
-    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int32(1), "2019-12-17", int32(1), "2019-12-17") // PaymentParams | 取引（収入／支出）の支払行更新
+    paymentParams := *openapiclient.NewPaymentParams(int64(10000), int32(1), "2019-12-17", int32(1), "bank_account") // PaymentParams | 取引（収入／支出）の支払行更新
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentsApi.UpdateDealPayment(context.Background(), id, paymentId).PaymentParams(paymentParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PaymentsApi.UpdateDealPayment(context.Background(), id, paymentId).PaymentParams(paymentParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentsApi.UpdateDealPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

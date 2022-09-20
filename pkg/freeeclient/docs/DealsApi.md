@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    dealCreateParams := *openapiclient.NewDealCreateParams(int32(1), []openapiclient.DealCreateParamsDetails{*openapiclient.NewDealCreateParamsDetails(int32(1), int64(1), int32(1))}, "2019-12-17", "income") // DealCreateParams | 取引（収入／支出）の作成 (optional)
+    dealCreateParams := *openapiclient.NewDealCreateParams(int32(1), []openapiclient.DealCreateParamsDetailsInner{*openapiclient.NewDealCreateParamsDetailsInner(int32(1), int64(1), int32(1))}, "2019-12-17", "income") // DealCreateParams | 取引（収入／支出）の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DealsApi.CreateDeal(context.Background()).DealCreateParams(dealCreateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DealsApi.CreateDeal(context.Background()).DealCreateParams(dealCreateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DealsApi.CreateDeal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -101,8 +101,8 @@ func main() {
     companyId := int32(56) // int32 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DealsApi.DestroyDeal(context.Background(), id).CompanyId(companyId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DealsApi.DestroyDeal(context.Background(), id).CompanyId(companyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DealsApi.DestroyDeal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -172,8 +172,8 @@ func main() {
     accruals := "accruals_example" // string | 取引の債権債務行の表示（without: 表示しない(デフォルト), with: 表示する） (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DealsApi.GetDeal(context.Background(), id).CompanyId(companyId).Accruals(accruals).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DealsApi.GetDeal(context.Background(), id).CompanyId(companyId).Accruals(accruals).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DealsApi.GetDeal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## GetDeals
 
-> InlineResponse2001 GetDeals(ctx).CompanyId(companyId).PartnerId(partnerId).AccountItemId(accountItemId).PartnerCode(partnerCode).Status(status).Type_(type_).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).StartDueDate(startDueDate).EndDueDate(endDueDate).StartRenewDate(startRenewDate).EndRenewDate(endRenewDate).Offset(offset).Limit(limit).RegisteredFrom(registeredFrom).Accruals(accruals).Execute()
+> GetDeals200Response GetDeals(ctx).CompanyId(companyId).PartnerId(partnerId).AccountItemId(accountItemId).PartnerCode(partnerCode).Status(status).Type_(type_).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).StartDueDate(startDueDate).EndDueDate(endDueDate).StartRenewDate(startRenewDate).EndRenewDate(endRenewDate).Offset(offset).Limit(limit).RegisteredFrom(registeredFrom).Accruals(accruals).Execute()
 
 取引（収入／支出）一覧の取得
 
@@ -259,13 +259,13 @@ func main() {
     accruals := "accruals_example" // string | 取引の債権債務行の表示（without: 表示しない(デフォルト), with: 表示する） (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DealsApi.GetDeals(context.Background()).CompanyId(companyId).PartnerId(partnerId).AccountItemId(accountItemId).PartnerCode(partnerCode).Status(status).Type_(type_).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).StartDueDate(startDueDate).EndDueDate(endDueDate).StartRenewDate(startRenewDate).EndRenewDate(endRenewDate).Offset(offset).Limit(limit).RegisteredFrom(registeredFrom).Accruals(accruals).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DealsApi.GetDeals(context.Background()).CompanyId(companyId).PartnerId(partnerId).AccountItemId(accountItemId).PartnerCode(partnerCode).Status(status).Type_(type_).StartIssueDate(startIssueDate).EndIssueDate(endIssueDate).StartDueDate(startDueDate).EndDueDate(endDueDate).StartRenewDate(startRenewDate).EndRenewDate(endRenewDate).Offset(offset).Limit(limit).RegisteredFrom(registeredFrom).Accruals(accruals).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DealsApi.GetDeals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeals`: InlineResponse2001
+    // response from `GetDeals`: GetDeals200Response
     fmt.Fprintf(os.Stdout, "Response from `DealsApi.GetDeals`: %v\n", resp)
 }
 ```
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetDeals200Response**](GetDeals200Response.md)
 
 ### Authorization
 
@@ -338,11 +338,11 @@ import (
 
 func main() {
     id := int32(56) // int32 | 取引ID
-    dealUpdateParams := *openapiclient.NewDealUpdateParams(int32(1), []openapiclient.DealUpdateParamsDetails{*openapiclient.NewDealUpdateParamsDetails(int32(1), int64(1), int32(1))}, "2019-12-17", "income") // DealUpdateParams | 取引（収入／支出）の更新 (optional)
+    dealUpdateParams := *openapiclient.NewDealUpdateParams(int32(1), []openapiclient.DealUpdateParamsDetailsInner{*openapiclient.NewDealUpdateParamsDetailsInner(int32(1), int64(1), int32(1))}, "2019-12-17", "income") // DealUpdateParams | 取引（収入／支出）の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DealsApi.UpdateDeal(context.Background(), id).DealUpdateParams(dealUpdateParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DealsApi.UpdateDeal(context.Background(), id).DealUpdateParams(dealUpdateParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DealsApi.UpdateDeal``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
