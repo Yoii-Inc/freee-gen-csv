@@ -32,8 +32,8 @@ import (
 )
 
 func main() {
-    segmentId := int32(56) // int32 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
-    segmentTagParams := *openapiclient.NewSegmentTagParams(int32(1), "プロジェクトA") // SegmentTagParams | セグメントタグの作成
+    segmentId := int64(56) // int64 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+    segmentTagParams := *openapiclient.NewSegmentTagParams(int64(1), "プロジェクトA") // SegmentTagParams | セグメントタグの作成
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -53,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**segmentId** | **int32** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
+**segmentId** | **int64** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
 
 ### Other Parameters
 
@@ -104,9 +104,9 @@ import (
 )
 
 func main() {
-    segmentId := int32(56) // int32 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
-    id := int32(56) // int32 | セグメントタグID
-    companyId := int32(56) // int32 | 事業所ID
+    segmentId := int64(56) // int64 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+    id := int64(56) // int64 | セグメントタグID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,8 +124,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**segmentId** | **int32** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
-**id** | **int32** | セグメントタグID | 
+**segmentId** | **int64** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
+**id** | **int64** | セグメントタグID | 
 
 ### Other Parameters
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -177,10 +177,10 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    segmentId := int32(56) // int32 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+    companyId := int64(56) // int64 | 事業所ID
+    segmentId := int64(56) // int64 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -200,7 +200,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**segmentId** | **int32** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
+**segmentId** | **int64** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
 
 ### Other Parameters
 
@@ -209,10 +209,10 @@ Other parameters are passed through a pointer to a apiGetSegmentTagsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  | 
 
 ### Return type
 
@@ -253,9 +253,9 @@ import (
 )
 
 func main() {
-    segmentId := int32(56) // int32 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
-    id := int32(56) // int32 | セグメントタグID
-    segmentTagParams := *openapiclient.NewSegmentTagParams(int32(1), "プロジェクトA") // SegmentTagParams | セグメントタグの作成
+    segmentId := int64(56) // int64 | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
+    id := int64(56) // int64 | セグメントタグID
+    segmentTagParams := *openapiclient.NewSegmentTagParams(int64(1), "プロジェクトA") // SegmentTagParams | セグメントタグの作成
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -275,8 +275,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**segmentId** | **int32** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
-**id** | **int32** | セグメントタグID | 
+**segmentId** | **int64** | セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン  | 
+**id** | **int64** | セグメントタグID | 
 
 ### Other Parameters
 

@@ -19,17 +19,17 @@ type ApprovalRequestCreateParams struct {
 	// 申請日 (yyyy-mm-dd)<br> 指定しない場合は当日の日付が登録されます。 
 	ApplicationDate *string `json:"application_date,omitempty"`
 	// 申請経路ID
-	ApprovalFlowRouteId int32 `json:"approval_flow_route_id"`
+	ApprovalFlowRouteId int64 `json:"approval_flow_route_id"`
 	// 承認者のユーザーID
-	ApproverId *int32 `json:"approver_id,omitempty"`
+	ApproverId *int64 `json:"approver_id,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 各種申請のステータス<br> falseを指定した時は申請中（in_progress）で各種申請を作成します。<br> trueを指定した時は下書き（draft）で各種申請を作成します。 
 	Draft bool `json:"draft"`
 	// 申請フォームID
-	FormId int32 `json:"form_id"`
+	FormId int64 `json:"form_id"`
 	// 親申請ID(既存各種申請IDのみ指定可能です。)
-	ParentId *int32 `json:"parent_id,omitempty"`
+	ParentId *int64 `json:"parent_id,omitempty"`
 	RequestItems []ApprovalRequestCreateParamsRequestItemsInner `json:"request_items"`
 }
 
@@ -37,7 +37,7 @@ type ApprovalRequestCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestCreateParams(approvalFlowRouteId int32, companyId int32, draft bool, formId int32, requestItems []ApprovalRequestCreateParamsRequestItemsInner) *ApprovalRequestCreateParams {
+func NewApprovalRequestCreateParams(approvalFlowRouteId int64, companyId int64, draft bool, formId int64, requestItems []ApprovalRequestCreateParamsRequestItemsInner) *ApprovalRequestCreateParams {
 	this := ApprovalRequestCreateParams{}
 	this.ApprovalFlowRouteId = approvalFlowRouteId
 	this.CompanyId = companyId
@@ -88,9 +88,9 @@ func (o *ApprovalRequestCreateParams) SetApplicationDate(v string) {
 }
 
 // GetApprovalFlowRouteId returns the ApprovalFlowRouteId field value
-func (o *ApprovalRequestCreateParams) GetApprovalFlowRouteId() int32 {
+func (o *ApprovalRequestCreateParams) GetApprovalFlowRouteId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -99,7 +99,7 @@ func (o *ApprovalRequestCreateParams) GetApprovalFlowRouteId() int32 {
 
 // GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestCreateParams) GetApprovalFlowRouteIdOk() (*int32, bool) {
+func (o *ApprovalRequestCreateParams) GetApprovalFlowRouteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -107,14 +107,14 @@ func (o *ApprovalRequestCreateParams) GetApprovalFlowRouteIdOk() (*int32, bool) 
 }
 
 // SetApprovalFlowRouteId sets field value
-func (o *ApprovalRequestCreateParams) SetApprovalFlowRouteId(v int32) {
+func (o *ApprovalRequestCreateParams) SetApprovalFlowRouteId(v int64) {
 	o.ApprovalFlowRouteId = v
 }
 
 // GetApproverId returns the ApproverId field value if set, zero value otherwise.
-func (o *ApprovalRequestCreateParams) GetApproverId() int32 {
+func (o *ApprovalRequestCreateParams) GetApproverId() int64 {
 	if o == nil || o.ApproverId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApproverId
@@ -122,7 +122,7 @@ func (o *ApprovalRequestCreateParams) GetApproverId() int32 {
 
 // GetApproverIdOk returns a tuple with the ApproverId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestCreateParams) GetApproverIdOk() (*int32, bool) {
+func (o *ApprovalRequestCreateParams) GetApproverIdOk() (*int64, bool) {
 	if o == nil || o.ApproverId == nil {
 		return nil, false
 	}
@@ -138,15 +138,15 @@ func (o *ApprovalRequestCreateParams) HasApproverId() bool {
 	return false
 }
 
-// SetApproverId gets a reference to the given int32 and assigns it to the ApproverId field.
-func (o *ApprovalRequestCreateParams) SetApproverId(v int32) {
+// SetApproverId gets a reference to the given int64 and assigns it to the ApproverId field.
+func (o *ApprovalRequestCreateParams) SetApproverId(v int64) {
 	o.ApproverId = &v
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ApprovalRequestCreateParams) GetCompanyId() int32 {
+func (o *ApprovalRequestCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -155,7 +155,7 @@ func (o *ApprovalRequestCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *ApprovalRequestCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -163,7 +163,7 @@ func (o *ApprovalRequestCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *ApprovalRequestCreateParams) SetCompanyId(v int32) {
+func (o *ApprovalRequestCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -192,9 +192,9 @@ func (o *ApprovalRequestCreateParams) SetDraft(v bool) {
 }
 
 // GetFormId returns the FormId field value
-func (o *ApprovalRequestCreateParams) GetFormId() int32 {
+func (o *ApprovalRequestCreateParams) GetFormId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -203,7 +203,7 @@ func (o *ApprovalRequestCreateParams) GetFormId() int32 {
 
 // GetFormIdOk returns a tuple with the FormId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestCreateParams) GetFormIdOk() (*int32, bool) {
+func (o *ApprovalRequestCreateParams) GetFormIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -211,14 +211,14 @@ func (o *ApprovalRequestCreateParams) GetFormIdOk() (*int32, bool) {
 }
 
 // SetFormId sets field value
-func (o *ApprovalRequestCreateParams) SetFormId(v int32) {
+func (o *ApprovalRequestCreateParams) SetFormId(v int64) {
 	o.FormId = v
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
-func (o *ApprovalRequestCreateParams) GetParentId() int32 {
+func (o *ApprovalRequestCreateParams) GetParentId() int64 {
 	if o == nil || o.ParentId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ParentId
@@ -226,7 +226,7 @@ func (o *ApprovalRequestCreateParams) GetParentId() int32 {
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestCreateParams) GetParentIdOk() (*int32, bool) {
+func (o *ApprovalRequestCreateParams) GetParentIdOk() (*int64, bool) {
 	if o == nil || o.ParentId == nil {
 		return nil, false
 	}
@@ -242,8 +242,8 @@ func (o *ApprovalRequestCreateParams) HasParentId() bool {
 	return false
 }
 
-// SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
-func (o *ApprovalRequestCreateParams) SetParentId(v int32) {
+// SetParentId gets a reference to the given int64 and assigns it to the ParentId field.
+func (o *ApprovalRequestCreateParams) SetParentId(v int64) {
 	o.ParentId = &v
 }
 

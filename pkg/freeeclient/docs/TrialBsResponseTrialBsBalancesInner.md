@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountCategoryName** | Pointer to **string** | 勘定科目カテゴリー名 | [optional] 
 **AccountGroupName** | Pointer to **string** | 決算書表示名(account_item_display_type:group指定時に決算書表示名の時のみ含まれる) | [optional] 
-**AccountItemId** | Pointer to **int32** | 勘定科目ID(勘定科目の時のみ含まれる) | [optional] 
+**AccountItemId** | Pointer to **int64** | 勘定科目ID(勘定科目の時のみ含まれる) | [optional] 
 **AccountItemName** | Pointer to **string** | 勘定科目名(勘定科目の時のみ含まれる) | [optional] 
-**ClosingBalance** | Pointer to **int32** | 期末残高 | [optional] 
+**ClosingBalance** | Pointer to **int64** | 期末残高 | [optional] 
 **CompositionRatio** | Pointer to **float32** | 構成比 | [optional] 
-**CreditAmount** | Pointer to **int32** | 貸方金額 | [optional] 
-**DebitAmount** | Pointer to **int32** | 借方金額 | [optional] 
-**HierarchyLevel** | Pointer to **int32** | 階層レベル | [optional] 
+**CreditAmount** | Pointer to **int64** | 貸方金額 | [optional] 
+**DebitAmount** | Pointer to **int64** | 借方金額 | [optional] 
+**HierarchyLevel** | Pointer to **int64** | 階層レベル | [optional] 
 **Items** | Pointer to [**[]TrialBsResponseTrialBsBalancesInnerItemsInner**](TrialBsResponseTrialBsBalancesInnerItemsInner.md) | breakdown_display_type:item, account_item_display_type:account_item指定時のみ含まれる | [optional] 
-**OpeningBalance** | Pointer to **int32** | 期首残高 | [optional] 
+**OpeningBalance** | Pointer to **int64** | 期首残高 | [optional] 
 **ParentAccountCategoryName** | Pointer to **string** | 上位勘定科目カテゴリー名(勘定科目カテゴリーの時のみ、上層が存在する場合含まれる) | [optional] 
 **Partners** | Pointer to [**[]TrialBsResponseTrialBsBalancesInnerPartnersInner**](TrialBsResponseTrialBsBalancesInnerPartnersInner.md) | breakdown_display_type:partner, account_item_display_type:account_item指定時のみ含まれる | [optional] 
 **Sections** | Pointer to [**[]TrialBsResponseTrialBsBalancesInnerSectionsInner**](TrialBsResponseTrialBsBalancesInnerSectionsInner.md) | breakdown_display_type:section, account_item_display_type:account_item指定時のみ含まれる | [optional] 
@@ -94,20 +94,20 @@ HasAccountGroupName returns a boolean if a field has been set.
 
 ### GetAccountItemId
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemId() int32`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *TrialBsResponseTrialBsBalancesInner) SetAccountItemId(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -144,20 +144,20 @@ HasAccountItemName returns a boolean if a field has been set.
 
 ### GetClosingBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalance() int32`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalance() int64`
 
 GetClosingBalance returns the ClosingBalance field if non-nil, zero value otherwise.
 
 ### GetClosingBalanceOk
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalanceOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalanceOk() (*int64, bool)`
 
 GetClosingBalanceOk returns a tuple with the ClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosingBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInner) SetClosingBalance(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInner) SetClosingBalance(v int64)`
 
 SetClosingBalance sets ClosingBalance field to given value.
 
@@ -194,20 +194,20 @@ HasCompositionRatio returns a boolean if a field has been set.
 
 ### GetCreditAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmount() int32`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmount() int64`
 
 GetCreditAmount returns the CreditAmount field if non-nil, zero value otherwise.
 
 ### GetCreditAmountOk
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmountOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmountOk() (*int64, bool)`
 
 GetCreditAmountOk returns a tuple with the CreditAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreditAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInner) SetCreditAmount(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInner) SetCreditAmount(v int64)`
 
 SetCreditAmount sets CreditAmount field to given value.
 
@@ -219,20 +219,20 @@ HasCreditAmount returns a boolean if a field has been set.
 
 ### GetDebitAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmount() int32`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmount() int64`
 
 GetDebitAmount returns the DebitAmount field if non-nil, zero value otherwise.
 
 ### GetDebitAmountOk
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmountOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmountOk() (*int64, bool)`
 
 GetDebitAmountOk returns a tuple with the DebitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDebitAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInner) SetDebitAmount(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInner) SetDebitAmount(v int64)`
 
 SetDebitAmount sets DebitAmount field to given value.
 
@@ -244,20 +244,20 @@ HasDebitAmount returns a boolean if a field has been set.
 
 ### GetHierarchyLevel
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevel() int32`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevel() int64`
 
 GetHierarchyLevel returns the HierarchyLevel field if non-nil, zero value otherwise.
 
 ### GetHierarchyLevelOk
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevelOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevelOk() (*int64, bool)`
 
 GetHierarchyLevelOk returns a tuple with the HierarchyLevel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHierarchyLevel
 
-`func (o *TrialBsResponseTrialBsBalancesInner) SetHierarchyLevel(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInner) SetHierarchyLevel(v int64)`
 
 SetHierarchyLevel sets HierarchyLevel field to given value.
 
@@ -294,20 +294,20 @@ HasItems returns a boolean if a field has been set.
 
 ### GetOpeningBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalance() int32`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalance() int64`
 
 GetOpeningBalance returns the OpeningBalance field if non-nil, zero value otherwise.
 
 ### GetOpeningBalanceOk
 
-`func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalanceOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalanceOk() (*int64, bool)`
 
 GetOpeningBalanceOk returns a tuple with the OpeningBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOpeningBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInner) SetOpeningBalance(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInner) SetOpeningBalance(v int64)`
 
 SetOpeningBalance sets OpeningBalance field to given value.
 

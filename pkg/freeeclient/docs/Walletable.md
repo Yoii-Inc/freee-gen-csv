@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BankId** | **NullableInt32** | サービスID | 
-**Id** | **int32** | 口座ID | 
-**LastBalance** | Pointer to **int32** | 同期残高 | [optional] 
+**BankId** | **NullableInt64** | サービスID | 
+**Id** | **int64** | 口座ID | 
+**LastBalance** | Pointer to **int64** | 同期残高 | [optional] 
 **Name** | **string** | 口座名 (255文字以内) | 
 **Type** | **string** | 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
-**WalletableBalance** | Pointer to **int32** | 登録残高 | [optional] 
+**WalletableBalance** | Pointer to **int64** | 登録残高 | [optional] 
 
 ## Methods
 
 ### NewWalletable
 
-`func NewWalletable(bankId NullableInt32, id int32, name string, type_ string, ) *Walletable`
+`func NewWalletable(bankId NullableInt64, id int64, name string, type_ string, ) *Walletable`
 
 NewWalletable instantiates a new Walletable object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBankId
 
-`func (o *Walletable) GetBankId() int32`
+`func (o *Walletable) GetBankId() int64`
 
 GetBankId returns the BankId field if non-nil, zero value otherwise.
 
 ### GetBankIdOk
 
-`func (o *Walletable) GetBankIdOk() (*int32, bool)`
+`func (o *Walletable) GetBankIdOk() (*int64, bool)`
 
 GetBankIdOk returns a tuple with the BankId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBankId
 
-`func (o *Walletable) SetBankId(v int32)`
+`func (o *Walletable) SetBankId(v int64)`
 
 SetBankId sets BankId field to given value.
 
@@ -62,40 +62,40 @@ SetBankId sets BankId field to given value.
 UnsetBankId ensures that no value is present for BankId, not even an explicit nil
 ### GetId
 
-`func (o *Walletable) GetId() int32`
+`func (o *Walletable) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Walletable) GetIdOk() (*int32, bool)`
+`func (o *Walletable) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Walletable) SetId(v int32)`
+`func (o *Walletable) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetLastBalance
 
-`func (o *Walletable) GetLastBalance() int32`
+`func (o *Walletable) GetLastBalance() int64`
 
 GetLastBalance returns the LastBalance field if non-nil, zero value otherwise.
 
 ### GetLastBalanceOk
 
-`func (o *Walletable) GetLastBalanceOk() (*int32, bool)`
+`func (o *Walletable) GetLastBalanceOk() (*int64, bool)`
 
 GetLastBalanceOk returns a tuple with the LastBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastBalance
 
-`func (o *Walletable) SetLastBalance(v int32)`
+`func (o *Walletable) SetLastBalance(v int64)`
 
 SetLastBalance sets LastBalance field to given value.
 
@@ -147,20 +147,20 @@ SetType sets Type field to given value.
 
 ### GetWalletableBalance
 
-`func (o *Walletable) GetWalletableBalance() int32`
+`func (o *Walletable) GetWalletableBalance() int64`
 
 GetWalletableBalance returns the WalletableBalance field if non-nil, zero value otherwise.
 
 ### GetWalletableBalanceOk
 
-`func (o *Walletable) GetWalletableBalanceOk() (*int32, bool)`
+`func (o *Walletable) GetWalletableBalanceOk() (*int64, bool)`
 
 GetWalletableBalanceOk returns a tuple with the WalletableBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletableBalance
 
-`func (o *Walletable) SetWalletableBalance(v int32)`
+`func (o *Walletable) SetWalletableBalance(v int64)`
 
 SetWalletableBalance sets WalletableBalance field to given value.
 

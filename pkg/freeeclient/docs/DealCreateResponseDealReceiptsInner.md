@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** | 作成日時（ISO8601形式） | 
 **Description** | Pointer to **string** | メモ | [optional] 
-**Id** | **int32** | 証憑ファイルID（ファイルボックスのファイルID） | 
+**Id** | **int64** | 証憑ファイルID（ファイルボックスのファイルID） | 
 **IssueDate** | Pointer to **string** | 発生日 | [optional] 
 **MimeType** | **string** | MIMEタイプ | 
 **Origin** | **string** | アップロード元種別 | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewDealCreateResponseDealReceiptsInner
 
-`func NewDealCreateResponseDealReceiptsInner(createdAt string, id int32, mimeType string, origin string, status string, user DealReceiptsInnerUser, ) *DealCreateResponseDealReceiptsInner`
+`func NewDealCreateResponseDealReceiptsInner(createdAt string, id int64, mimeType string, origin string, status string, user DealReceiptsInnerUser, ) *DealCreateResponseDealReceiptsInner`
 
 NewDealCreateResponseDealReceiptsInner instantiates a new DealCreateResponseDealReceiptsInner object
 This constructor will assign default values to properties that have it defined,
@@ -80,20 +80,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *DealCreateResponseDealReceiptsInner) GetId() int32`
+`func (o *DealCreateResponseDealReceiptsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DealCreateResponseDealReceiptsInner) GetIdOk() (*int32, bool)`
+`func (o *DealCreateResponseDealReceiptsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DealCreateResponseDealReceiptsInner) SetId(v int32)`
+`func (o *DealCreateResponseDealReceiptsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

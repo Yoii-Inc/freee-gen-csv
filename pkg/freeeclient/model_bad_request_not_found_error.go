@@ -17,7 +17,7 @@ import (
 // BadRequestNotFoundError struct for BadRequestNotFoundError
 type BadRequestNotFoundError struct {
 	Errors []BadRequestNotFoundErrorErrorsInner `json:"errors,omitempty"`
-	StatusCode *int32 `json:"status_code,omitempty"`
+	StatusCode *int64 `json:"status_code,omitempty"`
 }
 
 // NewBadRequestNotFoundError instantiates a new BadRequestNotFoundError object
@@ -70,9 +70,9 @@ func (o *BadRequestNotFoundError) SetErrors(v []BadRequestNotFoundErrorErrorsInn
 }
 
 // GetStatusCode returns the StatusCode field value if set, zero value otherwise.
-func (o *BadRequestNotFoundError) GetStatusCode() int32 {
+func (o *BadRequestNotFoundError) GetStatusCode() int64 {
 	if o == nil || o.StatusCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StatusCode
@@ -80,7 +80,7 @@ func (o *BadRequestNotFoundError) GetStatusCode() int32 {
 
 // GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BadRequestNotFoundError) GetStatusCodeOk() (*int32, bool) {
+func (o *BadRequestNotFoundError) GetStatusCodeOk() (*int64, bool) {
 	if o == nil || o.StatusCode == nil {
 		return nil, false
 	}
@@ -96,8 +96,8 @@ func (o *BadRequestNotFoundError) HasStatusCode() bool {
 	return false
 }
 
-// SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
-func (o *BadRequestNotFoundError) SetStatusCode(v int32) {
+// SetStatusCode gets a reference to the given int64 and assigns it to the StatusCode field.
+func (o *BadRequestNotFoundError) SetStatusCode(v int64) {
 	o.StatusCode = &v
 }
 

@@ -17,14 +17,14 @@ import (
 // GetDeals200ResponseMeta struct for GetDeals200ResponseMeta
 type GetDeals200ResponseMeta struct {
 	// 検索条件に合致する取引の総数
-	TotalCount int32 `json:"total_count"`
+	TotalCount int64 `json:"total_count"`
 }
 
 // NewGetDeals200ResponseMeta instantiates a new GetDeals200ResponseMeta object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetDeals200ResponseMeta(totalCount int32) *GetDeals200ResponseMeta {
+func NewGetDeals200ResponseMeta(totalCount int64) *GetDeals200ResponseMeta {
 	this := GetDeals200ResponseMeta{}
 	this.TotalCount = totalCount
 	return &this
@@ -39,9 +39,9 @@ func NewGetDeals200ResponseMetaWithDefaults() *GetDeals200ResponseMeta {
 }
 
 // GetTotalCount returns the TotalCount field value
-func (o *GetDeals200ResponseMeta) GetTotalCount() int32 {
+func (o *GetDeals200ResponseMeta) GetTotalCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -50,7 +50,7 @@ func (o *GetDeals200ResponseMeta) GetTotalCount() int32 {
 
 // GetTotalCountOk returns a tuple with the TotalCount field value
 // and a boolean to check if the value has been set.
-func (o *GetDeals200ResponseMeta) GetTotalCountOk() (*int32, bool) {
+func (o *GetDeals200ResponseMeta) GetTotalCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *GetDeals200ResponseMeta) GetTotalCountOk() (*int32, bool) {
 }
 
 // SetTotalCount sets field value
-func (o *GetDeals200ResponseMeta) SetTotalCount(v int32) {
+func (o *GetDeals200ResponseMeta) SetTotalCount(v int64) {
 	o.TotalCount = v
 }
 

@@ -17,7 +17,7 @@ import (
 // DealUpdateParams struct for DealUpdateParams
 type DealUpdateParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	Details []DealUpdateParamsDetailsInner `json:"details"`
 	// 支払期日(yyyy-mm-dd)
 	DueDate *string `json:"due_date,omitempty"`
@@ -26,9 +26,9 @@ type DealUpdateParams struct {
 	// 取引先コード
 	PartnerCode *string `json:"partner_code,omitempty"`
 	// 取引先ID
-	PartnerId *int32 `json:"partner_id,omitempty"`
+	PartnerId *int64 `json:"partner_id,omitempty"`
 	// 証憑ファイルID（ファイルボックスのファイルID）（配列）
-	ReceiptIds []int32 `json:"receipt_ids,omitempty"`
+	ReceiptIds []int64 `json:"receipt_ids,omitempty"`
 	// 管理番号
 	RefNumber *string `json:"ref_number,omitempty"`
 	// 収支区分 (収入: income, 支出: expense)
@@ -39,7 +39,7 @@ type DealUpdateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealUpdateParams(companyId int32, details []DealUpdateParamsDetailsInner, issueDate string, type_ string) *DealUpdateParams {
+func NewDealUpdateParams(companyId int64, details []DealUpdateParamsDetailsInner, issueDate string, type_ string) *DealUpdateParams {
 	this := DealUpdateParams{}
 	this.CompanyId = companyId
 	this.Details = details
@@ -57,9 +57,9 @@ func NewDealUpdateParamsWithDefaults() *DealUpdateParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *DealUpdateParams) GetCompanyId() int32 {
+func (o *DealUpdateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *DealUpdateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *DealUpdateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *DealUpdateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *DealUpdateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *DealUpdateParams) SetCompanyId(v int32) {
+func (o *DealUpdateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -193,9 +193,9 @@ func (o *DealUpdateParams) SetPartnerCode(v string) {
 }
 
 // GetPartnerId returns the PartnerId field value if set, zero value otherwise.
-func (o *DealUpdateParams) GetPartnerId() int32 {
+func (o *DealUpdateParams) GetPartnerId() int64 {
 	if o == nil || o.PartnerId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerId
@@ -203,7 +203,7 @@ func (o *DealUpdateParams) GetPartnerId() int32 {
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealUpdateParams) GetPartnerIdOk() (*int32, bool) {
+func (o *DealUpdateParams) GetPartnerIdOk() (*int64, bool) {
 	if o == nil || o.PartnerId == nil {
 		return nil, false
 	}
@@ -219,15 +219,15 @@ func (o *DealUpdateParams) HasPartnerId() bool {
 	return false
 }
 
-// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
-func (o *DealUpdateParams) SetPartnerId(v int32) {
+// SetPartnerId gets a reference to the given int64 and assigns it to the PartnerId field.
+func (o *DealUpdateParams) SetPartnerId(v int64) {
 	o.PartnerId = &v
 }
 
 // GetReceiptIds returns the ReceiptIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DealUpdateParams) GetReceiptIds() []int32 {
+func (o *DealUpdateParams) GetReceiptIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.ReceiptIds
@@ -236,7 +236,7 @@ func (o *DealUpdateParams) GetReceiptIds() []int32 {
 // GetReceiptIdsOk returns a tuple with the ReceiptIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DealUpdateParams) GetReceiptIdsOk() ([]int32, bool) {
+func (o *DealUpdateParams) GetReceiptIdsOk() ([]int64, bool) {
 	if o == nil || o.ReceiptIds == nil {
 		return nil, false
 	}
@@ -252,8 +252,8 @@ func (o *DealUpdateParams) HasReceiptIds() bool {
 	return false
 }
 
-// SetReceiptIds gets a reference to the given []int32 and assigns it to the ReceiptIds field.
-func (o *DealUpdateParams) SetReceiptIds(v []int32) {
+// SetReceiptIds gets a reference to the given []int64 and assigns it to the ReceiptIds field.
+func (o *DealUpdateParams) SetReceiptIds(v []int64) {
 	o.ReceiptIds = v
 }
 

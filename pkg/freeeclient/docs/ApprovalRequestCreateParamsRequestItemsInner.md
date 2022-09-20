@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | 項目ID | [optional] 
+**Id** | Pointer to **int64** | 項目ID | [optional] 
 **Type** | Pointer to **string** | 項目タイプ(title: 申請タイトル, single_line: 自由記述形式 1行, multi_line: 自由記述形式 複数行, select: プルダウン, date: 日付, amount: 金額, receipt: 添付ファイル, section: 部門ID, partner: 取引先ID) | [optional] 
 **Value** | Pointer to **string** | 項目の値 | [optional] 
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ApprovalRequestCreateParamsRequestItemsInner) GetId() int32`
+`func (o *ApprovalRequestCreateParamsRequestItemsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ApprovalRequestCreateParamsRequestItemsInner) GetIdOk() (*int32, bool)`
+`func (o *ApprovalRequestCreateParamsRequestItemsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ApprovalRequestCreateParamsRequestItemsInner) SetId(v int32)`
+`func (o *ApprovalRequestCreateParamsRequestItemsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

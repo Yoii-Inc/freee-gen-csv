@@ -28,12 +28,12 @@ type JournalsApiService service
 type ApiDownloadJournalRequest struct {
 	ctx context.Context
 	ApiService *JournalsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDownloadJournalRequest) CompanyId(companyId int32) ApiDownloadJournalRequest {
+func (r ApiDownloadJournalRequest) CompanyId(companyId int64) ApiDownloadJournalRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -62,7 +62,7 @@ DownloadJournal ダウンロード実行
  @param id 受け付けID
  @return ApiDownloadJournalRequest
 */
-func (a *JournalsApiService) DownloadJournal(ctx context.Context, id int32) ApiDownloadJournalRequest {
+func (a *JournalsApiService) DownloadJournal(ctx context.Context, id int64) ApiDownloadJournalRequest {
 	return ApiDownloadJournalRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -214,12 +214,12 @@ func (a *JournalsApiService) DownloadJournalExecute(r ApiDownloadJournalRequest)
 type ApiGetJournalStatusRequest struct {
 	ctx context.Context
 	ApiService *JournalsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
 // 事業所ID
-func (r ApiGetJournalStatusRequest) CompanyId(companyId int32) ApiGetJournalStatusRequest {
+func (r ApiGetJournalStatusRequest) CompanyId(companyId int64) ApiGetJournalStatusRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -262,7 +262,7 @@ GetJournalStatus ステータス確認
  @param id 受け付けID
  @return ApiGetJournalStatusRequest
 */
-func (a *JournalsApiService) GetJournalStatus(ctx context.Context, id int32) ApiGetJournalStatusRequest {
+func (a *JournalsApiService) GetJournalStatus(ctx context.Context, id int64) ApiGetJournalStatusRequest {
 	return ApiGetJournalStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -415,7 +415,7 @@ type ApiGetJournalsRequest struct {
 	ctx context.Context
 	ApiService *JournalsApiService
 	downloadType *string
-	companyId *int32
+	companyId *int64
 	visibleTags *[]string
 	visibleIds *[]string
 	startDate *string
@@ -429,7 +429,7 @@ func (r ApiGetJournalsRequest) DownloadType(downloadType string) ApiGetJournalsR
 }
 
 // 事業所ID
-func (r ApiGetJournalsRequest) CompanyId(companyId int32) ApiGetJournalsRequest {
+func (r ApiGetJournalsRequest) CompanyId(companyId int64) ApiGetJournalsRequest {
 	r.companyId = &companyId
 	return r
 }

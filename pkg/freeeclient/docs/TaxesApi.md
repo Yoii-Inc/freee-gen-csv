@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-    code := int32(56) // int32 | 税区分コード
+    code := int64(56) // int64 | 税区分コード
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**code** | **int32** | 税区分コード | 
+**code** | **int64** | 税区分コード | 
 
 ### Other Parameters
 
@@ -160,7 +160,7 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**companyId** | **int32** | 事業所ID | 
+**companyId** | **int64** | 事業所ID | 
 
 ### Other Parameters
 

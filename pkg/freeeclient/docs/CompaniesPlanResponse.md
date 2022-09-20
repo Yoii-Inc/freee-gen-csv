@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | 事業所ID | 
+**Id** | **int64** | 事業所ID | 
 **OrgCode** | **string** | 事業形態（個人事業主: personal、法人: corporate） | 
 **Plan** | **string** | 会計プラン 個人用(non_charged: 無料プラン、starter: スターター、standard: スタンダード、premium: プレミアム) 法人用(non_charged: 無料プラン、minimum: ミニマム、basic: ベーシック、professional: プロフェッショナル、enterprise: エンタープライズ) | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewCompaniesPlanResponse
 
-`func NewCompaniesPlanResponse(id int32, orgCode string, plan string, ) *CompaniesPlanResponse`
+`func NewCompaniesPlanResponse(id int64, orgCode string, plan string, ) *CompaniesPlanResponse`
 
 NewCompaniesPlanResponse instantiates a new CompaniesPlanResponse object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *CompaniesPlanResponse) GetId() int32`
+`func (o *CompaniesPlanResponse) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CompaniesPlanResponse) GetIdOk() (*int32, bool)`
+`func (o *CompaniesPlanResponse) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CompaniesPlanResponse) SetId(v int32)`
+`func (o *CompaniesPlanResponse) SetId(v int64)`
 
 SetId sets Id field to given value.
 

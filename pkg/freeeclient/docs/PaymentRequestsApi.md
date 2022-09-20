@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-    paymentRequestCreateParams := *openapiclient.NewPaymentRequestCreateParams(int32(1), int32(1), true, "2019-12-17", []openapiclient.PaymentRequestCreateParamsPaymentRequestLinesInner{*openapiclient.NewPaymentRequestCreateParamsPaymentRequestLinesInner(int64(30000))}, "仕入代金支払い") // PaymentRequestCreateParams | 支払依頼の作成 (optional)
+    paymentRequestCreateParams := *openapiclient.NewPaymentRequestCreateParams(int64(1), int64(1), true, "2019-12-17", []openapiclient.PaymentRequestCreateParamsPaymentRequestLinesInner{*openapiclient.NewPaymentRequestCreateParamsPaymentRequestLinesInner(int64(30000))}, "仕入代金支払い") // PaymentRequestCreateParams | 支払依頼の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -100,8 +100,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 支払依頼ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 支払依頼ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 支払依頼ID | 
+**id** | **int64** | 支払依頼ID | 
 
 ### Other Parameters
 
@@ -129,7 +129,7 @@ Other parameters are passed through a pointer to a apiDestroyPaymentRequestReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -170,8 +170,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 支払依頼ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 支払依頼ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -191,7 +191,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 支払依頼ID | 
+**id** | **int64** | 支払依頼ID | 
 
 ### Other Parameters
 
@@ -201,7 +201,7 @@ Other parameters are passed through a pointer to a apiGetPaymentRequestRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -242,26 +242,26 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     status := "status_example" // string | '申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)、 取引ステータス(unsettled:支払待ち, settled:支払済み)'<br> approver_id を指定した場合は無効です。  (optional)
     startApplicationDate := "2019-12-17" // string | 申請日で絞込：開始日(yyyy-mm-dd) (optional)
     endApplicationDate := "2019-12-17" // string | 申請日で絞込：終了日(yyyy-mm-dd) (optional)
     startIssueDate := "2019-12-17" // string | 発生日で絞込：開始日(yyyy-mm-dd) (optional)
     endIssueDate := "2019-12-17" // string | 発生日で絞込：終了日(yyyy-mm-dd) (optional)
-    applicationNumber := int32(2) // int32 | 申請No. (optional)
+    applicationNumber := int64(2) // int64 | 申請No. (optional)
     title := "大阪出張" // string | 申請タイトル (optional)
-    applicantId := int32(1) // int32 | 申請者のユーザーID (optional)
-    approverId := int32(1) // int32 | 承認者のユーザーID<br> 'approver_id を指定した場合は、 in_progress: 申請中 の支払依頼のみを返します。'  (optional)
-    minAmount := int32(5000) // int32 | 金額で絞込 (下限金額) (optional)
-    maxAmount := int32(10000) // int32 | 金額で絞込 (上限金額) (optional)
-    partnerId := int32(56) // int32 | 取引先IDで絞込 (optional)
+    applicantId := int64(1) // int64 | 申請者のユーザーID (optional)
+    approverId := int64(1) // int64 | 承認者のユーザーID<br> 'approver_id を指定した場合は、 in_progress: 申請中 の支払依頼のみを返します。'  (optional)
+    minAmount := int64(5000) // int64 | 金額で絞込 (下限金額) (optional)
+    maxAmount := int64(10000) // int64 | 金額で絞込 (上限金額) (optional)
+    partnerId := int64(56) // int64 | 取引先IDで絞込 (optional)
     partnerCode := "partnerCode_example" // string | 取引先コードで絞込 (optional)
     paymentMethod := "credit_card" // string | 支払方法で絞込 (none: 指定なし, domestic_bank_transfer: 国内振込, abroad_bank_transfer: 国外振込, account_transfer: 口座振替, credit_card: クレジットカード) (optional)
     startPaymentDate := "2019-12-17" // string | 支払期限で絞込：開始日(yyyy-mm-dd) (optional)
     endPaymentDate := "2019-12-17" // string | 支払期限で絞込：終了日(yyyy-mm-dd) (optional)
     documentCode := "2" // string | 請求書番号で絞込 (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -286,26 +286,26 @@ Other parameters are passed through a pointer to a apiGetPaymentRequestsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **status** | **string** | &#39;申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)、 取引ステータス(unsettled:支払待ち, settled:支払済み)&#39;&lt;br&gt; approver_id を指定した場合は無効です。  | 
  **startApplicationDate** | **string** | 申請日で絞込：開始日(yyyy-mm-dd) | 
  **endApplicationDate** | **string** | 申請日で絞込：終了日(yyyy-mm-dd) | 
  **startIssueDate** | **string** | 発生日で絞込：開始日(yyyy-mm-dd) | 
  **endIssueDate** | **string** | 発生日で絞込：終了日(yyyy-mm-dd) | 
- **applicationNumber** | **int32** | 申請No. | 
+ **applicationNumber** | **int64** | 申請No. | 
  **title** | **string** | 申請タイトル | 
- **applicantId** | **int32** | 申請者のユーザーID | 
- **approverId** | **int32** | 承認者のユーザーID&lt;br&gt; &#39;approver_id を指定した場合は、 in_progress: 申請中 の支払依頼のみを返します。&#39;  | 
- **minAmount** | **int32** | 金額で絞込 (下限金額) | 
- **maxAmount** | **int32** | 金額で絞込 (上限金額) | 
- **partnerId** | **int32** | 取引先IDで絞込 | 
+ **applicantId** | **int64** | 申請者のユーザーID | 
+ **approverId** | **int64** | 承認者のユーザーID&lt;br&gt; &#39;approver_id を指定した場合は、 in_progress: 申請中 の支払依頼のみを返します。&#39;  | 
+ **minAmount** | **int64** | 金額で絞込 (下限金額) | 
+ **maxAmount** | **int64** | 金額で絞込 (上限金額) | 
+ **partnerId** | **int64** | 取引先IDで絞込 | 
  **partnerCode** | **string** | 取引先コードで絞込 | 
  **paymentMethod** | **string** | 支払方法で絞込 (none: 指定なし, domestic_bank_transfer: 国内振込, abroad_bank_transfer: 国外振込, account_transfer: 口座振替, credit_card: クレジットカード) | 
  **startPaymentDate** | **string** | 支払期限で絞込：開始日(yyyy-mm-dd) | 
  **endPaymentDate** | **string** | 支払期限で絞込：終了日(yyyy-mm-dd) | 
  **documentCode** | **string** | 請求書番号で絞込 | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
 
 ### Return type
 
@@ -346,8 +346,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 支払依頼ID
-    paymentRequestUpdateParams := *openapiclient.NewPaymentRequestUpdateParams(int32(1), int32(1), true, "2019-12-17", []openapiclient.PaymentRequestUpdateParamsPaymentRequestLinesInner{*openapiclient.NewPaymentRequestUpdateParamsPaymentRequestLinesInner(int64(30000))}, "仕入代金支払い") // PaymentRequestUpdateParams | 支払依頼の更新 (optional)
+    id := int64(56) // int64 | 支払依頼ID
+    paymentRequestUpdateParams := *openapiclient.NewPaymentRequestUpdateParams(int64(1), int64(1), true, "2019-12-17", []openapiclient.PaymentRequestUpdateParamsPaymentRequestLinesInner{*openapiclient.NewPaymentRequestUpdateParamsPaymentRequestLinesInner(int64(30000))}, "仕入代金支払い") // PaymentRequestUpdateParams | 支払依頼の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -367,7 +367,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 支払依頼ID | 
+**id** | **int64** | 支払依頼ID | 
 
 ### Other Parameters
 
@@ -418,8 +418,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 支払依頼ID
-    paymentRequestActionCreateParams := *openapiclient.NewPaymentRequestActionCreateParams("approve", int32(1), int32(1), int32(1)) // PaymentRequestActionCreateParams | 支払依頼の承認操作
+    id := int64(56) // int64 | 支払依頼ID
+    paymentRequestActionCreateParams := *openapiclient.NewPaymentRequestActionCreateParams("approve", int64(1), int64(1), int64(1)) // PaymentRequestActionCreateParams | 支払依頼の承認操作
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -439,7 +439,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 支払依頼ID | 
+**id** | **int64** | 支払依頼ID | 
 
 ### Other Parameters
 

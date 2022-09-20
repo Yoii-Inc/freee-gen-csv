@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    walletableCreateParams := *openapiclient.NewWalletableCreateParams(int32(1), "ＸＸ銀行", "bank_account") // WalletableCreateParams | 口座の作成 (optional)
+    walletableCreateParams := *openapiclient.NewWalletableCreateParams(int64(1), "ＸＸ銀行", "bank_account") // WalletableCreateParams | 口座の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -99,9 +99,9 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 口座ID
+    id := int64(56) // int64 | 口座ID
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 口座ID | 
+**id** | **int64** | 口座ID | 
 **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
 ### Other Parameters
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -172,9 +172,9 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 口座ID
+    id := int64(56) // int64 | 口座ID
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 口座ID | 
+**id** | **int64** | 口座ID | 
 **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
 ### Other Parameters
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -247,7 +247,7 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     withBalance := true // bool | 残高情報を含める (optional)
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） (optional)
 
@@ -274,7 +274,7 @@ Other parameters are passed through a pointer to a apiGetWalletablesRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **withBalance** | **bool** | 残高情報を含める | 
  **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
@@ -317,9 +317,9 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
+    id := int64(56) // int64 | 
     type_ := "type__example" // string | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
-    walletableUpdateParams := *openapiclient.NewWalletableUpdateParams(int32(1), "ＸＸ銀行") // WalletableUpdateParams | 口座の更新 (optional)
+    walletableUpdateParams := *openapiclient.NewWalletableUpdateParams(int64(1), "ＸＸ銀行") // WalletableUpdateParams | 口座の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -339,7 +339,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 **type_** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
 
 ### Other Parameters

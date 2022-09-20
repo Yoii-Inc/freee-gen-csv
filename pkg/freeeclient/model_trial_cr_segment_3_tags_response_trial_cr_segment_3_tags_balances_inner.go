@@ -21,13 +21,13 @@ type TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner struct {
 	// 決算書表示名(account_item_display_type:group指定時に決算書表示名の時のみ含まれる)
 	AccountGroupName *string `json:"account_group_name,omitempty"`
 	// 勘定科目ID(勘定科目の時のみ含まれる)
-	AccountItemId *int32 `json:"account_item_id,omitempty"`
+	AccountItemId *int64 `json:"account_item_id,omitempty"`
 	// 勘定科目名(勘定科目の時のみ含まれる)
 	AccountItemName *string `json:"account_item_name,omitempty"`
 	// 期末残高
-	ClosingBalance *int32 `json:"closing_balance,omitempty"`
+	ClosingBalance *int64 `json:"closing_balance,omitempty"`
 	// 階層レベル
-	HierarchyLevel *int32 `json:"hierarchy_level,omitempty"`
+	HierarchyLevel *int64 `json:"hierarchy_level,omitempty"`
 	// 上位勘定科目カテゴリー名(勘定科目カテゴリーの時のみ、上層が存在する場合含まれる)
 	ParentAccountCategoryName *string `json:"parent_account_category_name,omitempty"`
 	// セグメント3タグ
@@ -118,9 +118,9 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetAccount
 }
 
 // GetAccountItemId returns the AccountItemId field value if set, zero value otherwise.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetAccountItemId() int32 {
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountItemId
@@ -128,7 +128,7 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetAccount
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil || o.AccountItemId == nil {
 		return nil, false
 	}
@@ -144,8 +144,8 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) HasAccount
 	return false
 }
 
-// SetAccountItemId gets a reference to the given int32 and assigns it to the AccountItemId field.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetAccountItemId(v int32) {
+// SetAccountItemId gets a reference to the given int64 and assigns it to the AccountItemId field.
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetAccountItemId(v int64) {
 	o.AccountItemId = &v
 }
 
@@ -182,9 +182,9 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetAccount
 }
 
 // GetClosingBalance returns the ClosingBalance field value if set, zero value otherwise.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetClosingBalance() int32 {
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetClosingBalance() int64 {
 	if o == nil || o.ClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosingBalance
@@ -192,7 +192,7 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetClosing
 
 // GetClosingBalanceOk returns a tuple with the ClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetClosingBalanceOk() (*int32, bool) {
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.ClosingBalance == nil {
 		return nil, false
 	}
@@ -208,15 +208,15 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) HasClosing
 	return false
 }
 
-// SetClosingBalance gets a reference to the given int32 and assigns it to the ClosingBalance field.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetClosingBalance(v int32) {
+// SetClosingBalance gets a reference to the given int64 and assigns it to the ClosingBalance field.
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetClosingBalance(v int64) {
 	o.ClosingBalance = &v
 }
 
 // GetHierarchyLevel returns the HierarchyLevel field value if set, zero value otherwise.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetHierarchyLevel() int32 {
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetHierarchyLevel() int64 {
 	if o == nil || o.HierarchyLevel == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.HierarchyLevel
@@ -224,7 +224,7 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetHierarc
 
 // GetHierarchyLevelOk returns a tuple with the HierarchyLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetHierarchyLevelOk() (*int32, bool) {
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) GetHierarchyLevelOk() (*int64, bool) {
 	if o == nil || o.HierarchyLevel == nil {
 		return nil, false
 	}
@@ -240,8 +240,8 @@ func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) HasHierarc
 	return false
 }
 
-// SetHierarchyLevel gets a reference to the given int32 and assigns it to the HierarchyLevel field.
-func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetHierarchyLevel(v int32) {
+// SetHierarchyLevel gets a reference to the given int64 and assigns it to the HierarchyLevel field.
+func (o *TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner) SetHierarchyLevel(v int64) {
 	o.HierarchyLevel = &v
 }
 

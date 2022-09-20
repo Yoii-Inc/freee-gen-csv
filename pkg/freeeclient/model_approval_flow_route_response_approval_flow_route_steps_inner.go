@@ -17,20 +17,20 @@ import (
 // ApprovalFlowRouteResponseApprovalFlowRouteStepsInner struct for ApprovalFlowRouteResponseApprovalFlowRouteStepsInner
 type ApprovalFlowRouteResponseApprovalFlowRouteStepsInner struct {
 	// 承認ステップID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 次の承認ステップID
-	NextStepId NullableInt32 `json:"next_step_id"`
+	NextStepId NullableInt64 `json:"next_step_id"`
 	// 承認方法( predefined_user: メンバー指定 (1人), selected_user: 申請時にメンバー指定,unspecified: 指定なし, and_resource: メンバー指定 (複数、全員の承認), or_resource: メンバー指定 (複数、1人の承認), and_position: 役職指定 (複数、全員の承認), or_position: 役職指定 (複数、1人の承認) ) 
 	ResourceType string `json:"resource_type"`
 	// 承認者のユーザーID (配列)
-	UserIds []int32 `json:"user_ids,omitempty"`
+	UserIds []int64 `json:"user_ids,omitempty"`
 }
 
 // NewApprovalFlowRouteResponseApprovalFlowRouteStepsInner instantiates a new ApprovalFlowRouteResponseApprovalFlowRouteStepsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalFlowRouteResponseApprovalFlowRouteStepsInner(id int32, nextStepId NullableInt32, resourceType string) *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner {
+func NewApprovalFlowRouteResponseApprovalFlowRouteStepsInner(id int64, nextStepId NullableInt64, resourceType string) *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner {
 	this := ApprovalFlowRouteResponseApprovalFlowRouteStepsInner{}
 	this.Id = id
 	this.NextStepId = nextStepId
@@ -47,9 +47,9 @@ func NewApprovalFlowRouteResponseApprovalFlowRouteStepsInnerWithDefaults() *Appr
 }
 
 // GetId returns the Id field value
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetId() int32 {
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetIdOk() (*int32, bool) {
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,15 +66,15 @@ func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetIdOk() (*int32
 }
 
 // SetId sets field value
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) SetId(v int32) {
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) SetId(v int64) {
 	o.Id = v
 }
 
 // GetNextStepId returns the NextStepId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetNextStepId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetNextStepId() int64 {
 	if o == nil || o.NextStepId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -84,7 +84,7 @@ func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetNextStepId() i
 // GetNextStepIdOk returns a tuple with the NextStepId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetNextStepIdOk() (*int32, bool) {
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetNextStepIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetNextStepIdOk()
 }
 
 // SetNextStepId sets field value
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) SetNextStepId(v int32) {
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) SetNextStepId(v int64) {
 	o.NextStepId.Set(&v)
 }
 
@@ -121,9 +121,9 @@ func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) SetResourceType(v
 }
 
 // GetUserIds returns the UserIds field value if set, zero value otherwise.
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetUserIds() []int32 {
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetUserIds() []int64 {
 	if o == nil || o.UserIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.UserIds
@@ -131,7 +131,7 @@ func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetUserIds() []in
 
 // GetUserIdsOk returns a tuple with the UserIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetUserIdsOk() ([]int32, bool) {
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) GetUserIdsOk() ([]int64, bool) {
 	if o == nil || o.UserIds == nil {
 		return nil, false
 	}
@@ -147,8 +147,8 @@ func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) HasUserIds() bool
 	return false
 }
 
-// SetUserIds gets a reference to the given []int32 and assigns it to the UserIds field.
-func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) SetUserIds(v []int32) {
+// SetUserIds gets a reference to the given []int64 and assigns it to the UserIds field.
+func (o *ApprovalFlowRouteResponseApprovalFlowRouteStepsInner) SetUserIds(v []int64) {
 	o.UserIds = v
 }
 

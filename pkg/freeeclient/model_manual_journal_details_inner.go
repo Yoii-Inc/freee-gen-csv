@@ -17,9 +17,9 @@ import (
 // ManualJournalDetailsInner struct for ManualJournalDetailsInner
 type ManualJournalDetailsInner struct {
 	// 勘定科目ID
-	AccountItemId int32 `json:"account_item_id"`
+	AccountItemId int64 `json:"account_item_id"`
 	// 金額（税込で指定してください）
-	Amount int32 `json:"amount"`
+	Amount int64 `json:"amount"`
 	// 備考
 	Description string `json:"description"`
 	// 貸借(貸方: credit, 借方: debit)
@@ -27,46 +27,46 @@ type ManualJournalDetailsInner struct {
 	// 貸借行ID
 	Id int64 `json:"id"`
 	// 品目ID
-	ItemId NullableInt32 `json:"item_id"`
+	ItemId NullableInt64 `json:"item_id"`
 	// 品目
 	ItemName NullableString `json:"item_name"`
 	// 取引先コード
 	PartnerCode NullableString `json:"partner_code,omitempty"`
 	// 取引先ID
-	PartnerId NullableInt32 `json:"partner_id"`
+	PartnerId NullableInt64 `json:"partner_id"`
 	// 正式名称（255文字以内）
 	PartnerLongName NullableString `json:"partner_long_name"`
 	// 取引先名
 	PartnerName NullableString `json:"partner_name"`
 	// 部門ID
-	SectionId NullableInt32 `json:"section_id"`
+	SectionId NullableInt64 `json:"section_id"`
 	// 部門
 	SectionName NullableString `json:"section_name"`
 	// セグメント１ID
 	Segment1TagId *int64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント１ID
-	Segment1TagName *int32 `json:"segment_1_tag_name,omitempty"`
+	Segment1TagName *int64 `json:"segment_1_tag_name,omitempty"`
 	// セグメント２ID
 	Segment2TagId *int64 `json:"segment_2_tag_id,omitempty"`
 	// セグメント２
-	Segment2TagName *int32 `json:"segment_2_tag_name,omitempty"`
+	Segment2TagName *int64 `json:"segment_2_tag_name,omitempty"`
 	// セグメント３ID
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
 	// セグメント３
-	Segment3TagName *int32 `json:"segment_3_tag_name,omitempty"`
-	TagIds []int32 `json:"tag_ids"`
+	Segment3TagName *int64 `json:"segment_3_tag_name,omitempty"`
+	TagIds []int64 `json:"tag_ids"`
 	TagNames []string `json:"tag_names"`
 	// 税区分コード
-	TaxCode int32 `json:"tax_code"`
+	TaxCode int64 `json:"tax_code"`
 	// 消費税額（指定しない場合は自動で計算されます）
-	Vat int32 `json:"vat"`
+	Vat int64 `json:"vat"`
 }
 
 // NewManualJournalDetailsInner instantiates a new ManualJournalDetailsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualJournalDetailsInner(accountItemId int32, amount int32, description string, entrySide string, id int64, itemId NullableInt32, itemName NullableString, partnerId NullableInt32, partnerLongName NullableString, partnerName NullableString, sectionId NullableInt32, sectionName NullableString, tagIds []int32, tagNames []string, taxCode int32, vat int32) *ManualJournalDetailsInner {
+func NewManualJournalDetailsInner(accountItemId int64, amount int64, description string, entrySide string, id int64, itemId NullableInt64, itemName NullableString, partnerId NullableInt64, partnerLongName NullableString, partnerName NullableString, sectionId NullableInt64, sectionName NullableString, tagIds []int64, tagNames []string, taxCode int64, vat int64) *ManualJournalDetailsInner {
 	this := ManualJournalDetailsInner{}
 	this.AccountItemId = accountItemId
 	this.Amount = amount
@@ -96,9 +96,9 @@ func NewManualJournalDetailsInnerWithDefaults() *ManualJournalDetailsInner {
 }
 
 // GetAccountItemId returns the AccountItemId field value
-func (o *ManualJournalDetailsInner) GetAccountItemId() int32 {
+func (o *ManualJournalDetailsInner) GetAccountItemId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -107,7 +107,7 @@ func (o *ManualJournalDetailsInner) GetAccountItemId() int32 {
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,14 +115,14 @@ func (o *ManualJournalDetailsInner) GetAccountItemIdOk() (*int32, bool) {
 }
 
 // SetAccountItemId sets field value
-func (o *ManualJournalDetailsInner) SetAccountItemId(v int32) {
+func (o *ManualJournalDetailsInner) SetAccountItemId(v int64) {
 	o.AccountItemId = v
 }
 
 // GetAmount returns the Amount field value
-func (o *ManualJournalDetailsInner) GetAmount() int32 {
+func (o *ManualJournalDetailsInner) GetAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -131,7 +131,7 @@ func (o *ManualJournalDetailsInner) GetAmount() int32 {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetAmountOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetAmountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -139,7 +139,7 @@ func (o *ManualJournalDetailsInner) GetAmountOk() (*int32, bool) {
 }
 
 // SetAmount sets field value
-func (o *ManualJournalDetailsInner) SetAmount(v int32) {
+func (o *ManualJournalDetailsInner) SetAmount(v int64) {
 	o.Amount = v
 }
 
@@ -216,10 +216,10 @@ func (o *ManualJournalDetailsInner) SetId(v int64) {
 }
 
 // GetItemId returns the ItemId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ManualJournalDetailsInner) GetItemId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ManualJournalDetailsInner) GetItemId() int64 {
 	if o == nil || o.ItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -229,7 +229,7 @@ func (o *ManualJournalDetailsInner) GetItemId() int32 {
 // GetItemIdOk returns a tuple with the ItemId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManualJournalDetailsInner) GetItemIdOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,7 +237,7 @@ func (o *ManualJournalDetailsInner) GetItemIdOk() (*int32, bool) {
 }
 
 // SetItemId sets field value
-func (o *ManualJournalDetailsInner) SetItemId(v int32) {
+func (o *ManualJournalDetailsInner) SetItemId(v int64) {
 	o.ItemId.Set(&v)
 }
 
@@ -310,10 +310,10 @@ func (o *ManualJournalDetailsInner) UnsetPartnerCode() {
 }
 
 // GetPartnerId returns the PartnerId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ManualJournalDetailsInner) GetPartnerId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ManualJournalDetailsInner) GetPartnerId() int64 {
 	if o == nil || o.PartnerId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -323,7 +323,7 @@ func (o *ManualJournalDetailsInner) GetPartnerId() int32 {
 // GetPartnerIdOk returns a tuple with the PartnerId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManualJournalDetailsInner) GetPartnerIdOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetPartnerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -331,7 +331,7 @@ func (o *ManualJournalDetailsInner) GetPartnerIdOk() (*int32, bool) {
 }
 
 // SetPartnerId sets field value
-func (o *ManualJournalDetailsInner) SetPartnerId(v int32) {
+func (o *ManualJournalDetailsInner) SetPartnerId(v int64) {
 	o.PartnerId.Set(&v)
 }
 
@@ -388,10 +388,10 @@ func (o *ManualJournalDetailsInner) SetPartnerName(v string) {
 }
 
 // GetSectionId returns the SectionId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ManualJournalDetailsInner) GetSectionId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ManualJournalDetailsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -401,7 +401,7 @@ func (o *ManualJournalDetailsInner) GetSectionId() int32 {
 // GetSectionIdOk returns a tuple with the SectionId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManualJournalDetailsInner) GetSectionIdOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -409,7 +409,7 @@ func (o *ManualJournalDetailsInner) GetSectionIdOk() (*int32, bool) {
 }
 
 // SetSectionId sets field value
-func (o *ManualJournalDetailsInner) SetSectionId(v int32) {
+func (o *ManualJournalDetailsInner) SetSectionId(v int64) {
 	o.SectionId.Set(&v)
 }
 
@@ -472,9 +472,9 @@ func (o *ManualJournalDetailsInner) SetSegment1TagId(v int64) {
 }
 
 // GetSegment1TagName returns the Segment1TagName field value if set, zero value otherwise.
-func (o *ManualJournalDetailsInner) GetSegment1TagName() int32 {
+func (o *ManualJournalDetailsInner) GetSegment1TagName() int64 {
 	if o == nil || o.Segment1TagName == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Segment1TagName
@@ -482,7 +482,7 @@ func (o *ManualJournalDetailsInner) GetSegment1TagName() int32 {
 
 // GetSegment1TagNameOk returns a tuple with the Segment1TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetSegment1TagNameOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetSegment1TagNameOk() (*int64, bool) {
 	if o == nil || o.Segment1TagName == nil {
 		return nil, false
 	}
@@ -498,8 +498,8 @@ func (o *ManualJournalDetailsInner) HasSegment1TagName() bool {
 	return false
 }
 
-// SetSegment1TagName gets a reference to the given int32 and assigns it to the Segment1TagName field.
-func (o *ManualJournalDetailsInner) SetSegment1TagName(v int32) {
+// SetSegment1TagName gets a reference to the given int64 and assigns it to the Segment1TagName field.
+func (o *ManualJournalDetailsInner) SetSegment1TagName(v int64) {
 	o.Segment1TagName = &v
 }
 
@@ -536,9 +536,9 @@ func (o *ManualJournalDetailsInner) SetSegment2TagId(v int64) {
 }
 
 // GetSegment2TagName returns the Segment2TagName field value if set, zero value otherwise.
-func (o *ManualJournalDetailsInner) GetSegment2TagName() int32 {
+func (o *ManualJournalDetailsInner) GetSegment2TagName() int64 {
 	if o == nil || o.Segment2TagName == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Segment2TagName
@@ -546,7 +546,7 @@ func (o *ManualJournalDetailsInner) GetSegment2TagName() int32 {
 
 // GetSegment2TagNameOk returns a tuple with the Segment2TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetSegment2TagNameOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetSegment2TagNameOk() (*int64, bool) {
 	if o == nil || o.Segment2TagName == nil {
 		return nil, false
 	}
@@ -562,8 +562,8 @@ func (o *ManualJournalDetailsInner) HasSegment2TagName() bool {
 	return false
 }
 
-// SetSegment2TagName gets a reference to the given int32 and assigns it to the Segment2TagName field.
-func (o *ManualJournalDetailsInner) SetSegment2TagName(v int32) {
+// SetSegment2TagName gets a reference to the given int64 and assigns it to the Segment2TagName field.
+func (o *ManualJournalDetailsInner) SetSegment2TagName(v int64) {
 	o.Segment2TagName = &v
 }
 
@@ -600,9 +600,9 @@ func (o *ManualJournalDetailsInner) SetSegment3TagId(v int64) {
 }
 
 // GetSegment3TagName returns the Segment3TagName field value if set, zero value otherwise.
-func (o *ManualJournalDetailsInner) GetSegment3TagName() int32 {
+func (o *ManualJournalDetailsInner) GetSegment3TagName() int64 {
 	if o == nil || o.Segment3TagName == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Segment3TagName
@@ -610,7 +610,7 @@ func (o *ManualJournalDetailsInner) GetSegment3TagName() int32 {
 
 // GetSegment3TagNameOk returns a tuple with the Segment3TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetSegment3TagNameOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetSegment3TagNameOk() (*int64, bool) {
 	if o == nil || o.Segment3TagName == nil {
 		return nil, false
 	}
@@ -626,15 +626,15 @@ func (o *ManualJournalDetailsInner) HasSegment3TagName() bool {
 	return false
 }
 
-// SetSegment3TagName gets a reference to the given int32 and assigns it to the Segment3TagName field.
-func (o *ManualJournalDetailsInner) SetSegment3TagName(v int32) {
+// SetSegment3TagName gets a reference to the given int64 and assigns it to the Segment3TagName field.
+func (o *ManualJournalDetailsInner) SetSegment3TagName(v int64) {
 	o.Segment3TagName = &v
 }
 
 // GetTagIds returns the TagIds field value
-func (o *ManualJournalDetailsInner) GetTagIds() []int32 {
+func (o *ManualJournalDetailsInner) GetTagIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
@@ -643,7 +643,7 @@ func (o *ManualJournalDetailsInner) GetTagIds() []int32 {
 
 // GetTagIdsOk returns a tuple with the TagIds field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *ManualJournalDetailsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -651,7 +651,7 @@ func (o *ManualJournalDetailsInner) GetTagIdsOk() ([]int32, bool) {
 }
 
 // SetTagIds sets field value
-func (o *ManualJournalDetailsInner) SetTagIds(v []int32) {
+func (o *ManualJournalDetailsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
@@ -680,9 +680,9 @@ func (o *ManualJournalDetailsInner) SetTagNames(v []string) {
 }
 
 // GetTaxCode returns the TaxCode field value
-func (o *ManualJournalDetailsInner) GetTaxCode() int32 {
+func (o *ManualJournalDetailsInner) GetTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -691,7 +691,7 @@ func (o *ManualJournalDetailsInner) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -699,14 +699,14 @@ func (o *ManualJournalDetailsInner) GetTaxCodeOk() (*int32, bool) {
 }
 
 // SetTaxCode sets field value
-func (o *ManualJournalDetailsInner) SetTaxCode(v int32) {
+func (o *ManualJournalDetailsInner) SetTaxCode(v int64) {
 	o.TaxCode = v
 }
 
 // GetVat returns the Vat field value
-func (o *ManualJournalDetailsInner) GetVat() int32 {
+func (o *ManualJournalDetailsInner) GetVat() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -715,7 +715,7 @@ func (o *ManualJournalDetailsInner) GetVat() int32 {
 
 // GetVatOk returns a tuple with the Vat field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetVatOk() (*int32, bool) {
+func (o *ManualJournalDetailsInner) GetVatOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -723,7 +723,7 @@ func (o *ManualJournalDetailsInner) GetVatOk() (*int32, bool) {
 }
 
 // SetVat sets field value
-func (o *ManualJournalDetailsInner) SetVat(v int32) {
+func (o *ManualJournalDetailsInner) SetVat(v int64) {
 	o.Vat = v
 }
 

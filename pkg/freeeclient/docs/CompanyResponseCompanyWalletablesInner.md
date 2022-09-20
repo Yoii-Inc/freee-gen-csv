@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | 口座ID | 
+**Id** | **int64** | 口座ID | 
 **Name** | **string** | 口座名 (255文字以内) | 
 **Type** | **string** | 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewCompanyResponseCompanyWalletablesInner
 
-`func NewCompanyResponseCompanyWalletablesInner(id int32, name string, type_ string, ) *CompanyResponseCompanyWalletablesInner`
+`func NewCompanyResponseCompanyWalletablesInner(id int64, name string, type_ string, ) *CompanyResponseCompanyWalletablesInner`
 
 NewCompanyResponseCompanyWalletablesInner instantiates a new CompanyResponseCompanyWalletablesInner object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *CompanyResponseCompanyWalletablesInner) GetId() int32`
+`func (o *CompanyResponseCompanyWalletablesInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CompanyResponseCompanyWalletablesInner) GetIdOk() (*int32, bool)`
+`func (o *CompanyResponseCompanyWalletablesInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CompanyResponseCompanyWalletablesInner) SetId(v int32)`
+`func (o *CompanyResponseCompanyWalletablesInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

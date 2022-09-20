@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-    approvalRequestCreateParams := *openapiclient.NewApprovalRequestCreateParams(int32(1), int32(1), true, int32(1), []openapiclient.ApprovalRequestCreateParamsRequestItemsInner{*openapiclient.NewApprovalRequestCreateParamsRequestItemsInner()}) // ApprovalRequestCreateParams | 各種申請の作成 (optional)
+    approvalRequestCreateParams := *openapiclient.NewApprovalRequestCreateParams(int64(1), int64(1), true, int64(1), []openapiclient.ApprovalRequestCreateParamsRequestItemsInner{*openapiclient.NewApprovalRequestCreateParamsRequestItemsInner()}) // ApprovalRequestCreateParams | 各種申請の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -102,8 +102,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 各種申請ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiDestroyApprovalRequestRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -172,8 +172,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 各種申請ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -193,7 +193,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 
@@ -203,7 +203,7 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -244,8 +244,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 申請フォームID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 申請フォームID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 申請フォームID | 
+**id** | **int64** | 申請フォームID | 
 
 ### Other Parameters
 
@@ -275,7 +275,7 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestFormRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -341,7 +341,7 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestFormsReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -382,19 +382,19 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     status := "draft" // string | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) 承認者指定時には無効です。 (optional)
-    applicationNumber := int32(2) // int32 | 申請No. (optional)
+    applicationNumber := int64(2) // int64 | 申請No. (optional)
     title := "大阪出張" // string | 申請タイトル (optional)
-    formId := int32(56) // int32 | 申請フォームID (optional)
+    formId := int64(56) // int64 | 申請フォームID (optional)
     startApplicationDate := "startApplicationDate_example" // string | 申請日で絞込：開始日(yyyy-mm-dd) (optional)
     endApplicationDate := "endApplicationDate_example" // string | 申請日で絞込：終了日(yyyy-mm-dd) (optional)
-    applicantId := int32(56) // int32 | 申請者のユーザーID (optional)
+    applicantId := int64(56) // int64 | 申請者のユーザーID (optional)
     minAmount := int64(789) // int64 | 金額で絞込：以上 (optional)
     maxAmount := int64(789) // int64 | 金額で絞込：以下 (optional)
-    approverId := int32(1) // int32 | 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。 (optional)
-    offset := int32(56) // int32 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
+    approverId := int64(1) // int64 | 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。 (optional)
+    offset := int64(56) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -419,19 +419,19 @@ Other parameters are passed through a pointer to a apiGetApprovalRequestsRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **status** | **string** | 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し) 承認者指定時には無効です。 | 
- **applicationNumber** | **int32** | 申請No. | 
+ **applicationNumber** | **int64** | 申請No. | 
  **title** | **string** | 申請タイトル | 
- **formId** | **int32** | 申請フォームID | 
+ **formId** | **int64** | 申請フォームID | 
  **startApplicationDate** | **string** | 申請日で絞込：開始日(yyyy-mm-dd) | 
  **endApplicationDate** | **string** | 申請日で絞込：終了日(yyyy-mm-dd) | 
- **applicantId** | **int32** | 申請者のユーザーID | 
+ **applicantId** | **int64** | 申請者のユーザーID | 
  **minAmount** | **int64** | 金額で絞込：以上 | 
  **maxAmount** | **int64** | 金額で絞込：以下 | 
- **approverId** | **int32** | 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。 | 
- **offset** | **int32** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
+ **approverId** | **int64** | 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。 | 
+ **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500) | 
 
 ### Return type
 
@@ -472,8 +472,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    approvalRequestUpdateParams := *openapiclient.NewApprovalRequestUpdateParams(int32(1), int32(1), true, []openapiclient.ApprovalRequestCreateParamsRequestItemsInner{*openapiclient.NewApprovalRequestCreateParamsRequestItemsInner()}) // ApprovalRequestUpdateParams | 各種申請の更新
+    id := int64(56) // int64 | 各種申請ID
+    approvalRequestUpdateParams := *openapiclient.NewApprovalRequestUpdateParams(int64(1), int64(1), true, []openapiclient.ApprovalRequestCreateParamsRequestItemsInner{*openapiclient.NewApprovalRequestCreateParamsRequestItemsInner()}) // ApprovalRequestUpdateParams | 各種申請の更新
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -493,7 +493,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 
@@ -544,8 +544,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 各種申請ID
-    approvalRequestActionCreateParams := *openapiclient.NewApprovalRequestActionCreateParams("approve", int32(1), int32(1), int32(1)) // ApprovalRequestActionCreateParams | 各種申請の承認操作
+    id := int64(56) // int64 | 各種申請ID
+    approvalRequestActionCreateParams := *openapiclient.NewApprovalRequestActionCreateParams("approve", int64(1), int64(1), int64(1)) // ApprovalRequestActionCreateParams | 各種申請の承認操作
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -565,7 +565,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 各種申請ID | 
+**id** | **int64** | 各種申請ID | 
 
 ### Other Parameters
 

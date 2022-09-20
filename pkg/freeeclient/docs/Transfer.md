@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int64** | 金額 | 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Date** | **string** | 振替日 (yyyy-mm-dd) | 
 **Description** | **string** | 備考 | 
-**FromWalletableId** | **int32** | 振替元口座ID | 
+**FromWalletableId** | **int64** | 振替元口座ID | 
 **FromWalletableType** | **NullableString** | 振替元口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
-**Id** | **int32** | 取引(振替)ID | 
-**ToWalletableId** | **int32** | 振替先口座ID | 
+**Id** | **int64** | 取引(振替)ID | 
+**ToWalletableId** | **int64** | 振替先口座ID | 
 **ToWalletableType** | **NullableString** | 振替先口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
 
 ## Methods
 
 ### NewTransfer
 
-`func NewTransfer(amount int64, companyId int32, date string, description string, fromWalletableId int32, fromWalletableType NullableString, id int32, toWalletableId int32, toWalletableType NullableString, ) *Transfer`
+`func NewTransfer(amount int64, companyId int64, date string, description string, fromWalletableId int64, fromWalletableType NullableString, id int64, toWalletableId int64, toWalletableType NullableString, ) *Transfer`
 
 NewTransfer instantiates a new Transfer object
 This constructor will assign default values to properties that have it defined,
@@ -55,20 +55,20 @@ SetAmount sets Amount field to given value.
 
 ### GetCompanyId
 
-`func (o *Transfer) GetCompanyId() int32`
+`func (o *Transfer) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *Transfer) GetCompanyIdOk() (*int32, bool)`
+`func (o *Transfer) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *Transfer) SetCompanyId(v int32)`
+`func (o *Transfer) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -115,20 +115,20 @@ SetDescription sets Description field to given value.
 
 ### GetFromWalletableId
 
-`func (o *Transfer) GetFromWalletableId() int32`
+`func (o *Transfer) GetFromWalletableId() int64`
 
 GetFromWalletableId returns the FromWalletableId field if non-nil, zero value otherwise.
 
 ### GetFromWalletableIdOk
 
-`func (o *Transfer) GetFromWalletableIdOk() (*int32, bool)`
+`func (o *Transfer) GetFromWalletableIdOk() (*int64, bool)`
 
 GetFromWalletableIdOk returns a tuple with the FromWalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFromWalletableId
 
-`func (o *Transfer) SetFromWalletableId(v int32)`
+`func (o *Transfer) SetFromWalletableId(v int64)`
 
 SetFromWalletableId sets FromWalletableId field to given value.
 
@@ -165,40 +165,40 @@ SetFromWalletableType sets FromWalletableType field to given value.
 UnsetFromWalletableType ensures that no value is present for FromWalletableType, not even an explicit nil
 ### GetId
 
-`func (o *Transfer) GetId() int32`
+`func (o *Transfer) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Transfer) GetIdOk() (*int32, bool)`
+`func (o *Transfer) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Transfer) SetId(v int32)`
+`func (o *Transfer) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetToWalletableId
 
-`func (o *Transfer) GetToWalletableId() int32`
+`func (o *Transfer) GetToWalletableId() int64`
 
 GetToWalletableId returns the ToWalletableId field if non-nil, zero value otherwise.
 
 ### GetToWalletableIdOk
 
-`func (o *Transfer) GetToWalletableIdOk() (*int32, bool)`
+`func (o *Transfer) GetToWalletableIdOk() (*int64, bool)`
 
 GetToWalletableIdOk returns a tuple with the ToWalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetToWalletableId
 
-`func (o *Transfer) SetToWalletableId(v int32)`
+`func (o *Transfer) SetToWalletableId(v int64)`
 
 SetToWalletableId sets ToWalletableId field to given value.
 

@@ -18,9 +18,9 @@ import (
 type CompanyResponseCompanyAccountItemsInner struct {
 	Categories []string `json:"categories"`
 	// デフォルト設定がされている税区分ID
-	DefaultTaxId *int32 `json:"default_tax_id,omitempty"`
+	DefaultTaxId *int64 `json:"default_tax_id,omitempty"`
 	// 勘定科目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 勘定科目名 (30文字以内)
 	Name string `json:"name"`
 	// ショートカット1 (20文字以内)
@@ -31,7 +31,7 @@ type CompanyResponseCompanyAccountItemsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompanyResponseCompanyAccountItemsInner(categories []string, id int32, name string) *CompanyResponseCompanyAccountItemsInner {
+func NewCompanyResponseCompanyAccountItemsInner(categories []string, id int64, name string) *CompanyResponseCompanyAccountItemsInner {
 	this := CompanyResponseCompanyAccountItemsInner{}
 	this.Categories = categories
 	this.Id = id
@@ -72,9 +72,9 @@ func (o *CompanyResponseCompanyAccountItemsInner) SetCategories(v []string) {
 }
 
 // GetDefaultTaxId returns the DefaultTaxId field value if set, zero value otherwise.
-func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxId() int32 {
+func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxId() int64 {
 	if o == nil || o.DefaultTaxId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultTaxId
@@ -82,7 +82,7 @@ func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxId() int32 {
 
 // GetDefaultTaxIdOk returns a tuple with the DefaultTaxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxIdOk() (*int32, bool) {
+func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxIdOk() (*int64, bool) {
 	if o == nil || o.DefaultTaxId == nil {
 		return nil, false
 	}
@@ -98,15 +98,15 @@ func (o *CompanyResponseCompanyAccountItemsInner) HasDefaultTaxId() bool {
 	return false
 }
 
-// SetDefaultTaxId gets a reference to the given int32 and assigns it to the DefaultTaxId field.
-func (o *CompanyResponseCompanyAccountItemsInner) SetDefaultTaxId(v int32) {
+// SetDefaultTaxId gets a reference to the given int64 and assigns it to the DefaultTaxId field.
+func (o *CompanyResponseCompanyAccountItemsInner) SetDefaultTaxId(v int64) {
 	o.DefaultTaxId = &v
 }
 
 // GetId returns the Id field value
-func (o *CompanyResponseCompanyAccountItemsInner) GetId() int32 {
+func (o *CompanyResponseCompanyAccountItemsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -115,7 +115,7 @@ func (o *CompanyResponseCompanyAccountItemsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompanyAccountItemsInner) GetIdOk() (*int32, bool) {
+func (o *CompanyResponseCompanyAccountItemsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *CompanyResponseCompanyAccountItemsInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *CompanyResponseCompanyAccountItemsInner) SetId(v int32) {
+func (o *CompanyResponseCompanyAccountItemsInner) SetId(v int64) {
 	o.Id = v
 }
 

@@ -26,7 +26,7 @@ type BanksApiService service
 type ApiGetBankRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
-	id int32
+	id int64
 }
 
 func (r ApiGetBankRequest) Execute() (*BankResponse, *http.Response, error) {
@@ -59,7 +59,7 @@ GetBank 連携サービスの取得
  @param id 連携サービスID
  @return ApiGetBankRequest
 */
-func (a *BanksApiService) GetBank(ctx context.Context, id int32) ApiGetBankRequest {
+func (a *BanksApiService) GetBank(ctx context.Context, id int64) ApiGetBankRequest {
 	return ApiGetBankRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -202,7 +202,7 @@ type ApiGetBanksRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
 	offset *int64
-	limit *int32
+	limit *int64
 	type_ *string
 }
 
@@ -213,7 +213,7 @@ func (r ApiGetBanksRequest) Offset(offset int64) ApiGetBanksRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)
-func (r ApiGetBanksRequest) Limit(limit int32) ApiGetBanksRequest {
+func (r ApiGetBanksRequest) Limit(limit int64) ApiGetBanksRequest {
 	r.limit = &limit
 	return r
 }

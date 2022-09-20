@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    invoiceCreateParams := *openapiclient.NewInvoiceCreateParams(int32(1), "株式会社freeeパートナー", "御中") // InvoiceCreateParams | 請求書の作成 (optional)
+    invoiceCreateParams := *openapiclient.NewInvoiceCreateParams(int64(1), "株式会社freeeパートナー", "御中") // InvoiceCreateParams | 請求書の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -99,8 +99,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroyInvoiceRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,8 +169,8 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    id := int32(56) // int32 | 請求書ID
+    companyId := int64(56) // int64 | 事業所ID
+    id := int64(56) // int64 | 請求書ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 請求書ID | 
+**id** | **int64** | 請求書ID | 
 
 ### Other Parameters
 
@@ -199,7 +199,7 @@ Other parameters are passed through a pointer to a apiGetInvoiceRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 
 ### Return type
@@ -241,8 +241,8 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    partnerId := int32(56) // int32 | 取引先IDで絞込 (optional)
+    companyId := int64(56) // int64 | 事業所ID
+    partnerId := int64(56) // int64 | 取引先IDで絞込 (optional)
     partnerCode := "partnerCode_example" // string | 取引先コードで絞込 (optional)
     startIssueDate := "startIssueDate_example" // string | 請求日の開始日(yyyy-mm-dd) (optional)
     endIssueDate := "endIssueDate_example" // string | 請求日の終了日(yyyy-mm-dd) (optional)
@@ -253,7 +253,7 @@ func main() {
     invoiceStatus := "invoiceStatus_example" // string | 請求書ステータス  (draft: 下書き, applying: 申請中, remanded: 差し戻し, rejected: 却下, approved: 承認済み, unsubmitted: 送付待ち, submitted: 送付済み) (optional)
     paymentStatus := "paymentStatus_example" // string | 入金ステータス  (unsettled: 入金待ち, settled: 入金済み) (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最大: 100)  (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 20, 最大: 100)  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -278,8 +278,8 @@ Other parameters are passed through a pointer to a apiGetInvoicesRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
- **partnerId** | **int32** | 取引先IDで絞込 | 
+ **companyId** | **int64** | 事業所ID | 
+ **partnerId** | **int64** | 取引先IDで絞込 | 
  **partnerCode** | **string** | 取引先コードで絞込 | 
  **startIssueDate** | **string** | 請求日の開始日(yyyy-mm-dd) | 
  **endIssueDate** | **string** | 請求日の終了日(yyyy-mm-dd) | 
@@ -290,7 +290,7 @@ Name | Type | Description  | Notes
  **invoiceStatus** | **string** | 請求書ステータス  (draft: 下書き, applying: 申請中, remanded: 差し戻し, rejected: 却下, approved: 承認済み, unsubmitted: 送付待ち, submitted: 送付済み) | 
  **paymentStatus** | **string** | 入金ステータス  (unsettled: 入金待ち, settled: 入金済み) | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 20, 最大: 100)  | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 20, 最大: 100)  | 
 
 ### Return type
 
@@ -331,8 +331,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 請求書ID
-    invoiceUpdateParams := *openapiclient.NewInvoiceUpdateParams(int32(1), "株式会社freeeパートナー", "御中") // InvoiceUpdateParams | 請求書の更新 (optional)
+    id := int64(56) // int64 | 請求書ID
+    invoiceUpdateParams := *openapiclient.NewInvoiceUpdateParams(int64(1), "株式会社freeeパートナー", "御中") // InvoiceUpdateParams | 請求書の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -352,7 +352,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 請求書ID | 
+**id** | **int64** | 請求書ID | 
 
 ### Other Parameters
 

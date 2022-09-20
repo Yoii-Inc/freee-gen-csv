@@ -207,13 +207,13 @@ func (a *WalletablesApiService) CreateWalletableExecute(r ApiCreateWalletableReq
 type ApiDestroyWalletableRequest struct {
 	ctx context.Context
 	ApiService *WalletablesApiService
-	id int32
+	id int64
 	type_ string
-	companyId *int32
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyWalletableRequest) CompanyId(companyId int32) ApiDestroyWalletableRequest {
+func (r ApiDestroyWalletableRequest) CompanyId(companyId int64) ApiDestroyWalletableRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -242,7 +242,7 @@ DestroyWalletable 口座の削除
  @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
  @return ApiDestroyWalletableRequest
 */
-func (a *WalletablesApiService) DestroyWalletable(ctx context.Context, id int32, type_ string) ApiDestroyWalletableRequest {
+func (a *WalletablesApiService) DestroyWalletable(ctx context.Context, id int64, type_ string) ApiDestroyWalletableRequest {
 	return ApiDestroyWalletableRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -385,13 +385,13 @@ func (a *WalletablesApiService) DestroyWalletableExecute(r ApiDestroyWalletableR
 type ApiGetWalletableRequest struct {
 	ctx context.Context
 	ApiService *WalletablesApiService
-	id int32
+	id int64
 	type_ string
-	companyId *int32
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetWalletableRequest) CompanyId(companyId int32) ApiGetWalletableRequest {
+func (r ApiGetWalletableRequest) CompanyId(companyId int64) ApiGetWalletableRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -431,7 +431,7 @@ GetWalletable 口座情報の取得
  @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
  @return ApiGetWalletableRequest
 */
-func (a *WalletablesApiService) GetWalletable(ctx context.Context, id int32, type_ string) ApiGetWalletableRequest {
+func (a *WalletablesApiService) GetWalletable(ctx context.Context, id int64, type_ string) ApiGetWalletableRequest {
 	return ApiGetWalletableRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -585,13 +585,13 @@ func (a *WalletablesApiService) GetWalletableExecute(r ApiGetWalletableRequest) 
 type ApiGetWalletablesRequest struct {
 	ctx context.Context
 	ApiService *WalletablesApiService
-	companyId *int32
+	companyId *int64
 	withBalance *bool
 	type_ *string
 }
 
 // 事業所ID
-func (r ApiGetWalletablesRequest) CompanyId(companyId int32) ApiGetWalletablesRequest {
+func (r ApiGetWalletablesRequest) CompanyId(companyId int64) ApiGetWalletablesRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -781,7 +781,7 @@ func (a *WalletablesApiService) GetWalletablesExecute(r ApiGetWalletablesRequest
 type ApiUpdateWalletableRequest struct {
 	ctx context.Context
 	ApiService *WalletablesApiService
-	id int32
+	id int64
 	type_ string
 	walletableUpdateParams *WalletableUpdateParams
 }
@@ -809,7 +809,7 @@ UpdateWalletable 口座の更新
  @param type_ 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座）
  @return ApiUpdateWalletableRequest
 */
-func (a *WalletablesApiService) UpdateWalletable(ctx context.Context, id int32, type_ string) ApiUpdateWalletableRequest {
+func (a *WalletablesApiService) UpdateWalletable(ctx context.Context, id int64, type_ string) ApiUpdateWalletableRequest {
 	return ApiUpdateWalletableRequest{
 		ApiService: a,
 		ctx: ctx,

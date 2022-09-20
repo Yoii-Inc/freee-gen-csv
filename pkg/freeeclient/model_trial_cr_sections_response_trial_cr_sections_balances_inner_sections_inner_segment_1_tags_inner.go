@@ -17,9 +17,9 @@ import (
 // TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner struct for TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner
 type TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner struct {
 	// 期末残高
-	ClosingBalance *int32 `json:"closing_balance,omitempty"`
+	ClosingBalance *int64 `json:"closing_balance,omitempty"`
 	// セグメント1タグID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// セグメント1タグ名
 	Name *string `json:"name,omitempty"`
 }
@@ -28,7 +28,7 @@ type TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1Tag
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner(id int32) *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner {
+func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner(id int64) *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner {
 	this := TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner{}
 	this.Id = id
 	return &this
@@ -43,9 +43,9 @@ func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1
 }
 
 // GetClosingBalance returns the ClosingBalance field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetClosingBalance() int32 {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetClosingBalance() int64 {
 	if o == nil || o.ClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosingBalance
@@ -53,7 +53,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment
 
 // GetClosingBalanceOk returns a tuple with the ClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetClosingBalanceOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.ClosingBalance == nil {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment
 	return false
 }
 
-// SetClosingBalance gets a reference to the given int32 and assigns it to the ClosingBalance field.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) SetClosingBalance(v int32) {
+// SetClosingBalance gets a reference to the given int64 and assigns it to the ClosingBalance field.
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) SetClosingBalance(v int64) {
 	o.ClosingBalance = &v
 }
 
 // GetId returns the Id field value
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetId() int32 {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetIdOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment
 }
 
 // SetId sets field value
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) SetId(v int32) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment1TagsInner) SetId(v int64) {
 	o.Id = v
 }
 

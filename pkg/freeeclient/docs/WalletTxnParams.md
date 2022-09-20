@@ -6,18 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int64** | 取引金額 | 
 **Balance** | Pointer to **int64** | 残高 (銀行口座等) | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Date** | **string** | 取引日 (yyyy-mm-dd) | 
 **Description** | Pointer to **string** | 取引内容 | [optional] 
 **EntrySide** | **string** | 入金／出金 (入金: income, 出金: expense) | 
-**WalletableId** | **int32** | 口座ID | 
+**WalletableId** | **int64** | 口座ID | 
 **WalletableType** | **string** | 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
 
 ## Methods
 
 ### NewWalletTxnParams
 
-`func NewWalletTxnParams(amount int64, companyId int32, date string, entrySide string, walletableId int32, walletableType string, ) *WalletTxnParams`
+`func NewWalletTxnParams(amount int64, companyId int64, date string, entrySide string, walletableId int64, walletableType string, ) *WalletTxnParams`
 
 NewWalletTxnParams instantiates a new WalletTxnParams object
 This constructor will assign default values to properties that have it defined,
@@ -79,20 +79,20 @@ HasBalance returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *WalletTxnParams) GetCompanyId() int32`
+`func (o *WalletTxnParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *WalletTxnParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *WalletTxnParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *WalletTxnParams) SetCompanyId(v int32)`
+`func (o *WalletTxnParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -164,20 +164,20 @@ SetEntrySide sets EntrySide field to given value.
 
 ### GetWalletableId
 
-`func (o *WalletTxnParams) GetWalletableId() int32`
+`func (o *WalletTxnParams) GetWalletableId() int64`
 
 GetWalletableId returns the WalletableId field if non-nil, zero value otherwise.
 
 ### GetWalletableIdOk
 
-`func (o *WalletTxnParams) GetWalletableIdOk() (*int32, bool)`
+`func (o *WalletTxnParams) GetWalletableIdOk() (*int64, bool)`
 
 GetWalletableIdOk returns a tuple with the WalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletableId
 
-`func (o *WalletTxnParams) SetWalletableId(v int32)`
+`func (o *WalletTxnParams) SetWalletableId(v int64)`
 
 SetWalletableId sets WalletableId field to given value.
 

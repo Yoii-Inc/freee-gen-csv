@@ -17,11 +17,11 @@ import (
 // PartnerUpdateParamsPaymentTermAttributes struct for PartnerUpdateParamsPaymentTermAttributes
 type PartnerUpdateParamsPaymentTermAttributes struct {
 	// 支払月
-	AdditionalMonths *int32 `json:"additional_months,omitempty"`
+	AdditionalMonths *int64 `json:"additional_months,omitempty"`
 	// 締め日（29, 30, 31日の末日を指定する場合は、32を指定してください。）
-	CutoffDay *int32 `json:"cutoff_day,omitempty"`
+	CutoffDay *int64 `json:"cutoff_day,omitempty"`
 	// 支払日（29, 30, 31日の末日を指定する場合は、32を指定してください。）
-	FixedDay *int32 `json:"fixed_day,omitempty"`
+	FixedDay *int64 `json:"fixed_day,omitempty"`
 }
 
 // NewPartnerUpdateParamsPaymentTermAttributes instantiates a new PartnerUpdateParamsPaymentTermAttributes object
@@ -42,9 +42,9 @@ func NewPartnerUpdateParamsPaymentTermAttributesWithDefaults() *PartnerUpdatePar
 }
 
 // GetAdditionalMonths returns the AdditionalMonths field value if set, zero value otherwise.
-func (o *PartnerUpdateParamsPaymentTermAttributes) GetAdditionalMonths() int32 {
+func (o *PartnerUpdateParamsPaymentTermAttributes) GetAdditionalMonths() int64 {
 	if o == nil || o.AdditionalMonths == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AdditionalMonths
@@ -52,7 +52,7 @@ func (o *PartnerUpdateParamsPaymentTermAttributes) GetAdditionalMonths() int32 {
 
 // GetAdditionalMonthsOk returns a tuple with the AdditionalMonths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartnerUpdateParamsPaymentTermAttributes) GetAdditionalMonthsOk() (*int32, bool) {
+func (o *PartnerUpdateParamsPaymentTermAttributes) GetAdditionalMonthsOk() (*int64, bool) {
 	if o == nil || o.AdditionalMonths == nil {
 		return nil, false
 	}
@@ -68,15 +68,15 @@ func (o *PartnerUpdateParamsPaymentTermAttributes) HasAdditionalMonths() bool {
 	return false
 }
 
-// SetAdditionalMonths gets a reference to the given int32 and assigns it to the AdditionalMonths field.
-func (o *PartnerUpdateParamsPaymentTermAttributes) SetAdditionalMonths(v int32) {
+// SetAdditionalMonths gets a reference to the given int64 and assigns it to the AdditionalMonths field.
+func (o *PartnerUpdateParamsPaymentTermAttributes) SetAdditionalMonths(v int64) {
 	o.AdditionalMonths = &v
 }
 
 // GetCutoffDay returns the CutoffDay field value if set, zero value otherwise.
-func (o *PartnerUpdateParamsPaymentTermAttributes) GetCutoffDay() int32 {
+func (o *PartnerUpdateParamsPaymentTermAttributes) GetCutoffDay() int64 {
 	if o == nil || o.CutoffDay == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CutoffDay
@@ -84,7 +84,7 @@ func (o *PartnerUpdateParamsPaymentTermAttributes) GetCutoffDay() int32 {
 
 // GetCutoffDayOk returns a tuple with the CutoffDay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartnerUpdateParamsPaymentTermAttributes) GetCutoffDayOk() (*int32, bool) {
+func (o *PartnerUpdateParamsPaymentTermAttributes) GetCutoffDayOk() (*int64, bool) {
 	if o == nil || o.CutoffDay == nil {
 		return nil, false
 	}
@@ -100,15 +100,15 @@ func (o *PartnerUpdateParamsPaymentTermAttributes) HasCutoffDay() bool {
 	return false
 }
 
-// SetCutoffDay gets a reference to the given int32 and assigns it to the CutoffDay field.
-func (o *PartnerUpdateParamsPaymentTermAttributes) SetCutoffDay(v int32) {
+// SetCutoffDay gets a reference to the given int64 and assigns it to the CutoffDay field.
+func (o *PartnerUpdateParamsPaymentTermAttributes) SetCutoffDay(v int64) {
 	o.CutoffDay = &v
 }
 
 // GetFixedDay returns the FixedDay field value if set, zero value otherwise.
-func (o *PartnerUpdateParamsPaymentTermAttributes) GetFixedDay() int32 {
+func (o *PartnerUpdateParamsPaymentTermAttributes) GetFixedDay() int64 {
 	if o == nil || o.FixedDay == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FixedDay
@@ -116,7 +116,7 @@ func (o *PartnerUpdateParamsPaymentTermAttributes) GetFixedDay() int32 {
 
 // GetFixedDayOk returns a tuple with the FixedDay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartnerUpdateParamsPaymentTermAttributes) GetFixedDayOk() (*int32, bool) {
+func (o *PartnerUpdateParamsPaymentTermAttributes) GetFixedDayOk() (*int64, bool) {
 	if o == nil || o.FixedDay == nil {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *PartnerUpdateParamsPaymentTermAttributes) HasFixedDay() bool {
 	return false
 }
 
-// SetFixedDay gets a reference to the given int32 and assigns it to the FixedDay field.
-func (o *PartnerUpdateParamsPaymentTermAttributes) SetFixedDay(v int32) {
+// SetFixedDay gets a reference to the given int64 and assigns it to the FixedDay field.
+func (o *PartnerUpdateParamsPaymentTermAttributes) SetFixedDay(v int64) {
 	o.FixedDay = &v
 }
 

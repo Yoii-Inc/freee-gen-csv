@@ -17,14 +17,14 @@ import (
 // TooManyRequestsError struct for TooManyRequestsError
 type TooManyRequestsError struct {
 	Meta TooManyRequestsErrorMeta `json:"meta"`
-	StatusCode int32 `json:"status_code"`
+	StatusCode int64 `json:"status_code"`
 }
 
 // NewTooManyRequestsError instantiates a new TooManyRequestsError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTooManyRequestsError(meta TooManyRequestsErrorMeta, statusCode int32) *TooManyRequestsError {
+func NewTooManyRequestsError(meta TooManyRequestsErrorMeta, statusCode int64) *TooManyRequestsError {
 	this := TooManyRequestsError{}
 	this.Meta = meta
 	this.StatusCode = statusCode
@@ -64,9 +64,9 @@ func (o *TooManyRequestsError) SetMeta(v TooManyRequestsErrorMeta) {
 }
 
 // GetStatusCode returns the StatusCode field value
-func (o *TooManyRequestsError) GetStatusCode() int32 {
+func (o *TooManyRequestsError) GetStatusCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *TooManyRequestsError) GetStatusCode() int32 {
 
 // GetStatusCodeOk returns a tuple with the StatusCode field value
 // and a boolean to check if the value has been set.
-func (o *TooManyRequestsError) GetStatusCodeOk() (*int32, bool) {
+func (o *TooManyRequestsError) GetStatusCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *TooManyRequestsError) GetStatusCodeOk() (*int32, bool) {
 }
 
 // SetStatusCode sets field value
-func (o *TooManyRequestsError) SetStatusCode(v int32) {
+func (o *TooManyRequestsError) SetStatusCode(v int64) {
 	o.StatusCode = v
 }
 

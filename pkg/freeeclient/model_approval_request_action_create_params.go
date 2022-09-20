@@ -19,20 +19,20 @@ type ApprovalRequestActionCreateParams struct {
 	// 操作(approve: 承認する、force_approve: 代理承認する、cancel: 申請を取り消す、reject: 却下する、feedback: 申請者へ差し戻す、force_feedback: 承認済み・却下済みを取り消す)
 	ApprovalAction string `json:"approval_action"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 次ステップの承認者のユーザーID
-	NextApproverId NullableInt32 `json:"next_approver_id,omitempty"`
+	NextApproverId NullableInt64 `json:"next_approver_id,omitempty"`
 	// 対象round。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。各種申請の取得APIレスポンス.current_roundを送信してください。
-	TargetRound int32 `json:"target_round"`
+	TargetRound int64 `json:"target_round"`
 	// 対象承認ステップID 各種申請の取得APIレスポンス.current_step_idを送信してください。
-	TargetStepId int32 `json:"target_step_id"`
+	TargetStepId int64 `json:"target_step_id"`
 }
 
 // NewApprovalRequestActionCreateParams instantiates a new ApprovalRequestActionCreateParams object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestActionCreateParams(approvalAction string, companyId int32, targetRound int32, targetStepId int32) *ApprovalRequestActionCreateParams {
+func NewApprovalRequestActionCreateParams(approvalAction string, companyId int64, targetRound int64, targetStepId int64) *ApprovalRequestActionCreateParams {
 	this := ApprovalRequestActionCreateParams{}
 	this.ApprovalAction = approvalAction
 	this.CompanyId = companyId
@@ -74,9 +74,9 @@ func (o *ApprovalRequestActionCreateParams) SetApprovalAction(v string) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ApprovalRequestActionCreateParams) GetCompanyId() int32 {
+func (o *ApprovalRequestActionCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *ApprovalRequestActionCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestActionCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *ApprovalRequestActionCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,14 +93,14 @@ func (o *ApprovalRequestActionCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *ApprovalRequestActionCreateParams) SetCompanyId(v int32) {
+func (o *ApprovalRequestActionCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetNextApproverId returns the NextApproverId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApprovalRequestActionCreateParams) GetNextApproverId() int32 {
+func (o *ApprovalRequestActionCreateParams) GetNextApproverId() int64 {
 	if o == nil || o.NextApproverId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NextApproverId.Get()
@@ -109,7 +109,7 @@ func (o *ApprovalRequestActionCreateParams) GetNextApproverId() int32 {
 // GetNextApproverIdOk returns a tuple with the NextApproverId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestActionCreateParams) GetNextApproverIdOk() (*int32, bool) {
+func (o *ApprovalRequestActionCreateParams) GetNextApproverIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,8 +125,8 @@ func (o *ApprovalRequestActionCreateParams) HasNextApproverId() bool {
 	return false
 }
 
-// SetNextApproverId gets a reference to the given NullableInt32 and assigns it to the NextApproverId field.
-func (o *ApprovalRequestActionCreateParams) SetNextApproverId(v int32) {
+// SetNextApproverId gets a reference to the given NullableInt64 and assigns it to the NextApproverId field.
+func (o *ApprovalRequestActionCreateParams) SetNextApproverId(v int64) {
 	o.NextApproverId.Set(&v)
 }
 // SetNextApproverIdNil sets the value for NextApproverId to be an explicit nil
@@ -140,9 +140,9 @@ func (o *ApprovalRequestActionCreateParams) UnsetNextApproverId() {
 }
 
 // GetTargetRound returns the TargetRound field value
-func (o *ApprovalRequestActionCreateParams) GetTargetRound() int32 {
+func (o *ApprovalRequestActionCreateParams) GetTargetRound() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -151,7 +151,7 @@ func (o *ApprovalRequestActionCreateParams) GetTargetRound() int32 {
 
 // GetTargetRoundOk returns a tuple with the TargetRound field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestActionCreateParams) GetTargetRoundOk() (*int32, bool) {
+func (o *ApprovalRequestActionCreateParams) GetTargetRoundOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -159,14 +159,14 @@ func (o *ApprovalRequestActionCreateParams) GetTargetRoundOk() (*int32, bool) {
 }
 
 // SetTargetRound sets field value
-func (o *ApprovalRequestActionCreateParams) SetTargetRound(v int32) {
+func (o *ApprovalRequestActionCreateParams) SetTargetRound(v int64) {
 	o.TargetRound = v
 }
 
 // GetTargetStepId returns the TargetStepId field value
-func (o *ApprovalRequestActionCreateParams) GetTargetStepId() int32 {
+func (o *ApprovalRequestActionCreateParams) GetTargetStepId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -175,7 +175,7 @@ func (o *ApprovalRequestActionCreateParams) GetTargetStepId() int32 {
 
 // GetTargetStepIdOk returns a tuple with the TargetStepId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestActionCreateParams) GetTargetStepIdOk() (*int32, bool) {
+func (o *ApprovalRequestActionCreateParams) GetTargetStepIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -183,7 +183,7 @@ func (o *ApprovalRequestActionCreateParams) GetTargetStepIdOk() (*int32, bool) {
 }
 
 // SetTargetStepId sets field value
-func (o *ApprovalRequestActionCreateParams) SetTargetStepId(v int32) {
+func (o *ApprovalRequestActionCreateParams) SetTargetStepId(v int64) {
 	o.TargetStepId = v
 }
 

@@ -176,12 +176,12 @@ func (a *ItemsApiService) CreateItemExecute(r ApiCreateItemRequest) (*ItemRespon
 type ApiDestroyItemRequest struct {
 	ctx context.Context
 	ApiService *ItemsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyItemRequest) CompanyId(companyId int32) ApiDestroyItemRequest {
+func (r ApiDestroyItemRequest) CompanyId(companyId int64) ApiDestroyItemRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -202,7 +202,7 @@ DestroyItem 品目の削除
  @param id 品目ID
  @return ApiDestroyItemRequest
 */
-func (a *ItemsApiService) DestroyItem(ctx context.Context, id int32) ApiDestroyItemRequest {
+func (a *ItemsApiService) DestroyItem(ctx context.Context, id int64) ApiDestroyItemRequest {
 	return ApiDestroyItemRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -343,12 +343,12 @@ func (a *ItemsApiService) DestroyItemExecute(r ApiDestroyItemRequest) (*http.Res
 type ApiGetItemRequest struct {
 	ctx context.Context
 	ApiService *ItemsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
 // 事業所ID
-func (r ApiGetItemRequest) CompanyId(companyId int32) ApiGetItemRequest {
+func (r ApiGetItemRequest) CompanyId(companyId int64) ApiGetItemRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -369,7 +369,7 @@ GetItem 品目の取得
  @param id 品目ID
  @return ApiGetItemRequest
 */
-func (a *ItemsApiService) GetItem(ctx context.Context, id int32) ApiGetItemRequest {
+func (a *ItemsApiService) GetItem(ctx context.Context, id int64) ApiGetItemRequest {
 	return ApiGetItemRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -521,15 +521,15 @@ func (a *ItemsApiService) GetItemExecute(r ApiGetItemRequest) (*ItemResponse, *h
 type ApiGetItemsRequest struct {
 	ctx context.Context
 	ApiService *ItemsApiService
-	companyId *int32
+	companyId *int64
 	startUpdateDate *string
 	endUpdateDate *string
-	offset *int32
-	limit *int32
+	offset *int64
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetItemsRequest) CompanyId(companyId int32) ApiGetItemsRequest {
+func (r ApiGetItemsRequest) CompanyId(companyId int64) ApiGetItemsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -547,13 +547,13 @@ func (r ApiGetItemsRequest) EndUpdateDate(endUpdateDate string) ApiGetItemsReque
 }
 
 // 取得レコードのオフセット (デフォルト: 0)
-func (r ApiGetItemsRequest) Offset(offset int32) ApiGetItemsRequest {
+func (r ApiGetItemsRequest) Offset(offset int64) ApiGetItemsRequest {
 	r.offset = &offset
 	return r
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000)
-func (r ApiGetItemsRequest) Limit(limit int32) ApiGetItemsRequest {
+func (r ApiGetItemsRequest) Limit(limit int64) ApiGetItemsRequest {
 	r.limit = &limit
 	return r
 }
@@ -719,7 +719,7 @@ func (a *ItemsApiService) GetItemsExecute(r ApiGetItemsRequest) (*GetItems200Res
 type ApiUpdateItemRequest struct {
 	ctx context.Context
 	ApiService *ItemsApiService
-	id int32
+	id int64
 	itemParams *ItemParams
 }
 
@@ -745,7 +745,7 @@ UpdateItem 品目の更新
  @param id 品目ID
  @return ApiUpdateItemRequest
 */
-func (a *ItemsApiService) UpdateItem(ctx context.Context, id int32) ApiUpdateItemRequest {
+func (a *ItemsApiService) UpdateItem(ctx context.Context, id int64) ApiUpdateItemRequest {
 	return ApiUpdateItemRequest{
 		ApiService: a,
 		ctx: ctx,

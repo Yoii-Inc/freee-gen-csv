@@ -196,12 +196,12 @@ func (a *TransfersApiService) CreateTransferExecute(r ApiCreateTransferRequest) 
 type ApiDestroyTransferRequest struct {
 	ctx context.Context
 	ApiService *TransfersApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyTransferRequest) CompanyId(companyId int32) ApiDestroyTransferRequest {
+func (r ApiDestroyTransferRequest) CompanyId(companyId int64) ApiDestroyTransferRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -222,7 +222,7 @@ DestroyTransfer 取引（振替）の削除する
  @param id 取引(振替)ID
  @return ApiDestroyTransferRequest
 */
-func (a *TransfersApiService) DestroyTransfer(ctx context.Context, id int32) ApiDestroyTransferRequest {
+func (a *TransfersApiService) DestroyTransfer(ctx context.Context, id int64) ApiDestroyTransferRequest {
 	return ApiDestroyTransferRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -363,12 +363,12 @@ func (a *TransfersApiService) DestroyTransferExecute(r ApiDestroyTransferRequest
 type ApiGetTransferRequest struct {
 	ctx context.Context
 	ApiService *TransfersApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetTransferRequest) CompanyId(companyId int32) ApiGetTransferRequest {
+func (r ApiGetTransferRequest) CompanyId(companyId int64) ApiGetTransferRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -409,7 +409,7 @@ GetTransfer 取引（振替）の取得
  @param id 取引(振替)ID
  @return ApiGetTransferRequest
 */
-func (a *TransfersApiService) GetTransfer(ctx context.Context, id int32) ApiGetTransferRequest {
+func (a *TransfersApiService) GetTransfer(ctx context.Context, id int64) ApiGetTransferRequest {
 	return ApiGetTransferRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -561,15 +561,15 @@ func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (*Tran
 type ApiGetTransfersRequest struct {
 	ctx context.Context
 	ApiService *TransfersApiService
-	companyId *int32
+	companyId *int64
 	startDate *string
 	endDate *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetTransfersRequest) CompanyId(companyId int32) ApiGetTransfersRequest {
+func (r ApiGetTransfersRequest) CompanyId(companyId int64) ApiGetTransfersRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -593,7 +593,7 @@ func (r ApiGetTransfersRequest) Offset(offset int64) ApiGetTransfersRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100) 
-func (r ApiGetTransfersRequest) Limit(limit int32) ApiGetTransfersRequest {
+func (r ApiGetTransfersRequest) Limit(limit int64) ApiGetTransfersRequest {
 	r.limit = &limit
 	return r
 }
@@ -779,7 +779,7 @@ func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (*Ge
 type ApiUpdateTransferRequest struct {
 	ctx context.Context
 	ApiService *TransfersApiService
-	id int32
+	id int64
 	transferParams *TransferParams
 }
 
@@ -825,7 +825,7 @@ UpdateTransfer 取引（振替）の更新
  @param id 取引(振替)ID
  @return ApiUpdateTransferRequest
 */
-func (a *TransfersApiService) UpdateTransfer(ctx context.Context, id int32) ApiUpdateTransferRequest {
+func (a *TransfersApiService) UpdateTransfer(ctx context.Context, id int64) ApiUpdateTransferRequest {
 	return ApiUpdateTransferRequest{
 		ApiService: a,
 		ctx: ctx,

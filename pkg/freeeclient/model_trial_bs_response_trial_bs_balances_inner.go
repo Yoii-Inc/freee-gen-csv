@@ -21,23 +21,23 @@ type TrialBsResponseTrialBsBalancesInner struct {
 	// 決算書表示名(account_item_display_type:group指定時に決算書表示名の時のみ含まれる)
 	AccountGroupName *string `json:"account_group_name,omitempty"`
 	// 勘定科目ID(勘定科目の時のみ含まれる)
-	AccountItemId *int32 `json:"account_item_id,omitempty"`
+	AccountItemId *int64 `json:"account_item_id,omitempty"`
 	// 勘定科目名(勘定科目の時のみ含まれる)
 	AccountItemName *string `json:"account_item_name,omitempty"`
 	// 期末残高
-	ClosingBalance *int32 `json:"closing_balance,omitempty"`
+	ClosingBalance *int64 `json:"closing_balance,omitempty"`
 	// 構成比
 	CompositionRatio *float32 `json:"composition_ratio,omitempty"`
 	// 貸方金額
-	CreditAmount *int32 `json:"credit_amount,omitempty"`
+	CreditAmount *int64 `json:"credit_amount,omitempty"`
 	// 借方金額
-	DebitAmount *int32 `json:"debit_amount,omitempty"`
+	DebitAmount *int64 `json:"debit_amount,omitempty"`
 	// 階層レベル
-	HierarchyLevel *int32 `json:"hierarchy_level,omitempty"`
+	HierarchyLevel *int64 `json:"hierarchy_level,omitempty"`
 	// breakdown_display_type:item, account_item_display_type:account_item指定時のみ含まれる
 	Items []TrialBsResponseTrialBsBalancesInnerItemsInner `json:"items,omitempty"`
 	// 期首残高
-	OpeningBalance *int32 `json:"opening_balance,omitempty"`
+	OpeningBalance *int64 `json:"opening_balance,omitempty"`
 	// 上位勘定科目カテゴリー名(勘定科目カテゴリーの時のみ、上層が存在する場合含まれる)
 	ParentAccountCategoryName *string `json:"parent_account_category_name,omitempty"`
 	// breakdown_display_type:partner, account_item_display_type:account_item指定時のみ含まれる
@@ -136,9 +136,9 @@ func (o *TrialBsResponseTrialBsBalancesInner) SetAccountGroupName(v string) {
 }
 
 // GetAccountItemId returns the AccountItemId field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemId() int32 {
+func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountItemId
@@ -146,7 +146,7 @@ func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemId() int32 {
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil || o.AccountItemId == nil {
 		return nil, false
 	}
@@ -162,8 +162,8 @@ func (o *TrialBsResponseTrialBsBalancesInner) HasAccountItemId() bool {
 	return false
 }
 
-// SetAccountItemId gets a reference to the given int32 and assigns it to the AccountItemId field.
-func (o *TrialBsResponseTrialBsBalancesInner) SetAccountItemId(v int32) {
+// SetAccountItemId gets a reference to the given int64 and assigns it to the AccountItemId field.
+func (o *TrialBsResponseTrialBsBalancesInner) SetAccountItemId(v int64) {
 	o.AccountItemId = &v
 }
 
@@ -200,9 +200,9 @@ func (o *TrialBsResponseTrialBsBalancesInner) SetAccountItemName(v string) {
 }
 
 // GetClosingBalance returns the ClosingBalance field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalance() int32 {
+func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalance() int64 {
 	if o == nil || o.ClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosingBalance
@@ -210,7 +210,7 @@ func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalance() int32 {
 
 // GetClosingBalanceOk returns a tuple with the ClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalanceOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInner) GetClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.ClosingBalance == nil {
 		return nil, false
 	}
@@ -226,8 +226,8 @@ func (o *TrialBsResponseTrialBsBalancesInner) HasClosingBalance() bool {
 	return false
 }
 
-// SetClosingBalance gets a reference to the given int32 and assigns it to the ClosingBalance field.
-func (o *TrialBsResponseTrialBsBalancesInner) SetClosingBalance(v int32) {
+// SetClosingBalance gets a reference to the given int64 and assigns it to the ClosingBalance field.
+func (o *TrialBsResponseTrialBsBalancesInner) SetClosingBalance(v int64) {
 	o.ClosingBalance = &v
 }
 
@@ -264,9 +264,9 @@ func (o *TrialBsResponseTrialBsBalancesInner) SetCompositionRatio(v float32) {
 }
 
 // GetCreditAmount returns the CreditAmount field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmount() int32 {
+func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmount() int64 {
 	if o == nil || o.CreditAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreditAmount
@@ -274,7 +274,7 @@ func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmount() int32 {
 
 // GetCreditAmountOk returns a tuple with the CreditAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmountOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInner) GetCreditAmountOk() (*int64, bool) {
 	if o == nil || o.CreditAmount == nil {
 		return nil, false
 	}
@@ -290,15 +290,15 @@ func (o *TrialBsResponseTrialBsBalancesInner) HasCreditAmount() bool {
 	return false
 }
 
-// SetCreditAmount gets a reference to the given int32 and assigns it to the CreditAmount field.
-func (o *TrialBsResponseTrialBsBalancesInner) SetCreditAmount(v int32) {
+// SetCreditAmount gets a reference to the given int64 and assigns it to the CreditAmount field.
+func (o *TrialBsResponseTrialBsBalancesInner) SetCreditAmount(v int64) {
 	o.CreditAmount = &v
 }
 
 // GetDebitAmount returns the DebitAmount field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmount() int32 {
+func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmount() int64 {
 	if o == nil || o.DebitAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DebitAmount
@@ -306,7 +306,7 @@ func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmount() int32 {
 
 // GetDebitAmountOk returns a tuple with the DebitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmountOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInner) GetDebitAmountOk() (*int64, bool) {
 	if o == nil || o.DebitAmount == nil {
 		return nil, false
 	}
@@ -322,15 +322,15 @@ func (o *TrialBsResponseTrialBsBalancesInner) HasDebitAmount() bool {
 	return false
 }
 
-// SetDebitAmount gets a reference to the given int32 and assigns it to the DebitAmount field.
-func (o *TrialBsResponseTrialBsBalancesInner) SetDebitAmount(v int32) {
+// SetDebitAmount gets a reference to the given int64 and assigns it to the DebitAmount field.
+func (o *TrialBsResponseTrialBsBalancesInner) SetDebitAmount(v int64) {
 	o.DebitAmount = &v
 }
 
 // GetHierarchyLevel returns the HierarchyLevel field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevel() int32 {
+func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevel() int64 {
 	if o == nil || o.HierarchyLevel == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.HierarchyLevel
@@ -338,7 +338,7 @@ func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevel() int32 {
 
 // GetHierarchyLevelOk returns a tuple with the HierarchyLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevelOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInner) GetHierarchyLevelOk() (*int64, bool) {
 	if o == nil || o.HierarchyLevel == nil {
 		return nil, false
 	}
@@ -354,8 +354,8 @@ func (o *TrialBsResponseTrialBsBalancesInner) HasHierarchyLevel() bool {
 	return false
 }
 
-// SetHierarchyLevel gets a reference to the given int32 and assigns it to the HierarchyLevel field.
-func (o *TrialBsResponseTrialBsBalancesInner) SetHierarchyLevel(v int32) {
+// SetHierarchyLevel gets a reference to the given int64 and assigns it to the HierarchyLevel field.
+func (o *TrialBsResponseTrialBsBalancesInner) SetHierarchyLevel(v int64) {
 	o.HierarchyLevel = &v
 }
 
@@ -392,9 +392,9 @@ func (o *TrialBsResponseTrialBsBalancesInner) SetItems(v []TrialBsResponseTrialB
 }
 
 // GetOpeningBalance returns the OpeningBalance field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalance() int32 {
+func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalance() int64 {
 	if o == nil || o.OpeningBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OpeningBalance
@@ -402,7 +402,7 @@ func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalance() int32 {
 
 // GetOpeningBalanceOk returns a tuple with the OpeningBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalanceOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInner) GetOpeningBalanceOk() (*int64, bool) {
 	if o == nil || o.OpeningBalance == nil {
 		return nil, false
 	}
@@ -418,8 +418,8 @@ func (o *TrialBsResponseTrialBsBalancesInner) HasOpeningBalance() bool {
 	return false
 }
 
-// SetOpeningBalance gets a reference to the given int32 and assigns it to the OpeningBalance field.
-func (o *TrialBsResponseTrialBsBalancesInner) SetOpeningBalance(v int32) {
+// SetOpeningBalance gets a reference to the given int64 and assigns it to the OpeningBalance field.
+func (o *TrialBsResponseTrialBsBalancesInner) SetOpeningBalance(v int64) {
 	o.OpeningBalance = &v
 }
 

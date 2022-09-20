@@ -8,33 +8,33 @@ Name | Type | Description | Notes
 **AccountNumber** | Pointer to **string** | 口座番号（半角数字1桁〜7桁）&lt;br&gt; 支払先指定時には無効  | [optional] 
 **AccountType** | Pointer to **string** | &#39;口座種別(ordinary: 普通、checking: 当座、earmarked: 納税準備預金、savings: 貯蓄、other: その他)&#39;&lt;br&gt; &#39;支払先指定時には無効&#39;&lt;br&gt; &#39;デフォルトは ordinary: 普通 です&#39;  | [optional] 
 **ApplicationDate** | Pointer to **string** | 申請日 (yyyy-mm-dd)&lt;br&gt; 指定しない場合は当日の日付が登録されます。  | [optional] 
-**ApprovalFlowRouteId** | **int32** | 申請経路ID&lt;br&gt; 指定する申請経路IDは、申請経路APIを利用して取得してください。  | 
-**ApproverId** | Pointer to **int32** | 承認者のユーザーID&lt;br&gt; 「承認者を指定」の経路を申請経路として使用する場合に指定してください。&lt;br&gt; 指定する承認者のユーザーIDは、申請経路APIを利用して取得してください。  | [optional] 
+**ApprovalFlowRouteId** | **int64** | 申請経路ID&lt;br&gt; 指定する申請経路IDは、申請経路APIを利用して取得してください。  | 
+**ApproverId** | Pointer to **int64** | 承認者のユーザーID&lt;br&gt; 「承認者を指定」の経路を申請経路として使用する場合に指定してください。&lt;br&gt; 指定する承認者のユーザーIDは、申請経路APIを利用して取得してください。  | [optional] 
 **BankCode** | Pointer to **string** | 銀行コード（半角数字1桁〜4桁）&lt;br&gt; 支払先指定時には無効  | [optional] 
 **BankName** | Pointer to **string** | 銀行名（255文字以内）&lt;br&gt; 支払先指定時には無効  | [optional] 
 **BankNameKana** | Pointer to **string** | 銀行名（カナ）（15文字以内）&lt;br&gt; 支払先指定時には無効  | [optional] 
 **BranchCode** | Pointer to **string** | 支店番号（半角数字1桁〜3桁）&lt;br&gt; 支払先指定時には無効  | [optional] 
 **BranchKana** | Pointer to **string** | 支店名（カナ）（15文字以内）&lt;br&gt; 指定可能な文字は、英数・カナ・丸括弧・ハイフン・スペースのみです。&lt;br&gt; 支払先指定時には無効  | [optional] 
 **BranchName** | Pointer to **string** | 支店名（255文字以内）&lt;br&gt; 支払先指定時には無効  | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Description** | Pointer to **string** | 備考 | [optional] 
 **DocumentCode** | Pointer to **string** | 請求書番号（255文字以内） | [optional] 
 **Draft** | **bool** | 支払依頼のステータス&lt;br&gt; falseを指定した時は申請中（in_progress）で支払依頼を作成します。&lt;br&gt; trueを指定した時は下書き（draft）で支払依頼を作成します。  | 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
-**ParentId** | Pointer to **NullableInt32** | 親申請ID(法人向け エンタープライズプラン、プロフェッショナルプラン)&lt;br&gt; &lt;ul&gt;   &lt;li&gt;承認済みの既存各種申請IDのみ指定可能です。&lt;/li&gt;   &lt;li&gt;各種申請一覧APIを利用して取得してください。&lt;/li&gt; &lt;/ul&gt;  | [optional] 
+**ParentId** | Pointer to **NullableInt64** | 親申請ID(法人向け エンタープライズプラン、プロフェッショナルプラン)&lt;br&gt; &lt;ul&gt;   &lt;li&gt;承認済みの既存各種申請IDのみ指定可能です。&lt;/li&gt;   &lt;li&gt;各種申請一覧APIを利用して取得してください。&lt;/li&gt; &lt;/ul&gt;  | [optional] 
 **PartnerCode** | Pointer to **NullableString** | 支払先の取引先コード&lt;br&gt; 支払先の取引先ID指定時には無効  | [optional] 
-**PartnerId** | Pointer to **NullableInt32** | 支払先の取引先ID | [optional] 
+**PartnerId** | Pointer to **NullableInt64** | 支払先の取引先ID | [optional] 
 **PaymentDate** | Pointer to **NullableString** | 支払期限 (yyyy-mm-dd) | [optional] 
 **PaymentMethod** | Pointer to **string** | &#39;支払方法(none: 指定なし, domestic_bank_transfer: 国内振込, abroad_bank_transfer: 国外振込, account_transfer: 口座振替, credit_card: クレジットカード)&#39;&lt;br&gt; &#39;デフォルトは none: 指定なし です。&#39;  | [optional] 
 **PaymentRequestLines** | [**[]PaymentRequestCreateParamsPaymentRequestLinesInner**](PaymentRequestCreateParamsPaymentRequestLinesInner.md) | 支払依頼の項目行一覧（配列） | 
-**ReceiptIds** | Pointer to **[]int32** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
+**ReceiptIds** | Pointer to **[]int64** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
 **Title** | **string** | 申請タイトル | 
 
 ## Methods
 
 ### NewPaymentRequestCreateParams
 
-`func NewPaymentRequestCreateParams(approvalFlowRouteId int32, companyId int32, draft bool, issueDate string, paymentRequestLines []PaymentRequestCreateParamsPaymentRequestLinesInner, title string, ) *PaymentRequestCreateParams`
+`func NewPaymentRequestCreateParams(approvalFlowRouteId int64, companyId int64, draft bool, issueDate string, paymentRequestLines []PaymentRequestCreateParamsPaymentRequestLinesInner, title string, ) *PaymentRequestCreateParams`
 
 NewPaymentRequestCreateParams instantiates a new PaymentRequestCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -151,40 +151,40 @@ HasApplicationDate returns a boolean if a field has been set.
 
 ### GetApprovalFlowRouteId
 
-`func (o *PaymentRequestCreateParams) GetApprovalFlowRouteId() int32`
+`func (o *PaymentRequestCreateParams) GetApprovalFlowRouteId() int64`
 
 GetApprovalFlowRouteId returns the ApprovalFlowRouteId field if non-nil, zero value otherwise.
 
 ### GetApprovalFlowRouteIdOk
 
-`func (o *PaymentRequestCreateParams) GetApprovalFlowRouteIdOk() (*int32, bool)`
+`func (o *PaymentRequestCreateParams) GetApprovalFlowRouteIdOk() (*int64, bool)`
 
 GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApprovalFlowRouteId
 
-`func (o *PaymentRequestCreateParams) SetApprovalFlowRouteId(v int32)`
+`func (o *PaymentRequestCreateParams) SetApprovalFlowRouteId(v int64)`
 
 SetApprovalFlowRouteId sets ApprovalFlowRouteId field to given value.
 
 
 ### GetApproverId
 
-`func (o *PaymentRequestCreateParams) GetApproverId() int32`
+`func (o *PaymentRequestCreateParams) GetApproverId() int64`
 
 GetApproverId returns the ApproverId field if non-nil, zero value otherwise.
 
 ### GetApproverIdOk
 
-`func (o *PaymentRequestCreateParams) GetApproverIdOk() (*int32, bool)`
+`func (o *PaymentRequestCreateParams) GetApproverIdOk() (*int64, bool)`
 
 GetApproverIdOk returns a tuple with the ApproverId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApproverId
 
-`func (o *PaymentRequestCreateParams) SetApproverId(v int32)`
+`func (o *PaymentRequestCreateParams) SetApproverId(v int64)`
 
 SetApproverId sets ApproverId field to given value.
 
@@ -346,20 +346,20 @@ HasBranchName returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *PaymentRequestCreateParams) GetCompanyId() int32`
+`func (o *PaymentRequestCreateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *PaymentRequestCreateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *PaymentRequestCreateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *PaymentRequestCreateParams) SetCompanyId(v int32)`
+`func (o *PaymentRequestCreateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -456,20 +456,20 @@ SetIssueDate sets IssueDate field to given value.
 
 ### GetParentId
 
-`func (o *PaymentRequestCreateParams) GetParentId() int32`
+`func (o *PaymentRequestCreateParams) GetParentId() int64`
 
 GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 ### GetParentIdOk
 
-`func (o *PaymentRequestCreateParams) GetParentIdOk() (*int32, bool)`
+`func (o *PaymentRequestCreateParams) GetParentIdOk() (*int64, bool)`
 
 GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentId
 
-`func (o *PaymentRequestCreateParams) SetParentId(v int32)`
+`func (o *PaymentRequestCreateParams) SetParentId(v int64)`
 
 SetParentId sets ParentId field to given value.
 
@@ -526,20 +526,20 @@ HasPartnerCode returns a boolean if a field has been set.
 UnsetPartnerCode ensures that no value is present for PartnerCode, not even an explicit nil
 ### GetPartnerId
 
-`func (o *PaymentRequestCreateParams) GetPartnerId() int32`
+`func (o *PaymentRequestCreateParams) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *PaymentRequestCreateParams) GetPartnerIdOk() (*int32, bool)`
+`func (o *PaymentRequestCreateParams) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *PaymentRequestCreateParams) SetPartnerId(v int32)`
+`func (o *PaymentRequestCreateParams) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -641,20 +641,20 @@ SetPaymentRequestLines sets PaymentRequestLines field to given value.
 
 ### GetReceiptIds
 
-`func (o *PaymentRequestCreateParams) GetReceiptIds() []int32`
+`func (o *PaymentRequestCreateParams) GetReceiptIds() []int64`
 
 GetReceiptIds returns the ReceiptIds field if non-nil, zero value otherwise.
 
 ### GetReceiptIdsOk
 
-`func (o *PaymentRequestCreateParams) GetReceiptIdsOk() (*[]int32, bool)`
+`func (o *PaymentRequestCreateParams) GetReceiptIdsOk() (*[]int64, bool)`
 
 GetReceiptIdsOk returns a tuple with the ReceiptIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReceiptIds
 
-`func (o *PaymentRequestCreateParams) SetReceiptIds(v []int32)`
+`func (o *PaymentRequestCreateParams) SetReceiptIds(v []int64)`
 
 SetReceiptIds sets ReceiptIds field to given value.
 

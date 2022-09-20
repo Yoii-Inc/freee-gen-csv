@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Categories** | **[]string** |  | 
-**DefaultTaxId** | Pointer to **int32** | デフォルト設定がされている税区分ID | [optional] 
-**Id** | **int32** | 勘定科目ID | 
+**DefaultTaxId** | Pointer to **int64** | デフォルト設定がされている税区分ID | [optional] 
+**Id** | **int64** | 勘定科目ID | 
 **Name** | **string** | 勘定科目名 (30文字以内) | 
 **Shortcut** | Pointer to **NullableString** | ショートカット1 (20文字以内) | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewCompanyResponseCompanyAccountItemsInner
 
-`func NewCompanyResponseCompanyAccountItemsInner(categories []string, id int32, name string, ) *CompanyResponseCompanyAccountItemsInner`
+`func NewCompanyResponseCompanyAccountItemsInner(categories []string, id int64, name string, ) *CompanyResponseCompanyAccountItemsInner`
 
 NewCompanyResponseCompanyAccountItemsInner instantiates a new CompanyResponseCompanyAccountItemsInner object
 This constructor will assign default values to properties that have it defined,
@@ -51,20 +51,20 @@ SetCategories sets Categories field to given value.
 
 ### GetDefaultTaxId
 
-`func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxId() int32`
+`func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxId() int64`
 
 GetDefaultTaxId returns the DefaultTaxId field if non-nil, zero value otherwise.
 
 ### GetDefaultTaxIdOk
 
-`func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxIdOk() (*int32, bool)`
+`func (o *CompanyResponseCompanyAccountItemsInner) GetDefaultTaxIdOk() (*int64, bool)`
 
 GetDefaultTaxIdOk returns a tuple with the DefaultTaxId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultTaxId
 
-`func (o *CompanyResponseCompanyAccountItemsInner) SetDefaultTaxId(v int32)`
+`func (o *CompanyResponseCompanyAccountItemsInner) SetDefaultTaxId(v int64)`
 
 SetDefaultTaxId sets DefaultTaxId field to given value.
 
@@ -76,20 +76,20 @@ HasDefaultTaxId returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *CompanyResponseCompanyAccountItemsInner) GetId() int32`
+`func (o *CompanyResponseCompanyAccountItemsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CompanyResponseCompanyAccountItemsInner) GetIdOk() (*int32, bool)`
+`func (o *CompanyResponseCompanyAccountItemsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CompanyResponseCompanyAccountItemsInner) SetId(v int32)`
+`func (o *CompanyResponseCompanyAccountItemsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

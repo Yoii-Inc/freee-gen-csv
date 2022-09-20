@@ -25,7 +25,7 @@ type User struct {
 	// 氏名（カナ・名）
 	FirstNameKana NullableString `json:"first_name_kana,omitempty"`
 	// ユーザーID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 氏名（姓）
 	LastName NullableString `json:"last_name,omitempty"`
 	// 氏名（カナ・姓）
@@ -36,7 +36,7 @@ type User struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(email string, id int32) *User {
+func NewUser(email string, id int64) *User {
 	this := User{}
 	this.Email = email
 	this.Id = id
@@ -202,9 +202,9 @@ func (o *User) UnsetFirstNameKana() {
 }
 
 // GetId returns the Id field value
-func (o *User) GetId() int32 {
+func (o *User) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -213,7 +213,7 @@ func (o *User) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *User) GetIdOk() (*int32, bool) {
+func (o *User) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -221,7 +221,7 @@ func (o *User) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *User) SetId(v int32) {
+func (o *User) SetId(v int64) {
 	o.Id = v
 }
 

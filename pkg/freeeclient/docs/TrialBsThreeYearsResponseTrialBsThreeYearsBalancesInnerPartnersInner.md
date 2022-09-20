@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClosingBalance** | Pointer to **int32** | 期末残高 | [optional] 
-**Id** | **int32** | 取引先ID | 
-**LastYearClosingBalance** | Pointer to **int32** | 前年度期末残高 | [optional] 
+**ClosingBalance** | Pointer to **int64** | 期末残高 | [optional] 
+**Id** | **int64** | 取引先ID | 
+**LastYearClosingBalance** | Pointer to **int64** | 前年度期末残高 | [optional] 
 **Name** | Pointer to **string** | 取引先名 | [optional] 
-**TwoYearsBeforeClosingBalance** | Pointer to **int32** | 前々年度期末残高 | [optional] 
+**TwoYearsBeforeClosingBalance** | Pointer to **int64** | 前々年度期末残高 | [optional] 
 **YearOnYear** | Pointer to **float32** | 前年比 | [optional] 
 
 ## Methods
 
 ### NewTrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner
 
-`func NewTrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner(id int32, ) *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner`
+`func NewTrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner(id int64, ) *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner`
 
 NewTrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner instantiates a new TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetClosingBalance
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetClosingBalance() int32`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetClosingBalance() int64`
 
 GetClosingBalance returns the ClosingBalance field if non-nil, zero value otherwise.
 
 ### GetClosingBalanceOk
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetClosingBalanceOk() (*int32, bool)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetClosingBalanceOk() (*int64, bool)`
 
 GetClosingBalanceOk returns a tuple with the ClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosingBalance
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetClosingBalance(v int32)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetClosingBalance(v int64)`
 
 SetClosingBalance sets ClosingBalance field to given value.
 
@@ -57,40 +57,40 @@ HasClosingBalance returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetId() int32`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetIdOk() (*int32, bool)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetId(v int32)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetLastYearClosingBalance
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetLastYearClosingBalance() int32`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetLastYearClosingBalance() int64`
 
 GetLastYearClosingBalance returns the LastYearClosingBalance field if non-nil, zero value otherwise.
 
 ### GetLastYearClosingBalanceOk
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetLastYearClosingBalanceOk() (*int32, bool)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetLastYearClosingBalanceOk() (*int64, bool)`
 
 GetLastYearClosingBalanceOk returns a tuple with the LastYearClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastYearClosingBalance
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetLastYearClosingBalance(v int32)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetLastYearClosingBalance(v int64)`
 
 SetLastYearClosingBalance sets LastYearClosingBalance field to given value.
 
@@ -127,20 +127,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetTwoYearsBeforeClosingBalance
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetTwoYearsBeforeClosingBalance() int32`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetTwoYearsBeforeClosingBalance() int64`
 
 GetTwoYearsBeforeClosingBalance returns the TwoYearsBeforeClosingBalance field if non-nil, zero value otherwise.
 
 ### GetTwoYearsBeforeClosingBalanceOk
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetTwoYearsBeforeClosingBalanceOk() (*int32, bool)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) GetTwoYearsBeforeClosingBalanceOk() (*int64, bool)`
 
 GetTwoYearsBeforeClosingBalanceOk returns a tuple with the TwoYearsBeforeClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTwoYearsBeforeClosingBalance
 
-`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetTwoYearsBeforeClosingBalance(v int32)`
+`func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerPartnersInner) SetTwoYearsBeforeClosingBalance(v int64)`
 
 SetTwoYearsBeforeClosingBalance sets TwoYearsBeforeClosingBalance field to given value.
 

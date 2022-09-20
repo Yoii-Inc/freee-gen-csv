@@ -17,7 +17,7 @@ import (
 // PartnersResponsePartnersInnerAddressAttributes struct for PartnersResponsePartnersInnerAddressAttributes
 type PartnersResponsePartnersInnerAddressAttributes struct {
 	// 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄
-	PrefectureCode NullableInt32 `json:"prefecture_code,omitempty"`
+	PrefectureCode NullableInt64 `json:"prefecture_code,omitempty"`
 	// 市区町村・番地
 	StreetName1 NullableString `json:"street_name1,omitempty"`
 	// 建物名・部屋番号など
@@ -44,9 +44,9 @@ func NewPartnersResponsePartnersInnerAddressAttributesWithDefaults() *PartnersRe
 }
 
 // GetPrefectureCode returns the PrefectureCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnersResponsePartnersInnerAddressAttributes) GetPrefectureCode() int32 {
+func (o *PartnersResponsePartnersInnerAddressAttributes) GetPrefectureCode() int64 {
 	if o == nil || o.PrefectureCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PrefectureCode.Get()
@@ -55,7 +55,7 @@ func (o *PartnersResponsePartnersInnerAddressAttributes) GetPrefectureCode() int
 // GetPrefectureCodeOk returns a tuple with the PrefectureCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnersResponsePartnersInnerAddressAttributes) GetPrefectureCodeOk() (*int32, bool) {
+func (o *PartnersResponsePartnersInnerAddressAttributes) GetPrefectureCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *PartnersResponsePartnersInnerAddressAttributes) HasPrefectureCode() boo
 	return false
 }
 
-// SetPrefectureCode gets a reference to the given NullableInt32 and assigns it to the PrefectureCode field.
-func (o *PartnersResponsePartnersInnerAddressAttributes) SetPrefectureCode(v int32) {
+// SetPrefectureCode gets a reference to the given NullableInt64 and assigns it to the PrefectureCode field.
+func (o *PartnersResponsePartnersInnerAddressAttributes) SetPrefectureCode(v int64) {
 	o.PrefectureCode.Set(&v)
 }
 // SetPrefectureCodeNil sets the value for PrefectureCode to be an explicit nil

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountCategoryId** | **int32** | 勘定科目カテゴリーID | 
-**AccountStructureId** | **int32** | 年度ID | 
+**AccountCategoryId** | **int64** | 勘定科目カテゴリーID | 
+**AccountStructureId** | **int64** | 年度ID | 
 **CreatedAt** | Pointer to **string** | 作成日時 | [optional] 
-**DetailType** | Pointer to **int32** | 詳細パラメータの種類 | [optional] 
-**Id** | **int32** | 決算書表示名（小カテゴリー）ID | 
-**Index** | **int32** | 並び順 | 
+**DetailType** | Pointer to **int64** | 詳細パラメータの種類 | [optional] 
+**Id** | **int64** | 決算書表示名（小カテゴリー）ID | 
+**Index** | **int64** | 並び順 | 
 **Name** | **string** | 決算書表示名 | 
 **UpdatedAt** | Pointer to **string** | 更新日時 | [optional] 
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewSelectablesIndexResponseAccountGroupsInner
 
-`func NewSelectablesIndexResponseAccountGroupsInner(accountCategoryId int32, accountStructureId int32, id int32, index int32, name string, ) *SelectablesIndexResponseAccountGroupsInner`
+`func NewSelectablesIndexResponseAccountGroupsInner(accountCategoryId int64, accountStructureId int64, id int64, index int64, name string, ) *SelectablesIndexResponseAccountGroupsInner`
 
 NewSelectablesIndexResponseAccountGroupsInner instantiates a new SelectablesIndexResponseAccountGroupsInner object
 This constructor will assign default values to properties that have it defined,
@@ -34,40 +34,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountCategoryId
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryId() int32`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryId() int64`
 
 GetAccountCategoryId returns the AccountCategoryId field if non-nil, zero value otherwise.
 
 ### GetAccountCategoryIdOk
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryIdOk() (*int32, bool)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryIdOk() (*int64, bool)`
 
 GetAccountCategoryIdOk returns a tuple with the AccountCategoryId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountCategoryId
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountCategoryId(v int32)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountCategoryId(v int64)`
 
 SetAccountCategoryId sets AccountCategoryId field to given value.
 
 
 ### GetAccountStructureId
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureId() int32`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureId() int64`
 
 GetAccountStructureId returns the AccountStructureId field if non-nil, zero value otherwise.
 
 ### GetAccountStructureIdOk
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureIdOk() (*int32, bool)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureIdOk() (*int64, bool)`
 
 GetAccountStructureIdOk returns a tuple with the AccountStructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountStructureId
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountStructureId(v int32)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountStructureId(v int64)`
 
 SetAccountStructureId sets AccountStructureId field to given value.
 
@@ -99,20 +99,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDetailType
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailType() int32`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailType() int64`
 
 GetDetailType returns the DetailType field if non-nil, zero value otherwise.
 
 ### GetDetailTypeOk
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailTypeOk() (*int32, bool)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailTypeOk() (*int64, bool)`
 
 GetDetailTypeOk returns a tuple with the DetailType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetailType
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) SetDetailType(v int32)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) SetDetailType(v int64)`
 
 SetDetailType sets DetailType field to given value.
 
@@ -124,40 +124,40 @@ HasDetailType returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetId() int32`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetIdOk() (*int32, bool)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) SetId(v int32)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetIndex
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetIndex() int32`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetIndex() int64`
 
 GetIndex returns the Index field if non-nil, zero value otherwise.
 
 ### GetIndexOk
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) GetIndexOk() (*int32, bool)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) GetIndexOk() (*int64, bool)`
 
 GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIndex
 
-`func (o *SelectablesIndexResponseAccountGroupsInner) SetIndex(v int32)`
+`func (o *SelectablesIndexResponseAccountGroupsInner) SetIndex(v int64)`
 
 SetIndex sets Index field to given value.
 

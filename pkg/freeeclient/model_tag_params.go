@@ -17,7 +17,7 @@ import (
 // TagParams struct for TagParams
 type TagParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// メモタグ名 (30文字以内)
 	Name string `json:"name"`
 	// ショートカット1 (20文字以内)
@@ -30,7 +30,7 @@ type TagParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTagParams(companyId int32, name string) *TagParams {
+func NewTagParams(companyId int64, name string) *TagParams {
 	this := TagParams{}
 	this.CompanyId = companyId
 	this.Name = name
@@ -46,9 +46,9 @@ func NewTagParamsWithDefaults() *TagParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *TagParams) GetCompanyId() int32 {
+func (o *TagParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *TagParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *TagParams) GetCompanyIdOk() (*int32, bool) {
+func (o *TagParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *TagParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *TagParams) SetCompanyId(v int32) {
+func (o *TagParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 

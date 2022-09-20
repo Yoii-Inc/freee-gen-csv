@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **int32** | 税区分コード | 
+**Code** | **int64** | 税区分コード | 
 **Name** | **string** | 税区分名 | 
 **NameJa** | **string** | 税区分名（日本語表示用） | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewTax
 
-`func NewTax(code int32, name string, nameJa string, ) *Tax`
+`func NewTax(code int64, name string, nameJa string, ) *Tax`
 
 NewTax instantiates a new Tax object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCode
 
-`func (o *Tax) GetCode() int32`
+`func (o *Tax) GetCode() int64`
 
 GetCode returns the Code field if non-nil, zero value otherwise.
 
 ### GetCodeOk
 
-`func (o *Tax) GetCodeOk() (*int32, bool)`
+`func (o *Tax) GetCodeOk() (*int64, bool)`
 
 GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCode
 
-`func (o *Tax) SetCode(v int32)`
+`func (o *Tax) SetCode(v int64)`
 
 SetCode sets Code field to given value.
 

@@ -16,7 +16,7 @@ import (
 
 // AccountItemParamsAccountItemItemsInner struct for AccountItemParamsAccountItemItemsInner
 type AccountItemParamsAccountItemItemsInner struct {
-	Id *int32 `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 }
 
 // NewAccountItemParamsAccountItemItemsInner instantiates a new AccountItemParamsAccountItemItemsInner object
@@ -37,9 +37,9 @@ func NewAccountItemParamsAccountItemItemsInnerWithDefaults() *AccountItemParamsA
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *AccountItemParamsAccountItemItemsInner) GetId() int32 {
+func (o *AccountItemParamsAccountItemItemsInner) GetId() int64 {
 	if o == nil || o.Id == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -47,7 +47,7 @@ func (o *AccountItemParamsAccountItemItemsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountItemParamsAccountItemItemsInner) GetIdOk() (*int32, bool) {
+func (o *AccountItemParamsAccountItemItemsInner) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *AccountItemParamsAccountItemItemsInner) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *AccountItemParamsAccountItemItemsInner) SetId(v int32) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *AccountItemParamsAccountItemItemsInner) SetId(v int64) {
 	o.Id = &v
 }
 

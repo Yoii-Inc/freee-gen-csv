@@ -19,26 +19,26 @@ type AccountItemsResponseAccountItemsInner struct {
 	// 勘定科目カテゴリー
 	AccountCategory string `json:"account_category"`
 	// 勘定科目のカテゴリーID
-	AccountCategoryId int32 `json:"account_category_id"`
+	AccountCategoryId int64 `json:"account_category_id"`
 	// 勘定科目の使用設定（true: 使用する、false: 使用しない）
 	Available bool `json:"available"`
 	Categories []string `json:"categories"`
 	// 支出取引相手勘定科目ID
-	CorrespondingExpenseId NullableInt32 `json:"corresponding_expense_id,omitempty"`
+	CorrespondingExpenseId NullableInt64 `json:"corresponding_expense_id,omitempty"`
 	// 支出取引相手勘定科目名
 	CorrespondingExpenseName NullableString `json:"corresponding_expense_name,omitempty"`
 	// 収入取引相手勘定科目ID
-	CorrespondingIncomeId NullableInt32 `json:"corresponding_income_id,omitempty"`
+	CorrespondingIncomeId NullableInt64 `json:"corresponding_income_id,omitempty"`
 	// 収入取引相手勘定科目名
 	CorrespondingIncomeName NullableString `json:"corresponding_income_name,omitempty"`
 	// デフォルト設定がされている税区分コード
-	DefaultTaxCode int32 `json:"default_tax_code"`
+	DefaultTaxCode int64 `json:"default_tax_code"`
 	// デフォルト設定がされている税区分ID
-	DefaultTaxId *int32 `json:"default_tax_id,omitempty"`
+	DefaultTaxId *int64 `json:"default_tax_id,omitempty"`
 	// 決算書表示名（小カテゴリー）
 	GroupName NullableString `json:"group_name,omitempty"`
 	// 勘定科目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 勘定科目名 (30文字以内)
 	Name string `json:"name"`
 	// ショートカット1 (20文字以内)
@@ -46,16 +46,16 @@ type AccountItemsResponseAccountItemsInner struct {
 	// ショートカット2(勘定科目コード) (20文字以内)
 	ShortcutNum NullableString `json:"shortcut_num,omitempty"`
 	// 税区分コード
-	TaxCode int32 `json:"tax_code"`
+	TaxCode int64 `json:"tax_code"`
 	// 口座ID
-	WalletableId NullableInt32 `json:"walletable_id"`
+	WalletableId NullableInt64 `json:"walletable_id"`
 }
 
 // NewAccountItemsResponseAccountItemsInner instantiates a new AccountItemsResponseAccountItemsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountItemsResponseAccountItemsInner(accountCategory string, accountCategoryId int32, available bool, categories []string, defaultTaxCode int32, id int32, name string, taxCode int32, walletableId NullableInt32) *AccountItemsResponseAccountItemsInner {
+func NewAccountItemsResponseAccountItemsInner(accountCategory string, accountCategoryId int64, available bool, categories []string, defaultTaxCode int64, id int64, name string, taxCode int64, walletableId NullableInt64) *AccountItemsResponseAccountItemsInner {
 	this := AccountItemsResponseAccountItemsInner{}
 	this.AccountCategory = accountCategory
 	this.AccountCategoryId = accountCategoryId
@@ -102,9 +102,9 @@ func (o *AccountItemsResponseAccountItemsInner) SetAccountCategory(v string) {
 }
 
 // GetAccountCategoryId returns the AccountCategoryId field value
-func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryId() int32 {
+func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -113,7 +113,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryId() int32 {
 
 // GetAccountCategoryIdOk returns a tuple with the AccountCategoryId field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryIdOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -121,7 +121,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryIdOk() (*int32
 }
 
 // SetAccountCategoryId sets field value
-func (o *AccountItemsResponseAccountItemsInner) SetAccountCategoryId(v int32) {
+func (o *AccountItemsResponseAccountItemsInner) SetAccountCategoryId(v int64) {
 	o.AccountCategoryId = v
 }
 
@@ -174,9 +174,9 @@ func (o *AccountItemsResponseAccountItemsInner) SetCategories(v []string) {
 }
 
 // GetCorrespondingExpenseId returns the CorrespondingExpenseId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseId() int32 {
+func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseId() int64 {
 	if o == nil || o.CorrespondingExpenseId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CorrespondingExpenseId.Get()
@@ -185,7 +185,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseId() int3
 // GetCorrespondingExpenseIdOk returns a tuple with the CorrespondingExpenseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseIdOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -201,8 +201,8 @@ func (o *AccountItemsResponseAccountItemsInner) HasCorrespondingExpenseId() bool
 	return false
 }
 
-// SetCorrespondingExpenseId gets a reference to the given NullableInt32 and assigns it to the CorrespondingExpenseId field.
-func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingExpenseId(v int32) {
+// SetCorrespondingExpenseId gets a reference to the given NullableInt64 and assigns it to the CorrespondingExpenseId field.
+func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingExpenseId(v int64) {
 	o.CorrespondingExpenseId.Set(&v)
 }
 // SetCorrespondingExpenseIdNil sets the value for CorrespondingExpenseId to be an explicit nil
@@ -258,9 +258,9 @@ func (o *AccountItemsResponseAccountItemsInner) UnsetCorrespondingExpenseName() 
 }
 
 // GetCorrespondingIncomeId returns the CorrespondingIncomeId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeId() int32 {
+func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeId() int64 {
 	if o == nil || o.CorrespondingIncomeId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CorrespondingIncomeId.Get()
@@ -269,7 +269,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeId() int32
 // GetCorrespondingIncomeIdOk returns a tuple with the CorrespondingIncomeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeIdOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -285,8 +285,8 @@ func (o *AccountItemsResponseAccountItemsInner) HasCorrespondingIncomeId() bool 
 	return false
 }
 
-// SetCorrespondingIncomeId gets a reference to the given NullableInt32 and assigns it to the CorrespondingIncomeId field.
-func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingIncomeId(v int32) {
+// SetCorrespondingIncomeId gets a reference to the given NullableInt64 and assigns it to the CorrespondingIncomeId field.
+func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingIncomeId(v int64) {
 	o.CorrespondingIncomeId.Set(&v)
 }
 // SetCorrespondingIncomeIdNil sets the value for CorrespondingIncomeId to be an explicit nil
@@ -342,9 +342,9 @@ func (o *AccountItemsResponseAccountItemsInner) UnsetCorrespondingIncomeName() {
 }
 
 // GetDefaultTaxCode returns the DefaultTaxCode field value
-func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCode() int32 {
+func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -353,7 +353,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCode() int32 {
 
 // GetDefaultTaxCodeOk returns a tuple with the DefaultTaxCode field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCodeOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -361,14 +361,14 @@ func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCodeOk() (*int32, b
 }
 
 // SetDefaultTaxCode sets field value
-func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxCode(v int32) {
+func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxCode(v int64) {
 	o.DefaultTaxCode = v
 }
 
 // GetDefaultTaxId returns the DefaultTaxId field value if set, zero value otherwise.
-func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxId() int32 {
+func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxId() int64 {
 	if o == nil || o.DefaultTaxId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultTaxId
@@ -376,7 +376,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxId() int32 {
 
 // GetDefaultTaxIdOk returns a tuple with the DefaultTaxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxIdOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxIdOk() (*int64, bool) {
 	if o == nil || o.DefaultTaxId == nil {
 		return nil, false
 	}
@@ -392,8 +392,8 @@ func (o *AccountItemsResponseAccountItemsInner) HasDefaultTaxId() bool {
 	return false
 }
 
-// SetDefaultTaxId gets a reference to the given int32 and assigns it to the DefaultTaxId field.
-func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxId(v int32) {
+// SetDefaultTaxId gets a reference to the given int64 and assigns it to the DefaultTaxId field.
+func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxId(v int64) {
 	o.DefaultTaxId = &v
 }
 
@@ -440,9 +440,9 @@ func (o *AccountItemsResponseAccountItemsInner) UnsetGroupName() {
 }
 
 // GetId returns the Id field value
-func (o *AccountItemsResponseAccountItemsInner) GetId() int32 {
+func (o *AccountItemsResponseAccountItemsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -451,7 +451,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemsResponseAccountItemsInner) GetIdOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -459,7 +459,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *AccountItemsResponseAccountItemsInner) SetId(v int32) {
+func (o *AccountItemsResponseAccountItemsInner) SetId(v int64) {
 	o.Id = v
 }
 
@@ -572,9 +572,9 @@ func (o *AccountItemsResponseAccountItemsInner) UnsetShortcutNum() {
 }
 
 // GetTaxCode returns the TaxCode field value
-func (o *AccountItemsResponseAccountItemsInner) GetTaxCode() int32 {
+func (o *AccountItemsResponseAccountItemsInner) GetTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -583,7 +583,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemsResponseAccountItemsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -591,15 +591,15 @@ func (o *AccountItemsResponseAccountItemsInner) GetTaxCodeOk() (*int32, bool) {
 }
 
 // SetTaxCode sets field value
-func (o *AccountItemsResponseAccountItemsInner) SetTaxCode(v int32) {
+func (o *AccountItemsResponseAccountItemsInner) SetTaxCode(v int64) {
 	o.TaxCode = v
 }
 
 // GetWalletableId returns the WalletableId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *AccountItemsResponseAccountItemsInner) GetWalletableId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *AccountItemsResponseAccountItemsInner) GetWalletableId() int64 {
 	if o == nil || o.WalletableId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -609,7 +609,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetWalletableId() int32 {
 // GetWalletableIdOk returns a tuple with the WalletableId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountItemsResponseAccountItemsInner) GetWalletableIdOk() (*int32, bool) {
+func (o *AccountItemsResponseAccountItemsInner) GetWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -617,7 +617,7 @@ func (o *AccountItemsResponseAccountItemsInner) GetWalletableIdOk() (*int32, boo
 }
 
 // SetWalletableId sets field value
-func (o *AccountItemsResponseAccountItemsInner) SetWalletableId(v int32) {
+func (o *AccountItemsResponseAccountItemsInner) SetWalletableId(v int64) {
 	o.WalletableId.Set(&v)
 }
 

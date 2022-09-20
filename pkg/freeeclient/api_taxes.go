@@ -26,7 +26,7 @@ type TaxesApiService service
 type ApiGetTaxCodeRequest struct {
 	ctx context.Context
 	ApiService *TaxesApiService
-	code int32
+	code int64
 }
 
 func (r ApiGetTaxCodeRequest) Execute() (*TaxResponse, *http.Response, error) {
@@ -45,7 +45,7 @@ GetTaxCode 税区分コードの取得
  @param code 税区分コード
  @return ApiGetTaxCodeRequest
 */
-func (a *TaxesApiService) GetTaxCode(ctx context.Context, code int32) ApiGetTaxCodeRequest {
+func (a *TaxesApiService) GetTaxCode(ctx context.Context, code int64) ApiGetTaxCodeRequest {
 	return ApiGetTaxCodeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -322,7 +322,7 @@ func (a *TaxesApiService) GetTaxCodesExecute(r ApiGetTaxCodesRequest) (*GetTaxCo
 type ApiGetTaxesCompaniesRequest struct {
 	ctx context.Context
 	ApiService *TaxesApiService
-	companyId int32
+	companyId int64
 }
 
 func (r ApiGetTaxesCompaniesRequest) Execute() (*GetTaxesCompanies200Response, *http.Response, error) {
@@ -336,7 +336,7 @@ GetTaxesCompanies 税区分コード詳細一覧の取得
  @param companyId 事業所ID
  @return ApiGetTaxesCompaniesRequest
 */
-func (a *TaxesApiService) GetTaxesCompanies(ctx context.Context, companyId int32) ApiGetTaxesCompaniesRequest {
+func (a *TaxesApiService) GetTaxesCompanies(ctx context.Context, companyId int64) ApiGetTaxesCompaniesRequest {
 	return ApiGetTaxesCompaniesRequest{
 		ApiService: a,
 		ctx: ctx,

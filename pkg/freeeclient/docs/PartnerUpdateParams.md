@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddressAttributes** | Pointer to [**PartnerCreateParamsAddressAttributes**](PartnerCreateParamsAddressAttributes.md) |  | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **ContactName** | Pointer to **string** | 担当者 氏名 (255文字以内) | [optional] 
 **CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外）、指定しない場合JPになります。 | [optional] 
 **DefaultTitle** | Pointer to **string** | 敬称（御中、様、(空白)の3つから選択） | [optional] 
@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **LongName** | Pointer to **string** | 正式名称（255文字以内） | [optional] 
 **Name** | **string** | 取引先名 (255文字以内) | 
 **NameKana** | Pointer to **string** | カナ名称（255文字以内） | [optional] 
-**OrgCode** | Pointer to **NullableInt32** | 事業所種別（null: 未設定、1: 法人、2: 個人） | [optional] 
+**OrgCode** | Pointer to **NullableInt64** | 事業所種別（null: 未設定、1: 法人、2: 個人） | [optional] 
 **PartnerBankAccountAttributes** | Pointer to [**PartnerCreateParamsPartnerBankAccountAttributes**](PartnerCreateParamsPartnerBankAccountAttributes.md) |  | [optional] 
 **PartnerDocSettingAttributes** | Pointer to [**PartnerCreateParamsPartnerDocSettingAttributes**](PartnerCreateParamsPartnerDocSettingAttributes.md) |  | [optional] 
-**PayerWalletableId** | Pointer to **NullableInt32** | 振込元口座ID（一括振込ファイル用）:（walletableのtypeが&#39;bank_account&#39;のidのみ指定できます。また、未設定にする場合は、nullを指定してください。） | [optional] 
+**PayerWalletableId** | Pointer to **NullableInt64** | 振込元口座ID（一括振込ファイル用）:（walletableのtypeが&#39;bank_account&#39;のidのみ指定できます。また、未設定にする場合は、nullを指定してください。） | [optional] 
 **PaymentTermAttributes** | Pointer to [**NullablePartnerUpdateParamsPaymentTermAttributes**](PartnerUpdateParamsPaymentTermAttributes.md) |  | [optional] 
 **Phone** | Pointer to **string** | 電話番号 | [optional] 
 **Shortcut1** | Pointer to **string** | ショートカット１ (255文字以内) | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewPartnerUpdateParams
 
-`func NewPartnerUpdateParams(companyId int32, name string, ) *PartnerUpdateParams`
+`func NewPartnerUpdateParams(companyId int64, name string, ) *PartnerUpdateParams`
 
 NewPartnerUpdateParams instantiates a new PartnerUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ HasAddressAttributes returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *PartnerUpdateParams) GetCompanyId() int32`
+`func (o *PartnerUpdateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *PartnerUpdateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *PartnerUpdateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *PartnerUpdateParams) SetCompanyId(v int32)`
+`func (o *PartnerUpdateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -295,20 +295,20 @@ HasNameKana returns a boolean if a field has been set.
 
 ### GetOrgCode
 
-`func (o *PartnerUpdateParams) GetOrgCode() int32`
+`func (o *PartnerUpdateParams) GetOrgCode() int64`
 
 GetOrgCode returns the OrgCode field if non-nil, zero value otherwise.
 
 ### GetOrgCodeOk
 
-`func (o *PartnerUpdateParams) GetOrgCodeOk() (*int32, bool)`
+`func (o *PartnerUpdateParams) GetOrgCodeOk() (*int64, bool)`
 
 GetOrgCodeOk returns a tuple with the OrgCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrgCode
 
-`func (o *PartnerUpdateParams) SetOrgCode(v int32)`
+`func (o *PartnerUpdateParams) SetOrgCode(v int64)`
 
 SetOrgCode sets OrgCode field to given value.
 
@@ -380,20 +380,20 @@ HasPartnerDocSettingAttributes returns a boolean if a field has been set.
 
 ### GetPayerWalletableId
 
-`func (o *PartnerUpdateParams) GetPayerWalletableId() int32`
+`func (o *PartnerUpdateParams) GetPayerWalletableId() int64`
 
 GetPayerWalletableId returns the PayerWalletableId field if non-nil, zero value otherwise.
 
 ### GetPayerWalletableIdOk
 
-`func (o *PartnerUpdateParams) GetPayerWalletableIdOk() (*int32, bool)`
+`func (o *PartnerUpdateParams) GetPayerWalletableIdOk() (*int64, bool)`
 
 GetPayerWalletableIdOk returns a tuple with the PayerWalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPayerWalletableId
 
-`func (o *PartnerUpdateParams) SetPayerWalletableId(v int32)`
+`func (o *PartnerUpdateParams) SetPayerWalletableId(v int64)`
 
 SetPayerWalletableId sets PayerWalletableId field to given value.
 

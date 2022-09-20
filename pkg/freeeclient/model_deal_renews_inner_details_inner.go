@@ -17,7 +17,7 @@ import (
 // DealRenewsInnerDetailsInner struct for DealRenewsInnerDetailsInner
 type DealRenewsInnerDetailsInner struct {
 	// 勘定科目ID
-	AccountItemId int32 `json:"account_item_id"`
+	AccountItemId int64 `json:"account_item_id"`
 	// 金額（税込で指定してください）
 	Amount int64 `json:"amount"`
 	// 備考
@@ -27,27 +27,27 @@ type DealRenewsInnerDetailsInner struct {
 	// +更新の明細行ID
 	Id int64 `json:"id"`
 	// 品目ID
-	ItemId NullableInt32 `json:"item_id,omitempty"`
+	ItemId NullableInt64 `json:"item_id,omitempty"`
 	// 部門ID
-	SectionId NullableInt32 `json:"section_id,omitempty"`
+	SectionId NullableInt64 `json:"section_id,omitempty"`
 	// セグメント１ID
 	Segment1TagId NullableInt64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント２ID
 	Segment2TagId NullableInt64 `json:"segment_2_tag_id,omitempty"`
 	// セグメント３ID
 	Segment3TagId NullableInt64 `json:"segment_3_tag_id,omitempty"`
-	TagIds []int32 `json:"tag_ids"`
+	TagIds []int64 `json:"tag_ids"`
 	// 税区分コード
-	TaxCode int32 `json:"tax_code"`
+	TaxCode int64 `json:"tax_code"`
 	// 消費税額（指定しない場合は自動で計算されます）
-	Vat int32 `json:"vat"`
+	Vat int64 `json:"vat"`
 }
 
 // NewDealRenewsInnerDetailsInner instantiates a new DealRenewsInnerDetailsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealRenewsInnerDetailsInner(accountItemId int32, amount int64, entrySide string, id int64, tagIds []int32, taxCode int32, vat int32) *DealRenewsInnerDetailsInner {
+func NewDealRenewsInnerDetailsInner(accountItemId int64, amount int64, entrySide string, id int64, tagIds []int64, taxCode int64, vat int64) *DealRenewsInnerDetailsInner {
 	this := DealRenewsInnerDetailsInner{}
 	this.AccountItemId = accountItemId
 	this.Amount = amount
@@ -68,9 +68,9 @@ func NewDealRenewsInnerDetailsInnerWithDefaults() *DealRenewsInnerDetailsInner {
 }
 
 // GetAccountItemId returns the AccountItemId field value
-func (o *DealRenewsInnerDetailsInner) GetAccountItemId() int32 {
+func (o *DealRenewsInnerDetailsInner) GetAccountItemId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -79,7 +79,7 @@ func (o *DealRenewsInnerDetailsInner) GetAccountItemId() int32 {
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value
 // and a boolean to check if the value has been set.
-func (o *DealRenewsInnerDetailsInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *DealRenewsInnerDetailsInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,7 +87,7 @@ func (o *DealRenewsInnerDetailsInner) GetAccountItemIdOk() (*int32, bool) {
 }
 
 // SetAccountItemId sets field value
-func (o *DealRenewsInnerDetailsInner) SetAccountItemId(v int32) {
+func (o *DealRenewsInnerDetailsInner) SetAccountItemId(v int64) {
 	o.AccountItemId = v
 }
 
@@ -206,9 +206,9 @@ func (o *DealRenewsInnerDetailsInner) SetId(v int64) {
 }
 
 // GetItemId returns the ItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DealRenewsInnerDetailsInner) GetItemId() int32 {
+func (o *DealRenewsInnerDetailsInner) GetItemId() int64 {
 	if o == nil || o.ItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemId.Get()
@@ -217,7 +217,7 @@ func (o *DealRenewsInnerDetailsInner) GetItemId() int32 {
 // GetItemIdOk returns a tuple with the ItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DealRenewsInnerDetailsInner) GetItemIdOk() (*int32, bool) {
+func (o *DealRenewsInnerDetailsInner) GetItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -233,8 +233,8 @@ func (o *DealRenewsInnerDetailsInner) HasItemId() bool {
 	return false
 }
 
-// SetItemId gets a reference to the given NullableInt32 and assigns it to the ItemId field.
-func (o *DealRenewsInnerDetailsInner) SetItemId(v int32) {
+// SetItemId gets a reference to the given NullableInt64 and assigns it to the ItemId field.
+func (o *DealRenewsInnerDetailsInner) SetItemId(v int64) {
 	o.ItemId.Set(&v)
 }
 // SetItemIdNil sets the value for ItemId to be an explicit nil
@@ -248,9 +248,9 @@ func (o *DealRenewsInnerDetailsInner) UnsetItemId() {
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DealRenewsInnerDetailsInner) GetSectionId() int32 {
+func (o *DealRenewsInnerDetailsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId.Get()
@@ -259,7 +259,7 @@ func (o *DealRenewsInnerDetailsInner) GetSectionId() int32 {
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DealRenewsInnerDetailsInner) GetSectionIdOk() (*int32, bool) {
+func (o *DealRenewsInnerDetailsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -275,8 +275,8 @@ func (o *DealRenewsInnerDetailsInner) HasSectionId() bool {
 	return false
 }
 
-// SetSectionId gets a reference to the given NullableInt32 and assigns it to the SectionId field.
-func (o *DealRenewsInnerDetailsInner) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given NullableInt64 and assigns it to the SectionId field.
+func (o *DealRenewsInnerDetailsInner) SetSectionId(v int64) {
 	o.SectionId.Set(&v)
 }
 // SetSectionIdNil sets the value for SectionId to be an explicit nil
@@ -416,9 +416,9 @@ func (o *DealRenewsInnerDetailsInner) UnsetSegment3TagId() {
 }
 
 // GetTagIds returns the TagIds field value
-func (o *DealRenewsInnerDetailsInner) GetTagIds() []int32 {
+func (o *DealRenewsInnerDetailsInner) GetTagIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
@@ -427,7 +427,7 @@ func (o *DealRenewsInnerDetailsInner) GetTagIds() []int32 {
 
 // GetTagIdsOk returns a tuple with the TagIds field value
 // and a boolean to check if the value has been set.
-func (o *DealRenewsInnerDetailsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *DealRenewsInnerDetailsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -435,14 +435,14 @@ func (o *DealRenewsInnerDetailsInner) GetTagIdsOk() ([]int32, bool) {
 }
 
 // SetTagIds sets field value
-func (o *DealRenewsInnerDetailsInner) SetTagIds(v []int32) {
+func (o *DealRenewsInnerDetailsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
 // GetTaxCode returns the TaxCode field value
-func (o *DealRenewsInnerDetailsInner) GetTaxCode() int32 {
+func (o *DealRenewsInnerDetailsInner) GetTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -451,7 +451,7 @@ func (o *DealRenewsInnerDetailsInner) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
-func (o *DealRenewsInnerDetailsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *DealRenewsInnerDetailsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -459,14 +459,14 @@ func (o *DealRenewsInnerDetailsInner) GetTaxCodeOk() (*int32, bool) {
 }
 
 // SetTaxCode sets field value
-func (o *DealRenewsInnerDetailsInner) SetTaxCode(v int32) {
+func (o *DealRenewsInnerDetailsInner) SetTaxCode(v int64) {
 	o.TaxCode = v
 }
 
 // GetVat returns the Vat field value
-func (o *DealRenewsInnerDetailsInner) GetVat() int32 {
+func (o *DealRenewsInnerDetailsInner) GetVat() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -475,7 +475,7 @@ func (o *DealRenewsInnerDetailsInner) GetVat() int32 {
 
 // GetVatOk returns a tuple with the Vat field value
 // and a boolean to check if the value has been set.
-func (o *DealRenewsInnerDetailsInner) GetVatOk() (*int32, bool) {
+func (o *DealRenewsInnerDetailsInner) GetVatOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -483,7 +483,7 @@ func (o *DealRenewsInnerDetailsInner) GetVatOk() (*int32, bool) {
 }
 
 // SetVat sets field value
-func (o *DealRenewsInnerDetailsInner) SetVat(v int32) {
+func (o *DealRenewsInnerDetailsInner) SetVat(v int64) {
 	o.Vat = v
 }
 

@@ -23,16 +23,16 @@ type ApprovalRequestResponseApprovalRequestApproversInner struct {
 	// 承認者の承認状態 * `initial` - 初期状態 * `approved` - 承認済 * `rejected` - 却下 * `feedback` - 差戻し
 	Status string `json:"status"`
 	// 承認ステップID
-	StepId int32 `json:"step_id"`
+	StepId int64 `json:"step_id"`
 	// 承認者のユーザーID 下記の場合はnullになります。 <ul>   <li>resource_type:selected_userの場合で承認者未指定時</li>   <li>resource_type:or_positionで前stepで部門未指定の場合</li> </ul>
-	UserId NullableInt32 `json:"user_id"`
+	UserId NullableInt64 `json:"user_id"`
 }
 
 // NewApprovalRequestResponseApprovalRequestApproversInner instantiates a new ApprovalRequestResponseApprovalRequestApproversInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestResponseApprovalRequestApproversInner(isForceAction bool, resourceType string, status string, stepId int32, userId NullableInt32) *ApprovalRequestResponseApprovalRequestApproversInner {
+func NewApprovalRequestResponseApprovalRequestApproversInner(isForceAction bool, resourceType string, status string, stepId int64, userId NullableInt64) *ApprovalRequestResponseApprovalRequestApproversInner {
 	this := ApprovalRequestResponseApprovalRequestApproversInner{}
 	this.IsForceAction = isForceAction
 	this.ResourceType = resourceType
@@ -123,9 +123,9 @@ func (o *ApprovalRequestResponseApprovalRequestApproversInner) SetStatus(v strin
 }
 
 // GetStepId returns the StepId field value
-func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetStepId() int32 {
+func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetStepId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -134,7 +134,7 @@ func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetStepId() int32
 
 // GetStepIdOk returns a tuple with the StepId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetStepIdOk() (*int32, bool) {
+func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetStepIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,15 +142,15 @@ func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetStepIdOk() (*i
 }
 
 // SetStepId sets field value
-func (o *ApprovalRequestResponseApprovalRequestApproversInner) SetStepId(v int32) {
+func (o *ApprovalRequestResponseApprovalRequestApproversInner) SetStepId(v int64) {
 	o.StepId = v
 }
 
 // GetUserId returns the UserId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetUserId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetUserId() int64 {
 	if o == nil || o.UserId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -160,7 +160,7 @@ func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetUserId() int32
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetUserIdOk() (*int32, bool) {
+func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetUserIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -168,7 +168,7 @@ func (o *ApprovalRequestResponseApprovalRequestApproversInner) GetUserIdOk() (*i
 }
 
 // SetUserId sets field value
-func (o *ApprovalRequestResponseApprovalRequestApproversInner) SetUserId(v int32) {
+func (o *ApprovalRequestResponseApprovalRequestApproversInner) SetUserId(v int64) {
 	o.UserId.Set(&v)
 }
 

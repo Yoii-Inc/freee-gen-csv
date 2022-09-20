@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClosingBalance** | Pointer to **int32** | 期末残高 | [optional] 
+**ClosingBalance** | Pointer to **int64** | 期末残高 | [optional] 
 **CompositionRatio** | Pointer to **float32** | 構成比 | [optional] 
-**CreditAmount** | Pointer to **int32** | 貸方金額 | [optional] 
-**DebitAmount** | Pointer to **int32** | 借方金額 | [optional] 
-**Id** | **int32** | 品目ID | 
+**CreditAmount** | Pointer to **int64** | 貸方金額 | [optional] 
+**DebitAmount** | Pointer to **int64** | 借方金額 | [optional] 
+**Id** | **int64** | 品目ID | 
 **Name** | Pointer to **string** | 品目 | [optional] 
-**OpeningBalance** | Pointer to **int32** | 期首残高 | [optional] 
+**OpeningBalance** | Pointer to **int64** | 期首残高 | [optional] 
 
 ## Methods
 
 ### NewTrialBsResponseTrialBsBalancesInnerItemsInner
 
-`func NewTrialBsResponseTrialBsBalancesInnerItemsInner(id int32, ) *TrialBsResponseTrialBsBalancesInnerItemsInner`
+`func NewTrialBsResponseTrialBsBalancesInnerItemsInner(id int64, ) *TrialBsResponseTrialBsBalancesInnerItemsInner`
 
 NewTrialBsResponseTrialBsBalancesInnerItemsInner instantiates a new TrialBsResponseTrialBsBalancesInnerItemsInner object
 This constructor will assign default values to properties that have it defined,
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetClosingBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetClosingBalance() int32`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetClosingBalance() int64`
 
 GetClosingBalance returns the ClosingBalance field if non-nil, zero value otherwise.
 
 ### GetClosingBalanceOk
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetClosingBalanceOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetClosingBalanceOk() (*int64, bool)`
 
 GetClosingBalanceOk returns a tuple with the ClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosingBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetClosingBalance(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetClosingBalance(v int64)`
 
 SetClosingBalance sets ClosingBalance field to given value.
 
@@ -83,20 +83,20 @@ HasCompositionRatio returns a boolean if a field has been set.
 
 ### GetCreditAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetCreditAmount() int32`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetCreditAmount() int64`
 
 GetCreditAmount returns the CreditAmount field if non-nil, zero value otherwise.
 
 ### GetCreditAmountOk
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetCreditAmountOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetCreditAmountOk() (*int64, bool)`
 
 GetCreditAmountOk returns a tuple with the CreditAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreditAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetCreditAmount(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetCreditAmount(v int64)`
 
 SetCreditAmount sets CreditAmount field to given value.
 
@@ -108,20 +108,20 @@ HasCreditAmount returns a boolean if a field has been set.
 
 ### GetDebitAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetDebitAmount() int32`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetDebitAmount() int64`
 
 GetDebitAmount returns the DebitAmount field if non-nil, zero value otherwise.
 
 ### GetDebitAmountOk
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetDebitAmountOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetDebitAmountOk() (*int64, bool)`
 
 GetDebitAmountOk returns a tuple with the DebitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDebitAmount
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetDebitAmount(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetDebitAmount(v int64)`
 
 SetDebitAmount sets DebitAmount field to given value.
 
@@ -133,20 +133,20 @@ HasDebitAmount returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetId() int32`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetIdOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetId(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -178,20 +178,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetOpeningBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetOpeningBalance() int32`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetOpeningBalance() int64`
 
 GetOpeningBalance returns the OpeningBalance field if non-nil, zero value otherwise.
 
 ### GetOpeningBalanceOk
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetOpeningBalanceOk() (*int32, bool)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) GetOpeningBalanceOk() (*int64, bool)`
 
 GetOpeningBalanceOk returns a tuple with the OpeningBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOpeningBalance
 
-`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetOpeningBalance(v int32)`
+`func (o *TrialBsResponseTrialBsBalancesInnerItemsInner) SetOpeningBalance(v int64)`
 
 SetOpeningBalance sets OpeningBalance field to given value.
 

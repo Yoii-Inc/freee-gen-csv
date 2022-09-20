@@ -21,7 +21,7 @@ type DealPaymentsInner struct {
 	// 支払日
 	Date string `json:"date"`
 	// 口座ID（from_walletable_typeがprivate_account_itemの場合は勘定科目ID）
-	FromWalletableId *int32 `json:"from_walletable_id,omitempty"`
+	FromWalletableId *int64 `json:"from_walletable_id,omitempty"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet, プライベート資金（法人の場合は役員借入金もしくは役員借入金、個人の場合は事業主貸もしくは事業主借）: private_account_item)
 	FromWalletableType *string `json:"from_walletable_type,omitempty"`
 	// 取引行ID
@@ -97,9 +97,9 @@ func (o *DealPaymentsInner) SetDate(v string) {
 }
 
 // GetFromWalletableId returns the FromWalletableId field value if set, zero value otherwise.
-func (o *DealPaymentsInner) GetFromWalletableId() int32 {
+func (o *DealPaymentsInner) GetFromWalletableId() int64 {
 	if o == nil || o.FromWalletableId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FromWalletableId
@@ -107,7 +107,7 @@ func (o *DealPaymentsInner) GetFromWalletableId() int32 {
 
 // GetFromWalletableIdOk returns a tuple with the FromWalletableId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealPaymentsInner) GetFromWalletableIdOk() (*int32, bool) {
+func (o *DealPaymentsInner) GetFromWalletableIdOk() (*int64, bool) {
 	if o == nil || o.FromWalletableId == nil {
 		return nil, false
 	}
@@ -123,8 +123,8 @@ func (o *DealPaymentsInner) HasFromWalletableId() bool {
 	return false
 }
 
-// SetFromWalletableId gets a reference to the given int32 and assigns it to the FromWalletableId field.
-func (o *DealPaymentsInner) SetFromWalletableId(v int32) {
+// SetFromWalletableId gets a reference to the given int64 and assigns it to the FromWalletableId field.
+func (o *DealPaymentsInner) SetFromWalletableId(v int64) {
 	o.FromWalletableId = &v
 }
 

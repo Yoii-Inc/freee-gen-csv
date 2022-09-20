@@ -25,18 +25,18 @@ type UsersApiService service
 type ApiGetUsersRequest struct {
 	ctx context.Context
 	ApiService *UsersApiService
-	companyId *int32
-	limit *int32
+	companyId *int64
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetUsersRequest) CompanyId(companyId int32) ApiGetUsersRequest {
+func (r ApiGetUsersRequest) CompanyId(companyId int64) ApiGetUsersRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000)
-func (r ApiGetUsersRequest) Limit(limit int32) ApiGetUsersRequest {
+func (r ApiGetUsersRequest) Limit(limit int64) ApiGetUsersRequest {
 	r.limit = &limit
 	return r
 }
@@ -203,11 +203,11 @@ func (a *UsersApiService) GetUsersExecute(r ApiGetUsersRequest) (*GetUsers200Res
 type ApiGetUsersCapabilitiesRequest struct {
 	ctx context.Context
 	ApiService *UsersApiService
-	companyId *int32
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetUsersCapabilitiesRequest) CompanyId(companyId int32) ApiGetUsersCapabilitiesRequest {
+func (r ApiGetUsersCapabilitiesRequest) CompanyId(companyId int64) ApiGetUsersCapabilitiesRequest {
 	r.companyId = &companyId
 	return r
 }

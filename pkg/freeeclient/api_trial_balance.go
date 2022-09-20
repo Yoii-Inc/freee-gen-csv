@@ -25,42 +25,42 @@ type TrialBalanceApiService service
 type ApiGetTrialBsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialBsRequest) CompanyId(companyId int32) ApiGetTrialBsRequest {
+func (r ApiGetTrialBsRequest) CompanyId(companyId int64) ApiGetTrialBsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialBsRequest) FiscalYear(fiscalYear int32) ApiGetTrialBsRequest {
+func (r ApiGetTrialBsRequest) FiscalYear(fiscalYear int64) ApiGetTrialBsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialBsRequest) StartMonth(startMonth int32) ApiGetTrialBsRequest {
+func (r ApiGetTrialBsRequest) StartMonth(startMonth int64) ApiGetTrialBsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialBsRequest) EndMonth(endMonth int32) ApiGetTrialBsRequest {
+func (r ApiGetTrialBsRequest) EndMonth(endMonth int64) ApiGetTrialBsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -90,7 +90,7 @@ func (r ApiGetTrialBsRequest) BreakdownDisplayType(breakdownDisplayType string) 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialBsRequest) PartnerId(partnerId int32) ApiGetTrialBsRequest {
+func (r ApiGetTrialBsRequest) PartnerId(partnerId int64) ApiGetTrialBsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -102,13 +102,13 @@ func (r ApiGetTrialBsRequest) PartnerCode(partnerCode string) ApiGetTrialBsReque
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialBsRequest) ItemId(itemId int32) ApiGetTrialBsRequest {
+func (r ApiGetTrialBsRequest) ItemId(itemId int64) ApiGetTrialBsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialBsRequest) SectionId(sectionId int32) ApiGetTrialBsRequest {
+func (r ApiGetTrialBsRequest) SectionId(sectionId int64) ApiGetTrialBsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -419,42 +419,42 @@ func (a *TrialBalanceApiService) GetTrialBsExecute(r ApiGetTrialBsRequest) (*Tri
 type ApiGetTrialBsThreeYearsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialBsThreeYearsRequest) CompanyId(companyId int32) ApiGetTrialBsThreeYearsRequest {
+func (r ApiGetTrialBsThreeYearsRequest) CompanyId(companyId int64) ApiGetTrialBsThreeYearsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialBsThreeYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialBsThreeYearsRequest {
+func (r ApiGetTrialBsThreeYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialBsThreeYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialBsThreeYearsRequest) StartMonth(startMonth int32) ApiGetTrialBsThreeYearsRequest {
+func (r ApiGetTrialBsThreeYearsRequest) StartMonth(startMonth int64) ApiGetTrialBsThreeYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialBsThreeYearsRequest) EndMonth(endMonth int32) ApiGetTrialBsThreeYearsRequest {
+func (r ApiGetTrialBsThreeYearsRequest) EndMonth(endMonth int64) ApiGetTrialBsThreeYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -484,7 +484,7 @@ func (r ApiGetTrialBsThreeYearsRequest) BreakdownDisplayType(breakdownDisplayTyp
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialBsThreeYearsRequest) PartnerId(partnerId int32) ApiGetTrialBsThreeYearsRequest {
+func (r ApiGetTrialBsThreeYearsRequest) PartnerId(partnerId int64) ApiGetTrialBsThreeYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -496,13 +496,13 @@ func (r ApiGetTrialBsThreeYearsRequest) PartnerCode(partnerCode string) ApiGetTr
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialBsThreeYearsRequest) ItemId(itemId int32) ApiGetTrialBsThreeYearsRequest {
+func (r ApiGetTrialBsThreeYearsRequest) ItemId(itemId int64) ApiGetTrialBsThreeYearsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialBsThreeYearsRequest) SectionId(sectionId int32) ApiGetTrialBsThreeYearsRequest {
+func (r ApiGetTrialBsThreeYearsRequest) SectionId(sectionId int64) ApiGetTrialBsThreeYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -796,42 +796,42 @@ func (a *TrialBalanceApiService) GetTrialBsThreeYearsExecute(r ApiGetTrialBsThre
 type ApiGetTrialBsTwoYearsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialBsTwoYearsRequest) CompanyId(companyId int32) ApiGetTrialBsTwoYearsRequest {
+func (r ApiGetTrialBsTwoYearsRequest) CompanyId(companyId int64) ApiGetTrialBsTwoYearsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialBsTwoYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialBsTwoYearsRequest {
+func (r ApiGetTrialBsTwoYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialBsTwoYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialBsTwoYearsRequest) StartMonth(startMonth int32) ApiGetTrialBsTwoYearsRequest {
+func (r ApiGetTrialBsTwoYearsRequest) StartMonth(startMonth int64) ApiGetTrialBsTwoYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialBsTwoYearsRequest) EndMonth(endMonth int32) ApiGetTrialBsTwoYearsRequest {
+func (r ApiGetTrialBsTwoYearsRequest) EndMonth(endMonth int64) ApiGetTrialBsTwoYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -861,7 +861,7 @@ func (r ApiGetTrialBsTwoYearsRequest) BreakdownDisplayType(breakdownDisplayType 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialBsTwoYearsRequest) PartnerId(partnerId int32) ApiGetTrialBsTwoYearsRequest {
+func (r ApiGetTrialBsTwoYearsRequest) PartnerId(partnerId int64) ApiGetTrialBsTwoYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -873,13 +873,13 @@ func (r ApiGetTrialBsTwoYearsRequest) PartnerCode(partnerCode string) ApiGetTria
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialBsTwoYearsRequest) ItemId(itemId int32) ApiGetTrialBsTwoYearsRequest {
+func (r ApiGetTrialBsTwoYearsRequest) ItemId(itemId int64) ApiGetTrialBsTwoYearsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialBsTwoYearsRequest) SectionId(sectionId int32) ApiGetTrialBsTwoYearsRequest {
+func (r ApiGetTrialBsTwoYearsRequest) SectionId(sectionId int64) ApiGetTrialBsTwoYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -1170,43 +1170,43 @@ func (a *TrialBalanceApiService) GetTrialBsTwoYearsExecute(r ApiGetTrialBsTwoYea
 type ApiGetTrialCrRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialCrRequest) CompanyId(companyId int32) ApiGetTrialCrRequest {
+func (r ApiGetTrialCrRequest) CompanyId(companyId int64) ApiGetTrialCrRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialCrRequest) FiscalYear(fiscalYear int32) ApiGetTrialCrRequest {
+func (r ApiGetTrialCrRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialCrRequest) StartMonth(startMonth int32) ApiGetTrialCrRequest {
+func (r ApiGetTrialCrRequest) StartMonth(startMonth int64) ApiGetTrialCrRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialCrRequest) EndMonth(endMonth int32) ApiGetTrialCrRequest {
+func (r ApiGetTrialCrRequest) EndMonth(endMonth int64) ApiGetTrialCrRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -1236,7 +1236,7 @@ func (r ApiGetTrialCrRequest) BreakdownDisplayType(breakdownDisplayType string) 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialCrRequest) PartnerId(partnerId int32) ApiGetTrialCrRequest {
+func (r ApiGetTrialCrRequest) PartnerId(partnerId int64) ApiGetTrialCrRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -1248,13 +1248,13 @@ func (r ApiGetTrialCrRequest) PartnerCode(partnerCode string) ApiGetTrialCrReque
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialCrRequest) ItemId(itemId int32) ApiGetTrialCrRequest {
+func (r ApiGetTrialCrRequest) ItemId(itemId int64) ApiGetTrialCrRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialCrRequest) SectionId(sectionId int32) ApiGetTrialCrRequest {
+func (r ApiGetTrialCrRequest) SectionId(sectionId int64) ApiGetTrialCrRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -1565,25 +1565,25 @@ func (a *TrialBalanceApiService) GetTrialCrExecute(r ApiGetTrialCrRequest) (*Tri
 type ApiGetTrialCrSectionsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	sectionIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
+	itemId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialCrSectionsRequest) CompanyId(companyId int32) ApiGetTrialCrSectionsRequest {
+func (r ApiGetTrialCrSectionsRequest) CompanyId(companyId int64) ApiGetTrialCrSectionsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -1595,19 +1595,19 @@ func (r ApiGetTrialCrSectionsRequest) SectionIds(sectionIds string) ApiGetTrialC
 }
 
 // 会計年度
-func (r ApiGetTrialCrSectionsRequest) FiscalYear(fiscalYear int32) ApiGetTrialCrSectionsRequest {
+func (r ApiGetTrialCrSectionsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSectionsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialCrSectionsRequest) StartMonth(startMonth int32) ApiGetTrialCrSectionsRequest {
+func (r ApiGetTrialCrSectionsRequest) StartMonth(startMonth int64) ApiGetTrialCrSectionsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialCrSectionsRequest) EndMonth(endMonth int32) ApiGetTrialCrSectionsRequest {
+func (r ApiGetTrialCrSectionsRequest) EndMonth(endMonth int64) ApiGetTrialCrSectionsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -1637,7 +1637,7 @@ func (r ApiGetTrialCrSectionsRequest) BreakdownDisplayType(breakdownDisplayType 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialCrSectionsRequest) PartnerId(partnerId int32) ApiGetTrialCrSectionsRequest {
+func (r ApiGetTrialCrSectionsRequest) PartnerId(partnerId int64) ApiGetTrialCrSectionsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -1649,7 +1649,7 @@ func (r ApiGetTrialCrSectionsRequest) PartnerCode(partnerCode string) ApiGetTria
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialCrSectionsRequest) ItemId(itemId int32) ApiGetTrialCrSectionsRequest {
+func (r ApiGetTrialCrSectionsRequest) ItemId(itemId int64) ApiGetTrialCrSectionsRequest {
 	r.itemId = &itemId
 	return r
 }
@@ -1961,26 +1961,26 @@ func (a *TrialBalanceApiService) GetTrialCrSectionsExecute(r ApiGetTrialCrSectio
 type ApiGetTrialCrSegment1TagsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	segment1TagIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialCrSegment1TagsRequest) CompanyId(companyId int32) ApiGetTrialCrSegment1TagsRequest {
+func (r ApiGetTrialCrSegment1TagsRequest) CompanyId(companyId int64) ApiGetTrialCrSegment1TagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -1992,19 +1992,19 @@ func (r ApiGetTrialCrSegment1TagsRequest) Segment1TagIds(segment1TagIds string) 
 }
 
 // 会計年度
-func (r ApiGetTrialCrSegment1TagsRequest) FiscalYear(fiscalYear int32) ApiGetTrialCrSegment1TagsRequest {
+func (r ApiGetTrialCrSegment1TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSegment1TagsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialCrSegment1TagsRequest) StartMonth(startMonth int32) ApiGetTrialCrSegment1TagsRequest {
+func (r ApiGetTrialCrSegment1TagsRequest) StartMonth(startMonth int64) ApiGetTrialCrSegment1TagsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialCrSegment1TagsRequest) EndMonth(endMonth int32) ApiGetTrialCrSegment1TagsRequest {
+func (r ApiGetTrialCrSegment1TagsRequest) EndMonth(endMonth int64) ApiGetTrialCrSegment1TagsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -2034,7 +2034,7 @@ func (r ApiGetTrialCrSegment1TagsRequest) BreakdownDisplayType(breakdownDisplayT
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment1TagsRequest) PartnerId(partnerId int32) ApiGetTrialCrSegment1TagsRequest {
+func (r ApiGetTrialCrSegment1TagsRequest) PartnerId(partnerId int64) ApiGetTrialCrSegment1TagsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -2046,13 +2046,13 @@ func (r ApiGetTrialCrSegment1TagsRequest) PartnerCode(partnerCode string) ApiGet
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment1TagsRequest) ItemId(itemId int32) ApiGetTrialCrSegment1TagsRequest {
+func (r ApiGetTrialCrSegment1TagsRequest) ItemId(itemId int64) ApiGetTrialCrSegment1TagsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment1TagsRequest) SectionId(sectionId int32) ApiGetTrialCrSegment1TagsRequest {
+func (r ApiGetTrialCrSegment1TagsRequest) SectionId(sectionId int64) ApiGetTrialCrSegment1TagsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -2366,26 +2366,26 @@ func (a *TrialBalanceApiService) GetTrialCrSegment1TagsExecute(r ApiGetTrialCrSe
 type ApiGetTrialCrSegment2TagsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	segment2TagIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialCrSegment2TagsRequest) CompanyId(companyId int32) ApiGetTrialCrSegment2TagsRequest {
+func (r ApiGetTrialCrSegment2TagsRequest) CompanyId(companyId int64) ApiGetTrialCrSegment2TagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -2397,19 +2397,19 @@ func (r ApiGetTrialCrSegment2TagsRequest) Segment2TagIds(segment2TagIds string) 
 }
 
 // 会計年度
-func (r ApiGetTrialCrSegment2TagsRequest) FiscalYear(fiscalYear int32) ApiGetTrialCrSegment2TagsRequest {
+func (r ApiGetTrialCrSegment2TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSegment2TagsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialCrSegment2TagsRequest) StartMonth(startMonth int32) ApiGetTrialCrSegment2TagsRequest {
+func (r ApiGetTrialCrSegment2TagsRequest) StartMonth(startMonth int64) ApiGetTrialCrSegment2TagsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialCrSegment2TagsRequest) EndMonth(endMonth int32) ApiGetTrialCrSegment2TagsRequest {
+func (r ApiGetTrialCrSegment2TagsRequest) EndMonth(endMonth int64) ApiGetTrialCrSegment2TagsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -2439,7 +2439,7 @@ func (r ApiGetTrialCrSegment2TagsRequest) BreakdownDisplayType(breakdownDisplayT
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment2TagsRequest) PartnerId(partnerId int32) ApiGetTrialCrSegment2TagsRequest {
+func (r ApiGetTrialCrSegment2TagsRequest) PartnerId(partnerId int64) ApiGetTrialCrSegment2TagsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -2451,13 +2451,13 @@ func (r ApiGetTrialCrSegment2TagsRequest) PartnerCode(partnerCode string) ApiGet
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment2TagsRequest) ItemId(itemId int32) ApiGetTrialCrSegment2TagsRequest {
+func (r ApiGetTrialCrSegment2TagsRequest) ItemId(itemId int64) ApiGetTrialCrSegment2TagsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment2TagsRequest) SectionId(sectionId int32) ApiGetTrialCrSegment2TagsRequest {
+func (r ApiGetTrialCrSegment2TagsRequest) SectionId(sectionId int64) ApiGetTrialCrSegment2TagsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -2771,26 +2771,26 @@ func (a *TrialBalanceApiService) GetTrialCrSegment2TagsExecute(r ApiGetTrialCrSe
 type ApiGetTrialCrSegment3TagsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	segment3TagIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialCrSegment3TagsRequest) CompanyId(companyId int32) ApiGetTrialCrSegment3TagsRequest {
+func (r ApiGetTrialCrSegment3TagsRequest) CompanyId(companyId int64) ApiGetTrialCrSegment3TagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -2802,19 +2802,19 @@ func (r ApiGetTrialCrSegment3TagsRequest) Segment3TagIds(segment3TagIds string) 
 }
 
 // 会計年度
-func (r ApiGetTrialCrSegment3TagsRequest) FiscalYear(fiscalYear int32) ApiGetTrialCrSegment3TagsRequest {
+func (r ApiGetTrialCrSegment3TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrSegment3TagsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialCrSegment3TagsRequest) StartMonth(startMonth int32) ApiGetTrialCrSegment3TagsRequest {
+func (r ApiGetTrialCrSegment3TagsRequest) StartMonth(startMonth int64) ApiGetTrialCrSegment3TagsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialCrSegment3TagsRequest) EndMonth(endMonth int32) ApiGetTrialCrSegment3TagsRequest {
+func (r ApiGetTrialCrSegment3TagsRequest) EndMonth(endMonth int64) ApiGetTrialCrSegment3TagsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -2844,7 +2844,7 @@ func (r ApiGetTrialCrSegment3TagsRequest) BreakdownDisplayType(breakdownDisplayT
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment3TagsRequest) PartnerId(partnerId int32) ApiGetTrialCrSegment3TagsRequest {
+func (r ApiGetTrialCrSegment3TagsRequest) PartnerId(partnerId int64) ApiGetTrialCrSegment3TagsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -2856,13 +2856,13 @@ func (r ApiGetTrialCrSegment3TagsRequest) PartnerCode(partnerCode string) ApiGet
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment3TagsRequest) ItemId(itemId int32) ApiGetTrialCrSegment3TagsRequest {
+func (r ApiGetTrialCrSegment3TagsRequest) ItemId(itemId int64) ApiGetTrialCrSegment3TagsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialCrSegment3TagsRequest) SectionId(sectionId int32) ApiGetTrialCrSegment3TagsRequest {
+func (r ApiGetTrialCrSegment3TagsRequest) SectionId(sectionId int64) ApiGetTrialCrSegment3TagsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -3176,43 +3176,43 @@ func (a *TrialBalanceApiService) GetTrialCrSegment3TagsExecute(r ApiGetTrialCrSe
 type ApiGetTrialCrThreeYearsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialCrThreeYearsRequest) CompanyId(companyId int32) ApiGetTrialCrThreeYearsRequest {
+func (r ApiGetTrialCrThreeYearsRequest) CompanyId(companyId int64) ApiGetTrialCrThreeYearsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialCrThreeYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialCrThreeYearsRequest {
+func (r ApiGetTrialCrThreeYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrThreeYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialCrThreeYearsRequest) StartMonth(startMonth int32) ApiGetTrialCrThreeYearsRequest {
+func (r ApiGetTrialCrThreeYearsRequest) StartMonth(startMonth int64) ApiGetTrialCrThreeYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialCrThreeYearsRequest) EndMonth(endMonth int32) ApiGetTrialCrThreeYearsRequest {
+func (r ApiGetTrialCrThreeYearsRequest) EndMonth(endMonth int64) ApiGetTrialCrThreeYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -3242,7 +3242,7 @@ func (r ApiGetTrialCrThreeYearsRequest) BreakdownDisplayType(breakdownDisplayTyp
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialCrThreeYearsRequest) PartnerId(partnerId int32) ApiGetTrialCrThreeYearsRequest {
+func (r ApiGetTrialCrThreeYearsRequest) PartnerId(partnerId int64) ApiGetTrialCrThreeYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -3254,13 +3254,13 @@ func (r ApiGetTrialCrThreeYearsRequest) PartnerCode(partnerCode string) ApiGetTr
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialCrThreeYearsRequest) ItemId(itemId int32) ApiGetTrialCrThreeYearsRequest {
+func (r ApiGetTrialCrThreeYearsRequest) ItemId(itemId int64) ApiGetTrialCrThreeYearsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialCrThreeYearsRequest) SectionId(sectionId int32) ApiGetTrialCrThreeYearsRequest {
+func (r ApiGetTrialCrThreeYearsRequest) SectionId(sectionId int64) ApiGetTrialCrThreeYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -3565,43 +3565,43 @@ func (a *TrialBalanceApiService) GetTrialCrThreeYearsExecute(r ApiGetTrialCrThre
 type ApiGetTrialCrTwoYearsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialCrTwoYearsRequest) CompanyId(companyId int32) ApiGetTrialCrTwoYearsRequest {
+func (r ApiGetTrialCrTwoYearsRequest) CompanyId(companyId int64) ApiGetTrialCrTwoYearsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialCrTwoYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialCrTwoYearsRequest {
+func (r ApiGetTrialCrTwoYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialCrTwoYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialCrTwoYearsRequest) StartMonth(startMonth int32) ApiGetTrialCrTwoYearsRequest {
+func (r ApiGetTrialCrTwoYearsRequest) StartMonth(startMonth int64) ApiGetTrialCrTwoYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialCrTwoYearsRequest) EndMonth(endMonth int32) ApiGetTrialCrTwoYearsRequest {
+func (r ApiGetTrialCrTwoYearsRequest) EndMonth(endMonth int64) ApiGetTrialCrTwoYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -3631,7 +3631,7 @@ func (r ApiGetTrialCrTwoYearsRequest) BreakdownDisplayType(breakdownDisplayType 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialCrTwoYearsRequest) PartnerId(partnerId int32) ApiGetTrialCrTwoYearsRequest {
+func (r ApiGetTrialCrTwoYearsRequest) PartnerId(partnerId int64) ApiGetTrialCrTwoYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -3643,13 +3643,13 @@ func (r ApiGetTrialCrTwoYearsRequest) PartnerCode(partnerCode string) ApiGetTria
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialCrTwoYearsRequest) ItemId(itemId int32) ApiGetTrialCrTwoYearsRequest {
+func (r ApiGetTrialCrTwoYearsRequest) ItemId(itemId int64) ApiGetTrialCrTwoYearsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialCrTwoYearsRequest) SectionId(sectionId int32) ApiGetTrialCrTwoYearsRequest {
+func (r ApiGetTrialCrTwoYearsRequest) SectionId(sectionId int64) ApiGetTrialCrTwoYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -3951,43 +3951,43 @@ func (a *TrialBalanceApiService) GetTrialCrTwoYearsExecute(r ApiGetTrialCrTwoYea
 type ApiGetTrialPlRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialPlRequest) CompanyId(companyId int32) ApiGetTrialPlRequest {
+func (r ApiGetTrialPlRequest) CompanyId(companyId int64) ApiGetTrialPlRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialPlRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlRequest {
+func (r ApiGetTrialPlRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialPlRequest) StartMonth(startMonth int32) ApiGetTrialPlRequest {
+func (r ApiGetTrialPlRequest) StartMonth(startMonth int64) ApiGetTrialPlRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialPlRequest) EndMonth(endMonth int32) ApiGetTrialPlRequest {
+func (r ApiGetTrialPlRequest) EndMonth(endMonth int64) ApiGetTrialPlRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -4017,7 +4017,7 @@ func (r ApiGetTrialPlRequest) BreakdownDisplayType(breakdownDisplayType string) 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialPlRequest) PartnerId(partnerId int32) ApiGetTrialPlRequest {
+func (r ApiGetTrialPlRequest) PartnerId(partnerId int64) ApiGetTrialPlRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -4029,13 +4029,13 @@ func (r ApiGetTrialPlRequest) PartnerCode(partnerCode string) ApiGetTrialPlReque
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialPlRequest) ItemId(itemId int32) ApiGetTrialPlRequest {
+func (r ApiGetTrialPlRequest) ItemId(itemId int64) ApiGetTrialPlRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialPlRequest) SectionId(sectionId int32) ApiGetTrialPlRequest {
+func (r ApiGetTrialPlRequest) SectionId(sectionId int64) ApiGetTrialPlRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -4356,25 +4356,25 @@ func (a *TrialBalanceApiService) GetTrialPlExecute(r ApiGetTrialPlRequest) (*Tri
 type ApiGetTrialPlSectionsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	sectionIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
+	itemId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialPlSectionsRequest) CompanyId(companyId int32) ApiGetTrialPlSectionsRequest {
+func (r ApiGetTrialPlSectionsRequest) CompanyId(companyId int64) ApiGetTrialPlSectionsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -4386,19 +4386,19 @@ func (r ApiGetTrialPlSectionsRequest) SectionIds(sectionIds string) ApiGetTrialP
 }
 
 // 会計年度
-func (r ApiGetTrialPlSectionsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlSectionsRequest {
+func (r ApiGetTrialPlSectionsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSectionsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialPlSectionsRequest) StartMonth(startMonth int32) ApiGetTrialPlSectionsRequest {
+func (r ApiGetTrialPlSectionsRequest) StartMonth(startMonth int64) ApiGetTrialPlSectionsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialPlSectionsRequest) EndMonth(endMonth int32) ApiGetTrialPlSectionsRequest {
+func (r ApiGetTrialPlSectionsRequest) EndMonth(endMonth int64) ApiGetTrialPlSectionsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -4428,7 +4428,7 @@ func (r ApiGetTrialPlSectionsRequest) BreakdownDisplayType(breakdownDisplayType 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialPlSectionsRequest) PartnerId(partnerId int32) ApiGetTrialPlSectionsRequest {
+func (r ApiGetTrialPlSectionsRequest) PartnerId(partnerId int64) ApiGetTrialPlSectionsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -4440,7 +4440,7 @@ func (r ApiGetTrialPlSectionsRequest) PartnerCode(partnerCode string) ApiGetTria
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialPlSectionsRequest) ItemId(itemId int32) ApiGetTrialPlSectionsRequest {
+func (r ApiGetTrialPlSectionsRequest) ItemId(itemId int64) ApiGetTrialPlSectionsRequest {
 	r.itemId = &itemId
 	return r
 }
@@ -4752,26 +4752,26 @@ func (a *TrialBalanceApiService) GetTrialPlSectionsExecute(r ApiGetTrialPlSectio
 type ApiGetTrialPlSegment1TagsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	segment1TagIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialPlSegment1TagsRequest) CompanyId(companyId int32) ApiGetTrialPlSegment1TagsRequest {
+func (r ApiGetTrialPlSegment1TagsRequest) CompanyId(companyId int64) ApiGetTrialPlSegment1TagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -4783,19 +4783,19 @@ func (r ApiGetTrialPlSegment1TagsRequest) Segment1TagIds(segment1TagIds string) 
 }
 
 // 会計年度
-func (r ApiGetTrialPlSegment1TagsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlSegment1TagsRequest {
+func (r ApiGetTrialPlSegment1TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSegment1TagsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialPlSegment1TagsRequest) StartMonth(startMonth int32) ApiGetTrialPlSegment1TagsRequest {
+func (r ApiGetTrialPlSegment1TagsRequest) StartMonth(startMonth int64) ApiGetTrialPlSegment1TagsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialPlSegment1TagsRequest) EndMonth(endMonth int32) ApiGetTrialPlSegment1TagsRequest {
+func (r ApiGetTrialPlSegment1TagsRequest) EndMonth(endMonth int64) ApiGetTrialPlSegment1TagsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -4825,7 +4825,7 @@ func (r ApiGetTrialPlSegment1TagsRequest) BreakdownDisplayType(breakdownDisplayT
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment1TagsRequest) PartnerId(partnerId int32) ApiGetTrialPlSegment1TagsRequest {
+func (r ApiGetTrialPlSegment1TagsRequest) PartnerId(partnerId int64) ApiGetTrialPlSegment1TagsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -4837,13 +4837,13 @@ func (r ApiGetTrialPlSegment1TagsRequest) PartnerCode(partnerCode string) ApiGet
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment1TagsRequest) ItemId(itemId int32) ApiGetTrialPlSegment1TagsRequest {
+func (r ApiGetTrialPlSegment1TagsRequest) ItemId(itemId int64) ApiGetTrialPlSegment1TagsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment1TagsRequest) SectionId(sectionId int32) ApiGetTrialPlSegment1TagsRequest {
+func (r ApiGetTrialPlSegment1TagsRequest) SectionId(sectionId int64) ApiGetTrialPlSegment1TagsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -5157,26 +5157,26 @@ func (a *TrialBalanceApiService) GetTrialPlSegment1TagsExecute(r ApiGetTrialPlSe
 type ApiGetTrialPlSegment2TagsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	segment2TagIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialPlSegment2TagsRequest) CompanyId(companyId int32) ApiGetTrialPlSegment2TagsRequest {
+func (r ApiGetTrialPlSegment2TagsRequest) CompanyId(companyId int64) ApiGetTrialPlSegment2TagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -5188,19 +5188,19 @@ func (r ApiGetTrialPlSegment2TagsRequest) Segment2TagIds(segment2TagIds string) 
 }
 
 // 会計年度
-func (r ApiGetTrialPlSegment2TagsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlSegment2TagsRequest {
+func (r ApiGetTrialPlSegment2TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSegment2TagsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialPlSegment2TagsRequest) StartMonth(startMonth int32) ApiGetTrialPlSegment2TagsRequest {
+func (r ApiGetTrialPlSegment2TagsRequest) StartMonth(startMonth int64) ApiGetTrialPlSegment2TagsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialPlSegment2TagsRequest) EndMonth(endMonth int32) ApiGetTrialPlSegment2TagsRequest {
+func (r ApiGetTrialPlSegment2TagsRequest) EndMonth(endMonth int64) ApiGetTrialPlSegment2TagsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -5230,7 +5230,7 @@ func (r ApiGetTrialPlSegment2TagsRequest) BreakdownDisplayType(breakdownDisplayT
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment2TagsRequest) PartnerId(partnerId int32) ApiGetTrialPlSegment2TagsRequest {
+func (r ApiGetTrialPlSegment2TagsRequest) PartnerId(partnerId int64) ApiGetTrialPlSegment2TagsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -5242,13 +5242,13 @@ func (r ApiGetTrialPlSegment2TagsRequest) PartnerCode(partnerCode string) ApiGet
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment2TagsRequest) ItemId(itemId int32) ApiGetTrialPlSegment2TagsRequest {
+func (r ApiGetTrialPlSegment2TagsRequest) ItemId(itemId int64) ApiGetTrialPlSegment2TagsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment2TagsRequest) SectionId(sectionId int32) ApiGetTrialPlSegment2TagsRequest {
+func (r ApiGetTrialPlSegment2TagsRequest) SectionId(sectionId int64) ApiGetTrialPlSegment2TagsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -5562,26 +5562,26 @@ func (a *TrialBalanceApiService) GetTrialPlSegment2TagsExecute(r ApiGetTrialPlSe
 type ApiGetTrialPlSegment3TagsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
+	companyId *int64
 	segment3TagIds *string
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialPlSegment3TagsRequest) CompanyId(companyId int32) ApiGetTrialPlSegment3TagsRequest {
+func (r ApiGetTrialPlSegment3TagsRequest) CompanyId(companyId int64) ApiGetTrialPlSegment3TagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -5593,19 +5593,19 @@ func (r ApiGetTrialPlSegment3TagsRequest) Segment3TagIds(segment3TagIds string) 
 }
 
 // 会計年度
-func (r ApiGetTrialPlSegment3TagsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlSegment3TagsRequest {
+func (r ApiGetTrialPlSegment3TagsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlSegment3TagsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialPlSegment3TagsRequest) StartMonth(startMonth int32) ApiGetTrialPlSegment3TagsRequest {
+func (r ApiGetTrialPlSegment3TagsRequest) StartMonth(startMonth int64) ApiGetTrialPlSegment3TagsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialPlSegment3TagsRequest) EndMonth(endMonth int32) ApiGetTrialPlSegment3TagsRequest {
+func (r ApiGetTrialPlSegment3TagsRequest) EndMonth(endMonth int64) ApiGetTrialPlSegment3TagsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -5635,7 +5635,7 @@ func (r ApiGetTrialPlSegment3TagsRequest) BreakdownDisplayType(breakdownDisplayT
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment3TagsRequest) PartnerId(partnerId int32) ApiGetTrialPlSegment3TagsRequest {
+func (r ApiGetTrialPlSegment3TagsRequest) PartnerId(partnerId int64) ApiGetTrialPlSegment3TagsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -5647,13 +5647,13 @@ func (r ApiGetTrialPlSegment3TagsRequest) PartnerCode(partnerCode string) ApiGet
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment3TagsRequest) ItemId(itemId int32) ApiGetTrialPlSegment3TagsRequest {
+func (r ApiGetTrialPlSegment3TagsRequest) ItemId(itemId int64) ApiGetTrialPlSegment3TagsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialPlSegment3TagsRequest) SectionId(sectionId int32) ApiGetTrialPlSegment3TagsRequest {
+func (r ApiGetTrialPlSegment3TagsRequest) SectionId(sectionId int64) ApiGetTrialPlSegment3TagsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -5967,43 +5967,43 @@ func (a *TrialBalanceApiService) GetTrialPlSegment3TagsExecute(r ApiGetTrialPlSe
 type ApiGetTrialPlThreeYearsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialPlThreeYearsRequest) CompanyId(companyId int32) ApiGetTrialPlThreeYearsRequest {
+func (r ApiGetTrialPlThreeYearsRequest) CompanyId(companyId int64) ApiGetTrialPlThreeYearsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialPlThreeYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlThreeYearsRequest {
+func (r ApiGetTrialPlThreeYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlThreeYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialPlThreeYearsRequest) StartMonth(startMonth int32) ApiGetTrialPlThreeYearsRequest {
+func (r ApiGetTrialPlThreeYearsRequest) StartMonth(startMonth int64) ApiGetTrialPlThreeYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialPlThreeYearsRequest) EndMonth(endMonth int32) ApiGetTrialPlThreeYearsRequest {
+func (r ApiGetTrialPlThreeYearsRequest) EndMonth(endMonth int64) ApiGetTrialPlThreeYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -6033,7 +6033,7 @@ func (r ApiGetTrialPlThreeYearsRequest) BreakdownDisplayType(breakdownDisplayTyp
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialPlThreeYearsRequest) PartnerId(partnerId int32) ApiGetTrialPlThreeYearsRequest {
+func (r ApiGetTrialPlThreeYearsRequest) PartnerId(partnerId int64) ApiGetTrialPlThreeYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -6045,13 +6045,13 @@ func (r ApiGetTrialPlThreeYearsRequest) PartnerCode(partnerCode string) ApiGetTr
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialPlThreeYearsRequest) ItemId(itemId int32) ApiGetTrialPlThreeYearsRequest {
+func (r ApiGetTrialPlThreeYearsRequest) ItemId(itemId int64) ApiGetTrialPlThreeYearsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialPlThreeYearsRequest) SectionId(sectionId int32) ApiGetTrialPlThreeYearsRequest {
+func (r ApiGetTrialPlThreeYearsRequest) SectionId(sectionId int64) ApiGetTrialPlThreeYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -6355,43 +6355,43 @@ func (a *TrialBalanceApiService) GetTrialPlThreeYearsExecute(r ApiGetTrialPlThre
 type ApiGetTrialPlTwoYearsRequest struct {
 	ctx context.Context
 	ApiService *TrialBalanceApiService
-	companyId *int32
-	fiscalYear *int32
-	startMonth *int32
-	endMonth *int32
+	companyId *int64
+	fiscalYear *int64
+	startMonth *int64
+	endMonth *int64
 	startDate *string
 	endDate *string
 	accountItemDisplayType *string
 	breakdownDisplayType *string
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	adjustment *string
 	costAllocation *string
 	approvalFlowStatus *string
 }
 
 // 事業所ID
-func (r ApiGetTrialPlTwoYearsRequest) CompanyId(companyId int32) ApiGetTrialPlTwoYearsRequest {
+func (r ApiGetTrialPlTwoYearsRequest) CompanyId(companyId int64) ApiGetTrialPlTwoYearsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 会計年度
-func (r ApiGetTrialPlTwoYearsRequest) FiscalYear(fiscalYear int32) ApiGetTrialPlTwoYearsRequest {
+func (r ApiGetTrialPlTwoYearsRequest) FiscalYear(fiscalYear int64) ApiGetTrialPlTwoYearsRequest {
 	r.fiscalYear = &fiscalYear
 	return r
 }
 
 // 発生月で絞込：開始会計月(1-12)。指定されない場合、現在の会計年度の期首月が指定されます。
-func (r ApiGetTrialPlTwoYearsRequest) StartMonth(startMonth int32) ApiGetTrialPlTwoYearsRequest {
+func (r ApiGetTrialPlTwoYearsRequest) StartMonth(startMonth int64) ApiGetTrialPlTwoYearsRequest {
 	r.startMonth = &startMonth
 	return r
 }
 
 // 発生月で絞込：終了会計月(1-12)(会計年度が10月始まりでstart_monthが11なら11, 12, 1, ... 9のいずれかを指定する)。指定されない場合、現在の会計年度の期末月が指定されます。
-func (r ApiGetTrialPlTwoYearsRequest) EndMonth(endMonth int32) ApiGetTrialPlTwoYearsRequest {
+func (r ApiGetTrialPlTwoYearsRequest) EndMonth(endMonth int64) ApiGetTrialPlTwoYearsRequest {
 	r.endMonth = &endMonth
 	return r
 }
@@ -6421,7 +6421,7 @@ func (r ApiGetTrialPlTwoYearsRequest) BreakdownDisplayType(breakdownDisplayType 
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択で絞り込めます）
-func (r ApiGetTrialPlTwoYearsRequest) PartnerId(partnerId int32) ApiGetTrialPlTwoYearsRequest {
+func (r ApiGetTrialPlTwoYearsRequest) PartnerId(partnerId int64) ApiGetTrialPlTwoYearsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -6433,13 +6433,13 @@ func (r ApiGetTrialPlTwoYearsRequest) PartnerCode(partnerCode string) ApiGetTria
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択で絞り込めます）
-func (r ApiGetTrialPlTwoYearsRequest) ItemId(itemId int32) ApiGetTrialPlTwoYearsRequest {
+func (r ApiGetTrialPlTwoYearsRequest) ItemId(itemId int64) ApiGetTrialPlTwoYearsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択で絞り込めます）
-func (r ApiGetTrialPlTwoYearsRequest) SectionId(sectionId int32) ApiGetTrialPlTwoYearsRequest {
+func (r ApiGetTrialPlTwoYearsRequest) SectionId(sectionId int64) ApiGetTrialPlTwoYearsRequest {
 	r.sectionId = &sectionId
 	return r
 }

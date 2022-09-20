@@ -9,25 +9,25 @@ Name | Type | Description | Notes
 **ApprovalFlowStatus** | Pointer to **string** | 未承認を除く: without_in_progress (デフォルト), 全てのステータス: all(条件に指定した時のみ含まれる） | [optional] 
 **Balances** | [**[]TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner**](TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner.md) |  | 
 **BreakdownDisplayType** | Pointer to **string** | 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item）(条件に指定した時のみ含まれる） | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **CostAllocation** | Pointer to **string** | 配賦仕訳のみ：only,配賦仕訳以外：without(条件に指定した時のみ含まれる） | [optional] 
 **CreatedAt** | Pointer to **string** | 作成日時 | [optional] 
 **EndDate** | Pointer to **string** | 発生日で絞込：終了日(yyyy-mm-dd)(条件に指定した時のみ含まれる） | [optional] 
-**EndMonth** | Pointer to **int32** | 発生月で絞込：終了会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
-**FiscalYear** | Pointer to **int32** | 会計年度(条件に指定した時、または条件に月、日条件がない時のみ含まれる） | [optional] 
-**ItemId** | Pointer to **int32** | 品目ID(条件に指定した時のみ含まれる） | [optional] 
+**EndMonth** | Pointer to **int64** | 発生月で絞込：終了会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
+**FiscalYear** | Pointer to **int64** | 会計年度(条件に指定した時、または条件に月、日条件がない時のみ含まれる） | [optional] 
+**ItemId** | Pointer to **int64** | 品目ID(条件に指定した時のみ含まれる） | [optional] 
 **PartnerCode** | Pointer to **string** | 取引先コード(条件に指定した時のみ含まれる） | [optional] 
-**PartnerId** | Pointer to **int32** | 取引先ID(条件に指定した時のみ含まれる） | [optional] 
-**SectionId** | Pointer to **int32** | 部門ID(条件に指定した時のみ含まれる） | [optional] 
+**PartnerId** | Pointer to **int64** | 取引先ID(条件に指定した時のみ含まれる） | [optional] 
+**SectionId** | Pointer to **int64** | 部門ID(条件に指定した時のみ含まれる） | [optional] 
 **Segment3TagIds** | **string** | 出力するセグメント3の指定 | 
 **StartDate** | Pointer to **string** | 発生日で絞込：開始日(yyyy-mm-dd)(条件に指定した時のみ含まれる） | [optional] 
-**StartMonth** | Pointer to **int32** | 発生月で絞込：開始会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
+**StartMonth** | Pointer to **int64** | 発生月で絞込：開始会計月(1-12)(条件に指定した時のみ含まれる） | [optional] 
 
 ## Methods
 
 ### NewTrialCrSegment3TagsResponseTrialCrSegment3Tags
 
-`func NewTrialCrSegment3TagsResponseTrialCrSegment3Tags(balances []TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner, companyId int32, segment3TagIds string, ) *TrialCrSegment3TagsResponseTrialCrSegment3Tags`
+`func NewTrialCrSegment3TagsResponseTrialCrSegment3Tags(balances []TrialCrSegment3TagsResponseTrialCrSegment3TagsBalancesInner, companyId int64, segment3TagIds string, ) *TrialCrSegment3TagsResponseTrialCrSegment3Tags`
 
 NewTrialCrSegment3TagsResponseTrialCrSegment3Tags instantiates a new TrialCrSegment3TagsResponseTrialCrSegment3Tags object
 This constructor will assign default values to properties that have it defined,
@@ -164,20 +164,20 @@ HasBreakdownDisplayType returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetCompanyId() int32`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetCompanyIdOk() (*int32, bool)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetCompanyId(v int32)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -259,20 +259,20 @@ HasEndDate returns a boolean if a field has been set.
 
 ### GetEndMonth
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetEndMonth() int32`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetEndMonth() int64`
 
 GetEndMonth returns the EndMonth field if non-nil, zero value otherwise.
 
 ### GetEndMonthOk
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetEndMonthOk() (*int32, bool)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetEndMonthOk() (*int64, bool)`
 
 GetEndMonthOk returns a tuple with the EndMonth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndMonth
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetEndMonth(v int32)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetEndMonth(v int64)`
 
 SetEndMonth sets EndMonth field to given value.
 
@@ -284,20 +284,20 @@ HasEndMonth returns a boolean if a field has been set.
 
 ### GetFiscalYear
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetFiscalYear() int32`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetFiscalYear() int64`
 
 GetFiscalYear returns the FiscalYear field if non-nil, zero value otherwise.
 
 ### GetFiscalYearOk
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetFiscalYearOk() (*int32, bool)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetFiscalYearOk() (*int64, bool)`
 
 GetFiscalYearOk returns a tuple with the FiscalYear field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiscalYear
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetFiscalYear(v int32)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetFiscalYear(v int64)`
 
 SetFiscalYear sets FiscalYear field to given value.
 
@@ -309,20 +309,20 @@ HasFiscalYear returns a boolean if a field has been set.
 
 ### GetItemId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetItemId() int32`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetItemIdOk() (*int32, bool)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetItemId(v int32)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -359,20 +359,20 @@ HasPartnerCode returns a boolean if a field has been set.
 
 ### GetPartnerId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetPartnerId() int32`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetPartnerIdOk() (*int32, bool)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetPartnerId(v int32)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -384,20 +384,20 @@ HasPartnerId returns a boolean if a field has been set.
 
 ### GetSectionId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetSectionId() int32`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetSectionIdOk() (*int32, bool)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetSectionId(v int32)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -454,20 +454,20 @@ HasStartDate returns a boolean if a field has been set.
 
 ### GetStartMonth
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetStartMonth() int32`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetStartMonth() int64`
 
 GetStartMonth returns the StartMonth field if non-nil, zero value otherwise.
 
 ### GetStartMonthOk
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetStartMonthOk() (*int32, bool)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) GetStartMonthOk() (*int64, bool)`
 
 GetStartMonthOk returns a tuple with the StartMonth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartMonth
 
-`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetStartMonth(v int32)`
+`func (o *TrialCrSegment3TagsResponseTrialCrSegment3Tags) SetStartMonth(v int64)`
 
 SetStartMonth sets StartMonth field to given value.
 

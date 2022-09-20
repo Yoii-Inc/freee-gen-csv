@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DisplayName** | Pointer to **NullableString** | 表示名 | [optional] 
 **Email** | **string** | メールアドレス | 
-**Id** | **int32** | ユーザーID | 
+**Id** | **int64** | ユーザーID | 
 
 ## Methods
 
 ### NewDealReceiptsInnerUser
 
-`func NewDealReceiptsInnerUser(email string, id int32, ) *DealReceiptsInnerUser`
+`func NewDealReceiptsInnerUser(email string, id int64, ) *DealReceiptsInnerUser`
 
 NewDealReceiptsInnerUser instantiates a new DealReceiptsInnerUser object
 This constructor will assign default values to properties that have it defined,
@@ -84,20 +84,20 @@ SetEmail sets Email field to given value.
 
 ### GetId
 
-`func (o *DealReceiptsInnerUser) GetId() int32`
+`func (o *DealReceiptsInnerUser) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DealReceiptsInnerUser) GetIdOk() (*int32, bool)`
+`func (o *DealReceiptsInnerUser) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DealReceiptsInnerUser) SetId(v int32)`
+`func (o *DealReceiptsInnerUser) SetId(v int64)`
 
 SetId sets Id field to given value.
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Available** | **bool** | 品目の使用設定（true: 使用する、false: 使用しない） &lt;br&gt; &lt;ul&gt;   &lt;li&gt;     本APIでitemを作成した場合はtrueになります。   &lt;/li&gt;   &lt;li&gt;     falseにする場合はWeb画面から変更できます。   &lt;/li&gt;   &lt;li&gt;     trueの場合、Web画面での取引登録時などに入力候補として表示されます。   &lt;/li&gt;   &lt;li&gt;     falseの場合、品目自体は削除せず、Web画面での取引登録時などに入力候補として表示されません。ただし取引（収入／支出）の作成APIなどでfalseの品目をパラメータに指定すれば、取引などにfalseの品目を設定できます。   &lt;/li&gt; &lt;/ul&gt; | 
-**CompanyId** | **int32** | 事業所ID | 
-**Id** | **int32** | 品目ID | 
+**CompanyId** | **int64** | 事業所ID | 
+**Id** | **int64** | 品目ID | 
 **Name** | **string** | 品目名 (30文字以内) | 
 **Shortcut1** | Pointer to **NullableString** | ショートカット１ (20文字以内) | [optional] 
 **Shortcut2** | Pointer to **NullableString** | ショートカット２ (20文字以内) | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewItem
 
-`func NewItem(available bool, companyId int32, id int32, name string, updateDate string, ) *Item`
+`func NewItem(available bool, companyId int64, id int64, name string, updateDate string, ) *Item`
 
 NewItem instantiates a new Item object
 This constructor will assign default values to properties that have it defined,
@@ -53,40 +53,40 @@ SetAvailable sets Available field to given value.
 
 ### GetCompanyId
 
-`func (o *Item) GetCompanyId() int32`
+`func (o *Item) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *Item) GetCompanyIdOk() (*int32, bool)`
+`func (o *Item) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *Item) SetCompanyId(v int32)`
+`func (o *Item) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
 
 ### GetId
 
-`func (o *Item) GetId() int32`
+`func (o *Item) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Item) GetIdOk() (*int32, bool)`
+`func (o *Item) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Item) SetId(v int32)`
+`func (o *Item) SetId(v int64)`
 
 SetId sets Id field to given value.
 

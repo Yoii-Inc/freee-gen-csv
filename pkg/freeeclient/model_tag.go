@@ -17,9 +17,9 @@ import (
 // Tag struct for Tag
 type Tag struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// タグID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 名前(30文字以内)
 	Name string `json:"name"`
 	// ショートカット1 (255文字以内)
@@ -34,7 +34,7 @@ type Tag struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTag(companyId int32, id int32, name string, updateDate string) *Tag {
+func NewTag(companyId int64, id int64, name string, updateDate string) *Tag {
 	this := Tag{}
 	this.CompanyId = companyId
 	this.Id = id
@@ -52,9 +52,9 @@ func NewTagWithDefaults() *Tag {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *Tag) GetCompanyId() int32 {
+func (o *Tag) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *Tag) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *Tag) GetCompanyIdOk() (*int32, bool) {
+func (o *Tag) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,14 +71,14 @@ func (o *Tag) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *Tag) SetCompanyId(v int32) {
+func (o *Tag) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetId returns the Id field value
-func (o *Tag) GetId() int32 {
+func (o *Tag) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -87,7 +87,7 @@ func (o *Tag) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Tag) GetIdOk() (*int32, bool) {
+func (o *Tag) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *Tag) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Tag) SetId(v int32) {
+func (o *Tag) SetId(v int64) {
 	o.Id = v
 }
 

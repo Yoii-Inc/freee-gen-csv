@@ -24,7 +24,7 @@ type Receipt struct {
 	// Deprecated
 	FileSrc string `json:"file_src"`
 	// 証憑ファイルID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 発生日
 	IssueDate *string `json:"issue_date,omitempty"`
 	// MIMEタイプ
@@ -41,7 +41,7 @@ type Receipt struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReceipt(createdAt string, fileSrc string, id int32, mimeType string, origin string, status string, user DealReceiptsInnerUser) *Receipt {
+func NewReceipt(createdAt string, fileSrc string, id int64, mimeType string, origin string, status string, user DealReceiptsInnerUser) *Receipt {
 	this := Receipt{}
 	this.CreatedAt = createdAt
 	this.FileSrc = fileSrc
@@ -145,9 +145,9 @@ func (o *Receipt) SetFileSrc(v string) {
 }
 
 // GetId returns the Id field value
-func (o *Receipt) GetId() int32 {
+func (o *Receipt) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -156,7 +156,7 @@ func (o *Receipt) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Receipt) GetIdOk() (*int32, bool) {
+func (o *Receipt) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -164,7 +164,7 @@ func (o *Receipt) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Receipt) SetId(v int32) {
+func (o *Receipt) SetId(v int64) {
 	o.Id = v
 }
 

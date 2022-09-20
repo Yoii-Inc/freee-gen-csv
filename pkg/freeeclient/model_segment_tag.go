@@ -19,7 +19,7 @@ type SegmentTag struct {
 	// 備考
 	Description NullableString `json:"description"`
 	// セグメントタグID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// セグメントタグ名
 	Name string `json:"name"`
 	// ショートカット１ (20文字以内)
@@ -32,7 +32,7 @@ type SegmentTag struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSegmentTag(description NullableString, id int32, name string, shortcut1 NullableString, shortcut2 NullableString) *SegmentTag {
+func NewSegmentTag(description NullableString, id int64, name string, shortcut1 NullableString, shortcut2 NullableString) *SegmentTag {
 	this := SegmentTag{}
 	this.Description = description
 	this.Id = id
@@ -77,9 +77,9 @@ func (o *SegmentTag) SetDescription(v string) {
 }
 
 // GetId returns the Id field value
-func (o *SegmentTag) GetId() int32 {
+func (o *SegmentTag) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -88,7 +88,7 @@ func (o *SegmentTag) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SegmentTag) GetIdOk() (*int32, bool) {
+func (o *SegmentTag) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *SegmentTag) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *SegmentTag) SetId(v int32) {
+func (o *SegmentTag) SetId(v int64) {
 	o.Id = v
 }
 

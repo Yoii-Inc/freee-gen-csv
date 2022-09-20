@@ -17,17 +17,17 @@ import (
 // SelectablesIndexResponseAccountGroupsInner struct for SelectablesIndexResponseAccountGroupsInner
 type SelectablesIndexResponseAccountGroupsInner struct {
 	// 勘定科目カテゴリーID
-	AccountCategoryId int32 `json:"account_category_id"`
+	AccountCategoryId int64 `json:"account_category_id"`
 	// 年度ID
-	AccountStructureId int32 `json:"account_structure_id"`
+	AccountStructureId int64 `json:"account_structure_id"`
 	// 作成日時
 	CreatedAt *string `json:"created_at,omitempty"`
 	// 詳細パラメータの種類
-	DetailType *int32 `json:"detail_type,omitempty"`
+	DetailType *int64 `json:"detail_type,omitempty"`
 	// 決算書表示名（小カテゴリー）ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 並び順
-	Index int32 `json:"index"`
+	Index int64 `json:"index"`
 	// 決算書表示名
 	Name string `json:"name"`
 	// 更新日時
@@ -38,7 +38,7 @@ type SelectablesIndexResponseAccountGroupsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelectablesIndexResponseAccountGroupsInner(accountCategoryId int32, accountStructureId int32, id int32, index int32, name string) *SelectablesIndexResponseAccountGroupsInner {
+func NewSelectablesIndexResponseAccountGroupsInner(accountCategoryId int64, accountStructureId int64, id int64, index int64, name string) *SelectablesIndexResponseAccountGroupsInner {
 	this := SelectablesIndexResponseAccountGroupsInner{}
 	this.AccountCategoryId = accountCategoryId
 	this.AccountStructureId = accountStructureId
@@ -57,9 +57,9 @@ func NewSelectablesIndexResponseAccountGroupsInnerWithDefaults() *SelectablesInd
 }
 
 // GetAccountCategoryId returns the AccountCategoryId field value
-func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryId() int32 {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryId() int3
 
 // GetAccountCategoryIdOk returns a tuple with the AccountCategoryId field value
 // and a boolean to check if the value has been set.
-func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryIdOk() (*int32, bool) {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,14 +76,14 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountCategoryIdOk() (*
 }
 
 // SetAccountCategoryId sets field value
-func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountCategoryId(v int32) {
+func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountCategoryId(v int64) {
 	o.AccountCategoryId = v
 }
 
 // GetAccountStructureId returns the AccountStructureId field value
-func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureId() int32 {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureId() int
 
 // GetAccountStructureIdOk returns a tuple with the AccountStructureId field value
 // and a boolean to check if the value has been set.
-func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureIdOk() (*int32, bool) {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetAccountStructureIdOk() (
 }
 
 // SetAccountStructureId sets field value
-func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountStructureId(v int32) {
+func (o *SelectablesIndexResponseAccountGroupsInner) SetAccountStructureId(v int64) {
 	o.AccountStructureId = v
 }
 
@@ -137,9 +137,9 @@ func (o *SelectablesIndexResponseAccountGroupsInner) SetCreatedAt(v string) {
 }
 
 // GetDetailType returns the DetailType field value if set, zero value otherwise.
-func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailType() int32 {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailType() int64 {
 	if o == nil || o.DetailType == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DetailType
@@ -147,7 +147,7 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailType() int32 {
 
 // GetDetailTypeOk returns a tuple with the DetailType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailTypeOk() (*int32, bool) {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetDetailTypeOk() (*int64, bool) {
 	if o == nil || o.DetailType == nil {
 		return nil, false
 	}
@@ -163,15 +163,15 @@ func (o *SelectablesIndexResponseAccountGroupsInner) HasDetailType() bool {
 	return false
 }
 
-// SetDetailType gets a reference to the given int32 and assigns it to the DetailType field.
-func (o *SelectablesIndexResponseAccountGroupsInner) SetDetailType(v int32) {
+// SetDetailType gets a reference to the given int64 and assigns it to the DetailType field.
+func (o *SelectablesIndexResponseAccountGroupsInner) SetDetailType(v int64) {
 	o.DetailType = &v
 }
 
 // GetId returns the Id field value
-func (o *SelectablesIndexResponseAccountGroupsInner) GetId() int32 {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -180,7 +180,7 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SelectablesIndexResponseAccountGroupsInner) GetIdOk() (*int32, bool) {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -188,14 +188,14 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *SelectablesIndexResponseAccountGroupsInner) SetId(v int32) {
+func (o *SelectablesIndexResponseAccountGroupsInner) SetId(v int64) {
 	o.Id = v
 }
 
 // GetIndex returns the Index field value
-func (o *SelectablesIndexResponseAccountGroupsInner) GetIndex() int32 {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetIndex() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -204,7 +204,7 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetIndex() int32 {
 
 // GetIndexOk returns a tuple with the Index field value
 // and a boolean to check if the value has been set.
-func (o *SelectablesIndexResponseAccountGroupsInner) GetIndexOk() (*int32, bool) {
+func (o *SelectablesIndexResponseAccountGroupsInner) GetIndexOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -212,7 +212,7 @@ func (o *SelectablesIndexResponseAccountGroupsInner) GetIndexOk() (*int32, bool)
 }
 
 // SetIndex sets field value
-func (o *SelectablesIndexResponseAccountGroupsInner) SetIndex(v int32) {
+func (o *SelectablesIndexResponseAccountGroupsInner) SetIndex(v int64) {
 	o.Index = v
 }
 

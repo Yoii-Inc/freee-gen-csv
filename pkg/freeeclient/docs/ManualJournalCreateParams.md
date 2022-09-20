@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Adjustment** | Pointer to **bool** | 決算整理仕訳フラグ（falseまたは未指定の場合: 日常仕訳） | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Details** | [**[]ManualJournalCreateParamsDetailsInner**](ManualJournalCreateParamsDetailsInner.md) |  | 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
-**ReceiptIds** | Pointer to **[]int32** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
+**ReceiptIds** | Pointer to **[]int64** | 証憑ファイルID（ファイルボックスのファイルID）（配列） | [optional] 
 
 ## Methods
 
 ### NewManualJournalCreateParams
 
-`func NewManualJournalCreateParams(companyId int32, details []ManualJournalCreateParamsDetailsInner, issueDate string, ) *ManualJournalCreateParams`
+`func NewManualJournalCreateParams(companyId int64, details []ManualJournalCreateParamsDetailsInner, issueDate string, ) *ManualJournalCreateParams`
 
 NewManualJournalCreateParams instantiates a new ManualJournalCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -56,20 +56,20 @@ HasAdjustment returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *ManualJournalCreateParams) GetCompanyId() int32`
+`func (o *ManualJournalCreateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *ManualJournalCreateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *ManualJournalCreateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *ManualJournalCreateParams) SetCompanyId(v int32)`
+`func (o *ManualJournalCreateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -116,20 +116,20 @@ SetIssueDate sets IssueDate field to given value.
 
 ### GetReceiptIds
 
-`func (o *ManualJournalCreateParams) GetReceiptIds() []int32`
+`func (o *ManualJournalCreateParams) GetReceiptIds() []int64`
 
 GetReceiptIds returns the ReceiptIds field if non-nil, zero value otherwise.
 
 ### GetReceiptIdsOk
 
-`func (o *ManualJournalCreateParams) GetReceiptIdsOk() (*[]int32, bool)`
+`func (o *ManualJournalCreateParams) GetReceiptIdsOk() (*[]int64, bool)`
 
 GetReceiptIdsOk returns a tuple with the ReceiptIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReceiptIds
 
-`func (o *ManualJournalCreateParams) SetReceiptIds(v []int32)`
+`func (o *ManualJournalCreateParams) SetReceiptIds(v []int64)`
 
 SetReceiptIds sets ReceiptIds field to given value.
 

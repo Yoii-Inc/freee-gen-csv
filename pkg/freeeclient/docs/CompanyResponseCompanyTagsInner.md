@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | タグID | 
+**Id** | **int64** | タグID | 
 **Name** | **string** | 名前(30文字以内) | 
 **Shortcut1** | Pointer to **NullableString** | ショートカット1 (255文字以内) | [optional] 
 **Shortcut2** | Pointer to **NullableString** | ショートカット2 (255文字以内) | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCompanyResponseCompanyTagsInner
 
-`func NewCompanyResponseCompanyTagsInner(id int32, name string, ) *CompanyResponseCompanyTagsInner`
+`func NewCompanyResponseCompanyTagsInner(id int64, name string, ) *CompanyResponseCompanyTagsInner`
 
 NewCompanyResponseCompanyTagsInner instantiates a new CompanyResponseCompanyTagsInner object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *CompanyResponseCompanyTagsInner) GetId() int32`
+`func (o *CompanyResponseCompanyTagsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CompanyResponseCompanyTagsInner) GetIdOk() (*int32, bool)`
+`func (o *CompanyResponseCompanyTagsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CompanyResponseCompanyTagsInner) SetId(v int32)`
+`func (o *CompanyResponseCompanyTagsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

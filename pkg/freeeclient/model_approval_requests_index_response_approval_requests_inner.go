@@ -17,27 +17,27 @@ import (
 // ApprovalRequestsIndexResponseApprovalRequestsInner struct for ApprovalRequestsIndexResponseApprovalRequestsInner
 type ApprovalRequestsIndexResponseApprovalRequestsInner struct {
 	// 申請者のユーザーID
-	ApplicantId int32 `json:"applicant_id"`
+	ApplicantId int64 `json:"applicant_id"`
 	// 申請日 (yyyy-mm-dd)
 	ApplicationDate string `json:"application_date"`
 	// 申請No.
 	ApplicationNumber string `json:"application_number"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。
-	CurrentRound int32 `json:"current_round"`
+	CurrentRound int64 `json:"current_round"`
 	// 現在承認ステップID
-	CurrentStepId NullableInt32 `json:"current_step_id"`
+	CurrentStepId NullableInt64 `json:"current_step_id"`
 	// 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます)
-	DealId NullableInt32 `json:"deal_id"`
+	DealId NullableInt64 `json:"deal_id"`
 	// 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:決済済み, unsettled:未決済)
 	DealStatus NullableString `json:"deal_status"`
 	// 申請フォームID
-	FormId int32 `json:"form_id"`
+	FormId int64 `json:"form_id"`
 	// 各種申請ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 振替伝票のID (申請ステータス:statusがapprovedで、関連する振替伝票が存在する時のみmanual_journal_idが表示されます)  <a href=\"https://support.freee.co.jp/hc/ja/articles/115003827683-#5\" target=\"_blank\">承認された各種申請から支払依頼等を作成する</a> 
-	ManualJournalId NullableInt32 `json:"manual_journal_id"`
+	ManualJournalId NullableInt64 `json:"manual_journal_id"`
 	// 各種申請の項目一覧（配列）
 	RequestItems []ApprovalRequestResponseApprovalRequestRequestItemsInner `json:"request_items"`
 	// 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)
@@ -50,7 +50,7 @@ type ApprovalRequestsIndexResponseApprovalRequestsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestsIndexResponseApprovalRequestsInner(applicantId int32, applicationDate string, applicationNumber string, companyId int32, currentRound int32, currentStepId NullableInt32, dealId NullableInt32, dealStatus NullableString, formId int32, id int32, manualJournalId NullableInt32, requestItems []ApprovalRequestResponseApprovalRequestRequestItemsInner, status string, title string) *ApprovalRequestsIndexResponseApprovalRequestsInner {
+func NewApprovalRequestsIndexResponseApprovalRequestsInner(applicantId int64, applicationDate string, applicationNumber string, companyId int64, currentRound int64, currentStepId NullableInt64, dealId NullableInt64, dealStatus NullableString, formId int64, id int64, manualJournalId NullableInt64, requestItems []ApprovalRequestResponseApprovalRequestRequestItemsInner, status string, title string) *ApprovalRequestsIndexResponseApprovalRequestsInner {
 	this := ApprovalRequestsIndexResponseApprovalRequestsInner{}
 	this.ApplicantId = applicantId
 	this.ApplicationDate = applicationDate
@@ -78,9 +78,9 @@ func NewApprovalRequestsIndexResponseApprovalRequestsInnerWithDefaults() *Approv
 }
 
 // GetApplicantId returns the ApplicantId field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetApplicantId() int32 {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetApplicantId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetApplicantId() in
 
 // GetApplicantIdOk returns a tuple with the ApplicantId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetApplicantIdOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetApplicantIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetApplicantIdOk() 
 }
 
 // SetApplicantId sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetApplicantId(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetApplicantId(v int64) {
 	o.ApplicantId = v
 }
 
@@ -150,9 +150,9 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetApplicationNumbe
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCompanyId() int32 {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -161,7 +161,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCompanyId() int3
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCompanyIdOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -169,14 +169,14 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCompanyIdOk() (*
 }
 
 // SetCompanyId sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetCompanyId(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetCurrentRound returns the CurrentRound field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentRound() int32 {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentRound() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -185,7 +185,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentRound() i
 
 // GetCurrentRoundOk returns a tuple with the CurrentRound field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentRoundOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentRoundOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -193,15 +193,15 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentRoundOk()
 }
 
 // SetCurrentRound sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetCurrentRound(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetCurrentRound(v int64) {
 	o.CurrentRound = v
 }
 
 // GetCurrentStepId returns the CurrentStepId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentStepId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentStepId() int64 {
 	if o == nil || o.CurrentStepId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -211,7 +211,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentStepId() 
 // GetCurrentStepIdOk returns a tuple with the CurrentStepId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentStepIdOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentStepIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -219,15 +219,15 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetCurrentStepIdOk(
 }
 
 // SetCurrentStepId sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetCurrentStepId(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetCurrentStepId(v int64) {
 	o.CurrentStepId.Set(&v)
 }
 
 // GetDealId returns the DealId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetDealId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetDealId() int64 {
 	if o == nil || o.DealId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -237,7 +237,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetDealId() int32 {
 // GetDealIdOk returns a tuple with the DealId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetDealIdOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetDealIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -245,7 +245,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetDealIdOk() (*int
 }
 
 // SetDealId sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetDealId(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetDealId(v int64) {
 	o.DealId.Set(&v)
 }
 
@@ -276,9 +276,9 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetDealStatus(v str
 }
 
 // GetFormId returns the FormId field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetFormId() int32 {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetFormId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -287,7 +287,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetFormId() int32 {
 
 // GetFormIdOk returns a tuple with the FormId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetFormIdOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetFormIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -295,14 +295,14 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetFormIdOk() (*int
 }
 
 // SetFormId sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetFormId(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetFormId(v int64) {
 	o.FormId = v
 }
 
 // GetId returns the Id field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetId() int32 {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -311,7 +311,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetIdOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -319,15 +319,15 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetIdOk() (*int32, 
 }
 
 // SetId sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetId(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetId(v int64) {
 	o.Id = v
 }
 
 // GetManualJournalId returns the ManualJournalId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetManualJournalId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetManualJournalId() int64 {
 	if o == nil || o.ManualJournalId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -337,7 +337,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetManualJournalId(
 // GetManualJournalIdOk returns a tuple with the ManualJournalId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetManualJournalIdOk() (*int32, bool) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetManualJournalIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -345,7 +345,7 @@ func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) GetManualJournalIdO
 }
 
 // SetManualJournalId sets field value
-func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetManualJournalId(v int32) {
+func (o *ApprovalRequestsIndexResponseApprovalRequestsInner) SetManualJournalId(v int64) {
 	o.ManualJournalId.Set(&v)
 }
 

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountItemId** | Pointer to **NullableInt32** | 勘定科目ID | [optional] 
+**AccountItemId** | Pointer to **NullableInt64** | 勘定科目ID | [optional] 
 **Amount** | **int64** | 金額 | 
 **Description** | Pointer to **string** | 内容 | [optional] 
 **Id** | Pointer to **int64** | 支払依頼の項目行ID: 既存項目行を更新する場合に指定します。IDを指定しない項目行は、新規行として扱われ追加されます。また、payment_request_linesに含まれない既存の項目行は削除されます。更新後も残したい行は、必ず支払依頼の項目行IDを指定してpayment_request_linesに含めてください。 | [optional] 
-**ItemId** | Pointer to **int32** | 品目ID | [optional] 
+**ItemId** | Pointer to **int64** | 品目ID | [optional] 
 **LineType** | Pointer to **string** | &#39;行の種類 (deal_line: 支払依頼, withholding_tax: 源泉徴収税)&#39;&lt;br&gt; &#39;デフォルトは deal_line: 支払依頼 です&#39;  | [optional] 
-**SectionId** | Pointer to **int32** | 部門ID | [optional] 
+**SectionId** | Pointer to **int64** | 部門ID | [optional] 
 **Segment1TagId** | Pointer to **int64** | セグメント１ID&lt;br&gt; セグメントタグ一覧APIを利用して取得してください。&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/360020679611\&quot; target&#x3D;\&quot;_blank\&quot;&gt;セグメント（分析用タグ）の設定&lt;/a&gt;&lt;br&gt;  | [optional] 
 **Segment2TagId** | Pointer to **int64** | セグメント２ID(法人向けエンタープライズプラン)&lt;br&gt; セグメントタグ一覧APIを利用して取得してください。&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/360020679611\&quot; target&#x3D;\&quot;_blank\&quot;&gt;セグメント（分析用タグ）の設定&lt;/a&gt;&lt;br&gt;  | [optional] 
 **Segment3TagId** | Pointer to **int64** | セグメント３ID(法人向けエンタープライズプラン)&lt;br&gt; セグメントタグ一覧APIを利用して取得してください。&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/360020679611\&quot; target&#x3D;\&quot;_blank\&quot;&gt;セグメント（分析用タグ）の設定&lt;/a&gt;&lt;br&gt;  | [optional] 
-**TagIds** | Pointer to **[]int32** | メモタグID | [optional] 
-**TaxCode** | Pointer to **int32** | 税区分コード&lt;br&gt; 勘定科目IDを指定する場合は必須です。  | [optional] 
+**TagIds** | Pointer to **[]int64** | メモタグID | [optional] 
+**TaxCode** | Pointer to **int64** | 税区分コード&lt;br&gt; 勘定科目IDを指定する場合は必須です。  | [optional] 
 
 ## Methods
 
@@ -38,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountItemId
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetAccountItemId() int32`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetAccountItemId(v int32)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -143,20 +143,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetItemId
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetItemId() int32`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetItemIdOk() (*int32, bool)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetItemId(v int32)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -193,20 +193,20 @@ HasLineType returns a boolean if a field has been set.
 
 ### GetSectionId
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetSectionId() int32`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetSectionIdOk() (*int32, bool)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetSectionId(v int32)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -293,20 +293,20 @@ HasSegment3TagId returns a boolean if a field has been set.
 
 ### GetTagIds
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTagIds() []int32`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTagIds() []int64`
 
 GetTagIds returns the TagIds field if non-nil, zero value otherwise.
 
 ### GetTagIdsOk
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTagIdsOk() (*[]int32, bool)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTagIdsOk() (*[]int64, bool)`
 
 GetTagIdsOk returns a tuple with the TagIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagIds
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetTagIds(v []int32)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetTagIds(v []int64)`
 
 SetTagIds sets TagIds field to given value.
 
@@ -318,20 +318,20 @@ HasTagIds returns a boolean if a field has been set.
 
 ### GetTaxCode
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTaxCode() int32`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTaxCodeOk() (*int32, bool)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetTaxCode(v int32)`
+`func (o *PaymentRequestUpdateParamsPaymentRequestLinesInner) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 

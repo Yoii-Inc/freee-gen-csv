@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Available** | **bool** | 部門の使用設定（true: 使用する、false: 使用しない） &lt;br&gt; &lt;ul&gt;   &lt;li&gt;     本APIでsectionを作成した場合はtrueになります。   &lt;/li&gt;   &lt;li&gt;     falseにする場合はWeb画面から変更できます。   &lt;/li&gt;   &lt;li&gt;     trueの場合、Web画面での取引登録時などに入力候補として表示されます。   &lt;/li&gt;   &lt;li&gt;     falseの場合、部門自体は削除せず、Web画面での取引登録時などに入力候補として表示されません。ただし取引（収入／支出）の作成APIなどでfalseの部門をパラメータに指定すれば、取引などにfalseの部門を設定できます。   &lt;/li&gt; &lt;/ul&gt; | 
-**CompanyId** | **int32** | 事業所ID | 
-**Id** | **int32** | 部門ID | 
-**IndentCount** | Pointer to **int32** | &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/209093566\&quot;&gt;部門階層&lt;/a&gt; &lt;br&gt; ※ indent_count が 0 のときは第一階層の親部門です。  | [optional] 
+**CompanyId** | **int64** | 事業所ID | 
+**Id** | **int64** | 部門ID | 
+**IndentCount** | Pointer to **int64** | &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/209093566\&quot;&gt;部門階層&lt;/a&gt; &lt;br&gt; ※ indent_count が 0 のときは第一階層の親部門です。  | [optional] 
 **LongName** | Pointer to **NullableString** | 正式名称（255文字以内） | [optional] 
 **Name** | **string** | 部門名 (30文字以内) | 
-**ParentId** | Pointer to **NullableInt32** | &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/209093566\&quot;&gt;親部門ID&lt;/a&gt; &lt;br&gt; ※ parent_id が null のときは第一階層の親部門です。  | [optional] 
+**ParentId** | Pointer to **NullableInt64** | &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/209093566\&quot;&gt;親部門ID&lt;/a&gt; &lt;br&gt; ※ parent_id が null のときは第一階層の親部門です。  | [optional] 
 **Shortcut1** | Pointer to **NullableString** | ショートカット１ (20文字以内) | [optional] 
 **Shortcut2** | Pointer to **NullableString** | ショートカット２ (20文字以内) | [optional] 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSection
 
-`func NewSection(available bool, companyId int32, id int32, name string, ) *Section`
+`func NewSection(available bool, companyId int64, id int64, name string, ) *Section`
 
 NewSection instantiates a new Section object
 This constructor will assign default values to properties that have it defined,
@@ -55,60 +55,60 @@ SetAvailable sets Available field to given value.
 
 ### GetCompanyId
 
-`func (o *Section) GetCompanyId() int32`
+`func (o *Section) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *Section) GetCompanyIdOk() (*int32, bool)`
+`func (o *Section) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *Section) SetCompanyId(v int32)`
+`func (o *Section) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
 
 ### GetId
 
-`func (o *Section) GetId() int32`
+`func (o *Section) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Section) GetIdOk() (*int32, bool)`
+`func (o *Section) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Section) SetId(v int32)`
+`func (o *Section) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetIndentCount
 
-`func (o *Section) GetIndentCount() int32`
+`func (o *Section) GetIndentCount() int64`
 
 GetIndentCount returns the IndentCount field if non-nil, zero value otherwise.
 
 ### GetIndentCountOk
 
-`func (o *Section) GetIndentCountOk() (*int32, bool)`
+`func (o *Section) GetIndentCountOk() (*int64, bool)`
 
 GetIndentCountOk returns a tuple with the IndentCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIndentCount
 
-`func (o *Section) SetIndentCount(v int32)`
+`func (o *Section) SetIndentCount(v int64)`
 
 SetIndentCount sets IndentCount field to given value.
 
@@ -175,20 +175,20 @@ SetName sets Name field to given value.
 
 ### GetParentId
 
-`func (o *Section) GetParentId() int32`
+`func (o *Section) GetParentId() int64`
 
 GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 ### GetParentIdOk
 
-`func (o *Section) GetParentIdOk() (*int32, bool)`
+`func (o *Section) GetParentIdOk() (*int64, bool)`
 
 GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentId
 
-`func (o *Section) SetParentId(v int32)`
+`func (o *Section) SetParentId(v int64)`
 
 SetParentId sets ParentId field to given value.
 

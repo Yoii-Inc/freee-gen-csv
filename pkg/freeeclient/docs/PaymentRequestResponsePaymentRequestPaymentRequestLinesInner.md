@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountItemId** | **NullableInt32** | 勘定科目ID | 
+**AccountItemId** | **NullableInt64** | 勘定科目ID | 
 **Amount** | **int64** | 金額 | 
 **Description** | **string** | 内容 | 
 **Id** | **int64** | 支払依頼の項目行ID | 
-**ItemId** | **NullableInt32** | 品目ID | 
+**ItemId** | **NullableInt64** | 品目ID | 
 **LineType** | **string** | 行の種類 (deal_line: 支払依頼, withholding_tax: 源泉徴収税) | 
-**SectionId** | **NullableInt32** | 部門ID | 
+**SectionId** | **NullableInt64** | 部門ID | 
 **Segment1TagId** | Pointer to **NullableInt64** | セグメント１ID。セグメント１が使用可能なプランの時のみレスポンスに含まれます。 | [optional] 
 **Segment2TagId** | Pointer to **NullableInt64** | セグメント２ID。セグメント２が使用可能なプランの時のみレスポンスに含まれます。 | [optional] 
 **Segment3TagId** | Pointer to **NullableInt64** | セグメント３ID。セグメント３が使用可能なプランの時のみレスポンスに含まれます。 | [optional] 
-**TagIds** | **[]int32** | メモタグID | 
-**TaxCode** | **NullableInt32** | 税区分コード | 
+**TagIds** | **[]int64** | メモタグID | 
+**TaxCode** | **NullableInt64** | 税区分コード | 
 
 ## Methods
 
 ### NewPaymentRequestResponsePaymentRequestPaymentRequestLinesInner
 
-`func NewPaymentRequestResponsePaymentRequestPaymentRequestLinesInner(accountItemId NullableInt32, amount int64, description string, id int64, itemId NullableInt32, lineType string, sectionId NullableInt32, tagIds []int32, taxCode NullableInt32, ) *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner`
+`func NewPaymentRequestResponsePaymentRequestPaymentRequestLinesInner(accountItemId NullableInt64, amount int64, description string, id int64, itemId NullableInt64, lineType string, sectionId NullableInt64, tagIds []int64, taxCode NullableInt64, ) *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner`
 
 NewPaymentRequestResponsePaymentRequestPaymentRequestLinesInner instantiates a new PaymentRequestResponsePaymentRequestPaymentRequestLinesInner object
 This constructor will assign default values to properties that have it defined,
@@ -38,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountItemId
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetAccountItemId() int32`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetAccountItemId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -128,20 +128,20 @@ SetId sets Id field to given value.
 
 ### GetItemId
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetItemId() int32`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetItemIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetItemId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -178,20 +178,20 @@ SetLineType sets LineType field to given value.
 
 ### GetSectionId
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetSectionId() int32`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetSectionIdOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetSectionId(v int32)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -313,40 +313,40 @@ HasSegment3TagId returns a boolean if a field has been set.
 UnsetSegment3TagId ensures that no value is present for Segment3TagId, not even an explicit nil
 ### GetTagIds
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTagIds() []int32`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTagIds() []int64`
 
 GetTagIds returns the TagIds field if non-nil, zero value otherwise.
 
 ### GetTagIdsOk
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTagIdsOk() (*[]int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTagIdsOk() (*[]int64, bool)`
 
 GetTagIdsOk returns a tuple with the TagIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagIds
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetTagIds(v []int32)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetTagIds(v []int64)`
 
 SetTagIds sets TagIds field to given value.
 
 
 ### GetTaxCode
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTaxCode() int32`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTaxCodeOk() (*int32, bool)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetTaxCode(v int32)`
+`func (o *PaymentRequestResponsePaymentRequestPaymentRequestLinesInner) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 

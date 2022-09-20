@@ -17,7 +17,7 @@ import (
 // AccountItemResponseAccountItemPartnersInner struct for AccountItemResponseAccountItemPartnersInner
 type AccountItemResponseAccountItemPartnersInner struct {
 	// 取引先ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 取引先
 	Name string `json:"name"`
 }
@@ -26,7 +26,7 @@ type AccountItemResponseAccountItemPartnersInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountItemResponseAccountItemPartnersInner(id int32, name string) *AccountItemResponseAccountItemPartnersInner {
+func NewAccountItemResponseAccountItemPartnersInner(id int64, name string) *AccountItemResponseAccountItemPartnersInner {
 	this := AccountItemResponseAccountItemPartnersInner{}
 	this.Id = id
 	this.Name = name
@@ -42,9 +42,9 @@ func NewAccountItemResponseAccountItemPartnersInnerWithDefaults() *AccountItemRe
 }
 
 // GetId returns the Id field value
-func (o *AccountItemResponseAccountItemPartnersInner) GetId() int32 {
+func (o *AccountItemResponseAccountItemPartnersInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -53,7 +53,7 @@ func (o *AccountItemResponseAccountItemPartnersInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemResponseAccountItemPartnersInner) GetIdOk() (*int32, bool) {
+func (o *AccountItemResponseAccountItemPartnersInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,7 +61,7 @@ func (o *AccountItemResponseAccountItemPartnersInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *AccountItemResponseAccountItemPartnersInner) SetId(v int32) {
+func (o *AccountItemResponseAccountItemPartnersInner) SetId(v int64) {
 	o.Id = v
 }
 

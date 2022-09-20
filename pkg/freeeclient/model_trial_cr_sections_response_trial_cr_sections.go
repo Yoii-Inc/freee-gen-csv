@@ -26,7 +26,7 @@ type TrialCrSectionsResponseTrialCrSections struct {
 	// 内訳の表示（取引先: partner, 品目: item, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag）(条件に指定した時のみ含まれる）
 	BreakdownDisplayType *string `json:"breakdown_display_type,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 配賦仕訳のみ：only,配賦仕訳以外：without(条件に指定した時のみ含まれる）
 	CostAllocation *string `json:"cost_allocation,omitempty"`
 	// 作成日時
@@ -34,28 +34,28 @@ type TrialCrSectionsResponseTrialCrSections struct {
 	// 発生日で絞込：終了日(yyyy-mm-dd)(条件に指定した時のみ含まれる）
 	EndDate *string `json:"end_date,omitempty"`
 	// 発生月で絞込：終了会計月(1-12)(条件に指定した時のみ含まれる）
-	EndMonth *int32 `json:"end_month,omitempty"`
+	EndMonth *int64 `json:"end_month,omitempty"`
 	// 会計年度(条件に指定した時、または条件に月、日条件がない時のみ含まれる）
-	FiscalYear *int32 `json:"fiscal_year,omitempty"`
+	FiscalYear *int64 `json:"fiscal_year,omitempty"`
 	// 品目ID(条件に指定した時のみ含まれる）
-	ItemId *int32 `json:"item_id,omitempty"`
+	ItemId *int64 `json:"item_id,omitempty"`
 	// 取引先コード(条件に指定した時のみ含まれる）
 	PartnerCode *string `json:"partner_code,omitempty"`
 	// 取引先ID(条件に指定した時のみ含まれる）
-	PartnerId *int32 `json:"partner_id,omitempty"`
+	PartnerId *int64 `json:"partner_id,omitempty"`
 	// 出力する部門の指定
 	SectionIds string `json:"section_ids"`
 	// 発生日で絞込：開始日(yyyy-mm-dd)(条件に指定した時のみ含まれる）
 	StartDate *string `json:"start_date,omitempty"`
 	// 発生月で絞込：開始会計月(1-12)(条件に指定した時のみ含まれる）
-	StartMonth *int32 `json:"start_month,omitempty"`
+	StartMonth *int64 `json:"start_month,omitempty"`
 }
 
 // NewTrialCrSectionsResponseTrialCrSections instantiates a new TrialCrSectionsResponseTrialCrSections object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrialCrSectionsResponseTrialCrSections(balances []TrialCrSectionsResponseTrialCrSectionsBalancesInner, companyId int32, sectionIds string) *TrialCrSectionsResponseTrialCrSections {
+func NewTrialCrSectionsResponseTrialCrSections(balances []TrialCrSectionsResponseTrialCrSectionsBalancesInner, companyId int64, sectionIds string) *TrialCrSectionsResponseTrialCrSections {
 	this := TrialCrSectionsResponseTrialCrSections{}
 	this.Balances = balances
 	this.CompanyId = companyId
@@ -224,9 +224,9 @@ func (o *TrialCrSectionsResponseTrialCrSections) SetBreakdownDisplayType(v strin
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *TrialCrSectionsResponseTrialCrSections) GetCompanyId() int32 {
+func (o *TrialCrSectionsResponseTrialCrSections) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -235,7 +235,7 @@ func (o *TrialCrSectionsResponseTrialCrSections) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSections) GetCompanyIdOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSections) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -243,7 +243,7 @@ func (o *TrialCrSectionsResponseTrialCrSections) GetCompanyIdOk() (*int32, bool)
 }
 
 // SetCompanyId sets field value
-func (o *TrialCrSectionsResponseTrialCrSections) SetCompanyId(v int32) {
+func (o *TrialCrSectionsResponseTrialCrSections) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -344,9 +344,9 @@ func (o *TrialCrSectionsResponseTrialCrSections) SetEndDate(v string) {
 }
 
 // GetEndMonth returns the EndMonth field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSections) GetEndMonth() int32 {
+func (o *TrialCrSectionsResponseTrialCrSections) GetEndMonth() int64 {
 	if o == nil || o.EndMonth == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EndMonth
@@ -354,7 +354,7 @@ func (o *TrialCrSectionsResponseTrialCrSections) GetEndMonth() int32 {
 
 // GetEndMonthOk returns a tuple with the EndMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSections) GetEndMonthOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSections) GetEndMonthOk() (*int64, bool) {
 	if o == nil || o.EndMonth == nil {
 		return nil, false
 	}
@@ -370,15 +370,15 @@ func (o *TrialCrSectionsResponseTrialCrSections) HasEndMonth() bool {
 	return false
 }
 
-// SetEndMonth gets a reference to the given int32 and assigns it to the EndMonth field.
-func (o *TrialCrSectionsResponseTrialCrSections) SetEndMonth(v int32) {
+// SetEndMonth gets a reference to the given int64 and assigns it to the EndMonth field.
+func (o *TrialCrSectionsResponseTrialCrSections) SetEndMonth(v int64) {
 	o.EndMonth = &v
 }
 
 // GetFiscalYear returns the FiscalYear field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSections) GetFiscalYear() int32 {
+func (o *TrialCrSectionsResponseTrialCrSections) GetFiscalYear() int64 {
 	if o == nil || o.FiscalYear == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FiscalYear
@@ -386,7 +386,7 @@ func (o *TrialCrSectionsResponseTrialCrSections) GetFiscalYear() int32 {
 
 // GetFiscalYearOk returns a tuple with the FiscalYear field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSections) GetFiscalYearOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSections) GetFiscalYearOk() (*int64, bool) {
 	if o == nil || o.FiscalYear == nil {
 		return nil, false
 	}
@@ -402,15 +402,15 @@ func (o *TrialCrSectionsResponseTrialCrSections) HasFiscalYear() bool {
 	return false
 }
 
-// SetFiscalYear gets a reference to the given int32 and assigns it to the FiscalYear field.
-func (o *TrialCrSectionsResponseTrialCrSections) SetFiscalYear(v int32) {
+// SetFiscalYear gets a reference to the given int64 and assigns it to the FiscalYear field.
+func (o *TrialCrSectionsResponseTrialCrSections) SetFiscalYear(v int64) {
 	o.FiscalYear = &v
 }
 
 // GetItemId returns the ItemId field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSections) GetItemId() int32 {
+func (o *TrialCrSectionsResponseTrialCrSections) GetItemId() int64 {
 	if o == nil || o.ItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemId
@@ -418,7 +418,7 @@ func (o *TrialCrSectionsResponseTrialCrSections) GetItemId() int32 {
 
 // GetItemIdOk returns a tuple with the ItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSections) GetItemIdOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSections) GetItemIdOk() (*int64, bool) {
 	if o == nil || o.ItemId == nil {
 		return nil, false
 	}
@@ -434,8 +434,8 @@ func (o *TrialCrSectionsResponseTrialCrSections) HasItemId() bool {
 	return false
 }
 
-// SetItemId gets a reference to the given int32 and assigns it to the ItemId field.
-func (o *TrialCrSectionsResponseTrialCrSections) SetItemId(v int32) {
+// SetItemId gets a reference to the given int64 and assigns it to the ItemId field.
+func (o *TrialCrSectionsResponseTrialCrSections) SetItemId(v int64) {
 	o.ItemId = &v
 }
 
@@ -472,9 +472,9 @@ func (o *TrialCrSectionsResponseTrialCrSections) SetPartnerCode(v string) {
 }
 
 // GetPartnerId returns the PartnerId field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSections) GetPartnerId() int32 {
+func (o *TrialCrSectionsResponseTrialCrSections) GetPartnerId() int64 {
 	if o == nil || o.PartnerId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerId
@@ -482,7 +482,7 @@ func (o *TrialCrSectionsResponseTrialCrSections) GetPartnerId() int32 {
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSections) GetPartnerIdOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSections) GetPartnerIdOk() (*int64, bool) {
 	if o == nil || o.PartnerId == nil {
 		return nil, false
 	}
@@ -498,8 +498,8 @@ func (o *TrialCrSectionsResponseTrialCrSections) HasPartnerId() bool {
 	return false
 }
 
-// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
-func (o *TrialCrSectionsResponseTrialCrSections) SetPartnerId(v int32) {
+// SetPartnerId gets a reference to the given int64 and assigns it to the PartnerId field.
+func (o *TrialCrSectionsResponseTrialCrSections) SetPartnerId(v int64) {
 	o.PartnerId = &v
 }
 
@@ -560,9 +560,9 @@ func (o *TrialCrSectionsResponseTrialCrSections) SetStartDate(v string) {
 }
 
 // GetStartMonth returns the StartMonth field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSections) GetStartMonth() int32 {
+func (o *TrialCrSectionsResponseTrialCrSections) GetStartMonth() int64 {
 	if o == nil || o.StartMonth == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartMonth
@@ -570,7 +570,7 @@ func (o *TrialCrSectionsResponseTrialCrSections) GetStartMonth() int32 {
 
 // GetStartMonthOk returns a tuple with the StartMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSections) GetStartMonthOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSections) GetStartMonthOk() (*int64, bool) {
 	if o == nil || o.StartMonth == nil {
 		return nil, false
 	}
@@ -586,8 +586,8 @@ func (o *TrialCrSectionsResponseTrialCrSections) HasStartMonth() bool {
 	return false
 }
 
-// SetStartMonth gets a reference to the given int32 and assigns it to the StartMonth field.
-func (o *TrialCrSectionsResponseTrialCrSections) SetStartMonth(v int32) {
+// SetStartMonth gets a reference to the given int64 and assigns it to the StartMonth field.
+func (o *TrialCrSectionsResponseTrialCrSections) SetStartMonth(v int64) {
 	o.StartMonth = &v
 }
 

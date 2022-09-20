@@ -17,7 +17,7 @@ import (
 // InternalServerError struct for InternalServerError
 type InternalServerError struct {
 	Errors []InternalServerErrorErrorsInner `json:"errors,omitempty"`
-	StatusCode *int32 `json:"status_code,omitempty"`
+	StatusCode *int64 `json:"status_code,omitempty"`
 }
 
 // NewInternalServerError instantiates a new InternalServerError object
@@ -70,9 +70,9 @@ func (o *InternalServerError) SetErrors(v []InternalServerErrorErrorsInner) {
 }
 
 // GetStatusCode returns the StatusCode field value if set, zero value otherwise.
-func (o *InternalServerError) GetStatusCode() int32 {
+func (o *InternalServerError) GetStatusCode() int64 {
 	if o == nil || o.StatusCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StatusCode
@@ -80,7 +80,7 @@ func (o *InternalServerError) GetStatusCode() int32 {
 
 // GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InternalServerError) GetStatusCodeOk() (*int32, bool) {
+func (o *InternalServerError) GetStatusCodeOk() (*int64, bool) {
 	if o == nil || o.StatusCode == nil {
 		return nil, false
 	}
@@ -96,8 +96,8 @@ func (o *InternalServerError) HasStatusCode() bool {
 	return false
 }
 
-// SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
-func (o *InternalServerError) SetStatusCode(v int32) {
+// SetStatusCode gets a reference to the given int64 and assigns it to the StatusCode field.
+func (o *InternalServerError) SetStatusCode(v int64) {
 	o.StatusCode = &v
 }
 

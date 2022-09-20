@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **string** | コメント内容 | 
 **PostedAt** | **string** | コメント日時(ISO8601形式) | 
-**UserId** | **int32** | ユーザーID | 
+**UserId** | **int64** | ユーザーID | 
 
 ## Methods
 
 ### NewApprovalRequestResponseApprovalRequestCommentsInner
 
-`func NewApprovalRequestResponseApprovalRequestCommentsInner(comment string, postedAt string, userId int32, ) *ApprovalRequestResponseApprovalRequestCommentsInner`
+`func NewApprovalRequestResponseApprovalRequestCommentsInner(comment string, postedAt string, userId int64, ) *ApprovalRequestResponseApprovalRequestCommentsInner`
 
 NewApprovalRequestResponseApprovalRequestCommentsInner instantiates a new ApprovalRequestResponseApprovalRequestCommentsInner object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetPostedAt sets PostedAt field to given value.
 
 ### GetUserId
 
-`func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserId() int32`
+`func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserId() int64`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserIdOk() (*int32, bool)`
+`func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserIdOk() (*int64, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *ApprovalRequestResponseApprovalRequestCommentsInner) SetUserId(v int32)`
+`func (o *ApprovalRequestResponseApprovalRequestCommentsInner) SetUserId(v int64)`
 
 SetUserId sets UserId field to given value.
 

@@ -17,7 +17,7 @@ import (
 // CompaniesPlanResponse struct for CompaniesPlanResponse
 type CompaniesPlanResponse struct {
 	// 事業所ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 事業形態（個人事業主: personal、法人: corporate）
 	OrgCode string `json:"org_code"`
 	// 会計プラン 個人用(non_charged: 無料プラン、starter: スターター、standard: スタンダード、premium: プレミアム) 法人用(non_charged: 無料プラン、minimum: ミニマム、basic: ベーシック、professional: プロフェッショナル、enterprise: エンタープライズ)
@@ -28,7 +28,7 @@ type CompaniesPlanResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompaniesPlanResponse(id int32, orgCode string, plan string) *CompaniesPlanResponse {
+func NewCompaniesPlanResponse(id int64, orgCode string, plan string) *CompaniesPlanResponse {
 	this := CompaniesPlanResponse{}
 	this.Id = id
 	this.OrgCode = orgCode
@@ -45,9 +45,9 @@ func NewCompaniesPlanResponseWithDefaults() *CompaniesPlanResponse {
 }
 
 // GetId returns the Id field value
-func (o *CompaniesPlanResponse) GetId() int32 {
+func (o *CompaniesPlanResponse) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *CompaniesPlanResponse) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CompaniesPlanResponse) GetIdOk() (*int32, bool) {
+func (o *CompaniesPlanResponse) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *CompaniesPlanResponse) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *CompaniesPlanResponse) SetId(v int32) {
+func (o *CompaniesPlanResponse) SetId(v int64) {
 	o.Id = v
 }
 

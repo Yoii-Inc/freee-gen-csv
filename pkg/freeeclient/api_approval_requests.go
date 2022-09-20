@@ -248,12 +248,12 @@ func (a *ApprovalRequestsApiService) CreateApprovalRequestExecute(r ApiCreateApp
 type ApiDestroyApprovalRequestRequest struct {
 	ctx context.Context
 	ApiService *ApprovalRequestsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyApprovalRequestRequest) CompanyId(companyId int32) ApiDestroyApprovalRequestRequest {
+func (r ApiDestroyApprovalRequestRequest) CompanyId(companyId int64) ApiDestroyApprovalRequestRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -304,7 +304,7 @@ DestroyApprovalRequest 各種申請の削除
  @param id 各種申請ID
  @return ApiDestroyApprovalRequestRequest
 */
-func (a *ApprovalRequestsApiService) DestroyApprovalRequest(ctx context.Context, id int32) ApiDestroyApprovalRequestRequest {
+func (a *ApprovalRequestsApiService) DestroyApprovalRequest(ctx context.Context, id int64) ApiDestroyApprovalRequestRequest {
 	return ApiDestroyApprovalRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -445,12 +445,12 @@ func (a *ApprovalRequestsApiService) DestroyApprovalRequestExecute(r ApiDestroyA
 type ApiGetApprovalRequestRequest struct {
 	ctx context.Context
 	ApiService *ApprovalRequestsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetApprovalRequestRequest) CompanyId(companyId int32) ApiGetApprovalRequestRequest {
+func (r ApiGetApprovalRequestRequest) CompanyId(companyId int64) ApiGetApprovalRequestRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -489,7 +489,7 @@ GetApprovalRequest 各種申請の取得
  @param id 各種申請ID
  @return ApiGetApprovalRequestRequest
 */
-func (a *ApprovalRequestsApiService) GetApprovalRequest(ctx context.Context, id int32) ApiGetApprovalRequestRequest {
+func (a *ApprovalRequestsApiService) GetApprovalRequest(ctx context.Context, id int64) ApiGetApprovalRequestRequest {
 	return ApiGetApprovalRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -641,12 +641,12 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestExecute(r ApiGetApprovalR
 type ApiGetApprovalRequestFormRequest struct {
 	ctx context.Context
 	ApiService *ApprovalRequestsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetApprovalRequestFormRequest) CompanyId(companyId int32) ApiGetApprovalRequestFormRequest {
+func (r ApiGetApprovalRequestFormRequest) CompanyId(companyId int64) ApiGetApprovalRequestFormRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -674,7 +674,7 @@ GetApprovalRequestForm 各種申請の申請フォームの取得
  @param id 申請フォームID
  @return ApiGetApprovalRequestFormRequest
 */
-func (a *ApprovalRequestsApiService) GetApprovalRequestForm(ctx context.Context, id int32) ApiGetApprovalRequestFormRequest {
+func (a *ApprovalRequestsApiService) GetApprovalRequestForm(ctx context.Context, id int64) ApiGetApprovalRequestFormRequest {
 	return ApiGetApprovalRequestFormRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -826,11 +826,11 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormExecute(r ApiGetAppro
 type ApiGetApprovalRequestFormsRequest struct {
 	ctx context.Context
 	ApiService *ApprovalRequestsApiService
-	companyId *int32
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetApprovalRequestFormsRequest) CompanyId(companyId int32) ApiGetApprovalRequestFormsRequest {
+func (r ApiGetApprovalRequestFormsRequest) CompanyId(companyId int64) ApiGetApprovalRequestFormsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -1001,23 +1001,23 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestFormsExecute(r ApiGetAppr
 type ApiGetApprovalRequestsRequest struct {
 	ctx context.Context
 	ApiService *ApprovalRequestsApiService
-	companyId *int32
+	companyId *int64
 	status *string
-	applicationNumber *int32
+	applicationNumber *int64
 	title *string
-	formId *int32
+	formId *int64
 	startApplicationDate *string
 	endApplicationDate *string
-	applicantId *int32
+	applicantId *int64
 	minAmount *int64
 	maxAmount *int64
-	approverId *int32
-	offset *int32
-	limit *int32
+	approverId *int64
+	offset *int64
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetApprovalRequestsRequest) CompanyId(companyId int32) ApiGetApprovalRequestsRequest {
+func (r ApiGetApprovalRequestsRequest) CompanyId(companyId int64) ApiGetApprovalRequestsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -1029,7 +1029,7 @@ func (r ApiGetApprovalRequestsRequest) Status(status string) ApiGetApprovalReque
 }
 
 // 申請No.
-func (r ApiGetApprovalRequestsRequest) ApplicationNumber(applicationNumber int32) ApiGetApprovalRequestsRequest {
+func (r ApiGetApprovalRequestsRequest) ApplicationNumber(applicationNumber int64) ApiGetApprovalRequestsRequest {
 	r.applicationNumber = &applicationNumber
 	return r
 }
@@ -1041,7 +1041,7 @@ func (r ApiGetApprovalRequestsRequest) Title(title string) ApiGetApprovalRequest
 }
 
 // 申請フォームID
-func (r ApiGetApprovalRequestsRequest) FormId(formId int32) ApiGetApprovalRequestsRequest {
+func (r ApiGetApprovalRequestsRequest) FormId(formId int64) ApiGetApprovalRequestsRequest {
 	r.formId = &formId
 	return r
 }
@@ -1059,7 +1059,7 @@ func (r ApiGetApprovalRequestsRequest) EndApplicationDate(endApplicationDate str
 }
 
 // 申請者のユーザーID
-func (r ApiGetApprovalRequestsRequest) ApplicantId(applicantId int32) ApiGetApprovalRequestsRequest {
+func (r ApiGetApprovalRequestsRequest) ApplicantId(applicantId int64) ApiGetApprovalRequestsRequest {
 	r.applicantId = &applicantId
 	return r
 }
@@ -1077,19 +1077,19 @@ func (r ApiGetApprovalRequestsRequest) MaxAmount(maxAmount int64) ApiGetApproval
 }
 
 // 承認者のユーザーID 承認者指定時には申請ステータスが申請中のものだけが取得可能です。
-func (r ApiGetApprovalRequestsRequest) ApproverId(approverId int32) ApiGetApprovalRequestsRequest {
+func (r ApiGetApprovalRequestsRequest) ApproverId(approverId int64) ApiGetApprovalRequestsRequest {
 	r.approverId = &approverId
 	return r
 }
 
 // 取得レコードのオフセット (デフォルト: 0)
-func (r ApiGetApprovalRequestsRequest) Offset(offset int32) ApiGetApprovalRequestsRequest {
+func (r ApiGetApprovalRequestsRequest) Offset(offset int64) ApiGetApprovalRequestsRequest {
 	r.offset = &offset
 	return r
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500)
-func (r ApiGetApprovalRequestsRequest) Limit(limit int32) ApiGetApprovalRequestsRequest {
+func (r ApiGetApprovalRequestsRequest) Limit(limit int64) ApiGetApprovalRequestsRequest {
 	r.limit = &limit
 	return r
 }
@@ -1308,7 +1308,7 @@ func (a *ApprovalRequestsApiService) GetApprovalRequestsExecute(r ApiGetApproval
 type ApiUpdateApprovalRequestRequest struct {
 	ctx context.Context
 	ApiService *ApprovalRequestsApiService
-	id int32
+	id int64
 	approvalRequestUpdateParams *ApprovalRequestUpdateParams
 }
 
@@ -1397,7 +1397,7 @@ UpdateApprovalRequest 各種申請の更新
  @param id 各種申請ID
  @return ApiUpdateApprovalRequestRequest
 */
-func (a *ApprovalRequestsApiService) UpdateApprovalRequest(ctx context.Context, id int32) ApiUpdateApprovalRequestRequest {
+func (a *ApprovalRequestsApiService) UpdateApprovalRequest(ctx context.Context, id int64) ApiUpdateApprovalRequestRequest {
 	return ApiUpdateApprovalRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1544,7 +1544,7 @@ func (a *ApprovalRequestsApiService) UpdateApprovalRequestExecute(r ApiUpdateApp
 type ApiUpdateApprovalRequestActionRequest struct {
 	ctx context.Context
 	ApiService *ApprovalRequestsApiService
-	id int32
+	id int64
 	approvalRequestActionCreateParams *ApprovalRequestActionCreateParams
 }
 
@@ -1612,7 +1612,7 @@ UpdateApprovalRequestAction 各種申請の承認操作
  @param id 各種申請ID
  @return ApiUpdateApprovalRequestActionRequest
 */
-func (a *ApprovalRequestsApiService) UpdateApprovalRequestAction(ctx context.Context, id int32) ApiUpdateApprovalRequestActionRequest {
+func (a *ApprovalRequestsApiService) UpdateApprovalRequestAction(ctx context.Context, id int64) ApiUpdateApprovalRequestActionRequest {
 	return ApiUpdateApprovalRequestActionRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -25,11 +25,11 @@ type InvoiceUpdateParams struct {
 	// 事業所担当者名 (デフォルトは請求書テンプレート情報が補完されます)
 	CompanyContactInfo *string `json:"company_contact_info,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 事業所名 (デフォルトは事業所設定情報が補完されます)
 	CompanyName *string `json:"company_name,omitempty"`
 	// 都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトは事業所設定情報が補完されます)
-	CompanyPrefectureCode *int32 `json:"company_prefecture_code,omitempty"`
+	CompanyPrefectureCode *int64 `json:"company_prefecture_code,omitempty"`
 	// 郵便番号 (デフォルトは事業所設定情報が補完されます)
 	CompanyZipcode *string `json:"company_zipcode,omitempty"`
 	// 概要
@@ -61,9 +61,9 @@ type InvoiceUpdateParams struct {
 	// 請求書に表示する取引先名
 	PartnerDisplayName string `json:"partner_display_name"`
 	// 取引先ID
-	PartnerId NullableInt32 `json:"partner_id,omitempty"`
+	PartnerId NullableInt64 `json:"partner_id,omitempty"`
 	// 取引先都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトはpartner_idもしくはpartner_codeで指定された取引先設定情報が補完されます)
-	PartnerPrefectureCode NullableInt32 `json:"partner_prefecture_code,omitempty"`
+	PartnerPrefectureCode NullableInt64 `json:"partner_prefecture_code,omitempty"`
 	// 敬称（御中、様、(空白)の3つから選択）
 	PartnerTitle NullableString `json:"partner_title"`
 	// 取引先郵便番号 (デフォルトはpartner_idもしくはpartner_codeで指定された取引先設定情報が補完されます)
@@ -84,7 +84,7 @@ type InvoiceUpdateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoiceUpdateParams(companyId int32, partnerDisplayName string, partnerTitle NullableString) *InvoiceUpdateParams {
+func NewInvoiceUpdateParams(companyId int64, partnerDisplayName string, partnerTitle NullableString) *InvoiceUpdateParams {
 	this := InvoiceUpdateParams{}
 	this.CompanyId = companyId
 	this.PartnerDisplayName = partnerDisplayName
@@ -229,9 +229,9 @@ func (o *InvoiceUpdateParams) SetCompanyContactInfo(v string) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *InvoiceUpdateParams) GetCompanyId() int32 {
+func (o *InvoiceUpdateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -240,7 +240,7 @@ func (o *InvoiceUpdateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *InvoiceUpdateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *InvoiceUpdateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -248,7 +248,7 @@ func (o *InvoiceUpdateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *InvoiceUpdateParams) SetCompanyId(v int32) {
+func (o *InvoiceUpdateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -285,9 +285,9 @@ func (o *InvoiceUpdateParams) SetCompanyName(v string) {
 }
 
 // GetCompanyPrefectureCode returns the CompanyPrefectureCode field value if set, zero value otherwise.
-func (o *InvoiceUpdateParams) GetCompanyPrefectureCode() int32 {
+func (o *InvoiceUpdateParams) GetCompanyPrefectureCode() int64 {
 	if o == nil || o.CompanyPrefectureCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CompanyPrefectureCode
@@ -295,7 +295,7 @@ func (o *InvoiceUpdateParams) GetCompanyPrefectureCode() int32 {
 
 // GetCompanyPrefectureCodeOk returns a tuple with the CompanyPrefectureCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceUpdateParams) GetCompanyPrefectureCodeOk() (*int32, bool) {
+func (o *InvoiceUpdateParams) GetCompanyPrefectureCodeOk() (*int64, bool) {
 	if o == nil || o.CompanyPrefectureCode == nil {
 		return nil, false
 	}
@@ -311,8 +311,8 @@ func (o *InvoiceUpdateParams) HasCompanyPrefectureCode() bool {
 	return false
 }
 
-// SetCompanyPrefectureCode gets a reference to the given int32 and assigns it to the CompanyPrefectureCode field.
-func (o *InvoiceUpdateParams) SetCompanyPrefectureCode(v int32) {
+// SetCompanyPrefectureCode gets a reference to the given int64 and assigns it to the CompanyPrefectureCode field.
+func (o *InvoiceUpdateParams) SetCompanyPrefectureCode(v int64) {
 	o.CompanyPrefectureCode = &v
 }
 
@@ -829,9 +829,9 @@ func (o *InvoiceUpdateParams) SetPartnerDisplayName(v string) {
 }
 
 // GetPartnerId returns the PartnerId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InvoiceUpdateParams) GetPartnerId() int32 {
+func (o *InvoiceUpdateParams) GetPartnerId() int64 {
 	if o == nil || o.PartnerId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerId.Get()
@@ -840,7 +840,7 @@ func (o *InvoiceUpdateParams) GetPartnerId() int32 {
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceUpdateParams) GetPartnerIdOk() (*int32, bool) {
+func (o *InvoiceUpdateParams) GetPartnerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -856,8 +856,8 @@ func (o *InvoiceUpdateParams) HasPartnerId() bool {
 	return false
 }
 
-// SetPartnerId gets a reference to the given NullableInt32 and assigns it to the PartnerId field.
-func (o *InvoiceUpdateParams) SetPartnerId(v int32) {
+// SetPartnerId gets a reference to the given NullableInt64 and assigns it to the PartnerId field.
+func (o *InvoiceUpdateParams) SetPartnerId(v int64) {
 	o.PartnerId.Set(&v)
 }
 // SetPartnerIdNil sets the value for PartnerId to be an explicit nil
@@ -871,9 +871,9 @@ func (o *InvoiceUpdateParams) UnsetPartnerId() {
 }
 
 // GetPartnerPrefectureCode returns the PartnerPrefectureCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InvoiceUpdateParams) GetPartnerPrefectureCode() int32 {
+func (o *InvoiceUpdateParams) GetPartnerPrefectureCode() int64 {
 	if o == nil || o.PartnerPrefectureCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerPrefectureCode.Get()
@@ -882,7 +882,7 @@ func (o *InvoiceUpdateParams) GetPartnerPrefectureCode() int32 {
 // GetPartnerPrefectureCodeOk returns a tuple with the PartnerPrefectureCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceUpdateParams) GetPartnerPrefectureCodeOk() (*int32, bool) {
+func (o *InvoiceUpdateParams) GetPartnerPrefectureCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -898,8 +898,8 @@ func (o *InvoiceUpdateParams) HasPartnerPrefectureCode() bool {
 	return false
 }
 
-// SetPartnerPrefectureCode gets a reference to the given NullableInt32 and assigns it to the PartnerPrefectureCode field.
-func (o *InvoiceUpdateParams) SetPartnerPrefectureCode(v int32) {
+// SetPartnerPrefectureCode gets a reference to the given NullableInt64 and assigns it to the PartnerPrefectureCode field.
+func (o *InvoiceUpdateParams) SetPartnerPrefectureCode(v int64) {
 	o.PartnerPrefectureCode.Set(&v)
 }
 // SetPartnerPrefectureCodeNil sets the value for PartnerPrefectureCode to be an explicit nil

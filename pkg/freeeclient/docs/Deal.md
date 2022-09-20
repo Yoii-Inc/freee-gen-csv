@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int64** | 金額 | 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Details** | Pointer to [**[]DealDetailsInner**](DealDetailsInner.md) | 取引の明細行 | [optional] 
-**DueAmount** | Pointer to **int32** | 支払残額 | [optional] 
+**DueAmount** | Pointer to **int64** | 支払残額 | [optional] 
 **DueDate** | Pointer to **string** | 支払期日 (yyyy-mm-dd) | [optional] 
-**Id** | **int32** | 取引ID | 
+**Id** | **int64** | 取引ID | 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
 **PartnerCode** | Pointer to **NullableString** | 取引先コード | [optional] 
-**PartnerId** | **int32** | 取引先ID | 
+**PartnerId** | **int64** | 取引先ID | 
 **Payments** | Pointer to [**[]DealPaymentsInner**](DealPaymentsInner.md) | 取引の支払行 | [optional] 
 **Receipts** | Pointer to [**[]DealReceiptsInner**](DealReceiptsInner.md) | 証憑ファイル（ファイルボックスのファイル） | [optional] 
 **RefNumber** | Pointer to **string** | 管理番号 | [optional] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewDeal
 
-`func NewDeal(amount int64, companyId int32, id int32, issueDate string, partnerId int32, status string, ) *Deal`
+`func NewDeal(amount int64, companyId int64, id int64, issueDate string, partnerId int64, status string, ) *Deal`
 
 NewDeal instantiates a new Deal object
 This constructor will assign default values to properties that have it defined,
@@ -61,20 +61,20 @@ SetAmount sets Amount field to given value.
 
 ### GetCompanyId
 
-`func (o *Deal) GetCompanyId() int32`
+`func (o *Deal) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *Deal) GetCompanyIdOk() (*int32, bool)`
+`func (o *Deal) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *Deal) SetCompanyId(v int32)`
+`func (o *Deal) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -106,20 +106,20 @@ HasDetails returns a boolean if a field has been set.
 
 ### GetDueAmount
 
-`func (o *Deal) GetDueAmount() int32`
+`func (o *Deal) GetDueAmount() int64`
 
 GetDueAmount returns the DueAmount field if non-nil, zero value otherwise.
 
 ### GetDueAmountOk
 
-`func (o *Deal) GetDueAmountOk() (*int32, bool)`
+`func (o *Deal) GetDueAmountOk() (*int64, bool)`
 
 GetDueAmountOk returns a tuple with the DueAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDueAmount
 
-`func (o *Deal) SetDueAmount(v int32)`
+`func (o *Deal) SetDueAmount(v int64)`
 
 SetDueAmount sets DueAmount field to given value.
 
@@ -156,20 +156,20 @@ HasDueDate returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *Deal) GetId() int32`
+`func (o *Deal) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Deal) GetIdOk() (*int32, bool)`
+`func (o *Deal) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Deal) SetId(v int32)`
+`func (o *Deal) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -231,20 +231,20 @@ HasPartnerCode returns a boolean if a field has been set.
 UnsetPartnerCode ensures that no value is present for PartnerCode, not even an explicit nil
 ### GetPartnerId
 
-`func (o *Deal) GetPartnerId() int32`
+`func (o *Deal) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *Deal) GetPartnerIdOk() (*int32, bool)`
+`func (o *Deal) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *Deal) SetPartnerId(v int32)`
+`func (o *Deal) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 

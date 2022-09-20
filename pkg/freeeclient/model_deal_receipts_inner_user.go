@@ -21,14 +21,14 @@ type DealReceiptsInnerUser struct {
 	// メールアドレス
 	Email string `json:"email"`
 	// ユーザーID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 }
 
 // NewDealReceiptsInnerUser instantiates a new DealReceiptsInnerUser object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealReceiptsInnerUser(email string, id int32) *DealReceiptsInnerUser {
+func NewDealReceiptsInnerUser(email string, id int64) *DealReceiptsInnerUser {
 	this := DealReceiptsInnerUser{}
 	this.Email = email
 	this.Id = id
@@ -110,9 +110,9 @@ func (o *DealReceiptsInnerUser) SetEmail(v string) {
 }
 
 // GetId returns the Id field value
-func (o *DealReceiptsInnerUser) GetId() int32 {
+func (o *DealReceiptsInnerUser) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -121,7 +121,7 @@ func (o *DealReceiptsInnerUser) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DealReceiptsInnerUser) GetIdOk() (*int32, bool) {
+func (o *DealReceiptsInnerUser) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,7 +129,7 @@ func (o *DealReceiptsInnerUser) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *DealReceiptsInnerUser) SetId(v int32) {
+func (o *DealReceiptsInnerUser) SetId(v int64) {
 	o.Id = v
 }
 

@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountCategoryName** | Pointer to **string** | 勘定科目カテゴリー名 | [optional] 
 **AccountGroupName** | Pointer to **string** | 決算書表示名(account_item_display_type:group指定時に決算書表示名の時のみ含まれる) | [optional] 
-**AccountItemId** | Pointer to **int32** | 勘定科目ID(勘定科目の時のみ含まれる) | [optional] 
+**AccountItemId** | Pointer to **int64** | 勘定科目ID(勘定科目の時のみ含まれる) | [optional] 
 **AccountItemName** | Pointer to **string** | 勘定科目名(勘定科目の時のみ含まれる) | [optional] 
-**ClosingBalance** | Pointer to **int32** | 期末残高 | [optional] 
-**HierarchyLevel** | Pointer to **int32** | 階層レベル | [optional] 
+**ClosingBalance** | Pointer to **int64** | 期末残高 | [optional] 
+**HierarchyLevel** | Pointer to **int64** | 階層レベル | [optional] 
 **Items** | Pointer to [**[]TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInnerItemsInner**](TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInnerItemsInner.md) | breakdown_display_type:item, account_item_display_type:account_item指定時のみ含まれる | [optional] 
-**LastYearClosingBalance** | Pointer to **int32** | 前年度期末残高 | [optional] 
+**LastYearClosingBalance** | Pointer to **int64** | 前年度期末残高 | [optional] 
 **ParentAccountCategoryName** | Pointer to **string** | 上位勘定科目カテゴリー名(勘定科目カテゴリーの時のみ、上層が存在する場合含まれる) | [optional] 
 **Partners** | Pointer to [**[]TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInnerPartnersInner**](TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInnerPartnersInner.md) | breakdown_display_type:partner, account_item_display_type:account_item指定時のみ含まれる | [optional] 
 **Sections** | Pointer to [**[]TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInnerSectionsInner**](TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInnerSectionsInner.md) | breakdown_display_type:section, account_item_display_type:account_item指定時のみ含まれる | [optional] 
@@ -92,20 +92,20 @@ HasAccountGroupName returns a boolean if a field has been set.
 
 ### GetAccountItemId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetAccountItemId() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetAccountItemId(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -142,20 +142,20 @@ HasAccountItemName returns a boolean if a field has been set.
 
 ### GetClosingBalance
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetClosingBalance() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetClosingBalance() int64`
 
 GetClosingBalance returns the ClosingBalance field if non-nil, zero value otherwise.
 
 ### GetClosingBalanceOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetClosingBalanceOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetClosingBalanceOk() (*int64, bool)`
 
 GetClosingBalanceOk returns a tuple with the ClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosingBalance
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetClosingBalance(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetClosingBalance(v int64)`
 
 SetClosingBalance sets ClosingBalance field to given value.
 
@@ -167,20 +167,20 @@ HasClosingBalance returns a boolean if a field has been set.
 
 ### GetHierarchyLevel
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetHierarchyLevel() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetHierarchyLevel() int64`
 
 GetHierarchyLevel returns the HierarchyLevel field if non-nil, zero value otherwise.
 
 ### GetHierarchyLevelOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetHierarchyLevelOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetHierarchyLevelOk() (*int64, bool)`
 
 GetHierarchyLevelOk returns a tuple with the HierarchyLevel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHierarchyLevel
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetHierarchyLevel(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetHierarchyLevel(v int64)`
 
 SetHierarchyLevel sets HierarchyLevel field to given value.
 
@@ -217,20 +217,20 @@ HasItems returns a boolean if a field has been set.
 
 ### GetLastYearClosingBalance
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetLastYearClosingBalance() int32`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetLastYearClosingBalance() int64`
 
 GetLastYearClosingBalance returns the LastYearClosingBalance field if non-nil, zero value otherwise.
 
 ### GetLastYearClosingBalanceOk
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetLastYearClosingBalanceOk() (*int32, bool)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) GetLastYearClosingBalanceOk() (*int64, bool)`
 
 GetLastYearClosingBalanceOk returns a tuple with the LastYearClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastYearClosingBalance
 
-`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetLastYearClosingBalance(v int32)`
+`func (o *TrialBsTwoYearsResponseTrialBsTwoYearsBalancesInner) SetLastYearClosingBalance(v int64)`
 
 SetLastYearClosingBalance sets LastYearClosingBalance field to given value.
 

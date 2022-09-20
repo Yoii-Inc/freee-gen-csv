@@ -5,28 +5,28 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountCategory** | **string** | 勘定科目カテゴリー | 
-**AccountCategoryId** | **int32** | 勘定科目のカテゴリーID | 
+**AccountCategoryId** | **int64** | 勘定科目のカテゴリーID | 
 **Available** | **bool** | 勘定科目の使用設定（true: 使用する、false: 使用しない） | 
 **Categories** | **[]string** |  | 
-**CorrespondingExpenseId** | Pointer to **NullableInt32** | 支出取引相手勘定科目ID | [optional] 
+**CorrespondingExpenseId** | Pointer to **NullableInt64** | 支出取引相手勘定科目ID | [optional] 
 **CorrespondingExpenseName** | Pointer to **NullableString** | 支出取引相手勘定科目名 | [optional] 
-**CorrespondingIncomeId** | Pointer to **NullableInt32** | 収入取引相手勘定科目ID | [optional] 
+**CorrespondingIncomeId** | Pointer to **NullableInt64** | 収入取引相手勘定科目ID | [optional] 
 **CorrespondingIncomeName** | Pointer to **NullableString** | 収入取引相手勘定科目名 | [optional] 
-**DefaultTaxCode** | **int32** | デフォルト設定がされている税区分コード | 
-**DefaultTaxId** | Pointer to **int32** | デフォルト設定がされている税区分ID | [optional] 
+**DefaultTaxCode** | **int64** | デフォルト設定がされている税区分コード | 
+**DefaultTaxId** | Pointer to **int64** | デフォルト設定がされている税区分ID | [optional] 
 **GroupName** | Pointer to **NullableString** | 決算書表示名（小カテゴリー） | [optional] 
-**Id** | **int32** | 勘定科目ID | 
+**Id** | **int64** | 勘定科目ID | 
 **Name** | **string** | 勘定科目名 (30文字以内) | 
 **Shortcut** | Pointer to **NullableString** | ショートカット1 (20文字以内) | [optional] 
 **ShortcutNum** | Pointer to **NullableString** | ショートカット2(勘定科目コード) (20文字以内) | [optional] 
-**TaxCode** | **int32** | 税区分コード | 
-**WalletableId** | **NullableInt32** | 口座ID | 
+**TaxCode** | **int64** | 税区分コード | 
+**WalletableId** | **NullableInt64** | 口座ID | 
 
 ## Methods
 
 ### NewAccountItemsResponseAccountItemsInner
 
-`func NewAccountItemsResponseAccountItemsInner(accountCategory string, accountCategoryId int32, available bool, categories []string, defaultTaxCode int32, id int32, name string, taxCode int32, walletableId NullableInt32, ) *AccountItemsResponseAccountItemsInner`
+`func NewAccountItemsResponseAccountItemsInner(accountCategory string, accountCategoryId int64, available bool, categories []string, defaultTaxCode int64, id int64, name string, taxCode int64, walletableId NullableInt64, ) *AccountItemsResponseAccountItemsInner`
 
 NewAccountItemsResponseAccountItemsInner instantiates a new AccountItemsResponseAccountItemsInner object
 This constructor will assign default values to properties that have it defined,
@@ -63,20 +63,20 @@ SetAccountCategory sets AccountCategory field to given value.
 
 ### GetAccountCategoryId
 
-`func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryId() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryId() int64`
 
 GetAccountCategoryId returns the AccountCategoryId field if non-nil, zero value otherwise.
 
 ### GetAccountCategoryIdOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryIdOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetAccountCategoryIdOk() (*int64, bool)`
 
 GetAccountCategoryIdOk returns a tuple with the AccountCategoryId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountCategoryId
 
-`func (o *AccountItemsResponseAccountItemsInner) SetAccountCategoryId(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetAccountCategoryId(v int64)`
 
 SetAccountCategoryId sets AccountCategoryId field to given value.
 
@@ -123,20 +123,20 @@ SetCategories sets Categories field to given value.
 
 ### GetCorrespondingExpenseId
 
-`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseId() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseId() int64`
 
 GetCorrespondingExpenseId returns the CorrespondingExpenseId field if non-nil, zero value otherwise.
 
 ### GetCorrespondingExpenseIdOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseIdOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingExpenseIdOk() (*int64, bool)`
 
 GetCorrespondingExpenseIdOk returns a tuple with the CorrespondingExpenseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCorrespondingExpenseId
 
-`func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingExpenseId(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingExpenseId(v int64)`
 
 SetCorrespondingExpenseId sets CorrespondingExpenseId field to given value.
 
@@ -193,20 +193,20 @@ HasCorrespondingExpenseName returns a boolean if a field has been set.
 UnsetCorrespondingExpenseName ensures that no value is present for CorrespondingExpenseName, not even an explicit nil
 ### GetCorrespondingIncomeId
 
-`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeId() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeId() int64`
 
 GetCorrespondingIncomeId returns the CorrespondingIncomeId field if non-nil, zero value otherwise.
 
 ### GetCorrespondingIncomeIdOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeIdOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetCorrespondingIncomeIdOk() (*int64, bool)`
 
 GetCorrespondingIncomeIdOk returns a tuple with the CorrespondingIncomeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCorrespondingIncomeId
 
-`func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingIncomeId(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetCorrespondingIncomeId(v int64)`
 
 SetCorrespondingIncomeId sets CorrespondingIncomeId field to given value.
 
@@ -263,40 +263,40 @@ HasCorrespondingIncomeName returns a boolean if a field has been set.
 UnsetCorrespondingIncomeName ensures that no value is present for CorrespondingIncomeName, not even an explicit nil
 ### GetDefaultTaxCode
 
-`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCode() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCode() int64`
 
 GetDefaultTaxCode returns the DefaultTaxCode field if non-nil, zero value otherwise.
 
 ### GetDefaultTaxCodeOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCodeOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxCodeOk() (*int64, bool)`
 
 GetDefaultTaxCodeOk returns a tuple with the DefaultTaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultTaxCode
 
-`func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxCode(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxCode(v int64)`
 
 SetDefaultTaxCode sets DefaultTaxCode field to given value.
 
 
 ### GetDefaultTaxId
 
-`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxId() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxId() int64`
 
 GetDefaultTaxId returns the DefaultTaxId field if non-nil, zero value otherwise.
 
 ### GetDefaultTaxIdOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxIdOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetDefaultTaxIdOk() (*int64, bool)`
 
 GetDefaultTaxIdOk returns a tuple with the DefaultTaxId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultTaxId
 
-`func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxId(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetDefaultTaxId(v int64)`
 
 SetDefaultTaxId sets DefaultTaxId field to given value.
 
@@ -343,20 +343,20 @@ HasGroupName returns a boolean if a field has been set.
 UnsetGroupName ensures that no value is present for GroupName, not even an explicit nil
 ### GetId
 
-`func (o *AccountItemsResponseAccountItemsInner) GetId() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetIdOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *AccountItemsResponseAccountItemsInner) SetId(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -453,40 +453,40 @@ HasShortcutNum returns a boolean if a field has been set.
 UnsetShortcutNum ensures that no value is present for ShortcutNum, not even an explicit nil
 ### GetTaxCode
 
-`func (o *AccountItemsResponseAccountItemsInner) GetTaxCode() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetTaxCodeOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *AccountItemsResponseAccountItemsInner) SetTaxCode(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 
 
 ### GetWalletableId
 
-`func (o *AccountItemsResponseAccountItemsInner) GetWalletableId() int32`
+`func (o *AccountItemsResponseAccountItemsInner) GetWalletableId() int64`
 
 GetWalletableId returns the WalletableId field if non-nil, zero value otherwise.
 
 ### GetWalletableIdOk
 
-`func (o *AccountItemsResponseAccountItemsInner) GetWalletableIdOk() (*int32, bool)`
+`func (o *AccountItemsResponseAccountItemsInner) GetWalletableIdOk() (*int64, bool)`
 
 GetWalletableIdOk returns a tuple with the WalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletableId
 
-`func (o *AccountItemsResponseAccountItemsInner) SetWalletableId(v int32)`
+`func (o *AccountItemsResponseAccountItemsInner) SetWalletableId(v int64)`
 
 SetWalletableId sets WalletableId field to given value.
 

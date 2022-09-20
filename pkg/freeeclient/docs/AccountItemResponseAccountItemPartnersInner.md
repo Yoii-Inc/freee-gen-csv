@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | 取引先ID | 
+**Id** | **int64** | 取引先ID | 
 **Name** | **string** | 取引先 | 
 
 ## Methods
 
 ### NewAccountItemResponseAccountItemPartnersInner
 
-`func NewAccountItemResponseAccountItemPartnersInner(id int32, name string, ) *AccountItemResponseAccountItemPartnersInner`
+`func NewAccountItemResponseAccountItemPartnersInner(id int64, name string, ) *AccountItemResponseAccountItemPartnersInner`
 
 NewAccountItemResponseAccountItemPartnersInner instantiates a new AccountItemResponseAccountItemPartnersInner object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *AccountItemResponseAccountItemPartnersInner) GetId() int32`
+`func (o *AccountItemResponseAccountItemPartnersInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *AccountItemResponseAccountItemPartnersInner) GetIdOk() (*int32, bool)`
+`func (o *AccountItemResponseAccountItemPartnersInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *AccountItemResponseAccountItemPartnersInner) SetId(v int32)`
+`func (o *AccountItemResponseAccountItemPartnersInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

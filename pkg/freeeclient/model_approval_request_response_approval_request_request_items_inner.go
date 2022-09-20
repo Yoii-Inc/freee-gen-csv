@@ -17,7 +17,7 @@ import (
 // ApprovalRequestResponseApprovalRequestRequestItemsInner struct for ApprovalRequestResponseApprovalRequestRequestItemsInner
 type ApprovalRequestResponseApprovalRequestRequestItemsInner struct {
 	// 項目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 項目タイプ(title: 申請タイトル, single_line: 自由記述形式 1行, multi_line: 自由記述形式 複数行, select: プルダウン, date: 日付, amount: 金額, receipt: 添付ファイル, section: 部門ID, partner: 取引先ID, ninja_sign_document: 契約書（freeeサイン連携）)
 	Type string `json:"type"`
 	// 項目の値
@@ -28,7 +28,7 @@ type ApprovalRequestResponseApprovalRequestRequestItemsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestResponseApprovalRequestRequestItemsInner(id int32, type_ string, value string) *ApprovalRequestResponseApprovalRequestRequestItemsInner {
+func NewApprovalRequestResponseApprovalRequestRequestItemsInner(id int64, type_ string, value string) *ApprovalRequestResponseApprovalRequestRequestItemsInner {
 	this := ApprovalRequestResponseApprovalRequestRequestItemsInner{}
 	this.Id = id
 	this.Type = type_
@@ -45,9 +45,9 @@ func NewApprovalRequestResponseApprovalRequestRequestItemsInnerWithDefaults() *A
 }
 
 // GetId returns the Id field value
-func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetId() int32 {
+func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetId() int32 
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetIdOk() (*int32, bool) {
+func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetIdOk() (*in
 }
 
 // SetId sets field value
-func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) SetId(v int32) {
+func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) SetId(v int64) {
 	o.Id = v
 }
 

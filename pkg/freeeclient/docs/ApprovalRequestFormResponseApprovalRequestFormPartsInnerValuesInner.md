@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | 選択項目名 | 
-**Order** | **int32** | 順序 | 
+**Order** | **int64** | 順序 | 
 
 ## Methods
 
 ### NewApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner
 
-`func NewApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner(name string, order int32, ) *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner`
+`func NewApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner(name string, order int64, ) *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner`
 
 NewApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner instantiates a new ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetName sets Name field to given value.
 
 ### GetOrder
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrder() int32`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrder() int64`
 
 GetOrder returns the Order field if non-nil, zero value otherwise.
 
 ### GetOrderOk
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrderOk() (*int32, bool)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrderOk() (*int64, bool)`
 
 GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrder
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) SetOrder(v int32)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) SetOrder(v int64)`
 
 SetOrder sets Order field to given value.
 

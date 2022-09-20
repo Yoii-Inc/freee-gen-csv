@@ -183,12 +183,12 @@ func (a *PartnersApiService) CreatePartnerExecute(r ApiCreatePartnerRequest) (*P
 type ApiDestroyPartnerRequest struct {
 	ctx context.Context
 	ApiService *PartnersApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyPartnerRequest) CompanyId(companyId int32) ApiDestroyPartnerRequest {
+func (r ApiDestroyPartnerRequest) CompanyId(companyId int64) ApiDestroyPartnerRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -209,7 +209,7 @@ DestroyPartner 取引先の削除
  @param id 取引先ID
  @return ApiDestroyPartnerRequest
 */
-func (a *PartnersApiService) DestroyPartner(ctx context.Context, id int32) ApiDestroyPartnerRequest {
+func (a *PartnersApiService) DestroyPartner(ctx context.Context, id int64) ApiDestroyPartnerRequest {
 	return ApiDestroyPartnerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -350,12 +350,12 @@ func (a *PartnersApiService) DestroyPartnerExecute(r ApiDestroyPartnerRequest) (
 type ApiGetPartnerRequest struct {
 	ctx context.Context
 	ApiService *PartnersApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetPartnerRequest) CompanyId(companyId int32) ApiGetPartnerRequest {
+func (r ApiGetPartnerRequest) CompanyId(companyId int64) ApiGetPartnerRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -378,7 +378,7 @@ GetPartner 取引先の取得
  @param id 取引先ID
  @return ApiGetPartnerRequest
 */
-func (a *PartnersApiService) GetPartner(ctx context.Context, id int32) ApiGetPartnerRequest {
+func (a *PartnersApiService) GetPartner(ctx context.Context, id int64) ApiGetPartnerRequest {
 	return ApiGetPartnerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -530,16 +530,16 @@ func (a *PartnersApiService) GetPartnerExecute(r ApiGetPartnerRequest) (*Partner
 type ApiGetPartnersRequest struct {
 	ctx context.Context
 	ApiService *PartnersApiService
-	companyId *int32
+	companyId *int64
 	startUpdateDate *string
 	endUpdateDate *string
 	offset *int64
-	limit *int32
+	limit *int64
 	keyword *string
 }
 
 // 事業所ID
-func (r ApiGetPartnersRequest) CompanyId(companyId int32) ApiGetPartnersRequest {
+func (r ApiGetPartnersRequest) CompanyId(companyId int64) ApiGetPartnersRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -563,7 +563,7 @@ func (r ApiGetPartnersRequest) Offset(offset int64) ApiGetPartnersRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000)
-func (r ApiGetPartnersRequest) Limit(limit int32) ApiGetPartnersRequest {
+func (r ApiGetPartnersRequest) Limit(limit int64) ApiGetPartnersRequest {
 	r.limit = &limit
 	return r
 }
@@ -740,7 +740,7 @@ func (a *PartnersApiService) GetPartnersExecute(r ApiGetPartnersRequest) (*Partn
 type ApiUpdatePartnerRequest struct {
 	ctx context.Context
 	ApiService *PartnersApiService
-	id int32
+	id int64
 	partnerUpdateParams *PartnerUpdateParams
 }
 
@@ -770,7 +770,7 @@ UpdatePartner 取引先の更新
  @param id 取引先ID
  @return ApiUpdatePartnerRequest
 */
-func (a *PartnersApiService) UpdatePartner(ctx context.Context, id int32) ApiUpdatePartnerRequest {
+func (a *PartnersApiService) UpdatePartner(ctx context.Context, id int64) ApiUpdatePartnerRequest {
 	return ApiUpdatePartnerRequest{
 		ApiService: a,
 		ctx: ctx,

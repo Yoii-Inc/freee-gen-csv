@@ -21,7 +21,7 @@ type DealCreateResponseDealReceiptsInner struct {
 	// メモ
 	Description *string `json:"description,omitempty"`
 	// 証憑ファイルID（ファイルボックスのファイルID）
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 発生日
 	IssueDate *string `json:"issue_date,omitempty"`
 	// MIMEタイプ
@@ -38,7 +38,7 @@ type DealCreateResponseDealReceiptsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealCreateResponseDealReceiptsInner(createdAt string, id int32, mimeType string, origin string, status string, user DealReceiptsInnerUser) *DealCreateResponseDealReceiptsInner {
+func NewDealCreateResponseDealReceiptsInner(createdAt string, id int64, mimeType string, origin string, status string, user DealReceiptsInnerUser) *DealCreateResponseDealReceiptsInner {
 	this := DealCreateResponseDealReceiptsInner{}
 	this.CreatedAt = createdAt
 	this.Id = id
@@ -114,9 +114,9 @@ func (o *DealCreateResponseDealReceiptsInner) SetDescription(v string) {
 }
 
 // GetId returns the Id field value
-func (o *DealCreateResponseDealReceiptsInner) GetId() int32 {
+func (o *DealCreateResponseDealReceiptsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -125,7 +125,7 @@ func (o *DealCreateResponseDealReceiptsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDealReceiptsInner) GetIdOk() (*int32, bool) {
+func (o *DealCreateResponseDealReceiptsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,7 +133,7 @@ func (o *DealCreateResponseDealReceiptsInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *DealCreateResponseDealReceiptsInner) SetId(v int32) {
+func (o *DealCreateResponseDealReceiptsInner) SetId(v int64) {
 	o.Id = v
 }
 

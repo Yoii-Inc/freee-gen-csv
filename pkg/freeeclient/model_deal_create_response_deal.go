@@ -19,21 +19,21 @@ type DealCreateResponseDeal struct {
 	// 金額
 	Amount int64 `json:"amount"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 取引の明細行
 	Details []DealDetailsInner `json:"details,omitempty"`
 	// 支払残額
-	DueAmount *int32 `json:"due_amount,omitempty"`
+	DueAmount *int64 `json:"due_amount,omitempty"`
 	// 支払期日 (yyyy-mm-dd)
 	DueDate *string `json:"due_date,omitempty"`
 	// 取引ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 発生日 (yyyy-mm-dd)
 	IssueDate string `json:"issue_date"`
 	// 取引先コード
 	PartnerCode NullableString `json:"partner_code,omitempty"`
 	// 取引先ID
-	PartnerId int32 `json:"partner_id"`
+	PartnerId int64 `json:"partner_id"`
 	// 取引の支払行
 	Payments []DealPaymentsInner `json:"payments,omitempty"`
 	// 証憑ファイル（ファイルボックスのファイル）
@@ -50,7 +50,7 @@ type DealCreateResponseDeal struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealCreateResponseDeal(amount int64, companyId int32, id int32, issueDate string, partnerId int32, status string) *DealCreateResponseDeal {
+func NewDealCreateResponseDeal(amount int64, companyId int64, id int64, issueDate string, partnerId int64, status string) *DealCreateResponseDeal {
 	this := DealCreateResponseDeal{}
 	this.Amount = amount
 	this.CompanyId = companyId
@@ -94,9 +94,9 @@ func (o *DealCreateResponseDeal) SetAmount(v int64) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *DealCreateResponseDeal) GetCompanyId() int32 {
+func (o *DealCreateResponseDeal) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -105,7 +105,7 @@ func (o *DealCreateResponseDeal) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetCompanyIdOk() (*int32, bool) {
+func (o *DealCreateResponseDeal) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *DealCreateResponseDeal) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *DealCreateResponseDeal) SetCompanyId(v int32) {
+func (o *DealCreateResponseDeal) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -150,9 +150,9 @@ func (o *DealCreateResponseDeal) SetDetails(v []DealDetailsInner) {
 }
 
 // GetDueAmount returns the DueAmount field value if set, zero value otherwise.
-func (o *DealCreateResponseDeal) GetDueAmount() int32 {
+func (o *DealCreateResponseDeal) GetDueAmount() int64 {
 	if o == nil || o.DueAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DueAmount
@@ -160,7 +160,7 @@ func (o *DealCreateResponseDeal) GetDueAmount() int32 {
 
 // GetDueAmountOk returns a tuple with the DueAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetDueAmountOk() (*int32, bool) {
+func (o *DealCreateResponseDeal) GetDueAmountOk() (*int64, bool) {
 	if o == nil || o.DueAmount == nil {
 		return nil, false
 	}
@@ -176,8 +176,8 @@ func (o *DealCreateResponseDeal) HasDueAmount() bool {
 	return false
 }
 
-// SetDueAmount gets a reference to the given int32 and assigns it to the DueAmount field.
-func (o *DealCreateResponseDeal) SetDueAmount(v int32) {
+// SetDueAmount gets a reference to the given int64 and assigns it to the DueAmount field.
+func (o *DealCreateResponseDeal) SetDueAmount(v int64) {
 	o.DueAmount = &v
 }
 
@@ -214,9 +214,9 @@ func (o *DealCreateResponseDeal) SetDueDate(v string) {
 }
 
 // GetId returns the Id field value
-func (o *DealCreateResponseDeal) GetId() int32 {
+func (o *DealCreateResponseDeal) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -225,7 +225,7 @@ func (o *DealCreateResponseDeal) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetIdOk() (*int32, bool) {
+func (o *DealCreateResponseDeal) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -233,7 +233,7 @@ func (o *DealCreateResponseDeal) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *DealCreateResponseDeal) SetId(v int32) {
+func (o *DealCreateResponseDeal) SetId(v int64) {
 	o.Id = v
 }
 
@@ -304,9 +304,9 @@ func (o *DealCreateResponseDeal) UnsetPartnerCode() {
 }
 
 // GetPartnerId returns the PartnerId field value
-func (o *DealCreateResponseDeal) GetPartnerId() int32 {
+func (o *DealCreateResponseDeal) GetPartnerId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -315,7 +315,7 @@ func (o *DealCreateResponseDeal) GetPartnerId() int32 {
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateResponseDeal) GetPartnerIdOk() (*int32, bool) {
+func (o *DealCreateResponseDeal) GetPartnerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -323,7 +323,7 @@ func (o *DealCreateResponseDeal) GetPartnerIdOk() (*int32, bool) {
 }
 
 // SetPartnerId sets field value
-func (o *DealCreateResponseDeal) SetPartnerId(v int32) {
+func (o *DealCreateResponseDeal) SetPartnerId(v int64) {
 	o.PartnerId = v
 }
 

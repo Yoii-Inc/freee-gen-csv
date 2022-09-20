@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClosingBalance** | Pointer to **int32** | 期末残高 | [optional] 
-**Id** | **int32** | セグメント3タグID | 
+**ClosingBalance** | Pointer to **int64** | 期末残高 | [optional] 
+**Id** | **int64** | セグメント3タグID | 
 **Name** | Pointer to **string** | セグメント3タグ名 | [optional] 
 
 ## Methods
 
 ### NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner
 
-`func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner(id int32, ) *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner`
+`func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner(id int64, ) *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner`
 
 NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner instantiates a new TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetClosingBalance
 
-`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetClosingBalance() int32`
+`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetClosingBalance() int64`
 
 GetClosingBalance returns the ClosingBalance field if non-nil, zero value otherwise.
 
 ### GetClosingBalanceOk
 
-`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetClosingBalanceOk() (*int32, bool)`
+`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetClosingBalanceOk() (*int64, bool)`
 
 GetClosingBalanceOk returns a tuple with the ClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosingBalance
 
-`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) SetClosingBalance(v int32)`
+`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) SetClosingBalance(v int64)`
 
 SetClosingBalance sets ClosingBalance field to given value.
 
@@ -54,20 +54,20 @@ HasClosingBalance returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetId() int32`
+`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetIdOk() (*int32, bool)`
+`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) SetId(v int32)`
+`func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerSegment3TagsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

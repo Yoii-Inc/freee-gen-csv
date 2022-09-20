@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountItemId** | **int32** | 勘定科目ID | 
+**AccountItemId** | **int64** | 勘定科目ID | 
 **Amount** | **int64** | 取引金額 | 
 **Description** | Pointer to **string** | 備考 | [optional] 
 **EntrySide** | **string** | 貸借（貸方: credit, 借方: debit） | 
 **Id** | **int64** | 取引行ID | 
-**ItemId** | Pointer to **NullableInt32** | 品目ID | [optional] 
-**SectionId** | Pointer to **NullableInt32** | 部門ID | [optional] 
+**ItemId** | Pointer to **NullableInt64** | 品目ID | [optional] 
+**SectionId** | Pointer to **NullableInt64** | 部門ID | [optional] 
 **Segment1TagId** | Pointer to **NullableInt64** | セグメント１ID | [optional] 
 **Segment2TagId** | Pointer to **NullableInt64** | セグメント２ID | [optional] 
 **Segment3TagId** | Pointer to **NullableInt64** | セグメント３ID | [optional] 
-**TagIds** | Pointer to **[]int32** | メモタグID | [optional] 
-**TaxCode** | **int32** | 税区分コード | 
-**Vat** | **int32** | 消費税額 | 
+**TagIds** | Pointer to **[]int64** | メモタグID | [optional] 
+**TaxCode** | **int64** | 税区分コード | 
+**Vat** | **int64** | 消費税額 | 
 
 ## Methods
 
 ### NewDealDetailsInner
 
-`func NewDealDetailsInner(accountItemId int32, amount int64, entrySide string, id int64, taxCode int32, vat int32, ) *DealDetailsInner`
+`func NewDealDetailsInner(accountItemId int64, amount int64, entrySide string, id int64, taxCode int64, vat int64, ) *DealDetailsInner`
 
 NewDealDetailsInner instantiates a new DealDetailsInner object
 This constructor will assign default values to properties that have it defined,
@@ -39,20 +39,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountItemId
 
-`func (o *DealDetailsInner) GetAccountItemId() int32`
+`func (o *DealDetailsInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *DealDetailsInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *DealDetailsInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *DealDetailsInner) SetAccountItemId(v int32)`
+`func (o *DealDetailsInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -144,20 +144,20 @@ SetId sets Id field to given value.
 
 ### GetItemId
 
-`func (o *DealDetailsInner) GetItemId() int32`
+`func (o *DealDetailsInner) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *DealDetailsInner) GetItemIdOk() (*int32, bool)`
+`func (o *DealDetailsInner) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *DealDetailsInner) SetItemId(v int32)`
+`func (o *DealDetailsInner) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -179,20 +179,20 @@ HasItemId returns a boolean if a field has been set.
 UnsetItemId ensures that no value is present for ItemId, not even an explicit nil
 ### GetSectionId
 
-`func (o *DealDetailsInner) GetSectionId() int32`
+`func (o *DealDetailsInner) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *DealDetailsInner) GetSectionIdOk() (*int32, bool)`
+`func (o *DealDetailsInner) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *DealDetailsInner) SetSectionId(v int32)`
+`func (o *DealDetailsInner) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -319,20 +319,20 @@ HasSegment3TagId returns a boolean if a field has been set.
 UnsetSegment3TagId ensures that no value is present for Segment3TagId, not even an explicit nil
 ### GetTagIds
 
-`func (o *DealDetailsInner) GetTagIds() []int32`
+`func (o *DealDetailsInner) GetTagIds() []int64`
 
 GetTagIds returns the TagIds field if non-nil, zero value otherwise.
 
 ### GetTagIdsOk
 
-`func (o *DealDetailsInner) GetTagIdsOk() (*[]int32, bool)`
+`func (o *DealDetailsInner) GetTagIdsOk() (*[]int64, bool)`
 
 GetTagIdsOk returns a tuple with the TagIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagIds
 
-`func (o *DealDetailsInner) SetTagIds(v []int32)`
+`func (o *DealDetailsInner) SetTagIds(v []int64)`
 
 SetTagIds sets TagIds field to given value.
 
@@ -344,40 +344,40 @@ HasTagIds returns a boolean if a field has been set.
 
 ### GetTaxCode
 
-`func (o *DealDetailsInner) GetTaxCode() int32`
+`func (o *DealDetailsInner) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *DealDetailsInner) GetTaxCodeOk() (*int32, bool)`
+`func (o *DealDetailsInner) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *DealDetailsInner) SetTaxCode(v int32)`
+`func (o *DealDetailsInner) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 
 
 ### GetVat
 
-`func (o *DealDetailsInner) GetVat() int32`
+`func (o *DealDetailsInner) GetVat() int64`
 
 GetVat returns the Vat field if non-nil, zero value otherwise.
 
 ### GetVatOk
 
-`func (o *DealDetailsInner) GetVatOk() (*int32, bool)`
+`func (o *DealDetailsInner) GetVatOk() (*int64, bool)`
 
 GetVatOk returns a tuple with the Vat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVat
 
-`func (o *DealDetailsInner) SetVat(v int32)`
+`func (o *DealDetailsInner) SetVat(v int64)`
 
 SetVat sets Vat field to given value.
 

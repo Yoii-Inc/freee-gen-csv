@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **CompanyAddress1** | Pointer to **NullableString** | 市区町村・番地 | [optional] 
 **CompanyAddress2** | Pointer to **NullableString** | 建物名・部屋番号など | [optional] 
 **CompanyContactInfo** | Pointer to **NullableString** | 事業所担当者名 | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **CompanyName** | **string** | 事業所名 | 
-**CompanyPrefectureCode** | Pointer to **NullableInt32** | 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄 | [optional] 
+**CompanyPrefectureCode** | Pointer to **NullableInt64** | 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄 | [optional] 
 **CompanyPrefectureName** | Pointer to **NullableString** | 都道府県 | [optional] 
 **CompanyZipcode** | Pointer to **NullableString** | 郵便番号 | [optional] 
-**DealId** | Pointer to **NullableInt32** | 取引ID (invoice_statusがsubmitted, unsubmittedの時IDが表示されます) | [optional] 
+**DealId** | Pointer to **NullableInt64** | 取引ID (invoice_statusがsubmitted, unsubmittedの時IDが表示されます) | [optional] 
 **Description** | Pointer to **NullableString** | 概要 | [optional] 
 **DueDate** | Pointer to **NullableString** | 期日 (yyyy-mm-dd) | [optional] 
-**Id** | **int32** | 請求書ID | 
+**Id** | **int64** | 請求書ID | 
 **InvoiceContents** | Pointer to [**[]InvoiceIndexResponseInvoicesInnerInvoiceContentsInner**](InvoiceIndexResponseInvoicesInnerInvoiceContentsInner.md) | 請求内容 | [optional] 
 **InvoiceLayout** | **string** | 請求書レイアウト * &#x60;default_classic&#x60; - レイアウト１/クラシック (デフォルト)  * &#x60;standard_classic&#x60; - レイアウト２/クラシック  * &#x60;envelope_classic&#x60; - 封筒１/クラシック  * &#x60;carried_forward_standard_classic&#x60; - レイアウト３（繰越金額欄あり）/クラシック  * &#x60;carried_forward_envelope_classic&#x60; - 封筒２（繰越金額欄あり）/クラシック  * &#x60;default_modern&#x60; - レイアウト１/モダン  * &#x60;standard_modern&#x60; - レイアウト２/モダン  * &#x60;envelope_modern&#x60; - 封筒/モダン | 
 **InvoiceNumber** | **string** | 請求書番号 | 
@@ -30,9 +30,9 @@ Name | Type | Description | Notes
 **PartnerCode** | Pointer to **NullableString** | 取引先コード | [optional] 
 **PartnerContactInfo** | Pointer to **NullableString** | 取引先担当者名 | [optional] 
 **PartnerDisplayName** | Pointer to **NullableString** | 請求書に表示する取引先名 | [optional] 
-**PartnerId** | **NullableInt32** | 取引先ID | 
+**PartnerId** | **NullableInt64** | 取引先ID | 
 **PartnerName** | Pointer to **NullableString** | 取引先名 | [optional] 
-**PartnerPrefectureCode** | Pointer to **NullableInt32** | 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄 | [optional] 
+**PartnerPrefectureCode** | Pointer to **NullableInt64** | 都道府県コード（-1: 設定しない、0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄 | [optional] 
 **PartnerPrefectureName** | Pointer to **NullableString** | 都道府県 | [optional] 
 **PartnerTitle** | Pointer to **NullableString** | 敬称（御中、様、(空白)の3つから選択） | [optional] 
 **PartnerZipcode** | Pointer to **NullableString** | 郵便番号 | [optional] 
@@ -41,13 +41,13 @@ Name | Type | Description | Notes
 **PaymentStatus** | Pointer to **string** | 入金ステータス  (unsettled: 入金待ち, settled: 入金済み) | [optional] 
 **PaymentType** | **string** | 支払方法 (振込: transfer, 引き落とし: direct_debit) | 
 **PostingStatus** | **string** | 郵送ステータス(unrequested: リクエスト前, preview_registered: プレビュー登録, preview_failed: プレビュー登録失敗, ordered: 注文中, order_failed: 注文失敗, printing: 印刷中, canceled: キャンセル, posted: 投函済み) | 
-**RelatedQuotationIds** | Pointer to **[]int32** | 関連する見積書ID(配列)&lt;br&gt; 下記で作成したものが該当します。  &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/203318410#1-2\&quot; target&#x3D;\&quot;_blank\&quot;&gt;見積書・納品書を納品書・請求書に変換する&lt;/a&gt;&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/209076226\&quot; target&#x3D;\&quot;_blank\&quot;&gt;複数の見積書・納品書から合算請求書を作成する&lt;/a&gt;&lt;br&gt;  | [optional] 
-**SubTotal** | Pointer to **int32** | 小計 | [optional] 
+**RelatedQuotationIds** | Pointer to **[]int64** | 関連する見積書ID(配列)&lt;br&gt; 下記で作成したものが該当します。  &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/203318410#1-2\&quot; target&#x3D;\&quot;_blank\&quot;&gt;見積書・納品書を納品書・請求書に変換する&lt;/a&gt;&lt;br&gt; &lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/209076226\&quot; target&#x3D;\&quot;_blank\&quot;&gt;複数の見積書・納品書から合算請求書を作成する&lt;/a&gt;&lt;br&gt;  | [optional] 
+**SubTotal** | Pointer to **int64** | 小計 | [optional] 
 **TaxEntryMethod** | **string** | 請求書の消費税計算方法(inclusive: 内税, exclusive: 外税) | 
 **Title** | Pointer to **NullableString** | タイトル | [optional] 
-**TotalAmount** | **int32** | 合計金額 | 
+**TotalAmount** | **int64** | 合計金額 | 
 **TotalAmountPerVatRate** | [**InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate**](InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate.md) |  | 
-**TotalVat** | Pointer to **int32** | 合計金額 | [optional] 
+**TotalVat** | Pointer to **int64** | 合計金額 | [optional] 
 **WebConfirmedAt** | Pointer to **NullableString** | Web共有取引先確認日時(最新) | [optional] 
 **WebDownloadedAt** | Pointer to **NullableString** | Web共有ダウンロード日時(最新) | [optional] 
 **WebPublishedAt** | Pointer to **NullableString** | Web共有日時(最新) | [optional] 
@@ -56,7 +56,7 @@ Name | Type | Description | Notes
 
 ### NewInvoiceResponseInvoice
 
-`func NewInvoiceResponseInvoice(companyId int32, companyName string, id int32, invoiceLayout string, invoiceNumber string, invoiceStatus string, issueDate string, partnerId NullableInt32, paymentType string, postingStatus string, taxEntryMethod string, totalAmount int32, totalAmountPerVatRate InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate, ) *InvoiceResponseInvoice`
+`func NewInvoiceResponseInvoice(companyId int64, companyName string, id int64, invoiceLayout string, invoiceNumber string, invoiceStatus string, issueDate string, partnerId NullableInt64, paymentType string, postingStatus string, taxEntryMethod string, totalAmount int64, totalAmountPerVatRate InvoiceIndexResponseInvoicesInnerTotalAmountPerVatRate, ) *InvoiceResponseInvoice`
 
 NewInvoiceResponseInvoice instantiates a new InvoiceResponseInvoice object
 This constructor will assign default values to properties that have it defined,
@@ -213,20 +213,20 @@ HasCompanyContactInfo returns a boolean if a field has been set.
 UnsetCompanyContactInfo ensures that no value is present for CompanyContactInfo, not even an explicit nil
 ### GetCompanyId
 
-`func (o *InvoiceResponseInvoice) GetCompanyId() int32`
+`func (o *InvoiceResponseInvoice) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *InvoiceResponseInvoice) GetCompanyIdOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *InvoiceResponseInvoice) SetCompanyId(v int32)`
+`func (o *InvoiceResponseInvoice) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -253,20 +253,20 @@ SetCompanyName sets CompanyName field to given value.
 
 ### GetCompanyPrefectureCode
 
-`func (o *InvoiceResponseInvoice) GetCompanyPrefectureCode() int32`
+`func (o *InvoiceResponseInvoice) GetCompanyPrefectureCode() int64`
 
 GetCompanyPrefectureCode returns the CompanyPrefectureCode field if non-nil, zero value otherwise.
 
 ### GetCompanyPrefectureCodeOk
 
-`func (o *InvoiceResponseInvoice) GetCompanyPrefectureCodeOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetCompanyPrefectureCodeOk() (*int64, bool)`
 
 GetCompanyPrefectureCodeOk returns a tuple with the CompanyPrefectureCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyPrefectureCode
 
-`func (o *InvoiceResponseInvoice) SetCompanyPrefectureCode(v int32)`
+`func (o *InvoiceResponseInvoice) SetCompanyPrefectureCode(v int64)`
 
 SetCompanyPrefectureCode sets CompanyPrefectureCode field to given value.
 
@@ -358,20 +358,20 @@ HasCompanyZipcode returns a boolean if a field has been set.
 UnsetCompanyZipcode ensures that no value is present for CompanyZipcode, not even an explicit nil
 ### GetDealId
 
-`func (o *InvoiceResponseInvoice) GetDealId() int32`
+`func (o *InvoiceResponseInvoice) GetDealId() int64`
 
 GetDealId returns the DealId field if non-nil, zero value otherwise.
 
 ### GetDealIdOk
 
-`func (o *InvoiceResponseInvoice) GetDealIdOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetDealIdOk() (*int64, bool)`
 
 GetDealIdOk returns a tuple with the DealId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDealId
 
-`func (o *InvoiceResponseInvoice) SetDealId(v int32)`
+`func (o *InvoiceResponseInvoice) SetDealId(v int64)`
 
 SetDealId sets DealId field to given value.
 
@@ -463,20 +463,20 @@ HasDueDate returns a boolean if a field has been set.
 UnsetDueDate ensures that no value is present for DueDate, not even an explicit nil
 ### GetId
 
-`func (o *InvoiceResponseInvoice) GetId() int32`
+`func (o *InvoiceResponseInvoice) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *InvoiceResponseInvoice) GetIdOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *InvoiceResponseInvoice) SetId(v int32)`
+`func (o *InvoiceResponseInvoice) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -868,20 +868,20 @@ HasPartnerDisplayName returns a boolean if a field has been set.
 UnsetPartnerDisplayName ensures that no value is present for PartnerDisplayName, not even an explicit nil
 ### GetPartnerId
 
-`func (o *InvoiceResponseInvoice) GetPartnerId() int32`
+`func (o *InvoiceResponseInvoice) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *InvoiceResponseInvoice) GetPartnerIdOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *InvoiceResponseInvoice) SetPartnerId(v int32)`
+`func (o *InvoiceResponseInvoice) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -933,20 +933,20 @@ HasPartnerName returns a boolean if a field has been set.
 UnsetPartnerName ensures that no value is present for PartnerName, not even an explicit nil
 ### GetPartnerPrefectureCode
 
-`func (o *InvoiceResponseInvoice) GetPartnerPrefectureCode() int32`
+`func (o *InvoiceResponseInvoice) GetPartnerPrefectureCode() int64`
 
 GetPartnerPrefectureCode returns the PartnerPrefectureCode field if non-nil, zero value otherwise.
 
 ### GetPartnerPrefectureCodeOk
 
-`func (o *InvoiceResponseInvoice) GetPartnerPrefectureCodeOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetPartnerPrefectureCodeOk() (*int64, bool)`
 
 GetPartnerPrefectureCodeOk returns a tuple with the PartnerPrefectureCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerPrefectureCode
 
-`func (o *InvoiceResponseInvoice) SetPartnerPrefectureCode(v int32)`
+`func (o *InvoiceResponseInvoice) SetPartnerPrefectureCode(v int64)`
 
 SetPartnerPrefectureCode sets PartnerPrefectureCode field to given value.
 
@@ -1208,20 +1208,20 @@ SetPostingStatus sets PostingStatus field to given value.
 
 ### GetRelatedQuotationIds
 
-`func (o *InvoiceResponseInvoice) GetRelatedQuotationIds() []int32`
+`func (o *InvoiceResponseInvoice) GetRelatedQuotationIds() []int64`
 
 GetRelatedQuotationIds returns the RelatedQuotationIds field if non-nil, zero value otherwise.
 
 ### GetRelatedQuotationIdsOk
 
-`func (o *InvoiceResponseInvoice) GetRelatedQuotationIdsOk() (*[]int32, bool)`
+`func (o *InvoiceResponseInvoice) GetRelatedQuotationIdsOk() (*[]int64, bool)`
 
 GetRelatedQuotationIdsOk returns a tuple with the RelatedQuotationIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRelatedQuotationIds
 
-`func (o *InvoiceResponseInvoice) SetRelatedQuotationIds(v []int32)`
+`func (o *InvoiceResponseInvoice) SetRelatedQuotationIds(v []int64)`
 
 SetRelatedQuotationIds sets RelatedQuotationIds field to given value.
 
@@ -1233,20 +1233,20 @@ HasRelatedQuotationIds returns a boolean if a field has been set.
 
 ### GetSubTotal
 
-`func (o *InvoiceResponseInvoice) GetSubTotal() int32`
+`func (o *InvoiceResponseInvoice) GetSubTotal() int64`
 
 GetSubTotal returns the SubTotal field if non-nil, zero value otherwise.
 
 ### GetSubTotalOk
 
-`func (o *InvoiceResponseInvoice) GetSubTotalOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetSubTotalOk() (*int64, bool)`
 
 GetSubTotalOk returns a tuple with the SubTotal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubTotal
 
-`func (o *InvoiceResponseInvoice) SetSubTotal(v int32)`
+`func (o *InvoiceResponseInvoice) SetSubTotal(v int64)`
 
 SetSubTotal sets SubTotal field to given value.
 
@@ -1313,20 +1313,20 @@ HasTitle returns a boolean if a field has been set.
 UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetTotalAmount
 
-`func (o *InvoiceResponseInvoice) GetTotalAmount() int32`
+`func (o *InvoiceResponseInvoice) GetTotalAmount() int64`
 
 GetTotalAmount returns the TotalAmount field if non-nil, zero value otherwise.
 
 ### GetTotalAmountOk
 
-`func (o *InvoiceResponseInvoice) GetTotalAmountOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetTotalAmountOk() (*int64, bool)`
 
 GetTotalAmountOk returns a tuple with the TotalAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalAmount
 
-`func (o *InvoiceResponseInvoice) SetTotalAmount(v int32)`
+`func (o *InvoiceResponseInvoice) SetTotalAmount(v int64)`
 
 SetTotalAmount sets TotalAmount field to given value.
 
@@ -1353,20 +1353,20 @@ SetTotalAmountPerVatRate sets TotalAmountPerVatRate field to given value.
 
 ### GetTotalVat
 
-`func (o *InvoiceResponseInvoice) GetTotalVat() int32`
+`func (o *InvoiceResponseInvoice) GetTotalVat() int64`
 
 GetTotalVat returns the TotalVat field if non-nil, zero value otherwise.
 
 ### GetTotalVatOk
 
-`func (o *InvoiceResponseInvoice) GetTotalVatOk() (*int32, bool)`
+`func (o *InvoiceResponseInvoice) GetTotalVatOk() (*int64, bool)`
 
 GetTotalVatOk returns a tuple with the TotalVat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalVat
 
-`func (o *InvoiceResponseInvoice) SetTotalVat(v int32)`
+`func (o *InvoiceResponseInvoice) SetTotalVat(v int64)`
 
 SetTotalVat sets TotalVat field to given value.
 

@@ -17,7 +17,7 @@ import (
 // RenewCreateParams struct for RenewCreateParams
 type RenewCreateParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// +更新の明細行
 	Details []RenewCreateParamsDetailsInner `json:"details"`
 	// +更新対象行ID (details(取引の明細行), accruals(債権債務行), renewsのdetails(+更新の明細行)のIDを指定) 
@@ -30,7 +30,7 @@ type RenewCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRenewCreateParams(companyId int32, details []RenewCreateParamsDetailsInner, renewTargetId int64, updateDate string) *RenewCreateParams {
+func NewRenewCreateParams(companyId int64, details []RenewCreateParamsDetailsInner, renewTargetId int64, updateDate string) *RenewCreateParams {
 	this := RenewCreateParams{}
 	this.CompanyId = companyId
 	this.Details = details
@@ -48,9 +48,9 @@ func NewRenewCreateParamsWithDefaults() *RenewCreateParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *RenewCreateParams) GetCompanyId() int32 {
+func (o *RenewCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *RenewCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *RenewCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *RenewCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *RenewCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *RenewCreateParams) SetCompanyId(v int32) {
+func (o *RenewCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 

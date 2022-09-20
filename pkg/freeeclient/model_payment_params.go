@@ -19,11 +19,11 @@ type PaymentParams struct {
 	// 金額
 	Amount int64 `json:"amount"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 支払日
 	Date string `json:"date"`
 	// 口座ID（from_walletable_typeがprivate_account_itemの場合は勘定科目ID）：payments指定時は必須
-	FromWalletableId int32 `json:"from_walletable_id"`
+	FromWalletableId int64 `json:"from_walletable_id"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet, プライベート資金（法人の場合は役員借入金もしくは役員借入金、個人の場合は事業主貸もしくは事業主借）: private_account_item)：payments指定時は必須
 	FromWalletableType string `json:"from_walletable_type"`
 }
@@ -32,7 +32,7 @@ type PaymentParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaymentParams(amount int64, companyId int32, date string, fromWalletableId int32, fromWalletableType string) *PaymentParams {
+func NewPaymentParams(amount int64, companyId int64, date string, fromWalletableId int64, fromWalletableType string) *PaymentParams {
 	this := PaymentParams{}
 	this.Amount = amount
 	this.CompanyId = companyId
@@ -75,9 +75,9 @@ func (o *PaymentParams) SetAmount(v int64) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *PaymentParams) GetCompanyId() int32 {
+func (o *PaymentParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *PaymentParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *PaymentParams) GetCompanyIdOk() (*int32, bool) {
+func (o *PaymentParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *PaymentParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *PaymentParams) SetCompanyId(v int32) {
+func (o *PaymentParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -123,9 +123,9 @@ func (o *PaymentParams) SetDate(v string) {
 }
 
 // GetFromWalletableId returns the FromWalletableId field value
-func (o *PaymentParams) GetFromWalletableId() int32 {
+func (o *PaymentParams) GetFromWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -134,7 +134,7 @@ func (o *PaymentParams) GetFromWalletableId() int32 {
 
 // GetFromWalletableIdOk returns a tuple with the FromWalletableId field value
 // and a boolean to check if the value has been set.
-func (o *PaymentParams) GetFromWalletableIdOk() (*int32, bool) {
+func (o *PaymentParams) GetFromWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,7 +142,7 @@ func (o *PaymentParams) GetFromWalletableIdOk() (*int32, bool) {
 }
 
 // SetFromWalletableId sets field value
-func (o *PaymentParams) SetFromWalletableId(v int32) {
+func (o *PaymentParams) SetFromWalletableId(v int64) {
 	o.FromWalletableId = v
 }
 

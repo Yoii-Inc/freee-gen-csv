@@ -17,7 +17,7 @@ import (
 // SegmentTagParams struct for SegmentTagParams
 type SegmentTagParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 備考 (30文字以内)
 	Description *string `json:"description,omitempty"`
 	// セグメントタグ名 (30文字以内)
@@ -32,7 +32,7 @@ type SegmentTagParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSegmentTagParams(companyId int32, name string) *SegmentTagParams {
+func NewSegmentTagParams(companyId int64, name string) *SegmentTagParams {
 	this := SegmentTagParams{}
 	this.CompanyId = companyId
 	this.Name = name
@@ -48,9 +48,9 @@ func NewSegmentTagParamsWithDefaults() *SegmentTagParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *SegmentTagParams) GetCompanyId() int32 {
+func (o *SegmentTagParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *SegmentTagParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *SegmentTagParams) GetCompanyIdOk() (*int32, bool) {
+func (o *SegmentTagParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *SegmentTagParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *SegmentTagParams) SetCompanyId(v int32) {
+func (o *SegmentTagParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 

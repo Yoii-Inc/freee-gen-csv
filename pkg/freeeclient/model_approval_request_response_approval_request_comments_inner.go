@@ -21,14 +21,14 @@ type ApprovalRequestResponseApprovalRequestCommentsInner struct {
 	// コメント日時(ISO8601形式)
 	PostedAt string `json:"posted_at"`
 	// ユーザーID
-	UserId int32 `json:"user_id"`
+	UserId int64 `json:"user_id"`
 }
 
 // NewApprovalRequestResponseApprovalRequestCommentsInner instantiates a new ApprovalRequestResponseApprovalRequestCommentsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestResponseApprovalRequestCommentsInner(comment string, postedAt string, userId int32) *ApprovalRequestResponseApprovalRequestCommentsInner {
+func NewApprovalRequestResponseApprovalRequestCommentsInner(comment string, postedAt string, userId int64) *ApprovalRequestResponseApprovalRequestCommentsInner {
 	this := ApprovalRequestResponseApprovalRequestCommentsInner{}
 	this.Comment = comment
 	this.PostedAt = postedAt
@@ -93,9 +93,9 @@ func (o *ApprovalRequestResponseApprovalRequestCommentsInner) SetPostedAt(v stri
 }
 
 // GetUserId returns the UserId field value
-func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserId() int32 {
+func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -104,7 +104,7 @@ func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserId() int32 
 
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserIdOk() (*int32, bool) {
+func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,7 +112,7 @@ func (o *ApprovalRequestResponseApprovalRequestCommentsInner) GetUserIdOk() (*in
 }
 
 // SetUserId sets field value
-func (o *ApprovalRequestResponseApprovalRequestCommentsInner) SetUserId(v int32) {
+func (o *ApprovalRequestResponseApprovalRequestCommentsInner) SetUserId(v int64) {
 	o.UserId = v
 }
 

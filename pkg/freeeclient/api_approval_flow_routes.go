@@ -26,12 +26,12 @@ type ApprovalFlowRoutesApiService service
 type ApiGetApprovalFlowRouteRequest struct {
 	ctx context.Context
 	ApiService *ApprovalFlowRoutesApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetApprovalFlowRouteRequest) CompanyId(companyId int32) ApiGetApprovalFlowRouteRequest {
+func (r ApiGetApprovalFlowRouteRequest) CompanyId(companyId int64) ApiGetApprovalFlowRouteRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -70,7 +70,7 @@ GetApprovalFlowRoute 申請経路の取得
  @param id 経路申請ID
  @return ApiGetApprovalFlowRouteRequest
 */
-func (a *ApprovalFlowRoutesApiService) GetApprovalFlowRoute(ctx context.Context, id int32) ApiGetApprovalFlowRouteRequest {
+func (a *ApprovalFlowRoutesApiService) GetApprovalFlowRoute(ctx context.Context, id int64) ApiGetApprovalFlowRouteRequest {
 	return ApiGetApprovalFlowRouteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -222,20 +222,20 @@ func (a *ApprovalFlowRoutesApiService) GetApprovalFlowRouteExecute(r ApiGetAppro
 type ApiGetApprovalFlowRoutesRequest struct {
 	ctx context.Context
 	ApiService *ApprovalFlowRoutesApiService
-	companyId *int32
-	includedUserId *int32
+	companyId *int64
+	includedUserId *int64
 	usage *string
-	requestFormId *int32
+	requestFormId *int64
 }
 
 // 事業所ID
-func (r ApiGetApprovalFlowRoutesRequest) CompanyId(companyId int32) ApiGetApprovalFlowRoutesRequest {
+func (r ApiGetApprovalFlowRoutesRequest) CompanyId(companyId int64) ApiGetApprovalFlowRoutesRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 経路に含まれるユーザーのユーザーID
-func (r ApiGetApprovalFlowRoutesRequest) IncludedUserId(includedUserId int32) ApiGetApprovalFlowRoutesRequest {
+func (r ApiGetApprovalFlowRoutesRequest) IncludedUserId(includedUserId int64) ApiGetApprovalFlowRoutesRequest {
 	r.includedUserId = &includedUserId
 	return r
 }
@@ -247,7 +247,7 @@ func (r ApiGetApprovalFlowRoutesRequest) Usage(usage string) ApiGetApprovalFlowR
 }
 
 // 申請フォームID request_form_id指定時はusage条件をApprovalRequestに指定してください。指定しない場合無効になります。
-func (r ApiGetApprovalFlowRoutesRequest) RequestFormId(requestFormId int32) ApiGetApprovalFlowRoutesRequest {
+func (r ApiGetApprovalFlowRoutesRequest) RequestFormId(requestFormId int64) ApiGetApprovalFlowRoutesRequest {
 	r.requestFormId = &requestFormId
 	return r
 }

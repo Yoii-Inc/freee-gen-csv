@@ -19,17 +19,17 @@ type Section struct {
 	// 部門の使用設定（true: 使用する、false: 使用しない） <br> <ul>   <li>     本APIでsectionを作成した場合はtrueになります。   </li>   <li>     falseにする場合はWeb画面から変更できます。   </li>   <li>     trueの場合、Web画面での取引登録時などに入力候補として表示されます。   </li>   <li>     falseの場合、部門自体は削除せず、Web画面での取引登録時などに入力候補として表示されません。ただし取引（収入／支出）の作成APIなどでfalseの部門をパラメータに指定すれば、取引などにfalseの部門を設定できます。   </li> </ul>
 	Available bool `json:"available"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 部門ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// <a target=\"_blank\" href=\"https://support.freee.co.jp/hc/ja/articles/209093566\">部門階層</a> <br> ※ indent_count が 0 のときは第一階層の親部門です。 
-	IndentCount *int32 `json:"indent_count,omitempty"`
+	IndentCount *int64 `json:"indent_count,omitempty"`
 	// 正式名称（255文字以内）
 	LongName NullableString `json:"long_name,omitempty"`
 	// 部門名 (30文字以内)
 	Name string `json:"name"`
 	// <a target=\"_blank\" href=\"https://support.freee.co.jp/hc/ja/articles/209093566\">親部門ID</a> <br> ※ parent_id が null のときは第一階層の親部門です。 
-	ParentId NullableInt32 `json:"parent_id,omitempty"`
+	ParentId NullableInt64 `json:"parent_id,omitempty"`
 	// ショートカット１ (20文字以内)
 	Shortcut1 NullableString `json:"shortcut1,omitempty"`
 	// ショートカット２ (20文字以内)
@@ -40,7 +40,7 @@ type Section struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSection(available bool, companyId int32, id int32, name string) *Section {
+func NewSection(available bool, companyId int64, id int64, name string) *Section {
 	this := Section{}
 	this.Available = available
 	this.CompanyId = companyId
@@ -82,9 +82,9 @@ func (o *Section) SetAvailable(v bool) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *Section) GetCompanyId() int32 {
+func (o *Section) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -93,7 +93,7 @@ func (o *Section) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *Section) GetCompanyIdOk() (*int32, bool) {
+func (o *Section) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,14 +101,14 @@ func (o *Section) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *Section) SetCompanyId(v int32) {
+func (o *Section) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetId returns the Id field value
-func (o *Section) GetId() int32 {
+func (o *Section) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -117,7 +117,7 @@ func (o *Section) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Section) GetIdOk() (*int32, bool) {
+func (o *Section) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,14 +125,14 @@ func (o *Section) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Section) SetId(v int32) {
+func (o *Section) SetId(v int64) {
 	o.Id = v
 }
 
 // GetIndentCount returns the IndentCount field value if set, zero value otherwise.
-func (o *Section) GetIndentCount() int32 {
+func (o *Section) GetIndentCount() int64 {
 	if o == nil || o.IndentCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.IndentCount
@@ -140,7 +140,7 @@ func (o *Section) GetIndentCount() int32 {
 
 // GetIndentCountOk returns a tuple with the IndentCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Section) GetIndentCountOk() (*int32, bool) {
+func (o *Section) GetIndentCountOk() (*int64, bool) {
 	if o == nil || o.IndentCount == nil {
 		return nil, false
 	}
@@ -156,8 +156,8 @@ func (o *Section) HasIndentCount() bool {
 	return false
 }
 
-// SetIndentCount gets a reference to the given int32 and assigns it to the IndentCount field.
-func (o *Section) SetIndentCount(v int32) {
+// SetIndentCount gets a reference to the given int64 and assigns it to the IndentCount field.
+func (o *Section) SetIndentCount(v int64) {
 	o.IndentCount = &v
 }
 
@@ -228,9 +228,9 @@ func (o *Section) SetName(v string) {
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Section) GetParentId() int32 {
+func (o *Section) GetParentId() int64 {
 	if o == nil || o.ParentId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ParentId.Get()
@@ -239,7 +239,7 @@ func (o *Section) GetParentId() int32 {
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Section) GetParentIdOk() (*int32, bool) {
+func (o *Section) GetParentIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -255,8 +255,8 @@ func (o *Section) HasParentId() bool {
 	return false
 }
 
-// SetParentId gets a reference to the given NullableInt32 and assigns it to the ParentId field.
-func (o *Section) SetParentId(v int32) {
+// SetParentId gets a reference to the given NullableInt64 and assigns it to the ParentId field.
+func (o *Section) SetParentId(v int64) {
 	o.ParentId.Set(&v)
 }
 // SetParentIdNil sets the value for ParentId to be an explicit nil

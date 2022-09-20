@@ -19,17 +19,17 @@ type TransferParams struct {
 	// 金額
 	Amount int64 `json:"amount"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 振替日 (yyyy-mm-dd)
 	Date string `json:"date"`
 	// 備考
 	Description *string `json:"description,omitempty"`
 	// 振替元口座ID
-	FromWalletableId int32 `json:"from_walletable_id"`
+	FromWalletableId int64 `json:"from_walletable_id"`
 	// 振替元口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
 	FromWalletableType string `json:"from_walletable_type"`
 	// 振替先口座ID
-	ToWalletableId int32 `json:"to_walletable_id"`
+	ToWalletableId int64 `json:"to_walletable_id"`
 	// 振替先口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
 	ToWalletableType string `json:"to_walletable_type"`
 }
@@ -38,7 +38,7 @@ type TransferParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransferParams(amount int64, companyId int32, date string, fromWalletableId int32, fromWalletableType string, toWalletableId int32, toWalletableType string) *TransferParams {
+func NewTransferParams(amount int64, companyId int64, date string, fromWalletableId int64, fromWalletableType string, toWalletableId int64, toWalletableType string) *TransferParams {
 	this := TransferParams{}
 	this.Amount = amount
 	this.CompanyId = companyId
@@ -83,9 +83,9 @@ func (o *TransferParams) SetAmount(v int64) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *TransferParams) GetCompanyId() int32 {
+func (o *TransferParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -94,7 +94,7 @@ func (o *TransferParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *TransferParams) GetCompanyIdOk() (*int32, bool) {
+func (o *TransferParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *TransferParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *TransferParams) SetCompanyId(v int32) {
+func (o *TransferParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -163,9 +163,9 @@ func (o *TransferParams) SetDescription(v string) {
 }
 
 // GetFromWalletableId returns the FromWalletableId field value
-func (o *TransferParams) GetFromWalletableId() int32 {
+func (o *TransferParams) GetFromWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -174,7 +174,7 @@ func (o *TransferParams) GetFromWalletableId() int32 {
 
 // GetFromWalletableIdOk returns a tuple with the FromWalletableId field value
 // and a boolean to check if the value has been set.
-func (o *TransferParams) GetFromWalletableIdOk() (*int32, bool) {
+func (o *TransferParams) GetFromWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -182,7 +182,7 @@ func (o *TransferParams) GetFromWalletableIdOk() (*int32, bool) {
 }
 
 // SetFromWalletableId sets field value
-func (o *TransferParams) SetFromWalletableId(v int32) {
+func (o *TransferParams) SetFromWalletableId(v int64) {
 	o.FromWalletableId = v
 }
 
@@ -211,9 +211,9 @@ func (o *TransferParams) SetFromWalletableType(v string) {
 }
 
 // GetToWalletableId returns the ToWalletableId field value
-func (o *TransferParams) GetToWalletableId() int32 {
+func (o *TransferParams) GetToWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -222,7 +222,7 @@ func (o *TransferParams) GetToWalletableId() int32 {
 
 // GetToWalletableIdOk returns a tuple with the ToWalletableId field value
 // and a boolean to check if the value has been set.
-func (o *TransferParams) GetToWalletableIdOk() (*int32, bool) {
+func (o *TransferParams) GetToWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -230,7 +230,7 @@ func (o *TransferParams) GetToWalletableIdOk() (*int32, bool) {
 }
 
 // SetToWalletableId sets field value
-func (o *TransferParams) SetToWalletableId(v int32) {
+func (o *TransferParams) SetToWalletableId(v int64) {
 	o.ToWalletableId = v
 }
 

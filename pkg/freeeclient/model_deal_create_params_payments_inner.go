@@ -21,7 +21,7 @@ type DealCreateParamsPaymentsInner struct {
 	// 支払日：payments指定時は必須
 	Date string `json:"date"`
 	// 口座ID（from_walletable_typeがprivate_account_itemの場合は勘定科目ID）：payments指定時は必須
-	FromWalletableId int32 `json:"from_walletable_id"`
+	FromWalletableId int64 `json:"from_walletable_id"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet, プライベート資金（法人の場合は役員借入金もしくは役員借入金、個人の場合は事業主貸もしくは事業主借）: private_account_item)：payments指定時は必須
 	FromWalletableType string `json:"from_walletable_type"`
 }
@@ -30,7 +30,7 @@ type DealCreateParamsPaymentsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealCreateParamsPaymentsInner(amount int64, date string, fromWalletableId int32, fromWalletableType string) *DealCreateParamsPaymentsInner {
+func NewDealCreateParamsPaymentsInner(amount int64, date string, fromWalletableId int64, fromWalletableType string) *DealCreateParamsPaymentsInner {
 	this := DealCreateParamsPaymentsInner{}
 	this.Amount = amount
 	this.Date = date
@@ -96,9 +96,9 @@ func (o *DealCreateParamsPaymentsInner) SetDate(v string) {
 }
 
 // GetFromWalletableId returns the FromWalletableId field value
-func (o *DealCreateParamsPaymentsInner) GetFromWalletableId() int32 {
+func (o *DealCreateParamsPaymentsInner) GetFromWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -107,7 +107,7 @@ func (o *DealCreateParamsPaymentsInner) GetFromWalletableId() int32 {
 
 // GetFromWalletableIdOk returns a tuple with the FromWalletableId field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateParamsPaymentsInner) GetFromWalletableIdOk() (*int32, bool) {
+func (o *DealCreateParamsPaymentsInner) GetFromWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,7 +115,7 @@ func (o *DealCreateParamsPaymentsInner) GetFromWalletableIdOk() (*int32, bool) {
 }
 
 // SetFromWalletableId sets field value
-func (o *DealCreateParamsPaymentsInner) SetFromWalletableId(v int32) {
+func (o *DealCreateParamsPaymentsInner) SetFromWalletableId(v int64) {
 	o.FromWalletableId = v
 }
 

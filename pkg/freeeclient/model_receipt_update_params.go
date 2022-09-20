@@ -17,7 +17,7 @@ import (
 // ReceiptUpdateParams struct for ReceiptUpdateParams
 type ReceiptUpdateParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// メモ (255文字以内)
 	Description *string `json:"description,omitempty"`
 	// 取引日 (yyyy-mm-dd)
@@ -29,7 +29,7 @@ type ReceiptUpdateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReceiptUpdateParams(companyId int32, issueDate string) *ReceiptUpdateParams {
+func NewReceiptUpdateParams(companyId int64, issueDate string) *ReceiptUpdateParams {
 	this := ReceiptUpdateParams{}
 	this.CompanyId = companyId
 	this.IssueDate = issueDate
@@ -45,9 +45,9 @@ func NewReceiptUpdateParamsWithDefaults() *ReceiptUpdateParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ReceiptUpdateParams) GetCompanyId() int32 {
+func (o *ReceiptUpdateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *ReceiptUpdateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ReceiptUpdateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *ReceiptUpdateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ReceiptUpdateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *ReceiptUpdateParams) SetCompanyId(v int32) {
+func (o *ReceiptUpdateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 

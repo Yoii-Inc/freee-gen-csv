@@ -26,7 +26,7 @@ type PaymentsApiService service
 type ApiCreateDealPaymentRequest struct {
 	ctx context.Context
 	ApiService *PaymentsApiService
-	id int32
+	id int64
 	paymentParams *PaymentParams
 }
 
@@ -84,7 +84,7 @@ CreateDealPayment 取引（収入／支出）の支払行作成
  @param id 取引ID
  @return ApiCreateDealPaymentRequest
 */
-func (a *PaymentsApiService) CreateDealPayment(ctx context.Context, id int32) ApiCreateDealPaymentRequest {
+func (a *PaymentsApiService) CreateDealPayment(ctx context.Context, id int64) ApiCreateDealPaymentRequest {
 	return ApiCreateDealPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,13 +231,13 @@ func (a *PaymentsApiService) CreateDealPaymentExecute(r ApiCreateDealPaymentRequ
 type ApiDestroyDealPaymentRequest struct {
 	ctx context.Context
 	ApiService *PaymentsApiService
-	id int32
+	id int64
 	paymentId int64
-	companyId *int32
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyDealPaymentRequest) CompanyId(companyId int32) ApiDestroyDealPaymentRequest {
+func (r ApiDestroyDealPaymentRequest) CompanyId(companyId int64) ApiDestroyDealPaymentRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -282,7 +282,7 @@ DestroyDealPayment 取引（収入／支出）の支払行削除
  @param paymentId 決済ID
  @return ApiDestroyDealPaymentRequest
 */
-func (a *PaymentsApiService) DestroyDealPayment(ctx context.Context, id int32, paymentId int64) ApiDestroyDealPaymentRequest {
+func (a *PaymentsApiService) DestroyDealPayment(ctx context.Context, id int64, paymentId int64) ApiDestroyDealPaymentRequest {
 	return ApiDestroyDealPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -431,7 +431,7 @@ func (a *PaymentsApiService) DestroyDealPaymentExecute(r ApiDestroyDealPaymentRe
 type ApiUpdateDealPaymentRequest struct {
 	ctx context.Context
 	ApiService *PaymentsApiService
-	id int32
+	id int64
 	paymentId int64
 	paymentParams *PaymentParams
 }
@@ -497,7 +497,7 @@ UpdateDealPayment 取引（収入／支出）の支払行更新
  @param paymentId 決済ID
  @return ApiUpdateDealPaymentRequest
 */
-func (a *PaymentsApiService) UpdateDealPayment(ctx context.Context, id int32, paymentId int64) ApiUpdateDealPaymentRequest {
+func (a *PaymentsApiService) UpdateDealPayment(ctx context.Context, id int64, paymentId int64) ApiUpdateDealPaymentRequest {
 	return ApiUpdateDealPaymentRequest{
 		ApiService: a,
 		ctx: ctx,

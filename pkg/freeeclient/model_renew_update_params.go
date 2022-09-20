@@ -17,7 +17,7 @@ import (
 // RenewUpdateParams struct for RenewUpdateParams
 type RenewUpdateParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// +更新の明細行
 	Details []RenewUpdateParamsDetailsInner `json:"details"`
 	// 更新日 (yyyy-mm-dd)
@@ -28,7 +28,7 @@ type RenewUpdateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRenewUpdateParams(companyId int32, details []RenewUpdateParamsDetailsInner, updateDate string) *RenewUpdateParams {
+func NewRenewUpdateParams(companyId int64, details []RenewUpdateParamsDetailsInner, updateDate string) *RenewUpdateParams {
 	this := RenewUpdateParams{}
 	this.CompanyId = companyId
 	this.Details = details
@@ -45,9 +45,9 @@ func NewRenewUpdateParamsWithDefaults() *RenewUpdateParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *RenewUpdateParams) GetCompanyId() int32 {
+func (o *RenewUpdateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *RenewUpdateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *RenewUpdateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *RenewUpdateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *RenewUpdateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *RenewUpdateParams) SetCompanyId(v int32) {
+func (o *RenewUpdateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 

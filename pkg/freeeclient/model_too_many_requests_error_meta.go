@@ -17,11 +17,11 @@ import (
 // TooManyRequestsErrorMeta struct for TooManyRequestsErrorMeta
 type TooManyRequestsErrorMeta struct {
 	// 設定されている上限値
-	Limit int32 `json:"limit"`
+	Limit int64 `json:"limit"`
 	// 使用回数をカウントする期間 (秒)
-	Period *int32 `json:"period,omitempty"`
+	Period *int64 `json:"period,omitempty"`
 	// 上限に達するまでの使用可能回数
-	Remaining int32 `json:"remaining"`
+	Remaining int64 `json:"remaining"`
 	// （上限値に達した場合）使用回数がリセットされる時刻
 	Reset string `json:"reset"`
 }
@@ -30,7 +30,7 @@ type TooManyRequestsErrorMeta struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTooManyRequestsErrorMeta(limit int32, remaining int32, reset string) *TooManyRequestsErrorMeta {
+func NewTooManyRequestsErrorMeta(limit int64, remaining int64, reset string) *TooManyRequestsErrorMeta {
 	this := TooManyRequestsErrorMeta{}
 	this.Limit = limit
 	this.Remaining = remaining
@@ -47,9 +47,9 @@ func NewTooManyRequestsErrorMetaWithDefaults() *TooManyRequestsErrorMeta {
 }
 
 // GetLimit returns the Limit field value
-func (o *TooManyRequestsErrorMeta) GetLimit() int32 {
+func (o *TooManyRequestsErrorMeta) GetLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *TooManyRequestsErrorMeta) GetLimit() int32 {
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *TooManyRequestsErrorMeta) GetLimitOk() (*int32, bool) {
+func (o *TooManyRequestsErrorMeta) GetLimitOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,14 +66,14 @@ func (o *TooManyRequestsErrorMeta) GetLimitOk() (*int32, bool) {
 }
 
 // SetLimit sets field value
-func (o *TooManyRequestsErrorMeta) SetLimit(v int32) {
+func (o *TooManyRequestsErrorMeta) SetLimit(v int64) {
 	o.Limit = v
 }
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
-func (o *TooManyRequestsErrorMeta) GetPeriod() int32 {
+func (o *TooManyRequestsErrorMeta) GetPeriod() int64 {
 	if o == nil || o.Period == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Period
@@ -81,7 +81,7 @@ func (o *TooManyRequestsErrorMeta) GetPeriod() int32 {
 
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TooManyRequestsErrorMeta) GetPeriodOk() (*int32, bool) {
+func (o *TooManyRequestsErrorMeta) GetPeriodOk() (*int64, bool) {
 	if o == nil || o.Period == nil {
 		return nil, false
 	}
@@ -97,15 +97,15 @@ func (o *TooManyRequestsErrorMeta) HasPeriod() bool {
 	return false
 }
 
-// SetPeriod gets a reference to the given int32 and assigns it to the Period field.
-func (o *TooManyRequestsErrorMeta) SetPeriod(v int32) {
+// SetPeriod gets a reference to the given int64 and assigns it to the Period field.
+func (o *TooManyRequestsErrorMeta) SetPeriod(v int64) {
 	o.Period = &v
 }
 
 // GetRemaining returns the Remaining field value
-func (o *TooManyRequestsErrorMeta) GetRemaining() int32 {
+func (o *TooManyRequestsErrorMeta) GetRemaining() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -114,7 +114,7 @@ func (o *TooManyRequestsErrorMeta) GetRemaining() int32 {
 
 // GetRemainingOk returns a tuple with the Remaining field value
 // and a boolean to check if the value has been set.
-func (o *TooManyRequestsErrorMeta) GetRemainingOk() (*int32, bool) {
+func (o *TooManyRequestsErrorMeta) GetRemainingOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *TooManyRequestsErrorMeta) GetRemainingOk() (*int32, bool) {
 }
 
 // SetRemaining sets field value
-func (o *TooManyRequestsErrorMeta) SetRemaining(v int32) {
+func (o *TooManyRequestsErrorMeta) SetRemaining(v int64) {
 	o.Remaining = v
 }
 

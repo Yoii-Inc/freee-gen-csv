@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Email** | **string** | メールアドレス | 
 **FirstName** | Pointer to **NullableString** | 名 | [optional] 
 **FirstNameKana** | Pointer to **NullableString** | 名（カナ） | [optional] 
-**Id** | **int32** | ユーザーID | 
+**Id** | **int64** | ユーザーID | 
 **LastName** | Pointer to **NullableString** | 姓 | [optional] 
 **LastNameKana** | Pointer to **NullableString** | 姓（カナ） | [optional] 
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewMeResponseUser
 
-`func NewMeResponseUser(email string, id int32, ) *MeResponseUser`
+`func NewMeResponseUser(email string, id int64, ) *MeResponseUser`
 
 NewMeResponseUser instantiates a new MeResponseUser object
 This constructor will assign default values to properties that have it defined,
@@ -184,20 +184,20 @@ HasFirstNameKana returns a boolean if a field has been set.
 UnsetFirstNameKana ensures that no value is present for FirstNameKana, not even an explicit nil
 ### GetId
 
-`func (o *MeResponseUser) GetId() int32`
+`func (o *MeResponseUser) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *MeResponseUser) GetIdOk() (*int32, bool)`
+`func (o *MeResponseUser) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *MeResponseUser) SetId(v int32)`
+`func (o *MeResponseUser) SetId(v int64)`
 
 SetId sets Id field to given value.
 

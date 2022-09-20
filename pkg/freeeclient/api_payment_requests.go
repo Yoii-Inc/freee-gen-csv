@@ -216,12 +216,12 @@ func (a *PaymentRequestsApiService) CreatePaymentRequestExecute(r ApiCreatePayme
 type ApiDestroyPaymentRequestRequest struct {
 	ctx context.Context
 	ApiService *PaymentRequestsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyPaymentRequestRequest) CompanyId(companyId int32) ApiDestroyPaymentRequestRequest {
+func (r ApiDestroyPaymentRequestRequest) CompanyId(companyId int64) ApiDestroyPaymentRequestRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -282,7 +282,7 @@ DestroyPaymentRequest 支払依頼の削除
  @param id 支払依頼ID
  @return ApiDestroyPaymentRequestRequest
 */
-func (a *PaymentRequestsApiService) DestroyPaymentRequest(ctx context.Context, id int32) ApiDestroyPaymentRequestRequest {
+func (a *PaymentRequestsApiService) DestroyPaymentRequest(ctx context.Context, id int64) ApiDestroyPaymentRequestRequest {
 	return ApiDestroyPaymentRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -423,12 +423,12 @@ func (a *PaymentRequestsApiService) DestroyPaymentRequestExecute(r ApiDestroyPay
 type ApiGetPaymentRequestRequest struct {
 	ctx context.Context
 	ApiService *PaymentRequestsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetPaymentRequestRequest) CompanyId(companyId int32) ApiGetPaymentRequestRequest {
+func (r ApiGetPaymentRequestRequest) CompanyId(companyId int64) ApiGetPaymentRequestRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -465,7 +465,7 @@ GetPaymentRequest 支払依頼詳細の取得
  @param id 支払依頼ID
  @return ApiGetPaymentRequestRequest
 */
-func (a *PaymentRequestsApiService) GetPaymentRequest(ctx context.Context, id int32) ApiGetPaymentRequestRequest {
+func (a *PaymentRequestsApiService) GetPaymentRequest(ctx context.Context, id int64) ApiGetPaymentRequestRequest {
 	return ApiGetPaymentRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -617,30 +617,30 @@ func (a *PaymentRequestsApiService) GetPaymentRequestExecute(r ApiGetPaymentRequ
 type ApiGetPaymentRequestsRequest struct {
 	ctx context.Context
 	ApiService *PaymentRequestsApiService
-	companyId *int32
+	companyId *int64
 	status *string
 	startApplicationDate *string
 	endApplicationDate *string
 	startIssueDate *string
 	endIssueDate *string
-	applicationNumber *int32
+	applicationNumber *int64
 	title *string
-	applicantId *int32
-	approverId *int32
-	minAmount *int32
-	maxAmount *int32
-	partnerId *int32
+	applicantId *int64
+	approverId *int64
+	minAmount *int64
+	maxAmount *int64
+	partnerId *int64
 	partnerCode *string
 	paymentMethod *string
 	startPaymentDate *string
 	endPaymentDate *string
 	documentCode *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetPaymentRequestsRequest) CompanyId(companyId int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) CompanyId(companyId int64) ApiGetPaymentRequestsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -676,7 +676,7 @@ func (r ApiGetPaymentRequestsRequest) EndIssueDate(endIssueDate string) ApiGetPa
 }
 
 // 申請No.
-func (r ApiGetPaymentRequestsRequest) ApplicationNumber(applicationNumber int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) ApplicationNumber(applicationNumber int64) ApiGetPaymentRequestsRequest {
 	r.applicationNumber = &applicationNumber
 	return r
 }
@@ -688,31 +688,31 @@ func (r ApiGetPaymentRequestsRequest) Title(title string) ApiGetPaymentRequestsR
 }
 
 // 申請者のユーザーID
-func (r ApiGetPaymentRequestsRequest) ApplicantId(applicantId int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) ApplicantId(applicantId int64) ApiGetPaymentRequestsRequest {
 	r.applicantId = &applicantId
 	return r
 }
 
 // 承認者のユーザーID&lt;br&gt; &#39;approver_id を指定した場合は、 in_progress: 申請中 の支払依頼のみを返します。&#39; 
-func (r ApiGetPaymentRequestsRequest) ApproverId(approverId int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) ApproverId(approverId int64) ApiGetPaymentRequestsRequest {
 	r.approverId = &approverId
 	return r
 }
 
 // 金額で絞込 (下限金額)
-func (r ApiGetPaymentRequestsRequest) MinAmount(minAmount int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) MinAmount(minAmount int64) ApiGetPaymentRequestsRequest {
 	r.minAmount = &minAmount
 	return r
 }
 
 // 金額で絞込 (上限金額)
-func (r ApiGetPaymentRequestsRequest) MaxAmount(maxAmount int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) MaxAmount(maxAmount int64) ApiGetPaymentRequestsRequest {
 	r.maxAmount = &maxAmount
 	return r
 }
 
 // 取引先IDで絞込
-func (r ApiGetPaymentRequestsRequest) PartnerId(partnerId int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) PartnerId(partnerId int64) ApiGetPaymentRequestsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -754,7 +754,7 @@ func (r ApiGetPaymentRequestsRequest) Offset(offset int64) ApiGetPaymentRequests
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500)
-func (r ApiGetPaymentRequestsRequest) Limit(limit int32) ApiGetPaymentRequestsRequest {
+func (r ApiGetPaymentRequestsRequest) Limit(limit int64) ApiGetPaymentRequestsRequest {
 	r.limit = &limit
 	return r
 }
@@ -982,7 +982,7 @@ func (a *PaymentRequestsApiService) GetPaymentRequestsExecute(r ApiGetPaymentReq
 type ApiUpdatePaymentRequestRequest struct {
 	ctx context.Context
 	ApiService *PaymentRequestsApiService
-	id int32
+	id int64
 	paymentRequestUpdateParams *PaymentRequestUpdateParams
 }
 
@@ -1051,7 +1051,7 @@ UpdatePaymentRequest 支払依頼の更新
  @param id 支払依頼ID
  @return ApiUpdatePaymentRequestRequest
 */
-func (a *PaymentRequestsApiService) UpdatePaymentRequest(ctx context.Context, id int32) ApiUpdatePaymentRequestRequest {
+func (a *PaymentRequestsApiService) UpdatePaymentRequest(ctx context.Context, id int64) ApiUpdatePaymentRequestRequest {
 	return ApiUpdatePaymentRequestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1195,7 +1195,7 @@ func (a *PaymentRequestsApiService) UpdatePaymentRequestExecute(r ApiUpdatePayme
 type ApiUpdatePaymentRequestActionRequest struct {
 	ctx context.Context
 	ApiService *PaymentRequestsApiService
-	id int32
+	id int64
 	paymentRequestActionCreateParams *PaymentRequestActionCreateParams
 }
 
@@ -1261,7 +1261,7 @@ UpdatePaymentRequestAction 支払依頼の承認操作
  @param id 支払依頼ID
  @return ApiUpdatePaymentRequestActionRequest
 */
-func (a *PaymentRequestsApiService) UpdatePaymentRequestAction(ctx context.Context, id int32) ApiUpdatePaymentRequestActionRequest {
+func (a *PaymentRequestsApiService) UpdatePaymentRequestAction(ctx context.Context, id int64) ApiUpdatePaymentRequestActionRequest {
 	return ApiUpdatePaymentRequestActionRequest{
 		ApiService: a,
 		ctx: ctx,

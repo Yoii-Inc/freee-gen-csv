@@ -19,9 +19,9 @@ type Item struct {
 	// 品目の使用設定（true: 使用する、false: 使用しない） <br> <ul>   <li>     本APIでitemを作成した場合はtrueになります。   </li>   <li>     falseにする場合はWeb画面から変更できます。   </li>   <li>     trueの場合、Web画面での取引登録時などに入力候補として表示されます。   </li>   <li>     falseの場合、品目自体は削除せず、Web画面での取引登録時などに入力候補として表示されません。ただし取引（収入／支出）の作成APIなどでfalseの品目をパラメータに指定すれば、取引などにfalseの品目を設定できます。   </li> </ul>
 	Available bool `json:"available"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 品目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 品目名 (30文字以内)
 	Name string `json:"name"`
 	// ショートカット１ (20文字以内)
@@ -36,7 +36,7 @@ type Item struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewItem(available bool, companyId int32, id int32, name string, updateDate string) *Item {
+func NewItem(available bool, companyId int64, id int64, name string, updateDate string) *Item {
 	this := Item{}
 	this.Available = available
 	this.CompanyId = companyId
@@ -79,9 +79,9 @@ func (o *Item) SetAvailable(v bool) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *Item) GetCompanyId() int32 {
+func (o *Item) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -90,7 +90,7 @@ func (o *Item) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *Item) GetCompanyIdOk() (*int32, bool) {
+func (o *Item) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,14 +98,14 @@ func (o *Item) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *Item) SetCompanyId(v int32) {
+func (o *Item) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetId returns the Id field value
-func (o *Item) GetId() int32 {
+func (o *Item) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -114,7 +114,7 @@ func (o *Item) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Item) GetIdOk() (*int32, bool) {
+func (o *Item) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *Item) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Item) SetId(v int32) {
+func (o *Item) SetId(v int64) {
 	o.Id = v
 }
 

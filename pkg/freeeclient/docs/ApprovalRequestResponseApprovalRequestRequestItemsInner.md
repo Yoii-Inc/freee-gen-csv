@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | 項目ID | 
+**Id** | **int64** | 項目ID | 
 **Type** | **string** | 項目タイプ(title: 申請タイトル, single_line: 自由記述形式 1行, multi_line: 自由記述形式 複数行, select: プルダウン, date: 日付, amount: 金額, receipt: 添付ファイル, section: 部門ID, partner: 取引先ID, ninja_sign_document: 契約書（freeeサイン連携）) | 
 **Value** | **string** | 項目の値 | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewApprovalRequestResponseApprovalRequestRequestItemsInner
 
-`func NewApprovalRequestResponseApprovalRequestRequestItemsInner(id int32, type_ string, value string, ) *ApprovalRequestResponseApprovalRequestRequestItemsInner`
+`func NewApprovalRequestResponseApprovalRequestRequestItemsInner(id int64, type_ string, value string, ) *ApprovalRequestResponseApprovalRequestRequestItemsInner`
 
 NewApprovalRequestResponseApprovalRequestRequestItemsInner instantiates a new ApprovalRequestResponseApprovalRequestRequestItemsInner object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetId() int32`
+`func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetIdOk() (*int32, bool)`
+`func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) SetId(v int32)`
+`func (o *ApprovalRequestResponseApprovalRequestRequestItemsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

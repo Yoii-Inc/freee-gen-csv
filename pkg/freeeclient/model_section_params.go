@@ -17,13 +17,13 @@ import (
 // SectionParams struct for SectionParams
 type SectionParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 正式名称 (255文字以内)
 	LongName *string `json:"long_name,omitempty"`
 	// 部門名 (30文字以内)
 	Name string `json:"name"`
 	// 親部門ID (個人:プレミアムプラン、法人:ベーシックプラン以上)
-	ParentId *int32 `json:"parent_id,omitempty"`
+	ParentId *int64 `json:"parent_id,omitempty"`
 	// ショートカット１ (20文字以内)
 	Shortcut1 *string `json:"shortcut1,omitempty"`
 	// ショートカット２ (20文字以内)
@@ -34,7 +34,7 @@ type SectionParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSectionParams(companyId int32, name string) *SectionParams {
+func NewSectionParams(companyId int64, name string) *SectionParams {
 	this := SectionParams{}
 	this.CompanyId = companyId
 	this.Name = name
@@ -50,9 +50,9 @@ func NewSectionParamsWithDefaults() *SectionParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *SectionParams) GetCompanyId() int32 {
+func (o *SectionParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *SectionParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *SectionParams) GetCompanyIdOk() (*int32, bool) {
+func (o *SectionParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *SectionParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *SectionParams) SetCompanyId(v int32) {
+func (o *SectionParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -130,9 +130,9 @@ func (o *SectionParams) SetName(v string) {
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
-func (o *SectionParams) GetParentId() int32 {
+func (o *SectionParams) GetParentId() int64 {
 	if o == nil || o.ParentId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ParentId
@@ -140,7 +140,7 @@ func (o *SectionParams) GetParentId() int32 {
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SectionParams) GetParentIdOk() (*int32, bool) {
+func (o *SectionParams) GetParentIdOk() (*int64, bool) {
 	if o == nil || o.ParentId == nil {
 		return nil, false
 	}
@@ -156,8 +156,8 @@ func (o *SectionParams) HasParentId() bool {
 	return false
 }
 
-// SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
-func (o *SectionParams) SetParentId(v int32) {
+// SetParentId gets a reference to the given int64 and assigns it to the ParentId field.
+func (o *SectionParams) SetParentId(v int64) {
 	o.ParentId = &v
 }
 

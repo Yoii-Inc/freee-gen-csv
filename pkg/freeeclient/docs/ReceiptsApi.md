@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     receipt := os.NewFile(1234, "some_file") // *os.File | 証憑ファイル
     description := "description_example" // string | メモ (255文字以内) (optional)
     issueDate := "issueDate_example" // string | 取引日 (yyyy-mm-dd) (optional)
@@ -65,7 +65,7 @@ Other parameters are passed through a pointer to a apiCreateReceiptRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **receipt** | ***os.File** | 証憑ファイル | 
  **description** | **string** | メモ (255文字以内) | 
  **issueDate** | **string** | 取引日 (yyyy-mm-dd) | 
@@ -112,8 +112,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 証憑ファイルID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -131,7 +131,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 
@@ -141,7 +141,7 @@ Other parameters are passed through a pointer to a apiDestroyReceiptRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -182,8 +182,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 証憑ファイルID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -203,7 +203,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 
@@ -213,7 +213,7 @@ Other parameters are passed through a pointer to a apiDownloadReceiptRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -254,8 +254,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 証憑ファイルID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -275,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 
@@ -285,7 +285,7 @@ Other parameters are passed through a pointer to a apiGetReceiptRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -326,16 +326,16 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     startDate := "startDate_example" // string | アップロード日 (yyyy-mm-dd)
     endDate := "endDate_example" // string | アップロード日 (yyyy-mm-dd)
     userName := "userName_example" // string | アップロードしたユーザー名、メールアドレス (optional)
-    number := int32(56) // int32 | アップロードファイルNo (optional)
+    number := int64(56) // int64 | アップロードファイルNo (optional)
     commentType := "commentType_example" // string | posted:コメントあり, raised:未解決, resolved:解決済 (optional)
     commentImportant := true // bool | trueの時、重要コメント付きが対象 (optional)
     category := "category_example" // string | all:すべて、without_deal:未登録、with_expense_application_line:経費申請中, with_deal:登録済み、ignored:無視 (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -360,16 +360,16 @@ Other parameters are passed through a pointer to a apiGetReceiptsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **startDate** | **string** | アップロード日 (yyyy-mm-dd) | 
  **endDate** | **string** | アップロード日 (yyyy-mm-dd) | 
  **userName** | **string** | アップロードしたユーザー名、メールアドレス | 
- **number** | **int32** | アップロードファイルNo | 
+ **number** | **int64** | アップロードファイルNo | 
  **commentType** | **string** | posted:コメントあり, raised:未解決, resolved:解決済 | 
  **commentImportant** | **bool** | trueの時、重要コメント付きが対象 | 
  **category** | **string** | all:すべて、without_deal:未登録、with_expense_application_line:経費申請中, with_deal:登録済み、ignored:無視 | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
 
 ### Return type
 
@@ -410,8 +410,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 証憑ファイルID
-    receiptUpdateParams := *openapiclient.NewReceiptUpdateParams(int32(1), "2019-12-17") // ReceiptUpdateParams | 
+    id := int64(56) // int64 | 証憑ファイルID
+    receiptUpdateParams := *openapiclient.NewReceiptUpdateParams(int64(1), "2019-12-17") // ReceiptUpdateParams | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -431,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 証憑ファイルID | 
+**id** | **int64** | 証憑ファイルID | 
 
 ### Other Parameters
 

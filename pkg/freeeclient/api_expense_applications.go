@@ -217,12 +217,12 @@ func (a *ExpenseApplicationsApiService) CreateExpenseApplicationExecute(r ApiCre
 type ApiDestroyExpenseApplicationRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyExpenseApplicationRequest) CompanyId(companyId int32) ApiDestroyExpenseApplicationRequest {
+func (r ApiDestroyExpenseApplicationRequest) CompanyId(companyId int64) ApiDestroyExpenseApplicationRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -276,7 +276,7 @@ DestroyExpenseApplication 経費申請の削除
  @param id 経費申請ID
  @return ApiDestroyExpenseApplicationRequest
 */
-func (a *ExpenseApplicationsApiService) DestroyExpenseApplication(ctx context.Context, id int32) ApiDestroyExpenseApplicationRequest {
+func (a *ExpenseApplicationsApiService) DestroyExpenseApplication(ctx context.Context, id int64) ApiDestroyExpenseApplicationRequest {
 	return ApiDestroyExpenseApplicationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -417,12 +417,12 @@ func (a *ExpenseApplicationsApiService) DestroyExpenseApplicationExecute(r ApiDe
 type ApiGetExpenseApplicationRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetExpenseApplicationRequest) CompanyId(companyId int32) ApiGetExpenseApplicationRequest {
+func (r ApiGetExpenseApplicationRequest) CompanyId(companyId int64) ApiGetExpenseApplicationRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -460,7 +460,7 @@ GetExpenseApplication 経費申請詳細の取得
  @param id 経費申請ID
  @return ApiGetExpenseApplicationRequest
 */
-func (a *ExpenseApplicationsApiService) GetExpenseApplication(ctx context.Context, id int32) ApiGetExpenseApplicationRequest {
+func (a *ExpenseApplicationsApiService) GetExpenseApplication(ctx context.Context, id int64) ApiGetExpenseApplicationRequest {
 	return ApiGetExpenseApplicationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -612,25 +612,25 @@ func (a *ExpenseApplicationsApiService) GetExpenseApplicationExecute(r ApiGetExp
 type ApiGetExpenseApplicationsRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationsApiService
-	companyId *int32
+	companyId *int64
 	status *string
 	payrollAttached *bool
 	startTransactionDate *string
 	endTransactionDate *string
-	applicationNumber *int32
+	applicationNumber *int64
 	title *string
 	startIssueDate *string
 	endIssueDate *string
-	applicantId *int32
-	approverId *int32
-	minAmount *int32
-	maxAmount *int32
+	applicantId *int64
+	approverId *int64
+	minAmount *int64
+	maxAmount *int64
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetExpenseApplicationsRequest) CompanyId(companyId int32) ApiGetExpenseApplicationsRequest {
+func (r ApiGetExpenseApplicationsRequest) CompanyId(companyId int64) ApiGetExpenseApplicationsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -660,7 +660,7 @@ func (r ApiGetExpenseApplicationsRequest) EndTransactionDate(endTransactionDate 
 }
 
 // 申請No.
-func (r ApiGetExpenseApplicationsRequest) ApplicationNumber(applicationNumber int32) ApiGetExpenseApplicationsRequest {
+func (r ApiGetExpenseApplicationsRequest) ApplicationNumber(applicationNumber int64) ApiGetExpenseApplicationsRequest {
 	r.applicationNumber = &applicationNumber
 	return r
 }
@@ -684,25 +684,25 @@ func (r ApiGetExpenseApplicationsRequest) EndIssueDate(endIssueDate string) ApiG
 }
 
 // 申請者のユーザーID
-func (r ApiGetExpenseApplicationsRequest) ApplicantId(applicantId int32) ApiGetExpenseApplicationsRequest {
+func (r ApiGetExpenseApplicationsRequest) ApplicantId(applicantId int64) ApiGetExpenseApplicationsRequest {
 	r.applicantId = &applicantId
 	return r
 }
 
 // 承認者のユーザーID
-func (r ApiGetExpenseApplicationsRequest) ApproverId(approverId int32) ApiGetExpenseApplicationsRequest {
+func (r ApiGetExpenseApplicationsRequest) ApproverId(approverId int64) ApiGetExpenseApplicationsRequest {
 	r.approverId = &approverId
 	return r
 }
 
 // 金額で絞込 (下限金額)
-func (r ApiGetExpenseApplicationsRequest) MinAmount(minAmount int32) ApiGetExpenseApplicationsRequest {
+func (r ApiGetExpenseApplicationsRequest) MinAmount(minAmount int64) ApiGetExpenseApplicationsRequest {
 	r.minAmount = &minAmount
 	return r
 }
 
 // 金額で絞込 (上限金額)
-func (r ApiGetExpenseApplicationsRequest) MaxAmount(maxAmount int32) ApiGetExpenseApplicationsRequest {
+func (r ApiGetExpenseApplicationsRequest) MaxAmount(maxAmount int64) ApiGetExpenseApplicationsRequest {
 	r.maxAmount = &maxAmount
 	return r
 }
@@ -714,7 +714,7 @@ func (r ApiGetExpenseApplicationsRequest) Offset(offset int64) ApiGetExpenseAppl
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 500)
-func (r ApiGetExpenseApplicationsRequest) Limit(limit int32) ApiGetExpenseApplicationsRequest {
+func (r ApiGetExpenseApplicationsRequest) Limit(limit int64) ApiGetExpenseApplicationsRequest {
 	r.limit = &limit
 	return r
 }
@@ -927,7 +927,7 @@ func (a *ExpenseApplicationsApiService) GetExpenseApplicationsExecute(r ApiGetEx
 type ApiUpdateExpenseApplicationRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationsApiService
-	id int32
+	id int64
 	expenseApplicationUpdateParams *ExpenseApplicationUpdateParams
 }
 
@@ -996,7 +996,7 @@ UpdateExpenseApplication 経費申請の更新
  @param id 経費申請ID
  @return ApiUpdateExpenseApplicationRequest
 */
-func (a *ExpenseApplicationsApiService) UpdateExpenseApplication(ctx context.Context, id int32) ApiUpdateExpenseApplicationRequest {
+func (a *ExpenseApplicationsApiService) UpdateExpenseApplication(ctx context.Context, id int64) ApiUpdateExpenseApplicationRequest {
 	return ApiUpdateExpenseApplicationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1140,7 +1140,7 @@ func (a *ExpenseApplicationsApiService) UpdateExpenseApplicationExecute(r ApiUpd
 type ApiUpdateExpenseApplicationActionRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationsApiService
-	id int32
+	id int64
 	expenseApplicationActionCreateParams *ExpenseApplicationActionCreateParams
 }
 
@@ -1207,7 +1207,7 @@ UpdateExpenseApplicationAction 経費申請の承認操作
  @param id 経費申請ID
  @return ApiUpdateExpenseApplicationActionRequest
 */
-func (a *ExpenseApplicationsApiService) UpdateExpenseApplicationAction(ctx context.Context, id int32) ApiUpdateExpenseApplicationActionRequest {
+func (a *ExpenseApplicationsApiService) UpdateExpenseApplicationAction(ctx context.Context, id int64) ApiUpdateExpenseApplicationActionRequest {
 	return ApiUpdateExpenseApplicationActionRequest{
 		ApiService: a,
 		ctx: ctx,

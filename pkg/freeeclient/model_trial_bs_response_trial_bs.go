@@ -26,34 +26,34 @@ type TrialBsResponseTrialBs struct {
 	// 内訳の表示（取引先: partner, 品目: item, 部門: section, 勘定科目: account_item, セグメント1(法人向けプロフェッショナル, 法人向けエンタープライズプラン): segment_1_tag, セグメント2(法人向け エンタープライズプラン):segment_2_tag, セグメント3(法人向け エンタープライズプラン): segment_3_tag）(条件に指定した時のみ含まれる）
 	BreakdownDisplayType *string `json:"breakdown_display_type,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 作成日時
 	CreatedAt *string `json:"created_at,omitempty"`
 	// 発生日で絞込：終了日(yyyy-mm-dd)(条件に指定した時のみ含まれる）
 	EndDate *string `json:"end_date,omitempty"`
 	// 発生月で絞込：終了会計月(1-12)(条件に指定した時のみ含まれる）
-	EndMonth *int32 `json:"end_month,omitempty"`
+	EndMonth *int64 `json:"end_month,omitempty"`
 	// 会計年度(条件に指定した時、または条件に月、日条件がない時のみ含まれる）
-	FiscalYear *int32 `json:"fiscal_year,omitempty"`
+	FiscalYear *int64 `json:"fiscal_year,omitempty"`
 	// 品目ID(条件に指定した時のみ含まれる）
-	ItemId *int32 `json:"item_id,omitempty"`
+	ItemId *int64 `json:"item_id,omitempty"`
 	// 取引先コード(条件に指定した時のみ含まれる）
 	PartnerCode *string `json:"partner_code,omitempty"`
 	// 取引先ID(条件に指定した時のみ含まれる）
-	PartnerId *int32 `json:"partner_id,omitempty"`
+	PartnerId *int64 `json:"partner_id,omitempty"`
 	// 部門ID(条件に指定した時のみ含まれる）
-	SectionId *int32 `json:"section_id,omitempty"`
+	SectionId *int64 `json:"section_id,omitempty"`
 	// 発生日で絞込：開始日(yyyy-mm-dd)(条件に指定した時のみ含まれる）
 	StartDate *string `json:"start_date,omitempty"`
 	// 発生月で絞込：開始会計月(1-12)(条件に指定した時のみ含まれる）
-	StartMonth *int32 `json:"start_month,omitempty"`
+	StartMonth *int64 `json:"start_month,omitempty"`
 }
 
 // NewTrialBsResponseTrialBs instantiates a new TrialBsResponseTrialBs object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrialBsResponseTrialBs(balances []TrialBsResponseTrialBsBalancesInner, companyId int32) *TrialBsResponseTrialBs {
+func NewTrialBsResponseTrialBs(balances []TrialBsResponseTrialBsBalancesInner, companyId int64) *TrialBsResponseTrialBs {
 	this := TrialBsResponseTrialBs{}
 	this.Balances = balances
 	this.CompanyId = companyId
@@ -221,9 +221,9 @@ func (o *TrialBsResponseTrialBs) SetBreakdownDisplayType(v string) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *TrialBsResponseTrialBs) GetCompanyId() int32 {
+func (o *TrialBsResponseTrialBs) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -232,7 +232,7 @@ func (o *TrialBsResponseTrialBs) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBs) GetCompanyIdOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBs) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -240,7 +240,7 @@ func (o *TrialBsResponseTrialBs) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *TrialBsResponseTrialBs) SetCompanyId(v int32) {
+func (o *TrialBsResponseTrialBs) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -309,9 +309,9 @@ func (o *TrialBsResponseTrialBs) SetEndDate(v string) {
 }
 
 // GetEndMonth returns the EndMonth field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBs) GetEndMonth() int32 {
+func (o *TrialBsResponseTrialBs) GetEndMonth() int64 {
 	if o == nil || o.EndMonth == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EndMonth
@@ -319,7 +319,7 @@ func (o *TrialBsResponseTrialBs) GetEndMonth() int32 {
 
 // GetEndMonthOk returns a tuple with the EndMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBs) GetEndMonthOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBs) GetEndMonthOk() (*int64, bool) {
 	if o == nil || o.EndMonth == nil {
 		return nil, false
 	}
@@ -335,15 +335,15 @@ func (o *TrialBsResponseTrialBs) HasEndMonth() bool {
 	return false
 }
 
-// SetEndMonth gets a reference to the given int32 and assigns it to the EndMonth field.
-func (o *TrialBsResponseTrialBs) SetEndMonth(v int32) {
+// SetEndMonth gets a reference to the given int64 and assigns it to the EndMonth field.
+func (o *TrialBsResponseTrialBs) SetEndMonth(v int64) {
 	o.EndMonth = &v
 }
 
 // GetFiscalYear returns the FiscalYear field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBs) GetFiscalYear() int32 {
+func (o *TrialBsResponseTrialBs) GetFiscalYear() int64 {
 	if o == nil || o.FiscalYear == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FiscalYear
@@ -351,7 +351,7 @@ func (o *TrialBsResponseTrialBs) GetFiscalYear() int32 {
 
 // GetFiscalYearOk returns a tuple with the FiscalYear field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBs) GetFiscalYearOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBs) GetFiscalYearOk() (*int64, bool) {
 	if o == nil || o.FiscalYear == nil {
 		return nil, false
 	}
@@ -367,15 +367,15 @@ func (o *TrialBsResponseTrialBs) HasFiscalYear() bool {
 	return false
 }
 
-// SetFiscalYear gets a reference to the given int32 and assigns it to the FiscalYear field.
-func (o *TrialBsResponseTrialBs) SetFiscalYear(v int32) {
+// SetFiscalYear gets a reference to the given int64 and assigns it to the FiscalYear field.
+func (o *TrialBsResponseTrialBs) SetFiscalYear(v int64) {
 	o.FiscalYear = &v
 }
 
 // GetItemId returns the ItemId field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBs) GetItemId() int32 {
+func (o *TrialBsResponseTrialBs) GetItemId() int64 {
 	if o == nil || o.ItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemId
@@ -383,7 +383,7 @@ func (o *TrialBsResponseTrialBs) GetItemId() int32 {
 
 // GetItemIdOk returns a tuple with the ItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBs) GetItemIdOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBs) GetItemIdOk() (*int64, bool) {
 	if o == nil || o.ItemId == nil {
 		return nil, false
 	}
@@ -399,8 +399,8 @@ func (o *TrialBsResponseTrialBs) HasItemId() bool {
 	return false
 }
 
-// SetItemId gets a reference to the given int32 and assigns it to the ItemId field.
-func (o *TrialBsResponseTrialBs) SetItemId(v int32) {
+// SetItemId gets a reference to the given int64 and assigns it to the ItemId field.
+func (o *TrialBsResponseTrialBs) SetItemId(v int64) {
 	o.ItemId = &v
 }
 
@@ -437,9 +437,9 @@ func (o *TrialBsResponseTrialBs) SetPartnerCode(v string) {
 }
 
 // GetPartnerId returns the PartnerId field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBs) GetPartnerId() int32 {
+func (o *TrialBsResponseTrialBs) GetPartnerId() int64 {
 	if o == nil || o.PartnerId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerId
@@ -447,7 +447,7 @@ func (o *TrialBsResponseTrialBs) GetPartnerId() int32 {
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBs) GetPartnerIdOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBs) GetPartnerIdOk() (*int64, bool) {
 	if o == nil || o.PartnerId == nil {
 		return nil, false
 	}
@@ -463,15 +463,15 @@ func (o *TrialBsResponseTrialBs) HasPartnerId() bool {
 	return false
 }
 
-// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
-func (o *TrialBsResponseTrialBs) SetPartnerId(v int32) {
+// SetPartnerId gets a reference to the given int64 and assigns it to the PartnerId field.
+func (o *TrialBsResponseTrialBs) SetPartnerId(v int64) {
 	o.PartnerId = &v
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBs) GetSectionId() int32 {
+func (o *TrialBsResponseTrialBs) GetSectionId() int64 {
 	if o == nil || o.SectionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId
@@ -479,7 +479,7 @@ func (o *TrialBsResponseTrialBs) GetSectionId() int32 {
 
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBs) GetSectionIdOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBs) GetSectionIdOk() (*int64, bool) {
 	if o == nil || o.SectionId == nil {
 		return nil, false
 	}
@@ -495,8 +495,8 @@ func (o *TrialBsResponseTrialBs) HasSectionId() bool {
 	return false
 }
 
-// SetSectionId gets a reference to the given int32 and assigns it to the SectionId field.
-func (o *TrialBsResponseTrialBs) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given int64 and assigns it to the SectionId field.
+func (o *TrialBsResponseTrialBs) SetSectionId(v int64) {
 	o.SectionId = &v
 }
 
@@ -533,9 +533,9 @@ func (o *TrialBsResponseTrialBs) SetStartDate(v string) {
 }
 
 // GetStartMonth returns the StartMonth field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBs) GetStartMonth() int32 {
+func (o *TrialBsResponseTrialBs) GetStartMonth() int64 {
 	if o == nil || o.StartMonth == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartMonth
@@ -543,7 +543,7 @@ func (o *TrialBsResponseTrialBs) GetStartMonth() int32 {
 
 // GetStartMonthOk returns a tuple with the StartMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBs) GetStartMonthOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBs) GetStartMonthOk() (*int64, bool) {
 	if o == nil || o.StartMonth == nil {
 		return nil, false
 	}
@@ -559,8 +559,8 @@ func (o *TrialBsResponseTrialBs) HasStartMonth() bool {
 	return false
 }
 
-// SetStartMonth gets a reference to the given int32 and assigns it to the StartMonth field.
-func (o *TrialBsResponseTrialBs) SetStartMonth(v int32) {
+// SetStartMonth gets a reference to the given int64 and assigns it to the StartMonth field.
+func (o *TrialBsResponseTrialBs) SetStartMonth(v int64) {
 	o.StartMonth = &v
 }
 

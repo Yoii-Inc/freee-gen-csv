@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    sectionParams := *openapiclient.NewSectionParams(int32(1), "開発部門") // SectionParams | 部門の作成 (optional)
+    sectionParams := *openapiclient.NewSectionParams(int64(1), "開発部門") // SectionParams | 部門の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -99,8 +99,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroySectionRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,8 +169,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 部門ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 部門ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 部門ID | 
+**id** | **int64** | 部門ID | 
 
 ### Other Parameters
 
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiGetSectionRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -241,7 +241,7 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -266,7 +266,7 @@ Other parameters are passed through a pointer to a apiGetSectionsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -307,8 +307,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    sectionParams := *openapiclient.NewSectionParams(int32(1), "開発部門") // SectionParams | 部門の更新 (optional)
+    id := int64(56) // int64 | 
+    sectionParams := *openapiclient.NewSectionParams(int64(1), "開発部門") // SectionParams | 部門の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -328,7 +328,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 

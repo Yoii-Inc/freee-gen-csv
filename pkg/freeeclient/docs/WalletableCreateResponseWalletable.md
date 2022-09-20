@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BankId** | **int32** | 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須） | 
-**Id** | **int32** | 口座ID | 
+**BankId** | **int64** | 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須） | 
+**Id** | **int64** | 口座ID | 
 **Name** | **string** | 口座名, 最大255文字 | 
 **Type** | **string** | 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewWalletableCreateResponseWalletable
 
-`func NewWalletableCreateResponseWalletable(bankId int32, id int32, name string, type_ string, ) *WalletableCreateResponseWalletable`
+`func NewWalletableCreateResponseWalletable(bankId int64, id int64, name string, type_ string, ) *WalletableCreateResponseWalletable`
 
 NewWalletableCreateResponseWalletable instantiates a new WalletableCreateResponseWalletable object
 This constructor will assign default values to properties that have it defined,
@@ -30,40 +30,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBankId
 
-`func (o *WalletableCreateResponseWalletable) GetBankId() int32`
+`func (o *WalletableCreateResponseWalletable) GetBankId() int64`
 
 GetBankId returns the BankId field if non-nil, zero value otherwise.
 
 ### GetBankIdOk
 
-`func (o *WalletableCreateResponseWalletable) GetBankIdOk() (*int32, bool)`
+`func (o *WalletableCreateResponseWalletable) GetBankIdOk() (*int64, bool)`
 
 GetBankIdOk returns a tuple with the BankId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBankId
 
-`func (o *WalletableCreateResponseWalletable) SetBankId(v int32)`
+`func (o *WalletableCreateResponseWalletable) SetBankId(v int64)`
 
 SetBankId sets BankId field to given value.
 
 
 ### GetId
 
-`func (o *WalletableCreateResponseWalletable) GetId() int32`
+`func (o *WalletableCreateResponseWalletable) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *WalletableCreateResponseWalletable) GetIdOk() (*int32, bool)`
+`func (o *WalletableCreateResponseWalletable) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *WalletableCreateResponseWalletable) SetId(v int32)`
+`func (o *WalletableCreateResponseWalletable) SetId(v int64)`
 
 SetId sets Id field to given value.
 

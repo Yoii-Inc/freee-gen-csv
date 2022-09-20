@@ -31,8 +31,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引ID
-    renewCreateParams := *openapiclient.NewRenewCreateParams(int32(1), []openapiclient.RenewCreateParamsDetailsInner{*openapiclient.NewRenewCreateParamsDetailsInner(int32(1), int64(1080), int32(1))}, int64(1), "2019-12-17") // RenewCreateParams | 取引（収入／支出）に対する+更新の情報
+    id := int64(56) // int64 | 取引ID
+    renewCreateParams := *openapiclient.NewRenewCreateParams(int64(1), []openapiclient.RenewCreateParamsDetailsInner{*openapiclient.NewRenewCreateParamsDetailsInner(int64(1), int64(1080), int64(1))}, int64(1), "2019-12-17") // RenewCreateParams | 取引（収入／支出）に対する+更新の情報
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引ID | 
+**id** | **int64** | 取引ID | 
 
 ### Other Parameters
 
@@ -103,9 +103,9 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引ID
-    renewId := int32(56) // int32 | +更新ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 取引ID
+    renewId := int64(56) // int64 | +更新ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -125,8 +125,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引ID | 
-**renewId** | **int32** | +更新ID | 
+**id** | **int64** | 取引ID | 
+**renewId** | **int64** | +更新ID | 
 
 ### Other Parameters
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -178,9 +178,9 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 取引ID
-    renewId := int32(56) // int32 | +更新ID
-    renewUpdateParams := *openapiclient.NewRenewUpdateParams(int32(1), []openapiclient.RenewUpdateParamsDetailsInner{*openapiclient.NewRenewUpdateParamsDetailsInner(int32(1), int64(1080), int32(1))}, "2019-12-17") // RenewUpdateParams | +更新の更新情報
+    id := int64(56) // int64 | 取引ID
+    renewId := int64(56) // int64 | +更新ID
+    renewUpdateParams := *openapiclient.NewRenewUpdateParams(int64(1), []openapiclient.RenewUpdateParamsDetailsInner{*openapiclient.NewRenewUpdateParamsDetailsInner(int64(1), int64(1080), int64(1))}, "2019-12-17") // RenewUpdateParams | +更新の更新情報
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -200,8 +200,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 取引ID | 
-**renewId** | **int32** | +更新ID | 
+**id** | **int64** | 取引ID | 
+**renewId** | **int64** | +更新ID | 
 
 ### Other Parameters
 

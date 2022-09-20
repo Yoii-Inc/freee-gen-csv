@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BankId** | Pointer to **int32** | 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須） | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**BankId** | Pointer to **int64** | 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須） | [optional] 
+**CompanyId** | **int64** | 事業所ID | 
 **IsAsset** | Pointer to **bool** | 口座を資産口座とするか負債口座とするか（true: 資産口座 (デフォルト), false: 負債口座）&lt;br&gt; bank_idを指定しない場合にのみ使われます。&lt;br&gt; bank_idを指定する場合には資産口座か負債口座かはbank_idに指定したサービスに応じて決定され、is_assetに指定した値は無視されます。  | [optional] 
 **Name** | **string** | 口座名 (255文字以内) | 
 **Type** | **string** | 口座種別（bank_account : 銀行口座, credit_card : クレジットカード, wallet : その他の決済口座） | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewWalletableCreateParams
 
-`func NewWalletableCreateParams(companyId int32, name string, type_ string, ) *WalletableCreateParams`
+`func NewWalletableCreateParams(companyId int64, name string, type_ string, ) *WalletableCreateParams`
 
 NewWalletableCreateParams instantiates a new WalletableCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBankId
 
-`func (o *WalletableCreateParams) GetBankId() int32`
+`func (o *WalletableCreateParams) GetBankId() int64`
 
 GetBankId returns the BankId field if non-nil, zero value otherwise.
 
 ### GetBankIdOk
 
-`func (o *WalletableCreateParams) GetBankIdOk() (*int32, bool)`
+`func (o *WalletableCreateParams) GetBankIdOk() (*int64, bool)`
 
 GetBankIdOk returns a tuple with the BankId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBankId
 
-`func (o *WalletableCreateParams) SetBankId(v int32)`
+`func (o *WalletableCreateParams) SetBankId(v int64)`
 
 SetBankId sets BankId field to given value.
 
@@ -56,20 +56,20 @@ HasBankId returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *WalletableCreateParams) GetCompanyId() int32`
+`func (o *WalletableCreateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *WalletableCreateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *WalletableCreateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *WalletableCreateParams) SetCompanyId(v int32)`
+`func (o *WalletableCreateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

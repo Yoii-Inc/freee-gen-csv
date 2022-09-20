@@ -5,23 +5,23 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int64** | 取引金額 | 
-**Balance** | **int32** | 残高(銀行口座等) | 
-**CompanyId** | **int32** | 事業所ID | 
+**Balance** | **int64** | 残高(銀行口座等) | 
+**CompanyId** | **int64** | 事業所ID | 
 **Date** | **string** | 取引日(yyyy-mm-dd) | 
 **Description** | **string** | 取引内容 | 
-**DueAmount** | **int32** | 未決済金額 | 
+**DueAmount** | **int64** | 未決済金額 | 
 **EntrySide** | **string** | 入金／出金 (入金: income, 出金: expense) | 
-**Id** | **int32** | 明細ID | 
+**Id** | **int64** | 明細ID | 
 **RuleMatched** | **bool** | 登録時に&lt;a href&#x3D;\&quot;https://support.freee.co.jp/hc/ja/articles/202848350-明細の自動登録ルールを設定する\&quot; target&#x3D;\&quot;_blank\&quot;&gt;自動登録ルールの設定&lt;/a&gt;が適用され、登録処理が実行された場合、 trueになります。〜を推測する、〜の消込をするの条件の場合は一致してもfalseになります。  | 
-**Status** | **int32** | 明細のステータス（消込待ち: 1, 消込済み: 2, 無視: 3, 消込中: 4, 対象外: 6） | 
-**WalletableId** | **int32** | 口座ID | 
+**Status** | **int64** | 明細のステータス（消込待ち: 1, 消込済み: 2, 無視: 3, 消込中: 4, 対象外: 6） | 
+**WalletableId** | **int64** | 口座ID | 
 **WalletableType** | **string** | 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet) | 
 
 ## Methods
 
 ### NewWalletTxn
 
-`func NewWalletTxn(amount int64, balance int32, companyId int32, date string, description string, dueAmount int32, entrySide string, id int32, ruleMatched bool, status int32, walletableId int32, walletableType string, ) *WalletTxn`
+`func NewWalletTxn(amount int64, balance int64, companyId int64, date string, description string, dueAmount int64, entrySide string, id int64, ruleMatched bool, status int64, walletableId int64, walletableType string, ) *WalletTxn`
 
 NewWalletTxn instantiates a new WalletTxn object
 This constructor will assign default values to properties that have it defined,
@@ -58,40 +58,40 @@ SetAmount sets Amount field to given value.
 
 ### GetBalance
 
-`func (o *WalletTxn) GetBalance() int32`
+`func (o *WalletTxn) GetBalance() int64`
 
 GetBalance returns the Balance field if non-nil, zero value otherwise.
 
 ### GetBalanceOk
 
-`func (o *WalletTxn) GetBalanceOk() (*int32, bool)`
+`func (o *WalletTxn) GetBalanceOk() (*int64, bool)`
 
 GetBalanceOk returns a tuple with the Balance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBalance
 
-`func (o *WalletTxn) SetBalance(v int32)`
+`func (o *WalletTxn) SetBalance(v int64)`
 
 SetBalance sets Balance field to given value.
 
 
 ### GetCompanyId
 
-`func (o *WalletTxn) GetCompanyId() int32`
+`func (o *WalletTxn) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *WalletTxn) GetCompanyIdOk() (*int32, bool)`
+`func (o *WalletTxn) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *WalletTxn) SetCompanyId(v int32)`
+`func (o *WalletTxn) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -138,20 +138,20 @@ SetDescription sets Description field to given value.
 
 ### GetDueAmount
 
-`func (o *WalletTxn) GetDueAmount() int32`
+`func (o *WalletTxn) GetDueAmount() int64`
 
 GetDueAmount returns the DueAmount field if non-nil, zero value otherwise.
 
 ### GetDueAmountOk
 
-`func (o *WalletTxn) GetDueAmountOk() (*int32, bool)`
+`func (o *WalletTxn) GetDueAmountOk() (*int64, bool)`
 
 GetDueAmountOk returns a tuple with the DueAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDueAmount
 
-`func (o *WalletTxn) SetDueAmount(v int32)`
+`func (o *WalletTxn) SetDueAmount(v int64)`
 
 SetDueAmount sets DueAmount field to given value.
 
@@ -178,20 +178,20 @@ SetEntrySide sets EntrySide field to given value.
 
 ### GetId
 
-`func (o *WalletTxn) GetId() int32`
+`func (o *WalletTxn) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *WalletTxn) GetIdOk() (*int32, bool)`
+`func (o *WalletTxn) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *WalletTxn) SetId(v int32)`
+`func (o *WalletTxn) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -218,40 +218,40 @@ SetRuleMatched sets RuleMatched field to given value.
 
 ### GetStatus
 
-`func (o *WalletTxn) GetStatus() int32`
+`func (o *WalletTxn) GetStatus() int64`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *WalletTxn) GetStatusOk() (*int32, bool)`
+`func (o *WalletTxn) GetStatusOk() (*int64, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *WalletTxn) SetStatus(v int32)`
+`func (o *WalletTxn) SetStatus(v int64)`
 
 SetStatus sets Status field to given value.
 
 
 ### GetWalletableId
 
-`func (o *WalletTxn) GetWalletableId() int32`
+`func (o *WalletTxn) GetWalletableId() int64`
 
 GetWalletableId returns the WalletableId field if non-nil, zero value otherwise.
 
 ### GetWalletableIdOk
 
-`func (o *WalletTxn) GetWalletableIdOk() (*int32, bool)`
+`func (o *WalletTxn) GetWalletableIdOk() (*int64, bool)`
 
 GetWalletableIdOk returns a tuple with the WalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletableId
 
-`func (o *WalletTxn) SetWalletableId(v int32)`
+`func (o *WalletTxn) SetWalletableId(v int64)`
 
 SetWalletableId sets WalletableId field to given value.
 

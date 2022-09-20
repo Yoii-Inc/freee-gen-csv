@@ -214,12 +214,12 @@ func (a *WalletTxnsApiService) CreateWalletTxnExecute(r ApiCreateWalletTxnReques
 type ApiDestroyWalletTxnRequest struct {
 	ctx context.Context
 	ApiService *WalletTxnsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyWalletTxnRequest) CompanyId(companyId int32) ApiDestroyWalletTxnRequest {
+func (r ApiDestroyWalletTxnRequest) CompanyId(companyId int64) ApiDestroyWalletTxnRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -245,7 +245,7 @@ DestroyWalletTxn 明細の削除
  @param id 明細ID
  @return ApiDestroyWalletTxnRequest
 */
-func (a *WalletTxnsApiService) DestroyWalletTxn(ctx context.Context, id int32) ApiDestroyWalletTxnRequest {
+func (a *WalletTxnsApiService) DestroyWalletTxn(ctx context.Context, id int64) ApiDestroyWalletTxnRequest {
 	return ApiDestroyWalletTxnRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -386,12 +386,12 @@ func (a *WalletTxnsApiService) DestroyWalletTxnExecute(r ApiDestroyWalletTxnRequ
 type ApiGetWalletTxnRequest struct {
 	ctx context.Context
 	ApiService *WalletTxnsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetWalletTxnRequest) CompanyId(companyId int32) ApiGetWalletTxnRequest {
+func (r ApiGetWalletTxnRequest) CompanyId(companyId int64) ApiGetWalletTxnRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -450,7 +450,7 @@ GetWalletTxn 明細の取得
  @param id 明細ID
  @return ApiGetWalletTxnRequest
 */
-func (a *WalletTxnsApiService) GetWalletTxn(ctx context.Context, id int32) ApiGetWalletTxnRequest {
+func (a *WalletTxnsApiService) GetWalletTxn(ctx context.Context, id int64) ApiGetWalletTxnRequest {
 	return ApiGetWalletTxnRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -602,18 +602,18 @@ func (a *WalletTxnsApiService) GetWalletTxnExecute(r ApiGetWalletTxnRequest) (*W
 type ApiGetWalletTxnsRequest struct {
 	ctx context.Context
 	ApiService *WalletTxnsApiService
-	companyId *int32
+	companyId *int64
 	walletableType *string
-	walletableId *int32
+	walletableId *int64
 	startDate *string
 	endDate *string
 	entrySide *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetWalletTxnsRequest) CompanyId(companyId int32) ApiGetWalletTxnsRequest {
+func (r ApiGetWalletTxnsRequest) CompanyId(companyId int64) ApiGetWalletTxnsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -625,7 +625,7 @@ func (r ApiGetWalletTxnsRequest) WalletableType(walletableType string) ApiGetWal
 }
 
 // 口座ID walletable_type、walletable_idは同時に指定が必要です。
-func (r ApiGetWalletTxnsRequest) WalletableId(walletableId int32) ApiGetWalletTxnsRequest {
+func (r ApiGetWalletTxnsRequest) WalletableId(walletableId int64) ApiGetWalletTxnsRequest {
 	r.walletableId = &walletableId
 	return r
 }
@@ -655,7 +655,7 @@ func (r ApiGetWalletTxnsRequest) Offset(offset int64) ApiGetWalletTxnsRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100) 
-func (r ApiGetWalletTxnsRequest) Limit(limit int32) ApiGetWalletTxnsRequest {
+func (r ApiGetWalletTxnsRequest) Limit(limit int64) ApiGetWalletTxnsRequest {
 	r.limit = &limit
 	return r
 }

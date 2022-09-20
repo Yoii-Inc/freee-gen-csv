@@ -238,12 +238,12 @@ func (a *DealsApiService) CreateDealExecute(r ApiCreateDealRequest) (*DealCreate
 type ApiDestroyDealRequest struct {
 	ctx context.Context
 	ApiService *DealsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyDealRequest) CompanyId(companyId int32) ApiDestroyDealRequest {
+func (r ApiDestroyDealRequest) CompanyId(companyId int64) ApiDestroyDealRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -259,7 +259,7 @@ DestroyDeal 取引（収入／支出）の削除
  @param id 取引ID
  @return ApiDestroyDealRequest
 */
-func (a *DealsApiService) DestroyDeal(ctx context.Context, id int32) ApiDestroyDealRequest {
+func (a *DealsApiService) DestroyDeal(ctx context.Context, id int64) ApiDestroyDealRequest {
 	return ApiDestroyDealRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -400,13 +400,13 @@ func (a *DealsApiService) DestroyDealExecute(r ApiDestroyDealRequest) (*http.Res
 type ApiGetDealRequest struct {
 	ctx context.Context
 	ApiService *DealsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 	accruals *string
 }
 
 // 事業所ID
-func (r ApiGetDealRequest) CompanyId(companyId int32) ApiGetDealRequest {
+func (r ApiGetDealRequest) CompanyId(companyId int64) ApiGetDealRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -485,7 +485,7 @@ GetDeal 取引（収入／支出）の取得
  @param id
  @return ApiGetDealRequest
 */
-func (a *DealsApiService) GetDeal(ctx context.Context, id int32) ApiGetDealRequest {
+func (a *DealsApiService) GetDeal(ctx context.Context, id int64) ApiGetDealRequest {
 	return ApiGetDealRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -640,9 +640,9 @@ func (a *DealsApiService) GetDealExecute(r ApiGetDealRequest) (*DealResponse, *h
 type ApiGetDealsRequest struct {
 	ctx context.Context
 	ApiService *DealsApiService
-	companyId *int32
-	partnerId *int32
-	accountItemId *int32
+	companyId *int64
+	partnerId *int64
+	accountItemId *int64
 	partnerCode *string
 	status *string
 	type_ *string
@@ -653,25 +653,25 @@ type ApiGetDealsRequest struct {
 	startRenewDate *string
 	endRenewDate *string
 	offset *int64
-	limit *int32
+	limit *int64
 	registeredFrom *string
 	accruals *string
 }
 
 // 事業所ID
-func (r ApiGetDealsRequest) CompanyId(companyId int32) ApiGetDealsRequest {
+func (r ApiGetDealsRequest) CompanyId(companyId int64) ApiGetDealsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 取引先IDで絞込
-func (r ApiGetDealsRequest) PartnerId(partnerId int32) ApiGetDealsRequest {
+func (r ApiGetDealsRequest) PartnerId(partnerId int64) ApiGetDealsRequest {
 	r.partnerId = &partnerId
 	return r
 }
 
 // 勘定科目IDで絞込
-func (r ApiGetDealsRequest) AccountItemId(accountItemId int32) ApiGetDealsRequest {
+func (r ApiGetDealsRequest) AccountItemId(accountItemId int64) ApiGetDealsRequest {
 	r.accountItemId = &accountItemId
 	return r
 }
@@ -737,7 +737,7 @@ func (r ApiGetDealsRequest) Offset(offset int64) ApiGetDealsRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最大: 100) 
-func (r ApiGetDealsRequest) Limit(limit int32) ApiGetDealsRequest {
+func (r ApiGetDealsRequest) Limit(limit int64) ApiGetDealsRequest {
 	r.limit = &limit
 	return r
 }
@@ -1011,7 +1011,7 @@ func (a *DealsApiService) GetDealsExecute(r ApiGetDealsRequest) (*GetDeals200Res
 type ApiUpdateDealRequest struct {
 	ctx context.Context
 	ApiService *DealsApiService
-	id int32
+	id int64
 	dealUpdateParams *DealUpdateParams
 }
 
@@ -1090,7 +1090,7 @@ UpdateDeal 取引（収入／支出）の更新
  @param id 取引ID
  @return ApiUpdateDealRequest
 */
-func (a *DealsApiService) UpdateDeal(ctx context.Context, id int32) ApiUpdateDealRequest {
+func (a *DealsApiService) UpdateDeal(ctx context.Context, id int64) ApiUpdateDealRequest {
 	return ApiUpdateDealRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -17,26 +17,26 @@ import (
 // TrialBsResponseTrialBsBalancesInnerSectionsInner struct for TrialBsResponseTrialBsBalancesInnerSectionsInner
 type TrialBsResponseTrialBsBalancesInnerSectionsInner struct {
 	// 期末残高
-	ClosingBalance *int32 `json:"closing_balance,omitempty"`
+	ClosingBalance *int64 `json:"closing_balance,omitempty"`
 	// 構成比
 	CompositionRatio *float32 `json:"composition_ratio,omitempty"`
 	// 貸方金額
-	CreditAmount *int32 `json:"credit_amount,omitempty"`
+	CreditAmount *int64 `json:"credit_amount,omitempty"`
 	// 借方金額
-	DebitAmount *int32 `json:"debit_amount,omitempty"`
+	DebitAmount *int64 `json:"debit_amount,omitempty"`
 	// 部門ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 部門名
 	Name *string `json:"name,omitempty"`
 	// 期首残高
-	OpeningBalance *int32 `json:"opening_balance,omitempty"`
+	OpeningBalance *int64 `json:"opening_balance,omitempty"`
 }
 
 // NewTrialBsResponseTrialBsBalancesInnerSectionsInner instantiates a new TrialBsResponseTrialBsBalancesInnerSectionsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrialBsResponseTrialBsBalancesInnerSectionsInner(id int32) *TrialBsResponseTrialBsBalancesInnerSectionsInner {
+func NewTrialBsResponseTrialBsBalancesInnerSectionsInner(id int64) *TrialBsResponseTrialBsBalancesInnerSectionsInner {
 	this := TrialBsResponseTrialBsBalancesInnerSectionsInner{}
 	this.Id = id
 	return &this
@@ -51,9 +51,9 @@ func NewTrialBsResponseTrialBsBalancesInnerSectionsInnerWithDefaults() *TrialBsR
 }
 
 // GetClosingBalance returns the ClosingBalance field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetClosingBalance() int32 {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetClosingBalance() int64 {
 	if o == nil || o.ClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosingBalance
@@ -61,7 +61,7 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetClosingBalance() i
 
 // GetClosingBalanceOk returns a tuple with the ClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetClosingBalanceOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.ClosingBalance == nil {
 		return nil, false
 	}
@@ -77,8 +77,8 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) HasClosingBalance() b
 	return false
 }
 
-// SetClosingBalance gets a reference to the given int32 and assigns it to the ClosingBalance field.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetClosingBalance(v int32) {
+// SetClosingBalance gets a reference to the given int64 and assigns it to the ClosingBalance field.
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetClosingBalance(v int64) {
 	o.ClosingBalance = &v
 }
 
@@ -115,9 +115,9 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetCompositionRatio(v
 }
 
 // GetCreditAmount returns the CreditAmount field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetCreditAmount() int32 {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetCreditAmount() int64 {
 	if o == nil || o.CreditAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreditAmount
@@ -125,7 +125,7 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetCreditAmount() int
 
 // GetCreditAmountOk returns a tuple with the CreditAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetCreditAmountOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetCreditAmountOk() (*int64, bool) {
 	if o == nil || o.CreditAmount == nil {
 		return nil, false
 	}
@@ -141,15 +141,15 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) HasCreditAmount() boo
 	return false
 }
 
-// SetCreditAmount gets a reference to the given int32 and assigns it to the CreditAmount field.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetCreditAmount(v int32) {
+// SetCreditAmount gets a reference to the given int64 and assigns it to the CreditAmount field.
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetCreditAmount(v int64) {
 	o.CreditAmount = &v
 }
 
 // GetDebitAmount returns the DebitAmount field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetDebitAmount() int32 {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetDebitAmount() int64 {
 	if o == nil || o.DebitAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DebitAmount
@@ -157,7 +157,7 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetDebitAmount() int3
 
 // GetDebitAmountOk returns a tuple with the DebitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetDebitAmountOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetDebitAmountOk() (*int64, bool) {
 	if o == nil || o.DebitAmount == nil {
 		return nil, false
 	}
@@ -173,15 +173,15 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) HasDebitAmount() bool
 	return false
 }
 
-// SetDebitAmount gets a reference to the given int32 and assigns it to the DebitAmount field.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetDebitAmount(v int32) {
+// SetDebitAmount gets a reference to the given int64 and assigns it to the DebitAmount field.
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetDebitAmount(v int64) {
 	o.DebitAmount = &v
 }
 
 // GetId returns the Id field value
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetId() int32 {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -190,7 +190,7 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetIdOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -198,7 +198,7 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetIdOk() (*int32, bo
 }
 
 // SetId sets field value
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetId(v int32) {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetId(v int64) {
 	o.Id = v
 }
 
@@ -235,9 +235,9 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetName(v string) {
 }
 
 // GetOpeningBalance returns the OpeningBalance field value if set, zero value otherwise.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetOpeningBalance() int32 {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetOpeningBalance() int64 {
 	if o == nil || o.OpeningBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OpeningBalance
@@ -245,7 +245,7 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetOpeningBalance() i
 
 // GetOpeningBalanceOk returns a tuple with the OpeningBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetOpeningBalanceOk() (*int32, bool) {
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) GetOpeningBalanceOk() (*int64, bool) {
 	if o == nil || o.OpeningBalance == nil {
 		return nil, false
 	}
@@ -261,8 +261,8 @@ func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) HasOpeningBalance() b
 	return false
 }
 
-// SetOpeningBalance gets a reference to the given int32 and assigns it to the OpeningBalance field.
-func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetOpeningBalance(v int32) {
+// SetOpeningBalance gets a reference to the given int64 and assigns it to the OpeningBalance field.
+func (o *TrialBsResponseTrialBsBalancesInnerSectionsInner) SetOpeningBalance(v int64) {
 	o.OpeningBalance = &v
 }
 

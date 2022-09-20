@@ -17,15 +17,15 @@ import (
 // ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner struct for ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner
 type ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner struct {
 	// 金額
-	Amount *int32 `json:"amount,omitempty"`
+	Amount *int64 `json:"amount,omitempty"`
 	// 内容
 	Description NullableString `json:"description,omitempty"`
 	// 経費科目ID
-	ExpenseApplicationLineTemplateId NullableInt32 `json:"expense_application_line_template_id,omitempty"`
+	ExpenseApplicationLineTemplateId NullableInt64 `json:"expense_application_line_template_id,omitempty"`
 	// 経費申請の項目行ID
 	Id int64 `json:"id"`
 	// 証憑ファイルID（ファイルボックスのファイルID）
-	ReceiptId NullableInt32 `json:"receipt_id,omitempty"`
+	ReceiptId NullableInt64 `json:"receipt_id,omitempty"`
 	// 日付 (yyyy-mm-dd)
 	TransactionDate NullableString `json:"transaction_date,omitempty"`
 }
@@ -49,9 +49,9 @@ func NewExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetAmount() int32 {
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetAmount() int64 {
 	if o == nil || o.Amount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Amount
@@ -59,7 +59,7 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetAmountOk() (*int32, bool) {
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetAmountOk() (*int64, bool) {
 	if o == nil || o.Amount == nil {
 		return nil, false
 	}
@@ -75,8 +75,8 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 	return false
 }
 
-// SetAmount gets a reference to the given int32 and assigns it to the Amount field.
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) SetAmount(v int32) {
+// SetAmount gets a reference to the given int64 and assigns it to the Amount field.
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) SetAmount(v int64) {
 	o.Amount = &v
 }
 
@@ -123,9 +123,9 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 }
 
 // GetExpenseApplicationLineTemplateId returns the ExpenseApplicationLineTemplateId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateId() int32 {
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateId() int64 {
 	if o == nil || o.ExpenseApplicationLineTemplateId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExpenseApplicationLineTemplateId.Get()
@@ -134,7 +134,7 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 // GetExpenseApplicationLineTemplateIdOk returns a tuple with the ExpenseApplicationLineTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateIdOk() (*int32, bool) {
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -150,8 +150,8 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 	return false
 }
 
-// SetExpenseApplicationLineTemplateId gets a reference to the given NullableInt32 and assigns it to the ExpenseApplicationLineTemplateId field.
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) SetExpenseApplicationLineTemplateId(v int32) {
+// SetExpenseApplicationLineTemplateId gets a reference to the given NullableInt64 and assigns it to the ExpenseApplicationLineTemplateId field.
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) SetExpenseApplicationLineTemplateId(v int64) {
 	o.ExpenseApplicationLineTemplateId.Set(&v)
 }
 // SetExpenseApplicationLineTemplateIdNil sets the value for ExpenseApplicationLineTemplateId to be an explicit nil
@@ -189,9 +189,9 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 }
 
 // GetReceiptId returns the ReceiptId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetReceiptId() int32 {
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetReceiptId() int64 {
 	if o == nil || o.ReceiptId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReceiptId.Get()
@@ -200,7 +200,7 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 // GetReceiptIdOk returns a tuple with the ReceiptId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetReceiptIdOk() (*int32, bool) {
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) GetReceiptIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -216,8 +216,8 @@ func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInne
 	return false
 }
 
-// SetReceiptId gets a reference to the given NullableInt32 and assigns it to the ReceiptId field.
-func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) SetReceiptId(v int32) {
+// SetReceiptId gets a reference to the given NullableInt64 and assigns it to the ReceiptId field.
+func (o *ExpenseApplicationResponseExpenseApplicationExpenseApplicationLinesInner) SetReceiptId(v int64) {
 	o.ReceiptId.Set(&v)
 }
 // SetReceiptIdNil sets the value for ReceiptId to be an explicit nil

@@ -27,7 +27,7 @@ type ReceiptsApiService service
 type ApiCreateReceiptRequest struct {
 	ctx context.Context
 	ApiService *ReceiptsApiService
-	companyId *int32
+	companyId *int64
 	receipt **os.File
 	description *string
 	issueDate *string
@@ -37,7 +37,7 @@ type ApiCreateReceiptRequest struct {
 }
 
 // 事業所ID
-func (r ApiCreateReceiptRequest) CompanyId(companyId int32) ApiCreateReceiptRequest {
+func (r ApiCreateReceiptRequest) CompanyId(companyId int64) ApiCreateReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -263,12 +263,12 @@ func (a *ReceiptsApiService) CreateReceiptExecute(r ApiCreateReceiptRequest) (*R
 type ApiDestroyReceiptRequest struct {
 	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyReceiptRequest) CompanyId(companyId int32) ApiDestroyReceiptRequest {
+func (r ApiDestroyReceiptRequest) CompanyId(companyId int64) ApiDestroyReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -289,7 +289,7 @@ DestroyReceipt ファイルボックス 証憑ファイルを削除する
  @param id 証憑ファイルID
  @return ApiDestroyReceiptRequest
 */
-func (a *ReceiptsApiService) DestroyReceipt(ctx context.Context, id int32) ApiDestroyReceiptRequest {
+func (a *ReceiptsApiService) DestroyReceipt(ctx context.Context, id int64) ApiDestroyReceiptRequest {
 	return ApiDestroyReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -430,12 +430,12 @@ func (a *ReceiptsApiService) DestroyReceiptExecute(r ApiDestroyReceiptRequest) (
 type ApiDownloadReceiptRequest struct {
 	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDownloadReceiptRequest) CompanyId(companyId int32) ApiDownloadReceiptRequest {
+func (r ApiDownloadReceiptRequest) CompanyId(companyId int64) ApiDownloadReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -456,7 +456,7 @@ DownloadReceipt ファイルボックス 証憑ファイルのダウンロード
  @param id 証憑ファイルID
  @return ApiDownloadReceiptRequest
 */
-func (a *ReceiptsApiService) DownloadReceipt(ctx context.Context, id int32) ApiDownloadReceiptRequest {
+func (a *ReceiptsApiService) DownloadReceipt(ctx context.Context, id int64) ApiDownloadReceiptRequest {
 	return ApiDownloadReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -608,12 +608,12 @@ func (a *ReceiptsApiService) DownloadReceiptExecute(r ApiDownloadReceiptRequest)
 type ApiGetReceiptRequest struct {
 	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetReceiptRequest) CompanyId(companyId int32) ApiGetReceiptRequest {
+func (r ApiGetReceiptRequest) CompanyId(companyId int64) ApiGetReceiptRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -634,7 +634,7 @@ GetReceipt ファイルボックス 証憑ファイルの取得
  @param id 証憑ファイルID
  @return ApiGetReceiptRequest
 */
-func (a *ReceiptsApiService) GetReceipt(ctx context.Context, id int32) ApiGetReceiptRequest {
+func (a *ReceiptsApiService) GetReceipt(ctx context.Context, id int64) ApiGetReceiptRequest {
 	return ApiGetReceiptRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -786,20 +786,20 @@ func (a *ReceiptsApiService) GetReceiptExecute(r ApiGetReceiptRequest) (*Receipt
 type ApiGetReceiptsRequest struct {
 	ctx context.Context
 	ApiService *ReceiptsApiService
-	companyId *int32
+	companyId *int64
 	startDate *string
 	endDate *string
 	userName *string
-	number *int32
+	number *int64
 	commentType *string
 	commentImportant *bool
 	category *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetReceiptsRequest) CompanyId(companyId int32) ApiGetReceiptsRequest {
+func (r ApiGetReceiptsRequest) CompanyId(companyId int64) ApiGetReceiptsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -823,7 +823,7 @@ func (r ApiGetReceiptsRequest) UserName(userName string) ApiGetReceiptsRequest {
 }
 
 // アップロードファイルNo
-func (r ApiGetReceiptsRequest) Number(number int32) ApiGetReceiptsRequest {
+func (r ApiGetReceiptsRequest) Number(number int64) ApiGetReceiptsRequest {
 	r.number = &number
 	return r
 }
@@ -853,7 +853,7 @@ func (r ApiGetReceiptsRequest) Offset(offset int64) ApiGetReceiptsRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000)
-func (r ApiGetReceiptsRequest) Limit(limit int32) ApiGetReceiptsRequest {
+func (r ApiGetReceiptsRequest) Limit(limit int64) ApiGetReceiptsRequest {
 	r.limit = &limit
 	return r
 }
@@ -1036,7 +1036,7 @@ func (a *ReceiptsApiService) GetReceiptsExecute(r ApiGetReceiptsRequest) (*GetRe
 type ApiUpdateReceiptRequest struct {
 	ctx context.Context
 	ApiService *ReceiptsApiService
-	id int32
+	id int64
 	receiptUpdateParams *ReceiptUpdateParams
 }
 
@@ -1065,7 +1065,7 @@ UpdateReceipt ファイルボックス 証憑ファイル情報更新
  @param id 証憑ファイルID
  @return ApiUpdateReceiptRequest
 */
-func (a *ReceiptsApiService) UpdateReceipt(ctx context.Context, id int32) ApiUpdateReceiptRequest {
+func (a *ReceiptsApiService) UpdateReceipt(ctx context.Context, id int64) ApiUpdateReceiptRequest {
 	return ApiUpdateReceiptRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountItemId** | **NullableInt32** | 勘定科目ID | 
+**AccountItemId** | **NullableInt64** | 勘定科目ID | 
 **AccountItemName** | **NullableString** | 勘定科目名 | 
 **Amount** | **int64** | 内税/外税の判別とamountの税込み、税抜きについて &lt;ul&gt; &lt;li&gt;tax_entry_methodがexclusive (外税)の場合&lt;/li&gt; &lt;ul&gt; &lt;li&gt;amount: 消費税抜きの金額&lt;/li&gt; &lt;li&gt;vat: 消費税の金額&lt;/li&gt; &lt;/ul&gt; &lt;li&gt;tax_entry_methodがinclusive (内税)の場合&lt;/li&gt; &lt;ul&gt; &lt;li&gt;amount: 消費税込みの金額&lt;/li&gt; &lt;li&gt;vat: 消費税の金額&lt;/li&gt; &lt;/ul&gt; &lt;/ul&gt;  | 
 **Description** | **NullableString** | 備考 | 
-**Id** | **int32** | 請求内容ID | 
-**ItemId** | **NullableInt32** | 品目ID | 
+**Id** | **int64** | 請求内容ID | 
+**ItemId** | **NullableInt64** | 品目ID | 
 **ItemName** | **NullableString** | 品目 | 
-**Order** | **NullableInt32** | 順序 | 
+**Order** | **NullableInt64** | 順序 | 
 **Qty** | **float32** | 数量 | 
 **ReducedVat** | **bool** | 軽減税率税区分（true: 対象、false: 対象外） | 
-**SectionId** | **NullableInt32** | 部門ID | 
+**SectionId** | **NullableInt64** | 部門ID | 
 **SectionName** | **NullableString** | 部門 | 
 **Segment1TagId** | Pointer to **NullableInt64** | セグメント１ID | [optional] 
 **Segment1TagName** | Pointer to **NullableString** | セグメント１ID | [optional] 
@@ -22,19 +22,19 @@ Name | Type | Description | Notes
 **Segment2TagName** | Pointer to **NullableString** | セグメント２ | [optional] 
 **Segment3TagId** | Pointer to **NullableInt64** | セグメント３ID | [optional] 
 **Segment3TagName** | Pointer to **NullableString** | セグメント３ | [optional] 
-**TagIds** | **[]int32** |  | 
+**TagIds** | **[]int64** |  | 
 **TagNames** | **[]string** |  | 
-**TaxCode** | **NullableInt32** | 税区分コード | 
+**TaxCode** | **NullableInt64** | 税区分コード | 
 **Type** | **string** | 行の種類 | 
 **Unit** | **NullableString** | 単位 | 
 **UnitPrice** | **float32** | 単価 | 
-**Vat** | **int32** | 消費税額 | 
+**Vat** | **int64** | 消費税額 | 
 
 ## Methods
 
 ### NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInner
 
-`func NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInner(accountItemId NullableInt32, accountItemName NullableString, amount int64, description NullableString, id int32, itemId NullableInt32, itemName NullableString, order NullableInt32, qty float32, reducedVat bool, sectionId NullableInt32, sectionName NullableString, tagIds []int32, tagNames []string, taxCode NullableInt32, type_ string, unit NullableString, unitPrice float32, vat int32, ) *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner`
+`func NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInner(accountItemId NullableInt64, accountItemName NullableString, amount int64, description NullableString, id int64, itemId NullableInt64, itemName NullableString, order NullableInt64, qty float32, reducedVat bool, sectionId NullableInt64, sectionName NullableString, tagIds []int64, tagNames []string, taxCode NullableInt64, type_ string, unit NullableString, unitPrice float32, vat int64, ) *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner`
 
 NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInner instantiates a new InvoiceIndexResponseInvoicesInnerInvoiceContentsInner object
 This constructor will assign default values to properties that have it defined,
@@ -51,20 +51,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountItemId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemId() int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetAccountItemId(v int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -161,40 +161,40 @@ SetDescription sets Description field to given value.
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetId() int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetIdOk() (*int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetId(v int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetItemId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemId() int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemIdOk() (*int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetItemId(v int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -241,20 +241,20 @@ SetItemName sets ItemName field to given value.
 UnsetItemName ensures that no value is present for ItemName, not even an explicit nil
 ### GetOrder
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrder() int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrder() int64`
 
 GetOrder returns the Order field if non-nil, zero value otherwise.
 
 ### GetOrderOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrderOk() (*int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrderOk() (*int64, bool)`
 
 GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrder
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetOrder(v int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetOrder(v int64)`
 
 SetOrder sets Order field to given value.
 
@@ -311,20 +311,20 @@ SetReducedVat sets ReducedVat field to given value.
 
 ### GetSectionId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionId() int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionIdOk() (*int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetSectionId(v int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -581,20 +581,20 @@ HasSegment3TagName returns a boolean if a field has been set.
 UnsetSegment3TagName ensures that no value is present for Segment3TagName, not even an explicit nil
 ### GetTagIds
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIds() []int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIds() []int64`
 
 GetTagIds returns the TagIds field if non-nil, zero value otherwise.
 
 ### GetTagIdsOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIdsOk() (*[]int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIdsOk() (*[]int64, bool)`
 
 GetTagIdsOk returns a tuple with the TagIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagIds
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTagIds(v []int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTagIds(v []int64)`
 
 SetTagIds sets TagIds field to given value.
 
@@ -621,20 +621,20 @@ SetTagNames sets TagNames field to given value.
 
 ### GetTaxCode
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCode() int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCodeOk() (*int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTaxCode(v int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 
@@ -721,20 +721,20 @@ SetUnitPrice sets UnitPrice field to given value.
 
 ### GetVat
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVat() int32`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVat() int64`
 
 GetVat returns the Vat field if non-nil, zero value otherwise.
 
 ### GetVatOk
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVatOk() (*int32, bool)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVatOk() (*int64, bool)`
 
 GetVatOk returns a tuple with the Vat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVat
 
-`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetVat(v int32)`
+`func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetVat(v int64)`
 
 SetVat sets Vat field to given value.
 

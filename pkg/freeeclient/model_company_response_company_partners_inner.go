@@ -19,7 +19,7 @@ type CompanyResponseCompanyPartnersInner struct {
 	// 取引先コード
 	Code NullableString `json:"code"`
 	// 取引先ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 取引先名
 	Name string `json:"name"`
 	// ショートカット1 (255文字以内)
@@ -32,7 +32,7 @@ type CompanyResponseCompanyPartnersInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompanyResponseCompanyPartnersInner(code NullableString, id int32, name string) *CompanyResponseCompanyPartnersInner {
+func NewCompanyResponseCompanyPartnersInner(code NullableString, id int64, name string) *CompanyResponseCompanyPartnersInner {
 	this := CompanyResponseCompanyPartnersInner{}
 	this.Code = code
 	this.Id = id
@@ -75,9 +75,9 @@ func (o *CompanyResponseCompanyPartnersInner) SetCode(v string) {
 }
 
 // GetId returns the Id field value
-func (o *CompanyResponseCompanyPartnersInner) GetId() int32 {
+func (o *CompanyResponseCompanyPartnersInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *CompanyResponseCompanyPartnersInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompanyPartnersInner) GetIdOk() (*int32, bool) {
+func (o *CompanyResponseCompanyPartnersInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *CompanyResponseCompanyPartnersInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *CompanyResponseCompanyPartnersInner) SetId(v int32) {
+func (o *CompanyResponseCompanyPartnersInner) SetId(v int64) {
 	o.Id = v
 }
 

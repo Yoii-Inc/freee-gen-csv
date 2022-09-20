@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **DownloadType** | Pointer to **string** | ダウンロード形式 | [optional] 
 **EndDate** | Pointer to **string** | 取得終了日 (yyyy-mm-dd) | [optional] 
-**Id** | **int32** | 受け付けID | 
+**Id** | **int64** | 受け付けID | 
 **Messages** | Pointer to **[]string** |  | [optional] 
 **StartDate** | Pointer to **string** | 取得開始日 (yyyy-mm-dd) | [optional] 
 **StatusUrl** | Pointer to **string** | ステータス確認用URL | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewJournalsResponseJournals
 
-`func NewJournalsResponseJournals(companyId int32, id int32, ) *JournalsResponseJournals`
+`func NewJournalsResponseJournals(companyId int64, id int64, ) *JournalsResponseJournals`
 
 NewJournalsResponseJournals instantiates a new JournalsResponseJournals object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *JournalsResponseJournals) GetCompanyId() int32`
+`func (o *JournalsResponseJournals) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *JournalsResponseJournals) GetCompanyIdOk() (*int32, bool)`
+`func (o *JournalsResponseJournals) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *JournalsResponseJournals) SetCompanyId(v int32)`
+`func (o *JournalsResponseJournals) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -107,20 +107,20 @@ HasEndDate returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *JournalsResponseJournals) GetId() int32`
+`func (o *JournalsResponseJournals) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *JournalsResponseJournals) GetIdOk() (*int32, bool)`
+`func (o *JournalsResponseJournals) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *JournalsResponseJournals) SetId(v int32)`
+`func (o *JournalsResponseJournals) SetId(v int64)`
 
 SetId sets Id field to given value.
 

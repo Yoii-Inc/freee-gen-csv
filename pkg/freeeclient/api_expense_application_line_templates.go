@@ -174,12 +174,12 @@ func (a *ExpenseApplicationLineTemplatesApiService) CreateExpenseApplicationLine
 type ApiDestroyExpenseApplicationLineTemplateRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationLineTemplatesApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyExpenseApplicationLineTemplateRequest) CompanyId(companyId int32) ApiDestroyExpenseApplicationLineTemplateRequest {
+func (r ApiDestroyExpenseApplicationLineTemplateRequest) CompanyId(companyId int64) ApiDestroyExpenseApplicationLineTemplateRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -195,7 +195,7 @@ DestroyExpenseApplicationLineTemplate 経費科目の削除
  @param id 経費科目ID
  @return ApiDestroyExpenseApplicationLineTemplateRequest
 */
-func (a *ExpenseApplicationLineTemplatesApiService) DestroyExpenseApplicationLineTemplate(ctx context.Context, id int32) ApiDestroyExpenseApplicationLineTemplateRequest {
+func (a *ExpenseApplicationLineTemplatesApiService) DestroyExpenseApplicationLineTemplate(ctx context.Context, id int64) ApiDestroyExpenseApplicationLineTemplateRequest {
 	return ApiDestroyExpenseApplicationLineTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -336,12 +336,12 @@ func (a *ExpenseApplicationLineTemplatesApiService) DestroyExpenseApplicationLin
 type ApiGetExpenseApplicationLineTemplateRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationLineTemplatesApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetExpenseApplicationLineTemplateRequest) CompanyId(companyId int32) ApiGetExpenseApplicationLineTemplateRequest {
+func (r ApiGetExpenseApplicationLineTemplateRequest) CompanyId(companyId int64) ApiGetExpenseApplicationLineTemplateRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -357,7 +357,7 @@ GetExpenseApplicationLineTemplate 経費科目の取得
  @param id 経費科目ID
  @return ApiGetExpenseApplicationLineTemplateRequest
 */
-func (a *ExpenseApplicationLineTemplatesApiService) GetExpenseApplicationLineTemplate(ctx context.Context, id int32) ApiGetExpenseApplicationLineTemplateRequest {
+func (a *ExpenseApplicationLineTemplatesApiService) GetExpenseApplicationLineTemplate(ctx context.Context, id int64) ApiGetExpenseApplicationLineTemplateRequest {
 	return ApiGetExpenseApplicationLineTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -509,13 +509,13 @@ func (a *ExpenseApplicationLineTemplatesApiService) GetExpenseApplicationLineTem
 type ApiGetExpenseApplicationLineTemplatesRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationLineTemplatesApiService
-	companyId *int32
+	companyId *int64
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetExpenseApplicationLineTemplatesRequest) CompanyId(companyId int32) ApiGetExpenseApplicationLineTemplatesRequest {
+func (r ApiGetExpenseApplicationLineTemplatesRequest) CompanyId(companyId int64) ApiGetExpenseApplicationLineTemplatesRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -527,7 +527,7 @@ func (r ApiGetExpenseApplicationLineTemplatesRequest) Offset(offset int64) ApiGe
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 100)
-func (r ApiGetExpenseApplicationLineTemplatesRequest) Limit(limit int32) ApiGetExpenseApplicationLineTemplatesRequest {
+func (r ApiGetExpenseApplicationLineTemplatesRequest) Limit(limit int64) ApiGetExpenseApplicationLineTemplatesRequest {
 	r.limit = &limit
 	return r
 }
@@ -687,7 +687,7 @@ func (a *ExpenseApplicationLineTemplatesApiService) GetExpenseApplicationLineTem
 type ApiUpdateExpenseApplicationLineTemplateRequest struct {
 	ctx context.Context
 	ApiService *ExpenseApplicationLineTemplatesApiService
-	id int32
+	id int64
 	expenseApplicationLineTemplateParams *ExpenseApplicationLineTemplateParams
 }
 
@@ -708,7 +708,7 @@ UpdateExpenseApplicationLineTemplate 経費科目の更新
  @param id 経費科目ID
  @return ApiUpdateExpenseApplicationLineTemplateRequest
 */
-func (a *ExpenseApplicationLineTemplatesApiService) UpdateExpenseApplicationLineTemplate(ctx context.Context, id int32) ApiUpdateExpenseApplicationLineTemplateRequest {
+func (a *ExpenseApplicationLineTemplatesApiService) UpdateExpenseApplicationLineTemplate(ctx context.Context, id int64) ApiUpdateExpenseApplicationLineTemplateRequest {
 	return ApiUpdateExpenseApplicationLineTemplateRequest{
 		ApiService: a,
 		ctx: ctx,

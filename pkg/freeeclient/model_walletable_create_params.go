@@ -17,9 +17,9 @@ import (
 // WalletableCreateParams struct for WalletableCreateParams
 type WalletableCreateParams struct {
 	// 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須）
-	BankId *int32 `json:"bank_id,omitempty"`
+	BankId *int64 `json:"bank_id,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 口座を資産口座とするか負債口座とするか（true: 資産口座 (デフォルト), false: 負債口座）<br> bank_idを指定しない場合にのみ使われます。<br> bank_idを指定する場合には資産口座か負債口座かはbank_idに指定したサービスに応じて決定され、is_assetに指定した値は無視されます。 
 	IsAsset *bool `json:"is_asset,omitempty"`
 	// 口座名 (255文字以内)
@@ -32,7 +32,7 @@ type WalletableCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWalletableCreateParams(companyId int32, name string, type_ string) *WalletableCreateParams {
+func NewWalletableCreateParams(companyId int64, name string, type_ string) *WalletableCreateParams {
 	this := WalletableCreateParams{}
 	this.CompanyId = companyId
 	this.Name = name
@@ -49,9 +49,9 @@ func NewWalletableCreateParamsWithDefaults() *WalletableCreateParams {
 }
 
 // GetBankId returns the BankId field value if set, zero value otherwise.
-func (o *WalletableCreateParams) GetBankId() int32 {
+func (o *WalletableCreateParams) GetBankId() int64 {
 	if o == nil || o.BankId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BankId
@@ -59,7 +59,7 @@ func (o *WalletableCreateParams) GetBankId() int32 {
 
 // GetBankIdOk returns a tuple with the BankId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WalletableCreateParams) GetBankIdOk() (*int32, bool) {
+func (o *WalletableCreateParams) GetBankIdOk() (*int64, bool) {
 	if o == nil || o.BankId == nil {
 		return nil, false
 	}
@@ -75,15 +75,15 @@ func (o *WalletableCreateParams) HasBankId() bool {
 	return false
 }
 
-// SetBankId gets a reference to the given int32 and assigns it to the BankId field.
-func (o *WalletableCreateParams) SetBankId(v int32) {
+// SetBankId gets a reference to the given int64 and assigns it to the BankId field.
+func (o *WalletableCreateParams) SetBankId(v int64) {
 	o.BankId = &v
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *WalletableCreateParams) GetCompanyId() int32 {
+func (o *WalletableCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *WalletableCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *WalletableCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *WalletableCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *WalletableCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *WalletableCreateParams) SetCompanyId(v int32) {
+func (o *WalletableCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 

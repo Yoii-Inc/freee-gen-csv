@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **int32** | 金額 | [optional] 
+**Amount** | Pointer to **int64** | 金額 | [optional] 
 **Description** | Pointer to **string** | 内容 (250文字以内) | [optional] 
-**ExpenseApplicationLineTemplateId** | Pointer to **int32** | 経費科目ID | [optional] 
-**ReceiptId** | Pointer to **int32** | 証憑ファイルID（ファイルボックスのファイルID） | [optional] 
+**ExpenseApplicationLineTemplateId** | Pointer to **int64** | 経費科目ID | [optional] 
+**ReceiptId** | Pointer to **int64** | 証憑ファイルID（ファイルボックスのファイルID） | [optional] 
 **TransactionDate** | Pointer to **string** | 日付 (yyyy-mm-dd) | [optional] 
 
 ## Methods
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmount() int32`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmount() int64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmountOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmountOk() (*int64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetAmount(v int32)`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetAmount(v int64)`
 
 SetAmount sets Amount field to given value.
 
@@ -81,20 +81,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetExpenseApplicationLineTemplateId
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateId() int32`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateId() int64`
 
 GetExpenseApplicationLineTemplateId returns the ExpenseApplicationLineTemplateId field if non-nil, zero value otherwise.
 
 ### GetExpenseApplicationLineTemplateIdOk
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateIdOk() (*int64, bool)`
 
 GetExpenseApplicationLineTemplateIdOk returns a tuple with the ExpenseApplicationLineTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpenseApplicationLineTemplateId
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetExpenseApplicationLineTemplateId(v int32)`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetExpenseApplicationLineTemplateId(v int64)`
 
 SetExpenseApplicationLineTemplateId sets ExpenseApplicationLineTemplateId field to given value.
 
@@ -106,20 +106,20 @@ HasExpenseApplicationLineTemplateId returns a boolean if a field has been set.
 
 ### GetReceiptId
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptId() int32`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptId() int64`
 
 GetReceiptId returns the ReceiptId field if non-nil, zero value otherwise.
 
 ### GetReceiptIdOk
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptIdOk() (*int32, bool)`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptIdOk() (*int64, bool)`
 
 GetReceiptIdOk returns a tuple with the ReceiptId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReceiptId
 
-`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetReceiptId(v int32)`
+`func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetReceiptId(v int64)`
 
 SetReceiptId sets ReceiptId field to given value.
 

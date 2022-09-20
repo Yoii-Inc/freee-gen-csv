@@ -17,7 +17,7 @@ import (
 // ApprovalRequestCreateParamsRequestItemsInner struct for ApprovalRequestCreateParamsRequestItemsInner
 type ApprovalRequestCreateParamsRequestItemsInner struct {
 	// 項目ID
-	Id *int32 `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	// 項目タイプ(title: 申請タイトル, single_line: 自由記述形式 1行, multi_line: 自由記述形式 複数行, select: プルダウン, date: 日付, amount: 金額, receipt: 添付ファイル, section: 部門ID, partner: 取引先ID)
 	Type *string `json:"type,omitempty"`
 	// 項目の値
@@ -42,9 +42,9 @@ func NewApprovalRequestCreateParamsRequestItemsInnerWithDefaults() *ApprovalRequ
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ApprovalRequestCreateParamsRequestItemsInner) GetId() int32 {
+func (o *ApprovalRequestCreateParamsRequestItemsInner) GetId() int64 {
 	if o == nil || o.Id == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -52,7 +52,7 @@ func (o *ApprovalRequestCreateParamsRequestItemsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestCreateParamsRequestItemsInner) GetIdOk() (*int32, bool) {
+func (o *ApprovalRequestCreateParamsRequestItemsInner) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *ApprovalRequestCreateParamsRequestItemsInner) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *ApprovalRequestCreateParamsRequestItemsInner) SetId(v int32) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *ApprovalRequestCreateParamsRequestItemsInner) SetId(v int64) {
 	o.Id = &v
 }
 

@@ -19,19 +19,19 @@ type Transfer struct {
 	// 金額
 	Amount int64 `json:"amount"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 振替日 (yyyy-mm-dd)
 	Date string `json:"date"`
 	// 備考
 	Description string `json:"description"`
 	// 振替元口座ID
-	FromWalletableId int32 `json:"from_walletable_id"`
+	FromWalletableId int64 `json:"from_walletable_id"`
 	// 振替元口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
 	FromWalletableType NullableString `json:"from_walletable_type"`
 	// 取引(振替)ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 振替先口座ID
-	ToWalletableId int32 `json:"to_walletable_id"`
+	ToWalletableId int64 `json:"to_walletable_id"`
 	// 振替先口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
 	ToWalletableType NullableString `json:"to_walletable_type"`
 }
@@ -40,7 +40,7 @@ type Transfer struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransfer(amount int64, companyId int32, date string, description string, fromWalletableId int32, fromWalletableType NullableString, id int32, toWalletableId int32, toWalletableType NullableString) *Transfer {
+func NewTransfer(amount int64, companyId int64, date string, description string, fromWalletableId int64, fromWalletableType NullableString, id int64, toWalletableId int64, toWalletableType NullableString) *Transfer {
 	this := Transfer{}
 	this.Amount = amount
 	this.CompanyId = companyId
@@ -87,9 +87,9 @@ func (o *Transfer) SetAmount(v int64) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *Transfer) GetCompanyId() int32 {
+func (o *Transfer) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -98,7 +98,7 @@ func (o *Transfer) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *Transfer) GetCompanyIdOk() (*int32, bool) {
+func (o *Transfer) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,7 +106,7 @@ func (o *Transfer) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *Transfer) SetCompanyId(v int32) {
+func (o *Transfer) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -159,9 +159,9 @@ func (o *Transfer) SetDescription(v string) {
 }
 
 // GetFromWalletableId returns the FromWalletableId field value
-func (o *Transfer) GetFromWalletableId() int32 {
+func (o *Transfer) GetFromWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -170,7 +170,7 @@ func (o *Transfer) GetFromWalletableId() int32 {
 
 // GetFromWalletableIdOk returns a tuple with the FromWalletableId field value
 // and a boolean to check if the value has been set.
-func (o *Transfer) GetFromWalletableIdOk() (*int32, bool) {
+func (o *Transfer) GetFromWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -178,7 +178,7 @@ func (o *Transfer) GetFromWalletableIdOk() (*int32, bool) {
 }
 
 // SetFromWalletableId sets field value
-func (o *Transfer) SetFromWalletableId(v int32) {
+func (o *Transfer) SetFromWalletableId(v int64) {
 	o.FromWalletableId = v
 }
 
@@ -209,9 +209,9 @@ func (o *Transfer) SetFromWalletableType(v string) {
 }
 
 // GetId returns the Id field value
-func (o *Transfer) GetId() int32 {
+func (o *Transfer) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -220,7 +220,7 @@ func (o *Transfer) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Transfer) GetIdOk() (*int32, bool) {
+func (o *Transfer) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -228,14 +228,14 @@ func (o *Transfer) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Transfer) SetId(v int32) {
+func (o *Transfer) SetId(v int64) {
 	o.Id = v
 }
 
 // GetToWalletableId returns the ToWalletableId field value
-func (o *Transfer) GetToWalletableId() int32 {
+func (o *Transfer) GetToWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -244,7 +244,7 @@ func (o *Transfer) GetToWalletableId() int32 {
 
 // GetToWalletableIdOk returns a tuple with the ToWalletableId field value
 // and a boolean to check if the value has been set.
-func (o *Transfer) GetToWalletableIdOk() (*int32, bool) {
+func (o *Transfer) GetToWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -252,7 +252,7 @@ func (o *Transfer) GetToWalletableIdOk() (*int32, bool) {
 }
 
 // SetToWalletableId sets field value
-func (o *Transfer) SetToWalletableId(v int32) {
+func (o *Transfer) SetToWalletableId(v int64) {
 	o.ToWalletableId = v
 }
 

@@ -17,15 +17,15 @@ import (
 // RenewUpdateParamsDetailsInner struct for RenewUpdateParamsDetailsInner
 type RenewUpdateParamsDetailsInner struct {
 	// 勘定科目ID
-	AccountItemId int32 `json:"account_item_id"`
+	AccountItemId int64 `json:"account_item_id"`
 	// 取引金額（税込で指定してください）
 	Amount int64 `json:"amount"`
 	// 備考
 	Description *string `json:"description,omitempty"`
 	// 品目ID
-	ItemId *int32 `json:"item_id,omitempty"`
+	ItemId *int64 `json:"item_id,omitempty"`
 	// 部門ID
-	SectionId *int32 `json:"section_id,omitempty"`
+	SectionId *int64 `json:"section_id,omitempty"`
 	// セグメント１ID
 	Segment1TagId *int64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント２ID
@@ -33,9 +33,9 @@ type RenewUpdateParamsDetailsInner struct {
 	// セグメント３ID
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
 	// メモタグID
-	TagIds []int32 `json:"tag_ids,omitempty"`
+	TagIds []int64 `json:"tag_ids,omitempty"`
 	// 税区分コード
-	TaxCode int32 `json:"tax_code"`
+	TaxCode int64 `json:"tax_code"`
 	// 消費税額（指定しない場合は自動で計算されます）
 	Vat *int64 `json:"vat,omitempty"`
 }
@@ -44,7 +44,7 @@ type RenewUpdateParamsDetailsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRenewUpdateParamsDetailsInner(accountItemId int32, amount int64, taxCode int32) *RenewUpdateParamsDetailsInner {
+func NewRenewUpdateParamsDetailsInner(accountItemId int64, amount int64, taxCode int64) *RenewUpdateParamsDetailsInner {
 	this := RenewUpdateParamsDetailsInner{}
 	this.AccountItemId = accountItemId
 	this.Amount = amount
@@ -61,9 +61,9 @@ func NewRenewUpdateParamsDetailsInnerWithDefaults() *RenewUpdateParamsDetailsInn
 }
 
 // GetAccountItemId returns the AccountItemId field value
-func (o *RenewUpdateParamsDetailsInner) GetAccountItemId() int32 {
+func (o *RenewUpdateParamsDetailsInner) GetAccountItemId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -72,7 +72,7 @@ func (o *RenewUpdateParamsDetailsInner) GetAccountItemId() int32 {
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value
 // and a boolean to check if the value has been set.
-func (o *RenewUpdateParamsDetailsInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *RenewUpdateParamsDetailsInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *RenewUpdateParamsDetailsInner) GetAccountItemIdOk() (*int32, bool) {
 }
 
 // SetAccountItemId sets field value
-func (o *RenewUpdateParamsDetailsInner) SetAccountItemId(v int32) {
+func (o *RenewUpdateParamsDetailsInner) SetAccountItemId(v int64) {
 	o.AccountItemId = v
 }
 
@@ -141,9 +141,9 @@ func (o *RenewUpdateParamsDetailsInner) SetDescription(v string) {
 }
 
 // GetItemId returns the ItemId field value if set, zero value otherwise.
-func (o *RenewUpdateParamsDetailsInner) GetItemId() int32 {
+func (o *RenewUpdateParamsDetailsInner) GetItemId() int64 {
 	if o == nil || o.ItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemId
@@ -151,7 +151,7 @@ func (o *RenewUpdateParamsDetailsInner) GetItemId() int32 {
 
 // GetItemIdOk returns a tuple with the ItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RenewUpdateParamsDetailsInner) GetItemIdOk() (*int32, bool) {
+func (o *RenewUpdateParamsDetailsInner) GetItemIdOk() (*int64, bool) {
 	if o == nil || o.ItemId == nil {
 		return nil, false
 	}
@@ -167,15 +167,15 @@ func (o *RenewUpdateParamsDetailsInner) HasItemId() bool {
 	return false
 }
 
-// SetItemId gets a reference to the given int32 and assigns it to the ItemId field.
-func (o *RenewUpdateParamsDetailsInner) SetItemId(v int32) {
+// SetItemId gets a reference to the given int64 and assigns it to the ItemId field.
+func (o *RenewUpdateParamsDetailsInner) SetItemId(v int64) {
 	o.ItemId = &v
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise.
-func (o *RenewUpdateParamsDetailsInner) GetSectionId() int32 {
+func (o *RenewUpdateParamsDetailsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId
@@ -183,7 +183,7 @@ func (o *RenewUpdateParamsDetailsInner) GetSectionId() int32 {
 
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RenewUpdateParamsDetailsInner) GetSectionIdOk() (*int32, bool) {
+func (o *RenewUpdateParamsDetailsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil || o.SectionId == nil {
 		return nil, false
 	}
@@ -199,8 +199,8 @@ func (o *RenewUpdateParamsDetailsInner) HasSectionId() bool {
 	return false
 }
 
-// SetSectionId gets a reference to the given int32 and assigns it to the SectionId field.
-func (o *RenewUpdateParamsDetailsInner) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given int64 and assigns it to the SectionId field.
+func (o *RenewUpdateParamsDetailsInner) SetSectionId(v int64) {
 	o.SectionId = &v
 }
 
@@ -301,9 +301,9 @@ func (o *RenewUpdateParamsDetailsInner) SetSegment3TagId(v int64) {
 }
 
 // GetTagIds returns the TagIds field value if set, zero value otherwise.
-func (o *RenewUpdateParamsDetailsInner) GetTagIds() []int32 {
+func (o *RenewUpdateParamsDetailsInner) GetTagIds() []int64 {
 	if o == nil || o.TagIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.TagIds
@@ -311,7 +311,7 @@ func (o *RenewUpdateParamsDetailsInner) GetTagIds() []int32 {
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RenewUpdateParamsDetailsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *RenewUpdateParamsDetailsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -327,15 +327,15 @@ func (o *RenewUpdateParamsDetailsInner) HasTagIds() bool {
 	return false
 }
 
-// SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
-func (o *RenewUpdateParamsDetailsInner) SetTagIds(v []int32) {
+// SetTagIds gets a reference to the given []int64 and assigns it to the TagIds field.
+func (o *RenewUpdateParamsDetailsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
 // GetTaxCode returns the TaxCode field value
-func (o *RenewUpdateParamsDetailsInner) GetTaxCode() int32 {
+func (o *RenewUpdateParamsDetailsInner) GetTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -344,7 +344,7 @@ func (o *RenewUpdateParamsDetailsInner) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
-func (o *RenewUpdateParamsDetailsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *RenewUpdateParamsDetailsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -352,7 +352,7 @@ func (o *RenewUpdateParamsDetailsInner) GetTaxCodeOk() (*int32, bool) {
 }
 
 // SetTaxCode sets field value
-func (o *RenewUpdateParamsDetailsInner) SetTaxCode(v int32) {
+func (o *RenewUpdateParamsDetailsInner) SetTaxCode(v int64) {
 	o.TaxCode = v
 }
 

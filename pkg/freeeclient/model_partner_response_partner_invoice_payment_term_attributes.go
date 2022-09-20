@@ -17,11 +17,11 @@ import (
 // PartnerResponsePartnerInvoicePaymentTermAttributes struct for PartnerResponsePartnerInvoicePaymentTermAttributes
 type PartnerResponsePartnerInvoicePaymentTermAttributes struct {
 	// 入金月
-	AdditionalMonths NullableInt32 `json:"additional_months,omitempty"`
+	AdditionalMonths NullableInt64 `json:"additional_months,omitempty"`
 	// 締め日（29, 30, 31日の末日を指定する場合は、32。）
-	CutoffDay NullableInt32 `json:"cutoff_day,omitempty"`
+	CutoffDay NullableInt64 `json:"cutoff_day,omitempty"`
 	// 入金日（29, 30, 31日の末日を指定する場合は、32。）
-	FixedDay NullableInt32 `json:"fixed_day,omitempty"`
+	FixedDay NullableInt64 `json:"fixed_day,omitempty"`
 }
 
 // NewPartnerResponsePartnerInvoicePaymentTermAttributes instantiates a new PartnerResponsePartnerInvoicePaymentTermAttributes object
@@ -42,9 +42,9 @@ func NewPartnerResponsePartnerInvoicePaymentTermAttributesWithDefaults() *Partne
 }
 
 // GetAdditionalMonths returns the AdditionalMonths field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetAdditionalMonths() int32 {
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetAdditionalMonths() int64 {
 	if o == nil || o.AdditionalMonths.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AdditionalMonths.Get()
@@ -53,7 +53,7 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetAdditionalMonths
 // GetAdditionalMonthsOk returns a tuple with the AdditionalMonths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetAdditionalMonthsOk() (*int32, bool) {
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetAdditionalMonthsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) HasAdditionalMonths
 	return false
 }
 
-// SetAdditionalMonths gets a reference to the given NullableInt32 and assigns it to the AdditionalMonths field.
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) SetAdditionalMonths(v int32) {
+// SetAdditionalMonths gets a reference to the given NullableInt64 and assigns it to the AdditionalMonths field.
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) SetAdditionalMonths(v int64) {
 	o.AdditionalMonths.Set(&v)
 }
 // SetAdditionalMonthsNil sets the value for AdditionalMonths to be an explicit nil
@@ -84,9 +84,9 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) UnsetAdditionalMont
 }
 
 // GetCutoffDay returns the CutoffDay field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetCutoffDay() int32 {
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetCutoffDay() int64 {
 	if o == nil || o.CutoffDay.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CutoffDay.Get()
@@ -95,7 +95,7 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetCutoffDay() int3
 // GetCutoffDayOk returns a tuple with the CutoffDay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetCutoffDayOk() (*int32, bool) {
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetCutoffDayOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -111,8 +111,8 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) HasCutoffDay() bool
 	return false
 }
 
-// SetCutoffDay gets a reference to the given NullableInt32 and assigns it to the CutoffDay field.
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) SetCutoffDay(v int32) {
+// SetCutoffDay gets a reference to the given NullableInt64 and assigns it to the CutoffDay field.
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) SetCutoffDay(v int64) {
 	o.CutoffDay.Set(&v)
 }
 // SetCutoffDayNil sets the value for CutoffDay to be an explicit nil
@@ -126,9 +126,9 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) UnsetCutoffDay() {
 }
 
 // GetFixedDay returns the FixedDay field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetFixedDay() int32 {
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetFixedDay() int64 {
 	if o == nil || o.FixedDay.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FixedDay.Get()
@@ -137,7 +137,7 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetFixedDay() int32
 // GetFixedDayOk returns a tuple with the FixedDay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetFixedDayOk() (*int32, bool) {
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) GetFixedDayOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -153,8 +153,8 @@ func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) HasFixedDay() bool 
 	return false
 }
 
-// SetFixedDay gets a reference to the given NullableInt32 and assigns it to the FixedDay field.
-func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) SetFixedDay(v int32) {
+// SetFixedDay gets a reference to the given NullableInt64 and assigns it to the FixedDay field.
+func (o *PartnerResponsePartnerInvoicePaymentTermAttributes) SetFixedDay(v int64) {
 	o.FixedDay.Set(&v)
 }
 // SetFixedDayNil sets the value for FixedDay to be an explicit nil

@@ -17,28 +17,28 @@ import (
 // QuotationUpdateParamsQuotationContentsInner struct for QuotationUpdateParamsQuotationContentsInner
 type QuotationUpdateParamsQuotationContentsInner struct {
 	// 勘定科目ID
-	AccountItemId *int32 `json:"account_item_id,omitempty"`
+	AccountItemId *int64 `json:"account_item_id,omitempty"`
 	// 備考
 	Description *string `json:"description,omitempty"`
 	// 見積内容ID
-	Id *int32 `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	// 品目ID
-	ItemId *int32 `json:"item_id,omitempty"`
+	ItemId *int64 `json:"item_id,omitempty"`
 	// 順序
-	Order int32 `json:"order"`
+	Order int64 `json:"order"`
 	// 数量
 	Qty *float32 `json:"qty,omitempty"`
 	// 部門ID
-	SectionId *int32 `json:"section_id,omitempty"`
+	SectionId *int64 `json:"section_id,omitempty"`
 	// セグメント１ID
 	Segment1TagId *int64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント２ID
 	Segment2TagId *int64 `json:"segment_2_tag_id,omitempty"`
 	// セグメント３ID
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
-	TagIds []int32 `json:"tag_ids,omitempty"`
+	TagIds []int64 `json:"tag_ids,omitempty"`
 	// 税区分コード
-	TaxCode *int32 `json:"tax_code,omitempty"`
+	TaxCode *int64 `json:"tax_code,omitempty"`
 	// 行の種類 <ul> <li>normal、discountを指定する場合、account_item_id,tax_codeとunit_priceが必須となります。</li> <li>normalを指定した場合、qtyが必須となります。</li> </ul>
 	Type string `json:"type"`
 	// 単位
@@ -46,14 +46,14 @@ type QuotationUpdateParamsQuotationContentsInner struct {
 	// 単価 (tax_entry_method: inclusiveの場合は税込価格、tax_entry_method: exclusiveの場合は税抜価格となります)
 	UnitPrice *float32 `json:"unit_price,omitempty"`
 	// 消費税額
-	Vat NullableInt32 `json:"vat,omitempty"`
+	Vat NullableInt64 `json:"vat,omitempty"`
 }
 
 // NewQuotationUpdateParamsQuotationContentsInner instantiates a new QuotationUpdateParamsQuotationContentsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotationUpdateParamsQuotationContentsInner(order int32, type_ string) *QuotationUpdateParamsQuotationContentsInner {
+func NewQuotationUpdateParamsQuotationContentsInner(order int64, type_ string) *QuotationUpdateParamsQuotationContentsInner {
 	this := QuotationUpdateParamsQuotationContentsInner{}
 	this.Order = order
 	this.Type = type_
@@ -69,9 +69,9 @@ func NewQuotationUpdateParamsQuotationContentsInnerWithDefaults() *QuotationUpda
 }
 
 // GetAccountItemId returns the AccountItemId field value if set, zero value otherwise.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetAccountItemId() int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountItemId
@@ -79,7 +79,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetAccountItemId() int32 {
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil || o.AccountItemId == nil {
 		return nil, false
 	}
@@ -95,8 +95,8 @@ func (o *QuotationUpdateParamsQuotationContentsInner) HasAccountItemId() bool {
 	return false
 }
 
-// SetAccountItemId gets a reference to the given int32 and assigns it to the AccountItemId field.
-func (o *QuotationUpdateParamsQuotationContentsInner) SetAccountItemId(v int32) {
+// SetAccountItemId gets a reference to the given int64 and assigns it to the AccountItemId field.
+func (o *QuotationUpdateParamsQuotationContentsInner) SetAccountItemId(v int64) {
 	o.AccountItemId = &v
 }
 
@@ -133,9 +133,9 @@ func (o *QuotationUpdateParamsQuotationContentsInner) SetDescription(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetId() int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetId() int64 {
 	if o == nil || o.Id == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -143,7 +143,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetIdOk() (*int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -159,15 +159,15 @@ func (o *QuotationUpdateParamsQuotationContentsInner) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *QuotationUpdateParamsQuotationContentsInner) SetId(v int32) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *QuotationUpdateParamsQuotationContentsInner) SetId(v int64) {
 	o.Id = &v
 }
 
 // GetItemId returns the ItemId field value if set, zero value otherwise.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetItemId() int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetItemId() int64 {
 	if o == nil || o.ItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemId
@@ -175,7 +175,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetItemId() int32 {
 
 // GetItemIdOk returns a tuple with the ItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetItemIdOk() (*int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetItemIdOk() (*int64, bool) {
 	if o == nil || o.ItemId == nil {
 		return nil, false
 	}
@@ -191,15 +191,15 @@ func (o *QuotationUpdateParamsQuotationContentsInner) HasItemId() bool {
 	return false
 }
 
-// SetItemId gets a reference to the given int32 and assigns it to the ItemId field.
-func (o *QuotationUpdateParamsQuotationContentsInner) SetItemId(v int32) {
+// SetItemId gets a reference to the given int64 and assigns it to the ItemId field.
+func (o *QuotationUpdateParamsQuotationContentsInner) SetItemId(v int64) {
 	o.ItemId = &v
 }
 
 // GetOrder returns the Order field value
-func (o *QuotationUpdateParamsQuotationContentsInner) GetOrder() int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetOrder() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -208,7 +208,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetOrder() int32 {
 
 // GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetOrderOk() (*int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetOrderOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -216,7 +216,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetOrderOk() (*int32, bool
 }
 
 // SetOrder sets field value
-func (o *QuotationUpdateParamsQuotationContentsInner) SetOrder(v int32) {
+func (o *QuotationUpdateParamsQuotationContentsInner) SetOrder(v int64) {
 	o.Order = v
 }
 
@@ -253,9 +253,9 @@ func (o *QuotationUpdateParamsQuotationContentsInner) SetQty(v float32) {
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetSectionId() int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId
@@ -263,7 +263,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetSectionId() int32 {
 
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetSectionIdOk() (*int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil || o.SectionId == nil {
 		return nil, false
 	}
@@ -279,8 +279,8 @@ func (o *QuotationUpdateParamsQuotationContentsInner) HasSectionId() bool {
 	return false
 }
 
-// SetSectionId gets a reference to the given int32 and assigns it to the SectionId field.
-func (o *QuotationUpdateParamsQuotationContentsInner) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given int64 and assigns it to the SectionId field.
+func (o *QuotationUpdateParamsQuotationContentsInner) SetSectionId(v int64) {
 	o.SectionId = &v
 }
 
@@ -381,9 +381,9 @@ func (o *QuotationUpdateParamsQuotationContentsInner) SetSegment3TagId(v int64) 
 }
 
 // GetTagIds returns the TagIds field value if set, zero value otherwise.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetTagIds() []int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetTagIds() []int64 {
 	if o == nil || o.TagIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.TagIds
@@ -391,7 +391,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetTagIds() []int32 {
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -407,15 +407,15 @@ func (o *QuotationUpdateParamsQuotationContentsInner) HasTagIds() bool {
 	return false
 }
 
-// SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
-func (o *QuotationUpdateParamsQuotationContentsInner) SetTagIds(v []int32) {
+// SetTagIds gets a reference to the given []int64 and assigns it to the TagIds field.
+func (o *QuotationUpdateParamsQuotationContentsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
 // GetTaxCode returns the TaxCode field value if set, zero value otherwise.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetTaxCode() int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetTaxCode() int64 {
 	if o == nil || o.TaxCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TaxCode
@@ -423,7 +423,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuotationUpdateParamsQuotationContentsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil || o.TaxCode == nil {
 		return nil, false
 	}
@@ -439,8 +439,8 @@ func (o *QuotationUpdateParamsQuotationContentsInner) HasTaxCode() bool {
 	return false
 }
 
-// SetTaxCode gets a reference to the given int32 and assigns it to the TaxCode field.
-func (o *QuotationUpdateParamsQuotationContentsInner) SetTaxCode(v int32) {
+// SetTaxCode gets a reference to the given int64 and assigns it to the TaxCode field.
+func (o *QuotationUpdateParamsQuotationContentsInner) SetTaxCode(v int64) {
 	o.TaxCode = &v
 }
 
@@ -533,9 +533,9 @@ func (o *QuotationUpdateParamsQuotationContentsInner) SetUnitPrice(v float32) {
 }
 
 // GetVat returns the Vat field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotationUpdateParamsQuotationContentsInner) GetVat() int32 {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetVat() int64 {
 	if o == nil || o.Vat.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Vat.Get()
@@ -544,7 +544,7 @@ func (o *QuotationUpdateParamsQuotationContentsInner) GetVat() int32 {
 // GetVatOk returns a tuple with the Vat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationUpdateParamsQuotationContentsInner) GetVatOk() (*int32, bool) {
+func (o *QuotationUpdateParamsQuotationContentsInner) GetVatOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -560,8 +560,8 @@ func (o *QuotationUpdateParamsQuotationContentsInner) HasVat() bool {
 	return false
 }
 
-// SetVat gets a reference to the given NullableInt32 and assigns it to the Vat field.
-func (o *QuotationUpdateParamsQuotationContentsInner) SetVat(v int32) {
+// SetVat gets a reference to the given NullableInt64 and assigns it to the Vat field.
+func (o *QuotationUpdateParamsQuotationContentsInner) SetVat(v int64) {
 	o.Vat.Set(&v)
 }
 // SetVatNil sets the value for Vat to be an explicit nil

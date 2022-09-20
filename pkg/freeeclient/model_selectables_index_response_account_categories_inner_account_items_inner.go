@@ -22,7 +22,7 @@ type SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner struct {
 	// 勘定科目の説明（詳細）
 	Help *string `json:"help,omitempty"`
 	// 勘定科目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 勘定科目
 	Name *string `json:"name,omitempty"`
 	// ショートカット
@@ -33,7 +33,7 @@ type SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelectablesIndexResponseAccountCategoriesInnerAccountItemsInner(id int32) *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner {
+func NewSelectablesIndexResponseAccountCategoriesInnerAccountItemsInner(id int64) *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner {
 	this := SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner{}
 	this.Id = id
 	return &this
@@ -144,9 +144,9 @@ func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) SetHel
 }
 
 // GetId returns the Id field value
-func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetId() int32 {
+func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -155,7 +155,7 @@ func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetId(
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetIdOk() (*int32, bool) {
+func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -163,7 +163,7 @@ func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetIdO
 }
 
 // SetId sets field value
-func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) SetId(v int32) {
+func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) SetId(v int64) {
 	o.Id = v
 }
 

@@ -21,7 +21,7 @@ type WalletTxnParams struct {
 	// 残高 (銀行口座等)
 	Balance *int64 `json:"balance,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 取引日 (yyyy-mm-dd)
 	Date string `json:"date"`
 	// 取引内容
@@ -29,7 +29,7 @@ type WalletTxnParams struct {
 	// 入金／出金 (入金: income, 出金: expense)
 	EntrySide string `json:"entry_side"`
 	// 口座ID
-	WalletableId int32 `json:"walletable_id"`
+	WalletableId int64 `json:"walletable_id"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
 	WalletableType string `json:"walletable_type"`
 }
@@ -38,7 +38,7 @@ type WalletTxnParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWalletTxnParams(amount int64, companyId int32, date string, entrySide string, walletableId int32, walletableType string) *WalletTxnParams {
+func NewWalletTxnParams(amount int64, companyId int64, date string, entrySide string, walletableId int64, walletableType string) *WalletTxnParams {
 	this := WalletTxnParams{}
 	this.Amount = amount
 	this.CompanyId = companyId
@@ -114,9 +114,9 @@ func (o *WalletTxnParams) SetBalance(v int64) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *WalletTxnParams) GetCompanyId() int32 {
+func (o *WalletTxnParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -125,7 +125,7 @@ func (o *WalletTxnParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxnParams) GetCompanyIdOk() (*int32, bool) {
+func (o *WalletTxnParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,7 +133,7 @@ func (o *WalletTxnParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *WalletTxnParams) SetCompanyId(v int32) {
+func (o *WalletTxnParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -218,9 +218,9 @@ func (o *WalletTxnParams) SetEntrySide(v string) {
 }
 
 // GetWalletableId returns the WalletableId field value
-func (o *WalletTxnParams) GetWalletableId() int32 {
+func (o *WalletTxnParams) GetWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -229,7 +229,7 @@ func (o *WalletTxnParams) GetWalletableId() int32 {
 
 // GetWalletableIdOk returns a tuple with the WalletableId field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxnParams) GetWalletableIdOk() (*int32, bool) {
+func (o *WalletTxnParams) GetWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,7 +237,7 @@ func (o *WalletTxnParams) GetWalletableIdOk() (*int32, bool) {
 }
 
 // SetWalletableId sets field value
-func (o *WalletTxnParams) SetWalletableId(v int32) {
+func (o *WalletTxnParams) SetWalletableId(v int64) {
 	o.WalletableId = v
 }
 

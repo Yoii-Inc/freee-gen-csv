@@ -17,7 +17,7 @@ import (
 // CompanyResponseCompanyItemsInner struct for CompanyResponseCompanyItemsInner
 type CompanyResponseCompanyItemsInner struct {
 	// 品目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 品目名 (30文字以内)
 	Name string `json:"name"`
 	// ショートカット１ (20文字以内)
@@ -30,7 +30,7 @@ type CompanyResponseCompanyItemsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompanyResponseCompanyItemsInner(id int32, name string) *CompanyResponseCompanyItemsInner {
+func NewCompanyResponseCompanyItemsInner(id int64, name string) *CompanyResponseCompanyItemsInner {
 	this := CompanyResponseCompanyItemsInner{}
 	this.Id = id
 	this.Name = name
@@ -46,9 +46,9 @@ func NewCompanyResponseCompanyItemsInnerWithDefaults() *CompanyResponseCompanyIt
 }
 
 // GetId returns the Id field value
-func (o *CompanyResponseCompanyItemsInner) GetId() int32 {
+func (o *CompanyResponseCompanyItemsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *CompanyResponseCompanyItemsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompanyItemsInner) GetIdOk() (*int32, bool) {
+func (o *CompanyResponseCompanyItemsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *CompanyResponseCompanyItemsInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *CompanyResponseCompanyItemsInner) SetId(v int32) {
+func (o *CompanyResponseCompanyItemsInner) SetId(v int64) {
 	o.Id = v
 }
 

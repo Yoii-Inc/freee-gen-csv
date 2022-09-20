@@ -182,12 +182,12 @@ func (a *AccountItemsApiService) CreateAccountItemExecute(r ApiCreateAccountItem
 type ApiDestroyAccountItemRequest struct {
 	ctx context.Context
 	ApiService *AccountItemsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyAccountItemRequest) CompanyId(companyId int32) ApiDestroyAccountItemRequest {
+func (r ApiDestroyAccountItemRequest) CompanyId(companyId int64) ApiDestroyAccountItemRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -212,7 +212,7 @@ DestroyAccountItem 勘定科目の削除
  @param id
  @return ApiDestroyAccountItemRequest
 */
-func (a *AccountItemsApiService) DestroyAccountItem(ctx context.Context, id int32) ApiDestroyAccountItemRequest {
+func (a *AccountItemsApiService) DestroyAccountItem(ctx context.Context, id int64) ApiDestroyAccountItemRequest {
 	return ApiDestroyAccountItemRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -343,12 +343,12 @@ func (a *AccountItemsApiService) DestroyAccountItemExecute(r ApiDestroyAccountIt
 type ApiGetAccountItemRequest struct {
 	ctx context.Context
 	ApiService *AccountItemsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
 // 事業所ID
-func (r ApiGetAccountItemRequest) CompanyId(companyId int32) ApiGetAccountItemRequest {
+func (r ApiGetAccountItemRequest) CompanyId(companyId int64) ApiGetAccountItemRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -369,7 +369,7 @@ GetAccountItem 勘定科目の詳細情報の取得
  @param id 勘定科目ID
  @return ApiGetAccountItemRequest
 */
-func (a *AccountItemsApiService) GetAccountItem(ctx context.Context, id int32) ApiGetAccountItemRequest {
+func (a *AccountItemsApiService) GetAccountItem(ctx context.Context, id int64) ApiGetAccountItemRequest {
 	return ApiGetAccountItemRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -521,12 +521,12 @@ func (a *AccountItemsApiService) GetAccountItemExecute(r ApiGetAccountItemReques
 type ApiGetAccountItemsRequest struct {
 	ctx context.Context
 	ApiService *AccountItemsApiService
-	companyId *int32
+	companyId *int64
 	baseDate *string
 }
 
 // 事業所ID
-func (r ApiGetAccountItemsRequest) CompanyId(companyId int32) ApiGetAccountItemsRequest {
+func (r ApiGetAccountItemsRequest) CompanyId(companyId int64) ApiGetAccountItemsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -700,7 +700,7 @@ func (a *AccountItemsApiService) GetAccountItemsExecute(r ApiGetAccountItemsRequ
 type ApiUpdateAccountItemRequest struct {
 	ctx context.Context
 	ApiService *AccountItemsApiService
-	id int32
+	id int64
 	accountItemParams *AccountItemParams
 }
 
@@ -729,7 +729,7 @@ UpdateAccountItem 勘定科目の更新
  @param id
  @return ApiUpdateAccountItemRequest
 */
-func (a *AccountItemsApiService) UpdateAccountItem(ctx context.Context, id int32) ApiUpdateAccountItemRequest {
+func (a *AccountItemsApiService) UpdateAccountItem(ctx context.Context, id int64) ApiUpdateAccountItemRequest {
 	return ApiUpdateAccountItemRequest{
 		ApiService: a,
 		ctx: ctx,

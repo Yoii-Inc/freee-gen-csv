@@ -17,9 +17,9 @@ import (
 // WalletableCreateResponseWalletable struct for WalletableCreateResponseWalletable
 type WalletableCreateResponseWalletable struct {
 	// 連携サービスID（typeにbank_account、credit_cardを指定する場合は必須）
-	BankId int32 `json:"bank_id"`
+	BankId int64 `json:"bank_id"`
 	// 口座ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 口座名, 最大255文字
 	Name string `json:"name"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
@@ -30,7 +30,7 @@ type WalletableCreateResponseWalletable struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWalletableCreateResponseWalletable(bankId int32, id int32, name string, type_ string) *WalletableCreateResponseWalletable {
+func NewWalletableCreateResponseWalletable(bankId int64, id int64, name string, type_ string) *WalletableCreateResponseWalletable {
 	this := WalletableCreateResponseWalletable{}
 	this.BankId = bankId
 	this.Id = id
@@ -48,9 +48,9 @@ func NewWalletableCreateResponseWalletableWithDefaults() *WalletableCreateRespon
 }
 
 // GetBankId returns the BankId field value
-func (o *WalletableCreateResponseWalletable) GetBankId() int32 {
+func (o *WalletableCreateResponseWalletable) GetBankId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *WalletableCreateResponseWalletable) GetBankId() int32 {
 
 // GetBankIdOk returns a tuple with the BankId field value
 // and a boolean to check if the value has been set.
-func (o *WalletableCreateResponseWalletable) GetBankIdOk() (*int32, bool) {
+func (o *WalletableCreateResponseWalletable) GetBankIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,14 +67,14 @@ func (o *WalletableCreateResponseWalletable) GetBankIdOk() (*int32, bool) {
 }
 
 // SetBankId sets field value
-func (o *WalletableCreateResponseWalletable) SetBankId(v int32) {
+func (o *WalletableCreateResponseWalletable) SetBankId(v int64) {
 	o.BankId = v
 }
 
 // GetId returns the Id field value
-func (o *WalletableCreateResponseWalletable) GetId() int32 {
+func (o *WalletableCreateResponseWalletable) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *WalletableCreateResponseWalletable) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *WalletableCreateResponseWalletable) GetIdOk() (*int32, bool) {
+func (o *WalletableCreateResponseWalletable) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *WalletableCreateResponseWalletable) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *WalletableCreateResponseWalletable) SetId(v int32) {
+func (o *WalletableCreateResponseWalletable) SetId(v int64) {
 	o.Id = v
 }
 

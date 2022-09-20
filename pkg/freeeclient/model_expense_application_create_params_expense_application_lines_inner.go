@@ -17,13 +17,13 @@ import (
 // ExpenseApplicationCreateParamsExpenseApplicationLinesInner struct for ExpenseApplicationCreateParamsExpenseApplicationLinesInner
 type ExpenseApplicationCreateParamsExpenseApplicationLinesInner struct {
 	// 金額
-	Amount *int32 `json:"amount,omitempty"`
+	Amount *int64 `json:"amount,omitempty"`
 	// 内容 (250文字以内)
 	Description *string `json:"description,omitempty"`
 	// 経費科目ID
-	ExpenseApplicationLineTemplateId *int32 `json:"expense_application_line_template_id,omitempty"`
+	ExpenseApplicationLineTemplateId *int64 `json:"expense_application_line_template_id,omitempty"`
 	// 証憑ファイルID（ファイルボックスのファイルID）
-	ReceiptId *int32 `json:"receipt_id,omitempty"`
+	ReceiptId *int64 `json:"receipt_id,omitempty"`
 	// 日付 (yyyy-mm-dd)
 	TransactionDate *string `json:"transaction_date,omitempty"`
 }
@@ -46,9 +46,9 @@ func NewExpenseApplicationCreateParamsExpenseApplicationLinesInnerWithDefaults()
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmount() int32 {
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmount() int64 {
 	if o == nil || o.Amount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Amount
@@ -56,7 +56,7 @@ func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmount()
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmountOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetAmountOk() (*int64, bool) {
 	if o == nil || o.Amount == nil {
 		return nil, false
 	}
@@ -72,8 +72,8 @@ func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) HasAmount()
 	return false
 }
 
-// SetAmount gets a reference to the given int32 and assigns it to the Amount field.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetAmount(v int32) {
+// SetAmount gets a reference to the given int64 and assigns it to the Amount field.
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetAmount(v int64) {
 	o.Amount = &v
 }
 
@@ -110,9 +110,9 @@ func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetDescript
 }
 
 // GetExpenseApplicationLineTemplateId returns the ExpenseApplicationLineTemplateId field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateId() int32 {
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateId() int64 {
 	if o == nil || o.ExpenseApplicationLineTemplateId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExpenseApplicationLineTemplateId
@@ -120,7 +120,7 @@ func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseA
 
 // GetExpenseApplicationLineTemplateIdOk returns a tuple with the ExpenseApplicationLineTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateIdOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetExpenseApplicationLineTemplateIdOk() (*int64, bool) {
 	if o == nil || o.ExpenseApplicationLineTemplateId == nil {
 		return nil, false
 	}
@@ -136,15 +136,15 @@ func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) HasExpenseA
 	return false
 }
 
-// SetExpenseApplicationLineTemplateId gets a reference to the given int32 and assigns it to the ExpenseApplicationLineTemplateId field.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetExpenseApplicationLineTemplateId(v int32) {
+// SetExpenseApplicationLineTemplateId gets a reference to the given int64 and assigns it to the ExpenseApplicationLineTemplateId field.
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetExpenseApplicationLineTemplateId(v int64) {
 	o.ExpenseApplicationLineTemplateId = &v
 }
 
 // GetReceiptId returns the ReceiptId field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptId() int32 {
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptId() int64 {
 	if o == nil || o.ReceiptId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReceiptId
@@ -152,7 +152,7 @@ func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptI
 
 // GetReceiptIdOk returns a tuple with the ReceiptId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptIdOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) GetReceiptIdOk() (*int64, bool) {
 	if o == nil || o.ReceiptId == nil {
 		return nil, false
 	}
@@ -168,8 +168,8 @@ func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) HasReceiptI
 	return false
 }
 
-// SetReceiptId gets a reference to the given int32 and assigns it to the ReceiptId field.
-func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetReceiptId(v int32) {
+// SetReceiptId gets a reference to the given int64 and assigns it to the ReceiptId field.
+func (o *ExpenseApplicationCreateParamsExpenseApplicationLinesInner) SetReceiptId(v int64) {
 	o.ReceiptId = &v
 }
 

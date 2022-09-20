@@ -17,7 +17,7 @@ import (
 // CompanyResponseCompanyWalletablesInner struct for CompanyResponseCompanyWalletablesInner
 type CompanyResponseCompanyWalletablesInner struct {
 	// 口座ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 口座名 (255文字以内)
 	Name string `json:"name"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
@@ -28,7 +28,7 @@ type CompanyResponseCompanyWalletablesInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompanyResponseCompanyWalletablesInner(id int32, name string, type_ string) *CompanyResponseCompanyWalletablesInner {
+func NewCompanyResponseCompanyWalletablesInner(id int64, name string, type_ string) *CompanyResponseCompanyWalletablesInner {
 	this := CompanyResponseCompanyWalletablesInner{}
 	this.Id = id
 	this.Name = name
@@ -45,9 +45,9 @@ func NewCompanyResponseCompanyWalletablesInnerWithDefaults() *CompanyResponseCom
 }
 
 // GetId returns the Id field value
-func (o *CompanyResponseCompanyWalletablesInner) GetId() int32 {
+func (o *CompanyResponseCompanyWalletablesInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *CompanyResponseCompanyWalletablesInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponseCompanyWalletablesInner) GetIdOk() (*int32, bool) {
+func (o *CompanyResponseCompanyWalletablesInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *CompanyResponseCompanyWalletablesInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *CompanyResponseCompanyWalletablesInner) SetId(v int32) {
+func (o *CompanyResponseCompanyWalletablesInner) SetId(v int64) {
 	o.Id = v
 }
 

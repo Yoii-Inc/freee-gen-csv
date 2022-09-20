@@ -19,19 +19,19 @@ type ManualJournalCreateParams struct {
 	// 決算整理仕訳フラグ（falseまたは未指定の場合: 日常仕訳）
 	Adjustment *bool `json:"adjustment,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	Details []ManualJournalCreateParamsDetailsInner `json:"details"`
 	// 発生日 (yyyy-mm-dd)
 	IssueDate string `json:"issue_date"`
 	// 証憑ファイルID（ファイルボックスのファイルID）（配列）
-	ReceiptIds []int32 `json:"receipt_ids,omitempty"`
+	ReceiptIds []int64 `json:"receipt_ids,omitempty"`
 }
 
 // NewManualJournalCreateParams instantiates a new ManualJournalCreateParams object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualJournalCreateParams(companyId int32, details []ManualJournalCreateParamsDetailsInner, issueDate string) *ManualJournalCreateParams {
+func NewManualJournalCreateParams(companyId int64, details []ManualJournalCreateParamsDetailsInner, issueDate string) *ManualJournalCreateParams {
 	this := ManualJournalCreateParams{}
 	this.CompanyId = companyId
 	this.Details = details
@@ -80,9 +80,9 @@ func (o *ManualJournalCreateParams) SetAdjustment(v bool) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ManualJournalCreateParams) GetCompanyId() int32 {
+func (o *ManualJournalCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *ManualJournalCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *ManualJournalCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *ManualJournalCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *ManualJournalCreateParams) SetCompanyId(v int32) {
+func (o *ManualJournalCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -152,9 +152,9 @@ func (o *ManualJournalCreateParams) SetIssueDate(v string) {
 }
 
 // GetReceiptIds returns the ReceiptIds field value if set, zero value otherwise.
-func (o *ManualJournalCreateParams) GetReceiptIds() []int32 {
+func (o *ManualJournalCreateParams) GetReceiptIds() []int64 {
 	if o == nil || o.ReceiptIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.ReceiptIds
@@ -162,7 +162,7 @@ func (o *ManualJournalCreateParams) GetReceiptIds() []int32 {
 
 // GetReceiptIdsOk returns a tuple with the ReceiptIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalCreateParams) GetReceiptIdsOk() ([]int32, bool) {
+func (o *ManualJournalCreateParams) GetReceiptIdsOk() ([]int64, bool) {
 	if o == nil || o.ReceiptIds == nil {
 		return nil, false
 	}
@@ -178,8 +178,8 @@ func (o *ManualJournalCreateParams) HasReceiptIds() bool {
 	return false
 }
 
-// SetReceiptIds gets a reference to the given []int32 and assigns it to the ReceiptIds field.
-func (o *ManualJournalCreateParams) SetReceiptIds(v []int32) {
+// SetReceiptIds gets a reference to the given []int64 and assigns it to the ReceiptIds field.
+func (o *ManualJournalCreateParams) SetReceiptIds(v []int64) {
 	o.ReceiptIds = v
 }
 

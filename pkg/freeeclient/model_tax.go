@@ -17,7 +17,7 @@ import (
 // Tax struct for Tax
 type Tax struct {
 	// 税区分コード
-	Code int32 `json:"code"`
+	Code int64 `json:"code"`
 	// 税区分名
 	Name string `json:"name"`
 	// 税区分名（日本語表示用）
@@ -28,7 +28,7 @@ type Tax struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTax(code int32, name string, nameJa string) *Tax {
+func NewTax(code int64, name string, nameJa string) *Tax {
 	this := Tax{}
 	this.Code = code
 	this.Name = name
@@ -45,9 +45,9 @@ func NewTaxWithDefaults() *Tax {
 }
 
 // GetCode returns the Code field value
-func (o *Tax) GetCode() int32 {
+func (o *Tax) GetCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *Tax) GetCode() int32 {
 
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *Tax) GetCodeOk() (*int32, bool) {
+func (o *Tax) GetCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *Tax) GetCodeOk() (*int32, bool) {
 }
 
 // SetCode sets field value
-func (o *Tax) SetCode(v int32) {
+func (o *Tax) SetCode(v int64) {
 	o.Code = v
 }
 

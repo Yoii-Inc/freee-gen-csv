@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Action** | **string** | 操作(apply: 申請, approve: 承認, force_approve: 代理承認, cancel: 取消, reject: 却下, feedback: 差戻し) | 
 **UpdatedAt** | **string** | 更新日時(ISO8601形式) | 
-**UserId** | **int32** | ユーザーID | 
+**UserId** | **int64** | ユーザーID | 
 
 ## Methods
 
 ### NewApprovalRequestResponseApprovalRequestApprovalFlowLogsInner
 
-`func NewApprovalRequestResponseApprovalRequestApprovalFlowLogsInner(action string, updatedAt string, userId int32, ) *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner`
+`func NewApprovalRequestResponseApprovalRequestApprovalFlowLogsInner(action string, updatedAt string, userId int64, ) *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner`
 
 NewApprovalRequestResponseApprovalRequestApprovalFlowLogsInner instantiates a new ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetUserId
 
-`func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserId() int32`
+`func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserId() int64`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserIdOk() (*int32, bool)`
+`func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserIdOk() (*int64, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) SetUserId(v int32)`
+`func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) SetUserId(v int64)`
 
 SetUserId sets UserId field to given value.
 

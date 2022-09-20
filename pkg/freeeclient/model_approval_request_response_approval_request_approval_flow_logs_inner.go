@@ -21,14 +21,14 @@ type ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner struct {
 	// 更新日時(ISO8601形式)
 	UpdatedAt string `json:"updated_at"`
 	// ユーザーID
-	UserId int32 `json:"user_id"`
+	UserId int64 `json:"user_id"`
 }
 
 // NewApprovalRequestResponseApprovalRequestApprovalFlowLogsInner instantiates a new ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestResponseApprovalRequestApprovalFlowLogsInner(action string, updatedAt string, userId int32) *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner {
+func NewApprovalRequestResponseApprovalRequestApprovalFlowLogsInner(action string, updatedAt string, userId int64) *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner {
 	this := ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner{}
 	this.Action = action
 	this.UpdatedAt = updatedAt
@@ -93,9 +93,9 @@ func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) SetUpdated
 }
 
 // GetUserId returns the UserId field value
-func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserId() int32 {
+func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -104,7 +104,7 @@ func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserId(
 
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserIdOk() (*int32, bool) {
+func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,7 +112,7 @@ func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) GetUserIdO
 }
 
 // SetUserId sets field value
-func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) SetUserId(v int32) {
+func (o *ApprovalRequestResponseApprovalRequestApprovalFlowLogsInner) SetUserId(v int64) {
 	o.UserId = v
 }
 

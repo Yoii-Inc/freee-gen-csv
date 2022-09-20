@@ -25,12 +25,12 @@ type SelectablesApiService service
 type ApiGetFormsSelectablesRequest struct {
 	ctx context.Context
 	ApiService *SelectablesApiService
-	companyId *int32
+	companyId *int64
 	includes *string
 }
 
 // 事業所ID
-func (r ApiGetFormsSelectablesRequest) CompanyId(companyId int32) ApiGetFormsSelectablesRequest {
+func (r ApiGetFormsSelectablesRequest) CompanyId(companyId int64) ApiGetFormsSelectablesRequest {
 	r.companyId = &companyId
 	return r
 }

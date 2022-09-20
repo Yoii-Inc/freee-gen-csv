@@ -17,7 +17,7 @@ import (
 // InvoiceIndexResponseInvoicesInnerInvoiceContentsInner struct for InvoiceIndexResponseInvoicesInnerInvoiceContentsInner
 type InvoiceIndexResponseInvoicesInnerInvoiceContentsInner struct {
 	// 勘定科目ID
-	AccountItemId NullableInt32 `json:"account_item_id"`
+	AccountItemId NullableInt64 `json:"account_item_id"`
 	// 勘定科目名
 	AccountItemName NullableString `json:"account_item_name"`
 	// 内税/外税の判別とamountの税込み、税抜きについて <ul> <li>tax_entry_methodがexclusive (外税)の場合</li> <ul> <li>amount: 消費税抜きの金額</li> <li>vat: 消費税の金額</li> </ul> <li>tax_entry_methodがinclusive (内税)の場合</li> <ul> <li>amount: 消費税込みの金額</li> <li>vat: 消費税の金額</li> </ul> </ul> 
@@ -25,19 +25,19 @@ type InvoiceIndexResponseInvoicesInnerInvoiceContentsInner struct {
 	// 備考
 	Description NullableString `json:"description"`
 	// 請求内容ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 品目ID
-	ItemId NullableInt32 `json:"item_id"`
+	ItemId NullableInt64 `json:"item_id"`
 	// 品目
 	ItemName NullableString `json:"item_name"`
 	// 順序
-	Order NullableInt32 `json:"order"`
+	Order NullableInt64 `json:"order"`
 	// 数量
 	Qty float32 `json:"qty"`
 	// 軽減税率税区分（true: 対象、false: 対象外）
 	ReducedVat bool `json:"reduced_vat"`
 	// 部門ID
-	SectionId NullableInt32 `json:"section_id"`
+	SectionId NullableInt64 `json:"section_id"`
 	// 部門
 	SectionName NullableString `json:"section_name"`
 	// セグメント１ID
@@ -52,10 +52,10 @@ type InvoiceIndexResponseInvoicesInnerInvoiceContentsInner struct {
 	Segment3TagId NullableInt64 `json:"segment_3_tag_id,omitempty"`
 	// セグメント３
 	Segment3TagName NullableString `json:"segment_3_tag_name,omitempty"`
-	TagIds []int32 `json:"tag_ids"`
+	TagIds []int64 `json:"tag_ids"`
 	TagNames []string `json:"tag_names"`
 	// 税区分コード
-	TaxCode NullableInt32 `json:"tax_code"`
+	TaxCode NullableInt64 `json:"tax_code"`
 	// 行の種類
 	Type string `json:"type"`
 	// 単位
@@ -63,14 +63,14 @@ type InvoiceIndexResponseInvoicesInnerInvoiceContentsInner struct {
 	// 単価
 	UnitPrice float32 `json:"unit_price"`
 	// 消費税額
-	Vat int32 `json:"vat"`
+	Vat int64 `json:"vat"`
 }
 
 // NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInner instantiates a new InvoiceIndexResponseInvoicesInnerInvoiceContentsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInner(accountItemId NullableInt32, accountItemName NullableString, amount int64, description NullableString, id int32, itemId NullableInt32, itemName NullableString, order NullableInt32, qty float32, reducedVat bool, sectionId NullableInt32, sectionName NullableString, tagIds []int32, tagNames []string, taxCode NullableInt32, type_ string, unit NullableString, unitPrice float32, vat int32) *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner {
+func NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInner(accountItemId NullableInt64, accountItemName NullableString, amount int64, description NullableString, id int64, itemId NullableInt64, itemName NullableString, order NullableInt64, qty float32, reducedVat bool, sectionId NullableInt64, sectionName NullableString, tagIds []int64, tagNames []string, taxCode NullableInt64, type_ string, unit NullableString, unitPrice float32, vat int64) *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner {
 	this := InvoiceIndexResponseInvoicesInnerInvoiceContentsInner{}
 	this.AccountItemId = accountItemId
 	this.AccountItemName = accountItemName
@@ -103,10 +103,10 @@ func NewInvoiceIndexResponseInvoicesInnerInvoiceContentsInnerWithDefaults() *Inv
 }
 
 // GetAccountItemId returns the AccountItemId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -116,7 +116,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemId
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetAccountItemId
 }
 
 // SetAccountItemId sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetAccountItemId(v int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetAccountItemId(v int64) {
 	o.AccountItemId.Set(&v)
 }
 
@@ -205,9 +205,9 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetDescription(v
 }
 
 // GetId returns the Id field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetId() int32 {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -216,7 +216,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetIdOk() (*int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -224,15 +224,15 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetIdOk() (*int3
 }
 
 // SetId sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetId(v int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetId(v int64) {
 	o.Id = v
 }
 
 // GetItemId returns the ItemId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemId() int64 {
 	if o == nil || o.ItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -242,7 +242,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemId() int3
 // GetItemIdOk returns a tuple with the ItemId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemIdOk() (*int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -250,7 +250,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetItemIdOk() (*
 }
 
 // SetItemId sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetItemId(v int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetItemId(v int64) {
 	o.ItemId.Set(&v)
 }
 
@@ -281,10 +281,10 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetItemName(v st
 }
 
 // GetOrder returns the Order field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrder() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrder() int64 {
 	if o == nil || o.Order.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -294,7 +294,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrder() int32
 // GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrderOk() (*int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrderOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -302,7 +302,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetOrderOk() (*i
 }
 
 // SetOrder sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetOrder(v int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetOrder(v int64) {
 	o.Order.Set(&v)
 }
 
@@ -355,10 +355,10 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetReducedVat(v 
 }
 
 // GetSectionId returns the SectionId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -368,7 +368,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionId() i
 // GetSectionIdOk returns a tuple with the SectionId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionIdOk() (*int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -376,7 +376,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetSectionIdOk()
 }
 
 // SetSectionId sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetSectionId(v int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetSectionId(v int64) {
 	o.SectionId.Set(&v)
 }
 
@@ -659,9 +659,9 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) UnsetSegment3Tag
 }
 
 // GetTagIds returns the TagIds field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIds() []int32 {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
@@ -670,7 +670,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIds() []in
 
 // GetTagIdsOk returns a tuple with the TagIds field value
 // and a boolean to check if the value has been set.
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -678,7 +678,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTagIdsOk() ([
 }
 
 // SetTagIds sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTagIds(v []int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
@@ -707,10 +707,10 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTagNames(v []
 }
 
 // GetTaxCode returns the TaxCode field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCode() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCode() int64 {
 	if o == nil || o.TaxCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -720,7 +720,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCode() int
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -728,7 +728,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetTaxCodeOk() (
 }
 
 // SetTaxCode sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTaxCode(v int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetTaxCode(v int64) {
 	o.TaxCode.Set(&v)
 }
 
@@ -807,9 +807,9 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetUnitPrice(v f
 }
 
 // GetVat returns the Vat field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVat() int32 {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVat() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -818,7 +818,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVat() int32 {
 
 // GetVatOk returns a tuple with the Vat field value
 // and a boolean to check if the value has been set.
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVatOk() (*int32, bool) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVatOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -826,7 +826,7 @@ func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) GetVatOk() (*int
 }
 
 // SetVat sets field value
-func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetVat(v int32) {
+func (o *InvoiceIndexResponseInvoicesInnerInvoiceContentsInner) SetVat(v int64) {
 	o.Vat = v
 }
 

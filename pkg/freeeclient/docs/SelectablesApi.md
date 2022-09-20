@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     includes := "includes_example" // string | 取得する項目(項目: account_item) (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiGetFormsSelectablesRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **includes** | **string** | 取得する項目(項目: account_item) | 
 
 ### Return type

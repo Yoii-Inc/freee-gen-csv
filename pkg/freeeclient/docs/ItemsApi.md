@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    itemParams := *openapiclient.NewItemParams(int32(1), "新しい品目") // ItemParams | 品目の作成 (optional)
+    itemParams := *openapiclient.NewItemParams(int64(1), "新しい品目") // ItemParams | 品目の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -99,8 +99,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 品目ID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 品目ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 品目ID | 
+**id** | **int64** | 品目ID | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroyItemRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,8 +169,8 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    id := int32(56) // int32 | 品目ID
+    companyId := int64(56) // int64 | 事業所ID
+    id := int64(56) // int64 | 品目ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 品目ID | 
+**id** | **int64** | 品目ID | 
 
 ### Other Parameters
 
@@ -199,7 +199,7 @@ Other parameters are passed through a pointer to a apiGetItemRequest struct via 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 
 ### Return type
@@ -241,11 +241,11 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     startUpdateDate := "startUpdateDate_example" // string | 更新日で絞り込み：開始日(yyyy-mm-dd) (optional)
     endUpdateDate := "endUpdateDate_example" // string | 更新日で絞り込み：終了日(yyyy-mm-dd) (optional)
-    offset := int32(56) // int32 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
+    offset := int64(56) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -270,11 +270,11 @@ Other parameters are passed through a pointer to a apiGetItemsRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **startUpdateDate** | **string** | 更新日で絞り込み：開始日(yyyy-mm-dd) | 
  **endUpdateDate** | **string** | 更新日で絞り込み：終了日(yyyy-mm-dd) | 
- **offset** | **int32** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
+ **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
 
 ### Return type
 
@@ -315,8 +315,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 品目ID
-    itemParams := *openapiclient.NewItemParams(int32(1), "新しい品目") // ItemParams | 品目の更新 (optional)
+    id := int64(56) // int64 | 品目ID
+    itemParams := *openapiclient.NewItemParams(int64(1), "新しい品目") // ItemParams | 品目の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -336,7 +336,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 品目ID | 
+**id** | **int64** | 品目ID | 
 
 ### Other Parameters
 

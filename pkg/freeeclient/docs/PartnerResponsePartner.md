@@ -7,20 +7,20 @@ Name | Type | Description | Notes
 **AddressAttributes** | Pointer to [**PartnerResponsePartnerAddressAttributes**](PartnerResponsePartnerAddressAttributes.md) |  | [optional] 
 **Available** | **bool** | 取引先の使用設定（true: 使用する、false: 使用しない） &lt;br&gt; &lt;ul&gt;   &lt;li&gt;     本APIでpartnerを作成した場合はtrueになります。   &lt;/li&gt;   &lt;li&gt;     falseにする場合はWeb画面から変更できます。   &lt;/li&gt;   &lt;li&gt;     trueの場合、Web画面での取引登録時などに入力候補として表示されます。   &lt;/li&gt;   &lt;li&gt;     falseの場合、取引先自体は削除せず、Web画面での取引登録時などに入力候補として表示されません。ただし取引（収入／支出）の作成APIなどでfalseの取引先をパラメータに指定すれば、取引などにfalseの取引先を設定できます。   &lt;/li&gt; &lt;/ul&gt; | 
 **Code** | **NullableString** | 取引先コード | 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **ContactName** | Pointer to **NullableString** | 担当者 氏名 | [optional] 
 **CountryCode** | Pointer to **string** | 地域（JP: 国内、ZZ:国外） | [optional] 
 **DefaultTitle** | Pointer to **NullableString** | 敬称（御中、様、(空白)の3つから選択） | [optional] 
 **Email** | Pointer to **NullableString** | 担当者 メールアドレス | [optional] 
-**Id** | **int32** | 取引先ID | 
+**Id** | **int64** | 取引先ID | 
 **InvoicePaymentTermAttributes** | Pointer to [**PartnerResponsePartnerInvoicePaymentTermAttributes**](PartnerResponsePartnerInvoicePaymentTermAttributes.md) |  | [optional] 
 **LongName** | Pointer to **NullableString** | 正式名称（255文字以内） | [optional] 
 **Name** | **string** | 取引先名 | 
 **NameKana** | Pointer to **NullableString** | カナ名称（255文字以内） | [optional] 
-**OrgCode** | Pointer to **NullableInt32** | 事業所種別（null: 未設定、1: 法人、2: 個人） | [optional] 
+**OrgCode** | Pointer to **NullableInt64** | 事業所種別（null: 未設定、1: 法人、2: 個人） | [optional] 
 **PartnerBankAccountAttributes** | Pointer to [**PartnerResponsePartnerPartnerBankAccountAttributes**](PartnerResponsePartnerPartnerBankAccountAttributes.md) |  | [optional] 
 **PartnerDocSettingAttributes** | Pointer to [**PartnerCreateParamsPartnerDocSettingAttributes**](PartnerCreateParamsPartnerDocSettingAttributes.md) |  | [optional] 
-**PayerWalletableId** | Pointer to **NullableInt32** | 振込元口座ID（一括振込ファイル用）:（未設定の場合は、nullです。） | [optional] 
+**PayerWalletableId** | Pointer to **NullableInt64** | 振込元口座ID（一括振込ファイル用）:（未設定の場合は、nullです。） | [optional] 
 **PaymentTermAttributes** | Pointer to [**PartnerResponsePartnerPaymentTermAttributes**](PartnerResponsePartnerPaymentTermAttributes.md) |  | [optional] 
 **Phone** | Pointer to **NullableString** | 電話番号 | [optional] 
 **Shortcut1** | Pointer to **NullableString** | ショートカット1 (255文字以内) | [optional] 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewPartnerResponsePartner
 
-`func NewPartnerResponsePartner(available bool, code NullableString, companyId int32, id int32, name string, updateDate string, ) *PartnerResponsePartner`
+`func NewPartnerResponsePartner(available bool, code NullableString, companyId int64, id int64, name string, updateDate string, ) *PartnerResponsePartner`
 
 NewPartnerResponsePartner instantiates a new PartnerResponsePartner object
 This constructor will assign default values to properties that have it defined,
@@ -124,20 +124,20 @@ SetCode sets Code field to given value.
 UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetCompanyId
 
-`func (o *PartnerResponsePartner) GetCompanyId() int32`
+`func (o *PartnerResponsePartner) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *PartnerResponsePartner) GetCompanyIdOk() (*int32, bool)`
+`func (o *PartnerResponsePartner) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *PartnerResponsePartner) SetCompanyId(v int32)`
+`func (o *PartnerResponsePartner) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -274,20 +274,20 @@ HasEmail returns a boolean if a field has been set.
 UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetId
 
-`func (o *PartnerResponsePartner) GetId() int32`
+`func (o *PartnerResponsePartner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *PartnerResponsePartner) GetIdOk() (*int32, bool)`
+`func (o *PartnerResponsePartner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *PartnerResponsePartner) SetId(v int32)`
+`func (o *PartnerResponsePartner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -409,20 +409,20 @@ HasNameKana returns a boolean if a field has been set.
 UnsetNameKana ensures that no value is present for NameKana, not even an explicit nil
 ### GetOrgCode
 
-`func (o *PartnerResponsePartner) GetOrgCode() int32`
+`func (o *PartnerResponsePartner) GetOrgCode() int64`
 
 GetOrgCode returns the OrgCode field if non-nil, zero value otherwise.
 
 ### GetOrgCodeOk
 
-`func (o *PartnerResponsePartner) GetOrgCodeOk() (*int32, bool)`
+`func (o *PartnerResponsePartner) GetOrgCodeOk() (*int64, bool)`
 
 GetOrgCodeOk returns a tuple with the OrgCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrgCode
 
-`func (o *PartnerResponsePartner) SetOrgCode(v int32)`
+`func (o *PartnerResponsePartner) SetOrgCode(v int64)`
 
 SetOrgCode sets OrgCode field to given value.
 
@@ -494,20 +494,20 @@ HasPartnerDocSettingAttributes returns a boolean if a field has been set.
 
 ### GetPayerWalletableId
 
-`func (o *PartnerResponsePartner) GetPayerWalletableId() int32`
+`func (o *PartnerResponsePartner) GetPayerWalletableId() int64`
 
 GetPayerWalletableId returns the PayerWalletableId field if non-nil, zero value otherwise.
 
 ### GetPayerWalletableIdOk
 
-`func (o *PartnerResponsePartner) GetPayerWalletableIdOk() (*int32, bool)`
+`func (o *PartnerResponsePartner) GetPayerWalletableIdOk() (*int64, bool)`
 
 GetPayerWalletableIdOk returns a tuple with the PayerWalletableId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPayerWalletableId
 
-`func (o *PartnerResponsePartner) SetPayerWalletableId(v int32)`
+`func (o *PartnerResponsePartner) SetPayerWalletableId(v int64)`
 
 SetPayerWalletableId sets PayerWalletableId field to given value.
 

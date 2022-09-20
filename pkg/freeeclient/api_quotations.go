@@ -193,12 +193,12 @@ func (a *QuotationsApiService) CreateQuotationExecute(r ApiCreateQuotationReques
 type ApiDestroyQuotationRequest struct {
 	ctx context.Context
 	ApiService *QuotationsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyQuotationRequest) CompanyId(companyId int32) ApiDestroyQuotationRequest {
+func (r ApiDestroyQuotationRequest) CompanyId(companyId int64) ApiDestroyQuotationRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -219,7 +219,7 @@ DestroyQuotation 見積書の削除
  @param id
  @return ApiDestroyQuotationRequest
 */
-func (a *QuotationsApiService) DestroyQuotation(ctx context.Context, id int32) ApiDestroyQuotationRequest {
+func (a *QuotationsApiService) DestroyQuotation(ctx context.Context, id int64) ApiDestroyQuotationRequest {
 	return ApiDestroyQuotationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -360,12 +360,12 @@ func (a *QuotationsApiService) DestroyQuotationExecute(r ApiDestroyQuotationRequ
 type ApiGetQuotationRequest struct {
 	ctx context.Context
 	ApiService *QuotationsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
 // 事業所ID
-func (r ApiGetQuotationRequest) CompanyId(companyId int32) ApiGetQuotationRequest {
+func (r ApiGetQuotationRequest) CompanyId(companyId int64) ApiGetQuotationRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -386,7 +386,7 @@ GetQuotation 見積書の取得
  @param id 見積書ID
  @return ApiGetQuotationRequest
 */
-func (a *QuotationsApiService) GetQuotation(ctx context.Context, id int32) ApiGetQuotationRequest {
+func (a *QuotationsApiService) GetQuotation(ctx context.Context, id int64) ApiGetQuotationRequest {
 	return ApiGetQuotationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -538,8 +538,8 @@ func (a *QuotationsApiService) GetQuotationExecute(r ApiGetQuotationRequest) (*Q
 type ApiGetQuotationsRequest struct {
 	ctx context.Context
 	ApiService *QuotationsApiService
-	companyId *int32
-	partnerId *int32
+	companyId *int64
+	partnerId *int64
 	partnerCode *string
 	startIssueDate *string
 	endIssueDate *string
@@ -547,17 +547,17 @@ type ApiGetQuotationsRequest struct {
 	description *string
 	quotationStatus *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetQuotationsRequest) CompanyId(companyId int32) ApiGetQuotationsRequest {
+func (r ApiGetQuotationsRequest) CompanyId(companyId int64) ApiGetQuotationsRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 取引先IDで絞込
-func (r ApiGetQuotationsRequest) PartnerId(partnerId int32) ApiGetQuotationsRequest {
+func (r ApiGetQuotationsRequest) PartnerId(partnerId int64) ApiGetQuotationsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -605,7 +605,7 @@ func (r ApiGetQuotationsRequest) Offset(offset int64) ApiGetQuotationsRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最大: 100) 
-func (r ApiGetQuotationsRequest) Limit(limit int32) ApiGetQuotationsRequest {
+func (r ApiGetQuotationsRequest) Limit(limit int64) ApiGetQuotationsRequest {
 	r.limit = &limit
 	return r
 }
@@ -797,7 +797,7 @@ func (a *QuotationsApiService) GetQuotationsExecute(r ApiGetQuotationsRequest) (
 type ApiUpdateQuotationRequest struct {
 	ctx context.Context
 	ApiService *QuotationsApiService
-	id int32
+	id int64
 	quotationUpdateParams *QuotationUpdateParams
 }
 
@@ -830,7 +830,7 @@ UpdateQuotation 見積書の更新
  @param id 見積書ID
  @return ApiUpdateQuotationRequest
 */
-func (a *QuotationsApiService) UpdateQuotation(ctx context.Context, id int32) ApiUpdateQuotationRequest {
+func (a *QuotationsApiService) UpdateQuotation(ctx context.Context, id int64) ApiUpdateQuotationRequest {
 	return ApiUpdateQuotationRequest{
 		ApiService: a,
 		ctx: ctx,

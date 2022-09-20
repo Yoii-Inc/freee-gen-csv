@@ -17,7 +17,7 @@ import (
 // DealCreateParams struct for DealCreateParams
 type DealCreateParams struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	Details []DealCreateParamsDetailsInner `json:"details"`
 	// 支払期日(yyyy-mm-dd)
 	DueDate *string `json:"due_date,omitempty"`
@@ -26,11 +26,11 @@ type DealCreateParams struct {
 	// 取引先コード
 	PartnerCode *string `json:"partner_code,omitempty"`
 	// 取引先ID
-	PartnerId *int32 `json:"partner_id,omitempty"`
+	PartnerId *int64 `json:"partner_id,omitempty"`
 	// 支払行一覧（配列）：未指定の場合、未決済の取引を作成します。
 	Payments []DealCreateParamsPaymentsInner `json:"payments,omitempty"`
 	// 証憑ファイルID（ファイルボックスのファイルID）（配列）
-	ReceiptIds []int32 `json:"receipt_ids,omitempty"`
+	ReceiptIds []int64 `json:"receipt_ids,omitempty"`
 	// 管理番号
 	RefNumber *string `json:"ref_number,omitempty"`
 	// 収支区分 (収入: income, 支出: expense)
@@ -41,7 +41,7 @@ type DealCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDealCreateParams(companyId int32, details []DealCreateParamsDetailsInner, issueDate string, type_ string) *DealCreateParams {
+func NewDealCreateParams(companyId int64, details []DealCreateParamsDetailsInner, issueDate string, type_ string) *DealCreateParams {
 	this := DealCreateParams{}
 	this.CompanyId = companyId
 	this.Details = details
@@ -59,9 +59,9 @@ func NewDealCreateParamsWithDefaults() *DealCreateParams {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *DealCreateParams) GetCompanyId() int32 {
+func (o *DealCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -70,7 +70,7 @@ func (o *DealCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *DealCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *DealCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,7 +78,7 @@ func (o *DealCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *DealCreateParams) SetCompanyId(v int32) {
+func (o *DealCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -195,9 +195,9 @@ func (o *DealCreateParams) SetPartnerCode(v string) {
 }
 
 // GetPartnerId returns the PartnerId field value if set, zero value otherwise.
-func (o *DealCreateParams) GetPartnerId() int32 {
+func (o *DealCreateParams) GetPartnerId() int64 {
 	if o == nil || o.PartnerId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerId
@@ -205,7 +205,7 @@ func (o *DealCreateParams) GetPartnerId() int32 {
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealCreateParams) GetPartnerIdOk() (*int32, bool) {
+func (o *DealCreateParams) GetPartnerIdOk() (*int64, bool) {
 	if o == nil || o.PartnerId == nil {
 		return nil, false
 	}
@@ -221,8 +221,8 @@ func (o *DealCreateParams) HasPartnerId() bool {
 	return false
 }
 
-// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
-func (o *DealCreateParams) SetPartnerId(v int32) {
+// SetPartnerId gets a reference to the given int64 and assigns it to the PartnerId field.
+func (o *DealCreateParams) SetPartnerId(v int64) {
 	o.PartnerId = &v
 }
 
@@ -259,9 +259,9 @@ func (o *DealCreateParams) SetPayments(v []DealCreateParamsPaymentsInner) {
 }
 
 // GetReceiptIds returns the ReceiptIds field value if set, zero value otherwise.
-func (o *DealCreateParams) GetReceiptIds() []int32 {
+func (o *DealCreateParams) GetReceiptIds() []int64 {
 	if o == nil || o.ReceiptIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.ReceiptIds
@@ -269,7 +269,7 @@ func (o *DealCreateParams) GetReceiptIds() []int32 {
 
 // GetReceiptIdsOk returns a tuple with the ReceiptIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DealCreateParams) GetReceiptIdsOk() ([]int32, bool) {
+func (o *DealCreateParams) GetReceiptIdsOk() ([]int64, bool) {
 	if o == nil || o.ReceiptIds == nil {
 		return nil, false
 	}
@@ -285,8 +285,8 @@ func (o *DealCreateParams) HasReceiptIds() bool {
 	return false
 }
 
-// SetReceiptIds gets a reference to the given []int32 and assigns it to the ReceiptIds field.
-func (o *DealCreateParams) SetReceiptIds(v []int32) {
+// SetReceiptIds gets a reference to the given []int64 and assigns it to the ReceiptIds field.
+func (o *DealCreateParams) SetReceiptIds(v []int64) {
 	o.ReceiptIds = v
 }
 

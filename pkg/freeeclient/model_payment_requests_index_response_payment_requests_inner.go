@@ -17,7 +17,7 @@ import (
 // PaymentRequestsIndexResponsePaymentRequestsInner struct for PaymentRequestsIndexResponsePaymentRequestsInner
 type PaymentRequestsIndexResponsePaymentRequestsInner struct {
 	// 申請者のユーザーID
-	ApplicantId int32 `json:"applicant_id"`
+	ApplicantId int64 `json:"applicant_id"`
 	// 申請日 (yyyy-mm-dd)
 	ApplicationDate string `json:"application_date"`
 	// 申請No.
@@ -25,25 +25,25 @@ type PaymentRequestsIndexResponsePaymentRequestsInner struct {
 	// 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、   approversはレスポンスに含まれるようになります。   その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。
 	Approvers []ApprovalRequestResponseApprovalRequestApproversInner `json:"approvers"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。
-	CurrentRound int32 `json:"current_round"`
+	CurrentRound int64 `json:"current_round"`
 	// 現在承認ステップID
-	CurrentStepId NullableInt32 `json:"current_step_id"`
+	CurrentStepId NullableInt64 `json:"current_step_id"`
 	// 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます)
-	DealId NullableInt32 `json:"deal_id,omitempty"`
+	DealId NullableInt64 `json:"deal_id,omitempty"`
 	// 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:支払済み, unsettled:支払待ち)
 	DealStatus NullableString `json:"deal_status,omitempty"`
 	// 請求書番号
 	DocumentCode string `json:"document_code"`
 	// 支払依頼ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 発生日 (yyyy-mm-dd)
 	IssueDate string `json:"issue_date"`
 	// 取引先コード
 	PartnerCode NullableString `json:"partner_code"`
 	// 取引先ID
-	PartnerId NullableInt32 `json:"partner_id"`
+	PartnerId NullableInt64 `json:"partner_id"`
 	// 取引先名
 	PartnerName NullableString `json:"partner_name"`
 	// 支払期限 (yyyy-mm-dd)
@@ -62,7 +62,7 @@ type PaymentRequestsIndexResponsePaymentRequestsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaymentRequestsIndexResponsePaymentRequestsInner(applicantId int32, applicationDate string, applicationNumber string, approvers []ApprovalRequestResponseApprovalRequestApproversInner, companyId int32, currentRound int32, currentStepId NullableInt32, documentCode string, id int32, issueDate string, partnerCode NullableString, partnerId NullableInt32, partnerName NullableString, paymentDate NullableString, paymentMethod string, status string, title string, totalAmount int64) *PaymentRequestsIndexResponsePaymentRequestsInner {
+func NewPaymentRequestsIndexResponsePaymentRequestsInner(applicantId int64, applicationDate string, applicationNumber string, approvers []ApprovalRequestResponseApprovalRequestApproversInner, companyId int64, currentRound int64, currentStepId NullableInt64, documentCode string, id int64, issueDate string, partnerCode NullableString, partnerId NullableInt64, partnerName NullableString, paymentDate NullableString, paymentMethod string, status string, title string, totalAmount int64) *PaymentRequestsIndexResponsePaymentRequestsInner {
 	this := PaymentRequestsIndexResponsePaymentRequestsInner{}
 	this.ApplicantId = applicantId
 	this.ApplicationDate = applicationDate
@@ -94,9 +94,9 @@ func NewPaymentRequestsIndexResponsePaymentRequestsInnerWithDefaults() *PaymentR
 }
 
 // GetApplicantId returns the ApplicantId field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantId() int32 {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -105,7 +105,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantId() int3
 
 // GetApplicantIdOk returns a tuple with the ApplicantId field value
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantIdOk() (*int32, bool) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantIdOk() (*
 }
 
 // SetApplicantId sets field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetApplicantId(v int32) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetApplicantId(v int64) {
 	o.ApplicantId = v
 }
 
@@ -190,9 +190,9 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetApprovers(v []Appr
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyId() int32 {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -201,7 +201,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyId() int32 
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyIdOk() (*int32, bool) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -209,14 +209,14 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyIdOk() (*in
 }
 
 // SetCompanyId sets field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCompanyId(v int32) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetCurrentRound returns the CurrentRound field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRound() int32 {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRound() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -225,7 +225,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRound() int
 
 // GetCurrentRoundOk returns a tuple with the CurrentRound field value
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRoundOk() (*int32, bool) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRoundOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -233,15 +233,15 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRoundOk() (
 }
 
 // SetCurrentRound sets field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentRound(v int32) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentRound(v int64) {
 	o.CurrentRound = v
 }
 
 // GetCurrentStepId returns the CurrentStepId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepId() int64 {
 	if o == nil || o.CurrentStepId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -251,7 +251,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepId() in
 // GetCurrentStepIdOk returns a tuple with the CurrentStepId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepIdOk() (*int32, bool) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -259,14 +259,14 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepIdOk() 
 }
 
 // SetCurrentStepId sets field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentStepId(v int32) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentStepId(v int64) {
 	o.CurrentStepId.Set(&v)
 }
 
 // GetDealId returns the DealId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealId() int32 {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealId() int64 {
 	if o == nil || o.DealId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DealId.Get()
@@ -275,7 +275,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealId() int32 {
 // GetDealIdOk returns a tuple with the DealId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealIdOk() (*int32, bool) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -291,8 +291,8 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) HasDealId() bool {
 	return false
 }
 
-// SetDealId gets a reference to the given NullableInt32 and assigns it to the DealId field.
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetDealId(v int32) {
+// SetDealId gets a reference to the given NullableInt64 and assigns it to the DealId field.
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetDealId(v int64) {
 	o.DealId.Set(&v)
 }
 // SetDealIdNil sets the value for DealId to be an explicit nil
@@ -372,9 +372,9 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetDocumentCode(v str
 }
 
 // GetId returns the Id field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetId() int32 {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -383,7 +383,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetIdOk() (*int32, bool) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -391,7 +391,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetIdOk() (*int32, bo
 }
 
 // SetId sets field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetId(v int32) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetId(v int64) {
 	o.Id = v
 }
 
@@ -446,10 +446,10 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetPartnerCode(v stri
 }
 
 // GetPartnerId returns the PartnerId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerId() int64 {
 	if o == nil || o.PartnerId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -459,7 +459,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerId() int32 
 // GetPartnerIdOk returns a tuple with the PartnerId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerIdOk() (*int32, bool) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -467,7 +467,7 @@ func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerIdOk() (*in
 }
 
 // SetPartnerId sets field value
-func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetPartnerId(v int32) {
+func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetPartnerId(v int64) {
 	o.PartnerId.Set(&v)
 }
 

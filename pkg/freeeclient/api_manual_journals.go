@@ -231,12 +231,12 @@ func (a *ManualJournalsApiService) CreateManualJournalExecute(r ApiCreateManualJ
 type ApiDestroyManualJournalRequest struct {
 	ctx context.Context
 	ApiService *ManualJournalsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyManualJournalRequest) CompanyId(companyId int32) ApiDestroyManualJournalRequest {
+func (r ApiDestroyManualJournalRequest) CompanyId(companyId int64) ApiDestroyManualJournalRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -257,7 +257,7 @@ DestroyManualJournal 振替伝票の削除
  @param id
  @return ApiDestroyManualJournalRequest
 */
-func (a *ManualJournalsApiService) DestroyManualJournal(ctx context.Context, id int32) ApiDestroyManualJournalRequest {
+func (a *ManualJournalsApiService) DestroyManualJournal(ctx context.Context, id int64) ApiDestroyManualJournalRequest {
 	return ApiDestroyManualJournalRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -398,12 +398,12 @@ func (a *ManualJournalsApiService) DestroyManualJournalExecute(r ApiDestroyManua
 type ApiGetManualJournalRequest struct {
 	ctx context.Context
 	ApiService *ManualJournalsApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
 // 事業所ID
-func (r ApiGetManualJournalRequest) CompanyId(companyId int32) ApiGetManualJournalRequest {
+func (r ApiGetManualJournalRequest) CompanyId(companyId int64) ApiGetManualJournalRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -443,7 +443,7 @@ GetManualJournal 振替伝票の取得
  @param id
  @return ApiGetManualJournalRequest
 */
-func (a *ManualJournalsApiService) GetManualJournal(ctx context.Context, id int32) ApiGetManualJournalRequest {
+func (a *ManualJournalsApiService) GetManualJournal(ctx context.Context, id int64) ApiGetManualJournalRequest {
 	return ApiGetManualJournalRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -595,17 +595,17 @@ func (a *ManualJournalsApiService) GetManualJournalExecute(r ApiGetManualJournal
 type ApiGetManualJournalsRequest struct {
 	ctx context.Context
 	ApiService *ManualJournalsApiService
-	companyId *int32
+	companyId *int64
 	startIssueDate *string
 	endIssueDate *string
 	entrySide *string
-	accountItemId *int32
+	accountItemId *int64
 	minAmount *int64
 	maxAmount *int64
-	partnerId *int32
+	partnerId *int64
 	partnerCode *string
-	itemId *int32
-	sectionId *int32
+	itemId *int64
+	sectionId *int64
 	segment1TagId *int64
 	segment2TagId *int64
 	segment3TagId *int64
@@ -614,11 +614,11 @@ type ApiGetManualJournalsRequest struct {
 	adjustment *string
 	txnNumber *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetManualJournalsRequest) CompanyId(companyId int32) ApiGetManualJournalsRequest {
+func (r ApiGetManualJournalsRequest) CompanyId(companyId int64) ApiGetManualJournalsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -642,7 +642,7 @@ func (r ApiGetManualJournalsRequest) EntrySide(entrySide string) ApiGetManualJou
 }
 
 // 勘定科目IDで絞込
-func (r ApiGetManualJournalsRequest) AccountItemId(accountItemId int32) ApiGetManualJournalsRequest {
+func (r ApiGetManualJournalsRequest) AccountItemId(accountItemId int64) ApiGetManualJournalsRequest {
 	r.accountItemId = &accountItemId
 	return r
 }
@@ -660,7 +660,7 @@ func (r ApiGetManualJournalsRequest) MaxAmount(maxAmount int64) ApiGetManualJour
 }
 
 // 取引先IDで絞込（0を指定すると、取引先が未選択の貸借行を絞り込めます）
-func (r ApiGetManualJournalsRequest) PartnerId(partnerId int32) ApiGetManualJournalsRequest {
+func (r ApiGetManualJournalsRequest) PartnerId(partnerId int64) ApiGetManualJournalsRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -672,13 +672,13 @@ func (r ApiGetManualJournalsRequest) PartnerCode(partnerCode string) ApiGetManua
 }
 
 // 品目IDで絞込（0を指定すると、品目が未選択の貸借行を絞り込めます）
-func (r ApiGetManualJournalsRequest) ItemId(itemId int32) ApiGetManualJournalsRequest {
+func (r ApiGetManualJournalsRequest) ItemId(itemId int64) ApiGetManualJournalsRequest {
 	r.itemId = &itemId
 	return r
 }
 
 // 部門IDで絞込（0を指定すると、部門が未選択の貸借行を絞り込めます）
-func (r ApiGetManualJournalsRequest) SectionId(sectionId int32) ApiGetManualJournalsRequest {
+func (r ApiGetManualJournalsRequest) SectionId(sectionId int64) ApiGetManualJournalsRequest {
 	r.sectionId = &sectionId
 	return r
 }
@@ -732,7 +732,7 @@ func (r ApiGetManualJournalsRequest) Offset(offset int64) ApiGetManualJournalsRe
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) 
-func (r ApiGetManualJournalsRequest) Limit(limit int32) ApiGetManualJournalsRequest {
+func (r ApiGetManualJournalsRequest) Limit(limit int64) ApiGetManualJournalsRequest {
 	r.limit = &limit
 	return r
 }
@@ -985,7 +985,7 @@ func (a *ManualJournalsApiService) GetManualJournalsExecute(r ApiGetManualJourna
 type ApiUpdateManualJournalRequest struct {
 	ctx context.Context
 	ApiService *ManualJournalsApiService
-	id int32
+	id int64
 	manualJournalUpdateParams *ManualJournalUpdateParams
 }
 
@@ -1063,7 +1063,7 @@ UpdateManualJournal 振替伝票の更新
  @param id
  @return ApiUpdateManualJournalRequest
 */
-func (a *ManualJournalsApiService) UpdateManualJournal(ctx context.Context, id int32) ApiUpdateManualJournalRequest {
+func (a *ManualJournalsApiService) UpdateManualJournal(ctx context.Context, id int64) ApiUpdateManualJournalRequest {
 	return ApiUpdateManualJournalRequest{
 		ApiService: a,
 		ctx: ctx,

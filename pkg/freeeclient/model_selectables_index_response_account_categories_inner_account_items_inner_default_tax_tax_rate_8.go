@@ -17,7 +17,7 @@ import (
 // SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8 struct for SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8
 type SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8 struct {
 	// 税区分ID
-	Id *int32 `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	// 税区分
 	Name *string `json:"name,omitempty"`
 }
@@ -40,9 +40,9 @@ func NewSelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTa
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8) GetId() int32 {
+func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8) GetId() int64 {
 	if o == nil || o.Id == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -50,7 +50,7 @@ func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultT
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8) GetIdOk() (*int32, bool) {
+func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultT
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8) SetId(v int32) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTaxTaxRate8) SetId(v int64) {
 	o.Id = &v
 }
 

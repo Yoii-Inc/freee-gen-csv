@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Available** | **bool** | true: 使用する、false: 使用しない | 
-**Code** | **int32** | 税区分コード | 
+**Code** | **int64** | 税区分コード | 
 **DisplayCategory** | **NullableString** | 税区分の表示カテゴリ（tax_5: 5%表示の税区分、tax_8: 8%表示の税区分、tax_r8: 軽減税率8%表示の税区分、tax_10: 10%表示の税区分、null: 税率未設定税区分） | 
 **Name** | **string** | 税区分名 | 
 **NameJa** | **string** | 税区分名（日本語表示用） | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewGetTaxesCompanies200ResponseTaxesInner
 
-`func NewGetTaxesCompanies200ResponseTaxesInner(available bool, code int32, displayCategory NullableString, name string, nameJa string, ) *GetTaxesCompanies200ResponseTaxesInner`
+`func NewGetTaxesCompanies200ResponseTaxesInner(available bool, code int64, displayCategory NullableString, name string, nameJa string, ) *GetTaxesCompanies200ResponseTaxesInner`
 
 NewGetTaxesCompanies200ResponseTaxesInner instantiates a new GetTaxesCompanies200ResponseTaxesInner object
 This constructor will assign default values to properties that have it defined,
@@ -51,20 +51,20 @@ SetAvailable sets Available field to given value.
 
 ### GetCode
 
-`func (o *GetTaxesCompanies200ResponseTaxesInner) GetCode() int32`
+`func (o *GetTaxesCompanies200ResponseTaxesInner) GetCode() int64`
 
 GetCode returns the Code field if non-nil, zero value otherwise.
 
 ### GetCodeOk
 
-`func (o *GetTaxesCompanies200ResponseTaxesInner) GetCodeOk() (*int32, bool)`
+`func (o *GetTaxesCompanies200ResponseTaxesInner) GetCodeOk() (*int64, bool)`
 
 GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCode
 
-`func (o *GetTaxesCompanies200ResponseTaxesInner) SetCode(v int32)`
+`func (o *GetTaxesCompanies200ResponseTaxesInner) SetCode(v int64)`
 
 SetCode sets Code field to given value.
 

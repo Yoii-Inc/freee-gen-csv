@@ -19,15 +19,15 @@ type ApprovalRequestFormResponseApprovalRequestFormPartsInner struct {
 	// 追加説明
 	Annotation NullableString `json:"annotation,omitempty"`
 	// 項目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 項目名
 	Label *string `json:"label,omitempty"`
 	// 上限金額
-	MaxAmount NullableInt32 `json:"max_amount,omitempty"`
+	MaxAmount NullableInt64 `json:"max_amount,omitempty"`
 	// 下限金額
-	MinAmount NullableInt32 `json:"min_amount,omitempty"`
+	MinAmount NullableInt64 `json:"min_amount,omitempty"`
 	// 順序
-	Order *int32 `json:"order,omitempty"`
+	Order *int64 `json:"order,omitempty"`
 	// 必須かどうか
 	Required NullableBool `json:"required,omitempty"`
 	// 項目種別 (title: 申請タイトル, single_line: 自由記述形式 1行, multi_line: 自由記述形式 複数行, select: プルダウン, date: 日付, amount: 金額, receipt: 添付ファイル, section: 部門ID, partner: 取引先ID, ninja_sign_document: 契約書（freeeサイン連携）)
@@ -40,7 +40,7 @@ type ApprovalRequestFormResponseApprovalRequestFormPartsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestFormResponseApprovalRequestFormPartsInner(id int32) *ApprovalRequestFormResponseApprovalRequestFormPartsInner {
+func NewApprovalRequestFormResponseApprovalRequestFormPartsInner(id int64) *ApprovalRequestFormResponseApprovalRequestFormPartsInner {
 	this := ApprovalRequestFormResponseApprovalRequestFormPartsInner{}
 	this.Id = id
 	return &this
@@ -97,9 +97,9 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) UnsetAnnotati
 }
 
 // GetId returns the Id field value
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetId() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -108,7 +108,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetId() int32
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetIdOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,7 +116,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetIdOk() (*i
 }
 
 // SetId sets field value
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetId(v int32) {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetId(v int64) {
 	o.Id = v
 }
 
@@ -153,9 +153,9 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetLabel(v st
 }
 
 // GetMaxAmount returns the MaxAmount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmount() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmount() int64 {
 	if o == nil || o.MaxAmount.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MaxAmount.Get()
@@ -164,7 +164,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmount(
 // GetMaxAmountOk returns a tuple with the MaxAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmountOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -180,8 +180,8 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) HasMaxAmount(
 	return false
 }
 
-// SetMaxAmount gets a reference to the given NullableInt32 and assigns it to the MaxAmount field.
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMaxAmount(v int32) {
+// SetMaxAmount gets a reference to the given NullableInt64 and assigns it to the MaxAmount field.
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMaxAmount(v int64) {
 	o.MaxAmount.Set(&v)
 }
 // SetMaxAmountNil sets the value for MaxAmount to be an explicit nil
@@ -195,9 +195,9 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) UnsetMaxAmoun
 }
 
 // GetMinAmount returns the MinAmount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmount() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmount() int64 {
 	if o == nil || o.MinAmount.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MinAmount.Get()
@@ -206,7 +206,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmount(
 // GetMinAmountOk returns a tuple with the MinAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmountOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -222,8 +222,8 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) HasMinAmount(
 	return false
 }
 
-// SetMinAmount gets a reference to the given NullableInt32 and assigns it to the MinAmount field.
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMinAmount(v int32) {
+// SetMinAmount gets a reference to the given NullableInt64 and assigns it to the MinAmount field.
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMinAmount(v int64) {
 	o.MinAmount.Set(&v)
 }
 // SetMinAmountNil sets the value for MinAmount to be an explicit nil
@@ -237,9 +237,9 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) UnsetMinAmoun
 }
 
 // GetOrder returns the Order field value if set, zero value otherwise.
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrder() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrder() int64 {
 	if o == nil || o.Order == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Order
@@ -247,7 +247,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrder() in
 
 // GetOrderOk returns a tuple with the Order field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrderOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrderOk() (*int64, bool) {
 	if o == nil || o.Order == nil {
 		return nil, false
 	}
@@ -263,8 +263,8 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) HasOrder() bo
 	return false
 }
 
-// SetOrder gets a reference to the given int32 and assigns it to the Order field.
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetOrder(v int32) {
+// SetOrder gets a reference to the given int64 and assigns it to the Order field.
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetOrder(v int64) {
 	o.Order = &v
 }
 

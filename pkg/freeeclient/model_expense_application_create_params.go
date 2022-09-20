@@ -17,11 +17,11 @@ import (
 // ExpenseApplicationCreateParams struct for ExpenseApplicationCreateParams
 type ExpenseApplicationCreateParams struct {
 	// 申請経路ID<br> <ul>     <li>経費申請のステータスを申請中として作成する場合は、必ず指定してください。</li>     <li>指定する申請経路IDは、申請経路APIを利用して取得してください。</li>     <li>         未指定の場合は、基本経路を設定している事業所では基本経路が、基本経路を設定していない事業所では利用可能な申請経路の中から最初の申請経路が自動的に使用されます。         <ul>            <li>意図しない申請経路を持った経費申請の作成を防ぐために、使用する申請経路IDを指定することを推奨します。</li>         </ul>     </li>     <li>         ベーシックプランの事業所では以下のデフォルトで用意された申請経路のみ指定できます         <ul>         <li>指定なし</li>         <li>承認者を指定</li>         </ul>     </li> </ul> 
-	ApprovalFlowRouteId *int32 `json:"approval_flow_route_id,omitempty"`
+	ApprovalFlowRouteId *int64 `json:"approval_flow_route_id,omitempty"`
 	// 承認者のユーザーID<br> 「承認者を指定」の経路を申請経路として使用する場合に指定してください。<br> 指定する承認者のユーザーIDは、申請経路APIを利用して取得してください。 
-	ApproverId *int32 `json:"approver_id,omitempty"`
+	ApproverId *int64 `json:"approver_id,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 備考 (10000文字以内)
 	Description *string `json:"description,omitempty"`
 	// 経費申請のステータス<br> falseを指定した時は申請中（in_progress）で経費申請を作成します。<br> trueを指定した時は下書き（draft）で経費申請を作成します。<br> 未指定の時は下書きとみなして経費申請を作成します。 
@@ -30,9 +30,9 @@ type ExpenseApplicationCreateParams struct {
 	// 申請日 (yyyy-mm-dd)<br> 指定しない場合は当日の日付が登録されます。 
 	IssueDate *string `json:"issue_date,omitempty"`
 	// 親申請ID(法人向けプロフェッショナル, 法人向け エンタープライズプラン)<br> <ul>   <li>承認済みの既存各種申請IDのみ指定可能です。</li>   <li>各種申請一覧APIを利用して取得してください。</li> </ul> 
-	ParentId *int32 `json:"parent_id,omitempty"`
+	ParentId *int64 `json:"parent_id,omitempty"`
 	// 部門ID
-	SectionId *int32 `json:"section_id,omitempty"`
+	SectionId *int64 `json:"section_id,omitempty"`
 	// セグメント１ID(法人向けプロフェッショナル, 法人向けエンタープライズプラン)<br> セグメントタグ一覧APIを利用して取得してください。<br> <a href=\"https://support.freee.co.jp/hc/ja/articles/360020679611\" target=\"_blank\">セグメント（分析用タグ）の設定</a><br> 
 	Segment1TagId *int64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント２ID(法人向け エンタープライズプラン)<br> セグメントタグ一覧APIを利用して取得してください。<br> <a href=\"https://support.freee.co.jp/hc/ja/articles/360020679611\" target=\"_blank\">セグメント（分析用タグ）の設定</a><br> 
@@ -40,7 +40,7 @@ type ExpenseApplicationCreateParams struct {
 	// セグメント３ID(法人向け エンタープライズプラン)<br> セグメントタグ一覧APIを利用して取得してください。<br> <a href=\"https://support.freee.co.jp/hc/ja/articles/360020679611\" target=\"_blank\">セグメント（分析用タグ）の設定</a><br> 
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
 	// メモタグID
-	TagIds []int32 `json:"tag_ids,omitempty"`
+	TagIds []int64 `json:"tag_ids,omitempty"`
 	// 申請タイトル (250文字以内)
 	Title string `json:"title"`
 }
@@ -49,7 +49,7 @@ type ExpenseApplicationCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExpenseApplicationCreateParams(companyId int32, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLinesInner, title string) *ExpenseApplicationCreateParams {
+func NewExpenseApplicationCreateParams(companyId int64, expenseApplicationLines []ExpenseApplicationCreateParamsExpenseApplicationLinesInner, title string) *ExpenseApplicationCreateParams {
 	this := ExpenseApplicationCreateParams{}
 	this.CompanyId = companyId
 	this.ExpenseApplicationLines = expenseApplicationLines
@@ -66,9 +66,9 @@ func NewExpenseApplicationCreateParamsWithDefaults() *ExpenseApplicationCreatePa
 }
 
 // GetApprovalFlowRouteId returns the ApprovalFlowRouteId field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteId() int32 {
+func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteId() int64 {
 	if o == nil || o.ApprovalFlowRouteId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApprovalFlowRouteId
@@ -76,7 +76,7 @@ func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteId() int32 {
 
 // GetApprovalFlowRouteIdOk returns a tuple with the ApprovalFlowRouteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteIdOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParams) GetApprovalFlowRouteIdOk() (*int64, bool) {
 	if o == nil || o.ApprovalFlowRouteId == nil {
 		return nil, false
 	}
@@ -92,15 +92,15 @@ func (o *ExpenseApplicationCreateParams) HasApprovalFlowRouteId() bool {
 	return false
 }
 
-// SetApprovalFlowRouteId gets a reference to the given int32 and assigns it to the ApprovalFlowRouteId field.
-func (o *ExpenseApplicationCreateParams) SetApprovalFlowRouteId(v int32) {
+// SetApprovalFlowRouteId gets a reference to the given int64 and assigns it to the ApprovalFlowRouteId field.
+func (o *ExpenseApplicationCreateParams) SetApprovalFlowRouteId(v int64) {
 	o.ApprovalFlowRouteId = &v
 }
 
 // GetApproverId returns the ApproverId field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParams) GetApproverId() int32 {
+func (o *ExpenseApplicationCreateParams) GetApproverId() int64 {
 	if o == nil || o.ApproverId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApproverId
@@ -108,7 +108,7 @@ func (o *ExpenseApplicationCreateParams) GetApproverId() int32 {
 
 // GetApproverIdOk returns a tuple with the ApproverId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetApproverIdOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParams) GetApproverIdOk() (*int64, bool) {
 	if o == nil || o.ApproverId == nil {
 		return nil, false
 	}
@@ -124,15 +124,15 @@ func (o *ExpenseApplicationCreateParams) HasApproverId() bool {
 	return false
 }
 
-// SetApproverId gets a reference to the given int32 and assigns it to the ApproverId field.
-func (o *ExpenseApplicationCreateParams) SetApproverId(v int32) {
+// SetApproverId gets a reference to the given int64 and assigns it to the ApproverId field.
+func (o *ExpenseApplicationCreateParams) SetApproverId(v int64) {
 	o.ApproverId = &v
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ExpenseApplicationCreateParams) GetCompanyId() int32 {
+func (o *ExpenseApplicationCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -141,7 +141,7 @@ func (o *ExpenseApplicationCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,7 +149,7 @@ func (o *ExpenseApplicationCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *ExpenseApplicationCreateParams) SetCompanyId(v int32) {
+func (o *ExpenseApplicationCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -274,9 +274,9 @@ func (o *ExpenseApplicationCreateParams) SetIssueDate(v string) {
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParams) GetParentId() int32 {
+func (o *ExpenseApplicationCreateParams) GetParentId() int64 {
 	if o == nil || o.ParentId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ParentId
@@ -284,7 +284,7 @@ func (o *ExpenseApplicationCreateParams) GetParentId() int32 {
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetParentIdOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParams) GetParentIdOk() (*int64, bool) {
 	if o == nil || o.ParentId == nil {
 		return nil, false
 	}
@@ -300,15 +300,15 @@ func (o *ExpenseApplicationCreateParams) HasParentId() bool {
 	return false
 }
 
-// SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
-func (o *ExpenseApplicationCreateParams) SetParentId(v int32) {
+// SetParentId gets a reference to the given int64 and assigns it to the ParentId field.
+func (o *ExpenseApplicationCreateParams) SetParentId(v int64) {
 	o.ParentId = &v
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParams) GetSectionId() int32 {
+func (o *ExpenseApplicationCreateParams) GetSectionId() int64 {
 	if o == nil || o.SectionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId
@@ -316,7 +316,7 @@ func (o *ExpenseApplicationCreateParams) GetSectionId() int32 {
 
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetSectionIdOk() (*int32, bool) {
+func (o *ExpenseApplicationCreateParams) GetSectionIdOk() (*int64, bool) {
 	if o == nil || o.SectionId == nil {
 		return nil, false
 	}
@@ -332,8 +332,8 @@ func (o *ExpenseApplicationCreateParams) HasSectionId() bool {
 	return false
 }
 
-// SetSectionId gets a reference to the given int32 and assigns it to the SectionId field.
-func (o *ExpenseApplicationCreateParams) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given int64 and assigns it to the SectionId field.
+func (o *ExpenseApplicationCreateParams) SetSectionId(v int64) {
 	o.SectionId = &v
 }
 
@@ -434,9 +434,9 @@ func (o *ExpenseApplicationCreateParams) SetSegment3TagId(v int64) {
 }
 
 // GetTagIds returns the TagIds field value if set, zero value otherwise.
-func (o *ExpenseApplicationCreateParams) GetTagIds() []int32 {
+func (o *ExpenseApplicationCreateParams) GetTagIds() []int64 {
 	if o == nil || o.TagIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.TagIds
@@ -444,7 +444,7 @@ func (o *ExpenseApplicationCreateParams) GetTagIds() []int32 {
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationCreateParams) GetTagIdsOk() ([]int32, bool) {
+func (o *ExpenseApplicationCreateParams) GetTagIdsOk() ([]int64, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -460,8 +460,8 @@ func (o *ExpenseApplicationCreateParams) HasTagIds() bool {
 	return false
 }
 
-// SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
-func (o *ExpenseApplicationCreateParams) SetTagIds(v []int32) {
+// SetTagIds gets a reference to the given []int64 and assigns it to the TagIds field.
+func (o *ExpenseApplicationCreateParams) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 

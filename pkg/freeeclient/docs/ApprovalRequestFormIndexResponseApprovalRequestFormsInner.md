@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **CreatedDate** | **string** | 作成日時 | 
 **Description** | **string** | 申請フォームの説明 | 
-**FormOrder** | **NullableInt32** | 表示順（申請者が選択する申請フォームの表示順を設定できます。小さい数ほど上位に表示されます。（0を除く整数のみ。マイナス不可）未入力の場合、表示順が後ろになります。同じ数字が入力された場合、登録順で表示されます。） | 
-**Id** | **int32** | 申請フォームID | 
+**FormOrder** | **NullableInt64** | 表示順（申請者が選択する申請フォームの表示順を設定できます。小さい数ほど上位に表示されます。（0を除く整数のみ。マイナス不可）未入力の場合、表示順が後ろになります。同じ数字が入力された場合、登録順で表示されます。） | 
+**Id** | **int64** | 申請フォームID | 
 **Name** | **string** | 申請フォームの名前 | 
-**RouteSettingCount** | **int32** | 適用された経路数 | 
+**RouteSettingCount** | **int64** | 適用された経路数 | 
 **Status** | **string** | ステータス(draft: 申請で使用しない、active: 申請で使用する、deleted: 削除済み) | 
 
 ## Methods
 
 ### NewApprovalRequestFormIndexResponseApprovalRequestFormsInner
 
-`func NewApprovalRequestFormIndexResponseApprovalRequestFormsInner(companyId int32, createdDate string, description string, formOrder NullableInt32, id int32, name string, routeSettingCount int32, status string, ) *ApprovalRequestFormIndexResponseApprovalRequestFormsInner`
+`func NewApprovalRequestFormIndexResponseApprovalRequestFormsInner(companyId int64, createdDate string, description string, formOrder NullableInt64, id int64, name string, routeSettingCount int64, status string, ) *ApprovalRequestFormIndexResponseApprovalRequestFormsInner`
 
 NewApprovalRequestFormIndexResponseApprovalRequestFormsInner instantiates a new ApprovalRequestFormIndexResponseApprovalRequestFormsInner object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetCompanyId() int32`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetCompanyIdOk() (*int32, bool)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetCompanyId(v int32)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -94,20 +94,20 @@ SetDescription sets Description field to given value.
 
 ### GetFormOrder
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetFormOrder() int32`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetFormOrder() int64`
 
 GetFormOrder returns the FormOrder field if non-nil, zero value otherwise.
 
 ### GetFormOrderOk
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetFormOrderOk() (*int32, bool)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetFormOrderOk() (*int64, bool)`
 
 GetFormOrderOk returns a tuple with the FormOrder field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFormOrder
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetFormOrder(v int32)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetFormOrder(v int64)`
 
 SetFormOrder sets FormOrder field to given value.
 
@@ -124,20 +124,20 @@ SetFormOrder sets FormOrder field to given value.
 UnsetFormOrder ensures that no value is present for FormOrder, not even an explicit nil
 ### GetId
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetId() int32`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetIdOk() (*int32, bool)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetId(v int32)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -164,20 +164,20 @@ SetName sets Name field to given value.
 
 ### GetRouteSettingCount
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetRouteSettingCount() int32`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetRouteSettingCount() int64`
 
 GetRouteSettingCount returns the RouteSettingCount field if non-nil, zero value otherwise.
 
 ### GetRouteSettingCountOk
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetRouteSettingCountOk() (*int32, bool)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) GetRouteSettingCountOk() (*int64, bool)`
 
 GetRouteSettingCountOk returns a tuple with the RouteSettingCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouteSettingCount
 
-`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetRouteSettingCount(v int32)`
+`func (o *ApprovalRequestFormIndexResponseApprovalRequestFormsInner) SetRouteSettingCount(v int64)`
 
 SetRouteSettingCount sets RouteSettingCount field to given value.
 

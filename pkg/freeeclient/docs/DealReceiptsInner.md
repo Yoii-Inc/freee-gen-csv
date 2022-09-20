@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** | 作成日時（ISO8601形式） | 
 **Description** | Pointer to **string** | メモ | [optional] 
 **FileSrc** | **string** | ファイルのダウンロードURL（freeeにログインした状態でのみ閲覧可能です。） &lt;br&gt; &lt;br&gt; file_srcは廃止予定の属性になります。&lt;br&gt; file_srcに替わり、証憑ファイル（ファイルボックスのファイル）のダウンロード APIをご利用ください。&lt;br&gt; 証憑ファイル（ファイルボックスのファイル）のダウンロードAPIを利用することで、以下のようになります。 &lt;ul&gt;   &lt;li&gt;アプリケーション利用者はfreee APIアプリケーションにログインしていれば、証憑ダウンロード毎にfreeeに改めてログインすることなくファイルが参照できるようになります。&lt;/li&gt; &lt;/ul&gt; | 
-**Id** | **int32** | 証憑ファイルID（ファイルボックスのファイルID） | 
+**Id** | **int64** | 証憑ファイルID（ファイルボックスのファイルID） | 
 **IssueDate** | Pointer to **string** | 発生日 | [optional] 
 **MimeType** | **string** | MIMEタイプ | 
 **Origin** | **string** | アップロード元種別 | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewDealReceiptsInner
 
-`func NewDealReceiptsInner(createdAt string, fileSrc string, id int32, mimeType string, origin string, status string, user DealReceiptsInnerUser, ) *DealReceiptsInner`
+`func NewDealReceiptsInner(createdAt string, fileSrc string, id int64, mimeType string, origin string, status string, user DealReceiptsInnerUser, ) *DealReceiptsInner`
 
 NewDealReceiptsInner instantiates a new DealReceiptsInner object
 This constructor will assign default values to properties that have it defined,
@@ -101,20 +101,20 @@ SetFileSrc sets FileSrc field to given value.
 
 ### GetId
 
-`func (o *DealReceiptsInner) GetId() int32`
+`func (o *DealReceiptsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DealReceiptsInner) GetIdOk() (*int32, bool)`
+`func (o *DealReceiptsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DealReceiptsInner) SetId(v int32)`
+`func (o *DealReceiptsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

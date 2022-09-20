@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApprovalAction** | **string** | 操作(approve: 承認する、force_approve: 代理承認する、cancel: 申請を取り消す、reject: 却下する、feedback: 申請者へ差し戻す、force_feedback: 承認済み・却下済みを取り消す) | 
-**CompanyId** | **int32** | 事業所ID | 
-**NextApproverId** | Pointer to **NullableInt32** | 次ステップの承認者のユーザーID | [optional] 
-**TargetRound** | **int32** | 対象round。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。支払依頼の取得APIレスポンス.current_roundを送信してください。 | 
-**TargetStepId** | **int32** | 対象承認ステップID 支払依頼の取得APIレスポンス.current_step_idを送信してください。 | 
+**CompanyId** | **int64** | 事業所ID | 
+**NextApproverId** | Pointer to **NullableInt64** | 次ステップの承認者のユーザーID | [optional] 
+**TargetRound** | **int64** | 対象round。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。支払依頼の取得APIレスポンス.current_roundを送信してください。 | 
+**TargetStepId** | **int64** | 対象承認ステップID 支払依頼の取得APIレスポンス.current_step_idを送信してください。 | 
 
 ## Methods
 
 ### NewPaymentRequestActionCreateParams
 
-`func NewPaymentRequestActionCreateParams(approvalAction string, companyId int32, targetRound int32, targetStepId int32, ) *PaymentRequestActionCreateParams`
+`func NewPaymentRequestActionCreateParams(approvalAction string, companyId int64, targetRound int64, targetStepId int64, ) *PaymentRequestActionCreateParams`
 
 NewPaymentRequestActionCreateParams instantiates a new PaymentRequestActionCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -51,40 +51,40 @@ SetApprovalAction sets ApprovalAction field to given value.
 
 ### GetCompanyId
 
-`func (o *PaymentRequestActionCreateParams) GetCompanyId() int32`
+`func (o *PaymentRequestActionCreateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *PaymentRequestActionCreateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *PaymentRequestActionCreateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *PaymentRequestActionCreateParams) SetCompanyId(v int32)`
+`func (o *PaymentRequestActionCreateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
 
 ### GetNextApproverId
 
-`func (o *PaymentRequestActionCreateParams) GetNextApproverId() int32`
+`func (o *PaymentRequestActionCreateParams) GetNextApproverId() int64`
 
 GetNextApproverId returns the NextApproverId field if non-nil, zero value otherwise.
 
 ### GetNextApproverIdOk
 
-`func (o *PaymentRequestActionCreateParams) GetNextApproverIdOk() (*int32, bool)`
+`func (o *PaymentRequestActionCreateParams) GetNextApproverIdOk() (*int64, bool)`
 
 GetNextApproverIdOk returns a tuple with the NextApproverId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNextApproverId
 
-`func (o *PaymentRequestActionCreateParams) SetNextApproverId(v int32)`
+`func (o *PaymentRequestActionCreateParams) SetNextApproverId(v int64)`
 
 SetNextApproverId sets NextApproverId field to given value.
 
@@ -106,40 +106,40 @@ HasNextApproverId returns a boolean if a field has been set.
 UnsetNextApproverId ensures that no value is present for NextApproverId, not even an explicit nil
 ### GetTargetRound
 
-`func (o *PaymentRequestActionCreateParams) GetTargetRound() int32`
+`func (o *PaymentRequestActionCreateParams) GetTargetRound() int64`
 
 GetTargetRound returns the TargetRound field if non-nil, zero value otherwise.
 
 ### GetTargetRoundOk
 
-`func (o *PaymentRequestActionCreateParams) GetTargetRoundOk() (*int32, bool)`
+`func (o *PaymentRequestActionCreateParams) GetTargetRoundOk() (*int64, bool)`
 
 GetTargetRoundOk returns a tuple with the TargetRound field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargetRound
 
-`func (o *PaymentRequestActionCreateParams) SetTargetRound(v int32)`
+`func (o *PaymentRequestActionCreateParams) SetTargetRound(v int64)`
 
 SetTargetRound sets TargetRound field to given value.
 
 
 ### GetTargetStepId
 
-`func (o *PaymentRequestActionCreateParams) GetTargetStepId() int32`
+`func (o *PaymentRequestActionCreateParams) GetTargetStepId() int64`
 
 GetTargetStepId returns the TargetStepId field if non-nil, zero value otherwise.
 
 ### GetTargetStepIdOk
 
-`func (o *PaymentRequestActionCreateParams) GetTargetStepIdOk() (*int32, bool)`
+`func (o *PaymentRequestActionCreateParams) GetTargetStepIdOk() (*int64, bool)`
 
 GetTargetStepIdOk returns a tuple with the TargetStepId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargetStepId
 
-`func (o *PaymentRequestActionCreateParams) SetTargetStepId(v int32)`
+`func (o *PaymentRequestActionCreateParams) SetTargetStepId(v int64)`
 
 SetTargetStepId sets TargetStepId field to given value.
 

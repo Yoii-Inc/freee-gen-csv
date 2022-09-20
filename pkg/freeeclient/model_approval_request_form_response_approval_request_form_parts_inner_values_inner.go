@@ -19,14 +19,14 @@ type ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner struct 
 	// 選択項目名
 	Name string `json:"name"`
 	// 順序
-	Order int32 `json:"order"`
+	Order int64 `json:"order"`
 }
 
 // NewApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner instantiates a new ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner(name string, order int32) *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner {
+func NewApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner(name string, order int64) *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner {
 	this := ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner{}
 	this.Name = name
 	this.Order = order
@@ -66,9 +66,9 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) Se
 }
 
 // GetOrder returns the Order field value
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrder() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrder() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -77,7 +77,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) Ge
 
 // GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrderOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) GetOrderOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) Ge
 }
 
 // SetOrder sets field value
-func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) SetOrder(v int32) {
+func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner) SetOrder(v int64) {
 	o.Order = v
 }
 

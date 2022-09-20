@@ -20,7 +20,7 @@ type PartnerCreateParams struct {
 	// 取引先コード（取引先コードの利用を有効にしている場合は、codeの指定は必須です。）
 	Code *string `json:"code,omitempty"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 担当者 氏名 (255文字以内)
 	ContactName *string `json:"contact_name,omitempty"`
 	// 地域（JP: 国内、ZZ:国外）、指定しない場合JPになります。
@@ -37,11 +37,11 @@ type PartnerCreateParams struct {
 	// カナ名称（255文字以内）
 	NameKana *string `json:"name_kana,omitempty"`
 	// 事業所種別（null: 未設定、1: 法人、2: 個人）
-	OrgCode NullableInt32 `json:"org_code,omitempty"`
+	OrgCode NullableInt64 `json:"org_code,omitempty"`
 	PartnerBankAccountAttributes *PartnerCreateParamsPartnerBankAccountAttributes `json:"partner_bank_account_attributes,omitempty"`
 	PartnerDocSettingAttributes *PartnerCreateParamsPartnerDocSettingAttributes `json:"partner_doc_setting_attributes,omitempty"`
 	// 振込元口座ID（一括振込ファイル用）:（walletableのtypeが'bank_account'のidのみ指定できます。また、未設定にする場合は、nullを指定してください。）
-	PayerWalletableId NullableInt32 `json:"payer_walletable_id,omitempty"`
+	PayerWalletableId NullableInt64 `json:"payer_walletable_id,omitempty"`
 	PaymentTermAttributes *PartnerCreateParamsPaymentTermAttributes `json:"payment_term_attributes,omitempty"`
 	// 電話番号
 	Phone *string `json:"phone,omitempty"`
@@ -57,7 +57,7 @@ type PartnerCreateParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartnerCreateParams(companyId int32, name string) *PartnerCreateParams {
+func NewPartnerCreateParams(companyId int64, name string) *PartnerCreateParams {
 	this := PartnerCreateParams{}
 	this.CompanyId = companyId
 	this.Name = name
@@ -137,9 +137,9 @@ func (o *PartnerCreateParams) SetCode(v string) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *PartnerCreateParams) GetCompanyId() int32 {
+func (o *PartnerCreateParams) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -148,7 +148,7 @@ func (o *PartnerCreateParams) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *PartnerCreateParams) GetCompanyIdOk() (*int32, bool) {
+func (o *PartnerCreateParams) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -156,7 +156,7 @@ func (o *PartnerCreateParams) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *PartnerCreateParams) SetCompanyId(v int32) {
+func (o *PartnerCreateParams) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -409,9 +409,9 @@ func (o *PartnerCreateParams) SetNameKana(v string) {
 }
 
 // GetOrgCode returns the OrgCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnerCreateParams) GetOrgCode() int32 {
+func (o *PartnerCreateParams) GetOrgCode() int64 {
 	if o == nil || o.OrgCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OrgCode.Get()
@@ -420,7 +420,7 @@ func (o *PartnerCreateParams) GetOrgCode() int32 {
 // GetOrgCodeOk returns a tuple with the OrgCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnerCreateParams) GetOrgCodeOk() (*int32, bool) {
+func (o *PartnerCreateParams) GetOrgCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -436,8 +436,8 @@ func (o *PartnerCreateParams) HasOrgCode() bool {
 	return false
 }
 
-// SetOrgCode gets a reference to the given NullableInt32 and assigns it to the OrgCode field.
-func (o *PartnerCreateParams) SetOrgCode(v int32) {
+// SetOrgCode gets a reference to the given NullableInt64 and assigns it to the OrgCode field.
+func (o *PartnerCreateParams) SetOrgCode(v int64) {
 	o.OrgCode.Set(&v)
 }
 // SetOrgCodeNil sets the value for OrgCode to be an explicit nil
@@ -515,9 +515,9 @@ func (o *PartnerCreateParams) SetPartnerDocSettingAttributes(v PartnerCreatePara
 }
 
 // GetPayerWalletableId returns the PayerWalletableId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnerCreateParams) GetPayerWalletableId() int32 {
+func (o *PartnerCreateParams) GetPayerWalletableId() int64 {
 	if o == nil || o.PayerWalletableId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PayerWalletableId.Get()
@@ -526,7 +526,7 @@ func (o *PartnerCreateParams) GetPayerWalletableId() int32 {
 // GetPayerWalletableIdOk returns a tuple with the PayerWalletableId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnerCreateParams) GetPayerWalletableIdOk() (*int32, bool) {
+func (o *PartnerCreateParams) GetPayerWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -542,8 +542,8 @@ func (o *PartnerCreateParams) HasPayerWalletableId() bool {
 	return false
 }
 
-// SetPayerWalletableId gets a reference to the given NullableInt32 and assigns it to the PayerWalletableId field.
-func (o *PartnerCreateParams) SetPayerWalletableId(v int32) {
+// SetPayerWalletableId gets a reference to the given NullableInt64 and assigns it to the PayerWalletableId field.
+func (o *PartnerCreateParams) SetPayerWalletableId(v int64) {
 	o.PayerWalletableId.Set(&v)
 }
 // SetPayerWalletableIdNil sets the value for PayerWalletableId to be an explicit nil

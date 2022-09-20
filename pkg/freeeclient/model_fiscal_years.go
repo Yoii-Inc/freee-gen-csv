@@ -17,23 +17,23 @@ import (
 // FiscalYears struct for FiscalYears
 type FiscalYears struct {
 	// 月次償却（0: しない、1: する）
-	DepreciationRecordMethod int32 `json:"depreciation_record_method"`
+	DepreciationRecordMethod int64 `json:"depreciation_record_method"`
 	// 期末日
 	EndDate *string `json:"end_date,omitempty"`
 	// 固定資産の控除法（true: 間接控除法、false: 直接控除法）
 	IndirectWriteOffMethod bool `json:"indirect_write_off_method"`
 	// 不動産所得使用区分（0: 一般、3: 一般/不動産） ※個人事業主のみ設定可能
-	ReturnCode int32 `json:"return_code"`
+	ReturnCode int64 `json:"return_code"`
 	// 簡易課税用事業区分（0: 第一種：卸売業、1: 第二種：小売業、2: 第三種：農林水産業、工業、建設業、製造業など、3: 第四種：飲食店業など、4: 第五種：金融・保険業、運輸通信業、サービス業など、5: 第六種：不動産業など
-	SalesTaxBusinessCode int32 `json:"sales_tax_business_code"`
+	SalesTaxBusinessCode int64 `json:"sales_tax_business_code"`
 	// 期首日
 	StartDate *string `json:"start_date,omitempty"`
 	// 消費税経理処理方法（0: 税込経理、1: 旧税抜経理、2: 税抜経理）
-	TaxAccountMethod int32 `json:"tax_account_method"`
+	TaxAccountMethod int64 `json:"tax_account_method"`
 	// 消費税端数処理方法（0: 切り捨て、1: 切り上げ、2: 四捨五入）
-	TaxFraction int32 `json:"tax_fraction"`
+	TaxFraction int64 `json:"tax_fraction"`
 	// 課税区分（0: 免税、1: 簡易課税、2: 本則課税（個別対応方式）、3: 本則課税（一括比例配分方式）、4: 本則課税（全額控除））
-	TaxMethod int32 `json:"tax_method"`
+	TaxMethod int64 `json:"tax_method"`
 	// 製造業向け機能（true: 使用する、false: 使用しない）
 	UseIndustryTemplate bool `json:"use_industry_template"`
 }
@@ -42,7 +42,7 @@ type FiscalYears struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFiscalYears(depreciationRecordMethod int32, indirectWriteOffMethod bool, returnCode int32, salesTaxBusinessCode int32, taxAccountMethod int32, taxFraction int32, taxMethod int32, useIndustryTemplate bool) *FiscalYears {
+func NewFiscalYears(depreciationRecordMethod int64, indirectWriteOffMethod bool, returnCode int64, salesTaxBusinessCode int64, taxAccountMethod int64, taxFraction int64, taxMethod int64, useIndustryTemplate bool) *FiscalYears {
 	this := FiscalYears{}
 	this.DepreciationRecordMethod = depreciationRecordMethod
 	this.IndirectWriteOffMethod = indirectWriteOffMethod
@@ -64,9 +64,9 @@ func NewFiscalYearsWithDefaults() *FiscalYears {
 }
 
 // GetDepreciationRecordMethod returns the DepreciationRecordMethod field value
-func (o *FiscalYears) GetDepreciationRecordMethod() int32 {
+func (o *FiscalYears) GetDepreciationRecordMethod() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *FiscalYears) GetDepreciationRecordMethod() int32 {
 
 // GetDepreciationRecordMethodOk returns a tuple with the DepreciationRecordMethod field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetDepreciationRecordMethodOk() (*int32, bool) {
+func (o *FiscalYears) GetDepreciationRecordMethodOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *FiscalYears) GetDepreciationRecordMethodOk() (*int32, bool) {
 }
 
 // SetDepreciationRecordMethod sets field value
-func (o *FiscalYears) SetDepreciationRecordMethod(v int32) {
+func (o *FiscalYears) SetDepreciationRecordMethod(v int64) {
 	o.DepreciationRecordMethod = v
 }
 
@@ -144,9 +144,9 @@ func (o *FiscalYears) SetIndirectWriteOffMethod(v bool) {
 }
 
 // GetReturnCode returns the ReturnCode field value
-func (o *FiscalYears) GetReturnCode() int32 {
+func (o *FiscalYears) GetReturnCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -155,7 +155,7 @@ func (o *FiscalYears) GetReturnCode() int32 {
 
 // GetReturnCodeOk returns a tuple with the ReturnCode field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetReturnCodeOk() (*int32, bool) {
+func (o *FiscalYears) GetReturnCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -163,14 +163,14 @@ func (o *FiscalYears) GetReturnCodeOk() (*int32, bool) {
 }
 
 // SetReturnCode sets field value
-func (o *FiscalYears) SetReturnCode(v int32) {
+func (o *FiscalYears) SetReturnCode(v int64) {
 	o.ReturnCode = v
 }
 
 // GetSalesTaxBusinessCode returns the SalesTaxBusinessCode field value
-func (o *FiscalYears) GetSalesTaxBusinessCode() int32 {
+func (o *FiscalYears) GetSalesTaxBusinessCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -179,7 +179,7 @@ func (o *FiscalYears) GetSalesTaxBusinessCode() int32 {
 
 // GetSalesTaxBusinessCodeOk returns a tuple with the SalesTaxBusinessCode field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetSalesTaxBusinessCodeOk() (*int32, bool) {
+func (o *FiscalYears) GetSalesTaxBusinessCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -187,7 +187,7 @@ func (o *FiscalYears) GetSalesTaxBusinessCodeOk() (*int32, bool) {
 }
 
 // SetSalesTaxBusinessCode sets field value
-func (o *FiscalYears) SetSalesTaxBusinessCode(v int32) {
+func (o *FiscalYears) SetSalesTaxBusinessCode(v int64) {
 	o.SalesTaxBusinessCode = v
 }
 
@@ -224,9 +224,9 @@ func (o *FiscalYears) SetStartDate(v string) {
 }
 
 // GetTaxAccountMethod returns the TaxAccountMethod field value
-func (o *FiscalYears) GetTaxAccountMethod() int32 {
+func (o *FiscalYears) GetTaxAccountMethod() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -235,7 +235,7 @@ func (o *FiscalYears) GetTaxAccountMethod() int32 {
 
 // GetTaxAccountMethodOk returns a tuple with the TaxAccountMethod field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetTaxAccountMethodOk() (*int32, bool) {
+func (o *FiscalYears) GetTaxAccountMethodOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -243,14 +243,14 @@ func (o *FiscalYears) GetTaxAccountMethodOk() (*int32, bool) {
 }
 
 // SetTaxAccountMethod sets field value
-func (o *FiscalYears) SetTaxAccountMethod(v int32) {
+func (o *FiscalYears) SetTaxAccountMethod(v int64) {
 	o.TaxAccountMethod = v
 }
 
 // GetTaxFraction returns the TaxFraction field value
-func (o *FiscalYears) GetTaxFraction() int32 {
+func (o *FiscalYears) GetTaxFraction() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -259,7 +259,7 @@ func (o *FiscalYears) GetTaxFraction() int32 {
 
 // GetTaxFractionOk returns a tuple with the TaxFraction field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetTaxFractionOk() (*int32, bool) {
+func (o *FiscalYears) GetTaxFractionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -267,14 +267,14 @@ func (o *FiscalYears) GetTaxFractionOk() (*int32, bool) {
 }
 
 // SetTaxFraction sets field value
-func (o *FiscalYears) SetTaxFraction(v int32) {
+func (o *FiscalYears) SetTaxFraction(v int64) {
 	o.TaxFraction = v
 }
 
 // GetTaxMethod returns the TaxMethod field value
-func (o *FiscalYears) GetTaxMethod() int32 {
+func (o *FiscalYears) GetTaxMethod() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -283,7 +283,7 @@ func (o *FiscalYears) GetTaxMethod() int32 {
 
 // GetTaxMethodOk returns a tuple with the TaxMethod field value
 // and a boolean to check if the value has been set.
-func (o *FiscalYears) GetTaxMethodOk() (*int32, bool) {
+func (o *FiscalYears) GetTaxMethodOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -291,7 +291,7 @@ func (o *FiscalYears) GetTaxMethodOk() (*int32, bool) {
 }
 
 // SetTaxMethod sets field value
-func (o *FiscalYears) SetTaxMethod(v int32) {
+func (o *FiscalYears) SetTaxMethod(v int64) {
 	o.TaxMethod = v
 }
 

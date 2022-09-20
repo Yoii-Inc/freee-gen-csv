@@ -179,12 +179,12 @@ func (a *TagsApiService) CreateTagExecute(r ApiCreateTagRequest) (*TagResponse, 
 type ApiDestroyTagRequest struct {
 	ctx context.Context
 	ApiService *TagsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyTagRequest) CompanyId(companyId int32) ApiDestroyTagRequest {
+func (r ApiDestroyTagRequest) CompanyId(companyId int64) ApiDestroyTagRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -205,7 +205,7 @@ DestroyTag メモタグの削除
  @param id タグID
  @return ApiDestroyTagRequest
 */
-func (a *TagsApiService) DestroyTag(ctx context.Context, id int32) ApiDestroyTagRequest {
+func (a *TagsApiService) DestroyTag(ctx context.Context, id int64) ApiDestroyTagRequest {
 	return ApiDestroyTagRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -346,12 +346,12 @@ func (a *TagsApiService) DestroyTagExecute(r ApiDestroyTagRequest) (*http.Respon
 type ApiGetTagRequest struct {
 	ctx context.Context
 	ApiService *TagsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetTagRequest) CompanyId(companyId int32) ApiGetTagRequest {
+func (r ApiGetTagRequest) CompanyId(companyId int64) ApiGetTagRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -372,7 +372,7 @@ GetTag メモタグの詳細情報の取得
  @param id タグID
  @return ApiGetTagRequest
 */
-func (a *TagsApiService) GetTag(ctx context.Context, id int32) ApiGetTagRequest {
+func (a *TagsApiService) GetTag(ctx context.Context, id int64) ApiGetTagRequest {
 	return ApiGetTagRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -524,15 +524,15 @@ func (a *TagsApiService) GetTagExecute(r ApiGetTagRequest) (*TagResponse, *http.
 type ApiGetTagsRequest struct {
 	ctx context.Context
 	ApiService *TagsApiService
-	companyId *int32
+	companyId *int64
 	startUpdateDate *string
 	endUpdateDate *string
-	offset *int32
-	limit *int32
+	offset *int64
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetTagsRequest) CompanyId(companyId int32) ApiGetTagsRequest {
+func (r ApiGetTagsRequest) CompanyId(companyId int64) ApiGetTagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -550,13 +550,13 @@ func (r ApiGetTagsRequest) EndUpdateDate(endUpdateDate string) ApiGetTagsRequest
 }
 
 // 取得レコードのオフセット (デフォルト: 0)
-func (r ApiGetTagsRequest) Offset(offset int32) ApiGetTagsRequest {
+func (r ApiGetTagsRequest) Offset(offset int64) ApiGetTagsRequest {
 	r.offset = &offset
 	return r
 }
 
 // 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000)
-func (r ApiGetTagsRequest) Limit(limit int32) ApiGetTagsRequest {
+func (r ApiGetTagsRequest) Limit(limit int64) ApiGetTagsRequest {
 	r.limit = &limit
 	return r
 }
@@ -722,7 +722,7 @@ func (a *TagsApiService) GetTagsExecute(r ApiGetTagsRequest) (*GetTags200Respons
 type ApiUpdateTagRequest struct {
 	ctx context.Context
 	ApiService *TagsApiService
-	id int32
+	id int64
 	tagParams *TagParams
 }
 
@@ -748,7 +748,7 @@ UpdateTag メモタグの更新
  @param id メモタグID
  @return ApiUpdateTagRequest
 */
-func (a *TagsApiService) UpdateTag(ctx context.Context, id int32) ApiUpdateTagRequest {
+func (a *TagsApiService) UpdateTag(ctx context.Context, id int64) ApiUpdateTagRequest {
 	return ApiUpdateTagRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -17,24 +17,24 @@ import (
 // Walletable struct for Walletable
 type Walletable struct {
 	// サービスID
-	BankId NullableInt32 `json:"bank_id"`
+	BankId NullableInt64 `json:"bank_id"`
 	// 口座ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 同期残高
-	LastBalance *int32 `json:"last_balance,omitempty"`
+	LastBalance *int64 `json:"last_balance,omitempty"`
 	// 口座名 (255文字以内)
 	Name string `json:"name"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
 	Type string `json:"type"`
 	// 登録残高
-	WalletableBalance *int32 `json:"walletable_balance,omitempty"`
+	WalletableBalance *int64 `json:"walletable_balance,omitempty"`
 }
 
 // NewWalletable instantiates a new Walletable object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWalletable(bankId NullableInt32, id int32, name string, type_ string) *Walletable {
+func NewWalletable(bankId NullableInt64, id int64, name string, type_ string) *Walletable {
 	this := Walletable{}
 	this.BankId = bankId
 	this.Id = id
@@ -52,10 +52,10 @@ func NewWalletableWithDefaults() *Walletable {
 }
 
 // GetBankId returns the BankId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *Walletable) GetBankId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *Walletable) GetBankId() int64 {
 	if o == nil || o.BankId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *Walletable) GetBankId() int32 {
 // GetBankIdOk returns a tuple with the BankId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Walletable) GetBankIdOk() (*int32, bool) {
+func (o *Walletable) GetBankIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,14 +73,14 @@ func (o *Walletable) GetBankIdOk() (*int32, bool) {
 }
 
 // SetBankId sets field value
-func (o *Walletable) SetBankId(v int32) {
+func (o *Walletable) SetBankId(v int64) {
 	o.BankId.Set(&v)
 }
 
 // GetId returns the Id field value
-func (o *Walletable) GetId() int32 {
+func (o *Walletable) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *Walletable) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Walletable) GetIdOk() (*int32, bool) {
+func (o *Walletable) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,14 +97,14 @@ func (o *Walletable) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Walletable) SetId(v int32) {
+func (o *Walletable) SetId(v int64) {
 	o.Id = v
 }
 
 // GetLastBalance returns the LastBalance field value if set, zero value otherwise.
-func (o *Walletable) GetLastBalance() int32 {
+func (o *Walletable) GetLastBalance() int64 {
 	if o == nil || o.LastBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LastBalance
@@ -112,7 +112,7 @@ func (o *Walletable) GetLastBalance() int32 {
 
 // GetLastBalanceOk returns a tuple with the LastBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Walletable) GetLastBalanceOk() (*int32, bool) {
+func (o *Walletable) GetLastBalanceOk() (*int64, bool) {
 	if o == nil || o.LastBalance == nil {
 		return nil, false
 	}
@@ -128,8 +128,8 @@ func (o *Walletable) HasLastBalance() bool {
 	return false
 }
 
-// SetLastBalance gets a reference to the given int32 and assigns it to the LastBalance field.
-func (o *Walletable) SetLastBalance(v int32) {
+// SetLastBalance gets a reference to the given int64 and assigns it to the LastBalance field.
+func (o *Walletable) SetLastBalance(v int64) {
 	o.LastBalance = &v
 }
 
@@ -182,9 +182,9 @@ func (o *Walletable) SetType(v string) {
 }
 
 // GetWalletableBalance returns the WalletableBalance field value if set, zero value otherwise.
-func (o *Walletable) GetWalletableBalance() int32 {
+func (o *Walletable) GetWalletableBalance() int64 {
 	if o == nil || o.WalletableBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.WalletableBalance
@@ -192,7 +192,7 @@ func (o *Walletable) GetWalletableBalance() int32 {
 
 // GetWalletableBalanceOk returns a tuple with the WalletableBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Walletable) GetWalletableBalanceOk() (*int32, bool) {
+func (o *Walletable) GetWalletableBalanceOk() (*int64, bool) {
 	if o == nil || o.WalletableBalance == nil {
 		return nil, false
 	}
@@ -208,8 +208,8 @@ func (o *Walletable) HasWalletableBalance() bool {
 	return false
 }
 
-// SetWalletableBalance gets a reference to the given int32 and assigns it to the WalletableBalance field.
-func (o *Walletable) SetWalletableBalance(v int32) {
+// SetWalletableBalance gets a reference to the given int64 and assigns it to the WalletableBalance field.
+func (o *Walletable) SetWalletableBalance(v int64) {
 	o.WalletableBalance = &v
 }
 

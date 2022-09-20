@@ -26,7 +26,7 @@ type RenewsApiService service
 type ApiCreateDealRenewRequest struct {
 	ctx context.Context
 	ApiService *RenewsApiService
-	id int32
+	id int64
 	renewCreateParams *RenewCreateParams
 }
 
@@ -72,7 +72,7 @@ CreateDealRenew 取引（収入／支出）に対する+更新の作成
  @param id 取引ID
  @return ApiCreateDealRenewRequest
 */
-func (a *RenewsApiService) CreateDealRenew(ctx context.Context, id int32) ApiCreateDealRenewRequest {
+func (a *RenewsApiService) CreateDealRenew(ctx context.Context, id int64) ApiCreateDealRenewRequest {
 	return ApiCreateDealRenewRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -209,13 +209,13 @@ func (a *RenewsApiService) CreateDealRenewExecute(r ApiCreateDealRenewRequest) (
 type ApiDeleteDealRenewRequest struct {
 	ctx context.Context
 	ApiService *RenewsApiService
-	id int32
-	renewId int32
-	companyId *int32
+	id int64
+	renewId int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDeleteDealRenewRequest) CompanyId(companyId int32) ApiDeleteDealRenewRequest {
+func (r ApiDeleteDealRenewRequest) CompanyId(companyId int64) ApiDeleteDealRenewRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -240,7 +240,7 @@ DeleteDealRenew 取引（収入／支出）の+更新の削除
  @param renewId +更新ID
  @return ApiDeleteDealRenewRequest
 */
-func (a *RenewsApiService) DeleteDealRenew(ctx context.Context, id int32, renewId int32) ApiDeleteDealRenewRequest {
+func (a *RenewsApiService) DeleteDealRenew(ctx context.Context, id int64, renewId int64) ApiDeleteDealRenewRequest {
 	return ApiDeleteDealRenewRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -390,8 +390,8 @@ func (a *RenewsApiService) DeleteDealRenewExecute(r ApiDeleteDealRenewRequest) (
 type ApiUpdateDealRenewRequest struct {
 	ctx context.Context
 	ApiService *RenewsApiService
-	id int32
-	renewId int32
+	id int64
+	renewId int64
 	renewUpdateParams *RenewUpdateParams
 }
 
@@ -438,7 +438,7 @@ UpdateDealRenew 取引（収入／支出）の+更新の更新
  @param renewId +更新ID
  @return ApiUpdateDealRenewRequest
 */
-func (a *RenewsApiService) UpdateDealRenew(ctx context.Context, id int32, renewId int32) ApiUpdateDealRenewRequest {
+func (a *RenewsApiService) UpdateDealRenew(ctx context.Context, id int64, renewId int64) ApiUpdateDealRenewRequest {
 	return ApiUpdateDealRenewRequest{
 		ApiService: a,
 		ctx: ctx,

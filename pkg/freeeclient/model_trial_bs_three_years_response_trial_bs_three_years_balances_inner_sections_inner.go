@@ -17,15 +17,15 @@ import (
 // TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner struct for TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner
 type TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner struct {
 	// 期末残高
-	ClosingBalance *int32 `json:"closing_balance,omitempty"`
+	ClosingBalance *int64 `json:"closing_balance,omitempty"`
 	// 部門ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 前年度期末残高
-	LastYearClosingBalance *int32 `json:"last_year_closing_balance,omitempty"`
+	LastYearClosingBalance *int64 `json:"last_year_closing_balance,omitempty"`
 	// 部門名
 	Name *string `json:"name,omitempty"`
 	// 前々年度期末残高
-	TwoYearsBeforeClosingBalance *int32 `json:"two_years_before_closing_balance,omitempty"`
+	TwoYearsBeforeClosingBalance *int64 `json:"two_years_before_closing_balance,omitempty"`
 	// 前年比
 	YearOnYear *float32 `json:"year_on_year,omitempty"`
 }
@@ -34,7 +34,7 @@ type TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner struct
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner(id int32) *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner {
+func NewTrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner(id int64) *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner {
 	this := TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner{}
 	this.Id = id
 	return &this
@@ -49,9 +49,9 @@ func NewTrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInnerWith
 }
 
 // GetClosingBalance returns the ClosingBalance field value if set, zero value otherwise.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetClosingBalance() int32 {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetClosingBalance() int64 {
 	if o == nil || o.ClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosingBalance
@@ -59,7 +59,7 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) G
 
 // GetClosingBalanceOk returns a tuple with the ClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetClosingBalanceOk() (*int32, bool) {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.ClosingBalance == nil {
 		return nil, false
 	}
@@ -75,15 +75,15 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) H
 	return false
 }
 
-// SetClosingBalance gets a reference to the given int32 and assigns it to the ClosingBalance field.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetClosingBalance(v int32) {
+// SetClosingBalance gets a reference to the given int64 and assigns it to the ClosingBalance field.
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetClosingBalance(v int64) {
 	o.ClosingBalance = &v
 }
 
 // GetId returns the Id field value
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetId() int32 {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) G
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetIdOk() (*int32, bool) {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,14 +100,14 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) G
 }
 
 // SetId sets field value
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetId(v int32) {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetId(v int64) {
 	o.Id = v
 }
 
 // GetLastYearClosingBalance returns the LastYearClosingBalance field value if set, zero value otherwise.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetLastYearClosingBalance() int32 {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetLastYearClosingBalance() int64 {
 	if o == nil || o.LastYearClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LastYearClosingBalance
@@ -115,7 +115,7 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) G
 
 // GetLastYearClosingBalanceOk returns a tuple with the LastYearClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetLastYearClosingBalanceOk() (*int32, bool) {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetLastYearClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.LastYearClosingBalance == nil {
 		return nil, false
 	}
@@ -131,8 +131,8 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) H
 	return false
 }
 
-// SetLastYearClosingBalance gets a reference to the given int32 and assigns it to the LastYearClosingBalance field.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetLastYearClosingBalance(v int32) {
+// SetLastYearClosingBalance gets a reference to the given int64 and assigns it to the LastYearClosingBalance field.
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetLastYearClosingBalance(v int64) {
 	o.LastYearClosingBalance = &v
 }
 
@@ -169,9 +169,9 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) S
 }
 
 // GetTwoYearsBeforeClosingBalance returns the TwoYearsBeforeClosingBalance field value if set, zero value otherwise.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetTwoYearsBeforeClosingBalance() int32 {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetTwoYearsBeforeClosingBalance() int64 {
 	if o == nil || o.TwoYearsBeforeClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TwoYearsBeforeClosingBalance
@@ -179,7 +179,7 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) G
 
 // GetTwoYearsBeforeClosingBalanceOk returns a tuple with the TwoYearsBeforeClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetTwoYearsBeforeClosingBalanceOk() (*int32, bool) {
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) GetTwoYearsBeforeClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.TwoYearsBeforeClosingBalance == nil {
 		return nil, false
 	}
@@ -195,8 +195,8 @@ func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) H
 	return false
 }
 
-// SetTwoYearsBeforeClosingBalance gets a reference to the given int32 and assigns it to the TwoYearsBeforeClosingBalance field.
-func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetTwoYearsBeforeClosingBalance(v int32) {
+// SetTwoYearsBeforeClosingBalance gets a reference to the given int64 and assigns it to the TwoYearsBeforeClosingBalance field.
+func (o *TrialBsThreeYearsResponseTrialBsThreeYearsBalancesInnerSectionsInner) SetTwoYearsBeforeClosingBalance(v int64) {
 	o.TwoYearsBeforeClosingBalance = &v
 }
 

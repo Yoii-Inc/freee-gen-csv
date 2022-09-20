@@ -17,7 +17,7 @@ import (
 // ManualJournalUpdateParamsDetailsInner 貸借行一覧（配列）: 貸借合わせて100行まで登録できます。
 type ManualJournalUpdateParamsDetailsInner struct {
 	// 勘定科目ID
-	AccountItemId int32 `json:"account_item_id"`
+	AccountItemId int64 `json:"account_item_id"`
 	// 取引金額（税込で指定してください）
 	Amount int64 `json:"amount"`
 	// 備考
@@ -27,13 +27,13 @@ type ManualJournalUpdateParamsDetailsInner struct {
 	// 貸借行ID: 既存貸借行を更新または削除する場合に指定します。IDを指定しない貸借行は、新規行として扱われ追加されます。
 	Id *int64 `json:"id,omitempty"`
 	// 品目ID
-	ItemId *int32 `json:"item_id,omitempty"`
+	ItemId *int64 `json:"item_id,omitempty"`
 	// 取引先コード
 	PartnerCode *string `json:"partner_code,omitempty"`
 	// 取引先ID
-	PartnerId *int32 `json:"partner_id,omitempty"`
+	PartnerId *int64 `json:"partner_id,omitempty"`
 	// 部門ID
-	SectionId *int32 `json:"section_id,omitempty"`
+	SectionId *int64 `json:"section_id,omitempty"`
 	// セグメント１ID
 	Segment1TagId *int64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント２ID
@@ -41,18 +41,18 @@ type ManualJournalUpdateParamsDetailsInner struct {
 	// セグメント３ID
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
 	// メモタグID
-	TagIds []int32 `json:"tag_ids,omitempty"`
+	TagIds []int64 `json:"tag_ids,omitempty"`
 	// 税区分コード
-	TaxCode int32 `json:"tax_code"`
+	TaxCode int64 `json:"tax_code"`
 	// 消費税額（指定しない場合は自動で計算されます）
-	Vat *int32 `json:"vat,omitempty"`
+	Vat *int64 `json:"vat,omitempty"`
 }
 
 // NewManualJournalUpdateParamsDetailsInner instantiates a new ManualJournalUpdateParamsDetailsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualJournalUpdateParamsDetailsInner(accountItemId int32, amount int64, entrySide string, taxCode int32) *ManualJournalUpdateParamsDetailsInner {
+func NewManualJournalUpdateParamsDetailsInner(accountItemId int64, amount int64, entrySide string, taxCode int64) *ManualJournalUpdateParamsDetailsInner {
 	this := ManualJournalUpdateParamsDetailsInner{}
 	this.AccountItemId = accountItemId
 	this.Amount = amount
@@ -70,9 +70,9 @@ func NewManualJournalUpdateParamsDetailsInnerWithDefaults() *ManualJournalUpdate
 }
 
 // GetAccountItemId returns the AccountItemId field value
-func (o *ManualJournalUpdateParamsDetailsInner) GetAccountItemId() int32 {
+func (o *ManualJournalUpdateParamsDetailsInner) GetAccountItemId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -81,7 +81,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetAccountItemId() int32 {
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalUpdateParamsDetailsInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *ManualJournalUpdateParamsDetailsInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetAccountItemIdOk() (*int32, bo
 }
 
 // SetAccountItemId sets field value
-func (o *ManualJournalUpdateParamsDetailsInner) SetAccountItemId(v int32) {
+func (o *ManualJournalUpdateParamsDetailsInner) SetAccountItemId(v int64) {
 	o.AccountItemId = v
 }
 
@@ -206,9 +206,9 @@ func (o *ManualJournalUpdateParamsDetailsInner) SetId(v int64) {
 }
 
 // GetItemId returns the ItemId field value if set, zero value otherwise.
-func (o *ManualJournalUpdateParamsDetailsInner) GetItemId() int32 {
+func (o *ManualJournalUpdateParamsDetailsInner) GetItemId() int64 {
 	if o == nil || o.ItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemId
@@ -216,7 +216,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetItemId() int32 {
 
 // GetItemIdOk returns a tuple with the ItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalUpdateParamsDetailsInner) GetItemIdOk() (*int32, bool) {
+func (o *ManualJournalUpdateParamsDetailsInner) GetItemIdOk() (*int64, bool) {
 	if o == nil || o.ItemId == nil {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *ManualJournalUpdateParamsDetailsInner) HasItemId() bool {
 	return false
 }
 
-// SetItemId gets a reference to the given int32 and assigns it to the ItemId field.
-func (o *ManualJournalUpdateParamsDetailsInner) SetItemId(v int32) {
+// SetItemId gets a reference to the given int64 and assigns it to the ItemId field.
+func (o *ManualJournalUpdateParamsDetailsInner) SetItemId(v int64) {
 	o.ItemId = &v
 }
 
@@ -270,9 +270,9 @@ func (o *ManualJournalUpdateParamsDetailsInner) SetPartnerCode(v string) {
 }
 
 // GetPartnerId returns the PartnerId field value if set, zero value otherwise.
-func (o *ManualJournalUpdateParamsDetailsInner) GetPartnerId() int32 {
+func (o *ManualJournalUpdateParamsDetailsInner) GetPartnerId() int64 {
 	if o == nil || o.PartnerId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PartnerId
@@ -280,7 +280,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetPartnerId() int32 {
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalUpdateParamsDetailsInner) GetPartnerIdOk() (*int32, bool) {
+func (o *ManualJournalUpdateParamsDetailsInner) GetPartnerIdOk() (*int64, bool) {
 	if o == nil || o.PartnerId == nil {
 		return nil, false
 	}
@@ -296,15 +296,15 @@ func (o *ManualJournalUpdateParamsDetailsInner) HasPartnerId() bool {
 	return false
 }
 
-// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
-func (o *ManualJournalUpdateParamsDetailsInner) SetPartnerId(v int32) {
+// SetPartnerId gets a reference to the given int64 and assigns it to the PartnerId field.
+func (o *ManualJournalUpdateParamsDetailsInner) SetPartnerId(v int64) {
 	o.PartnerId = &v
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise.
-func (o *ManualJournalUpdateParamsDetailsInner) GetSectionId() int32 {
+func (o *ManualJournalUpdateParamsDetailsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId
@@ -312,7 +312,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetSectionId() int32 {
 
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalUpdateParamsDetailsInner) GetSectionIdOk() (*int32, bool) {
+func (o *ManualJournalUpdateParamsDetailsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil || o.SectionId == nil {
 		return nil, false
 	}
@@ -328,8 +328,8 @@ func (o *ManualJournalUpdateParamsDetailsInner) HasSectionId() bool {
 	return false
 }
 
-// SetSectionId gets a reference to the given int32 and assigns it to the SectionId field.
-func (o *ManualJournalUpdateParamsDetailsInner) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given int64 and assigns it to the SectionId field.
+func (o *ManualJournalUpdateParamsDetailsInner) SetSectionId(v int64) {
 	o.SectionId = &v
 }
 
@@ -430,9 +430,9 @@ func (o *ManualJournalUpdateParamsDetailsInner) SetSegment3TagId(v int64) {
 }
 
 // GetTagIds returns the TagIds field value if set, zero value otherwise.
-func (o *ManualJournalUpdateParamsDetailsInner) GetTagIds() []int32 {
+func (o *ManualJournalUpdateParamsDetailsInner) GetTagIds() []int64 {
 	if o == nil || o.TagIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.TagIds
@@ -440,7 +440,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetTagIds() []int32 {
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalUpdateParamsDetailsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *ManualJournalUpdateParamsDetailsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -456,15 +456,15 @@ func (o *ManualJournalUpdateParamsDetailsInner) HasTagIds() bool {
 	return false
 }
 
-// SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
-func (o *ManualJournalUpdateParamsDetailsInner) SetTagIds(v []int32) {
+// SetTagIds gets a reference to the given []int64 and assigns it to the TagIds field.
+func (o *ManualJournalUpdateParamsDetailsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
 // GetTaxCode returns the TaxCode field value
-func (o *ManualJournalUpdateParamsDetailsInner) GetTaxCode() int32 {
+func (o *ManualJournalUpdateParamsDetailsInner) GetTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -473,7 +473,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournalUpdateParamsDetailsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *ManualJournalUpdateParamsDetailsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -481,14 +481,14 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetTaxCodeOk() (*int32, bool) {
 }
 
 // SetTaxCode sets field value
-func (o *ManualJournalUpdateParamsDetailsInner) SetTaxCode(v int32) {
+func (o *ManualJournalUpdateParamsDetailsInner) SetTaxCode(v int64) {
 	o.TaxCode = v
 }
 
 // GetVat returns the Vat field value if set, zero value otherwise.
-func (o *ManualJournalUpdateParamsDetailsInner) GetVat() int32 {
+func (o *ManualJournalUpdateParamsDetailsInner) GetVat() int64 {
 	if o == nil || o.Vat == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Vat
@@ -496,7 +496,7 @@ func (o *ManualJournalUpdateParamsDetailsInner) GetVat() int32 {
 
 // GetVatOk returns a tuple with the Vat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalUpdateParamsDetailsInner) GetVatOk() (*int32, bool) {
+func (o *ManualJournalUpdateParamsDetailsInner) GetVatOk() (*int64, bool) {
 	if o == nil || o.Vat == nil {
 		return nil, false
 	}
@@ -512,8 +512,8 @@ func (o *ManualJournalUpdateParamsDetailsInner) HasVat() bool {
 	return false
 }
 
-// SetVat gets a reference to the given int32 and assigns it to the Vat field.
-func (o *ManualJournalUpdateParamsDetailsInner) SetVat(v int32) {
+// SetVat gets a reference to the given int64 and assigns it to the Vat field.
+func (o *ManualJournalUpdateParamsDetailsInner) SetVat(v int64) {
 	o.Vat = &v
 }
 

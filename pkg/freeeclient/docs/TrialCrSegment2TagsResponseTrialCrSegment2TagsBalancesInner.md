@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountCategoryName** | Pointer to **string** | 勘定科目カテゴリー名 | [optional] 
 **AccountGroupName** | Pointer to **string** | 決算書表示名(account_item_display_type:group指定時に決算書表示名の時のみ含まれる) | [optional] 
-**AccountItemId** | Pointer to **int32** | 勘定科目ID(勘定科目の時のみ含まれる) | [optional] 
+**AccountItemId** | Pointer to **int64** | 勘定科目ID(勘定科目の時のみ含まれる) | [optional] 
 **AccountItemName** | Pointer to **string** | 勘定科目名(勘定科目の時のみ含まれる) | [optional] 
-**ClosingBalance** | Pointer to **int32** | 期末残高 | [optional] 
-**HierarchyLevel** | Pointer to **int32** | 階層レベル | [optional] 
+**ClosingBalance** | Pointer to **int64** | 期末残高 | [optional] 
+**HierarchyLevel** | Pointer to **int64** | 階層レベル | [optional] 
 **ParentAccountCategoryName** | Pointer to **string** | 上位勘定科目カテゴリー名(勘定科目カテゴリーの時のみ、上層が存在する場合含まれる) | [optional] 
 **Segment2Tags** | Pointer to [**[]TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInnerSegment2TagsInner**](TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInnerSegment2TagsInner.md) | セグメント2タグ | [optional] 
 **TotalLine** | Pointer to **bool** | 合計行(勘定科目カテゴリーの時のみ含まれる) | [optional] 
@@ -85,20 +85,20 @@ HasAccountGroupName returns a boolean if a field has been set.
 
 ### GetAccountItemId
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetAccountItemId() int32`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) SetAccountItemId(v int32)`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -135,20 +135,20 @@ HasAccountItemName returns a boolean if a field has been set.
 
 ### GetClosingBalance
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetClosingBalance() int32`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetClosingBalance() int64`
 
 GetClosingBalance returns the ClosingBalance field if non-nil, zero value otherwise.
 
 ### GetClosingBalanceOk
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetClosingBalanceOk() (*int32, bool)`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetClosingBalanceOk() (*int64, bool)`
 
 GetClosingBalanceOk returns a tuple with the ClosingBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosingBalance
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) SetClosingBalance(v int32)`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) SetClosingBalance(v int64)`
 
 SetClosingBalance sets ClosingBalance field to given value.
 
@@ -160,20 +160,20 @@ HasClosingBalance returns a boolean if a field has been set.
 
 ### GetHierarchyLevel
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetHierarchyLevel() int32`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetHierarchyLevel() int64`
 
 GetHierarchyLevel returns the HierarchyLevel field if non-nil, zero value otherwise.
 
 ### GetHierarchyLevelOk
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetHierarchyLevelOk() (*int32, bool)`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) GetHierarchyLevelOk() (*int64, bool)`
 
 GetHierarchyLevelOk returns a tuple with the HierarchyLevel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHierarchyLevel
 
-`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) SetHierarchyLevel(v int32)`
+`func (o *TrialCrSegment2TagsResponseTrialCrSegment2TagsBalancesInner) SetHierarchyLevel(v int64)`
 
 SetHierarchyLevel sets HierarchyLevel field to given value.
 

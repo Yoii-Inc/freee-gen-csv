@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdditionalMonths** | Pointer to **int32** | 入金月 | [optional] 
-**CutoffDay** | Pointer to **int32** | 締め日（29, 30, 31日の末日を指定する場合は、32を指定してください。） | [optional] 
-**FixedDay** | Pointer to **int32** | 入金日（29, 30, 31日の末日を指定する場合は、32を指定してください。） | [optional] 
+**AdditionalMonths** | Pointer to **int64** | 入金月 | [optional] 
+**CutoffDay** | Pointer to **int64** | 締め日（29, 30, 31日の末日を指定する場合は、32を指定してください。） | [optional] 
+**FixedDay** | Pointer to **int64** | 入金日（29, 30, 31日の末日を指定する場合は、32を指定してください。） | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAdditionalMonths
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetAdditionalMonths() int32`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetAdditionalMonths() int64`
 
 GetAdditionalMonths returns the AdditionalMonths field if non-nil, zero value otherwise.
 
 ### GetAdditionalMonthsOk
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetAdditionalMonthsOk() (*int32, bool)`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetAdditionalMonthsOk() (*int64, bool)`
 
 GetAdditionalMonthsOk returns a tuple with the AdditionalMonths field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdditionalMonths
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) SetAdditionalMonths(v int32)`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) SetAdditionalMonths(v int64)`
 
 SetAdditionalMonths sets AdditionalMonths field to given value.
 
@@ -54,20 +54,20 @@ HasAdditionalMonths returns a boolean if a field has been set.
 
 ### GetCutoffDay
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetCutoffDay() int32`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetCutoffDay() int64`
 
 GetCutoffDay returns the CutoffDay field if non-nil, zero value otherwise.
 
 ### GetCutoffDayOk
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetCutoffDayOk() (*int32, bool)`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetCutoffDayOk() (*int64, bool)`
 
 GetCutoffDayOk returns a tuple with the CutoffDay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCutoffDay
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) SetCutoffDay(v int32)`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) SetCutoffDay(v int64)`
 
 SetCutoffDay sets CutoffDay field to given value.
 
@@ -79,20 +79,20 @@ HasCutoffDay returns a boolean if a field has been set.
 
 ### GetFixedDay
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetFixedDay() int32`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetFixedDay() int64`
 
 GetFixedDay returns the FixedDay field if non-nil, zero value otherwise.
 
 ### GetFixedDayOk
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetFixedDayOk() (*int32, bool)`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) GetFixedDayOk() (*int64, bool)`
 
 GetFixedDayOk returns a tuple with the FixedDay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFixedDay
 
-`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) SetFixedDay(v int32)`
+`func (o *PartnerUpdateParamsInvoicePaymentTermAttributes) SetFixedDay(v int64)`
 
 SetFixedDay sets FixedDay field to given value.
 

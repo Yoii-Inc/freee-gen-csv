@@ -17,7 +17,7 @@ import (
 // JournalStatusResponseJournals struct for JournalStatusResponseJournals
 type JournalStatusResponseJournals struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// ダウンロード形式
 	DownloadType string `json:"download_type"`
 	// ダウンロードURL
@@ -25,7 +25,7 @@ type JournalStatusResponseJournals struct {
 	// 取得終了日 (yyyy-mm-dd)
 	EndDate string `json:"end_date"`
 	// 受け付けID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 取得開始日 (yyyy-mm-dd)
 	StartDate string `json:"start_date"`
 	// ダウンロードリクエストのステータス
@@ -38,7 +38,7 @@ type JournalStatusResponseJournals struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJournalStatusResponseJournals(companyId int32, downloadType string, endDate string, id int32, startDate string, status string) *JournalStatusResponseJournals {
+func NewJournalStatusResponseJournals(companyId int64, downloadType string, endDate string, id int64, startDate string, status string) *JournalStatusResponseJournals {
 	this := JournalStatusResponseJournals{}
 	this.CompanyId = companyId
 	this.DownloadType = downloadType
@@ -58,9 +58,9 @@ func NewJournalStatusResponseJournalsWithDefaults() *JournalStatusResponseJourna
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *JournalStatusResponseJournals) GetCompanyId() int32 {
+func (o *JournalStatusResponseJournals) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -69,7 +69,7 @@ func (o *JournalStatusResponseJournals) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *JournalStatusResponseJournals) GetCompanyIdOk() (*int32, bool) {
+func (o *JournalStatusResponseJournals) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,7 +77,7 @@ func (o *JournalStatusResponseJournals) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *JournalStatusResponseJournals) SetCompanyId(v int32) {
+func (o *JournalStatusResponseJournals) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -162,9 +162,9 @@ func (o *JournalStatusResponseJournals) SetEndDate(v string) {
 }
 
 // GetId returns the Id field value
-func (o *JournalStatusResponseJournals) GetId() int32 {
+func (o *JournalStatusResponseJournals) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -173,7 +173,7 @@ func (o *JournalStatusResponseJournals) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *JournalStatusResponseJournals) GetIdOk() (*int32, bool) {
+func (o *JournalStatusResponseJournals) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -181,7 +181,7 @@ func (o *JournalStatusResponseJournals) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *JournalStatusResponseJournals) SetId(v int32) {
+func (o *JournalStatusResponseJournals) SetId(v int64) {
 	o.Id = v
 }
 

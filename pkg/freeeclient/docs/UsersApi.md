@@ -32,8 +32,8 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
+    companyId := int64(56) // int64 | 事業所ID
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -58,8 +58,8 @@ Other parameters are passed through a pointer to a apiGetUsersRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
+ **companyId** | **int64** | 事業所ID | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 50, 最小: 1, 最大: 3000) | 
 
 ### Return type
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -125,7 +125,7 @@ Other parameters are passed through a pointer to a apiGetUsersCapabilitiesReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 

@@ -19,25 +19,25 @@ type WalletTxn struct {
 	// 取引金額
 	Amount int64 `json:"amount"`
 	// 残高(銀行口座等)
-	Balance int32 `json:"balance"`
+	Balance int64 `json:"balance"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 取引日(yyyy-mm-dd)
 	Date string `json:"date"`
 	// 取引内容
 	Description string `json:"description"`
 	// 未決済金額
-	DueAmount int32 `json:"due_amount"`
+	DueAmount int64 `json:"due_amount"`
 	// 入金／出金 (入金: income, 出金: expense)
 	EntrySide string `json:"entry_side"`
 	// 明細ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 登録時に<a href=\"https://support.freee.co.jp/hc/ja/articles/202848350-明細の自動登録ルールを設定する\" target=\"_blank\">自動登録ルールの設定</a>が適用され、登録処理が実行された場合、 trueになります。〜を推測する、〜の消込をするの条件の場合は一致してもfalseになります。 
 	RuleMatched bool `json:"rule_matched"`
 	// 明細のステータス（消込待ち: 1, 消込済み: 2, 無視: 3, 消込中: 4, 対象外: 6）
-	Status int32 `json:"status"`
+	Status int64 `json:"status"`
 	// 口座ID
-	WalletableId int32 `json:"walletable_id"`
+	WalletableId int64 `json:"walletable_id"`
 	// 口座区分 (銀行口座: bank_account, クレジットカード: credit_card, 現金: wallet)
 	WalletableType string `json:"walletable_type"`
 }
@@ -46,7 +46,7 @@ type WalletTxn struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWalletTxn(amount int64, balance int32, companyId int32, date string, description string, dueAmount int32, entrySide string, id int32, ruleMatched bool, status int32, walletableId int32, walletableType string) *WalletTxn {
+func NewWalletTxn(amount int64, balance int64, companyId int64, date string, description string, dueAmount int64, entrySide string, id int64, ruleMatched bool, status int64, walletableId int64, walletableType string) *WalletTxn {
 	this := WalletTxn{}
 	this.Amount = amount
 	this.Balance = balance
@@ -96,9 +96,9 @@ func (o *WalletTxn) SetAmount(v int64) {
 }
 
 // GetBalance returns the Balance field value
-func (o *WalletTxn) GetBalance() int32 {
+func (o *WalletTxn) GetBalance() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -107,7 +107,7 @@ func (o *WalletTxn) GetBalance() int32 {
 
 // GetBalanceOk returns a tuple with the Balance field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxn) GetBalanceOk() (*int32, bool) {
+func (o *WalletTxn) GetBalanceOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,14 +115,14 @@ func (o *WalletTxn) GetBalanceOk() (*int32, bool) {
 }
 
 // SetBalance sets field value
-func (o *WalletTxn) SetBalance(v int32) {
+func (o *WalletTxn) SetBalance(v int64) {
 	o.Balance = v
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *WalletTxn) GetCompanyId() int32 {
+func (o *WalletTxn) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -131,7 +131,7 @@ func (o *WalletTxn) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxn) GetCompanyIdOk() (*int32, bool) {
+func (o *WalletTxn) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -139,7 +139,7 @@ func (o *WalletTxn) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *WalletTxn) SetCompanyId(v int32) {
+func (o *WalletTxn) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -192,9 +192,9 @@ func (o *WalletTxn) SetDescription(v string) {
 }
 
 // GetDueAmount returns the DueAmount field value
-func (o *WalletTxn) GetDueAmount() int32 {
+func (o *WalletTxn) GetDueAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -203,7 +203,7 @@ func (o *WalletTxn) GetDueAmount() int32 {
 
 // GetDueAmountOk returns a tuple with the DueAmount field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxn) GetDueAmountOk() (*int32, bool) {
+func (o *WalletTxn) GetDueAmountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -211,7 +211,7 @@ func (o *WalletTxn) GetDueAmountOk() (*int32, bool) {
 }
 
 // SetDueAmount sets field value
-func (o *WalletTxn) SetDueAmount(v int32) {
+func (o *WalletTxn) SetDueAmount(v int64) {
 	o.DueAmount = v
 }
 
@@ -240,9 +240,9 @@ func (o *WalletTxn) SetEntrySide(v string) {
 }
 
 // GetId returns the Id field value
-func (o *WalletTxn) GetId() int32 {
+func (o *WalletTxn) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -251,7 +251,7 @@ func (o *WalletTxn) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxn) GetIdOk() (*int32, bool) {
+func (o *WalletTxn) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -259,7 +259,7 @@ func (o *WalletTxn) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *WalletTxn) SetId(v int32) {
+func (o *WalletTxn) SetId(v int64) {
 	o.Id = v
 }
 
@@ -288,9 +288,9 @@ func (o *WalletTxn) SetRuleMatched(v bool) {
 }
 
 // GetStatus returns the Status field value
-func (o *WalletTxn) GetStatus() int32 {
+func (o *WalletTxn) GetStatus() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -299,7 +299,7 @@ func (o *WalletTxn) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxn) GetStatusOk() (*int32, bool) {
+func (o *WalletTxn) GetStatusOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -307,14 +307,14 @@ func (o *WalletTxn) GetStatusOk() (*int32, bool) {
 }
 
 // SetStatus sets field value
-func (o *WalletTxn) SetStatus(v int32) {
+func (o *WalletTxn) SetStatus(v int64) {
 	o.Status = v
 }
 
 // GetWalletableId returns the WalletableId field value
-func (o *WalletTxn) GetWalletableId() int32 {
+func (o *WalletTxn) GetWalletableId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -323,7 +323,7 @@ func (o *WalletTxn) GetWalletableId() int32 {
 
 // GetWalletableIdOk returns a tuple with the WalletableId field value
 // and a boolean to check if the value has been set.
-func (o *WalletTxn) GetWalletableIdOk() (*int32, bool) {
+func (o *WalletTxn) GetWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -331,7 +331,7 @@ func (o *WalletTxn) GetWalletableIdOk() (*int32, bool) {
 }
 
 // SetWalletableId sets field value
-func (o *WalletTxn) SetWalletableId(v int32) {
+func (o *WalletTxn) SetWalletableId(v int64) {
 	o.WalletableId = v
 }
 

@@ -17,17 +17,17 @@ import (
 // ExpenseApplicationsIndexResponseExpenseApplicationsInner struct for ExpenseApplicationsIndexResponseExpenseApplicationsInner
 type ExpenseApplicationsIndexResponseExpenseApplicationsInner struct {
 	// 申請者のユーザーID
-	ApplicantId int32 `json:"applicant_id"`
+	ApplicantId int64 `json:"applicant_id"`
 	// 申請No.
 	ApplicationNumber string `json:"application_number"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。
-	CurrentRound *int32 `json:"current_round,omitempty"`
+	CurrentRound *int64 `json:"current_round,omitempty"`
 	// 現在承認ステップID
-	CurrentStepId NullableInt32 `json:"current_step_id,omitempty"`
+	CurrentStepId NullableInt64 `json:"current_step_id,omitempty"`
 	// 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます)
-	DealId NullableInt32 `json:"deal_id"`
+	DealId NullableInt64 `json:"deal_id"`
 	// 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:精算済み, unsettled:清算待ち)
 	DealStatus NullableString `json:"deal_status"`
 	// 備考
@@ -35,11 +35,11 @@ type ExpenseApplicationsIndexResponseExpenseApplicationsInner struct {
 	// 経費申請の項目行一覧（配列）
 	ExpenseApplicationLines []ExpenseApplicationsIndexResponseExpenseApplicationsInnerExpenseApplicationLinesInner `json:"expense_application_lines"`
 	// 経費申請ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 申請日 (yyyy-mm-dd)
 	IssueDate string `json:"issue_date"`
 	// 部門ID
-	SectionId NullableInt32 `json:"section_id,omitempty"`
+	SectionId NullableInt64 `json:"section_id,omitempty"`
 	// セグメント１ID
 	Segment1TagId NullableInt64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント２ID
@@ -49,18 +49,18 @@ type ExpenseApplicationsIndexResponseExpenseApplicationsInner struct {
 	// 申請ステータス(draft:下書き, in_progress:申請中, approved:承認済, rejected:却下, feedback:差戻し)
 	Status string `json:"status"`
 	// メモタグID
-	TagIds []int32 `json:"tag_ids,omitempty"`
+	TagIds []int64 `json:"tag_ids,omitempty"`
 	// 申請タイトル
 	Title string `json:"title"`
 	// 合計金額
-	TotalAmount *int32 `json:"total_amount,omitempty"`
+	TotalAmount *int64 `json:"total_amount,omitempty"`
 }
 
 // NewExpenseApplicationsIndexResponseExpenseApplicationsInner instantiates a new ExpenseApplicationsIndexResponseExpenseApplicationsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExpenseApplicationsIndexResponseExpenseApplicationsInner(applicantId int32, applicationNumber string, companyId int32, dealId NullableInt32, dealStatus NullableString, expenseApplicationLines []ExpenseApplicationsIndexResponseExpenseApplicationsInnerExpenseApplicationLinesInner, id int32, issueDate string, status string, title string) *ExpenseApplicationsIndexResponseExpenseApplicationsInner {
+func NewExpenseApplicationsIndexResponseExpenseApplicationsInner(applicantId int64, applicationNumber string, companyId int64, dealId NullableInt64, dealStatus NullableString, expenseApplicationLines []ExpenseApplicationsIndexResponseExpenseApplicationsInnerExpenseApplicationLinesInner, id int64, issueDate string, status string, title string) *ExpenseApplicationsIndexResponseExpenseApplicationsInner {
 	this := ExpenseApplicationsIndexResponseExpenseApplicationsInner{}
 	this.ApplicantId = applicantId
 	this.ApplicationNumber = applicationNumber
@@ -84,9 +84,9 @@ func NewExpenseApplicationsIndexResponseExpenseApplicationsInnerWithDefaults() *
 }
 
 // GetApplicantId returns the ApplicantId field value
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetApplicantId() int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetApplicantId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetApplicantI
 
 // GetApplicantIdOk returns a tuple with the ApplicantId field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetApplicantIdOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetApplicantIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,7 +103,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetApplicantI
 }
 
 // SetApplicantId sets field value
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetApplicantId(v int32) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetApplicantId(v int64) {
 	o.ApplicantId = v
 }
 
@@ -132,9 +132,9 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetApplicatio
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCompanyId() int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -143,7 +143,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCompanyId(
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCompanyIdOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,14 +151,14 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCompanyIdO
 }
 
 // SetCompanyId sets field value
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetCompanyId(v int32) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
 // GetCurrentRound returns the CurrentRound field value if set, zero value otherwise.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentRound() int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentRound() int64 {
 	if o == nil || o.CurrentRound == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CurrentRound
@@ -166,7 +166,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentRou
 
 // GetCurrentRoundOk returns a tuple with the CurrentRound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentRoundOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentRoundOk() (*int64, bool) {
 	if o == nil || o.CurrentRound == nil {
 		return nil, false
 	}
@@ -182,15 +182,15 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) HasCurrentRou
 	return false
 }
 
-// SetCurrentRound gets a reference to the given int32 and assigns it to the CurrentRound field.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetCurrentRound(v int32) {
+// SetCurrentRound gets a reference to the given int64 and assigns it to the CurrentRound field.
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetCurrentRound(v int64) {
 	o.CurrentRound = &v
 }
 
 // GetCurrentStepId returns the CurrentStepId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentStepId() int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentStepId() int64 {
 	if o == nil || o.CurrentStepId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CurrentStepId.Get()
@@ -199,7 +199,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentSte
 // GetCurrentStepIdOk returns a tuple with the CurrentStepId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentStepIdOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetCurrentStepIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -215,8 +215,8 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) HasCurrentSte
 	return false
 }
 
-// SetCurrentStepId gets a reference to the given NullableInt32 and assigns it to the CurrentStepId field.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetCurrentStepId(v int32) {
+// SetCurrentStepId gets a reference to the given NullableInt64 and assigns it to the CurrentStepId field.
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetCurrentStepId(v int64) {
 	o.CurrentStepId.Set(&v)
 }
 // SetCurrentStepIdNil sets the value for CurrentStepId to be an explicit nil
@@ -230,10 +230,10 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) UnsetCurrentS
 }
 
 // GetDealId returns the DealId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetDealId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetDealId() int64 {
 	if o == nil || o.DealId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -243,7 +243,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetDealId() i
 // GetDealIdOk returns a tuple with the DealId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetDealIdOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetDealIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -251,7 +251,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetDealIdOk()
 }
 
 // SetDealId sets field value
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetDealId(v int32) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetDealId(v int64) {
 	o.DealId.Set(&v)
 }
 
@@ -338,9 +338,9 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetExpenseApp
 }
 
 // GetId returns the Id field value
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetId() int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -349,7 +349,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetId() int32
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetIdOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -357,7 +357,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetIdOk() (*i
 }
 
 // SetId sets field value
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetId(v int32) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetId(v int64) {
 	o.Id = v
 }
 
@@ -386,9 +386,9 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetIssueDate(
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetSectionId() int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId.Get()
@@ -397,7 +397,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetSectionId(
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetSectionIdOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -413,8 +413,8 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) HasSectionId(
 	return false
 }
 
-// SetSectionId gets a reference to the given NullableInt32 and assigns it to the SectionId field.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given NullableInt64 and assigns it to the SectionId field.
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetSectionId(v int64) {
 	o.SectionId.Set(&v)
 }
 // SetSectionIdNil sets the value for SectionId to be an explicit nil
@@ -578,9 +578,9 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetStatus(v s
 }
 
 // GetTagIds returns the TagIds field value if set, zero value otherwise.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTagIds() []int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTagIds() []int64 {
 	if o == nil || o.TagIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.TagIds
@@ -588,7 +588,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTagIds() [
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -604,8 +604,8 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) HasTagIds() b
 	return false
 }
 
-// SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetTagIds(v []int32) {
+// SetTagIds gets a reference to the given []int64 and assigns it to the TagIds field.
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
@@ -634,9 +634,9 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetTitle(v st
 }
 
 // GetTotalAmount returns the TotalAmount field value if set, zero value otherwise.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTotalAmount() int32 {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTotalAmount() int64 {
 	if o == nil || o.TotalAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TotalAmount
@@ -644,7 +644,7 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTotalAmoun
 
 // GetTotalAmountOk returns a tuple with the TotalAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTotalAmountOk() (*int32, bool) {
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) GetTotalAmountOk() (*int64, bool) {
 	if o == nil || o.TotalAmount == nil {
 		return nil, false
 	}
@@ -660,8 +660,8 @@ func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) HasTotalAmoun
 	return false
 }
 
-// SetTotalAmount gets a reference to the given int32 and assigns it to the TotalAmount field.
-func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetTotalAmount(v int32) {
+// SetTotalAmount gets a reference to the given int64 and assigns it to the TotalAmount field.
+func (o *ExpenseApplicationsIndexResponseExpenseApplicationsInner) SetTotalAmount(v int64) {
 	o.TotalAmount = &v
 }
 

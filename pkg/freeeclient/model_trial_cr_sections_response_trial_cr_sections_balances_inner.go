@@ -21,13 +21,13 @@ type TrialCrSectionsResponseTrialCrSectionsBalancesInner struct {
 	// 決算書表示名(account_item_display_type:group指定時に決算書表示名の時のみ含まれる)
 	AccountGroupName *string `json:"account_group_name,omitempty"`
 	// 勘定科目ID(勘定科目の時のみ含まれる)
-	AccountItemId *int32 `json:"account_item_id,omitempty"`
+	AccountItemId *int64 `json:"account_item_id,omitempty"`
 	// 勘定科目名(勘定科目の時のみ含まれる)
 	AccountItemName *string `json:"account_item_name,omitempty"`
 	// 期末残高
-	ClosingBalance *int32 `json:"closing_balance,omitempty"`
+	ClosingBalance *int64 `json:"closing_balance,omitempty"`
 	// 階層レベル
-	HierarchyLevel *int32 `json:"hierarchy_level,omitempty"`
+	HierarchyLevel *int64 `json:"hierarchy_level,omitempty"`
 	// 上位勘定科目カテゴリー名(勘定科目カテゴリーの時のみ、上層が存在する場合含まれる)
 	ParentAccountCategoryName *string `json:"parent_account_category_name,omitempty"`
 	// 部門
@@ -118,9 +118,9 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetAccountGroupNam
 }
 
 // GetAccountItemId returns the AccountItemId field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetAccountItemId() int32 {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountItemId
@@ -128,7 +128,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetAccountItemId()
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil || o.AccountItemId == nil {
 		return nil, false
 	}
@@ -144,8 +144,8 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) HasAccountItemId()
 	return false
 }
 
-// SetAccountItemId gets a reference to the given int32 and assigns it to the AccountItemId field.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetAccountItemId(v int32) {
+// SetAccountItemId gets a reference to the given int64 and assigns it to the AccountItemId field.
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetAccountItemId(v int64) {
 	o.AccountItemId = &v
 }
 
@@ -182,9 +182,9 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetAccountItemName
 }
 
 // GetClosingBalance returns the ClosingBalance field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetClosingBalance() int32 {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetClosingBalance() int64 {
 	if o == nil || o.ClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosingBalance
@@ -192,7 +192,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetClosingBalance(
 
 // GetClosingBalanceOk returns a tuple with the ClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetClosingBalanceOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.ClosingBalance == nil {
 		return nil, false
 	}
@@ -208,15 +208,15 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) HasClosingBalance(
 	return false
 }
 
-// SetClosingBalance gets a reference to the given int32 and assigns it to the ClosingBalance field.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetClosingBalance(v int32) {
+// SetClosingBalance gets a reference to the given int64 and assigns it to the ClosingBalance field.
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetClosingBalance(v int64) {
 	o.ClosingBalance = &v
 }
 
 // GetHierarchyLevel returns the HierarchyLevel field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetHierarchyLevel() int32 {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetHierarchyLevel() int64 {
 	if o == nil || o.HierarchyLevel == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.HierarchyLevel
@@ -224,7 +224,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetHierarchyLevel(
 
 // GetHierarchyLevelOk returns a tuple with the HierarchyLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetHierarchyLevelOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) GetHierarchyLevelOk() (*int64, bool) {
 	if o == nil || o.HierarchyLevel == nil {
 		return nil, false
 	}
@@ -240,8 +240,8 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) HasHierarchyLevel(
 	return false
 }
 
-// SetHierarchyLevel gets a reference to the given int32 and assigns it to the HierarchyLevel field.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetHierarchyLevel(v int32) {
+// SetHierarchyLevel gets a reference to the given int64 and assigns it to the HierarchyLevel field.
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInner) SetHierarchyLevel(v int64) {
 	o.HierarchyLevel = &v
 }
 

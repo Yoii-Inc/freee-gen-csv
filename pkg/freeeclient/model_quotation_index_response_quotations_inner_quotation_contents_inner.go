@@ -17,27 +17,27 @@ import (
 // QuotationIndexResponseQuotationsInnerQuotationContentsInner struct for QuotationIndexResponseQuotationsInnerQuotationContentsInner
 type QuotationIndexResponseQuotationsInnerQuotationContentsInner struct {
 	// 勘定科目ID
-	AccountItemId NullableInt32 `json:"account_item_id"`
+	AccountItemId NullableInt64 `json:"account_item_id"`
 	// 勘定科目名
 	AccountItemName NullableString `json:"account_item_name"`
 	// 内税/外税の判別とamountの税込み、税抜きについて <ul> <li>tax_entry_methodがexclusive (外税)の場合</li> <ul> <li>amount: 消費税抜きの金額</li> <li>vat: 消費税の金額</li> </ul> <li>tax_entry_methodがinclusive (内税)の場合</li> <ul> <li>amount: 消費税込みの金額</li> <li>vat: 消費税の金額</li> </ul> </ul> 
-	Amount int32 `json:"amount"`
+	Amount int64 `json:"amount"`
 	// 備考
 	Description NullableString `json:"description"`
 	// 見積内容ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 品目ID
-	ItemId NullableInt32 `json:"item_id"`
+	ItemId NullableInt64 `json:"item_id"`
 	// 品目
 	ItemName NullableString `json:"item_name"`
 	// 順序
-	Order int32 `json:"order"`
+	Order int64 `json:"order"`
 	// 数量
 	Qty float32 `json:"qty"`
 	// 軽減税率税区分（true: 対象、false: 対象外）
 	ReducedVat bool `json:"reduced_vat"`
 	// 部門ID
-	SectionId NullableInt32 `json:"section_id"`
+	SectionId NullableInt64 `json:"section_id"`
 	// 部門
 	SectionName NullableString `json:"section_name"`
 	// セグメント１ID
@@ -52,10 +52,10 @@ type QuotationIndexResponseQuotationsInnerQuotationContentsInner struct {
 	Segment3TagId NullableInt64 `json:"segment_3_tag_id,omitempty"`
 	// セグメント３
 	Segment3TagName NullableString `json:"segment_3_tag_name,omitempty"`
-	TagIds []int32 `json:"tag_ids"`
+	TagIds []int64 `json:"tag_ids"`
 	TagNames []string `json:"tag_names"`
 	// 税区分コード
-	TaxCode NullableInt32 `json:"tax_code"`
+	TaxCode NullableInt64 `json:"tax_code"`
 	// 行の種類
 	Type string `json:"type"`
 	// 単位
@@ -63,14 +63,14 @@ type QuotationIndexResponseQuotationsInnerQuotationContentsInner struct {
 	// 単価
 	UnitPrice float32 `json:"unit_price"`
 	// 消費税額
-	Vat int32 `json:"vat"`
+	Vat int64 `json:"vat"`
 }
 
 // NewQuotationIndexResponseQuotationsInnerQuotationContentsInner instantiates a new QuotationIndexResponseQuotationsInnerQuotationContentsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotationIndexResponseQuotationsInnerQuotationContentsInner(accountItemId NullableInt32, accountItemName NullableString, amount int32, description NullableString, id int32, itemId NullableInt32, itemName NullableString, order int32, qty float32, reducedVat bool, sectionId NullableInt32, sectionName NullableString, tagIds []int32, tagNames []string, taxCode NullableInt32, type_ string, unit NullableString, unitPrice float32, vat int32) *QuotationIndexResponseQuotationsInnerQuotationContentsInner {
+func NewQuotationIndexResponseQuotationsInnerQuotationContentsInner(accountItemId NullableInt64, accountItemName NullableString, amount int64, description NullableString, id int64, itemId NullableInt64, itemName NullableString, order int64, qty float32, reducedVat bool, sectionId NullableInt64, sectionName NullableString, tagIds []int64, tagNames []string, taxCode NullableInt64, type_ string, unit NullableString, unitPrice float32, vat int64) *QuotationIndexResponseQuotationsInnerQuotationContentsInner {
 	this := QuotationIndexResponseQuotationsInnerQuotationContentsInner{}
 	this.AccountItemId = accountItemId
 	this.AccountItemName = accountItemName
@@ -103,10 +103,10 @@ func NewQuotationIndexResponseQuotationsInnerQuotationContentsInnerWithDefaults(
 }
 
 // GetAccountItemId returns the AccountItemId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAccountItemId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -116,7 +116,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAccount
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAccount
 }
 
 // SetAccountItemId sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetAccountItemId(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetAccountItemId(v int64) {
 	o.AccountItemId.Set(&v)
 }
 
@@ -155,9 +155,9 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetAccount
 }
 
 // GetAmount returns the Amount field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAmount() int32 {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -166,7 +166,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAmount(
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAmountOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAmountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -174,7 +174,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetAmountO
 }
 
 // SetAmount sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetAmount(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetAmount(v int64) {
 	o.Amount = v
 }
 
@@ -205,9 +205,9 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetDescrip
 }
 
 // GetId returns the Id field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetId() int32 {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -216,7 +216,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetId() in
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetIdOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -224,15 +224,15 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetIdOk() 
 }
 
 // SetId sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetId(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetId(v int64) {
 	o.Id = v
 }
 
 // GetItemId returns the ItemId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetItemId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetItemId() int64 {
 	if o == nil || o.ItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -242,7 +242,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetItemId(
 // GetItemIdOk returns a tuple with the ItemId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetItemIdOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -250,7 +250,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetItemIdO
 }
 
 // SetItemId sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetItemId(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetItemId(v int64) {
 	o.ItemId.Set(&v)
 }
 
@@ -281,9 +281,9 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetItemNam
 }
 
 // GetOrder returns the Order field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetOrder() int32 {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetOrder() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -292,7 +292,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetOrder()
 
 // GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetOrderOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetOrderOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -300,7 +300,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetOrderOk
 }
 
 // SetOrder sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetOrder(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetOrder(v int64) {
 	o.Order = v
 }
 
@@ -353,10 +353,10 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetReduced
 }
 
 // GetSectionId returns the SectionId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetSectionId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetSectionId() int64 {
 	if o == nil || o.SectionId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -366,7 +366,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetSection
 // GetSectionIdOk returns a tuple with the SectionId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetSectionIdOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -374,7 +374,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetSection
 }
 
 // SetSectionId sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetSectionId(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetSectionId(v int64) {
 	o.SectionId.Set(&v)
 }
 
@@ -657,9 +657,9 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) UnsetSegme
 }
 
 // GetTagIds returns the TagIds field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTagIds() []int32 {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTagIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
@@ -668,7 +668,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTagIds(
 
 // GetTagIdsOk returns a tuple with the TagIds field value
 // and a boolean to check if the value has been set.
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTagIdsOk() ([]int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -676,7 +676,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTagIdsO
 }
 
 // SetTagIds sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetTagIds(v []int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
@@ -705,10 +705,10 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetTagName
 }
 
 // GetTaxCode returns the TaxCode field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTaxCode() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTaxCode() int64 {
 	if o == nil || o.TaxCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -718,7 +718,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTaxCode
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTaxCodeOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -726,7 +726,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetTaxCode
 }
 
 // SetTaxCode sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetTaxCode(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetTaxCode(v int64) {
 	o.TaxCode.Set(&v)
 }
 
@@ -805,9 +805,9 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetUnitPri
 }
 
 // GetVat returns the Vat field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetVat() int32 {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetVat() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -816,7 +816,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetVat() i
 
 // GetVatOk returns a tuple with the Vat field value
 // and a boolean to check if the value has been set.
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetVatOk() (*int32, bool) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetVatOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -824,7 +824,7 @@ func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) GetVatOk()
 }
 
 // SetVat sets field value
-func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetVat(v int32) {
+func (o *QuotationIndexResponseQuotationsInnerQuotationContentsInner) SetVat(v int64) {
 	o.Vat = v
 }
 

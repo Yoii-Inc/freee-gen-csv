@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    manualJournalCreateParams := *openapiclient.NewManualJournalCreateParams(int32(1), []openapiclient.ManualJournalCreateParamsDetailsInner{*openapiclient.NewManualJournalCreateParamsDetailsInner(int32(1), int64(10800), "debit", int32(1))}, "2019-12-17") // ManualJournalCreateParams | 振替伝票の作成 (optional)
+    manualJournalCreateParams := *openapiclient.NewManualJournalCreateParams(int64(1), []openapiclient.ManualJournalCreateParamsDetailsInner{*openapiclient.NewManualJournalCreateParamsDetailsInner(int64(1), int64(10800), "debit", int64(1))}, "2019-12-17") // ManualJournalCreateParams | 振替伝票の作成 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -99,8 +99,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiDestroyManualJournalReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -169,8 +169,8 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    id := int32(56) // int32 | 
+    companyId := int64(56) // int64 | 事業所ID
+    id := int64(56) // int64 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -199,7 +199,7 @@ Other parameters are passed through a pointer to a apiGetManualJournalRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 
 ### Return type
@@ -241,17 +241,17 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     startIssueDate := "startIssueDate_example" // string | 発生日で絞込：開始日(yyyy-mm-dd) (optional)
     endIssueDate := "endIssueDate_example" // string | 発生日で絞込：終了日(yyyy-mm-dd) (optional)
     entrySide := "entrySide_example" // string | 貸借で絞込 (貸方: credit, 借方: debit) (optional)
-    accountItemId := int32(56) // int32 | 勘定科目IDで絞込 (optional)
+    accountItemId := int64(56) // int64 | 勘定科目IDで絞込 (optional)
     minAmount := int64(789) // int64 | 金額で絞込：下限 (optional)
     maxAmount := int64(789) // int64 | 金額で絞込：上限 (optional)
-    partnerId := int32(56) // int32 | 取引先IDで絞込（0を指定すると、取引先が未選択の貸借行を絞り込めます） (optional)
+    partnerId := int64(56) // int64 | 取引先IDで絞込（0を指定すると、取引先が未選択の貸借行を絞り込めます） (optional)
     partnerCode := "partnerCode_example" // string | 取引先コードで絞込 (optional)
-    itemId := int32(56) // int32 | 品目IDで絞込（0を指定すると、品目が未選択の貸借行を絞り込めます） (optional)
-    sectionId := int32(56) // int32 | 部門IDで絞込（0を指定すると、部門が未選択の貸借行を絞り込めます） (optional)
+    itemId := int64(56) // int64 | 品目IDで絞込（0を指定すると、品目が未選択の貸借行を絞り込めます） (optional)
+    sectionId := int64(56) // int64 | 部門IDで絞込（0を指定すると、部門が未選択の貸借行を絞り込めます） (optional)
     segment1TagId := int64(789) // int64 | セグメント１IDで絞込（0を指定すると、セグメント１が未選択の貸借行を絞り込めます） (optional)
     segment2TagId := int64(789) // int64 | セグメント２IDで絞込（0を指定すると、セグメント２が未選択の貸借行を絞り込めます） (optional)
     segment3TagId := int64(789) // int64 | セグメント３IDで絞込（0を指定すると、セグメント３が未選択の貸借行を絞り込めます） (optional)
@@ -260,7 +260,7 @@ func main() {
     adjustment := "adjustment_example" // string | 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without） (optional)
     txnNumber := "txnNumber_example" // string | 仕訳番号で絞込（事業所の仕訳番号形式が有効な場合のみ） (optional)
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -285,17 +285,17 @@ Other parameters are passed through a pointer to a apiGetManualJournalsRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **startIssueDate** | **string** | 発生日で絞込：開始日(yyyy-mm-dd) | 
  **endIssueDate** | **string** | 発生日で絞込：終了日(yyyy-mm-dd) | 
  **entrySide** | **string** | 貸借で絞込 (貸方: credit, 借方: debit) | 
- **accountItemId** | **int32** | 勘定科目IDで絞込 | 
+ **accountItemId** | **int64** | 勘定科目IDで絞込 | 
  **minAmount** | **int64** | 金額で絞込：下限 | 
  **maxAmount** | **int64** | 金額で絞込：上限 | 
- **partnerId** | **int32** | 取引先IDで絞込（0を指定すると、取引先が未選択の貸借行を絞り込めます） | 
+ **partnerId** | **int64** | 取引先IDで絞込（0を指定すると、取引先が未選択の貸借行を絞り込めます） | 
  **partnerCode** | **string** | 取引先コードで絞込 | 
- **itemId** | **int32** | 品目IDで絞込（0を指定すると、品目が未選択の貸借行を絞り込めます） | 
- **sectionId** | **int32** | 部門IDで絞込（0を指定すると、部門が未選択の貸借行を絞り込めます） | 
+ **itemId** | **int64** | 品目IDで絞込（0を指定すると、品目が未選択の貸借行を絞り込めます） | 
+ **sectionId** | **int64** | 部門IDで絞込（0を指定すると、部門が未選択の貸借行を絞り込めます） | 
  **segment1TagId** | **int64** | セグメント１IDで絞込（0を指定すると、セグメント１が未選択の貸借行を絞り込めます） | 
  **segment2TagId** | **int64** | セグメント２IDで絞込（0を指定すると、セグメント２が未選択の貸借行を絞り込めます） | 
  **segment3TagId** | **int64** | セグメント３IDで絞込（0を指定すると、セグメント３が未選択の貸借行を絞り込めます） | 
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
  **adjustment** | **string** | 決算整理仕訳で絞込（決算整理仕訳のみ: only, 決算整理仕訳以外: without） | 
  **txnNumber** | **string** | 仕訳番号で絞込（事業所の仕訳番号形式が有効な場合のみ） | 
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500)  | 
 
 ### Return type
 
@@ -345,8 +345,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    manualJournalUpdateParams := *openapiclient.NewManualJournalUpdateParams(int32(1), []openapiclient.ManualJournalUpdateParamsDetailsInner{*openapiclient.NewManualJournalUpdateParamsDetailsInner(int32(1), int64(10800), "debit", int32(1))}, "2019-12-17") // ManualJournalUpdateParams | 振替伝票の更新 (optional)
+    id := int64(56) // int64 | 
+    manualJournalUpdateParams := *openapiclient.NewManualJournalUpdateParams(int64(1), []openapiclient.ManualJournalUpdateParamsDetailsInner{*openapiclient.NewManualJournalUpdateParamsDetailsInner(int64(1), int64(10800), "debit", int64(1))}, "2019-12-17") // ManualJournalUpdateParams | 振替伝票の更新 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -366,7 +366,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 

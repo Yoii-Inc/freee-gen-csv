@@ -17,13 +17,13 @@ import (
 // AccountItemParamsAccountItem struct for AccountItemParamsAccountItem
 type AccountItemParamsAccountItem struct {
 	// 勘定科目カテゴリーID Selectablesフォーム用選択項目情報エンドポイント(account_groups.account_category_id)で取得可能です
-	AccountCategoryId int32 `json:"account_category_id"`
+	AccountCategoryId int64 `json:"account_category_id"`
 	// 減価償却累計額勘定科目ID（法人のみ利用可能）
-	AccumulatedDepAccountItemId *int32 `json:"accumulated_dep_account_item_id,omitempty"`
+	AccumulatedDepAccountItemId *int64 `json:"accumulated_dep_account_item_id,omitempty"`
 	// 支出取引相手勘定科目ID
-	CorrespondingExpenseId int32 `json:"corresponding_expense_id"`
+	CorrespondingExpenseId int64 `json:"corresponding_expense_id"`
 	// 収入取引相手勘定科目ID
-	CorrespondingIncomeId int32 `json:"corresponding_income_id"`
+	CorrespondingIncomeId int64 `json:"corresponding_income_id"`
 	// 決算書表示名（小カテゴリー） Selectablesフォーム用選択項目情報エンドポイント(account_groups.name)で取得可能です
 	GroupName string `json:"group_name"`
 	// 品目
@@ -33,20 +33,20 @@ type AccountItemParamsAccountItem struct {
 	// 取引先
 	Partners []AccountItemParamsAccountItemItemsInner `json:"partners,omitempty"`
 	// 検索可能:2, 検索不可：3(登録時未指定の場合は2で登録されます。更新時未指定の場合はsearchableは変更されません。)
-	Searchable *int32 `json:"searchable,omitempty"`
+	Searchable *int64 `json:"searchable,omitempty"`
 	// ショートカット1 (20文字以内)
 	Shortcut *string `json:"shortcut,omitempty"`
 	// ショートカット2(勘定科目コード)(20文字以内)
 	ShortcutNum *string `json:"shortcut_num,omitempty"`
 	// 税区分コード
-	TaxCode int32 `json:"tax_code"`
+	TaxCode int64 `json:"tax_code"`
 }
 
 // NewAccountItemParamsAccountItem instantiates a new AccountItemParamsAccountItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountItemParamsAccountItem(accountCategoryId int32, correspondingExpenseId int32, correspondingIncomeId int32, groupName string, name string, taxCode int32) *AccountItemParamsAccountItem {
+func NewAccountItemParamsAccountItem(accountCategoryId int64, correspondingExpenseId int64, correspondingIncomeId int64, groupName string, name string, taxCode int64) *AccountItemParamsAccountItem {
 	this := AccountItemParamsAccountItem{}
 	this.AccountCategoryId = accountCategoryId
 	this.CorrespondingExpenseId = correspondingExpenseId
@@ -66,9 +66,9 @@ func NewAccountItemParamsAccountItemWithDefaults() *AccountItemParamsAccountItem
 }
 
 // GetAccountCategoryId returns the AccountCategoryId field value
-func (o *AccountItemParamsAccountItem) GetAccountCategoryId() int32 {
+func (o *AccountItemParamsAccountItem) GetAccountCategoryId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -77,7 +77,7 @@ func (o *AccountItemParamsAccountItem) GetAccountCategoryId() int32 {
 
 // GetAccountCategoryIdOk returns a tuple with the AccountCategoryId field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemParamsAccountItem) GetAccountCategoryIdOk() (*int32, bool) {
+func (o *AccountItemParamsAccountItem) GetAccountCategoryIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,14 +85,14 @@ func (o *AccountItemParamsAccountItem) GetAccountCategoryIdOk() (*int32, bool) {
 }
 
 // SetAccountCategoryId sets field value
-func (o *AccountItemParamsAccountItem) SetAccountCategoryId(v int32) {
+func (o *AccountItemParamsAccountItem) SetAccountCategoryId(v int64) {
 	o.AccountCategoryId = v
 }
 
 // GetAccumulatedDepAccountItemId returns the AccumulatedDepAccountItemId field value if set, zero value otherwise.
-func (o *AccountItemParamsAccountItem) GetAccumulatedDepAccountItemId() int32 {
+func (o *AccountItemParamsAccountItem) GetAccumulatedDepAccountItemId() int64 {
 	if o == nil || o.AccumulatedDepAccountItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccumulatedDepAccountItemId
@@ -100,7 +100,7 @@ func (o *AccountItemParamsAccountItem) GetAccumulatedDepAccountItemId() int32 {
 
 // GetAccumulatedDepAccountItemIdOk returns a tuple with the AccumulatedDepAccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountItemParamsAccountItem) GetAccumulatedDepAccountItemIdOk() (*int32, bool) {
+func (o *AccountItemParamsAccountItem) GetAccumulatedDepAccountItemIdOk() (*int64, bool) {
 	if o == nil || o.AccumulatedDepAccountItemId == nil {
 		return nil, false
 	}
@@ -116,15 +116,15 @@ func (o *AccountItemParamsAccountItem) HasAccumulatedDepAccountItemId() bool {
 	return false
 }
 
-// SetAccumulatedDepAccountItemId gets a reference to the given int32 and assigns it to the AccumulatedDepAccountItemId field.
-func (o *AccountItemParamsAccountItem) SetAccumulatedDepAccountItemId(v int32) {
+// SetAccumulatedDepAccountItemId gets a reference to the given int64 and assigns it to the AccumulatedDepAccountItemId field.
+func (o *AccountItemParamsAccountItem) SetAccumulatedDepAccountItemId(v int64) {
 	o.AccumulatedDepAccountItemId = &v
 }
 
 // GetCorrespondingExpenseId returns the CorrespondingExpenseId field value
-func (o *AccountItemParamsAccountItem) GetCorrespondingExpenseId() int32 {
+func (o *AccountItemParamsAccountItem) GetCorrespondingExpenseId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -133,7 +133,7 @@ func (o *AccountItemParamsAccountItem) GetCorrespondingExpenseId() int32 {
 
 // GetCorrespondingExpenseIdOk returns a tuple with the CorrespondingExpenseId field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemParamsAccountItem) GetCorrespondingExpenseIdOk() (*int32, bool) {
+func (o *AccountItemParamsAccountItem) GetCorrespondingExpenseIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -141,14 +141,14 @@ func (o *AccountItemParamsAccountItem) GetCorrespondingExpenseIdOk() (*int32, bo
 }
 
 // SetCorrespondingExpenseId sets field value
-func (o *AccountItemParamsAccountItem) SetCorrespondingExpenseId(v int32) {
+func (o *AccountItemParamsAccountItem) SetCorrespondingExpenseId(v int64) {
 	o.CorrespondingExpenseId = v
 }
 
 // GetCorrespondingIncomeId returns the CorrespondingIncomeId field value
-func (o *AccountItemParamsAccountItem) GetCorrespondingIncomeId() int32 {
+func (o *AccountItemParamsAccountItem) GetCorrespondingIncomeId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -157,7 +157,7 @@ func (o *AccountItemParamsAccountItem) GetCorrespondingIncomeId() int32 {
 
 // GetCorrespondingIncomeIdOk returns a tuple with the CorrespondingIncomeId field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemParamsAccountItem) GetCorrespondingIncomeIdOk() (*int32, bool) {
+func (o *AccountItemParamsAccountItem) GetCorrespondingIncomeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *AccountItemParamsAccountItem) GetCorrespondingIncomeIdOk() (*int32, boo
 }
 
 // SetCorrespondingIncomeId sets field value
-func (o *AccountItemParamsAccountItem) SetCorrespondingIncomeId(v int32) {
+func (o *AccountItemParamsAccountItem) SetCorrespondingIncomeId(v int64) {
 	o.CorrespondingIncomeId = v
 }
 
@@ -282,9 +282,9 @@ func (o *AccountItemParamsAccountItem) SetPartners(v []AccountItemParamsAccountI
 }
 
 // GetSearchable returns the Searchable field value if set, zero value otherwise.
-func (o *AccountItemParamsAccountItem) GetSearchable() int32 {
+func (o *AccountItemParamsAccountItem) GetSearchable() int64 {
 	if o == nil || o.Searchable == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Searchable
@@ -292,7 +292,7 @@ func (o *AccountItemParamsAccountItem) GetSearchable() int32 {
 
 // GetSearchableOk returns a tuple with the Searchable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountItemParamsAccountItem) GetSearchableOk() (*int32, bool) {
+func (o *AccountItemParamsAccountItem) GetSearchableOk() (*int64, bool) {
 	if o == nil || o.Searchable == nil {
 		return nil, false
 	}
@@ -308,8 +308,8 @@ func (o *AccountItemParamsAccountItem) HasSearchable() bool {
 	return false
 }
 
-// SetSearchable gets a reference to the given int32 and assigns it to the Searchable field.
-func (o *AccountItemParamsAccountItem) SetSearchable(v int32) {
+// SetSearchable gets a reference to the given int64 and assigns it to the Searchable field.
+func (o *AccountItemParamsAccountItem) SetSearchable(v int64) {
 	o.Searchable = &v
 }
 
@@ -378,9 +378,9 @@ func (o *AccountItemParamsAccountItem) SetShortcutNum(v string) {
 }
 
 // GetTaxCode returns the TaxCode field value
-func (o *AccountItemParamsAccountItem) GetTaxCode() int32 {
+func (o *AccountItemParamsAccountItem) GetTaxCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -389,7 +389,7 @@ func (o *AccountItemParamsAccountItem) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value
 // and a boolean to check if the value has been set.
-func (o *AccountItemParamsAccountItem) GetTaxCodeOk() (*int32, bool) {
+func (o *AccountItemParamsAccountItem) GetTaxCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -397,7 +397,7 @@ func (o *AccountItemParamsAccountItem) GetTaxCodeOk() (*int32, bool) {
 }
 
 // SetTaxCode sets field value
-func (o *AccountItemParamsAccountItem) SetTaxCode(v int32) {
+func (o *AccountItemParamsAccountItem) SetTaxCode(v int64) {
 	o.TaxCode = v
 }
 

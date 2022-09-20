@@ -22,7 +22,7 @@ type PartnersResponsePartnersInner struct {
 	// 取引先コード
 	Code NullableString `json:"code"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 担当者 氏名
 	ContactName NullableString `json:"contact_name,omitempty"`
 	// 地域（JP: 国内、ZZ:国外）
@@ -32,7 +32,7 @@ type PartnersResponsePartnersInner struct {
 	// 担当者 メールアドレス
 	Email NullableString `json:"email,omitempty"`
 	// 取引先ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 正式名称（255文字以内）
 	LongName NullableString `json:"long_name,omitempty"`
 	// 取引先名
@@ -40,11 +40,11 @@ type PartnersResponsePartnersInner struct {
 	// カナ名称（255文字以内）
 	NameKana NullableString `json:"name_kana,omitempty"`
 	// 事業所種別（null: 未設定、1: 法人、2: 個人）
-	OrgCode NullableInt32 `json:"org_code,omitempty"`
+	OrgCode NullableInt64 `json:"org_code,omitempty"`
 	PartnerBankAccountAttributes *PartnerResponsePartnerPartnerBankAccountAttributes `json:"partner_bank_account_attributes,omitempty"`
 	PartnerDocSettingAttributes *PartnerCreateParamsPartnerDocSettingAttributes `json:"partner_doc_setting_attributes,omitempty"`
 	// 振込元口座ID（一括振込ファイル用）:（未設定の場合は、nullです。）
-	PayerWalletableId NullableInt32 `json:"payer_walletable_id,omitempty"`
+	PayerWalletableId NullableInt64 `json:"payer_walletable_id,omitempty"`
 	// 電話番号
 	Phone NullableString `json:"phone,omitempty"`
 	// ショートカット1 (255文字以内)
@@ -61,7 +61,7 @@ type PartnersResponsePartnersInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartnersResponsePartnersInner(available bool, code NullableString, companyId int32, id int32, name string, updateDate string) *PartnersResponsePartnersInner {
+func NewPartnersResponsePartnersInner(available bool, code NullableString, companyId int64, id int64, name string, updateDate string) *PartnersResponsePartnersInner {
 	this := PartnersResponsePartnersInner{}
 	this.Available = available
 	this.Code = code
@@ -163,9 +163,9 @@ func (o *PartnersResponsePartnersInner) SetCode(v string) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *PartnersResponsePartnersInner) GetCompanyId() int32 {
+func (o *PartnersResponsePartnersInner) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -174,7 +174,7 @@ func (o *PartnersResponsePartnersInner) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *PartnersResponsePartnersInner) GetCompanyIdOk() (*int32, bool) {
+func (o *PartnersResponsePartnersInner) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -182,7 +182,7 @@ func (o *PartnersResponsePartnersInner) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *PartnersResponsePartnersInner) SetCompanyId(v int32) {
+func (o *PartnersResponsePartnersInner) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -345,9 +345,9 @@ func (o *PartnersResponsePartnersInner) UnsetEmail() {
 }
 
 // GetId returns the Id field value
-func (o *PartnersResponsePartnersInner) GetId() int32 {
+func (o *PartnersResponsePartnersInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -356,7 +356,7 @@ func (o *PartnersResponsePartnersInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *PartnersResponsePartnersInner) GetIdOk() (*int32, bool) {
+func (o *PartnersResponsePartnersInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -364,7 +364,7 @@ func (o *PartnersResponsePartnersInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *PartnersResponsePartnersInner) SetId(v int32) {
+func (o *PartnersResponsePartnersInner) SetId(v int64) {
 	o.Id = v
 }
 
@@ -477,9 +477,9 @@ func (o *PartnersResponsePartnersInner) UnsetNameKana() {
 }
 
 // GetOrgCode returns the OrgCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnersResponsePartnersInner) GetOrgCode() int32 {
+func (o *PartnersResponsePartnersInner) GetOrgCode() int64 {
 	if o == nil || o.OrgCode.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OrgCode.Get()
@@ -488,7 +488,7 @@ func (o *PartnersResponsePartnersInner) GetOrgCode() int32 {
 // GetOrgCodeOk returns a tuple with the OrgCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnersResponsePartnersInner) GetOrgCodeOk() (*int32, bool) {
+func (o *PartnersResponsePartnersInner) GetOrgCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -504,8 +504,8 @@ func (o *PartnersResponsePartnersInner) HasOrgCode() bool {
 	return false
 }
 
-// SetOrgCode gets a reference to the given NullableInt32 and assigns it to the OrgCode field.
-func (o *PartnersResponsePartnersInner) SetOrgCode(v int32) {
+// SetOrgCode gets a reference to the given NullableInt64 and assigns it to the OrgCode field.
+func (o *PartnersResponsePartnersInner) SetOrgCode(v int64) {
 	o.OrgCode.Set(&v)
 }
 // SetOrgCodeNil sets the value for OrgCode to be an explicit nil
@@ -583,9 +583,9 @@ func (o *PartnersResponsePartnersInner) SetPartnerDocSettingAttributes(v Partner
 }
 
 // GetPayerWalletableId returns the PayerWalletableId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PartnersResponsePartnersInner) GetPayerWalletableId() int32 {
+func (o *PartnersResponsePartnersInner) GetPayerWalletableId() int64 {
 	if o == nil || o.PayerWalletableId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PayerWalletableId.Get()
@@ -594,7 +594,7 @@ func (o *PartnersResponsePartnersInner) GetPayerWalletableId() int32 {
 // GetPayerWalletableIdOk returns a tuple with the PayerWalletableId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PartnersResponsePartnersInner) GetPayerWalletableIdOk() (*int32, bool) {
+func (o *PartnersResponsePartnersInner) GetPayerWalletableIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -610,8 +610,8 @@ func (o *PartnersResponsePartnersInner) HasPayerWalletableId() bool {
 	return false
 }
 
-// SetPayerWalletableId gets a reference to the given NullableInt32 and assigns it to the PayerWalletableId field.
-func (o *PartnersResponsePartnersInner) SetPayerWalletableId(v int32) {
+// SetPayerWalletableId gets a reference to the given NullableInt64 and assigns it to the PayerWalletableId field.
+func (o *PartnersResponsePartnersInner) SetPayerWalletableId(v int64) {
 	o.PayerWalletableId.Set(&v)
 }
 // SetPayerWalletableIdNil sets the value for PayerWalletableId to be an explicit nil

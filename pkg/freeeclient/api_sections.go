@@ -202,12 +202,12 @@ func (a *SectionsApiService) CreateSectionExecute(r ApiCreateSectionRequest) (*S
 type ApiDestroySectionRequest struct {
 	ctx context.Context
 	ApiService *SectionsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroySectionRequest) CompanyId(companyId int32) ApiDestroySectionRequest {
+func (r ApiDestroySectionRequest) CompanyId(companyId int64) ApiDestroySectionRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -228,7 +228,7 @@ DestroySection 部門の削除
  @param id
  @return ApiDestroySectionRequest
 */
-func (a *SectionsApiService) DestroySection(ctx context.Context, id int32) ApiDestroySectionRequest {
+func (a *SectionsApiService) DestroySection(ctx context.Context, id int64) ApiDestroySectionRequest {
 	return ApiDestroySectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -359,12 +359,12 @@ func (a *SectionsApiService) DestroySectionExecute(r ApiDestroySectionRequest) (
 type ApiGetSectionRequest struct {
 	ctx context.Context
 	ApiService *SectionsApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetSectionRequest) CompanyId(companyId int32) ApiGetSectionRequest {
+func (r ApiGetSectionRequest) CompanyId(companyId int64) ApiGetSectionRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -411,7 +411,7 @@ GetSection Method for GetSection
  @param id 部門ID
  @return ApiGetSectionRequest
 */
-func (a *SectionsApiService) GetSection(ctx context.Context, id int32) ApiGetSectionRequest {
+func (a *SectionsApiService) GetSection(ctx context.Context, id int64) ApiGetSectionRequest {
 	return ApiGetSectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -563,11 +563,11 @@ func (a *SectionsApiService) GetSectionExecute(r ApiGetSectionRequest) (*Section
 type ApiGetSectionsRequest struct {
 	ctx context.Context
 	ApiService *SectionsApiService
-	companyId *int32
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiGetSectionsRequest) CompanyId(companyId int32) ApiGetSectionsRequest {
+func (r ApiGetSectionsRequest) CompanyId(companyId int64) ApiGetSectionsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -759,7 +759,7 @@ func (a *SectionsApiService) GetSectionsExecute(r ApiGetSectionsRequest) (*GetSe
 type ApiUpdateSectionRequest struct {
 	ctx context.Context
 	ApiService *SectionsApiService
-	id int32
+	id int64
 	sectionParams *SectionParams
 }
 
@@ -811,7 +811,7 @@ UpdateSection 部門の更新
  @param id
  @return ApiUpdateSectionRequest
 */
-func (a *SectionsApiService) UpdateSection(ctx context.Context, id int32) ApiUpdateSectionRequest {
+func (a *SectionsApiService) UpdateSection(ctx context.Context, id int64) ApiUpdateSectionRequest {
 	return ApiUpdateSectionRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -31,8 +31,8 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 受け付けID
-    companyId := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 受け付けID
+    companyId := int64(56) // int64 | 事業所ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 受け付けID | 
+**id** | **int64** | 受け付けID | 
 
 ### Other Parameters
 
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiDownloadJournalRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 ### Return type
 
@@ -103,8 +103,8 @@ import (
 )
 
 func main() {
-    companyId := int32(56) // int32 | 事業所ID
-    id := int32(56) // int32 | 受け付けID
+    companyId := int64(56) // int64 | 事業所ID
+    id := int64(56) // int64 | 受け付けID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +124,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 受け付けID | 
+**id** | **int64** | 受け付けID | 
 
 ### Other Parameters
 
@@ -133,7 +133,7 @@ Other parameters are passed through a pointer to a apiGetJournalStatusRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
 
 
 ### Return type
@@ -176,7 +176,7 @@ import (
 
 func main() {
     downloadType := "downloadType_example" // string | ダウンロード形式
-    companyId := int32(56) // int32 | 事業所ID
+    companyId := int64(56) // int64 | 事業所ID
     visibleTags := []string{"VisibleTags_example"} // []string | 補助科目やコメントとして出力する項目 (optional)
     visibleIds := []string{"VisibleIds_example"} // []string | 追加出力するID項目 (optional)
     startDate := "startDate_example" // string | 取得開始日 (yyyy-mm-dd) (optional)
@@ -206,7 +206,7 @@ Other parameters are passed through a pointer to a apiGetJournalsRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **downloadType** | **string** | ダウンロード形式 | 
- **companyId** | **int32** | 事業所ID | 
+ **companyId** | **int64** | 事業所ID | 
  **visibleTags** | **[]string** | 補助科目やコメントとして出力する項目 | 
  **visibleIds** | **[]string** | 追加出力するID項目 | 
  **startDate** | **string** | 取得開始日 (yyyy-mm-dd) | 

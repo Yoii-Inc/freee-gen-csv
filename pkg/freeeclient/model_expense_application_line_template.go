@@ -17,13 +17,13 @@ import (
 // ExpenseApplicationLineTemplate struct for ExpenseApplicationLineTemplate
 type ExpenseApplicationLineTemplate struct {
 	// 勘定科目ID
-	AccountItemId *int32 `json:"account_item_id,omitempty"`
+	AccountItemId *int64 `json:"account_item_id,omitempty"`
 	// 勘定科目名
 	AccountItemName string `json:"account_item_name"`
 	// 経費科目の説明
 	Description *string `json:"description,omitempty"`
 	// 経費科目ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 内容の補足
 	LineDescription *string `json:"line_description,omitempty"`
 	// 経費科目名
@@ -31,7 +31,7 @@ type ExpenseApplicationLineTemplate struct {
 	// 添付ファイルの必須/任意
 	RequiredReceipt *bool `json:"required_receipt,omitempty"`
 	// 税区分コード
-	TaxCode *int32 `json:"tax_code,omitempty"`
+	TaxCode *int64 `json:"tax_code,omitempty"`
 	// 税区分名
 	TaxName string `json:"tax_name"`
 }
@@ -40,7 +40,7 @@ type ExpenseApplicationLineTemplate struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExpenseApplicationLineTemplate(accountItemName string, id int32, name string, taxName string) *ExpenseApplicationLineTemplate {
+func NewExpenseApplicationLineTemplate(accountItemName string, id int64, name string, taxName string) *ExpenseApplicationLineTemplate {
 	this := ExpenseApplicationLineTemplate{}
 	this.AccountItemName = accountItemName
 	this.Id = id
@@ -58,9 +58,9 @@ func NewExpenseApplicationLineTemplateWithDefaults() *ExpenseApplicationLineTemp
 }
 
 // GetAccountItemId returns the AccountItemId field value if set, zero value otherwise.
-func (o *ExpenseApplicationLineTemplate) GetAccountItemId() int32 {
+func (o *ExpenseApplicationLineTemplate) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountItemId
@@ -68,7 +68,7 @@ func (o *ExpenseApplicationLineTemplate) GetAccountItemId() int32 {
 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationLineTemplate) GetAccountItemIdOk() (*int32, bool) {
+func (o *ExpenseApplicationLineTemplate) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil || o.AccountItemId == nil {
 		return nil, false
 	}
@@ -84,8 +84,8 @@ func (o *ExpenseApplicationLineTemplate) HasAccountItemId() bool {
 	return false
 }
 
-// SetAccountItemId gets a reference to the given int32 and assigns it to the AccountItemId field.
-func (o *ExpenseApplicationLineTemplate) SetAccountItemId(v int32) {
+// SetAccountItemId gets a reference to the given int64 and assigns it to the AccountItemId field.
+func (o *ExpenseApplicationLineTemplate) SetAccountItemId(v int64) {
 	o.AccountItemId = &v
 }
 
@@ -146,9 +146,9 @@ func (o *ExpenseApplicationLineTemplate) SetDescription(v string) {
 }
 
 // GetId returns the Id field value
-func (o *ExpenseApplicationLineTemplate) GetId() int32 {
+func (o *ExpenseApplicationLineTemplate) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -157,7 +157,7 @@ func (o *ExpenseApplicationLineTemplate) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationLineTemplate) GetIdOk() (*int32, bool) {
+func (o *ExpenseApplicationLineTemplate) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *ExpenseApplicationLineTemplate) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ExpenseApplicationLineTemplate) SetId(v int32) {
+func (o *ExpenseApplicationLineTemplate) SetId(v int64) {
 	o.Id = v
 }
 
@@ -258,9 +258,9 @@ func (o *ExpenseApplicationLineTemplate) SetRequiredReceipt(v bool) {
 }
 
 // GetTaxCode returns the TaxCode field value if set, zero value otherwise.
-func (o *ExpenseApplicationLineTemplate) GetTaxCode() int32 {
+func (o *ExpenseApplicationLineTemplate) GetTaxCode() int64 {
 	if o == nil || o.TaxCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TaxCode
@@ -268,7 +268,7 @@ func (o *ExpenseApplicationLineTemplate) GetTaxCode() int32 {
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpenseApplicationLineTemplate) GetTaxCodeOk() (*int32, bool) {
+func (o *ExpenseApplicationLineTemplate) GetTaxCodeOk() (*int64, bool) {
 	if o == nil || o.TaxCode == nil {
 		return nil, false
 	}
@@ -284,8 +284,8 @@ func (o *ExpenseApplicationLineTemplate) HasTaxCode() bool {
 	return false
 }
 
-// SetTaxCode gets a reference to the given int32 and assigns it to the TaxCode field.
-func (o *ExpenseApplicationLineTemplate) SetTaxCode(v int32) {
+// SetTaxCode gets a reference to the given int64 and assigns it to the TaxCode field.
+func (o *ExpenseApplicationLineTemplate) SetTaxCode(v int64) {
 	o.TaxCode = &v
 }
 

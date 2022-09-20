@@ -91,7 +91,7 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 事業所ID
+    id := int64(56) // int64 | 事業所ID
     details := true // bool | 取得情報に勘定科目・税区分コード・税区分・品目・取引先・部門・メモタグ・口座の一覧を含める (optional)
     accountItems := true // bool | 取得情報に勘定科目一覧を含める (optional)
     taxes := true // bool | 取得情報に税区分コード・税区分一覧を含める (optional)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 事業所ID | 
+**id** | **int64** | 事業所ID | 
 
 ### Other Parameters
 

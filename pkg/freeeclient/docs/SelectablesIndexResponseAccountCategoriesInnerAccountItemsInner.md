@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **DefaultTax** | Pointer to [**SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTax**](SelectablesIndexResponseAccountCategoriesInnerAccountItemsInnerDefaultTax.md) |  | [optional] 
 **Desc** | Pointer to **string** | 勘定科目の説明 | [optional] 
 **Help** | Pointer to **string** | 勘定科目の説明（詳細） | [optional] 
-**Id** | **int32** | 勘定科目ID | 
+**Id** | **int64** | 勘定科目ID | 
 **Name** | Pointer to **string** | 勘定科目 | [optional] 
 **Shortcut** | Pointer to **string** | ショートカット | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewSelectablesIndexResponseAccountCategoriesInnerAccountItemsInner
 
-`func NewSelectablesIndexResponseAccountCategoriesInnerAccountItemsInner(id int32, ) *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner`
+`func NewSelectablesIndexResponseAccountCategoriesInnerAccountItemsInner(id int64, ) *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner`
 
 NewSelectablesIndexResponseAccountCategoriesInnerAccountItemsInner instantiates a new SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner object
 This constructor will assign default values to properties that have it defined,
@@ -107,20 +107,20 @@ HasHelp returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetId() int32`
+`func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetIdOk() (*int32, bool)`
+`func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) SetId(v int32)`
+`func (o *SelectablesIndexResponseAccountCategoriesInnerAccountItemsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

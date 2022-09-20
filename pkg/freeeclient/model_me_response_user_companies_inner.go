@@ -17,11 +17,11 @@ import (
 // MeResponseUserCompaniesInner struct for MeResponseUserCompaniesInner
 type MeResponseUserCompaniesInner struct {
 	// アドバイザープロファイルID（アドバイザー事業所で無い場合にnullになります）
-	AdvisorId NullableInt32 `json:"advisor_id,omitempty"`
+	AdvisorId NullableInt64 `json:"advisor_id,omitempty"`
 	// 表示名
 	DisplayName string `json:"display_name"`
 	// 事業所ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// ユーザーの権限 <ul> <li>admin: 管理者</li> <li>simple_accounting: 一般</li> <li>self_only: 取引登録のみ</li> <li>read_only: 閲覧のみ</li> <li>workflow: 申請・承認</li> </ul>
 	Role string `json:"role"`
 	// カスタム権限（true: 使用する、false: 使用しない）
@@ -32,7 +32,7 @@ type MeResponseUserCompaniesInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMeResponseUserCompaniesInner(displayName string, id int32, role string, useCustomRole bool) *MeResponseUserCompaniesInner {
+func NewMeResponseUserCompaniesInner(displayName string, id int64, role string, useCustomRole bool) *MeResponseUserCompaniesInner {
 	this := MeResponseUserCompaniesInner{}
 	this.DisplayName = displayName
 	this.Id = id
@@ -50,9 +50,9 @@ func NewMeResponseUserCompaniesInnerWithDefaults() *MeResponseUserCompaniesInner
 }
 
 // GetAdvisorId returns the AdvisorId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MeResponseUserCompaniesInner) GetAdvisorId() int32 {
+func (o *MeResponseUserCompaniesInner) GetAdvisorId() int64 {
 	if o == nil || o.AdvisorId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AdvisorId.Get()
@@ -61,7 +61,7 @@ func (o *MeResponseUserCompaniesInner) GetAdvisorId() int32 {
 // GetAdvisorIdOk returns a tuple with the AdvisorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MeResponseUserCompaniesInner) GetAdvisorIdOk() (*int32, bool) {
+func (o *MeResponseUserCompaniesInner) GetAdvisorIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,8 +77,8 @@ func (o *MeResponseUserCompaniesInner) HasAdvisorId() bool {
 	return false
 }
 
-// SetAdvisorId gets a reference to the given NullableInt32 and assigns it to the AdvisorId field.
-func (o *MeResponseUserCompaniesInner) SetAdvisorId(v int32) {
+// SetAdvisorId gets a reference to the given NullableInt64 and assigns it to the AdvisorId field.
+func (o *MeResponseUserCompaniesInner) SetAdvisorId(v int64) {
 	o.AdvisorId.Set(&v)
 }
 // SetAdvisorIdNil sets the value for AdvisorId to be an explicit nil
@@ -116,9 +116,9 @@ func (o *MeResponseUserCompaniesInner) SetDisplayName(v string) {
 }
 
 // GetId returns the Id field value
-func (o *MeResponseUserCompaniesInner) GetId() int32 {
+func (o *MeResponseUserCompaniesInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -127,7 +127,7 @@ func (o *MeResponseUserCompaniesInner) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *MeResponseUserCompaniesInner) GetIdOk() (*int32, bool) {
+func (o *MeResponseUserCompaniesInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -135,7 +135,7 @@ func (o *MeResponseUserCompaniesInner) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *MeResponseUserCompaniesInner) SetId(v int32) {
+func (o *MeResponseUserCompaniesInner) SetId(v int64) {
 	o.Id = v
 }
 

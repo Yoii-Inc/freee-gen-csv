@@ -17,17 +17,17 @@ import (
 // PaymentRequestCreateParamsPaymentRequestLinesInner struct for PaymentRequestCreateParamsPaymentRequestLinesInner
 type PaymentRequestCreateParamsPaymentRequestLinesInner struct {
 	// 勘定科目ID
-	AccountItemId NullableInt32 `json:"account_item_id,omitempty"`
+	AccountItemId NullableInt64 `json:"account_item_id,omitempty"`
 	// 金額
 	Amount int64 `json:"amount"`
 	// 内容
 	Description *string `json:"description,omitempty"`
 	// 品目ID
-	ItemId *int32 `json:"item_id,omitempty"`
+	ItemId *int64 `json:"item_id,omitempty"`
 	// '行の種類 (deal_line: 支払依頼, withholding_tax: 源泉徴収税)'<br> 'デフォルトは deal_line: 支払依頼 です' 
 	LineType *string `json:"line_type,omitempty"`
 	// 部門ID
-	SectionId *int32 `json:"section_id,omitempty"`
+	SectionId *int64 `json:"section_id,omitempty"`
 	// セグメント１ID<br> セグメントタグ一覧APIを利用して取得してください。<br> <a href=\"https://support.freee.co.jp/hc/ja/articles/360020679611\" target=\"_blank\">セグメント（分析用タグ）の設定</a><br> 
 	Segment1TagId *int64 `json:"segment_1_tag_id,omitempty"`
 	// セグメント２ID(法人向けエンタープライズプラン)<br> セグメントタグ一覧APIを利用して取得してください。<br> <a href=\"https://support.freee.co.jp/hc/ja/articles/360020679611\" target=\"_blank\">セグメント（分析用タグ）の設定</a><br> 
@@ -35,9 +35,9 @@ type PaymentRequestCreateParamsPaymentRequestLinesInner struct {
 	// セグメント３ID(法人向けエンタープライズプラン)<br> セグメントタグ一覧APIを利用して取得してください。<br> <a href=\"https://support.freee.co.jp/hc/ja/articles/360020679611\" target=\"_blank\">セグメント（分析用タグ）の設定</a><br> 
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
 	// メモタグID
-	TagIds []int32 `json:"tag_ids,omitempty"`
+	TagIds []int64 `json:"tag_ids,omitempty"`
 	// 税区分コード<br> 勘定科目IDを指定する場合は必須です。 
-	TaxCode *int32 `json:"tax_code,omitempty"`
+	TaxCode *int64 `json:"tax_code,omitempty"`
 }
 
 // NewPaymentRequestCreateParamsPaymentRequestLinesInner instantiates a new PaymentRequestCreateParamsPaymentRequestLinesInner object
@@ -59,9 +59,9 @@ func NewPaymentRequestCreateParamsPaymentRequestLinesInnerWithDefaults() *Paymen
 }
 
 // GetAccountItemId returns the AccountItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetAccountItemId() int32 {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetAccountItemId() int64 {
 	if o == nil || o.AccountItemId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountItemId.Get()
@@ -70,7 +70,7 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetAccountItemId() 
 // GetAccountItemIdOk returns a tuple with the AccountItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetAccountItemIdOk() (*int32, bool) {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetAccountItemIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,8 +86,8 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) HasAccountItemId() 
 	return false
 }
 
-// SetAccountItemId gets a reference to the given NullableInt32 and assigns it to the AccountItemId field.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetAccountItemId(v int32) {
+// SetAccountItemId gets a reference to the given NullableInt64 and assigns it to the AccountItemId field.
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetAccountItemId(v int64) {
 	o.AccountItemId.Set(&v)
 }
 // SetAccountItemIdNil sets the value for AccountItemId to be an explicit nil
@@ -157,9 +157,9 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetDescription(v st
 }
 
 // GetItemId returns the ItemId field value if set, zero value otherwise.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetItemId() int32 {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetItemId() int64 {
 	if o == nil || o.ItemId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemId
@@ -167,7 +167,7 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetItemId() int32 {
 
 // GetItemIdOk returns a tuple with the ItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetItemIdOk() (*int32, bool) {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetItemIdOk() (*int64, bool) {
 	if o == nil || o.ItemId == nil {
 		return nil, false
 	}
@@ -183,8 +183,8 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) HasItemId() bool {
 	return false
 }
 
-// SetItemId gets a reference to the given int32 and assigns it to the ItemId field.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetItemId(v int32) {
+// SetItemId gets a reference to the given int64 and assigns it to the ItemId field.
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetItemId(v int64) {
 	o.ItemId = &v
 }
 
@@ -221,9 +221,9 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetLineType(v strin
 }
 
 // GetSectionId returns the SectionId field value if set, zero value otherwise.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetSectionId() int32 {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetSectionId() int64 {
 	if o == nil || o.SectionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SectionId
@@ -231,7 +231,7 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetSectionId() int3
 
 // GetSectionIdOk returns a tuple with the SectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetSectionIdOk() (*int32, bool) {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetSectionIdOk() (*int64, bool) {
 	if o == nil || o.SectionId == nil {
 		return nil, false
 	}
@@ -247,8 +247,8 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) HasSectionId() bool
 	return false
 }
 
-// SetSectionId gets a reference to the given int32 and assigns it to the SectionId field.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetSectionId(v int32) {
+// SetSectionId gets a reference to the given int64 and assigns it to the SectionId field.
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetSectionId(v int64) {
 	o.SectionId = &v
 }
 
@@ -349,9 +349,9 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetSegment3TagId(v 
 }
 
 // GetTagIds returns the TagIds field value if set, zero value otherwise.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTagIds() []int32 {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTagIds() []int64 {
 	if o == nil || o.TagIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.TagIds
@@ -359,7 +359,7 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTagIds() []int32
 
 // GetTagIdsOk returns a tuple with the TagIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTagIdsOk() ([]int32, bool) {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTagIdsOk() ([]int64, bool) {
 	if o == nil || o.TagIds == nil {
 		return nil, false
 	}
@@ -375,15 +375,15 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) HasTagIds() bool {
 	return false
 }
 
-// SetTagIds gets a reference to the given []int32 and assigns it to the TagIds field.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetTagIds(v []int32) {
+// SetTagIds gets a reference to the given []int64 and assigns it to the TagIds field.
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetTagIds(v []int64) {
 	o.TagIds = v
 }
 
 // GetTaxCode returns the TaxCode field value if set, zero value otherwise.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTaxCode() int32 {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTaxCode() int64 {
 	if o == nil || o.TaxCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TaxCode
@@ -391,7 +391,7 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTaxCode() int32 
 
 // GetTaxCodeOk returns a tuple with the TaxCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTaxCodeOk() (*int32, bool) {
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) GetTaxCodeOk() (*int64, bool) {
 	if o == nil || o.TaxCode == nil {
 		return nil, false
 	}
@@ -407,8 +407,8 @@ func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) HasTaxCode() bool {
 	return false
 }
 
-// SetTaxCode gets a reference to the given int32 and assigns it to the TaxCode field.
-func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetTaxCode(v int32) {
+// SetTaxCode gets a reference to the given int64 and assigns it to the TaxCode field.
+func (o *PaymentRequestCreateParamsPaymentRequestLinesInner) SetTaxCode(v int64) {
 	o.TaxCode = &v
 }
 

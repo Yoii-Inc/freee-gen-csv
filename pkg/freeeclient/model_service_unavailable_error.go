@@ -17,14 +17,14 @@ import (
 // ServiceUnavailableError struct for ServiceUnavailableError
 type ServiceUnavailableError struct {
 	Errors []ServiceUnavailableErrorErrorsInner `json:"errors"`
-	StatusCode int32 `json:"status_code"`
+	StatusCode int64 `json:"status_code"`
 }
 
 // NewServiceUnavailableError instantiates a new ServiceUnavailableError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceUnavailableError(errors []ServiceUnavailableErrorErrorsInner, statusCode int32) *ServiceUnavailableError {
+func NewServiceUnavailableError(errors []ServiceUnavailableErrorErrorsInner, statusCode int64) *ServiceUnavailableError {
 	this := ServiceUnavailableError{}
 	this.Errors = errors
 	this.StatusCode = statusCode
@@ -64,9 +64,9 @@ func (o *ServiceUnavailableError) SetErrors(v []ServiceUnavailableErrorErrorsInn
 }
 
 // GetStatusCode returns the StatusCode field value
-func (o *ServiceUnavailableError) GetStatusCode() int32 {
+func (o *ServiceUnavailableError) GetStatusCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *ServiceUnavailableError) GetStatusCode() int32 {
 
 // GetStatusCodeOk returns a tuple with the StatusCode field value
 // and a boolean to check if the value has been set.
-func (o *ServiceUnavailableError) GetStatusCodeOk() (*int32, bool) {
+func (o *ServiceUnavailableError) GetStatusCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *ServiceUnavailableError) GetStatusCodeOk() (*int32, bool) {
 }
 
 // SetStatusCode sets field value
-func (o *ServiceUnavailableError) SetStatusCode(v int32) {
+func (o *ServiceUnavailableError) SetStatusCode(v int64) {
 	o.StatusCode = v
 }
 

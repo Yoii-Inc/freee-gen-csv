@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountItemId** | **int32** | 勘定科目ID | 
+**AccountItemId** | **int64** | 勘定科目ID | 
 **Amount** | **int64** | 金額（税込で指定してください） | 
 **Description** | Pointer to **NullableString** | 備考 | [optional] 
 **EntrySide** | **string** | 貸借(貸方: credit, 借方: debit) | 
 **Id** | **int64** | +更新の明細行ID | 
-**ItemId** | Pointer to **NullableInt32** | 品目ID | [optional] 
-**SectionId** | Pointer to **NullableInt32** | 部門ID | [optional] 
+**ItemId** | Pointer to **NullableInt64** | 品目ID | [optional] 
+**SectionId** | Pointer to **NullableInt64** | 部門ID | [optional] 
 **Segment1TagId** | Pointer to **NullableInt64** | セグメント１ID | [optional] 
 **Segment2TagId** | Pointer to **NullableInt64** | セグメント２ID | [optional] 
 **Segment3TagId** | Pointer to **NullableInt64** | セグメント３ID | [optional] 
-**TagIds** | **[]int32** |  | 
-**TaxCode** | **int32** | 税区分コード | 
-**Vat** | **int32** | 消費税額（指定しない場合は自動で計算されます） | 
+**TagIds** | **[]int64** |  | 
+**TaxCode** | **int64** | 税区分コード | 
+**Vat** | **int64** | 消費税額（指定しない場合は自動で計算されます） | 
 
 ## Methods
 
 ### NewDealRenewsInnerDetailsInner
 
-`func NewDealRenewsInnerDetailsInner(accountItemId int32, amount int64, entrySide string, id int64, tagIds []int32, taxCode int32, vat int32, ) *DealRenewsInnerDetailsInner`
+`func NewDealRenewsInnerDetailsInner(accountItemId int64, amount int64, entrySide string, id int64, tagIds []int64, taxCode int64, vat int64, ) *DealRenewsInnerDetailsInner`
 
 NewDealRenewsInnerDetailsInner instantiates a new DealRenewsInnerDetailsInner object
 This constructor will assign default values to properties that have it defined,
@@ -39,20 +39,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountItemId
 
-`func (o *DealRenewsInnerDetailsInner) GetAccountItemId() int32`
+`func (o *DealRenewsInnerDetailsInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *DealRenewsInnerDetailsInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *DealRenewsInnerDetailsInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *DealRenewsInnerDetailsInner) SetAccountItemId(v int32)`
+`func (o *DealRenewsInnerDetailsInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -154,20 +154,20 @@ SetId sets Id field to given value.
 
 ### GetItemId
 
-`func (o *DealRenewsInnerDetailsInner) GetItemId() int32`
+`func (o *DealRenewsInnerDetailsInner) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *DealRenewsInnerDetailsInner) GetItemIdOk() (*int32, bool)`
+`func (o *DealRenewsInnerDetailsInner) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *DealRenewsInnerDetailsInner) SetItemId(v int32)`
+`func (o *DealRenewsInnerDetailsInner) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -189,20 +189,20 @@ HasItemId returns a boolean if a field has been set.
 UnsetItemId ensures that no value is present for ItemId, not even an explicit nil
 ### GetSectionId
 
-`func (o *DealRenewsInnerDetailsInner) GetSectionId() int32`
+`func (o *DealRenewsInnerDetailsInner) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *DealRenewsInnerDetailsInner) GetSectionIdOk() (*int32, bool)`
+`func (o *DealRenewsInnerDetailsInner) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *DealRenewsInnerDetailsInner) SetSectionId(v int32)`
+`func (o *DealRenewsInnerDetailsInner) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -329,60 +329,60 @@ HasSegment3TagId returns a boolean if a field has been set.
 UnsetSegment3TagId ensures that no value is present for Segment3TagId, not even an explicit nil
 ### GetTagIds
 
-`func (o *DealRenewsInnerDetailsInner) GetTagIds() []int32`
+`func (o *DealRenewsInnerDetailsInner) GetTagIds() []int64`
 
 GetTagIds returns the TagIds field if non-nil, zero value otherwise.
 
 ### GetTagIdsOk
 
-`func (o *DealRenewsInnerDetailsInner) GetTagIdsOk() (*[]int32, bool)`
+`func (o *DealRenewsInnerDetailsInner) GetTagIdsOk() (*[]int64, bool)`
 
 GetTagIdsOk returns a tuple with the TagIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagIds
 
-`func (o *DealRenewsInnerDetailsInner) SetTagIds(v []int32)`
+`func (o *DealRenewsInnerDetailsInner) SetTagIds(v []int64)`
 
 SetTagIds sets TagIds field to given value.
 
 
 ### GetTaxCode
 
-`func (o *DealRenewsInnerDetailsInner) GetTaxCode() int32`
+`func (o *DealRenewsInnerDetailsInner) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *DealRenewsInnerDetailsInner) GetTaxCodeOk() (*int32, bool)`
+`func (o *DealRenewsInnerDetailsInner) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *DealRenewsInnerDetailsInner) SetTaxCode(v int32)`
+`func (o *DealRenewsInnerDetailsInner) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 
 
 ### GetVat
 
-`func (o *DealRenewsInnerDetailsInner) GetVat() int32`
+`func (o *DealRenewsInnerDetailsInner) GetVat() int64`
 
 GetVat returns the Vat field if non-nil, zero value otherwise.
 
 ### GetVatOk
 
-`func (o *DealRenewsInnerDetailsInner) GetVatOk() (*int32, bool)`
+`func (o *DealRenewsInnerDetailsInner) GetVatOk() (*int64, bool)`
 
 GetVatOk returns a tuple with the Vat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVat
 
-`func (o *DealRenewsInnerDetailsInner) SetVat(v int32)`
+`func (o *DealRenewsInnerDetailsInner) SetVat(v int64)`
 
 SetVat sets Vat field to given value.
 

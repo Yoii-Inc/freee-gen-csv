@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountItemId** | **int32** | 勘定科目ID | 
+**AccountItemId** | **int64** | 勘定科目ID | 
 **Amount** | **int64** | 取引金額（税込で指定してください） | 
 **Description** | Pointer to **string** | 備考 | [optional] 
 **EntrySide** | **string** | 貸借（貸方: credit, 借方: debit） | 
-**ItemId** | Pointer to **int32** | 品目ID | [optional] 
+**ItemId** | Pointer to **int64** | 品目ID | [optional] 
 **PartnerCode** | Pointer to **string** | 取引先コード | [optional] 
-**PartnerId** | Pointer to **int32** | 取引先ID | [optional] 
-**SectionId** | Pointer to **int32** | 部門ID | [optional] 
+**PartnerId** | Pointer to **int64** | 取引先ID | [optional] 
+**SectionId** | Pointer to **int64** | 部門ID | [optional] 
 **Segment1TagId** | Pointer to **int64** | セグメント１ID | [optional] 
 **Segment2TagId** | Pointer to **int64** | セグメント２ID | [optional] 
 **Segment3TagId** | Pointer to **int64** | セグメント３ID | [optional] 
-**TagIds** | Pointer to **[]int32** | メモタグID | [optional] 
-**TaxCode** | **int32** | 税区分コード | 
-**Vat** | Pointer to **int32** | 消費税額（指定しない場合は自動で計算されます） | [optional] 
+**TagIds** | Pointer to **[]int64** | メモタグID | [optional] 
+**TaxCode** | **int64** | 税区分コード | 
+**Vat** | Pointer to **int64** | 消費税額（指定しない場合は自動で計算されます） | [optional] 
 
 ## Methods
 
 ### NewManualJournalCreateParamsDetailsInner
 
-`func NewManualJournalCreateParamsDetailsInner(accountItemId int32, amount int64, entrySide string, taxCode int32, ) *ManualJournalCreateParamsDetailsInner`
+`func NewManualJournalCreateParamsDetailsInner(accountItemId int64, amount int64, entrySide string, taxCode int64, ) *ManualJournalCreateParamsDetailsInner`
 
 NewManualJournalCreateParamsDetailsInner instantiates a new ManualJournalCreateParamsDetailsInner object
 This constructor will assign default values to properties that have it defined,
@@ -40,20 +40,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAccountItemId
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetAccountItemId() int32`
+`func (o *ManualJournalCreateParamsDetailsInner) GetAccountItemId() int64`
 
 GetAccountItemId returns the AccountItemId field if non-nil, zero value otherwise.
 
 ### GetAccountItemIdOk
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetAccountItemIdOk() (*int32, bool)`
+`func (o *ManualJournalCreateParamsDetailsInner) GetAccountItemIdOk() (*int64, bool)`
 
 GetAccountItemIdOk returns a tuple with the AccountItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountItemId
 
-`func (o *ManualJournalCreateParamsDetailsInner) SetAccountItemId(v int32)`
+`func (o *ManualJournalCreateParamsDetailsInner) SetAccountItemId(v int64)`
 
 SetAccountItemId sets AccountItemId field to given value.
 
@@ -125,20 +125,20 @@ SetEntrySide sets EntrySide field to given value.
 
 ### GetItemId
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetItemId() int32`
+`func (o *ManualJournalCreateParamsDetailsInner) GetItemId() int64`
 
 GetItemId returns the ItemId field if non-nil, zero value otherwise.
 
 ### GetItemIdOk
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetItemIdOk() (*int32, bool)`
+`func (o *ManualJournalCreateParamsDetailsInner) GetItemIdOk() (*int64, bool)`
 
 GetItemIdOk returns a tuple with the ItemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemId
 
-`func (o *ManualJournalCreateParamsDetailsInner) SetItemId(v int32)`
+`func (o *ManualJournalCreateParamsDetailsInner) SetItemId(v int64)`
 
 SetItemId sets ItemId field to given value.
 
@@ -175,20 +175,20 @@ HasPartnerCode returns a boolean if a field has been set.
 
 ### GetPartnerId
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetPartnerId() int32`
+`func (o *ManualJournalCreateParamsDetailsInner) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetPartnerIdOk() (*int32, bool)`
+`func (o *ManualJournalCreateParamsDetailsInner) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *ManualJournalCreateParamsDetailsInner) SetPartnerId(v int32)`
+`func (o *ManualJournalCreateParamsDetailsInner) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -200,20 +200,20 @@ HasPartnerId returns a boolean if a field has been set.
 
 ### GetSectionId
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetSectionId() int32`
+`func (o *ManualJournalCreateParamsDetailsInner) GetSectionId() int64`
 
 GetSectionId returns the SectionId field if non-nil, zero value otherwise.
 
 ### GetSectionIdOk
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetSectionIdOk() (*int32, bool)`
+`func (o *ManualJournalCreateParamsDetailsInner) GetSectionIdOk() (*int64, bool)`
 
 GetSectionIdOk returns a tuple with the SectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectionId
 
-`func (o *ManualJournalCreateParamsDetailsInner) SetSectionId(v int32)`
+`func (o *ManualJournalCreateParamsDetailsInner) SetSectionId(v int64)`
 
 SetSectionId sets SectionId field to given value.
 
@@ -300,20 +300,20 @@ HasSegment3TagId returns a boolean if a field has been set.
 
 ### GetTagIds
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetTagIds() []int32`
+`func (o *ManualJournalCreateParamsDetailsInner) GetTagIds() []int64`
 
 GetTagIds returns the TagIds field if non-nil, zero value otherwise.
 
 ### GetTagIdsOk
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetTagIdsOk() (*[]int32, bool)`
+`func (o *ManualJournalCreateParamsDetailsInner) GetTagIdsOk() (*[]int64, bool)`
 
 GetTagIdsOk returns a tuple with the TagIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagIds
 
-`func (o *ManualJournalCreateParamsDetailsInner) SetTagIds(v []int32)`
+`func (o *ManualJournalCreateParamsDetailsInner) SetTagIds(v []int64)`
 
 SetTagIds sets TagIds field to given value.
 
@@ -325,40 +325,40 @@ HasTagIds returns a boolean if a field has been set.
 
 ### GetTaxCode
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetTaxCode() int32`
+`func (o *ManualJournalCreateParamsDetailsInner) GetTaxCode() int64`
 
 GetTaxCode returns the TaxCode field if non-nil, zero value otherwise.
 
 ### GetTaxCodeOk
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetTaxCodeOk() (*int32, bool)`
+`func (o *ManualJournalCreateParamsDetailsInner) GetTaxCodeOk() (*int64, bool)`
 
 GetTaxCodeOk returns a tuple with the TaxCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCode
 
-`func (o *ManualJournalCreateParamsDetailsInner) SetTaxCode(v int32)`
+`func (o *ManualJournalCreateParamsDetailsInner) SetTaxCode(v int64)`
 
 SetTaxCode sets TaxCode field to given value.
 
 
 ### GetVat
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetVat() int32`
+`func (o *ManualJournalCreateParamsDetailsInner) GetVat() int64`
 
 GetVat returns the Vat field if non-nil, zero value otherwise.
 
 ### GetVatOk
 
-`func (o *ManualJournalCreateParamsDetailsInner) GetVatOk() (*int32, bool)`
+`func (o *ManualJournalCreateParamsDetailsInner) GetVatOk() (*int64, bool)`
 
 GetVatOk returns a tuple with the Vat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVat
 
-`func (o *ManualJournalCreateParamsDetailsInner) SetVat(v int32)`
+`func (o *ManualJournalCreateParamsDetailsInner) SetVat(v int64)`
 
 SetVat sets Vat field to given value.
 

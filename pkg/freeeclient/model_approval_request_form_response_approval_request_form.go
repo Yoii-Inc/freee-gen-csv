@@ -17,21 +17,21 @@ import (
 // ApprovalRequestFormResponseApprovalRequestForm struct for ApprovalRequestFormResponseApprovalRequestForm
 type ApprovalRequestFormResponseApprovalRequestForm struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 作成日時
 	CreatedDate string `json:"created_date"`
 	// 申請フォームの説明
 	Description string `json:"description"`
 	// 表示順（申請者が選択する申請フォームの表示順を設定できます。小さい数ほど上位に表示されます。（0を除く整数のみ。マイナス不可）未入力の場合、表示順が後ろになります。同じ数字が入力された場合、登録順で表示されます。）
-	FormOrder NullableInt32 `json:"form_order"`
+	FormOrder NullableInt64 `json:"form_order"`
 	// 申請フォームID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 申請フォームの名前
 	Name string `json:"name"`
 	// 申請フォームの項目
 	Parts []ApprovalRequestFormResponseApprovalRequestFormPartsInner `json:"parts,omitempty"`
 	// 適用された経路数
-	RouteSettingCount int32 `json:"route_setting_count"`
+	RouteSettingCount int64 `json:"route_setting_count"`
 	// ステータス(draft: 申請で使用しない、active: 申請で使用する、deleted: 削除済み)
 	Status string `json:"status"`
 }
@@ -40,7 +40,7 @@ type ApprovalRequestFormResponseApprovalRequestForm struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprovalRequestFormResponseApprovalRequestForm(companyId int32, createdDate string, description string, formOrder NullableInt32, id int32, name string, routeSettingCount int32, status string) *ApprovalRequestFormResponseApprovalRequestForm {
+func NewApprovalRequestFormResponseApprovalRequestForm(companyId int64, createdDate string, description string, formOrder NullableInt64, id int64, name string, routeSettingCount int64, status string) *ApprovalRequestFormResponseApprovalRequestForm {
 	this := ApprovalRequestFormResponseApprovalRequestForm{}
 	this.CompanyId = companyId
 	this.CreatedDate = createdDate
@@ -62,9 +62,9 @@ func NewApprovalRequestFormResponseApprovalRequestFormWithDefaults() *ApprovalRe
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetCompanyId() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -73,7 +73,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetCompanyIdOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -81,7 +81,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetCompanyIdOk() (*int3
 }
 
 // SetCompanyId sets field value
-func (o *ApprovalRequestFormResponseApprovalRequestForm) SetCompanyId(v int32) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -134,10 +134,10 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) SetDescription(v string
 }
 
 // GetFormOrder returns the FormOrder field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetFormOrder() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetFormOrder() int64 {
 	if o == nil || o.FormOrder.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -147,7 +147,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetFormOrder() int32 {
 // GetFormOrderOk returns a tuple with the FormOrder field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetFormOrderOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetFormOrderOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,14 +155,14 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetFormOrderOk() (*int3
 }
 
 // SetFormOrder sets field value
-func (o *ApprovalRequestFormResponseApprovalRequestForm) SetFormOrder(v int32) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) SetFormOrder(v int64) {
 	o.FormOrder.Set(&v)
 }
 
 // GetId returns the Id field value
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetId() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -171,7 +171,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetIdOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,7 +179,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetIdOk() (*int32, bool
 }
 
 // SetId sets field value
-func (o *ApprovalRequestFormResponseApprovalRequestForm) SetId(v int32) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) SetId(v int64) {
 	o.Id = v
 }
 
@@ -240,9 +240,9 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) SetParts(v []ApprovalRe
 }
 
 // GetRouteSettingCount returns the RouteSettingCount field value
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetRouteSettingCount() int32 {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetRouteSettingCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -251,7 +251,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetRouteSettingCount() 
 
 // GetRouteSettingCountOk returns a tuple with the RouteSettingCount field value
 // and a boolean to check if the value has been set.
-func (o *ApprovalRequestFormResponseApprovalRequestForm) GetRouteSettingCountOk() (*int32, bool) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) GetRouteSettingCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -259,7 +259,7 @@ func (o *ApprovalRequestFormResponseApprovalRequestForm) GetRouteSettingCountOk(
 }
 
 // SetRouteSettingCount sets field value
-func (o *ApprovalRequestFormResponseApprovalRequestForm) SetRouteSettingCount(v int32) {
+func (o *ApprovalRequestFormResponseApprovalRequestForm) SetRouteSettingCount(v int64) {
 	o.RouteSettingCount = v
 }
 

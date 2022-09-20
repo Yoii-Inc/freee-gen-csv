@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicantId** | **int32** | 申請者のユーザーID | 
+**ApplicantId** | **int64** | 申請者のユーザーID | 
 **ApplicationDate** | **string** | 申請日 (yyyy-mm-dd) | 
 **ApplicationNumber** | **string** | 申請No. | 
 **Approvers** | [**[]ApprovalRequestResponseApprovalRequestApproversInner**](ApprovalRequestResponseApprovalRequestApproversInner.md) | 承認者（配列）   承認ステップのresource_typeがunspecified (指定なし)の場合はapproversはレスポンスに含まれません。   しかし、resource_typeがunspecifiedの承認ステップにおいて誰かが承認・却下・差し戻しのいずれかのアクションを取った後は、   approversはレスポンスに含まれるようになります。   その場合approversにはアクションを行ったステップのIDとアクションを行ったユーザーのIDが含まれます。 | 
-**CompanyId** | **int32** | 事業所ID | 
-**CurrentRound** | **int32** | 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。 | 
-**CurrentStepId** | **NullableInt32** | 現在承認ステップID | 
-**DealId** | Pointer to **NullableInt32** | 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます) | [optional] 
+**CompanyId** | **int64** | 事業所ID | 
+**CurrentRound** | **int64** | 現在のround。差し戻し等により申請がstepの最初からやり直しになるとroundの値が増えます。 | 
+**CurrentStepId** | **NullableInt64** | 現在承認ステップID | 
+**DealId** | Pointer to **NullableInt64** | 取引ID (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_idが表示されます) | [optional] 
 **DealStatus** | Pointer to **NullableString** | 取引ステータス (申請ステータス:statusがapprovedで、取引が存在する時のみdeal_statusが表示されます settled:支払済み, unsettled:支払待ち) | [optional] 
 **DocumentCode** | **string** | 請求書番号 | 
-**Id** | **int32** | 支払依頼ID | 
+**Id** | **int64** | 支払依頼ID | 
 **IssueDate** | **string** | 発生日 (yyyy-mm-dd) | 
 **PartnerCode** | **NullableString** | 取引先コード | 
-**PartnerId** | **NullableInt32** | 取引先ID | 
+**PartnerId** | **NullableInt64** | 取引先ID | 
 **PartnerName** | **NullableString** | 取引先名 | 
 **PaymentDate** | **NullableString** | 支払期限 (yyyy-mm-dd) | 
 **PaymentMethod** | **string** | 支払方法(none: 指定なし, domestic_bank_transfer: 国内振込, abroad_bank_transfer: 国外振込, account_transfer: 口座振替, credit_card: クレジットカード) | 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewPaymentRequestsIndexResponsePaymentRequestsInner
 
-`func NewPaymentRequestsIndexResponsePaymentRequestsInner(applicantId int32, applicationDate string, applicationNumber string, approvers []ApprovalRequestResponseApprovalRequestApproversInner, companyId int32, currentRound int32, currentStepId NullableInt32, documentCode string, id int32, issueDate string, partnerCode NullableString, partnerId NullableInt32, partnerName NullableString, paymentDate NullableString, paymentMethod string, status string, title string, totalAmount int64, ) *PaymentRequestsIndexResponsePaymentRequestsInner`
+`func NewPaymentRequestsIndexResponsePaymentRequestsInner(applicantId int64, applicationDate string, applicationNumber string, approvers []ApprovalRequestResponseApprovalRequestApproversInner, companyId int64, currentRound int64, currentStepId NullableInt64, documentCode string, id int64, issueDate string, partnerCode NullableString, partnerId NullableInt64, partnerName NullableString, paymentDate NullableString, paymentMethod string, status string, title string, totalAmount int64, ) *PaymentRequestsIndexResponsePaymentRequestsInner`
 
 NewPaymentRequestsIndexResponsePaymentRequestsInner instantiates a new PaymentRequestsIndexResponsePaymentRequestsInner object
 This constructor will assign default values to properties that have it defined,
@@ -46,20 +46,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetApplicantId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantId() int32`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantId() int64`
 
 GetApplicantId returns the ApplicantId field if non-nil, zero value otherwise.
 
 ### GetApplicantIdOk
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantIdOk() (*int32, bool)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetApplicantIdOk() (*int64, bool)`
 
 GetApplicantIdOk returns a tuple with the ApplicantId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApplicantId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetApplicantId(v int32)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetApplicantId(v int64)`
 
 SetApplicantId sets ApplicantId field to given value.
 
@@ -126,60 +126,60 @@ SetApprovers sets Approvers field to given value.
 
 ### GetCompanyId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyId() int32`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyIdOk() (*int32, bool)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCompanyId(v int32)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
 
 ### GetCurrentRound
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRound() int32`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRound() int64`
 
 GetCurrentRound returns the CurrentRound field if non-nil, zero value otherwise.
 
 ### GetCurrentRoundOk
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRoundOk() (*int32, bool)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentRoundOk() (*int64, bool)`
 
 GetCurrentRoundOk returns a tuple with the CurrentRound field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentRound
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentRound(v int32)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentRound(v int64)`
 
 SetCurrentRound sets CurrentRound field to given value.
 
 
 ### GetCurrentStepId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepId() int32`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepId() int64`
 
 GetCurrentStepId returns the CurrentStepId field if non-nil, zero value otherwise.
 
 ### GetCurrentStepIdOk
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepIdOk() (*int32, bool)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetCurrentStepIdOk() (*int64, bool)`
 
 GetCurrentStepIdOk returns a tuple with the CurrentStepId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentStepId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentStepId(v int32)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetCurrentStepId(v int64)`
 
 SetCurrentStepId sets CurrentStepId field to given value.
 
@@ -196,20 +196,20 @@ SetCurrentStepId sets CurrentStepId field to given value.
 UnsetCurrentStepId ensures that no value is present for CurrentStepId, not even an explicit nil
 ### GetDealId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealId() int32`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealId() int64`
 
 GetDealId returns the DealId field if non-nil, zero value otherwise.
 
 ### GetDealIdOk
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealIdOk() (*int32, bool)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetDealIdOk() (*int64, bool)`
 
 GetDealIdOk returns a tuple with the DealId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDealId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetDealId(v int32)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetDealId(v int64)`
 
 SetDealId sets DealId field to given value.
 
@@ -286,20 +286,20 @@ SetDocumentCode sets DocumentCode field to given value.
 
 ### GetId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetId() int32`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetIdOk() (*int32, bool)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetId(v int32)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -356,20 +356,20 @@ SetPartnerCode sets PartnerCode field to given value.
 UnsetPartnerCode ensures that no value is present for PartnerCode, not even an explicit nil
 ### GetPartnerId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerId() int32`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerIdOk() (*int32, bool)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetPartnerId(v int32)`
+`func (o *PaymentRequestsIndexResponsePaymentRequestsInner) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 

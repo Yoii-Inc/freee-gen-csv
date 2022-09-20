@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **CompanyAddress1** | Pointer to **string** | 市区町村・番地 (デフォルトは事業所設定情報が補完されます) | [optional] 
 **CompanyAddress2** | Pointer to **string** | 建物名・部屋番号など (デフォルトは事業所設定情報が補完されます) | [optional] 
 **CompanyContactInfo** | Pointer to **string** | 事業所担当者名 (デフォルトは見積書テンプレート情報が補完されます) | [optional] 
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **CompanyName** | Pointer to **string** | 事業所名 (デフォルトは事業所設定情報が補完されます) | [optional] 
-**CompanyPrefectureCode** | Pointer to **int32** | 都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトは事業所設定情報が補完されます) | [optional] 
+**CompanyPrefectureCode** | Pointer to **int64** | 都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトは事業所設定情報が補完されます) | [optional] 
 **CompanyZipcode** | Pointer to **string** | 郵便番号 (デフォルトは事業所設定情報が補完されます) | [optional] 
 **Description** | Pointer to **string** | 概要 | [optional] 
 **IssueDate** | Pointer to **string** | 見積日 (yyyy-mm-dd) | [optional] 
@@ -20,8 +20,8 @@ Name | Type | Description | Notes
 **PartnerCode** | Pointer to **NullableString** | 取引先コード | [optional] 
 **PartnerContactInfo** | Pointer to **NullableString** | 取引先担当者名 | [optional] 
 **PartnerDisplayName** | **string** | 見積書に表示する取引先名 | 
-**PartnerId** | Pointer to **NullableInt32** | 取引先ID | [optional] 
-**PartnerPrefectureCode** | Pointer to **NullableInt32** | 取引先都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトはpartner_idもしくはpartner_codeで指定された取引先設定情報が補完されます) | [optional] 
+**PartnerId** | Pointer to **NullableInt64** | 取引先ID | [optional] 
+**PartnerPrefectureCode** | Pointer to **NullableInt64** | 取引先都道府県コード（0:北海道、1:青森、2:岩手、3:宮城、4:秋田、5:山形、6:福島、7:茨城、8:栃木、9:群馬、10:埼玉、11:千葉、12:東京、13:神奈川、14:新潟、15:富山、16:石川、17:福井、18:山梨、19:長野、20:岐阜、21:静岡、22:愛知、23:三重、24:滋賀、25:京都、26:大阪、27:兵庫、28:奈良、29:和歌山、30:鳥取、31:島根、32:岡山、33:広島、34:山口、35:徳島、36:香川、37:愛媛、38:高知、39:福岡、40:佐賀、41:長崎、42:熊本、43:大分、44:宮崎、45:鹿児島、46:沖縄) (デフォルトはpartner_idもしくはpartner_codeで指定された取引先設定情報が補完されます) | [optional] 
 **PartnerTitle** | **string** | 敬称（御中、様、(空白)の3つから選択） | 
 **PartnerZipcode** | Pointer to **NullableString** | 取引先郵便番号 (デフォルトはpartner_idもしくはpartner_codeで指定された取引先設定情報が補完されます) | [optional] 
 **QuotationContents** | Pointer to [**[]QuotationUpdateParamsQuotationContentsInner**](QuotationUpdateParamsQuotationContentsInner.md) | 見積内容 | [optional] 
@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewQuotationUpdateParams
 
-`func NewQuotationUpdateParams(companyId int32, partnerDisplayName string, partnerTitle string, ) *QuotationUpdateParams`
+`func NewQuotationUpdateParams(companyId int64, partnerDisplayName string, partnerTitle string, ) *QuotationUpdateParams`
 
 NewQuotationUpdateParams instantiates a new QuotationUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -127,20 +127,20 @@ HasCompanyContactInfo returns a boolean if a field has been set.
 
 ### GetCompanyId
 
-`func (o *QuotationUpdateParams) GetCompanyId() int32`
+`func (o *QuotationUpdateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *QuotationUpdateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *QuotationUpdateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *QuotationUpdateParams) SetCompanyId(v int32)`
+`func (o *QuotationUpdateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 
@@ -172,20 +172,20 @@ HasCompanyName returns a boolean if a field has been set.
 
 ### GetCompanyPrefectureCode
 
-`func (o *QuotationUpdateParams) GetCompanyPrefectureCode() int32`
+`func (o *QuotationUpdateParams) GetCompanyPrefectureCode() int64`
 
 GetCompanyPrefectureCode returns the CompanyPrefectureCode field if non-nil, zero value otherwise.
 
 ### GetCompanyPrefectureCodeOk
 
-`func (o *QuotationUpdateParams) GetCompanyPrefectureCodeOk() (*int32, bool)`
+`func (o *QuotationUpdateParams) GetCompanyPrefectureCodeOk() (*int64, bool)`
 
 GetCompanyPrefectureCodeOk returns a tuple with the CompanyPrefectureCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyPrefectureCode
 
-`func (o *QuotationUpdateParams) SetCompanyPrefectureCode(v int32)`
+`func (o *QuotationUpdateParams) SetCompanyPrefectureCode(v int64)`
 
 SetCompanyPrefectureCode sets CompanyPrefectureCode field to given value.
 
@@ -482,20 +482,20 @@ SetPartnerDisplayName sets PartnerDisplayName field to given value.
 
 ### GetPartnerId
 
-`func (o *QuotationUpdateParams) GetPartnerId() int32`
+`func (o *QuotationUpdateParams) GetPartnerId() int64`
 
 GetPartnerId returns the PartnerId field if non-nil, zero value otherwise.
 
 ### GetPartnerIdOk
 
-`func (o *QuotationUpdateParams) GetPartnerIdOk() (*int32, bool)`
+`func (o *QuotationUpdateParams) GetPartnerIdOk() (*int64, bool)`
 
 GetPartnerIdOk returns a tuple with the PartnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerId
 
-`func (o *QuotationUpdateParams) SetPartnerId(v int32)`
+`func (o *QuotationUpdateParams) SetPartnerId(v int64)`
 
 SetPartnerId sets PartnerId field to given value.
 
@@ -517,20 +517,20 @@ HasPartnerId returns a boolean if a field has been set.
 UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
 ### GetPartnerPrefectureCode
 
-`func (o *QuotationUpdateParams) GetPartnerPrefectureCode() int32`
+`func (o *QuotationUpdateParams) GetPartnerPrefectureCode() int64`
 
 GetPartnerPrefectureCode returns the PartnerPrefectureCode field if non-nil, zero value otherwise.
 
 ### GetPartnerPrefectureCodeOk
 
-`func (o *QuotationUpdateParams) GetPartnerPrefectureCodeOk() (*int32, bool)`
+`func (o *QuotationUpdateParams) GetPartnerPrefectureCodeOk() (*int64, bool)`
 
 GetPartnerPrefectureCodeOk returns a tuple with the PartnerPrefectureCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartnerPrefectureCode
 
-`func (o *QuotationUpdateParams) SetPartnerPrefectureCode(v int32)`
+`func (o *QuotationUpdateParams) SetPartnerPrefectureCode(v int64)`
 
 SetPartnerPrefectureCode sets PartnerPrefectureCode field to given value.
 

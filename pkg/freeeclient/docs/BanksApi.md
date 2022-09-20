@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 連携サービスID
+    id := int64(56) // int64 | 連携サービスID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | 連携サービスID | 
+**id** | **int64** | 連携サービスID | 
 
 ### Other Parameters
 
@@ -101,7 +101,7 @@ import (
 
 func main() {
     offset := int64(789) // int64 | 取得レコードのオフセット (デフォルト: 0) (optional)
-    limit := int32(56) // int32 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) (optional)
+    limit := int64(56) // int64 | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) (optional)
     type_ := "type__example" // string | サービス種別 (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiGetBanksRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offset** | **int64** | 取得レコードのオフセット (デフォルト: 0) | 
- **limit** | **int32** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) | 
+ **limit** | **int64** | 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) | 
  **type_** | **string** | サービス種別 | 
 
 ### Return type

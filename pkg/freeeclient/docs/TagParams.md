@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Name** | **string** | メモタグ名 (30文字以内) | 
 **Shortcut1** | Pointer to **string** | ショートカット1 (20文字以内) | [optional] 
 **Shortcut2** | Pointer to **string** | ショートカット2 (20文字以内) | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewTagParams
 
-`func NewTagParams(companyId int32, name string, ) *TagParams`
+`func NewTagParams(companyId int64, name string, ) *TagParams`
 
 NewTagParams instantiates a new TagParams object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *TagParams) GetCompanyId() int32`
+`func (o *TagParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *TagParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *TagParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *TagParams) SetCompanyId(v int32)`
+`func (o *TagParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

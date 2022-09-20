@@ -17,9 +17,9 @@ import (
 // TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner struct for TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner
 type TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner struct {
 	// 期末残高
-	ClosingBalance *int32 `json:"closing_balance,omitempty"`
+	ClosingBalance *int64 `json:"closing_balance,omitempty"`
 	// 取引先ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 取引先名
 	Name *string `json:"name,omitempty"`
 }
@@ -28,7 +28,7 @@ type TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner(id int32) *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner {
+func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner(id int64) *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner {
 	this := TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner{}
 	this.Id = id
 	return &this
@@ -43,9 +43,9 @@ func NewTrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartners
 }
 
 // GetClosingBalance returns the ClosingBalance field value if set, zero value otherwise.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetClosingBalance() int32 {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetClosingBalance() int64 {
 	if o == nil || o.ClosingBalance == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosingBalance
@@ -53,7 +53,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartner
 
 // GetClosingBalanceOk returns a tuple with the ClosingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetClosingBalanceOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetClosingBalanceOk() (*int64, bool) {
 	if o == nil || o.ClosingBalance == nil {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartner
 	return false
 }
 
-// SetClosingBalance gets a reference to the given int32 and assigns it to the ClosingBalance field.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) SetClosingBalance(v int32) {
+// SetClosingBalance gets a reference to the given int64 and assigns it to the ClosingBalance field.
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) SetClosingBalance(v int64) {
 	o.ClosingBalance = &v
 }
 
 // GetId returns the Id field value
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetId() int32 {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartner
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetIdOk() (*int32, bool) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartner
 }
 
 // SetId sets field value
-func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) SetId(v int32) {
+func (o *TrialCrSectionsResponseTrialCrSectionsBalancesInnerSectionsInnerPartnersInner) SetId(v int64) {
 	o.Id = v
 }
 

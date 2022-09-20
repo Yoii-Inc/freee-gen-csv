@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DisplayName** | **NullableString** | 事業所名 | 
-**Id** | **int32** | 事業所ID | 
+**Id** | **int64** | 事業所ID | 
 **Name** | **NullableString** | 事業所名 | 
 **NameKana** | **NullableString** | 事業所名（カナ） | 
 **Role** | **string** | ユーザーの権限 | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewCompanyIndexResponseCompaniesInner
 
-`func NewCompanyIndexResponseCompaniesInner(displayName NullableString, id int32, name NullableString, nameKana NullableString, role string, ) *CompanyIndexResponseCompaniesInner`
+`func NewCompanyIndexResponseCompaniesInner(displayName NullableString, id int64, name NullableString, nameKana NullableString, role string, ) *CompanyIndexResponseCompaniesInner`
 
 NewCompanyIndexResponseCompaniesInner instantiates a new CompanyIndexResponseCompaniesInner object
 This constructor will assign default values to properties that have it defined,
@@ -61,20 +61,20 @@ SetDisplayName sets DisplayName field to given value.
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetId
 
-`func (o *CompanyIndexResponseCompaniesInner) GetId() int32`
+`func (o *CompanyIndexResponseCompaniesInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CompanyIndexResponseCompaniesInner) GetIdOk() (*int32, bool)`
+`func (o *CompanyIndexResponseCompaniesInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CompanyIndexResponseCompaniesInner) SetId(v int32)`
+`func (o *CompanyIndexResponseCompaniesInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

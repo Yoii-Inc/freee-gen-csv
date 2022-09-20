@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdvisorId** | Pointer to **NullableInt32** | アドバイザープロファイルID（アドバイザー事業所で無い場合にnullになります） | [optional] 
+**AdvisorId** | Pointer to **NullableInt64** | アドバイザープロファイルID（アドバイザー事業所で無い場合にnullになります） | [optional] 
 **DisplayName** | **string** | 表示名 | 
-**Id** | **int32** | 事業所ID | 
+**Id** | **int64** | 事業所ID | 
 **Role** | **string** | ユーザーの権限 &lt;ul&gt; &lt;li&gt;admin: 管理者&lt;/li&gt; &lt;li&gt;simple_accounting: 一般&lt;/li&gt; &lt;li&gt;self_only: 取引登録のみ&lt;/li&gt; &lt;li&gt;read_only: 閲覧のみ&lt;/li&gt; &lt;li&gt;workflow: 申請・承認&lt;/li&gt; &lt;/ul&gt; | 
 **UseCustomRole** | **bool** | カスタム権限（true: 使用する、false: 使用しない） | 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewMeResponseUserCompaniesInner
 
-`func NewMeResponseUserCompaniesInner(displayName string, id int32, role string, useCustomRole bool, ) *MeResponseUserCompaniesInner`
+`func NewMeResponseUserCompaniesInner(displayName string, id int64, role string, useCustomRole bool, ) *MeResponseUserCompaniesInner`
 
 NewMeResponseUserCompaniesInner instantiates a new MeResponseUserCompaniesInner object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAdvisorId
 
-`func (o *MeResponseUserCompaniesInner) GetAdvisorId() int32`
+`func (o *MeResponseUserCompaniesInner) GetAdvisorId() int64`
 
 GetAdvisorId returns the AdvisorId field if non-nil, zero value otherwise.
 
 ### GetAdvisorIdOk
 
-`func (o *MeResponseUserCompaniesInner) GetAdvisorIdOk() (*int32, bool)`
+`func (o *MeResponseUserCompaniesInner) GetAdvisorIdOk() (*int64, bool)`
 
 GetAdvisorIdOk returns a tuple with the AdvisorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdvisorId
 
-`func (o *MeResponseUserCompaniesInner) SetAdvisorId(v int32)`
+`func (o *MeResponseUserCompaniesInner) SetAdvisorId(v int64)`
 
 SetAdvisorId sets AdvisorId field to given value.
 
@@ -86,20 +86,20 @@ SetDisplayName sets DisplayName field to given value.
 
 ### GetId
 
-`func (o *MeResponseUserCompaniesInner) GetId() int32`
+`func (o *MeResponseUserCompaniesInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *MeResponseUserCompaniesInner) GetIdOk() (*int32, bool)`
+`func (o *MeResponseUserCompaniesInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *MeResponseUserCompaniesInner) SetId(v int32)`
+`func (o *MeResponseUserCompaniesInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 

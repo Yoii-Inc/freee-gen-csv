@@ -17,13 +17,13 @@ import (
 // JournalsResponseJournals struct for JournalsResponseJournals
 type JournalsResponseJournals struct {
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// ダウンロード形式
 	DownloadType *string `json:"download_type,omitempty"`
 	// 取得終了日 (yyyy-mm-dd)
 	EndDate *string `json:"end_date,omitempty"`
 	// 受け付けID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Messages []string `json:"messages,omitempty"`
 	// 取得開始日 (yyyy-mm-dd)
 	StartDate *string `json:"start_date,omitempty"`
@@ -41,7 +41,7 @@ type JournalsResponseJournals struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJournalsResponseJournals(companyId int32, id int32) *JournalsResponseJournals {
+func NewJournalsResponseJournals(companyId int64, id int64) *JournalsResponseJournals {
 	this := JournalsResponseJournals{}
 	this.CompanyId = companyId
 	this.Id = id
@@ -57,9 +57,9 @@ func NewJournalsResponseJournalsWithDefaults() *JournalsResponseJournals {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *JournalsResponseJournals) GetCompanyId() int32 {
+func (o *JournalsResponseJournals) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *JournalsResponseJournals) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *JournalsResponseJournals) GetCompanyIdOk() (*int32, bool) {
+func (o *JournalsResponseJournals) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *JournalsResponseJournals) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *JournalsResponseJournals) SetCompanyId(v int32) {
+func (o *JournalsResponseJournals) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -145,9 +145,9 @@ func (o *JournalsResponseJournals) SetEndDate(v string) {
 }
 
 // GetId returns the Id field value
-func (o *JournalsResponseJournals) GetId() int32 {
+func (o *JournalsResponseJournals) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -156,7 +156,7 @@ func (o *JournalsResponseJournals) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *JournalsResponseJournals) GetIdOk() (*int32, bool) {
+func (o *JournalsResponseJournals) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -164,7 +164,7 @@ func (o *JournalsResponseJournals) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *JournalsResponseJournals) SetId(v int32) {
+func (o *JournalsResponseJournals) SetId(v int64) {
 	o.Id = v
 }
 

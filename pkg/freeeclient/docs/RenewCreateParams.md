@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Details** | [**[]RenewCreateParamsDetailsInner**](RenewCreateParamsDetailsInner.md) | +更新の明細行 | 
 **RenewTargetId** | **int64** | +更新対象行ID (details(取引の明細行), accruals(債権債務行), renewsのdetails(+更新の明細行)のIDを指定)  | 
 **UpdateDate** | **string** | 更新日 (yyyy-mm-dd) | 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewRenewCreateParams
 
-`func NewRenewCreateParams(companyId int32, details []RenewCreateParamsDetailsInner, renewTargetId int64, updateDate string, ) *RenewCreateParams`
+`func NewRenewCreateParams(companyId int64, details []RenewCreateParamsDetailsInner, renewTargetId int64, updateDate string, ) *RenewCreateParams`
 
 NewRenewCreateParams instantiates a new RenewCreateParams object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *RenewCreateParams) GetCompanyId() int32`
+`func (o *RenewCreateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *RenewCreateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *RenewCreateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *RenewCreateParams) SetCompanyId(v int32)`
+`func (o *RenewCreateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

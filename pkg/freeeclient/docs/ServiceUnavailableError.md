@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Errors** | [**[]ServiceUnavailableErrorErrorsInner**](ServiceUnavailableErrorErrorsInner.md) |  | 
-**StatusCode** | **int32** |  | 
+**StatusCode** | **int64** |  | 
 
 ## Methods
 
 ### NewServiceUnavailableError
 
-`func NewServiceUnavailableError(errors []ServiceUnavailableErrorErrorsInner, statusCode int32, ) *ServiceUnavailableError`
+`func NewServiceUnavailableError(errors []ServiceUnavailableErrorErrorsInner, statusCode int64, ) *ServiceUnavailableError`
 
 NewServiceUnavailableError instantiates a new ServiceUnavailableError object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetErrors sets Errors field to given value.
 
 ### GetStatusCode
 
-`func (o *ServiceUnavailableError) GetStatusCode() int32`
+`func (o *ServiceUnavailableError) GetStatusCode() int64`
 
 GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
 
 ### GetStatusCodeOk
 
-`func (o *ServiceUnavailableError) GetStatusCodeOk() (*int32, bool)`
+`func (o *ServiceUnavailableError) GetStatusCodeOk() (*int64, bool)`
 
 GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusCode
 
-`func (o *ServiceUnavailableError) SetStatusCode(v int32)`
+`func (o *ServiceUnavailableError) SetStatusCode(v int64)`
 
 SetStatusCode sets StatusCode field to given value.
 

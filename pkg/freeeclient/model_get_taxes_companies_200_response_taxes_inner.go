@@ -19,7 +19,7 @@ type GetTaxesCompanies200ResponseTaxesInner struct {
 	// true: 使用する、false: 使用しない
 	Available bool `json:"available"`
 	// 税区分コード
-	Code int32 `json:"code"`
+	Code int64 `json:"code"`
 	// 税区分の表示カテゴリ（tax_5: 5%表示の税区分、tax_8: 8%表示の税区分、tax_r8: 軽減税率8%表示の税区分、tax_10: 10%表示の税区分、null: 税率未設定税区分）
 	DisplayCategory NullableString `json:"display_category"`
 	// 税区分名
@@ -32,7 +32,7 @@ type GetTaxesCompanies200ResponseTaxesInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetTaxesCompanies200ResponseTaxesInner(available bool, code int32, displayCategory NullableString, name string, nameJa string) *GetTaxesCompanies200ResponseTaxesInner {
+func NewGetTaxesCompanies200ResponseTaxesInner(available bool, code int64, displayCategory NullableString, name string, nameJa string) *GetTaxesCompanies200ResponseTaxesInner {
 	this := GetTaxesCompanies200ResponseTaxesInner{}
 	this.Available = available
 	this.Code = code
@@ -75,9 +75,9 @@ func (o *GetTaxesCompanies200ResponseTaxesInner) SetAvailable(v bool) {
 }
 
 // GetCode returns the Code field value
-func (o *GetTaxesCompanies200ResponseTaxesInner) GetCode() int32 {
+func (o *GetTaxesCompanies200ResponseTaxesInner) GetCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *GetTaxesCompanies200ResponseTaxesInner) GetCode() int32 {
 
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *GetTaxesCompanies200ResponseTaxesInner) GetCodeOk() (*int32, bool) {
+func (o *GetTaxesCompanies200ResponseTaxesInner) GetCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *GetTaxesCompanies200ResponseTaxesInner) GetCodeOk() (*int32, bool) {
 }
 
 // SetCode sets field value
-func (o *GetTaxesCompanies200ResponseTaxesInner) SetCode(v int32) {
+func (o *GetTaxesCompanies200ResponseTaxesInner) SetCode(v int64) {
 	o.Code = v
 }
 

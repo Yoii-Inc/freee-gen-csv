@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Annotation** | Pointer to **NullableString** | 追加説明 | [optional] 
-**Id** | **int32** | 項目ID | 
+**Id** | **int64** | 項目ID | 
 **Label** | Pointer to **string** | 項目名 | [optional] 
-**MaxAmount** | Pointer to **NullableInt32** | 上限金額 | [optional] 
-**MinAmount** | Pointer to **NullableInt32** | 下限金額 | [optional] 
-**Order** | Pointer to **int32** | 順序 | [optional] 
+**MaxAmount** | Pointer to **NullableInt64** | 上限金額 | [optional] 
+**MinAmount** | Pointer to **NullableInt64** | 下限金額 | [optional] 
+**Order** | Pointer to **int64** | 順序 | [optional] 
 **Required** | Pointer to **NullableBool** | 必須かどうか | [optional] 
 **Type** | Pointer to **string** | 項目種別 (title: 申請タイトル, single_line: 自由記述形式 1行, multi_line: 自由記述形式 複数行, select: プルダウン, date: 日付, amount: 金額, receipt: 添付ファイル, section: 部門ID, partner: 取引先ID, ninja_sign_document: 契約書（freeeサイン連携）) | [optional] 
 **Values** | Pointer to [**[]ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner**](ApprovalRequestFormResponseApprovalRequestFormPartsInnerValuesInner.md) | 選択項目 | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewApprovalRequestFormResponseApprovalRequestFormPartsInner
 
-`func NewApprovalRequestFormResponseApprovalRequestFormPartsInner(id int32, ) *ApprovalRequestFormResponseApprovalRequestFormPartsInner`
+`func NewApprovalRequestFormResponseApprovalRequestFormPartsInner(id int64, ) *ApprovalRequestFormResponseApprovalRequestFormPartsInner`
 
 NewApprovalRequestFormResponseApprovalRequestFormPartsInner instantiates a new ApprovalRequestFormResponseApprovalRequestFormPartsInner object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ HasAnnotation returns a boolean if a field has been set.
 UnsetAnnotation ensures that no value is present for Annotation, not even an explicit nil
 ### GetId
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetId() int32`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetIdOk() (*int32, bool)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetId(v int32)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -115,20 +115,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetMaxAmount
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmount() int32`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmount() int64`
 
 GetMaxAmount returns the MaxAmount field if non-nil, zero value otherwise.
 
 ### GetMaxAmountOk
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmountOk() (*int32, bool)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMaxAmountOk() (*int64, bool)`
 
 GetMaxAmountOk returns a tuple with the MaxAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMaxAmount
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMaxAmount(v int32)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMaxAmount(v int64)`
 
 SetMaxAmount sets MaxAmount field to given value.
 
@@ -150,20 +150,20 @@ HasMaxAmount returns a boolean if a field has been set.
 UnsetMaxAmount ensures that no value is present for MaxAmount, not even an explicit nil
 ### GetMinAmount
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmount() int32`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmount() int64`
 
 GetMinAmount returns the MinAmount field if non-nil, zero value otherwise.
 
 ### GetMinAmountOk
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmountOk() (*int32, bool)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetMinAmountOk() (*int64, bool)`
 
 GetMinAmountOk returns a tuple with the MinAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMinAmount
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMinAmount(v int32)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetMinAmount(v int64)`
 
 SetMinAmount sets MinAmount field to given value.
 
@@ -185,20 +185,20 @@ HasMinAmount returns a boolean if a field has been set.
 UnsetMinAmount ensures that no value is present for MinAmount, not even an explicit nil
 ### GetOrder
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrder() int32`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrder() int64`
 
 GetOrder returns the Order field if non-nil, zero value otherwise.
 
 ### GetOrderOk
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrderOk() (*int32, bool)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) GetOrderOk() (*int64, bool)`
 
 GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrder
 
-`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetOrder(v int32)`
+`func (o *ApprovalRequestFormResponseApprovalRequestFormPartsInner) SetOrder(v int64)`
 
 SetOrder sets Order field to given value.
 

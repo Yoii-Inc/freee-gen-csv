@@ -26,7 +26,7 @@ type SegmentTagsApiService service
 type ApiCreateSegmentTagRequest struct {
 	ctx context.Context
 	ApiService *SegmentTagsApiService
-	segmentId int32
+	segmentId int64
 	segmentTagParams *SegmentTagParams
 }
 
@@ -60,7 +60,7 @@ CreateSegmentTag セグメントの作成
  @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
  @return ApiCreateSegmentTagRequest
 */
-func (a *SegmentTagsApiService) CreateSegmentTag(ctx context.Context, segmentId int32) ApiCreateSegmentTagRequest {
+func (a *SegmentTagsApiService) CreateSegmentTag(ctx context.Context, segmentId int64) ApiCreateSegmentTagRequest {
 	return ApiCreateSegmentTagRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -197,13 +197,13 @@ func (a *SegmentTagsApiService) CreateSegmentTagExecute(r ApiCreateSegmentTagReq
 type ApiDestroySegmentsTagRequest struct {
 	ctx context.Context
 	ApiService *SegmentTagsApiService
-	segmentId int32
-	id int32
-	companyId *int32
+	segmentId int64
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroySegmentsTagRequest) CompanyId(companyId int32) ApiDestroySegmentsTagRequest {
+func (r ApiDestroySegmentsTagRequest) CompanyId(companyId int64) ApiDestroySegmentsTagRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -233,7 +233,7 @@ DestroySegmentsTag セグメントタグの削除
  @param id セグメントタグID
  @return ApiDestroySegmentsTagRequest
 */
-func (a *SegmentTagsApiService) DestroySegmentsTag(ctx context.Context, segmentId int32, id int32) ApiDestroySegmentsTagRequest {
+func (a *SegmentTagsApiService) DestroySegmentsTag(ctx context.Context, segmentId int64, id int64) ApiDestroySegmentsTagRequest {
 	return ApiDestroySegmentsTagRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -372,14 +372,14 @@ func (a *SegmentTagsApiService) DestroySegmentsTagExecute(r ApiDestroySegmentsTa
 type ApiGetSegmentTagsRequest struct {
 	ctx context.Context
 	ApiService *SegmentTagsApiService
-	companyId *int32
-	segmentId int32
+	companyId *int64
+	segmentId int64
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetSegmentTagsRequest) CompanyId(companyId int32) ApiGetSegmentTagsRequest {
+func (r ApiGetSegmentTagsRequest) CompanyId(companyId int64) ApiGetSegmentTagsRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -391,7 +391,7 @@ func (r ApiGetSegmentTagsRequest) Offset(offset int64) ApiGetSegmentTagsRequest 
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最小: 1, 最大: 500) 
-func (r ApiGetSegmentTagsRequest) Limit(limit int32) ApiGetSegmentTagsRequest {
+func (r ApiGetSegmentTagsRequest) Limit(limit int64) ApiGetSegmentTagsRequest {
 	r.limit = &limit
 	return r
 }
@@ -420,7 +420,7 @@ GetSegmentTags セグメントタグ一覧の取得
  @param segmentId セグメントID（1,2,3のいずれか） 該当プラン以外で参照した場合にはエラーとなります。   1: 法人向けプロフェッショナル, 法人向けエンタープライズプラン   2,3: 法人向け エンタープライズプラン 
  @return ApiGetSegmentTagsRequest
 */
-func (a *SegmentTagsApiService) GetSegmentTags(ctx context.Context, segmentId int32) ApiGetSegmentTagsRequest {
+func (a *SegmentTagsApiService) GetSegmentTags(ctx context.Context, segmentId int64) ApiGetSegmentTagsRequest {
 	return ApiGetSegmentTagsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -568,8 +568,8 @@ func (a *SegmentTagsApiService) GetSegmentTagsExecute(r ApiGetSegmentTagsRequest
 type ApiUpdateSegmentTagRequest struct {
 	ctx context.Context
 	ApiService *SegmentTagsApiService
-	segmentId int32
-	id int32
+	segmentId int64
+	id int64
 	segmentTagParams *SegmentTagParams
 }
 
@@ -604,7 +604,7 @@ UpdateSegmentTag セグメントタグの更新
  @param id セグメントタグID
  @return ApiUpdateSegmentTagRequest
 */
-func (a *SegmentTagsApiService) UpdateSegmentTag(ctx context.Context, segmentId int32, id int32) ApiUpdateSegmentTagRequest {
+func (a *SegmentTagsApiService) UpdateSegmentTag(ctx context.Context, segmentId int64, id int64) ApiUpdateSegmentTagRequest {
 	return ApiUpdateSegmentTagRequest{
 		ApiService: a,
 		ctx: ctx,

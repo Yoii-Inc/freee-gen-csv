@@ -19,15 +19,15 @@ type ManualJournal struct {
 	// 決算整理仕訳フラグ（falseまたは未指定の場合: 日常仕訳）
 	Adjustment bool `json:"adjustment"`
 	// 事業所ID
-	CompanyId int32 `json:"company_id"`
+	CompanyId int64 `json:"company_id"`
 	// 貸借行一覧（配列）: 貸借合わせて100行まで登録できます。
 	Details []ManualJournalDetailsInner `json:"details"`
 	// 振替伝票ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// 発生日 (yyyy-mm-dd)
 	IssueDate string `json:"issue_date"`
 	// 証憑ファイルID（ファイルボックスのファイルID）
-	ReceiptIds []int32 `json:"receipt_ids,omitempty"`
+	ReceiptIds []int64 `json:"receipt_ids,omitempty"`
 	// 仕訳番号
 	TxnNumber NullableString `json:"txn_number"`
 }
@@ -36,7 +36,7 @@ type ManualJournal struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualJournal(adjustment bool, companyId int32, details []ManualJournalDetailsInner, id int32, issueDate string, txnNumber NullableString) *ManualJournal {
+func NewManualJournal(adjustment bool, companyId int64, details []ManualJournalDetailsInner, id int64, issueDate string, txnNumber NullableString) *ManualJournal {
 	this := ManualJournal{}
 	this.Adjustment = adjustment
 	this.CompanyId = companyId
@@ -80,9 +80,9 @@ func (o *ManualJournal) SetAdjustment(v bool) {
 }
 
 // GetCompanyId returns the CompanyId field value
-func (o *ManualJournal) GetCompanyId() int32 {
+func (o *ManualJournal) GetCompanyId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *ManualJournal) GetCompanyId() int32 {
 
 // GetCompanyIdOk returns a tuple with the CompanyId field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournal) GetCompanyIdOk() (*int32, bool) {
+func (o *ManualJournal) GetCompanyIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *ManualJournal) GetCompanyIdOk() (*int32, bool) {
 }
 
 // SetCompanyId sets field value
-func (o *ManualJournal) SetCompanyId(v int32) {
+func (o *ManualJournal) SetCompanyId(v int64) {
 	o.CompanyId = v
 }
 
@@ -128,9 +128,9 @@ func (o *ManualJournal) SetDetails(v []ManualJournalDetailsInner) {
 }
 
 // GetId returns the Id field value
-func (o *ManualJournal) GetId() int32 {
+func (o *ManualJournal) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -139,7 +139,7 @@ func (o *ManualJournal) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ManualJournal) GetIdOk() (*int32, bool) {
+func (o *ManualJournal) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,7 +147,7 @@ func (o *ManualJournal) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ManualJournal) SetId(v int32) {
+func (o *ManualJournal) SetId(v int64) {
 	o.Id = v
 }
 
@@ -176,9 +176,9 @@ func (o *ManualJournal) SetIssueDate(v string) {
 }
 
 // GetReceiptIds returns the ReceiptIds field value if set, zero value otherwise.
-func (o *ManualJournal) GetReceiptIds() []int32 {
+func (o *ManualJournal) GetReceiptIds() []int64 {
 	if o == nil || o.ReceiptIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.ReceiptIds
@@ -186,7 +186,7 @@ func (o *ManualJournal) GetReceiptIds() []int32 {
 
 // GetReceiptIdsOk returns a tuple with the ReceiptIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournal) GetReceiptIdsOk() ([]int32, bool) {
+func (o *ManualJournal) GetReceiptIdsOk() ([]int64, bool) {
 	if o == nil || o.ReceiptIds == nil {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *ManualJournal) HasReceiptIds() bool {
 	return false
 }
 
-// SetReceiptIds gets a reference to the given []int32 and assigns it to the ReceiptIds field.
-func (o *ManualJournal) SetReceiptIds(v []int32) {
+// SetReceiptIds gets a reference to the given []int64 and assigns it to the ReceiptIds field.
+func (o *ManualJournal) SetReceiptIds(v []int64) {
 	o.ReceiptIds = v
 }
 

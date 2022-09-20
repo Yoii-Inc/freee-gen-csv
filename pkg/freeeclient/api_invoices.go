@@ -194,12 +194,12 @@ func (a *InvoicesApiService) CreateInvoiceExecute(r ApiCreateInvoiceRequest) (*I
 type ApiDestroyInvoiceRequest struct {
 	ctx context.Context
 	ApiService *InvoicesApiService
-	id int32
-	companyId *int32
+	id int64
+	companyId *int64
 }
 
 // 事業所ID
-func (r ApiDestroyInvoiceRequest) CompanyId(companyId int32) ApiDestroyInvoiceRequest {
+func (r ApiDestroyInvoiceRequest) CompanyId(companyId int64) ApiDestroyInvoiceRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -220,7 +220,7 @@ DestroyInvoice 請求書の削除
  @param id
  @return ApiDestroyInvoiceRequest
 */
-func (a *InvoicesApiService) DestroyInvoice(ctx context.Context, id int32) ApiDestroyInvoiceRequest {
+func (a *InvoicesApiService) DestroyInvoice(ctx context.Context, id int64) ApiDestroyInvoiceRequest {
 	return ApiDestroyInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -361,12 +361,12 @@ func (a *InvoicesApiService) DestroyInvoiceExecute(r ApiDestroyInvoiceRequest) (
 type ApiGetInvoiceRequest struct {
 	ctx context.Context
 	ApiService *InvoicesApiService
-	companyId *int32
-	id int32
+	companyId *int64
+	id int64
 }
 
 // 事業所ID
-func (r ApiGetInvoiceRequest) CompanyId(companyId int32) ApiGetInvoiceRequest {
+func (r ApiGetInvoiceRequest) CompanyId(companyId int64) ApiGetInvoiceRequest {
 	r.companyId = &companyId
 	return r
 }
@@ -387,7 +387,7 @@ GetInvoice 請求書の取得
  @param id 請求書ID
  @return ApiGetInvoiceRequest
 */
-func (a *InvoicesApiService) GetInvoice(ctx context.Context, id int32) ApiGetInvoiceRequest {
+func (a *InvoicesApiService) GetInvoice(ctx context.Context, id int64) ApiGetInvoiceRequest {
 	return ApiGetInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -539,8 +539,8 @@ func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (*Invoice
 type ApiGetInvoicesRequest struct {
 	ctx context.Context
 	ApiService *InvoicesApiService
-	companyId *int32
-	partnerId *int32
+	companyId *int64
+	partnerId *int64
 	partnerCode *string
 	startIssueDate *string
 	endIssueDate *string
@@ -551,17 +551,17 @@ type ApiGetInvoicesRequest struct {
 	invoiceStatus *string
 	paymentStatus *string
 	offset *int64
-	limit *int32
+	limit *int64
 }
 
 // 事業所ID
-func (r ApiGetInvoicesRequest) CompanyId(companyId int32) ApiGetInvoicesRequest {
+func (r ApiGetInvoicesRequest) CompanyId(companyId int64) ApiGetInvoicesRequest {
 	r.companyId = &companyId
 	return r
 }
 
 // 取引先IDで絞込
-func (r ApiGetInvoicesRequest) PartnerId(partnerId int32) ApiGetInvoicesRequest {
+func (r ApiGetInvoicesRequest) PartnerId(partnerId int64) ApiGetInvoicesRequest {
 	r.partnerId = &partnerId
 	return r
 }
@@ -627,7 +627,7 @@ func (r ApiGetInvoicesRequest) Offset(offset int64) ApiGetInvoicesRequest {
 }
 
 // 取得レコードの件数 (デフォルト: 20, 最大: 100) 
-func (r ApiGetInvoicesRequest) Limit(limit int32) ApiGetInvoicesRequest {
+func (r ApiGetInvoicesRequest) Limit(limit int64) ApiGetInvoicesRequest {
 	r.limit = &limit
 	return r
 }
@@ -828,7 +828,7 @@ func (a *InvoicesApiService) GetInvoicesExecute(r ApiGetInvoicesRequest) (*Invoi
 type ApiUpdateInvoiceRequest struct {
 	ctx context.Context
 	ApiService *InvoicesApiService
-	id int32
+	id int64
 	invoiceUpdateParams *InvoiceUpdateParams
 }
 
@@ -865,7 +865,7 @@ UpdateInvoice 請求書の更新
  @param id 請求書ID
  @return ApiUpdateInvoiceRequest
 */
-func (a *InvoicesApiService) UpdateInvoice(ctx context.Context, id int32) ApiUpdateInvoiceRequest {
+func (a *InvoicesApiService) UpdateInvoice(ctx context.Context, id int64) ApiUpdateInvoiceRequest {
 	return ApiUpdateInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,

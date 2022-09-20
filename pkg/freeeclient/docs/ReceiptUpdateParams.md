@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompanyId** | **int32** | 事業所ID | 
+**CompanyId** | **int64** | 事業所ID | 
 **Description** | Pointer to **string** | メモ (255文字以内) | [optional] 
 **IssueDate** | **string** | 取引日 (yyyy-mm-dd) | 
 **ReceiptMetadatum** | Pointer to [**DealReceiptsInnerReceiptMetadatum**](DealReceiptsInnerReceiptMetadatum.md) |  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewReceiptUpdateParams
 
-`func NewReceiptUpdateParams(companyId int32, issueDate string, ) *ReceiptUpdateParams`
+`func NewReceiptUpdateParams(companyId int64, issueDate string, ) *ReceiptUpdateParams`
 
 NewReceiptUpdateParams instantiates a new ReceiptUpdateParams object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCompanyId
 
-`func (o *ReceiptUpdateParams) GetCompanyId() int32`
+`func (o *ReceiptUpdateParams) GetCompanyId() int64`
 
 GetCompanyId returns the CompanyId field if non-nil, zero value otherwise.
 
 ### GetCompanyIdOk
 
-`func (o *ReceiptUpdateParams) GetCompanyIdOk() (*int32, bool)`
+`func (o *ReceiptUpdateParams) GetCompanyIdOk() (*int64, bool)`
 
 GetCompanyIdOk returns a tuple with the CompanyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCompanyId
 
-`func (o *ReceiptUpdateParams) SetCompanyId(v int32)`
+`func (o *ReceiptUpdateParams) SetCompanyId(v int64)`
 
 SetCompanyId sets CompanyId field to given value.
 

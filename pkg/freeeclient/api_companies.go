@@ -181,7 +181,7 @@ func (a *CompaniesApiService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Co
 type ApiGetCompanyRequest struct {
 	ctx context.Context
 	ApiService *CompaniesApiService
-	id int32
+	id int64
 	details *bool
 	accountItems *bool
 	taxes *bool
@@ -272,7 +272,7 @@ GetCompany 事業所の詳細情報の取得
  @param id 事業所ID
  @return ApiGetCompanyRequest
 */
-func (a *CompaniesApiService) GetCompany(ctx context.Context, id int32) ApiGetCompanyRequest {
+func (a *CompaniesApiService) GetCompany(ctx context.Context, id int64) ApiGetCompanyRequest {
 	return ApiGetCompanyRequest{
 		ApiService: a,
 		ctx: ctx,

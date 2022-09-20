@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Errors** | Pointer to [**[]BadRequestNotFoundErrorErrorsInner**](BadRequestNotFoundErrorErrorsInner.md) |  | [optional] 
-**StatusCode** | Pointer to **int32** |  | [optional] 
+**StatusCode** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasErrors returns a boolean if a field has been set.
 
 ### GetStatusCode
 
-`func (o *BadRequestNotFoundError) GetStatusCode() int32`
+`func (o *BadRequestNotFoundError) GetStatusCode() int64`
 
 GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
 
 ### GetStatusCodeOk
 
-`func (o *BadRequestNotFoundError) GetStatusCodeOk() (*int32, bool)`
+`func (o *BadRequestNotFoundError) GetStatusCodeOk() (*int64, bool)`
 
 GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusCode
 
-`func (o *BadRequestNotFoundError) SetStatusCode(v int32)`
+`func (o *BadRequestNotFoundError) SetStatusCode(v int64)`
 
 SetStatusCode sets StatusCode field to given value.
 
