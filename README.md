@@ -1,7 +1,9 @@
 # openapi-generaterを用いたgo sdkの生成
+1.
 ```
-openapi-generator generate -g go -i pkg/freeeclient/api/openapi.yaml -o pkg/freeeclient --git-user-id Yoii-Inc --git-repo-id freee-gen-csv --additional-properties=packageVersion=0.2.0,packageName=freeeclient  --type-mappings=integer=int64
+openapi-generator generate -g go -i pkg/freeeclient/api/openapi.yaml -o pkg/freeeclient --git-user-id Yoii-Inc --git-repo-id freee-gen-csv --additional-properties=packageVersion=0.2.0,packageName=freeeclient --type-mappings=integer=int64
 ```
+2. Remove go.mod, go.sum in pkg/freeeclient
 
 # 概要
 freeeの取引履歴のうち、売上高のみ取り出しCSV(sales.csv)へ出力する
