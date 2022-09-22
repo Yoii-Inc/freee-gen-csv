@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **SectionId** | **NullableInt64** | 部門ID | 
 **SectionName** | **NullableString** | 部門 | 
 **Segment1TagId** | Pointer to **NullableInt64** | セグメント１ID | [optional] 
-**Segment1TagName** | Pointer to **NullableString** | セグメント１ID | [optional] 
+**Segment1TagName** | Pointer to **NullableString** | セグメント１ | [optional] 
 **Segment2TagId** | Pointer to **NullableInt64** | セグメント２ID | [optional] 
 **Segment2TagName** | Pointer to **NullableString** | セグメント２ | [optional] 
 **Segment3TagId** | Pointer to **NullableInt64** | セグメント３ID | [optional] 

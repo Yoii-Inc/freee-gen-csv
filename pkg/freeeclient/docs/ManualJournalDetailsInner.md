@@ -18,11 +18,11 @@ Name | Type | Description | Notes
 **SectionId** | **NullableInt64** | 部門ID | 
 **SectionName** | **NullableString** | 部門 | 
 **Segment1TagId** | Pointer to **int64** | セグメント１ID | [optional] 
-**Segment1TagName** | Pointer to **int64** | セグメント１ID | [optional] 
+**Segment1TagName** | Pointer to **NullableString** | セグメント１ | [optional] 
 **Segment2TagId** | Pointer to **int64** | セグメント２ID | [optional] 
-**Segment2TagName** | Pointer to **int64** | セグメント２ | [optional] 
+**Segment2TagName** | Pointer to **NullableString** | セグメント２ | [optional] 
 **Segment3TagId** | Pointer to **int64** | セグメント３ID | [optional] 
-**Segment3TagName** | Pointer to **int64** | セグメント３ | [optional] 
+**Segment3TagName** | Pointer to **NullableString** | セグメント３ | [optional] 
 **TagIds** | **[]int64** |  | 
 **TagNames** | **[]string** |  | 
 **TaxCode** | **int64** | 税区分コード | 
@@ -419,20 +419,20 @@ HasSegment1TagId returns a boolean if a field has been set.
 
 ### GetSegment1TagName
 
-`func (o *ManualJournalDetailsInner) GetSegment1TagName() int64`
+`func (o *ManualJournalDetailsInner) GetSegment1TagName() string`
 
 GetSegment1TagName returns the Segment1TagName field if non-nil, zero value otherwise.
 
 ### GetSegment1TagNameOk
 
-`func (o *ManualJournalDetailsInner) GetSegment1TagNameOk() (*int64, bool)`
+`func (o *ManualJournalDetailsInner) GetSegment1TagNameOk() (*string, bool)`
 
 GetSegment1TagNameOk returns a tuple with the Segment1TagName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSegment1TagName
 
-`func (o *ManualJournalDetailsInner) SetSegment1TagName(v int64)`
+`func (o *ManualJournalDetailsInner) SetSegment1TagName(v string)`
 
 SetSegment1TagName sets Segment1TagName field to given value.
 
@@ -442,6 +442,16 @@ SetSegment1TagName sets Segment1TagName field to given value.
 
 HasSegment1TagName returns a boolean if a field has been set.
 
+### SetSegment1TagNameNil
+
+`func (o *ManualJournalDetailsInner) SetSegment1TagNameNil(b bool)`
+
+ SetSegment1TagNameNil sets the value for Segment1TagName to be an explicit nil
+
+### UnsetSegment1TagName
+`func (o *ManualJournalDetailsInner) UnsetSegment1TagName()`
+
+UnsetSegment1TagName ensures that no value is present for Segment1TagName, not even an explicit nil
 ### GetSegment2TagId
 
 `func (o *ManualJournalDetailsInner) GetSegment2TagId() int64`
@@ -469,20 +479,20 @@ HasSegment2TagId returns a boolean if a field has been set.
 
 ### GetSegment2TagName
 
-`func (o *ManualJournalDetailsInner) GetSegment2TagName() int64`
+`func (o *ManualJournalDetailsInner) GetSegment2TagName() string`
 
 GetSegment2TagName returns the Segment2TagName field if non-nil, zero value otherwise.
 
 ### GetSegment2TagNameOk
 
-`func (o *ManualJournalDetailsInner) GetSegment2TagNameOk() (*int64, bool)`
+`func (o *ManualJournalDetailsInner) GetSegment2TagNameOk() (*string, bool)`
 
 GetSegment2TagNameOk returns a tuple with the Segment2TagName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSegment2TagName
 
-`func (o *ManualJournalDetailsInner) SetSegment2TagName(v int64)`
+`func (o *ManualJournalDetailsInner) SetSegment2TagName(v string)`
 
 SetSegment2TagName sets Segment2TagName field to given value.
 
@@ -492,6 +502,16 @@ SetSegment2TagName sets Segment2TagName field to given value.
 
 HasSegment2TagName returns a boolean if a field has been set.
 
+### SetSegment2TagNameNil
+
+`func (o *ManualJournalDetailsInner) SetSegment2TagNameNil(b bool)`
+
+ SetSegment2TagNameNil sets the value for Segment2TagName to be an explicit nil
+
+### UnsetSegment2TagName
+`func (o *ManualJournalDetailsInner) UnsetSegment2TagName()`
+
+UnsetSegment2TagName ensures that no value is present for Segment2TagName, not even an explicit nil
 ### GetSegment3TagId
 
 `func (o *ManualJournalDetailsInner) GetSegment3TagId() int64`
@@ -519,20 +539,20 @@ HasSegment3TagId returns a boolean if a field has been set.
 
 ### GetSegment3TagName
 
-`func (o *ManualJournalDetailsInner) GetSegment3TagName() int64`
+`func (o *ManualJournalDetailsInner) GetSegment3TagName() string`
 
 GetSegment3TagName returns the Segment3TagName field if non-nil, zero value otherwise.
 
 ### GetSegment3TagNameOk
 
-`func (o *ManualJournalDetailsInner) GetSegment3TagNameOk() (*int64, bool)`
+`func (o *ManualJournalDetailsInner) GetSegment3TagNameOk() (*string, bool)`
 
 GetSegment3TagNameOk returns a tuple with the Segment3TagName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSegment3TagName
 
-`func (o *ManualJournalDetailsInner) SetSegment3TagName(v int64)`
+`func (o *ManualJournalDetailsInner) SetSegment3TagName(v string)`
 
 SetSegment3TagName sets Segment3TagName field to given value.
 
@@ -542,6 +562,16 @@ SetSegment3TagName sets Segment3TagName field to given value.
 
 HasSegment3TagName returns a boolean if a field has been set.
 
+### SetSegment3TagNameNil
+
+`func (o *ManualJournalDetailsInner) SetSegment3TagNameNil(b bool)`
+
+ SetSegment3TagNameNil sets the value for Segment3TagName to be an explicit nil
+
+### UnsetSegment3TagName
+`func (o *ManualJournalDetailsInner) UnsetSegment3TagName()`
+
+UnsetSegment3TagName ensures that no value is present for Segment3TagName, not even an explicit nil
 ### GetTagIds
 
 `func (o *ManualJournalDetailsInner) GetTagIds() []int64`

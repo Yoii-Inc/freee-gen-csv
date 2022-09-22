@@ -42,7 +42,7 @@ type QuotationIndexResponseQuotationsInnerQuotationContentsInner struct {
 	SectionName NullableString `json:"section_name"`
 	// セグメント１ID
 	Segment1TagId NullableInt64 `json:"segment_1_tag_id,omitempty"`
-	// セグメント１ID
+	// セグメント１
 	Segment1TagName NullableString `json:"segment_1_tag_name,omitempty"`
 	// セグメント２ID
 	Segment2TagId NullableInt64 `json:"segment_2_tag_id,omitempty"`
