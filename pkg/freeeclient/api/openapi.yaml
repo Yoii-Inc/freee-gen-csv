@@ -28780,7 +28780,7 @@ components:
           nullable: true
           type: integer
         segment_1_tag_name:
-          description: セグメント１ID
+          description: セグメント１
           example: セグメント１
           nullable: true
           type: string
@@ -30390,8 +30390,10 @@ components:
           minimum: 1
           type: integer
         segment_1_tag_name:
-          description: セグメント１ID
-          type: integer
+          description: セグメント１
+          example: セグメント１
+          nullable: true
+          type: string
         segment_2_tag_id:
           description: セグメント２ID
           example: 1
@@ -30401,7 +30403,9 @@ components:
           type: integer
         segment_2_tag_name:
           description: セグメント２
-          type: integer
+          example: セグメント２
+          nullable: true
+          type: string
         segment_3_tag_id:
           description: セグメント３ID
           example: 1
@@ -30411,7 +30415,9 @@ components:
           type: integer
         segment_3_tag_name:
           description: セグメント３
-          type: integer
+          example: セグメント３
+          nullable: true
+          type: string
         tag_ids:
           items:
             description: メモタグID
@@ -32171,7 +32177,7 @@ components:
           nullable: true
           type: integer
         segment_1_tag_name:
-          description: セグメント１ID
+          description: セグメント１
           example: セグメント１
           nullable: true
           type: string
