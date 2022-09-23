@@ -44,16 +44,16 @@ type ManualJournalDetailsInner struct {
 	SectionName NullableString `json:"section_name"`
 	// セグメント１ID
 	Segment1TagId *int64 `json:"segment_1_tag_id,omitempty"`
-	// セグメント１ID
-	Segment1TagName *int64 `json:"segment_1_tag_name,omitempty"`
+	// セグメント１
+	Segment1TagName NullableString `json:"segment_1_tag_name,omitempty"`
 	// セグメント２ID
 	Segment2TagId *int64 `json:"segment_2_tag_id,omitempty"`
 	// セグメント２
-	Segment2TagName *int64 `json:"segment_2_tag_name,omitempty"`
+	Segment2TagName NullableString `json:"segment_2_tag_name,omitempty"`
 	// セグメント３ID
 	Segment3TagId *int64 `json:"segment_3_tag_id,omitempty"`
 	// セグメント３
-	Segment3TagName *int64 `json:"segment_3_tag_name,omitempty"`
+	Segment3TagName NullableString `json:"segment_3_tag_name,omitempty"`
 	TagIds []int64 `json:"tag_ids"`
 	TagNames []string `json:"tag_names"`
 	// 税区分コード
@@ -471,36 +471,46 @@ func (o *ManualJournalDetailsInner) SetSegment1TagId(v int64) {
 	o.Segment1TagId = &v
 }
 
-// GetSegment1TagName returns the Segment1TagName field value if set, zero value otherwise.
-func (o *ManualJournalDetailsInner) GetSegment1TagName() int64 {
-	if o == nil || o.Segment1TagName == nil {
-		var ret int64
+// GetSegment1TagName returns the Segment1TagName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManualJournalDetailsInner) GetSegment1TagName() string {
+	if o == nil || o.Segment1TagName.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.Segment1TagName
+	return *o.Segment1TagName.Get()
 }
 
 // GetSegment1TagNameOk returns a tuple with the Segment1TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetSegment1TagNameOk() (*int64, bool) {
-	if o == nil || o.Segment1TagName == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManualJournalDetailsInner) GetSegment1TagNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Segment1TagName, true
+	return o.Segment1TagName.Get(), o.Segment1TagName.IsSet()
 }
 
 // HasSegment1TagName returns a boolean if a field has been set.
 func (o *ManualJournalDetailsInner) HasSegment1TagName() bool {
-	if o != nil && o.Segment1TagName != nil {
+	if o != nil && o.Segment1TagName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSegment1TagName gets a reference to the given int64 and assigns it to the Segment1TagName field.
-func (o *ManualJournalDetailsInner) SetSegment1TagName(v int64) {
-	o.Segment1TagName = &v
+// SetSegment1TagName gets a reference to the given NullableString and assigns it to the Segment1TagName field.
+func (o *ManualJournalDetailsInner) SetSegment1TagName(v string) {
+	o.Segment1TagName.Set(&v)
+}
+// SetSegment1TagNameNil sets the value for Segment1TagName to be an explicit nil
+func (o *ManualJournalDetailsInner) SetSegment1TagNameNil() {
+	o.Segment1TagName.Set(nil)
+}
+
+// UnsetSegment1TagName ensures that no value is present for Segment1TagName, not even an explicit nil
+func (o *ManualJournalDetailsInner) UnsetSegment1TagName() {
+	o.Segment1TagName.Unset()
 }
 
 // GetSegment2TagId returns the Segment2TagId field value if set, zero value otherwise.
@@ -535,36 +545,46 @@ func (o *ManualJournalDetailsInner) SetSegment2TagId(v int64) {
 	o.Segment2TagId = &v
 }
 
-// GetSegment2TagName returns the Segment2TagName field value if set, zero value otherwise.
-func (o *ManualJournalDetailsInner) GetSegment2TagName() int64 {
-	if o == nil || o.Segment2TagName == nil {
-		var ret int64
+// GetSegment2TagName returns the Segment2TagName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManualJournalDetailsInner) GetSegment2TagName() string {
+	if o == nil || o.Segment2TagName.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.Segment2TagName
+	return *o.Segment2TagName.Get()
 }
 
 // GetSegment2TagNameOk returns a tuple with the Segment2TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetSegment2TagNameOk() (*int64, bool) {
-	if o == nil || o.Segment2TagName == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManualJournalDetailsInner) GetSegment2TagNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Segment2TagName, true
+	return o.Segment2TagName.Get(), o.Segment2TagName.IsSet()
 }
 
 // HasSegment2TagName returns a boolean if a field has been set.
 func (o *ManualJournalDetailsInner) HasSegment2TagName() bool {
-	if o != nil && o.Segment2TagName != nil {
+	if o != nil && o.Segment2TagName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSegment2TagName gets a reference to the given int64 and assigns it to the Segment2TagName field.
-func (o *ManualJournalDetailsInner) SetSegment2TagName(v int64) {
-	o.Segment2TagName = &v
+// SetSegment2TagName gets a reference to the given NullableString and assigns it to the Segment2TagName field.
+func (o *ManualJournalDetailsInner) SetSegment2TagName(v string) {
+	o.Segment2TagName.Set(&v)
+}
+// SetSegment2TagNameNil sets the value for Segment2TagName to be an explicit nil
+func (o *ManualJournalDetailsInner) SetSegment2TagNameNil() {
+	o.Segment2TagName.Set(nil)
+}
+
+// UnsetSegment2TagName ensures that no value is present for Segment2TagName, not even an explicit nil
+func (o *ManualJournalDetailsInner) UnsetSegment2TagName() {
+	o.Segment2TagName.Unset()
 }
 
 // GetSegment3TagId returns the Segment3TagId field value if set, zero value otherwise.
@@ -599,36 +619,46 @@ func (o *ManualJournalDetailsInner) SetSegment3TagId(v int64) {
 	o.Segment3TagId = &v
 }
 
-// GetSegment3TagName returns the Segment3TagName field value if set, zero value otherwise.
-func (o *ManualJournalDetailsInner) GetSegment3TagName() int64 {
-	if o == nil || o.Segment3TagName == nil {
-		var ret int64
+// GetSegment3TagName returns the Segment3TagName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManualJournalDetailsInner) GetSegment3TagName() string {
+	if o == nil || o.Segment3TagName.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.Segment3TagName
+	return *o.Segment3TagName.Get()
 }
 
 // GetSegment3TagNameOk returns a tuple with the Segment3TagName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ManualJournalDetailsInner) GetSegment3TagNameOk() (*int64, bool) {
-	if o == nil || o.Segment3TagName == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManualJournalDetailsInner) GetSegment3TagNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Segment3TagName, true
+	return o.Segment3TagName.Get(), o.Segment3TagName.IsSet()
 }
 
 // HasSegment3TagName returns a boolean if a field has been set.
 func (o *ManualJournalDetailsInner) HasSegment3TagName() bool {
-	if o != nil && o.Segment3TagName != nil {
+	if o != nil && o.Segment3TagName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSegment3TagName gets a reference to the given int64 and assigns it to the Segment3TagName field.
-func (o *ManualJournalDetailsInner) SetSegment3TagName(v int64) {
-	o.Segment3TagName = &v
+// SetSegment3TagName gets a reference to the given NullableString and assigns it to the Segment3TagName field.
+func (o *ManualJournalDetailsInner) SetSegment3TagName(v string) {
+	o.Segment3TagName.Set(&v)
+}
+// SetSegment3TagNameNil sets the value for Segment3TagName to be an explicit nil
+func (o *ManualJournalDetailsInner) SetSegment3TagNameNil() {
+	o.Segment3TagName.Set(nil)
+}
+
+// UnsetSegment3TagName ensures that no value is present for Segment3TagName, not even an explicit nil
+func (o *ManualJournalDetailsInner) UnsetSegment3TagName() {
+	o.Segment3TagName.Unset()
 }
 
 // GetTagIds returns the TagIds field value
@@ -771,20 +801,20 @@ func (o ManualJournalDetailsInner) MarshalJSON() ([]byte, error) {
 	if o.Segment1TagId != nil {
 		toSerialize["segment_1_tag_id"] = o.Segment1TagId
 	}
-	if o.Segment1TagName != nil {
-		toSerialize["segment_1_tag_name"] = o.Segment1TagName
+	if o.Segment1TagName.IsSet() {
+		toSerialize["segment_1_tag_name"] = o.Segment1TagName.Get()
 	}
 	if o.Segment2TagId != nil {
 		toSerialize["segment_2_tag_id"] = o.Segment2TagId
 	}
-	if o.Segment2TagName != nil {
-		toSerialize["segment_2_tag_name"] = o.Segment2TagName
+	if o.Segment2TagName.IsSet() {
+		toSerialize["segment_2_tag_name"] = o.Segment2TagName.Get()
 	}
 	if o.Segment3TagId != nil {
 		toSerialize["segment_3_tag_id"] = o.Segment3TagId
 	}
-	if o.Segment3TagName != nil {
-		toSerialize["segment_3_tag_name"] = o.Segment3TagName
+	if o.Segment3TagName.IsSet() {
+		toSerialize["segment_3_tag_name"] = o.Segment3TagName.Get()
 	}
 	if true {
 		toSerialize["tag_ids"] = o.TagIds
